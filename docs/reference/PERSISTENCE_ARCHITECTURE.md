@@ -1,24 +1,9 @@
-# Persistence Architecture
+# Moved
 
-FoA's native save system owns game state. Mods should not replace that ownership casually.
+This page has moved to its canonical Wave 5 location:
 
-## Public handbook rule
+**[Open the canonical page →](../../systems/persistence/architecture.md)**
 
-Use the smallest persistence owner that matches the data:
+This legacy path is retained for compatibility.
 
-- **game-owned state** — keep it on the game's native lifecycle;
-- **mod configuration** — use BepInEx configuration;
-- **mod-owned transient runtime state** — rebuild it from current game state when possible.
-
-A runtime hook firing successfully is not a reason to write save data.
-
-## Save-aware mod design
-
-When a feature touches durable game state:
-
-1. use the native game operation that normally owns that state;
-2. avoid duplicating the same state in a second owner;
-3. make repeated execution idempotent where possible;
-4. keep unload/disable behaviour from corrupting native state.
-
-For concrete save lifecycle surfaces, see [Saving and Persistence](SAVING_PERSISTENCE.md).
+Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
