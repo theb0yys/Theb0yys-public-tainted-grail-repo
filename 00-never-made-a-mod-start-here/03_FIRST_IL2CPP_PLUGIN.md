@@ -65,7 +65,7 @@ cd C:\TGModding\MyFirstTGMod
 Set your **real** game path:
 
 ~~~powershell
-$GameRoot = "D:\SteamLibrary\steamapps\common\Tainted Grail FoA"
+$GameRoot = "C:\Path\To\Tainted Grail FoA"
 ~~~
 
 Build:
