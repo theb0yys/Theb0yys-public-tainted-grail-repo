@@ -49,8 +49,11 @@ Then use the technical handbook to understand the systems underneath it:
 - [Templates and registries](docs/reference/TEMPLATES_REGISTRIES.md)
 - [Lifecycle and hooks](docs/reference/LIFECYCLE_HOOKS.md)
 - [Content domains](docs/reference/CONTENT_DOMAINS.md)
+- [Weapons: native architecture and current proven boundary](docs/reference/WEAPONS.md)
+- [Armour: native clothes, Kandra, and importer boundary](docs/reference/ARMOUR.md)
+- [Creatures: proven injection gates and runtime ownership](docs/reference/CREATURES.md)
 
-Weapons, armour, creatures, spells, recipes and world content are **separate integration problems**. This repository will add each process from proven working/research evidence rather than pretending the item path automatically applies to them.
+Weapons, armour and creatures now have their own evidence-bounded handbook processes. Spells, recipes and world content remain **separate integration problems** and will be documented only from their own proven working/research evidence rather than by extending the item path by assumption.
 
 ---
 

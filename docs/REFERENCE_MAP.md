@@ -80,6 +80,14 @@ Startup ordering, SceneService, Addressables scene discovery, template loading l
 
 Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and other native owners matter.
 
+### [Drake and MergedDrake: ECS Rigid-Mesh Rendering](reference/DRAKE.md)
+
+How FoA converts rigid Unity renderer authoring into Drake-owned ECS entities, loads mesh/material resources, realizes Entities Graphics state, manages LOD and lifetime, compacts scene-static content through MergedDrake, and how a custom rigid weapon should enter the system without duplicating its loading state machine.
+
+### [Proprietary System Documentation Standard](reference/PROPRIETARY_SYSTEMS.md)
+
+Mandatory structure for Drake, Kandra, proprietary rendering/runtime systems, and future reverse-engineered system pages. It requires purpose, ownership, identities/data contracts, lifecycle, vanilla entry, mod entry, accept/reject behavior, failure history, verification, the integrated custom-content process, and explicit proof boundaries.
+
 ### [Assets, Addressables, and Presentation](reference/ASSETS.md)
 
 AssetBundles, Addressables, `ARAssetReference`, prefabs, icons, models/materials, Merlin Workshop's actual boundary, and why an asset load is not gameplay registration.
@@ -210,28 +218,23 @@ Curated native/custom GUIDs used by documented examples. This is intentionally n
 
 ### [Items: Proven Custom Item Integration](reference/ITEMS.md)
 
-The first fully reasoned new-content process:
+The complete evidence-bounded custom-item process: native prototype, separate custom identity, clone validation, registry readiness, native registration, provider round-trip, World-owned Item construction, controlled acquisition, merchant/UI lifecycle timing, failure handling, and the still-separate persistence gate.
 
-~~~text
-native prototype
-→ custom identity
-→ clone validation
-→ native registration
-→ provider resolution
-→ World-owned Item
-→ controlled acquisition
-→ runtime verification
-~~~
+### [Weapons: Native Item, Equip, Combat, Presentation, and Importer Process](reference/WEAPONS.md)
 
-This page also explains the failed batch/timing assumptions that produced the final process.
+The native `ItemTemplate → Item → ItemEquipSpec → ItemEquip → CharacterHandBase/CharacterWeapon` ownership chain, implemented registrar behavior, Drake presentation path, provider lifetime, acquisition, combat-preservation, cleanup, persistence/migration requirements, and the exact boundary where the generic importer remains partial.
+
+### [Armour: Source Geometry, Deformation, Kandra, Native Clothes, and Equip Process](reference/ARMOUR.md)
+
+The staged armour path from source geometry and deformation proof through Kandra package generation/registration and the native `BaseClothes → ClothStitcher → KandraRig/KandraRenderer` equip lifecycle, with target-armour and persistence boundaries kept explicit.
+
+### [Creatures: Proven Injection Gates, Native Actor Lifecycle, and Provider Ownership](reference/CREATURES.md)
+
+The evidence-backed `CI1 → CI2 → CI3 → CI4A → CI4 → CI5 → focused live gate` process, including provider/consumer ownership, controlled actor lifecycle, native combat/death/corpse ownership, cleanup, population separation, one-session companion routing, and persistence limits.
 
 ### [Content Domains: Do Not Generalise One Process Across Everything](reference/CONTENT_DOMAINS.md)
 
-Why weapons, armour, creatures, spells, recipes, vendors and world content each require their own native graph and proven process.
-
-### [Weapons: Native Item, Equip, Combat, and Presentation Lifecycle](reference/WEAPONS_NATIVE_LIFECYCLE.md)
-
-The real native weapon graph: `ItemTemplate → Item → ItemEquipSpec → ItemEquip → CharacterHandBase → native combat/presentation`, plus save and Drake boundaries.
+Why items, weapons, armour, creatures, spells, recipes, vendors and world content remain separate owner graphs and proof lanes.
 
 ## Runtime and mod structure
 

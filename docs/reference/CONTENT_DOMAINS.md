@@ -104,4 +104,11 @@ A domain process is ready for the handbook when it can answer:
 
 **Items** now have a public reasoned baseline in [Items: Proven Custom Item Integration](ITEMS.md).
 
-Weapons, armour, creatures, spells, recipes, vendors and world content should be added as separate proven processes from the working-repo evidence rather than filled with generic instructions.
+The handbook now documents the requested evidence sequence:
+
+1. [Items](ITEMS.md) — proven bounded custom-item registration/acquisition process.
+2. [Weapons](WEAPONS.md) — native weapon graph plus implemented registrar evidence, with the complete generic importer still partial.
+3. [Armour](ARMOUR.md) — importer/Kandra/native-clothes evidence lanes, with end-to-end target armour still partial.
+4. [Creatures](CREATURES.md) — evidence-backed CI1→CI5 creature-injection process with lane-specific runtime proof.
+
+Spells, recipes, vendors and world content still require their own separately proven processes rather than generic instructions.
