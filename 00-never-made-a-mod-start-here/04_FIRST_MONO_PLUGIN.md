@@ -97,6 +97,10 @@ MY FIRST MONO MOD LOADED SUCCESSFULLY
 
 ## What success looks like
 
+**Progress: Start → Loader working → _First plug-in_ → First game change → First complete mod**
+
+You have reached **First plug-in** when your own DLL—not merely BepInEx—loads and produces your unique log line.
+
 Your first Mono plug-in test passes when:
 
 - the project builds;
