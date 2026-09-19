@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible problem in the starter docs, templates, examples, or repository guard.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: lane
+    attributes:
+      label: Runtime lane
+      options:
+        - Mono / BepInEx 5
+        - IL2CPP / BepInEx 6
+        - Repository/docs only
+        - Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe what happened. Do not upload proprietary game content or secrets.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Give the smallest reproducible steps.
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Evidence
+      description: Include versions and redacted log lines where useful.

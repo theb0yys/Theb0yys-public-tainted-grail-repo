@@ -1,0 +1,60 @@
+# Build output
+bin/
+obj/
+artifacts/
+out/
+dist/
+
+# IDE/user state
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+
+# Local game / loader references
+Game/
+GameRoot/
+BepInEx/
+Interop/
+interop/
+unhollowed/
+Libs/
+libs/
+References/
+references/
+
+# Never commit binaries, archives, or game/content assets here
+*.dll
+*.exe
+*.pdb
+*.zip
+*.7z
+*.rar
+*.pak
+*.assets
+*.bundle
+*.unity3d
+*.resource
+*.resources
+*.resS
+*.bank
+*.bnk
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.png
+*.jpg
+*.jpeg
+*.dds
+*.tga
+*.fbx
+*.obj
+*.blend
+
+# Local logs / diagnostics
+*.log
+crash*.txt
+Player.log
+output_log.txt

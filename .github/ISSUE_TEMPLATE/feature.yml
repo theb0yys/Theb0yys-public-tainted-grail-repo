@@ -1,0 +1,19 @@
+name: Starter improvement
+description: Propose a reusable template, example, document, or public-surface check.
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What problem would this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed public-safe solution
+      description: Keep it independent from private project implementations and proprietary assets.
+    validations:
+      required: true

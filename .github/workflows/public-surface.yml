@@ -1,0 +1,20 @@
+name: Public surface guard
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reject assets, binaries, archives, large files, and obvious secrets
+        shell: pwsh
+        run: ./tools/verify-public-surface.ps1
