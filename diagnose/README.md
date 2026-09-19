@@ -54,3 +54,12 @@ Do not assume an older compatibility receipt still applies.
 ## What not to upload when asking for help
 
 Do not upload raw saves, whole game folders, game DLL dumps, asset bundles, credentials, or unredacted logs containing private paths. Share the smallest redacted evidence that reproduces the problem.
+
+## Symptom-first diagnostic routes
+
+- [Weapon works but is invisible](presentation/weapon-works-but-is-invisible.md)
+- [UI opens but the action does not fire](ui/opens-but-action-does-not-fire.md)
+- [Expected behaviour is missing from the object you inspected](ownership/expected-behaviour-missing.md)
+- [Works now but not after load](persistence/works-now-not-after-load.md)
+
+Each route starts from what has definitely succeeded and finds the earliest unproven transition before recommending code changes.
