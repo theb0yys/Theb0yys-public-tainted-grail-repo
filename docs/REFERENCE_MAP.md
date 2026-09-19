@@ -225,6 +225,14 @@ native prototype
 
 This page also explains the failed batch/timing assumptions that produced the final process.
 
+### [Armour: Native Clothes, Kandra, and Importer Boundary](reference/ARMOUR.md)
+
+Separates conversion/deformation, Kandra registration, and the native `BaseClothes → ClothStitcher → KandraRig/KandraRenderer` lifecycle without overstating the still-partial end-to-end custom-armour path.
+
+### [Creatures: Proven Injection Gates and Runtime Ownership](reference/CREATURES.md)
+
+The evidence-backed `CI1 → CI2 → CI3 → CI4A → CI4 → CI5` process for source intake, native baseline, visual transport, animation mapping, template/actor contract and runtime lifecycle.
+
 ### [Content Domains: Do Not Generalise One Process Across Everything](reference/CONTENT_DOMAINS.md)
 
 Why weapons, armour, creatures, spells, recipes, vendors and world content each require their own native graph and proven process.
