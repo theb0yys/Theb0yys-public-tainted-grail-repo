@@ -11,7 +11,7 @@ This guide intentionally does **not** invent a Tainted Grail method for you to p
 Before writing the patch, identify:
 
 - exact game build/version;
-- runtime lane;
+- whether the target installation is Mono or IL2CPP;
 - exact type;
 - exact method;
 - overload/parameters if relevant;
@@ -36,6 +36,8 @@ You will learn how to:
 
 Choose a method where a **postfix** can make the change if possible.
 
+A **postfix** is code Harmony runs after the original game method finishes. It is often a good first patch because the game's normal logic still gets to run before your small adjustment.
+
 Postfixes usually preserve more original behaviour than replacing the method.
 
 ### 2. Avoid high-risk first targets
@@ -47,7 +49,7 @@ Do not begin with:
 - inventory persistence;
 - player death;
 - scene loading;
-- a transpiler;
+- a **transpiler** — a lower-level Harmony patch that rewrites the target method's instructions;
 - suppressing an entire original method.
 
 Choose a small reversible behaviour.
