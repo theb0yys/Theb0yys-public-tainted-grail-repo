@@ -30,7 +30,7 @@ If you start directly on a game method, those failures are mixed together.
 From the repository root:
 
 ~~~powershell
-$GameRoot = "D:\SteamLibrary\steamapps\common\Tainted Grail FoA"
+$GameRoot = "C:\Path\To\Tainted Grail FoA"
 
 dotnet build `
   .\examples\mono-harmony-self-test\HarmonySelfTest.csproj `
