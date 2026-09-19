@@ -167,4 +167,8 @@ Do not add Harmony or game-target code until this smoke test passes.
 
 ## Where to go next
 
-Use **[What Success Looks Like](06_SUCCESS_CHECKLIST.md)** to confirm the whole first loop, then continue to **[Learn the Everyday Modding Loop](../01-basic/README.md)**.
+Use **[Confirm Your First Mod Worked](06_SUCCESS_CHECKLIST.md)** to confirm the whole first loop.
+
+Then continue directly to **[Make Your First IL2CPP Game Change](../01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)**. That lesson moves from "my DLL loads" to a small, reversible change in the running game.
+
+After that, continue through **[Learn the Everyday Modding Loop](../01-basic/README.md)**.
