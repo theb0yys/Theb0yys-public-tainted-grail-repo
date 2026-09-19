@@ -1,18 +1,9 @@
-# Serialization and Archives
+# Moved
 
-Do not infer a file format from its extension alone.
+This page has moved to its canonical Wave 5 location:
 
-FoA content can pass through Unity containers, game-specific serialization and runtime registries. Treat those layers separately:
+**[Open the canonical page →](../../systems/core/serialization-and-archives.md)**
 
-~~~text
-package/container
-→ serialized game data
-→ native loader/registry
-→ runtime owner
-~~~
+This legacy path is retained for compatibility.
 
-## Rule
-
-Use the game's current loader/registry for the content type you are modifying. Do not build a custom archive writer merely because an installed file can be read or inspected.
-
-For runtime template ownership, see [Templates and Registries](TEMPLATES_REGISTRIES.md).
+Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
