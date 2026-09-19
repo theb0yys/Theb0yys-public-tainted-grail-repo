@@ -126,8 +126,11 @@ The last two are specialist routes, not mandatory higher levels of ordinary modd
 - [Intervention selection](mechanics/intervention-selection.md)
 - [Research method](investigate/research-method.md)
 - [Reverse engineering and discovery](investigate/reverse-engineering-discovery.md)
+- [Golden Rules](learn/understand-foa/golden-rules.md)
+- [Assemblies and system owners](reference/assemblies-system-owners.md)
+- [Content-domain owner map](reference/content-domains.md)
 
-Legacy `docs/reference/` paths are retained as compatibility redirects while migration proceeds.
+Legacy `docs/reference/` paths are compatibility shims only after Wave 5; substantive technical ownership now lives in the canonical Systems, Mechanics, Reference, Learn, Investigate, Diagnose, and Examples surfaces.
 
 ## Public-repository boundary
 
