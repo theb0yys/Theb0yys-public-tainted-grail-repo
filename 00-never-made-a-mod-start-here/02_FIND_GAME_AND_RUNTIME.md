@@ -45,7 +45,7 @@ For that lane, use:
 templates\il2cpp-basic
 ~~~
 
-## Check for legacy Mono
+## Check for Mono
 
 A Mono install normally has managed game assemblies under:
 
@@ -55,7 +55,7 @@ Fall of Avalon_Data\Managed\
 
 and an Assembly-CSharp.dll-style game assembly.
 
-For a genuine legacy Mono setup, use:
+For a Mono setup, use:
 
 ~~~text
 templates\mono-basic
