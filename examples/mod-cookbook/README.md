@@ -62,6 +62,9 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [28 Status application observer](28-status-application-observer-mono/README.md) | statuses / application observation | SOURCE_BUILD_EVIDENCED |
 | [29 Active status observer](29-active-status-observer-mono/README.md) | statuses / active-set observation | SOURCE_BUILD_EVIDENCED |
 | [30 Character-state observer](30-character-state-observer-mono/README.md) | character state / diagnostics | SOURCE_BUILD_EVIDENCED |
+| [31 Consumable use observer](31-consumable-use-observer-mono/README.md) | items / consumable observation | SOURCE_BUILD_EVIDENCED |
+| [32 Healing and recovery observer](32-healing-recovery-observer-mono/README.md) | healing / item-use delta observation | SOURCE_BUILD_EVIDENCED |
+| [33 Status cure/removal observer](33-status-cure-observer-mono/README.md) | statuses / consumable delta observation | SOURCE_BUILD_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -90,6 +93,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
 - [Combat VFX sidecars](recipes/09-combat-vfx/README.md)
 - [Buff/debuff tuning evidence gate](recipes/10-buff-debuff-tuning/README.md)
+- [Consumable effect attribution](recipes/11-consumable-effect-attribution/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -121,6 +125,12 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - active status membership changes: example 29;
 - character-state transitions: example 30;
 - buff/debuff strength and duration tuning: recipe 10; the stat surfaces are known, but mutation remains evidence-gated until exact consumer semantics are proved.
+
+### Consumables and recovery
+- hero-owned consumable use classification: example 31;
+- synchronous health recovery attribution around `Item.Use`: example 32;
+- synchronous negative-status removal and positive-status gain deltas around `Item.Use`: example 33;
+- attribution and duplicate-ownership guidance: recipe 11.
 
 ### Items, equipment and creatures
 - item stats: content example 01;

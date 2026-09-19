@@ -18,6 +18,10 @@ This index is the broad map. A category appears here even when its current evide
 | Active status observation | 29 active status observer | SOURCE_BUILD_EVIDENCED |
 | Character state observation | 30 character-state observer | SOURCE_BUILD_EVIDENCED for selected state reads |
 | Buff/debuff tuning | recipe 10 | SOURCE_CONFIRMED stat surfaces; consumer semantics NOT_PROVEN |
+| Consumable use observation | 31 consumable use observer | SOURCE_BUILD_EVIDENCED |
+| Healing/recovery observation | 32 healing and recovery observer | SOURCE_BUILD_EVIDENCED |
+| Consumable status deltas | 33 status cure/removal observer | SOURCE_BUILD_EVIDENCED |
+| Consumable effect attribution | recipe 11 | SOURCE_BUILD_EVIDENCED attribution shape; exact public recipe NOT_RUN |
 | Item stats | content/01 | STATIC_CONFIRMED |
 | Weapons | content/02 | STATIC_CONFIRMED |
 | Armour | content/03 | STATIC_CONFIRMED |
