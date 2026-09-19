@@ -1,211 +1,74 @@
-# Tainted Grail Mod Cookbook
+# Tainted Grail Modding Cookbook
 
-This folder answers a different question from the minimal templates:
+This cookbook is organized by **what you are trying to build**, not by example number.
 
-> What does a small **real Tainted Grail mod** look like for the kinds of things people actually want to change?
+The numbered example folders are retained as stable implementation units so existing links do not break. They are no longer the primary navigation model.
 
-The examples here use real FoA Mono symbols where the maintainer's working mod workspace provides enough evidence to identify the path. They are rewritten as small clean-room teaching examples; they do not copy the finished mod's design.
+## Choose a section
 
-## Using this cookbook on IL2CPP
+| Section | Use it for |
+| --- | --- |
+| [Gameplay](gameplay/README.md) | player rules, combat, magic, items, inventory, economy, interactions, companions, mounts, NPC AI and world encounters |
+| [Graphics](graphics/README.md) | camera comfort, post-processing, fog, visibility, culling, sky and weather rendering |
+| [Visual effects](visual-effects/README.md) | combat VFX, blood/death presentation, spell effects, weapon trails and helper lighting |
+| [Audio](audio/README.md) | footsteps, music, weapon/magic SFX and world audio |
+| [UI & HUD](ui-hud/README.md) | native HUD changes, custom HUDs, menus, overlays and input/cursor ownership |
+| [Systems](systems/README.md) | Harmony patterns, lifecycle, persistence, diagnostics, cross-mod APIs, asset loading and validation |
+| [Research](research/README.md) | candidate hooks, unvalidated examples and explicit evidence gates |
 
-If your installed game is IL2CPP, start with **[First IL2CPP Game Change](../il2cpp-first-game-change/README.md)** before using the game-target examples below.
+For the working-mod lineage behind the strongest reusable mechanisms, see [Proven mechanics index](systems/PROVEN_MECHANICS.md).
 
-The code examples in this cookbook are primarily **Mono/BepInEx 5 target investigations**. A type or method shown here can be a useful research lead for IL2CPP, but it is **not automatically proof that the same generated IL2CPP type, signature, or patch shape is correct on your current build**.
+## Evidence classes
 
-For an IL2CPP game-specific patch:
+This repository keeps two separate questions visible:
 
-1. inspect your local generated interop;
-2. verify the exact current type and method;
-3. reference only the local interop assembly you need;
-4. adapt the example;
-5. build and test that exact IL2CPP version.
+1. **How strong is the underlying mechanism evidence?**
+2. **Has this exact public rewrite been executed?**
 
-## Testing status
+The formal labels are defined in [Testing and Evidence Status](../../docs/EVIDENCE.md).
 
-Every example keeps two things separate: how far the underlying source path was checked in the maintainer's working environment, and whether the exact rewritten public example has itself been run.
+- **RUNTIME_EVIDENCED** — the underlying mechanism produced useful observed runtime behaviour in the stated scope.
+- **LOAD_EVIDENCED** — load/registration was observed, but useful feature behaviour was not fully established.
+- **SOURCE_BUILD_EVIDENCED** — source path plus build evidence, without useful live feature proof.
+- **SOURCE_CONFIRMED** — concrete source path exists, without a completed build/load/feature result.
+- **STATIC_CONFIRMED** — editor/toolkit authoring contract confirmed from source.
+- **NOT_RUN** — the exact public example or recipe was not executed.
+- **NOT_PROVEN** — the claimed adaptation is not established.
 
-The table below uses the repository's formal status labels so those distinctions stay precise. See [Testing and Evidence Status](../../docs/EVIDENCE.md) for the definitions.
+A rewritten public example can therefore be **NOT_RUN** even when its underlying mechanism is **RUNTIME_EVIDENCED**.
 
-The exact rewritten public examples are **NOT_RUN** until somebody builds and tests those specific examples. The current authored public set is therefore marked **NEEDS_VALIDATION** as a workflow reminder; **NOT_RUN** remains the formal execution-status label.
+## Cookbook classes
 
-## Code examples
+### Runtime-backed pattern
 
-| Example | Category | Source-path evidence |
-| --- | --- | --- |
-| [01 Stamina drain](01-stamina-drain-mono/README.md) | player stats / stamina | SOURCE_BUILD_EVIDENCED |
-| [02 Carry capacity](02-carry-capacity-mono/README.md) | player stats / inventory | LOAD_EVIDENCED |
-| [03 No fall damage](03-no-fall-damage-mono/README.md) | damage | SOURCE_BUILD_EVIDENCED |
-| [04 Magic projectile speed](04-magic-projectile-speed-mono/README.md) | magic / projectiles | RUNTIME_EVIDENCED |
-| [05 Force hero HUD bars visible](05-force-hero-hud-mono/README.md) | UI / HUD | RUNTIME_EVIDENCED |
-| [06 Modifier-gated illegal pickup](06-illegal-pickup-guard-mono/README.md) | interaction / theft | RUNTIME_EVIDENCED |
-| [07 Hero footstep beep replacement](07-footstep-beep-replacement-mono/README.md) | audio / event replacement | RUNTIME_EVIDENCED |
-| [08 One extra airborne jump](08-extra-air-jump-mono/README.md) | movement | LOAD_EVIDENCED |
-| [09 Player magic mana cost](09-mana-cost-mono/README.md) | magic / mana | SOURCE_BUILD_EVIDENCED |
-| [10 Player magic damage](10-magic-damage-mono/README.md) | combat / magic | SOURCE_BUILD_EVIDENCED |
-| [11 Merchant gold floor](11-merchant-gold-floor-mono/README.md) | economy / merchant wealth | SOURCE_CONFIRMED |
-| [12 Restock on shop open](12-merchant-restock-on-open-mono/README.md) | economy / merchant stock | SOURCE_BUILD_EVIDENCED |
-| [13 Status buildup](13-status-buildup-mono/README.md) | statuses | SOURCE_BUILD_EVIDENCED |
-| [14 Save-slot observer](14-save-slot-observer-mono/README.md) | persistence observation | LOAD_EVIDENCED |
-| [15 Dialogue-choice observer](15-dialogue-choice-observer-mono/README.md) | dialogue observation | LOAD_EVIDENCED |
-| [16 Quest-completion observer](16-quest-completion-observer-mono/README.md) | quest observation | LOAD_EVIDENCED |
-| [17 Movement FOV kick](17-fov-kick-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
-| [18 Personal helper light](18-personal-helper-light-mono/README.md) | environment / lighting | SOURCE_BUILD_EVIDENCED |
-| [19 Context lane observer](19-context-lane-observer-mono/README.md) | contextual routing | RUNTIME_EVIDENCED for selected inputs |
-| [20 Camera shake strength](20-camera-shake-strength-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
-| [21 FOV transition duration](21-fov-transition-duration-mono/README.md) | camera / comfort | SOURCE_BUILD_EVIDENCED |
-| [22 Native music mute](22-native-music-mute-mono/README.md) | audio / native music | LOAD_EVIDENCED |
-| [23 Character damage observer](23-character-damage-observer-mono/README.md) | damage / VFX foundation | RUNTIME_EVIDENCED |
-| [24 Head bob strength](24-head-bob-strength-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
-| [25 Motion blur toggle](25-motion-blur-toggle-mono/README.md) | graphics / comfort | LOAD_EVIDENCED |
-| [26 Move and sprint speed](26-move-sprint-speed-mono/README.md) | traversal / player stats | LOAD_EVIDENCED |
-| [27 Simple damage numbers](27-simple-damage-numbers-mono/README.md) | HUD / combat feedback | LOAD_EVIDENCED |
-| [28 Status application observer](28-status-application-observer-mono/README.md) | statuses / application observation | SOURCE_BUILD_EVIDENCED |
-| [29 Active status observer](29-active-status-observer-mono/README.md) | statuses / active-set observation | SOURCE_BUILD_EVIDENCED |
-| [30 Character-state observer](30-character-state-observer-mono/README.md) | character state / diagnostics | SOURCE_BUILD_EVIDENCED |
-| [31 Consumable use observer](31-consumable-use-observer-mono/README.md) | items / consumable observation | SOURCE_BUILD_EVIDENCED |
-| [32 Healing and recovery observer](32-healing-recovery-observer-mono/README.md) | healing / item-use delta observation | SOURCE_BUILD_EVIDENCED |
-| [33 Status cure/removal observer](33-status-cure-observer-mono/README.md) | statuses / consumable delta observation | SOURCE_BUILD_EVIDENCED |
-| [34 Equipment change observer](34-equipment-change-observer-mono/README.md) | equipment / lifecycle observation | SOURCE_CONFIRMED |
-| [35 Main/off-hand observer](35-hand-item-observer-mono/README.md) | equipment / hand-state observation | SOURCE_BUILD_EVIDENCED |
-| [36 Weapon visibility/state observer](36-weapon-visibility-state-observer-mono/README.md) | weapon presentation / state observation | LOAD_EVIDENCED read surface |
-| [37 Combat state observer](37-combat-state-observer-mono/README.md) | combat / state observation | SOURCE_BUILD_EVIDENCED |
-| [38 Guard / block / parry observer](38-guard-block-parry-observer-mono/README.md) | combat / defence-result observation | SOURCE_BUILD_EVIDENCED guard entry; RUNTIME_EVIDENCED damage-result fields |
-| [39 Attack / cast action observer](39-attack-cast-action-observer-mono/README.md) | combat / action lifecycle observation | SOURCE_CONFIRMED lifecycle seams |
-| [40 Poise-break observer](40-poise-break-observer-mono/README.md) | combat / poise outcome observation | SOURCE_CONFIRMED |
-| [41 Stagger observer](41-stagger-observer-mono/README.md) | combat / stagger outcome observation | SOURCE_CONFIRMED |
-| [42 Character death observer](42-character-death-observer-mono/README.md) | combat / terminal character observation | SOURCE_BUILD_EVIDENCED |
+A mechanism has useful live evidence from a working implementation. The public rewrite still keeps its own exact execution status.
 
-Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
+### Advanced pattern
 
-## Content-authoring examples
+The underlying path has useful runtime evidence, but the mechanism carries larger lifecycle, persistence, actor-ownership, save, performance or compatibility requirements.
 
-These use the Merlin Workshop authoring path rather than a BepInEx code plug-in:
+### Research candidate
 
-- [Item stats](content/01-item-stats/README.md)
-- [Weapon](content/02-weapon/README.md)
-- [Armour](content/03-armour/README.md)
-- [Creature / NPC](content/04-creature/README.md)
+The target is useful for investigation, but the current evidence ceiling is source/build/load-only or otherwise incomplete. Research candidates are not presented as working gameplay recipes.
 
-Their current evidence level is **STATIC_CONFIRMED** because the authoring contracts exist in inspected Merlin source. The exact public recipes remain **NOT_RUN**.
+## Runtime lane
 
-## Larger-system recipes and scaffolds
+Most game-target code examples in this cookbook were investigated on the **Mono / BepInEx 5** lane.
 
-These are intentionally not all compileable one-file mods. They document the smallest honest route for systems where a tiny snippet would hide important lifecycle, persistence or evidence requirements.
+If your installed game is IL2CPP, start with [First IL2CPP Game Change](../il2cpp-first-game-change/README.md), inspect your local generated interop, verify the current type/member signatures, and adapt the mechanism instead of assuming a Mono patch shape is portable.
 
-- [Skill caps and progression](recipes/01-skill-caps/README.md)
-- [Held-light / helper-light mods](recipes/02-helper-light/README.md)
-- [Contextual music routing](recipes/03-contextual-music/README.md)
-- [Loot and corpse loot](recipes/04-loot/README.md)
-- [Crafting and runtime recipe prototypes](recipes/05-crafting/README.md)
-- [Spell VFX overlays](recipes/06-spell-vfx/README.md)
-- [Safe save-backup architecture](recipes/07-save-backup/README.md)
-- [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
-- [Combat VFX sidecars](recipes/09-combat-vfx/README.md)
-- [Buff/debuff tuning evidence gate](recipes/10-buff-debuff-tuning/README.md)
-- [Consumable effect attribution](recipes/11-consumable-effect-attribution/README.md)
-- [Equipment lifecycle attribution](recipes/12-equipment-lifecycle-attribution/README.md)
-- [Combat action lifecycle attribution](recipes/13-combat-action-lifecycle-attribution/README.md)
-- [Downstream combat outcome attribution](recipes/14-downstream-combat-outcome-attribution/README.md)
+## Build rule
 
-For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
-
-## Category map
-
-### Fundamentals
-- configuration and hotkeys: level 00/01 beginner guides;
-- Harmony postfix/prefix: proven-path templates;
-- diagnostics/logging: all examples;
-- small runtime UI: proven-path runtime UI example.
-
-### Player stats
-- stamina drain: cookbook example 01;
-- carry capacity: cookbook example 02;
-- skill caps/uncapping: maintainer path has load evidence, but the real XP/cap path is too invasive to compress into a beginner snippet without reimplementing native XP handling; not promoted yet;
-- movement/traversal: extra-air-jump example 08; example 26 covers move/sprint speed; camera-relative movement remains a later advanced example;
-- camera comfort: examples 17, 20, 21, 24 and 25 cover movement FOV kick, camera shake, FOV transition duration, head bob and motion blur.
-
-### Damage and combat
-- fall damage: example 03;
-- magic projectile speed: example 04;
-- item/weapon combat stats: content example 01/02;
-- general damage examples include 10 (magic damage) and 23 (character damage observation);
-- combat VFX lifecycle guidance lives under recipes/09-combat-vfx/.
-- combat-state transitions with equipped-hand context: example 37;
-- guard entry plus observed block/parry damage results: example 38;
-- melee, ranged-draw and spell-cast lifecycle observation: example 39;
-- action-to-result ownership and attribution boundaries: recipe 13;
-- native poise-break entry: example 40;
-- native stagger entry/duration observation: example 41;
-- terminal character death observation: example 42;
-- downstream outcome ownership plus the knockback evidence gate: recipe 14.
-
-### Statuses and character state
-- status buildup remains example 13;
-- status application observation: example 28;
-- active status membership changes: example 29;
-- character-state transitions: example 30;
-- buff/debuff strength and duration tuning: recipe 10; the stat surfaces are known, but mutation remains evidence-gated until exact consumer semantics are proved.
-
-### Consumables and recovery
-- hero-owned consumable use classification: example 31;
-- synchronous health recovery attribution around `Item.Use`: example 32;
-- synchronous negative-status removal and positive-status gain deltas around `Item.Use`: example 33;
-- attribution and duplicate-ownership guidance: recipe 11.
-
-### Items, equipment and creatures
-- item stats: content example 01;
-- weapon authoring: content example 02;
-- armour authoring: content example 03;
-- creature/NPC authoring: content example 04;
-- custom runtime weapon registration/presentation remains outside the beginner cookbook until its full live registration/equip path is proved.
-- item-level equipment transition observation: example 34;
-- current main/off-hand projection and item classification: example 35;
-- draw/sheathe and weapon-presentation state observation: example 36;
-- equipment lifecycle ownership and attribution boundaries: recipe 12.
-
-### Interaction and economy
-- illegal pickup guard: example 06;
-- merchant restock/gold paths exist, but current feature evidence is not strong enough for a "proven" public recipe;
-- lockpicking has source/build evidence but not game-feature evidence, so it is not promoted yet.
-
-### UI
-- simple overlay: proven-path UI example;
-- hero HUD decision patch: example 05;
-- example 27 is a minimal screen-space damage-number feed;
-- complex native menu extension is deliberately excluded until a smaller complete focus/input/close lifecycle can be published without dragging in a finished mod's design.
-
-### Audio
-- direct replacement gate: proven-path audio example;
-- real FoA hero footstep target: example 07;
-- contextual routing starts at example 19;
-- example 22 demonstrates the separate native-music-start suppression seam without shipping replacement music;
-- the complete contextual music system remains intentionally larger than a single cookbook mod.
-
-### Environment and visuals
-- skybox apply/restore: proven-path skybox example;
-- personal/helper lighting: example 18;
-- torch detection and weather systems still contain wider visual/runtime matrices and remain larger recipes.
-
-### Persistence
-- a save-backup plug-in reached build/load/config/folder creation, but actual backup archive creation remained unproved in the inspected evidence. It is intentionally not presented as a working save example yet.
-
-## Build assumption
-
-These game-target examples are for the **Mono / BepInEx 5** lane because that is where these particular source paths were investigated.
-
-Typical build:
+A typical Mono example builds against local references:
 
 ~~~powershell
 dotnet build .\Example.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-Do not install a Mono example into an IL2CPP game setup.
+Do not redistribute game assemblies, BepInEx binaries, generated interop assemblies, game assets or other proprietary content.
 
-## Rule for adapting an example
+## Where the old numbers went
 
-1. Get the example running unchanged where practical.
-2. Check the testing-status label.
-3. Change one behavior.
-4. Rebuild and retest.
-5. If you change the target type/method/field, treat that as new research.
-6. Never turn a source/build example into a runtime claim without running it.
+Examples such as `04-magic-projectile-speed-mono` and `23-character-damage-observer-mono` remain at their existing paths for compatibility. Each section links to those implementation folders by subject.
+
+The number is an identifier, not a maturity level or category.
