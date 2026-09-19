@@ -202,6 +202,62 @@ yet combat, death, root bones, colliders, save ownership, cleanup or population 
 
 The gate sequence keeps each success from being used as proof of the next subsystem.
 
+## Failure lessons from controlled creature gates
+
+The creature process exists because partial successes repeatedly exposed missing native contracts.
+
+### Headless graphics was not a valid visual proof
+
+A `-nographics` validation attempt selected an unsupported/null graphics path.
+
+**Lesson:** graphics-dependent Kandra/HDRP validation requires a real graphics-capable environment. A headless asset/load result cannot stand in for rendered acceptance.
+
+### Generic HDRP/Lit was not the native Kandra skinning contract
+
+A controlled actor became visible enough to reveal that ordinary `HDRP/Lit` did not implement the Kandra renderer's required skinning path.
+
+**Lesson:** "mesh is visible" is not native character-renderer compatibility.
+
+The next step was read-only baseline research into the real AnimalBear Kandra/material contract rather than another guessed shader substitution.
+
+### Collider shape did not complete the controller contract
+
+The first actor path reached `NpcController.IsGroundedInternal` with missing controller-grounding data.
+
+Research recovered the exact baseline `CharacterGroundedData` contract and values before rebuilding.
+
+**Lesson:** collider geometry is only one part of movement/controller ownership.
+
+### Combat success did not prove locomotion or death
+
+An early live actor could detect the hero, take damage and use both attacks, yet:
+
+- locomotion dragged;
+- death had no accepted fall animation;
+- the corpse/body disappeared.
+
+Research found three separate causes:
+
+1. the animation map lacked `Idle(1)`, `Movement(2)`, `GetHit(32)`, and `Death(44)`;
+2. the visual retained an inappropriate showcase controller/root-motion setup;
+3. cleanup discarded the whole `Location` when the living `NpcElement` disappeared, deleting the native same-Location `NpcDummy` / `Corpse` handoff.
+
+**Lesson:** attack proof is not locomotion/death proof, and cleanup must respect native death ownership.
+
+### A plausible "fists" guard was wrong
+
+A later defense gate matched the exact baseline item GUID and block geometry but rejected the actor because an assumed fists classification was false.
+
+Read-only native research showed the native block owner did not require that classification.
+
+**Lesson:** validate the actual consumer contract. A plausible safety guard can be more wrong than the native owner.
+
+### One-session actor proof is deliberately not population proof
+
+The controlled actor used immediate save exclusion and explicit cleanup.
+
+**Lesson:** a safe disposable `Location` proof should not be promoted into persistent ambient-spawn authority.
+
 ## What goes wrong
 
 ### Visual success mistaken for actor success
