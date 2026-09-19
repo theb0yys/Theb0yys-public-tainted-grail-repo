@@ -1,4 +1,4 @@
-# 03 — Advanced
+# Build Robust Game Changes
 
 Advanced modding is not just doing more complicated things. It is controlling more failure modes with better evidence.
 
@@ -92,6 +92,6 @@ Keep evidence levels separate:
 
 Do not turn one level into another by wording.
 
-## When to move to Framework
+## When to build shared systems
 
-Move to 04-framework when you have repeated problems across multiple features or mods and can identify a real shared contract worth maintaining.
+Move to [Build Reusable Mod Systems](../04-framework/README.md) when you have repeated problems across multiple features or mods and can identify a real shared contract worth maintaining.
