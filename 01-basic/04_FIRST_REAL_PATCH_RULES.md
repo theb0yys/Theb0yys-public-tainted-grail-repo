@@ -2,7 +2,7 @@
 
 ## What you're doing
 
-You are moving from a self-owned test target to a real game method while keeping the first change small, reversible, and tied to evidence from the game build you are actually testing.
+You are moving from a self-owned test target to a real game method while keeping the first change small, reversible, and based on a target you verified for the game build you are actually testing.
 
 This guide intentionally does **not** invent a Tainted Grail method for you to patch.
 
@@ -18,7 +18,7 @@ Before writing the patch, identify:
 - what behaviour you observed;
 - what minimal change you want.
 
-A real target must come from current evidence for the game build you are testing.
+A real target must be something you have actually verified for the game build you are testing.
 
 ## What you'll learn
 
@@ -89,12 +89,12 @@ You have a real target that is explicitly tied to the game build you inspected, 
 
 **The patch replaces too much original behaviour:** prefer a narrower postfix or another smaller target where practical.
 
-**A game update breaks the patch:** re-establish the exact type, method, overload, and runtime evidence before changing unrelated code.
+**A game update breaks the patch:** re-check the exact type, method, and overload on your current game build before changing unrelated code.
 
 **A version-specific assumption fails silently:** log the failure and disable the affected feature instead of guessing.
 
 ## Where to go next
 
-Use the **[Tainted Grail Mod Cookbook](../examples/mod-cookbook/README.md)** for game-target teaching examples with explicit evidence labels.
+Use the **[Tainted Grail Mod Cookbook](../examples/mod-cookbook/README.md)** for game-target teaching examples that show how far each path has actually been checked.
 
 For the underlying engineering model, continue to **[Understand How Mods Work](../02-foundational/README.md)**.
