@@ -10,3 +10,10 @@ Start with:
 The examples do not contain game assets, private project code, private process material, or full feature designs.
 
 - `mod-cookbook/` — small real FoA-target examples and concrete Merlin content recipes, with source-path evidence levels separated from public-example validation.
+
+## Evidence-backed case studies
+
+- [Failures and corrections](failures-and-corrections/README.md)
+- [Investigation cases](investigations/README.md)
+
+These are clean-room teaching histories, not copies of private production implementations.
