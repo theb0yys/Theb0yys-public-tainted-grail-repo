@@ -36,9 +36,9 @@ From the repository root:
 ~~~powershell
 $GameRoot = "C:\Path\To\Tainted Grail FoA"
 
-dotnet build \
-  .\examples\il2cpp-first-game-change\FirstGameChange.csproj \
-  -c Release \
+dotnet build `
+  .\examples\il2cpp-first-game-change\FirstGameChange.csproj `
+  -c Release `
   -p:GameRoot="$GameRoot"
 ~~~
 
@@ -77,9 +77,9 @@ The plug-in reads the old state first because it owns the responsibility for und
 $PluginDir = Join-Path $GameRoot "BepInEx\plugins\TGCommunity.Il2CppFirstGameChange"
 New-Item -ItemType Directory -Force $PluginDir | Out-Null
 
-Copy-Item \
-  .\examples\il2cpp-first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll \
-  $PluginDir \
+Copy-Item `
+  .\examples\il2cpp-first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll `
+  $PluginDir `
   -Force
 ~~~
 
