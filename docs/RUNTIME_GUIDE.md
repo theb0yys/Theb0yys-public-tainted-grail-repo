@@ -31,6 +31,34 @@ With BepInEx 6 IL2CPP, the loader target is the IL2CPP BepInEx assembly and gene
 
 Use `templates/il2cpp-basic`.
 
+## IL2CPP references after the smoke test
+
+The first plug-in needs only enough of BepInEx to load.
+
+As you make more capable IL2CPP mods, references normally grow in three layers:
+
+1. **Loader/runtime host** — assemblies under `<GameRoot>/BepInEx/core/`, such as `BepInEx.Core.dll`, `BepInEx.Unity.Common.dll`, `BepInEx.Unity.IL2CPP.dll`, and `Il2CppInterop.Runtime.dll`.
+2. **Unity runtime API** — Unity assemblies supplied by the installed IL2CPP modding environment, commonly under `<GameRoot>/BepInEx/unity-libs/`. These let a plug-in use Unity APIs such as `Application`, `QualitySettings`, scenes, GameObjects, and other engine-level types.
+3. **Generated Tainted Grail interop** — managed projections generated for the installed IL2CPP game under `<GameRoot>/BepInEx/interop/`. When you need a Tainted Grail type, reference only the local generated assembly that actually contains the target, for example `TG.Main.dll` when the verified target lives there.
+
+For Harmony patching, the project will also normally reference the local `0Harmony.dll` supplied by the installed BepInEx environment.
+
+Do **not** copy generated interop, Unity, BepInEx, or game assemblies into this repository. Keep them as local compile-time references.
+
+The progression is intentional:
+
+~~~text
+plug-in loads
+-> use a Unity runtime API
+-> inspect the local generated interop
+-> verify one FoA type/method
+-> add Harmony only for that verified target
+~~~
+
+Start with **[Make Your First IL2CPP Game Change](../01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)** before moving to a game-specific Harmony target.
+
+Generated interop belongs to the game build that produced it. After a game update, re-check the generated assemblies and the exact target rather than assuming an older symbol or signature still applies.
+
 ## Mono indicators
 
 A Unity Mono install normally exposes managed game assemblies under the game's `*_Data/Managed` directory, including an `Assembly-CSharp.dll`-style game assembly.
