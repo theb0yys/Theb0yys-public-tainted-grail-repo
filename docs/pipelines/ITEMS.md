@@ -11,7 +11,11 @@ Merlin exposes an editor menu for creating an item template:
 
 `Assets → TG Data → Miscellaneous → Item`
 
-The implementation creates an `ItemTemplate` as a prefab rather than a loose data file. Template creation explicitly rejects the Unity `Resources` directory because templates are expected to participate in the project's addressable/template system.
+The implementation creates an `ItemTemplate` as a prefab rather than a loose data file.
+
+An **ItemTemplate** is the reusable game definition for an item. A **prefab** is the reusable Unity object that stores that definition in the authoring project. Template creation explicitly rejects the Unity `Resources` directory because templates are expected to participate in the project's addressable/template system.
+
+An **addressable** is a Unity-managed lookup entry: the project gives an asset an address/group so other content can refer to it without depending on a raw filesystem path.
 
 ## Core item shape
 
@@ -61,9 +65,11 @@ A public mod should create its own icon and let the local Merlin project manage 
 
 Use `ItemEquipSpec`.
 
+`ItemEquipSpec` is the attachment that describes how an item is equipped and which visual representation should be used.
+
 It carries:
 
-- an `EquipmentType`;
+- an `EquipmentType` — the equipment category/slot or handling role;
 - gem-slot count;
 - weapon-specific finishing/hit-stop options;
 - one or more visual item representations selected by NPC abstraction;
