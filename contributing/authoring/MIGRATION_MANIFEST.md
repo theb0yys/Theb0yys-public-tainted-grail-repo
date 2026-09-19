@@ -19,13 +19,13 @@ Create the mandatory top-level surfaces and move only pages whose information ro
 - `docs/reference/HOOKS_AND_INTERVENTION_PROCESS.md` → `mechanics/intervention-selection.md`
 
 ### Investigate
-- `docs/reference/RESEARCH_METHOD.md` → `investigate/research-method.md`
+- `investigate/research-method.md` — reconstructed from the accepted research because the referenced legacy `docs/reference/RESEARCH_METHOD.md` is absent on current `main`
 - `docs/reference/REVERSE_ENGINEERING_DISCOVERY.md` → `investigate/reverse-engineering-discovery.md`
 
 ### Diagnose
 - `docs/DEBUGGING.md` → `diagnose/README.md`
 - `docs/reference/DIAGNOSTICS.md` → `diagnose/diagnostics.md`
-- `docs/reference/FAILURES_CONSTRAINTS.md` → `diagnose/failures-and-constraints.md`
+- `diagnose/failures-and-constraints.md` — deferred; referenced legacy source is absent on current `main`
 
 ### Reference
 - `docs/EVIDENCE.md` → `reference/evidence/README.md`
@@ -35,10 +35,10 @@ Create the mandatory top-level surfaces and move only pages whose information ro
 - `docs/reference/HOOK_CATALOGUE.md` → `reference/hooks/README.md`
 
 ### Examples
-- `docs/reference/WORKS_FAILS_WHY.md` → `examples/failures-and-corrections/README.md`
+- `examples/failures-and-corrections/README.md` — deferred; referenced legacy source is absent on current `main`
 
 ### Authoring standards
-- `docs/reference/PROPRIETARY_SYSTEMS.md` → `contributing/authoring/PROPRIETARY_SYSTEMS.md`
+- `contributing/authoring/PROPRIETARY_SYSTEMS.md` — reconstructed from the accepted research because the referenced legacy file is absent on current `main`
 
 Legacy paths become redirects.
 
