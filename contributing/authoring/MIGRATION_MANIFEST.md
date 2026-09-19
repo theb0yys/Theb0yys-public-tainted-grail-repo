@@ -54,15 +54,38 @@ After Wave 1 links are validated:
 
 Do not split domain monoliths until their private/public source mapping is explicit.
 
-Priority domains:
-1. Items
-2. Weapons
-3. Armour / Kandra
-4. Creatures / actors
-5. UI/input
-6. Persistence
+Current Wave 3 status:
 
-Each split must preserve a hub with a complete reading route.
+1. **Items — PASSED on this migration branch**
+   - `docs/reference/ITEMS.md` → `mechanics/items/custom-item-integration.md`
+   - `docs/reference/LOOT_REWARDS_ACQUISITION.md` → `mechanics/items/acquisition.md`
+   - `docs/reference/DISTRIBUTION_MERCHANTS_LOOT.md` → `mechanics/items/distribution.md`
+   - new `systems/items/README.md`, `mechanics/items/README.md`, and `learn/content-authoring/items/README.md`
+
+2. **Weapons — PASSED on this migration branch**
+   - `docs/reference/WEAPONS.md` → `mechanics/weapons/custom-weapon-integration.md`
+   - legacy lifecycle shim → `systems/weapons/native-lifecycle.md`
+   - new `systems/weapons/README.md`, `mechanics/weapons/README.md`, and `learn/content-authoring/weapons/README.md`
+
+3. **Armour / Kandra — PASSED on this migration branch**
+   - `docs/reference/ARMOUR.md` → `mechanics/armour/custom-armour-integration.md`
+   - legacy lifecycle shim → `systems/armour/kandra-clothes-lifecycle.md`
+   - new `systems/armour/README.md`, `mechanics/armour/README.md`, and `learn/content-authoring/armour/README.md`
+
+4. **Creatures / actors — PASSED on this migration branch**
+   - `docs/reference/CREATURES_NPCS.md` → `mechanics/creatures/custom-creature-injection.md`
+   - `docs/reference/ACTORS_LOCATIONS_SPAWNING.md` → `systems/actors/location-and-session-lifecycle.md`
+   - `docs/reference/SPAWNING_ENCOUNTERS.md` → `mechanics/actors/spawning-and-population.md`
+   - legacy creature shim → `systems/creatures/README.md`
+   - new creature/actor mechanics indexes and `learn/content-authoring/creatures/README.md`
+
+5. **UI/input — canonical system move completed in Wave 1; case/diagnosis enrichment remains later work.**
+
+6. **Persistence — canonical system move completed in Wave 1; no generic persistence mechanic is promoted.**
+
+Every domain conversion above has a mandatory packet under `contributing/authoring/domain-packets/`.
+
+Each split preserves a hub with a complete reading route and leaves redirects at legacy paths.
 
 ## Wave 4 — examples and diagnosis
 
