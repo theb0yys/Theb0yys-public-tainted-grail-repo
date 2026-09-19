@@ -25,7 +25,7 @@ Follow:
 3. [Check that your first content session really worked](06_SUCCESS_CHECKLIST.md)
 4. Then continue to [the everyday modding loop](../01-basic/README.md).
 
-The content route uses the public Merlin Workshop authoring contracts documented under docs/pipelines/. Those documents say exactly whether a step is source-confirmed, editor-validated, or runtime-tested.
+The content route uses the public Merlin Workshop authoring guides under `docs/pipelines/`. Each guide tells you plainly what was confirmed from the toolkit source and what still needs to be tried in the editor or game.
 
 ## One rule for beginners
 
@@ -69,11 +69,7 @@ Your local game installation supplies local references. Your repository should c
 
 **Addressable** - Unity asset referenced through an address/group system.
 
-**Static-confirmed** - the code/tool contract exists in inspected source.
-
-**Runtime-passed** - it was actually executed and observed working in the stated environment.
-
-Those two evidence states are not interchangeable.
+Some technical/reference pages use formal testing-status labels. You do **not** need to memorize them while learning. If you want the exact definitions, see [Testing and Evidence Status](../docs/EVIDENCE.md).
 
 ## When you are ready to keep building
 
