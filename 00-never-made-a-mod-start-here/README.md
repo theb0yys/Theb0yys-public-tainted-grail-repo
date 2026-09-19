@@ -1,131 +1,87 @@
-# 00 — Never Made a Mod? Start Here
+# 00 - Never Made a Mod? Start Here
 
-This folder is for someone who has never made a mod before.
-
-You do not need to know Unity, C#, Harmony, IL2CPP, reverse engineering, or build systems before starting. The first goal is much smaller: understand what kind of mod you want to make and complete one safe test from start to finish.
+This is the do-this-first section. You do not need to understand the whole repository before making your first test.
 
 ## Pick one path
 
-### Runtime plug-in
+### A. I want to change game behaviour with code
 
-Choose this when you want to change game behaviour with code.
+Follow these in order:
 
-Examples:
+1. [01 - Windows setup](01_WINDOWS_SETUP.md)
+2. [02 - Find the game and identify the runtime](02_FIND_GAME_AND_RUNTIME.md)
+3. Current/modern IL2CPP lane: [03 - Build your first IL2CPP plug-in](03_FIRST_IL2CPP_PLUGIN.md)
+4. Legacy Mono lane only: [04 - Build your first Mono plug-in](04_FIRST_MONO_PLUGIN.md)
+5. [06 - What success looks like](06_SUCCESS_CHECKLIST.md)
 
-- react to something the game does;
-- change a calculation or rule;
-- add a hotkey;
-- add diagnostics;
-- patch an existing managed method.
+Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the BepInEx log.
 
-Your route is:
+### B. I want to make items, weapons, armour, or creatures
 
-1. Read the setup checklist below.
-2. Read the beginner glossary.
-3. Identify whether your game uses the Mono or IL2CPP modding lane.
-4. Use the matching project under templates.
-5. Make the plug-in do nothing except log that it loaded.
-6. Build it.
-7. Put only your plug-in DLL in BepInEx/plugins.
-8. Launch the game and find your message in the log.
-9. Only then change game behaviour.
+Follow:
 
-### Content authoring
+1. [01 - Windows setup](01_WINDOWS_SETUP.md)
+2. [05 - First content-authoring session](05_FIRST_CONTENT_AUTHORING.md)
+3. [06 - What success looks like](06_SUCCESS_CHECKLIST.md)
+4. Then move to [01-basic](../01-basic/README.md).
 
-Choose this when you want to create/configure content.
+The content route uses the public Merlin Workshop authoring contracts documented under docs/pipelines/. Those documents say exactly whether a step is source-confirmed, editor-validated, or runtime-tested.
 
-Examples:
+## One rule for beginners
 
-- item;
-- weapon;
-- armour;
-- creature or NPC.
+**Change one thing at a time.**
 
-Your route is:
+If you change the loader, code, game references, assets, animation, packaging, and gameplay logic in the same test, a failure tells you almost nothing.
 
-1. Read the setup checklist below.
-2. Pick one content type.
-3. Read the matching document under docs/pipelines.
-4. Start with one mod-owned definition and the minimum required fields.
-5. Validate one stage at a time.
-6. Do not combine a new model, new animation system, new combat behaviour, new loot, and new packaging flow in one first test.
+## Things this repo will not ask you to upload
 
-## Setup checklist
+Do not upload or commit:
 
-Before changing anything:
+- the whole game;
+- game DLLs;
+- Unity DLLs;
+- BepInEx binaries;
+- generated IL2CPP interop assemblies;
+- game assets;
+- saves;
+- credentials;
+- private paths/log dumps you have not redacted.
 
-- Keep the game installation recoverable.
-- Know where the game is installed.
-- Create a separate source/workspace directory for your mod.
-- Do not put the game directory into Git.
-- Do not commit game assets, game DLLs, Unity DLLs, BepInEx binaries, generated interop assemblies, saves, credentials, or private paths.
-- Change one thing at a time until you understand the workflow.
-- Know how to undo your change.
+Your local game installation supplies local references. Your repository should contain your own source.
 
-For runtime plug-ins, confirm BepInEx itself starts before debugging your mod.
+## Beginner words
 
-For content, use only source material you are allowed to redistribute.
+**BepInEx** - loads runtime plug-ins.
 
-## Beginner glossary
+**Plug-in** - your compiled mod DLL.
 
-**BepInEx** — the plug-in/mod loader used by the runtime plug-in path.
+**Harmony / HarmonyX** - lets a managed plug-in intercept or alter methods.
 
-**Plug-in** — a compiled mod loaded by BepInEx.
+**Mono** - older Unity managed runtime lane used by legacy FoA setups.
 
-**Harmony / HarmonyX** — a library used to intercept or alter managed method behaviour.
+**IL2CPP** - the runtime lane in the validated 2026-08-30 FoA snapshot.
 
-**Patch** — code that runs before, after, or around existing method behaviour.
+**Interop assemblies** - managed type representations used by the IL2CPP toolchain.
 
-**Mono** — one Unity scripting/runtime model. Older modding setups commonly use BepInEx 5.
+**Prefab** - reusable Unity object/configuration asset.
 
-**IL2CPP** — Unity's ahead-of-time scripting backend. It uses a different BepInEx/runtime toolchain from Mono.
+**Template** - reusable game/toolkit data definition.
 
-**Interop assemblies** — managed representations used by IL2CPP tooling so plug-in code can work with IL2CPP types.
+**Addressable** - Unity asset referenced through an address/group system.
 
-**Prefab** — a reusable Unity object/configuration asset.
+**Static-confirmed** - the code/tool contract exists in inspected source.
 
-**Template** — a reusable game/toolkit data definition.
+**Runtime-passed** - it was actually executed and observed working in the stated environment.
 
-**Addressable** — an asset managed through Unity's address/group system.
+Those two evidence states are not interchangeable.
 
-**Static evidence** — something established by inspecting source/configuration.
+## When you are ready for 01-basic
 
-**Runtime evidence** — something actually observed working in the editor or game.
+Move on when you can repeat your first test without guessing:
 
-Static evidence is useful, but it is not the same as a runtime pass.
-
-## Your first runtime test
-
-Use the matching starter under templates.
-
-Rename the project, namespace, plug-in GUID, name, and version. Build against local game/BepInEx references. Copy only the resulting plug-in DLL into BepInEx/plugins.
-
-Success means:
-
-- BepInEx starts;
-- your plug-in is discovered;
-- your startup message appears;
-- the game remains stable.
-
-Do not add a gameplay patch until this passes.
-
-## Your first content test
-
-Suggested learning order:
-
-1. simple item;
-2. weapon or armour derived from the item flow;
-3. creature/NPC after the basic content workflow is familiar.
-
-Relevant documents:
-
-- docs/pipelines/ITEMS.md
-- docs/pipelines/WEAPONS.md
-- docs/pipelines/ARMOUR.md
-- docs/pipelines/CREATURES_KANDRA.md
-
-Read the evidence state at the top of each document before calling anything proven.
-
-## When to move to Basic
-
-Move to 01-basic when you can repeat your first build/test cycle without guessing where the loader, log, template, content definition, or output lives.
+- where your project lives;
+- where the game lives;
+- which runtime lane you are using;
+- how to build;
+- where your DLL/content output goes;
+- where to look when it fails.
