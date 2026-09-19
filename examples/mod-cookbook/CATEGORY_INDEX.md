@@ -34,6 +34,10 @@ This index is the broad map. A category appears here even when its current evide
 | Native music suppression | 22 | LOAD_EVIDENCED |
 | Character damage observation | 23 | RUNTIME_EVIDENCED |
 | Combat VFX sidecars | recipe 09 | RUNTIME_EVIDENCED owner path; public recipe NOT_RUN |
+| Head bob | 24 | LOAD_EVIDENCED |
+| Motion blur | 25 | LOAD_EVIDENCED |
+| Move/sprint speed | 26 | LOAD_EVIDENCED |
+| Damage numbers | 27 | LOAD_EVIDENCED |
 | Save lifecycle observation | 14 | LOAD_EVIDENCED |
 | Save backups | recipe 07 | LOAD_EVIDENCED; archive creation not proved |
 | Dialogue offered | 15 | LOAD_EVIDENCED |

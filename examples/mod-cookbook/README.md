@@ -55,6 +55,10 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [21 FOV transition duration](21-fov-transition-duration-mono/README.md) | camera / comfort | SOURCE_BUILD_EVIDENCED |
 | [22 Native music mute](22-native-music-mute-mono/README.md) | audio / native music | LOAD_EVIDENCED |
 | [23 Character damage observer](23-character-damage-observer-mono/README.md) | damage / VFX foundation | RUNTIME_EVIDENCED |
+| [24 Head bob strength](24-head-bob-strength-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
+| [25 Motion blur toggle](25-motion-blur-toggle-mono/README.md) | graphics / comfort | LOAD_EVIDENCED |
+| [26 Move and sprint speed](26-move-sprint-speed-mono/README.md) | traversal / player stats | LOAD_EVIDENCED |
+| [27 Simple damage numbers](27-simple-damage-numbers-mono/README.md) | HUD / combat feedback | LOAD_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -97,8 +101,8 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - stamina drain: cookbook example 01;
 - carry capacity: cookbook example 02;
 - skill caps/uncapping: maintainer path has load evidence, but the real XP/cap path is too invasive to compress into a beginner snippet without reimplementing native XP handling; not promoted yet;
-- movement/traversal: extra-air-jump example 08; camera-relative movement remains a later advanced example;
-- camera comfort: examples 17, 20 and 21 cover movement FOV kick, camera shake and FOV transition duration.
+- movement/traversal: extra-air-jump example 08; example 26 covers move/sprint speed; camera-relative movement remains a later advanced example;
+- camera comfort: examples 17, 20, 21, 24 and 25 cover movement FOV kick, camera shake, FOV transition duration, head bob and motion blur.
 
 ### Damage and combat
 - fall damage: example 03;
@@ -122,6 +126,7 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 ### UI
 - simple overlay: proven-path UI example;
 - hero HUD decision patch: example 05;
+- example 27 is a minimal screen-space damage-number feed;
 - complex native menu extension is deliberately excluded until a smaller complete focus/input/close lifecycle can be published without dragging in a finished mod's design.
 
 ### Audio
