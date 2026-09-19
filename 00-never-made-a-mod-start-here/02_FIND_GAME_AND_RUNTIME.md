@@ -1,8 +1,31 @@
-# 02 - Find the Game and Identify the Runtime
+# Find the Game and Identify the Runtime
+
+## What you're doing
+
+You are finding the actual Tainted Grail installation you will mod and determining whether it uses the **IL2CPP** or **Mono** runtime lane.
 
 Do this before choosing a C# template.
 
-## Find the Steam installation
+## What you need
+
+- Tainted Grail installed through Steam;
+- access to the game's local files;
+- the starter repository;
+- BepInEx installed if you are already setting up runtime plug-ins.
+
+## What you'll learn
+
+You will learn how to:
+
+- find the real game root;
+- recognize the IL2CPP layout;
+- recognize the Mono layout;
+- choose the matching starter template;
+- verify that BepInEx itself starts before debugging your own mod.
+
+## Steps
+
+### 1. Find the Steam installation
 
 In Steam:
 
@@ -11,7 +34,7 @@ In Steam:
 3. Choose **Manage -> Browse local files**.
 4. File Explorer opens at the game root.
 
-Call that directory GameRoot.
+Call that directory `GameRoot`.
 
 Example only:
 
@@ -21,7 +44,7 @@ C:\Path\To\Tainted Grail FoA
 
 Do not copy that example blindly. Use your real path.
 
-## Check for IL2CPP
+### 2. Check for IL2CPP
 
 In the game root, look for:
 
@@ -45,7 +68,7 @@ For that lane, use:
 templates\il2cpp-basic
 ~~~
 
-## Check for Mono
+### 3. Check for Mono
 
 A Mono install normally has managed game assemblies under:
 
@@ -53,7 +76,7 @@ A Mono install normally has managed game assemblies under:
 Fall of Avalon_Data\Managed\
 ~~~
 
-and an Assembly-CSharp.dll-style game assembly.
+and an `Assembly-CSharp.dll`-style game assembly.
 
 For a Mono setup, use:
 
@@ -61,15 +84,17 @@ For a Mono setup, use:
 templates\mono-basic
 ~~~
 
-## Confirm BepInEx before building your mod
+Mono and IL2CPP are separate supported Tainted Grail modding lanes. Use the tooling that matches the installation you are actually targeting.
 
-In GameRoot, you should already have:
+### 4. Confirm BepInEx before building your mod
+
+In `GameRoot`, you should already have:
 
 ~~~text
 BepInEx\
 ~~~
 
-For the IL2CPP lane, BepInEx\core should include the IL2CPP BepInEx assemblies used by the starter project.
+For the IL2CPP lane, `BepInEx\core` should include the IL2CPP BepInEx assemblies used by the starter project.
 
 Launch the game once.
 
@@ -81,8 +106,33 @@ BepInEx\LogOutput.log
 
 If BepInEx itself does not start, stop here. Your own mod is not the first problem yet.
 
-## Never mix the lanes
+### 5. Keep the runtime lanes separate
 
 Do not copy Mono loader files on top of IL2CPP files or vice versa.
 
-If you are uncertain, read docs/RUNTIME_GUIDE.md before changing the game installation.
+If you are uncertain, read [the Runtime Guide](../docs/RUNTIME_GUIDE.md) before changing the game installation.
+
+## What success looks like
+
+You can answer all four questions without guessing:
+
+- Where is my real `GameRoot`?
+- Is this installation IL2CPP or Mono?
+- Which starter template matches it?
+- Does the matching BepInEx lane start and produce a log?
+
+## Common problems
+
+**You chose a template from an old guide instead of inspecting your installation:** go back to the runtime markers above.
+
+**BepInEx produces no log:** fix the loader/runtime setup before building your own plug-in.
+
+**Files from both loader lanes have been mixed together:** restore a known-good game/loader state and install only the lane that matches the runtime.
+
+**You have multiple Steam libraries:** use **Browse local files** and work from the directory Steam actually opens.
+
+## Where to go next
+
+If your installation is IL2CPP, continue to **[Build Your First IL2CPP Plug-in](03_FIRST_IL2CPP_PLUGIN.md)**.
+
+If your installation is Mono, continue to **[Build Your First Mono Plug-in](04_FIRST_MONO_PLUGIN.md)**.
