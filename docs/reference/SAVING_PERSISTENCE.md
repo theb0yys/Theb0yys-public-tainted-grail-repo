@@ -25,6 +25,10 @@ Static native-contract research for items establishes:
 
 FoA save-slot lifecycle is owned by native save services. A completed native save observation is not the same as a custom serialization extension point.
 
+Current-binary research also found an important negative result: the native save-domain set is effectively fixed around game-owned domains. No mutable registrar for arbitrary mod-owned native save domains was recovered. Unknown `<name>.data` payloads may be carried through parts of the archive/cache flow, but native restore does not thereby deserialize an arbitrary mod-owned domain.
+
+That blocks the tempting approach of "register a new native save domain" as a generic mod persistence API.
+
 ## Important identities, types, and methods
 
 Relevant researched surfaces include:
@@ -38,6 +42,18 @@ Relevant researched surfaces include:
 - concrete cloud-service `EndSave(string)` methods as completed-save observations
 
 For disposable/session-only world objects, some proven paths explicitly use `Location.MarkedNotSaved = true`.
+
+Additional researched save-lifecycle surfaces include:
+
+- `LoadSave.CanAutoSave()` — native save guard;
+- `LoadSave.Save(SaveSlot, bool)` — native save request;
+- `LoadSave.QuickSave()` — native quicksave request;
+- concrete cloud-service `EndSave(string)` — strong completed-slot-write observation;
+- `SaveInProgressHandle.MarkSucceeded` — strongest static candidate found for a successful native-save milestone in sidecar research;
+- `LoadSave.LoadSaveSlotToCache(...)` — candidate load-stage point;
+- `SceneLifetimeEvents.Events.AfterSceneStoriesExecuted` — candidate delayed post-load apply point.
+
+The last three remain under evaluation for a standard sidecar contract rather than a promoted implementation recipe.
 
 ## Where it exists in the lifecycle
 
@@ -71,6 +87,8 @@ For durable custom content, define:
 
 For proofs that do not need persistence, prefer an explicit session-only/disposable boundary rather than accidentally creating save-owned state.
 
+For mod-owned state that does not naturally belong to an existing native game object/template, the research direction is toward a **namespace-isolated sidecar** coordinated with native save/load milestones rather than patching `SaveWriter`/`SaveReader` globally. That sidecar architecture is still under evaluation and must not yet be called proven.
+
 ## Why this route
 
 Your working-repo research found enough of the native item serialization contract to explain **why early registration matters**, but not enough live evidence to claim universal save-safe custom item registration.
@@ -87,7 +105,10 @@ Known risks:
 - two mods claim the same GUID;
 - a runtime-only recipe/item is mistaken for a persistent one;
 - session-only actors are allowed into save-owned state accidentally;
-- uninstall/downgrade behavior is never tested.
+- uninstall/downgrade behavior is never tested;
+- a mod patches the global native serializer to invent an unsupported custom domain;
+- a save-request hook is mistaken for proof that the disk write succeeded;
+- a sidecar is applied before native world/scene restoration has reached a safe state.
 
 ## How to verify
 
@@ -107,4 +128,6 @@ For a durable claim, test separately:
 
 Custom item GUID serialization/lookup is supported by static native-contract research. The general public custom-item path in this repository must **not** claim cold-save, missing-mod or uninstall safety until those exact tests are recorded.
 
-Native save-domain injection is not presented here as a proven generic modding route.
+Native save-domain injection is **blocked as a generic route** by the current researched binary because no mutable arbitrary-domain registrar was recovered.
+
+A mod-owned sidecar contract has promising static lifecycle candidates but remains under evaluation pending controlled runtime/crash/recovery validation.
