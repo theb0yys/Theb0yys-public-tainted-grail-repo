@@ -69,7 +69,9 @@ internal static class ManaCostPatch
 
     private static void Postfix(ICharacter character, Item item, ref float __result)
     {
-        if (!Plugin.Enabled || !ReferenceEquals(character, Hero.Current))
+        if (!Plugin.Enabled ||
+            !ReferenceEquals(character, Hero.Current) ||
+            item is not { HasBeenDiscarded: false, IsMagic: true })
         {
             return;
         }
