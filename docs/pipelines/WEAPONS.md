@@ -1,5 +1,7 @@
 # Weapon Pipeline
 
+> **Reference page.** Use this after the base item workflow makes sense and you need weapon-specific fields, representation, stats, or validation details. The learning path is [Move from Items to Weapons, Armour, and Creatures](../../01-basic/05_CONTENT_PROGRESSION.md).
+
 Evidence state: **STATIC_CONFIRMED**  
 Fresh editor/game execution for this document: **NOT_RUN**
 
