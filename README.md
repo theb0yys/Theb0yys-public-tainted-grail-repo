@@ -31,7 +31,8 @@ Then build the matching first plug-in:
 
 After your first plug-in loads successfully:
 
-**[Learn the everyday modding loop →](01-basic/README.md)**
+- **IL2CPP:** **[Make your first change to the running game →](01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)**
+- **Both lanes:** **[Learn the everyday modding loop →](01-basic/README.md)**
 
 ---
 
@@ -94,6 +95,7 @@ You are not expected to know all of the terminology before you begin. The guides
 - `docs/pipelines/` — public-safe FoA authoring pipelines derived from Merlin Workshop's actual toolkit structure.
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
+- `examples/il2cpp-first-game-change/` — a small reversible BepInEx 6 / IL2CPP runtime-state change that bridges plug-in loading to changing the running game.
 - `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
 - `examples/proven-paths/` — clean-room mechanism templates based on paths that have been tested in the maintainer's working environment, without copying finished mod designs.
 - `examples/mod-cookbook/` — real FoA-target teaching mods for stats, damage, magic, HUD, interaction, audio, movement, and content authoring, with each example showing how far it has actually been checked.
