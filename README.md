@@ -6,6 +6,19 @@ This repository is deliberately separated from private project code. It contains
 
 > Unofficial community project. Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
+## Learning path
+
+New to modding? Work through these in order:
+
+1. [00 — Never made a mod? Start here](00-never-made-a-mod-start-here/README.md)
+2. [01 — Basic](01-basic/README.md)
+3. [02 — Foundational](02-foundational/README.md)
+4. [03 — Advanced](03-advanced/README.md)
+5. [04 — Framework](04-framework/README.md)
+6. [05 — Infrastructure](05-infrastructure/README.md)
+
+You can branch into either runtime plug-in development or content authoring from level 00. The later levels explain the common engineering underneath both paths.
+
 ## What is here
 
 - `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
