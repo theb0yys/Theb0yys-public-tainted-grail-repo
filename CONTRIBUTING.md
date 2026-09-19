@@ -2,6 +2,19 @@
 
 This repository is a public, clean-room starter for Tainted Grail modding.
 
+## Before opening an issue
+
+Use the repository issue forms for public-safe bug reports and improvement proposals.
+
+Before submitting:
+
+- reduce a problem to the smallest useful reproduction;
+- state the runtime/content lane and exact versions when relevant;
+- share only the relevant redacted diagnostics;
+- search for an existing report covering the same problem.
+
+Do **not** put a sensitive vulnerability, credential, personal data, unredacted private path, or proprietary game content into a public issue. Follow [SECURITY.md](SECURITY.md) instead.
+
 ## Good contributions
 
 - corrections to setup/runtime documentation;
@@ -22,6 +35,8 @@ This repository is a public, clean-room starter for Tainted Grail modding.
 
 ## Pull requests
 
+The pull-request template is a checklist, not ceremony: it exists to keep public claims, redistribution boundaries, and validation scope explicit.
+
 Keep each pull request focused. Explain:
 
 1. what the change adds or fixes;
@@ -31,6 +46,14 @@ Keep each pull request focused. Explain:
 5. why the contribution is safe to redistribute.
 
 Do not describe static inspection as runtime proof.
+
+Before submitting, run the applicable repository checks. The hosted public-surface guard is a backstop; it does not prove game/editor behaviour.
+
+## Licence changes
+
+This repository does not currently include a general licence.
+
+Do not add, replace, or reinterpret the repository licence through an ordinary contribution. Licence selection is an explicit maintainer decision because it changes the legal terms under which repository material may be reused.
 
 ## Examples and templates
 
