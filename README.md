@@ -79,11 +79,19 @@ Learn about repositories, CI, validation, contribution flows, versioning, and re
 
 ---
 
+## Your first-mod milestones
+
+You always know what the next win is:
+
+**Start → Loader working → First plug-in → First game change → First complete mod**
+
+Use **[Make Your First Tainted Grail Mod](00-never-made-a-mod-start-here/README.md)** to begin. Each milestone page tells you what counts as success before you move on.
+
 ## Not sure where to start?
 
 Use this route:
 
-**Never made a mod → get one thing loading → make one small change → understand why it works → build something of your own.**
+**Set up → prove the loader → load your own plug-in → change one thing → finish one small mod.**
 
 You are not expected to know all of the terminology before you begin. The guides introduce concepts as they become useful.
 
