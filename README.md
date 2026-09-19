@@ -20,7 +20,7 @@ This path starts from the beginning: setting up your workspace, identifying your
 
 Examples include player behaviour, stats, movement, combat, UI, interactions, audio, and other systems.
 
-First identify whether your installed game uses **IL2CPP or Mono**:
+First identify whether your installed game uses **IL2CPP or Mono** — the two supported Unity runtime forms this repository treats as separate modding setups:
 
 **[Find your game and identify the runtime →](00-never-made-a-mod-start-here/02_FIND_GAME_AND_RUNTIME.md)**
 
