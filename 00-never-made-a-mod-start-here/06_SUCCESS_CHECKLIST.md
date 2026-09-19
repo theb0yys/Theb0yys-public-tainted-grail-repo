@@ -6,17 +6,19 @@ You are checking whether your first exercise completed an entire usable loop rat
 
 ## What you need
 
-For the runtime path:
+For the runtime plug-in path:
 
 - your first plug-in project;
 - the DLL you deployed;
 - the BepInEx log from the game launch.
 
-For the content path:
+For the first new-item path:
 
-- the toolkit/editor project;
-- the mod-owned definition you created;
-- the editor or runtime observations you actually made.
+- the Mono/BepInEx 5 plug-in implementing the controlled item proof;
+- the exact native prototype GUID;
+- the exact custom GUID;
+- registration/stock diagnostic lines;
+- the in-game merchant observation from a disposable test session.
 
 ## What you'll learn
 
@@ -25,7 +27,7 @@ You will learn:
 - what counts as a complete first success;
 - which partial results are not enough;
 - how to verify that a change can be repeated;
-- why rollback is part of a safe beginner workflow.
+- why rollback and proof boundaries are part of a safe workflow.
 
 ## Steps
 
@@ -53,31 +55,51 @@ Do not move on merely because:
 - BepInEx exists;
 - an old version of your DLL loaded once.
 
-### 2. Check the content-authoring path
+### 2. Check the first new-item path
 
-For a first content session, success means you can:
+The bounded first-item proof passes when you can demonstrate:
 
-- open the expected toolkit/editor cleanly;
-- create a mod-owned definition through the documented route;
-- save it without project errors;
-- explain its template/category relationship;
-- distinguish logical item data from icon/equipment/world representation;
-- repeat the edit/save cycle.
+~~~text
+native prototype GUID resolves
+→ separate custom GUID exists
+→ clone is valid
+→ registration succeeds
+→ custom GUID resolves through TemplatesProvider
+→ World creates a native Item
+→ decompressed merchant stock owns the Item
+→ shop UI visibly shows the separate custom item
+~~~
 
-Do not claim game-runtime success until you actually test the relevant behaviour in the game.
+Do not stop at "the clone exists" or "the code compiled."
 
-### 3. Prove you can roll back
+Do not call a custom model/icon load an item-registration success.
 
-You should also know how to undo your test:
+Do not call the visible current-session item save-safe unless you performed the separate persistence test.
 
-- remove your plug-in DLL/folder; or
-- remove/revert your mod-owned authoring change.
+### 3. Check the proof boundary
 
-If you cannot undo the first test confidently, improve the workflow before adding more complexity.
+For the first custom-item path, state explicitly:
+
+- **proved:** bounded runtime custom identity/registration plus the controlled acquisition route you observed;
+- **not automatically proved:** save/load, missing-mod behavior, uninstall/orphan handling, recipes, loot, custom visuals, weapons, armour or creatures.
+
+A useful result includes what it **does not** establish.
+
+### 4. Prove you can roll back
+
+For a plug-in-only smoke test, remove the mod DLL/folder and restore your known-good setup.
+
+For the first custom-item proof:
+
+- use a disposable test session/save;
+- avoid turning the proof into durable player state until persistence is intentionally being tested;
+- remove the plug-in and confirm the test surface is gone.
+
+If you bought/saved a custom item, do not assume removing the plug-in is a safe rollback: the saved GUID may depend on the custom registration being available again.
 
 ## What success looks like
 
-This page is complete when your chosen path satisfies its full checklist **and** you know how to return to the previous known-good state.
+This page is complete when your chosen path satisfies its full checklist, you can explain why every stage is required, and you know the exact boundary of what was tested.
 
 ## Common problems
 
@@ -85,10 +107,14 @@ This page is complete when your chosen path satisfies its full checklist **and**
 
 **An old DLL loaded once:** change your log message, rebuild, redeploy, and prove the new build is the one running.
 
-**The editor saved an asset, so the game supports it:** saving successfully in the editor and working successfully in the game are two different checks.
+**"The ItemTemplate clone exists, so FoA knows it":** a Unity clone is not a registered FoA definition until normal template lookup can resolve the new GUID.
 
-**You cannot undo the test:** establish a clean rollback before adding more moving parts.
+**"The stock contains it, but I cannot see it":** investigate merchant/UI lifecycle timing and list capture.
+
+**"I can see it, so it is save-safe":** presentation and persistence are separate proof lanes.
 
 ## Where to go next
 
 Continue to **[Learn the Everyday Modding Loop](../01-basic/README.md)**.
+
+For the reasoning behind the custom-item process, use **[Items: Proven Custom Item Integration](../docs/reference/ITEMS.md)**.
