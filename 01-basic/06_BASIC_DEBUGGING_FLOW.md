@@ -8,7 +8,7 @@ You are isolating the earliest meaningful failure instead of changing several un
 
 - the failing plug-in or content-authoring test;
 - the last known-good state;
-- the relevant BepInEx log, editor error, or other direct evidence;
+- the relevant BepInEx log, editor error, or other direct result;
 - the exact game/runtime/toolkit versions involved.
 
 ## What you'll learn
@@ -19,7 +19,7 @@ You will learn how to:
 - separate loader failure from feature failure;
 - separate editor success from runtime success;
 - return to a known-good state;
-- ask for help with the smallest useful evidence.
+- ask for help with the smallest useful diagnostic information.
 
 ## Steps
 
@@ -70,7 +70,7 @@ When a new change fails:
 - confirm the previous state still works;
 - reintroduce the change in a smaller form.
 
-### 5. Ask for help with minimal evidence
+### 5. Ask for help with minimal useful information
 
 A useful report includes:
 
@@ -95,7 +95,7 @@ You can identify the earliest failing layer, make one targeted correction, and e
 
 **Debugging gameplay before confirming the loader and plug-in loaded:** prove the lower layers first.
 
-**Treating editor success as runtime proof:** keep editor and game execution evidence separate.
+**Treating editor success as if it proves the game behaviour:** check the editor and the game separately.
 
 **Sharing excessive diagnostics:** redact private paths and never upload proprietary game content, credentials, or saves just to ask for help.
 
