@@ -4,7 +4,7 @@
 
 You are preparing a clean Windows workspace for either runtime plug-in development or Merlin Workshop content authoring.
 
-This repository's current FoA loader/tooling evidence is Windows-focused.
+The setup and examples in this repository are currently Windows-focused.
 
 ## What you need
 
