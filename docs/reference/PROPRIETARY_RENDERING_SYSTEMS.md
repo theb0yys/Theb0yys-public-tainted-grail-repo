@@ -1,23 +1,9 @@
-# FoA Rendering Ownership
+# Moved
 
-Tainted Grail uses specialised rendering ownership in addition to ordinary Unity renderers.
+This page has moved to its canonical Wave 5 location:
 
-## Character and clothing presentation
+**[Open the canonical page →](../../systems/rendering/README.md)**
 
-Skinned character/clothing presentation uses the game's Kandra path. Treat mesh registration, rig/deformation ownership, clothing stitching and equip teardown as one lifecycle.
+This legacy path is retained for compatibility.
 
-See [Armour/Kandra lifecycle](ARMOUR_KANDRA_LIFECYCLE.md).
-
-## Rigid presentation
-
-Rigid gameplay presentation can be owned by the game's rigid-rendering path rather than a loose replacement `MeshRenderer`. Preserve the gameplay/equip owner and let the native presentation owner control runtime lifetime.
-
-See [Weapon native lifecycle](WEAPONS_NATIVE_LIFECYCLE.md).
-
-## World/static presentation
-
-Large world content can be owned by scene/culling/streaming systems rather than per-object runtime GameObjects.
-
-## Rule
-
-Identify the native presentation owner first. Do not treat “a mesh is visible” as equivalent to correct game integration.
+Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
