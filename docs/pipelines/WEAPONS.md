@@ -36,9 +36,9 @@ The exact parent matters because gameplay/editor behavior asks the template whet
 
 ## 2. Add equipping data
 
-Add `ItemEquipSpec`.
+Add `ItemEquipSpec`, the attachment that describes how the item is equipped and represented.
 
-Select an `EquipmentType` appropriate to the weapon:
+Select an `EquipmentType`, the equipment category/handling role, appropriate to the weapon:
 
 - `OneHanded`;
 - `TwoHanded`;
@@ -57,13 +57,15 @@ The representation prefab is an addressable reference in the weapon-oriented add
 
 The actual visual weapon prefab carries a `Weapon` component.
 
+Here, the **Weapon component** is the Unity component that gives the visual representation its weapon-specific runtime data.
+
 Static-confirmed fields include:
 
 - `WeaponType`;
 - collider;
 - left-handed flag.
 
-The `WeaponType` maps weapon families to animator-layer behavior. Merlin defines types for one-handed, dagger, sword, axe, two-handed variants and ranged bow/crossbow variants.
+The `WeaponType` identifies the weapon family used by the animation/handling path. It maps weapon families to animator-layer behavior. Merlin defines types for one-handed, dagger, sword, axe, two-handed variants and ranged bow/crossbow variants.
 
 This means a mesh alone is not the whole weapon pipeline: the representation prefab must also satisfy the runtime/editor weapon component contract.
 
