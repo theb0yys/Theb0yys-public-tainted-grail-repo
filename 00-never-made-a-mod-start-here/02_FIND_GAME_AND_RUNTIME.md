@@ -16,7 +16,7 @@ Call that directory GameRoot.
 Example only:
 
 ~~~text
-D:\SteamLibrary\steamapps\common\Tainted Grail FoA
+C:\Path\To\Tainted Grail FoA
 ~~~
 
 Do not copy that example blindly. Use your real path.
