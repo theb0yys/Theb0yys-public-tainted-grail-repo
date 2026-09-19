@@ -1,8 +1,12 @@
 # Creature / NPC / Kandra Pipeline — Compatibility Redirect
 
-> **Withdrawn as a proven new-content process.** Merlin Workshop exposes valuable first-party NPC, Kandra, template and editor structures, but those structures are not by themselves a complete custom-creature integration process.
+> **Compatibility redirect.** The earlier Merlin-centric interpretation was withdrawn because authoring structures alone do not establish a genuinely new creature integration process.
 
-Use:
+**[Open the canonical creature process →](../reference/CREATURES.md)**
+
+Use the canonical creature handbook process for CI1→CI5, strict template/provider identity, controlled actor lifecycle, combat/death/corpse ownership, cleanup, population separation, companion routing, and persistence boundaries.
+
+Supporting shared references:
 
 - [Content Domains](../reference/CONTENT_DOMAINS.md)
 - [Assets](../reference/ASSETS.md)
@@ -10,4 +14,4 @@ Use:
 - [Lifecycle and Hooks](../reference/LIFECYCLE_HOOKS.md)
 - [Research Method](../reference/RESEARCH_METHOD.md)
 
-The dedicated creature process must be derived from the proven creature-injection gates: visual transport, animation mapping, template/actor contract, runtime lifecycle, live behavior, cleanup and save policy.
+Merlin remains useful as a replacement-oriented tool and first-party source of native structure/identity information; it is not substituted for the evidence-backed new-content process.
