@@ -2,25 +2,19 @@
 
 Want to make something for **Tainted Grail: The Fall of Avalon**?
 
-Start with what you want to do. You do **not** need to understand this whole repository first.
+Start with what you want to do. You do **not** need to understand the whole repository first.
 
 ## What do you want to do?
 
 ### 🌱 I've never made a mod before
 
-Start here:
-
 **[Make your first Tainted Grail mod →](00-never-made-a-mod-start-here/README.md)**
 
-This path starts from the beginning: setting up your workspace, identifying your game runtime, making your first test, and knowing whether it actually worked.
-
----
+This path covers workspace setup, runtime identification, your first plug-in/content test, and how to know whether it actually worked.
 
 ### ⚙️ I want to change how the game behaves
 
-Examples include player behaviour, stats, movement, combat, UI, interactions, audio, and other systems.
-
-First identify whether your installed game uses **IL2CPP or Mono** — the two supported Unity runtime forms this repository treats as separate modding setups:
+First identify whether your installed game uses **IL2CPP or Mono**:
 
 **[Find your game and identify the runtime →](00-never-made-a-mod-start-here/02_FIND_GAME_AND_RUNTIME.md)**
 
@@ -29,109 +23,108 @@ Then build the matching first plug-in:
 - **[IL2CPP plug-in →](00-never-made-a-mod-start-here/03_FIRST_IL2CPP_PLUGIN.md)**
 - **[Mono plug-in →](00-never-made-a-mod-start-here/04_FIRST_MONO_PLUGIN.md)**
 
-After your first plug-in loads successfully:
-
-- **IL2CPP:** **[Make your first change to the running game →](01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)**
-- **Both lanes:** **[Learn the everyday modding loop →](01-basic/README.md)**
-
----
+After it loads:
+- **IL2CPP:** [Make your first runtime game change](01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)
+- **Both lanes:** [Learn the everyday modding loop](01-basic/README.md)
 
 ### 🗡️ I want to add genuinely new content
 
-Start with the first proven new-content path:
+Start with the first proven new-content route:
 
 **[Add your first new item →](00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md)**
 
-Then use the technical handbook to understand the systems underneath it:
+Then follow the canonical system/mechanic material for the domain you are changing. Items, weapons, armour, creatures, spells, recipes and world content are **separate integration problems**.
 
-- [Items: proven custom item integration](docs/reference/ITEMS.md)
-- [Identity: GUIDs, names and addresses](docs/reference/IDENTITY_GUIDS_NAMES.md)
-- [Templates and registries](docs/reference/TEMPLATES_REGISTRIES.md)
-- [Lifecycle and hooks](docs/reference/LIFECYCLE_HOOKS.md)
-- [Content domains](docs/reference/CONTENT_DOMAINS.md)
-
-Weapons, armour, creatures, spells, recipes and world content are **separate integration problems**. Use the reference for the specific domain; item registration alone does not supply its equip, combat, presentation or persistence behaviour.
-
----
+Useful starting points:
+- [Systems](systems/README.md)
+- [Mechanics](mechanics/README.md)
+- [Reference](reference/README.md)
+- [Items domain](docs/reference/ITEMS.md)
 
 ### 🔧 Something isn't working
 
-You do not need to start over.
+**[Diagnose the earliest failed stage →](diagnose/README.md)**
 
-**[Follow the debugging guide →](docs/DEBUGGING.md)**
+Do not change several unrelated systems at once.
 
-It helps narrow a problem down from the loader, runtime, plug-in, patch, or content pipeline instead of changing several things at once.
+### 🧠 I want to understand how FoA actually works
 
----
+**[Open Systems →](systems/README.md)**
 
-### 🧠 I already know the basics
+For guided progression:
+- [Understand how mods work](02-foundational/README.md)
+- [Build robust game changes](03-advanced/README.md)
 
-Go deeper according to what you are trying to understand:
+These are learning journeys, not the canonical storage location for technical truth.
 
-**[Understand how mods work →](02-foundational/README.md)**  
-Understand runtimes, dependencies, identity, compatibility, and why mods work.
+### 🧰 I want to know what a mod can safely do
 
-**[Build robust game changes →](03-advanced/README.md)**  
-Work with more complicated patches, failures, compatibility, packaging, and diagnostics.
+**[Open Mechanics →](mechanics/README.md)**
 
-**[Build reusable mod systems →](04-framework/README.md)**  
-Learn how reusable mod systems and stable contracts are designed.
+### 🔬 I need to investigate something undocumented
 
-**[Ship and maintain mods →](05-infrastructure/README.md)**  
-Learn about repositories, CI, validation, contribution flows, versioning, and releases.
+**[Open Investigate →](investigate/README.md)**
 
----
+### 📚 I need an exact ID, hook, method, version or proof status
+
+**[Open Reference →](reference/README.md)**
+
+### 🧱 I build frameworks, tooling, CI or releases
+
+**[Open Tooling and Maintenance →](tooling/README.md)**
 
 ## Your first-mod milestones
 
-You always know what the next win is:
-
 **Start → Loader working → First plug-in → First game change → First complete mod**
 
-Use **[Make Your First Tainted Grail Mod](00-never-made-a-mod-start-here/README.md)** to begin. Each milestone page tells you what counts as success before you move on.
+Use **[Make Your First Tainted Grail Mod](00-never-made-a-mod-start-here/README.md)** to begin.
 
-## Not sure where to start?
+## The documentation model
 
-Use this route:
+The guide is organized by **reader need and canonical knowledge ownership**:
 
-**Set up → prove the loader → load your own plug-in → change one thing → finish one small mod.**
+- `learn/` — guided journeys;
+- `systems/` — how native FoA works;
+- `mechanics/` — bounded modding capabilities;
+- `investigate/` — how to discover unknown behaviour;
+- `diagnose/` — symptom-driven failure isolation;
+- `reference/` — exact lookup and evidence status;
+- `examples/` — worked examples and case histories;
+- `tooling/` — loaders, frameworks, SDK/tooling and maintenance;
+- `contributing/authoring/` — mandatory documentation architecture and authoring process.
 
-You are not expected to know all of the terminology before you begin. The guides introduce concepts as they become useful.
+The core rule is:
 
-> **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
+> **One canonical explanation for each piece of truth; multiple routes into it.**
 
-## What is here
+See [Mandatory Documentation Architecture](contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
 
-- `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
-- `docs/reference/` — the FoA technical handbook: identity, templates, hooks, lifecycle, ownership, assets, persistence and content integration.
-- `docs/pipelines/` — topic entry points for item, weapon, armour and creature documentation.
-- `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
-- `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
-- `examples/il2cpp-first-game-change/` — a small reversible BepInEx 6 / IL2CPP runtime-state change that bridges plug-in loading to changing the running game.
-- `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
-- `examples/proven-paths/` — reusable mechanism demonstrations for result postfixes, action guards, overlays, audio replacement and visual-state ownership.
-- `examples/mod-cookbook/` — [Gameplay, Graphics, Visual Effects, Audio, UI & HUD, and Systems](examples/mod-cookbook/README.md), with topic navigation and game-specific examples.
-- `tools/verify-public-surface.ps1` — CI-purpose repository guard.
-- `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
+## Existing learning routes
 
-## Learn vs reference
+These remain valid during migration:
 
-**Learning pages** are the guided paths linked above. Follow those in order when you are building your first mods.
+- [First mod](00-never-made-a-mod-start-here/README.md)
+- [Everyday modding loop](01-basic/README.md)
+- [Understand how mods work](02-foundational/README.md)
+- [Build robust game changes](03-advanced/README.md)
+- [Build reusable mod systems](04-framework/README.md)
+- [Ship and maintain mods](05-infrastructure/README.md)
 
-**Reference pages** are for lookup. You do not need to read `docs/` front-to-back.
+The last two are specialist routes, not mandatory higher levels of ordinary modding.
 
-**[Open the reference library →](docs/REFERENCE_MAP.md)**
+## Common lookups
 
-Common lookups:
+- [Evidence and testing status](reference/evidence/README.md)
+- [Validation and compatibility](reference/evidence/validation-and-compatibility.md)
+- [Mechanics catalogue](reference/mechanics/README.md)
+- [Hook catalogue](reference/hooks/README.md)
+- [Identity catalogue](reference/identities/README.md)
+- [Runtime Guide](docs/RUNTIME_GUIDE.md)
+- [Intervention selection](mechanics/intervention-selection.md)
+- [Research method](investigate/research-method.md)
+- [Reverse engineering and discovery](investigate/reverse-engineering-discovery.md)
 
-- [Technical Handbook](docs/REFERENCE_MAP.md) — the complete reference index.
-- [Golden Rules](docs/reference/GOLDEN_RULES.md) — the cross-cutting rules behind reliable FoA modding.
-- [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
-- [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — the native item registration and acquisition path.
-- [Hook Catalogue](docs/reference/HOOK_CATALOGUE.md) — selected native lifecycle hooks.
-- [Identity Catalogue](docs/reference/IDENTITY_CATALOGUE.md) — curated GUIDs/identities used by examples.
-- [Debugging](docs/DEBUGGING.md) — troubleshoot a specific failure.
-- [Public Documentation Standard](docs/EVIDENCE.md) — requirements for publishing instructions.
+Legacy `docs/reference/` paths are retained as compatibility redirects while migration proceeds.
 
 ## Public-repository boundary
 
@@ -139,12 +132,24 @@ Do not commit:
 
 - game textures, models, audio, video, maps, scenes, asset bundles, localization dumps, or other extracted content;
 - game DLLs, Unity runtime DLLs, BepInEx binaries, executables, archives, or generated interop assemblies;
-- decompiled bulk game source;
+- bulk decompiled game source;
 - saves, user data, crash dumps containing personal paths, or private diagnostics;
 - API keys, tokens, signing material, credentials, or machine-specific secrets;
-- code copied from private projects merely to make it public.
+- private implementation source that has not been explicitly approved for publication.
 
-Use local references when a template needs game/BepInEx assemblies. The repository guard intentionally rejects common asset, binary, and archive formats.
+Use local references when templates need game/BepInEx assemblies.
+
+## Examples and templates
+
+- `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono starter.
+- `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP starter.
+- `examples/il2cpp-first-game-change/` — small reversible IL2CPP runtime-state example.
+- `examples/mono-harmony-self-test/` — Harmony mechanics without modifying game behaviour.
+- `examples/proven-paths/` — clean-room reusable mechanism demonstrations.
+- `examples/mod-cookbook/` — game-target teaching examples grouped by topic.
+- `examples/failures-and-corrections/` — case-study surface for preserved failure/correction histories.
+
+Public examples carry their **own** evidence status; they do not inherit runtime proof from private predecessors.
 
 ## Reference projects
 
@@ -153,12 +158,13 @@ Use local references when a template needs game/BepInEx assemblies. The reposito
 - BepInEx upstream: https://github.com/BepInEx/BepInEx
 - HarmonyX upstream: https://github.com/BepInEx/HarmonyX
 
+> **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
+
 ## Community and trust
 
-- **Contributing:** keep changes small, reviewable, tested to the level claimed, and safe to redistribute. See [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Security:** do not place sensitive vulnerabilities, credentials, personal data, private paths, or proprietary game material in public reports. See [SECURITY.md](SECURITY.md).
-- **Issue and PR forms:** the repository provides structured intake for bugs, improvements, and pull requests so runtime scope, validation, and public-surface safety stay explicit.
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
 
 ## Licence status
 
-No licence is included in this repository yet. Public visibility does not by itself grant a general redistribution or relicensing right. Licence selection remains an explicit maintainer decision.
+No general licence is included yet. Public visibility does not by itself grant a general redistribution or relicensing right.
