@@ -147,6 +147,10 @@ MY FIRST MOD LOADED SUCCESSFULLY
 
 ## What success looks like
 
+**Progress: Start → Loader working → _First plug-in_ → First game change → First complete mod**
+
+You have reached **First plug-in** when your own DLL—not merely BepInEx—loads and produces your unique log line.
+
 Your first IL2CPP plug-in test passes when:
 
 - the project builds;
