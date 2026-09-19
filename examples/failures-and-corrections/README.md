@@ -25,3 +25,11 @@ Current public examples that already teach related reasoning:
 - [Action receipts](../mod-cookbook/ui-hud/ACTION_RECEIPTS.md)
 
 Future domain case studies should link to canonical system/mechanic pages rather than duplicating their technical explanations.
+
+## Wave 4 case studies
+
+- [Weapon works in combat but the equipped render is invisible](weapon-combat-works-render-invisible.md)
+- [UI opens but choice dispatch does not complete](ui-opens-but-choice-does-not-dispatch.md)
+- [Runtime success while persistence is still unproven](runtime-success-persistence-unproven.md)
+
+These cases preserve the failure/correction reasoning and link back to canonical system/mechanic pages.
