@@ -1,75 +1,25 @@
-# 01 — Basic
+# 01 - Basic
 
-This level is about becoming comfortable with the everyday mod-development loop.
+Level 00 proved that your toolchain can work. Level 01 teaches the repeatable daily loop.
 
-## Runtime plug-in workflow
+## Runtime plug-in track
 
-Use this loop:
+Work through:
 
-edit → build → copy your DLL → launch → inspect the log → test one behaviour → repeat
+1. [01 - Edit, rebuild, redeploy](01_EDIT_REBUILD_REDEPLOY.md)
+2. [02 - Add your first config option](02_FIRST_CONFIG_OPTION.md)
+3. [03 - Run the Harmony self-test](03_HARMONY_SELF_TEST.md)
+4. [04 - Move from a self-test to a real patch](04_FIRST_REAL_PATCH_RULES.md)
+5. [06 - Basic debugging flow](06_BASIC_DEBUGGING_FLOW.md)
 
-Keep source outside the game directory. For a basic deployment, only your compiled plug-in DLL belongs in BepInEx/plugins.
+## Content-authoring track
 
-A small plug-in startup should usually:
+Work through:
 
-1. bind configuration;
-2. initialize small services if needed;
-3. install patches;
-4. log one useful startup line.
+1. [05 - Item -> weapon/armour -> creature progression](05_CONTENT_PROGRESSION.md)
+2. Read the matching docs/pipelines/ document before each specialization.
+3. Use [06 - Basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep editor/runtime evidence separate.
 
-Do not perform huge scans or broad state mutation during startup unless the feature genuinely requires it.
+## Goal of this level
 
-## Configuration
-
-Good configuration values are:
-
-- clearly named;
-- documented;
-- safe by default;
-- bounded where practical.
-
-Do not use a mod config as a secret store.
-
-## Logging
-
-Your logs should answer:
-
-- Did the mod load?
-- Which version loaded?
-- Which important feature initialized?
-- Why was a feature disabled?
-- What failed first?
-
-Avoid per-frame log spam and avoid dumping saves, proprietary content, credentials, or unnecessary private paths.
-
-## Harmony basics
-
-The common patch types are:
-
-**Postfix** — runs after the original method. Often the safest first option.
-
-**Prefix** — runs before the original method and can inspect or alter inputs.
-
-**Transpiler** — rewrites method instructions. Powerful, but more fragile across updates.
-
-Beginner preference:
-
-1. postfix;
-2. prefix;
-3. transpiler only when the first two cannot express the change safely.
-
-The existing examples/mono-harmony-self-test project demonstrates the mechanics by patching only its own method.
-
-## Basic content-authoring habits
-
-For items, weapons, armour, and creatures:
-
-- use a unique mod-owned identity;
-- understand the logical data separately from the visual representation;
-- make one definition work before tuning everything;
-- keep worn/equipped representations separate from world-drop representations when the pipeline does;
-- validate each stage before adding the next one.
-
-## When to move to Foundational
-
-Move to 02-foundational when you can repeat the build/test loop reliably and can normally identify which layer failed.
+You should finish level 01 able to make a small change, rebuild/re-author, deploy/test it, diagnose a failure, and restore a known-good state without random file copying.
