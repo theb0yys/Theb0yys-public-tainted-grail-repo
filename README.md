@@ -125,6 +125,8 @@ You are not expected to know all of the terminology before you begin. The guides
 Common lookups:
 
 - [Technical Handbook](docs/REFERENCE_MAP.md) — the complete reference index.
+- [Golden Rules](docs/reference/GOLDEN_RULES.md) — the cross-cutting rules behind reliable FoA modding.
+- [Working / Partial / Rejected Patterns](docs/reference/WORKING_REJECTED_PATTERNS.md) — what currently works, what is incomplete, and what research rejected.
 - [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
 - [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — first reasoned new-content path.
 - [Hook Catalogue](docs/reference/HOOK_CATALOGUE.md) — selected researched lifecycle hooks.
