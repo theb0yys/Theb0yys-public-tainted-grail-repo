@@ -1,3 +1,9 @@
-# Creatures and NPCs
+# Moved
 
-Read [Creatures and NPCs](CREATURES_NPCS.md) for native actor construction, animation, presentation and lifecycle responsibilities.
+This page has moved to the canonical location:
+
+**[Open the canonical page →](../../systems/creatures/README.md)**
+
+This legacy path is retained for compatibility with existing links and bookmarks.
+
+See the [domain authoring packet](../../contributing/authoring/domain-packets/creatures.md) for the source-mapped split.
