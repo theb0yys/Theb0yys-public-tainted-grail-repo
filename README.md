@@ -95,8 +95,8 @@ You are not expected to know all of the terminology before you begin. The guides
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
 - `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
-- `examples/proven-paths/` — clean-room mechanism templates derived from owner-side runtime-evidenced paths without copying finished mod designs.
-- `examples/mod-cookbook/` — real FoA-target teaching mods for stats, damage, magic, HUD, interaction, audio, movement, and content authoring, each with an explicit evidence label.
+- `examples/proven-paths/` — clean-room mechanism templates based on paths that have been tested in the maintainer's working environment, without copying finished mod designs.
+- `examples/mod-cookbook/` — real FoA-target teaching mods for stats, damage, magic, HUD, interaction, audio, movement, and content authoring, with each example showing how far it has actually been checked.
 - `tools/verify-public-surface.ps1` — CI-purpose repository guard.
 - `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
 
@@ -120,7 +120,7 @@ Pinned source snapshot used for the current documents:
 
 `073bdab3e09d6adad5003339fc49b021738d71e6` — **Update with new game content** (2026-02-06).
 
-The documents distinguish what is directly established by toolkit source from what still requires local Unity/game runtime validation.
+Each pipeline page distinguishes what was confirmed from toolkit source from what still needs editor or in-game testing. The formal status definitions live in [docs/EVIDENCE.md](docs/EVIDENCE.md).
 
 ## Known runtime reference
 
