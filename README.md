@@ -145,10 +145,12 @@ Use local references when a template needs game/BepInEx assemblies. The reposito
 - BepInEx upstream: https://github.com/BepInEx/BepInEx
 - HarmonyX upstream: https://github.com/BepInEx/HarmonyX
 
-## Contributing
+## Community and trust
 
-Keep contributions small, reviewable, and redistributable. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Contributing:** keep changes small, reviewable, tested to the level claimed, and safe to redistribute. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Security:** do not place sensitive vulnerabilities, credentials, personal data, private paths, or proprietary game material in public reports. See [SECURITY.md](SECURITY.md).
+- **Issue and PR forms:** the repository provides structured intake for bugs, improvements, and pull requests so runtime scope, validation, and public-surface safety stay explicit.
 
 ## Licence status
 
-No licence is included in this repository yet. Public visibility does not by itself grant a general redistribution or relicensing right. A licence should be added only through an explicit maintainer decision.
+No licence is included in this repository yet. Public visibility does not by itself grant a general redistribution or relicensing right. Licence selection remains an explicit maintainer decision.
