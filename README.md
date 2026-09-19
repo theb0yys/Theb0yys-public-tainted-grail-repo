@@ -36,18 +36,21 @@ After your first plug-in loads successfully:
 
 ---
 
-### 🗡️ I want to make items, weapons, armour, or creatures
+### 🗡️ I want to add genuinely new content
 
-Use the content-authoring path:
+Start with the first proven new-content path:
 
-**[Make your first piece of content →](00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md)**
+**[Add your first new item →](00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md)**
 
-Then explore the individual authoring pipelines:
+Then use the technical handbook to understand the systems underneath it:
 
-- [Items](docs/pipelines/ITEMS.md)
-- [Weapons](docs/pipelines/WEAPONS.md)
-- [Armour](docs/pipelines/ARMOUR.md)
-- [Creatures / NPCs](docs/pipelines/CREATURES_KANDRA.md)
+- [Items: proven custom item integration](docs/reference/ITEMS.md)
+- [Identity: GUIDs, names and addresses](docs/reference/IDENTITY_GUIDS_NAMES.md)
+- [Templates and registries](docs/reference/TEMPLATES_REGISTRIES.md)
+- [Lifecycle and hooks](docs/reference/LIFECYCLE_HOOKS.md)
+- [Content domains](docs/reference/CONTENT_DOMAINS.md)
+
+Weapons, armour, creatures, spells, recipes and world content are **separate integration problems**. This repository will add each process from proven working/research evidence rather than pretending the item path automatically applies to them.
 
 ---
 
@@ -100,7 +103,8 @@ You are not expected to know all of the terminology before you begin. The guides
 ## What is here
 
 - `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
-- `docs/pipelines/` — public-safe FoA authoring pipelines derived from Merlin Workshop's actual toolkit structure.
+- `docs/reference/` — the FoA technical handbook: identity, templates, hooks, lifecycle, ownership, assets, persistence, failures, catalogues, and proven content processes.
+- `docs/pipelines/` — compatibility redirects for older links; these no longer present Merlin Workshop structures as a new-content process.
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
 - `examples/il2cpp-first-game-change/` — a small reversible BepInEx 6 / IL2CPP runtime-state change that bridges plug-in loading to changing the running game.
@@ -120,8 +124,11 @@ You are not expected to know all of the terminology before you begin. The guides
 
 Common lookups:
 
+- [Technical Handbook](docs/REFERENCE_MAP.md) — the complete reference index.
 - [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
-- [FoA Authoring Pipelines](docs/pipelines/README.md) — detailed Merlin Workshop content contracts.
+- [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — first reasoned new-content path.
+- [Hook Catalogue](docs/reference/HOOK_CATALOGUE.md) — selected researched lifecycle hooks.
+- [Identity Catalogue](docs/reference/IDENTITY_CATALOGUE.md) — curated GUIDs/identities used by examples.
 - [Debugging](docs/DEBUGGING.md) — troubleshoot a specific failure.
 - [Testing and Evidence Status](docs/EVIDENCE.md) — exact meanings of deeper testing-status labels.
 
