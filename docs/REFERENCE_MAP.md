@@ -210,36 +210,23 @@ Curated native/custom GUIDs used by documented examples. This is intentionally n
 
 ### [Items: Proven Custom Item Integration](reference/ITEMS.md)
 
-The first fully reasoned new-content process:
+The complete evidence-bounded custom-item process: native prototype, separate custom identity, clone validation, registry readiness, native registration, provider round-trip, World-owned Item construction, controlled acquisition, merchant/UI lifecycle timing, failure handling, and the still-separate persistence gate.
 
-~~~text
-native prototype
-→ custom identity
-→ clone validation
-→ native registration
-→ provider resolution
-→ World-owned Item
-→ controlled acquisition
-→ runtime verification
-~~~
+### [Weapons: Native Item, Equip, Combat, Presentation, and Importer Process](reference/WEAPONS.md)
 
-This page also explains the failed batch/timing assumptions that produced the final process.
+The native `ItemTemplate → Item → ItemEquipSpec → ItemEquip → CharacterHandBase/CharacterWeapon` ownership chain, implemented registrar behavior, Drake presentation path, provider lifetime, acquisition, combat-preservation, cleanup, persistence/migration requirements, and the exact boundary where the generic importer remains partial.
 
-### [Armour: Native Clothes, Kandra, and Importer Boundary](reference/ARMOUR.md)
+### [Armour: Source Geometry, Deformation, Kandra, Native Clothes, and Equip Process](reference/ARMOUR.md)
 
-Separates conversion/deformation, Kandra registration, and the native `BaseClothes → ClothStitcher → KandraRig/KandraRenderer` lifecycle without overstating the still-partial end-to-end custom-armour path.
+The staged armour path from source geometry and deformation proof through Kandra package generation/registration and the native `BaseClothes → ClothStitcher → KandraRig/KandraRenderer` equip lifecycle, with target-armour and persistence boundaries kept explicit.
 
-### [Creatures: Proven Injection Gates and Runtime Ownership](reference/CREATURES.md)
+### [Creatures: Proven Injection Gates, Native Actor Lifecycle, and Provider Ownership](reference/CREATURES.md)
 
-The evidence-backed `CI1 → CI2 → CI3 → CI4A → CI4 → CI5` process for source intake, native baseline, visual transport, animation mapping, template/actor contract and runtime lifecycle.
+The evidence-backed `CI1 → CI2 → CI3 → CI4A → CI4 → CI5 → focused live gate` process, including provider/consumer ownership, controlled actor lifecycle, native combat/death/corpse ownership, cleanup, population separation, one-session companion routing, and persistence limits.
 
 ### [Content Domains: Do Not Generalise One Process Across Everything](reference/CONTENT_DOMAINS.md)
 
-Why weapons, armour, creatures, spells, recipes, vendors and world content each require their own native graph and proven process.
-
-### [Weapons: Native Item, Equip, Combat, and Presentation Lifecycle](reference/WEAPONS_NATIVE_LIFECYCLE.md)
-
-The real native weapon graph: `ItemTemplate → Item → ItemEquipSpec → ItemEquip → CharacterHandBase → native combat/presentation`, plus save and Drake boundaries.
+Why items, weapons, armour, creatures, spells, recipes, vendors and world content remain separate owner graphs and proof lanes.
 
 ## Runtime and mod structure
 
