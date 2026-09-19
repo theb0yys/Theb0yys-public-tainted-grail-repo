@@ -1,5 +1,7 @@
 # Testing and Evidence Status
 
+> **Reference page.** Use this when you need the repository's exact testing-status vocabulary. Beginners do not need these labels to continue the tutorials.
+
 Most readers do not need to memorize the labels on this page.
 
 When a guide says something is **confirmed from source**, it means the relevant code or authoring contract was inspected.
