@@ -11,7 +11,7 @@ Follow these in order:
 1. [Set up Windows for modding](01_WINDOWS_SETUP.md)
 2. [Find the game and identify its runtime](02_FIND_GAME_AND_RUNTIME.md)
 3. Current/modern IL2CPP: [Build your first IL2CPP plug-in](03_FIRST_IL2CPP_PLUGIN.md)
-4. Legacy Mono only: [Build your first Mono plug-in](04_FIRST_MONO_PLUGIN.md)
+4. Mono: [Build your first Mono plug-in](04_FIRST_MONO_PLUGIN.md)
 5. [Check that your first mod really worked](06_SUCCESS_CHECKLIST.md)
 
 Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the BepInEx log.
@@ -57,7 +57,7 @@ Your local game installation supplies local references. Your repository should c
 
 **Harmony / HarmonyX** - lets a managed plug-in intercept or alter methods.
 
-**Mono** - older Unity managed runtime lane used by legacy FoA setups.
+**Mono** - a supported Tainted Grail Unity managed runtime lane using the BepInEx 5 toolchain.
 
 **IL2CPP** - the runtime lane in the validated 2026-08-30 FoA snapshot.
 
