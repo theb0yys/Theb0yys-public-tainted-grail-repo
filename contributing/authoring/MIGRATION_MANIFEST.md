@@ -89,13 +89,31 @@ Each split preserves a hub with a complete reading route and leaves redirects at
 
 ## Wave 4 — examples and diagnosis
 
-Create evidence-backed case studies from public-safe material:
-- presentation works/doesn't work;
-- UI opens but input path fails;
-- wrong native owner discovery;
-- runtime state works but persistence is unproven.
+Status: **PASSED on this migration branch** for the four researched cases.
 
-Do not copy private production source.
+Mandatory packets:
+- `contributing/authoring/case-packets/weapon-presentation-failure.md`
+- `contributing/authoring/case-packets/ui-dispatch-failure.md`
+- `contributing/authoring/case-packets/mount-wrong-owner-discovery.md`
+- `contributing/authoring/case-packets/runtime-vs-persistence.md`
+
+Public case studies:
+- `examples/failures-and-corrections/weapon-combat-works-render-invisible.md`
+- `examples/failures-and-corrections/ui-opens-but-choice-does-not-dispatch.md`
+- `examples/investigations/mount-wrong-owner-discovery.md`
+- `examples/failures-and-corrections/runtime-success-persistence-unproven.md`
+
+Symptom-first diagnosis:
+- `diagnose/presentation/weapon-works-but-is-invisible.md`
+- `diagnose/ui/opens-but-action-does-not-fire.md`
+- `diagnose/ownership/expected-behaviour-missing.md`
+- `diagnose/persistence/works-now-not-after-load.md`
+
+Evidence boundaries:
+- case pages preserve the underlying reviewed evidence strength separately from the new public rewrite;
+- no public case inherits persistence/compatibility/release status;
+- no private production source or proprietary asset is copied;
+- no new runtime, save, decompilation, compatibility or release validation was performed by this migration.
 
 ## Completion criteria for each migration
 
