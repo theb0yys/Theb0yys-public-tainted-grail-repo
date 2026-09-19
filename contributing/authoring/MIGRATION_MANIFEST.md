@@ -117,7 +117,7 @@ Evidence boundaries:
 
 ## Wave 5 — legacy reference archetype audit
 
-Status: **PASSED on this migration branch**, subject to final branch validation recorded in PR review.
+Status: **PASSED on this migration branch.**
 
 Control artifacts:
 - `contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md`
@@ -164,6 +164,16 @@ Evidence boundary:
 - Wave 5 reorganizes existing public knowledge by responsibility.
 - It does not newly validate runtime, save, compatibility, performance, or release claims.
 - No private production source, bulk decompilation, or proprietary assets were copied.
+
+### Wave 5 validation result
+
+- legacy `docs/reference/`: **61 files, all compatibility-sized**;
+- substantive files remaining above 500 bytes: **0**;
+- largest legacy file: **406 bytes**;
+- representative mixed-role and alias redirects fetched successfully;
+- branch was ahead of `main` and not behind at validation;
+- hosted commit-status entries: **none reported**;
+- no runtime/save/decompilation/compatibility/release proof was executed or implied.
 
 ## Completion criteria for each migration
 
