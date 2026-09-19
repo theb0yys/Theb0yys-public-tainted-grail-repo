@@ -74,7 +74,7 @@ public sealed class Plugin : BasePlugin
 }
 ~~~
 
-The GUID must be unique to your project.
+The **plug-in GUID** is the stable unique identifier BepInEx uses to distinguish your plug-in from others. Change `yourname.taintedgrail.myfirstmod` to an identifier you control and keep it stable once people start using the mod.
 
 ### 3. Build
 
@@ -155,7 +155,7 @@ Your first IL2CPP plug-in test passes when:
 - the log contains `MY FIRST MOD LOADED SUCCESSFULLY`;
 - no plug-in load exception is produced.
 
-Do not add Harmony or game-target code until this smoke test passes.
+Do not add **Harmony** or game-target code until this smoke test passes. Harmony is the patching library commonly used to run your code before or after existing game methods without replacing the game files themselves.
 
 ## Common problems
 
