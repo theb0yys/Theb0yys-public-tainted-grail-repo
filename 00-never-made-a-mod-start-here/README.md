@@ -1,6 +1,8 @@
 # Make Your First Tainted Grail Mod
 
-This is the do-this-first section. You do not need to understand the whole repository before making your first test.
+This page is the **first-mod learning path**. It assumes you already chose "I've never made a mod before" from the [repository front page](../README.md).
+
+You do not need to understand the whole repository before making your first test.
 
 ## Pick one path
 
