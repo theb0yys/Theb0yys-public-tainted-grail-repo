@@ -12,3 +12,13 @@ Use this surface when the question is:
 Start with [Core systems](core/README.md).
 
 Mod actions belong under [Mechanics](../mechanics/README.md).
+
+## Domain systems
+
+- [Items and Inventory](items/README.md)
+- [Weapons](weapons/README.md)
+- [Armour](armour/README.md)
+- [Creatures and Actors](creatures/README.md)
+- [Location and session actor lifecycle](actors/location-and-session-lifecycle.md)
+- [UI and Input](ui-input/README.md)
+- [Saving and Persistence](persistence/README.md)
