@@ -192,6 +192,12 @@ Every production/reusable hook record should eventually contain:
 - compatibility risk;
 - proof state.
 
+## Wider research inventory
+
+For a broader source-discovery list—including pickups, containers, theft, crafting UI, pricing, dialogue choices, travel, map fog, bonfire UI, damage, movement/audio and rendering targets—see **[Hook Research Inventory](HOOK_RESEARCH_INVENTORY.md)**.
+
+That page is deliberately less promoted than this catalogue: source presence is useful discovery evidence, but it is not automatically a reusable recommendation.
+
 ## Current proof boundary
 
 This catalogue is intentionally broader than the original promoted mechanics index, but it preserves evidence distinctions. Many rows are **source-inspected integration examples**, not promoted universal recommendations.
