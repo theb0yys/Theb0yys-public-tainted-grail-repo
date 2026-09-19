@@ -80,6 +80,10 @@ Startup ordering, SceneService, Addressables scene discovery, template loading l
 
 Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and other native owners matter.
 
+### [Proprietary System Documentation Standard](reference/PROPRIETARY_SYSTEMS.md)
+
+Mandatory structure for Drake, Kandra, proprietary rendering/runtime systems, and future reverse-engineered system pages. It requires purpose, ownership, identities/data contracts, lifecycle, vanilla entry, mod entry, accept/reject behavior, failure history, verification, the integrated custom-content process, and explicit proof boundaries.
+
 ### [Assets, Addressables, and Presentation](reference/ASSETS.md)
 
 AssetBundles, Addressables, `ARAssetReference`, prefabs, icons, models/materials, Merlin Workshop's actual boundary, and why an asset load is not gameplay registration.
