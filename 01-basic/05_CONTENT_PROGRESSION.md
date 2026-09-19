@@ -1,121 +1,156 @@
-# Move from Items to Weapons, Armour, and Creatures
+# Move Beyond the First Custom Item
 
 ## What you're doing
 
-You are learning the content-authoring paths in an order that adds one layer of responsibility at a time instead of trying to learn every pipeline simultaneously.
+You are learning how to move from one proven custom-item mechanism to other content domains **without assuming they work the same way**.
+
+The first item path teaches shared concepts: exact identity, registration, native ownership, lifecycle timing, assets, verification and proof boundaries.
+
+It does **not** automatically authorize a weapon, armour, creature, spell or recipe process.
 
 ## What you need
 
-- a working Merlin Workshop authoring environment;
-- a completed first item-authoring session;
-- the public pipeline references under `docs/pipelines/`;
-- a habit of noting whether something came from source inspection, an editor test, or an in-game test.
+- a completed or understood first custom-item path;
+- the [technical handbook](../docs/REFERENCE_MAP.md);
+- the [Content Domains](../docs/reference/CONTENT_DOMAINS.md) reference;
+- a willingness to investigate the native owner before writing the next feature.
 
 ## What you'll learn
 
-You will learn how the content paths build on each other:
+You will learn the repository's rule for expanding into a new content class:
 
 ~~~text
-item -> weapon / armour -> creature / NPC
+map native graph
+→ identify exact identities
+→ find registration/resolution
+→ find runtime owner
+→ find presentation/behavior owner
+→ map lifecycle
+→ run smallest controlled proof
+→ record failures
+→ publish only the proven process
 ~~~
-
-You will also learn which responsibilities are new at each stage.
 
 ## Steps
 
-### 1. Learn the item pipeline
+### 1. Separate the shared concepts from the item-specific mechanism
 
-Read [ITEMS.md](../docs/pipelines/ITEMS.md).
+Shared concepts:
 
-Learn:
+- stable custom identity;
+- exact native references;
+- lifecycle timing;
+- native ownership;
+- assets versus gameplay definitions;
+- cleanup/persistence;
+- observable verification.
 
-- `ItemTemplate` creation — the reusable item definition introduced in the first content tutorial;
-- inheritance/category — which existing abstract item family the new item derives from;
-- localization — the player-facing name/description text;
-- an **addressable** icon — a Unity/toolkit lookup entry that lets the project refer to the icon by a managed address instead of a hard-coded file path;
-- economy fields;
-- optional attachments;
-- equipment versus world representation.
+Item-specific details include:
 
-Do not worry about custom combat behaviour yet.
+- `ItemTemplate`;
+- `TemplatesLoader.AddToMap`;
+- `World.Add(new Item(...))`;
+- `RestockableStock.AddItem(...)`.
 
-### 2. Add weapon-specific responsibilities
+Do not assume those exact APIs are the answer for another domain.
 
-Read [WEAPONS.md](../docs/pipelines/WEAPONS.md).
+### 2. For a weapon, map the extra owners
 
-A weapon builds on the item pipeline.
+A weapon is not proven merely because it is also an item.
 
-Add only the weapon-specific responsibilities:
+A complete weapon process must separately establish:
 
-- correct abstract weapon family;
-- `ItemEquipSpec` — the attachment that describes how the item is equipped and represented;
-- `EquipmentType` — the equipment category/slot or handling role, such as one-handed, two-handed, bow, or shield;
-- weapon representation prefab — the reusable Unity object shown while the weapon is equipped;
-- `Weapon` component — the Unity component that gives that representation its weapon-specific runtime data;
-- `WeaponType` — the weapon family used by the animation/handling path;
-- collider;
-- combat stats.
+- item/template identity;
+- equip attachment/representation;
+- native weapon presentation owner;
+- mesh/material/prototype route;
+- animation/handling family;
+- combat ownership;
+- equip/unequip cleanup;
+- persistence.
 
-Test the logical item before tuning every stat.
+The handbook will publish this process only from the working-repo weapon evidence.
 
-### 3. Add armour-specific responsibilities
+### 3. For armour, map the native clothes/Kandra lifecycle
 
-Read [ARMOUR.md](../docs/pipelines/ARMOUR.md).
+Armour requires evidence for:
 
-Armour also builds on the item pipeline.
+- item identity;
+- equipment slot/restrictions;
+- native clothes/equip owner;
+- Kandra rig/stitching/presentation;
+- unequip cleanup;
+- stats;
+- persistence.
 
-Add:
+A skinned mesh loading successfully is not an armour integration proof.
 
-- armour inheritance/weight class;
-- equipment slot;
-- per-NPC visual representation where required;
-- armour stats;
-- optional requirements.
+### 4. For creatures/NPCs, map actor ownership
 
-Keep worn representation and drop/pick-up representation conceptually separate.
+A creature process must separate:
 
-### 4. Move to a creature or NPC last
+- source/visual asset;
+- animation mapping;
+- `NpcTemplate`;
+- `LocationTemplate`;
+- runtime actor construction;
+- AI/combat/death/corpse ownership;
+- spawn/population ownership;
+- cleanup;
+- save policy.
 
-Read [CREATURES_KANDRA.md](../docs/pipelines/CREATURES_KANDRA.md).
+A visible prefab is not a native creature.
 
-**Kandra** here means part of Tainted Grail's rendering/rig preparation path for the creature visual. It is not the name of a creature gameplay class.
+### 5. Apply the same rule to spells, recipes, vendors and world content
 
-Only start here once the authoring workflow feels familiar.
+Each domain gets its own graph.
 
-The preparation route visible in inspected Merlin Workshop source includes:
+For example:
 
-1. **TG -> Assets -> Prefabs -> Prepare NPC Prefab**
-2. prepare/verify Animator and Kandra renderer requirements;
-3. fix root/head/torso/collider/ragdoll warnings;
-4. **TG -> Assets -> Prefabs -> Prepare NPC Spec**
-5. duplicate from a behaviourally close known-good base spec;
-6. preserve the duplicated fighting-style chain initially;
-7. prove spawn/idle/movement;
-8. then test combat, weapons, loot and death;
-9. only then introduce custom fighting-style/animation changes.
+- a recipe appearing at runtime is not automatically learned/persistent;
+- a spell name heuristic is not an exact spell/effect ownership map;
+- vendor insertion is an acquisition route, not item registration;
+- a world coordinate is not spawn/lifecycle proof.
 
-### 5. Keep track of what you actually tested
+### 6. Use failures as part of the documentation
 
-The public pipeline documents were built from inspected toolkit source. Individual pages say when an editor or in-game run was also performed.
+When an attempt fails, record:
 
-When you successfully run one, record the exact toolkit/game versions and what you observed. Formal status labels are documented separately in [Testing and Evidence Status](../docs/EVIDENCE.md).
+- what was attempted;
+- which assumption it tested;
+- what failed;
+- the corrected model;
+- how the next experiment changed.
+
+That is how a private experiment becomes a public reusable process.
 
 ## What success looks like
 
-You can explain what the base item pipeline owns, what weapons and armour add, and why creatures/NPCs are a larger authoring problem.
+You can take a proposed content feature and identify:
 
-You can also work through one layer at a time without treating something found in source as if it has already worked in the game.
+- its definition owner;
+- its identity;
+- its runtime owner;
+- its presentation/behavior owner;
+- its lifecycle boundaries;
+- its persistence implications;
+- which parts already have evidence;
+- which parts are still unknown.
+
+You do not copy the item process into an unrelated domain just because some class names look similar.
 
 ## Common problems
 
-**You start with a creature before understanding items:** too many new systems become unknown at once.
+**"Weapons are items, so the item process is enough":** item registration is only one part of weapon integration.
 
-**You tune every weapon or armour field before proving the logical definition:** validate the smallest working shape first.
+**"The model loads, so the creature works":** asset transport is not actor ownership.
 
-**You treat something seen in source or the editor as if it already worked in the game:** keep those checks separate.
+**"Merlin exposes the type, so Merlin can add it":** Merlin is an official replacement/source-information tool, not a universal new-content registrar.
 
-**You change inheritance, visuals, stats, and behaviour in one test:** reduce the change until a failure tells you something useful.
+**"It compiled, so the process is proven":** build, load, runtime behavior and persistence are separate claims.
 
 ## Where to go next
 
-When the staged content loop makes sense, continue to **[Understand How Mods Work](../02-foundational/README.md)** or follow the specific pipeline reference for the content you are building.
+Use [Content Domains](../docs/reference/CONTENT_DOMAINS.md) as the map.
+
+Then use [Research Method](../docs/reference/RESEARCH_METHOD.md) to extract the next proven process from the working evidence.
