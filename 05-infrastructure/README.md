@@ -1,8 +1,8 @@
-# 05 — Infrastructure
+# Ship and Maintain Mods
 
 Infrastructure is the machinery around the mod or framework itself.
 
-This level covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
+This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
 
 ## Repository structure
 
