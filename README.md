@@ -102,37 +102,14 @@ You are not expected to know all of the terminology before you begin. The guides
 - `tools/verify-public-surface.ps1` — CI-purpose repository guard.
 - `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
 
-## Start here
+## Reference docs
 
-1. Read [docs/START_HERE.md](docs/START_HERE.md).
-2. For Merlin Workshop content authoring, start with [docs/pipelines/README.md](docs/pipelines/README.md).
-3. Identify whether your installed game is **Mono** or **IL2CPP** using [docs/RUNTIME_GUIDE.md](docs/RUNTIME_GUIDE.md).
-4. Copy the matching BepInEx template into your own project directory when writing a runtime plug-in.
-5. Point the project at your **local** BepInEx/game installation. Do not commit those binaries.
-6. Build the plug-in and place only your built plug-in DLL in your local `BepInEx/plugins` folder for testing.
-7. Use [docs/DEBUGGING.md](docs/DEBUGGING.md) when the plug-in does not load.
+Use these when you need detail rather than a learning path:
 
-## Merlin Workshop pipeline reference
-
-The public authoring documents are grounded in the Tainted Grail modding toolkit:
-
-`theb0yys/merlin-workshop`
-
-Pinned source snapshot used for the current documents:
-
-`073bdab3e09d6adad5003339fc49b021738d71e6` — **Update with new game content** (2026-02-06).
-
-Each pipeline page distinguishes what was confirmed from toolkit source from what still needs editor or in-game testing. The formal status definitions live in [docs/EVIDENCE.md](docs/EVIDENCE.md).
-
-## Known runtime reference
-
-A previously captured local validation on **2026-08-30** identified Steam public build `24246014` / game version `1.25.029` as **Unity IL2CPP**, with BepInEx 6 bleeding-edge build `785` (commit `6abdba4`) successfully reaching chainloader startup and loading tested plug-ins in that captured environment.
-
-That is a historical compatibility receipt, **not a guarantee for later game or BepInEx builds**. Re-check your installed runtime before choosing a template.
-
-The supported Mono lane uses BepInEx `5.4.23.5` with UnityDoorstop `4.5.0`. Mono and IL2CPP are separate supported Tainted Grail modding lanes; do not mix their loader files or plug-in APIs.
-
-See [docs/RUNTIME_GUIDE.md](docs/RUNTIME_GUIDE.md) for the exact distinction and source references.
+- [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP, current reference snapshot, and local IL2CPP reference layers.
+- [FoA Authoring Pipelines](docs/pipelines/README.md) — Merlin Workshop items, weapons, armour, and creatures/NPCs.
+- [Debugging](docs/DEBUGGING.md) — loader, plug-in, patch, and content troubleshooting.
+- [Testing and Evidence Status](docs/EVIDENCE.md) — exact meanings of the repository's deeper testing-status labels.
 
 ## Public-repository boundary
 
