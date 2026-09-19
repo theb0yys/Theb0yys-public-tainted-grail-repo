@@ -67,7 +67,9 @@ Your local game installation supplies local references. Your repository should c
 
 You do not need to learn a vocabulary list before starting. Each tutorial explains terms such as BepInEx, Mono, IL2CPP, Harmony, interop assemblies, prefabs, and addressables at the step where they first become useful.
 
-For deeper technical definitions, use the linked reference pages when you reach them.
+For deeper technical definitions, use the linked reference pages **when a tutorial sends you there**. Do not stop the learning path to read the whole reference library.
+
+Learning pages tell you what to do next. Reference pages answer a specific question while you are doing it.
 
 ## When you are ready to keep building
 
