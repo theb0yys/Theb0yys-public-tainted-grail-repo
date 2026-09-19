@@ -1,5 +1,7 @@
 # Runtime Guide
 
+> **Reference page.** Use this when you need exact runtime, loader, or IL2CPP-reference details. If you are learning in order, return to the [first-mod learning path](../00-never-made-a-mod-start-here/README.md).
+
 Mono and IL2CPP are separate runtime lanes. Loader files, plug-in base classes, target frameworks, and generated assemblies differ.
 
 ## Current validated reference snapshot
