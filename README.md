@@ -1,23 +1,92 @@
-# Tainted Grail Community Modding Starter
+# Tainted Grail: The Fall of Avalon — Community Modding
 
-A clean public-facing starting point for community mod development around **Tainted Grail: The Fall of Avalon**.
+Want to make something for **Tainted Grail: The Fall of Avalon**?
 
-This repository is deliberately separated from private project code. It contains reusable setup information, small starter templates, safe examples, and contributor guidance. It does **not** contain game assets, extracted commercial content, private automation/process material, secrets, or copies of in-development projects.
+Start with what you want to do. You do **not** need to understand this whole repository first.
 
-> Unofficial community project. Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
+## What do you want to do?
 
-## Learning path
+### 🌱 I've never made a mod before
 
-New to modding? Work through these in order:
+Start here:
 
-1. [00 — Never made a mod? Start here](00-never-made-a-mod-start-here/README.md)
-2. [01 — Basic](01-basic/README.md)
-3. [02 — Foundational](02-foundational/README.md)
-4. [03 — Advanced](03-advanced/README.md)
-5. [04 — Framework](04-framework/README.md)
-6. [05 — Infrastructure](05-infrastructure/README.md)
+**[Make your first Tainted Grail mod →](00-never-made-a-mod-start-here/README.md)**
 
-You can branch into either runtime plug-in development or content authoring from level 00. The later levels explain the common engineering underneath both paths.
+This path starts from the beginning: setting up your workspace, identifying your game runtime, making your first test, and knowing whether it actually worked.
+
+---
+
+### ⚙️ I want to change how the game behaves
+
+Examples include player behaviour, stats, movement, combat, UI, interactions, audio, and other systems.
+
+First identify whether your installed game uses **IL2CPP or Mono**:
+
+**[Find your game and identify the runtime →](00-never-made-a-mod-start-here/02_FIND_GAME_AND_RUNTIME.md)**
+
+Then build the matching first plug-in:
+
+- **[IL2CPP plug-in →](00-never-made-a-mod-start-here/03_FIRST_IL2CPP_PLUGIN.md)**
+- **[Legacy Mono plug-in →](00-never-made-a-mod-start-here/04_FIRST_MONO_PLUGIN.md)**
+
+After your first plug-in loads successfully:
+
+**[Continue into basic modding →](01-basic/README.md)**
+
+---
+
+### 🗡️ I want to make items, weapons, armour, or creatures
+
+Use the content-authoring path:
+
+**[Make your first piece of content →](00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md)**
+
+Then explore the individual authoring pipelines:
+
+- [Items](docs/pipelines/ITEMS.md)
+- [Weapons](docs/pipelines/WEAPONS.md)
+- [Armour](docs/pipelines/ARMOUR.md)
+- [Creatures / NPCs](docs/pipelines/CREATURES_KANDRA.md)
+
+---
+
+### 🔧 Something isn't working
+
+You do not need to start over.
+
+**[Follow the debugging guide →](docs/DEBUGGING.md)**
+
+It helps narrow a problem down from the loader, runtime, plug-in, patch, or content pipeline instead of changing several things at once.
+
+---
+
+### 🧠 I already know the basics
+
+Go deeper according to what you are trying to understand:
+
+**[Foundations →](02-foundational/README.md)**  
+Understand runtimes, dependencies, identity, compatibility, and why mods work.
+
+**[Advanced modding →](03-advanced/README.md)**  
+Work with more complicated patches, failures, compatibility, packaging, and diagnostics.
+
+**[Frameworks →](04-framework/README.md)**  
+Learn how reusable mod systems and stable contracts are designed.
+
+**[Infrastructure →](05-infrastructure/README.md)**  
+Learn about repositories, CI, validation, contribution flows, versioning, and releases.
+
+---
+
+## Not sure where to start?
+
+Use this route:
+
+**Never made a mod → get one thing loading → make one small change → understand why it works → build something of your own.**
+
+You are not expected to know all of the terminology before you begin. The guides introduce concepts as they become useful.
+
+> **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
 ## What is here
 
