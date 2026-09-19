@@ -1,49 +1,36 @@
-# Reference Map
+# Reference Map — Compatibility Route
 
-Use this page to find the current technical reference for the system you are modding.
+The canonical public information architecture has moved beyond a single technical-handbook index.
 
-## Runtime and architecture
+Use the surface that matches your question:
 
-- [Runtime guide](RUNTIME_GUIDE.md)
-- [Mod architecture](MOD_ARCHITECTURE.md)
-- [Game runtime architecture](reference/GAME_RUNTIME_ARCHITECTURE.md)
-- [Assemblies and system owners](reference/ASSEMBLIES_SYSTEM_OWNERS.md)
-- [Native object ownership](reference/NATIVE_OBJECT_OWNERSHIP.md)
-- [Lifecycle hooks](reference/LIFECYCLE_HOOKS.md)
+- **Learn:** [../learn/README.md](../learn/README.md)
+- **Understand native FoA systems:** [../systems/README.md](../systems/README.md)
+- **Perform a bounded modding capability:** [../mechanics/README.md](../mechanics/README.md)
+- **Investigate undocumented behaviour:** [../investigate/README.md](../investigate/README.md)
+- **Diagnose a failure:** [../diagnose/README.md](../diagnose/README.md)
+- **Look up exact identities/hooks/evidence:** [../reference/README.md](../reference/README.md)
+- **Examples and cases:** [../examples/README.md](../examples/README.md)
+- **Tooling/framework/maintenance:** [../tooling/README.md](../tooling/README.md)
 
-## Gameplay systems
+## Common canonical pages
 
-- [Combat and damage](reference/COMBAT_DAMAGE.md)
-- [Stats and effects](reference/COMBAT_STATS_EFFECTS.md)
-- [Interactions](reference/INTERACTIONS_USABLES.md)
-- [Items and acquisition](reference/LOOT_REWARDS_ACQUISITION.md)
-- [Merchants and distribution](reference/DISTRIBUTION_MERCHANTS_LOOT.md)
-- [Progression and skills](reference/PROGRESSION_SKILLS.md)
-- [Status effects](reference/STATUS_EFFECTS.md)
-- [Spawning and encounters](reference/SPAWNING_ENCOUNTERS.md)
-- [Actors and locations](reference/ACTORS_LOCATIONS_SPAWNING.md)
+- [Game/runtime architecture](../systems/core/game-runtime-architecture.md)
+- [Native object ownership](../systems/core/native-object-ownership.md)
+- [Templates and registries](../systems/core/templates-and-registries.md)
+- [MVC models/elements/events](../systems/core/mvc-models-elements-events.md)
+- [Scene/service/template lifecycle](../systems/core/scenes-services-templates.md)
+- [UI and input](../systems/ui-input/README.md)
+- [Saving and persistence](../systems/persistence/README.md)
+- [Intervention selection](../mechanics/intervention-selection.md)
+- [Research method](../investigate/research-method.md)
+- [Reverse engineering and discovery](../investigate/reverse-engineering-discovery.md)
+- [Evidence/testing status](../reference/evidence/README.md)
+- [Validation and compatibility](../reference/evidence/validation-and-compatibility.md)
+- [Mechanics catalogue](../reference/mechanics/README.md)
+- [Identity catalogue](../reference/identities/README.md)
+- [Hook catalogue](../reference/hooks/README.md)
 
-## World and presentation
+Large domain pages such as Items, Weapons, Armour and Creatures remain at their legacy locations until their chapter-family migrations are source-mapped. They are not being split merely for file size.
 
-- [Scenes, services and templates](reference/SCENES_SERVICES_TEMPLATES.md)
-- [World placement and navigation](reference/WORLD_PLACEMENT_NAVIGATION.md)
-- [Map and travel](reference/MAP_TRAVEL.md)
-- [Weather and environment](reference/WEATHER_ENVIRONMENT.md)
-- [Audio and FMOD](reference/AUDIO_FMOD_INTEGRATION.md)
-- [Music](reference/AUDIO_MUSIC.md)
-- [UI and input](reference/UI_INPUT.md)
-- [Assets](reference/ASSETS.md)
-
-## Persistence and compatibility
-
-- [Saving and persistence](reference/SAVING_PERSISTENCE.md)
-- [Resource lifetime](reference/RESOURCE_LIFETIME.md)
-- [Private APIs and compatibility](reference/PRIVATE_APIS_COMPATIBILITY.md)
-- [Validation and compatibility](reference/VALIDATION_AND_COMPATIBILITY.md)
-
-## Practical examples
-
-- [Proven path examples](../examples/proven-paths/README.md)
-- [Modding cookbook](../examples/mod-cookbook/README.md)
-
-The reference set is intentionally limited to current material that is useful for building mods.
+The mandatory design and authoring rules are in [Documentation Architecture](../contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
