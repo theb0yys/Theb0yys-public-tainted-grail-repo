@@ -4,6 +4,18 @@ This page is the **first-mod learning path**. It assumes you already chose "I've
 
 You do not need to understand the whole repository before making your first test.
 
+## Your progress
+
+**Start → Loader working → First plug-in → First game change → First complete mod**
+
+- **Start:** [Set up Windows for modding](01_WINDOWS_SETUP.md) and [identify your runtime](02_FIND_GAME_AND_RUNTIME.md).
+- **Loader working:** BepInEx starts and writes its log before your own mod is involved.
+- **First plug-in:** [IL2CPP](03_FIRST_IL2CPP_PLUGIN.md) or [Mono](04_FIRST_MONO_PLUGIN.md) loads your own DLL and writes your own log line.
+- **First game change:** IL2CPP can use [the first runtime change](../01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md); both lanes move toward a [verified real game patch](../01-basic/04_FIRST_REAL_PATCH_RULES.md).
+- **First complete mod:** [finish one small mod end-to-end](../01-basic/07_FIRST_COMPLETE_MOD.md).
+
+Content authoring follows the same idea—setup, first working content, one observed change, then one small complete mod—even though it does not use the BepInEx loader milestones.
+
 ## Pick one path
 
 ### A. I want to change game behaviour with code
