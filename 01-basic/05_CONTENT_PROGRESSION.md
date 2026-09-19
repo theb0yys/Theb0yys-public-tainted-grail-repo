@@ -29,10 +29,10 @@ Read [ITEMS.md](../docs/pipelines/ITEMS.md).
 
 Learn:
 
-- `ItemTemplate` creation;
-- inheritance/category;
-- localization;
-- icon/addressable concept;
+- `ItemTemplate` creation — the reusable item definition introduced in the first content tutorial;
+- inheritance/category — which existing abstract item family the new item derives from;
+- localization — the player-facing name/description text;
+- an **addressable** icon — a Unity/toolkit lookup entry that lets the project refer to the icon by a managed address instead of a hard-coded file path;
 - economy fields;
 - optional attachments;
 - equipment versus world representation.
@@ -48,11 +48,11 @@ A weapon builds on the item pipeline.
 Add only the weapon-specific responsibilities:
 
 - correct abstract weapon family;
-- `ItemEquipSpec`;
-- `EquipmentType`;
-- weapon representation prefab;
-- `Weapon` component;
-- `WeaponType`;
+- `ItemEquipSpec` — the attachment that describes how the item is equipped and represented;
+- `EquipmentType` — the equipment category/slot or handling role, such as one-handed, two-handed, bow, or shield;
+- weapon representation prefab — the reusable Unity object shown while the weapon is equipped;
+- `Weapon` component — the Unity component that gives that representation its weapon-specific runtime data;
+- `WeaponType` — the weapon family used by the animation/handling path;
 - collider;
 - combat stats.
 
@@ -77,6 +77,8 @@ Keep worn representation and drop/pick-up representation conceptually separate.
 ### 4. Move to a creature or NPC last
 
 Read [CREATURES_KANDRA.md](../docs/pipelines/CREATURES_KANDRA.md).
+
+**Kandra** here means part of Tainted Grail's rendering/rig preparation path for the creature visual. It is not the name of a creature gameplay class.
 
 Only start here once the authoring workflow feels familiar.
 
