@@ -51,27 +51,11 @@ Do not upload or commit:
 
 Your local game installation supplies local references. Your repository should contain your own source.
 
-## Beginner words
+## Terms appear when you need them
 
-**BepInEx** - loads runtime plug-ins.
+You do not need to learn a vocabulary list before starting. Each tutorial explains terms such as BepInEx, Mono, IL2CPP, Harmony, interop assemblies, prefabs, and addressables at the step where they first become useful.
 
-**Plug-in** - your compiled mod DLL.
-
-**Harmony / HarmonyX** - lets a managed plug-in intercept or alter methods.
-
-**Mono** - a supported Tainted Grail Unity managed runtime lane using the BepInEx 5 toolchain.
-
-**IL2CPP** - the runtime lane in the validated 2026-08-30 FoA snapshot.
-
-**Interop assemblies** - managed type representations used by the IL2CPP toolchain.
-
-**Prefab** - reusable Unity object/configuration asset.
-
-**Template** - reusable game/toolkit data definition.
-
-**Addressable** - Unity asset referenced through an address/group system.
-
-Some technical/reference pages use formal testing-status labels. You do **not** need to memorize them while learning. If you want the exact definitions, see [Testing and Evidence Status](../docs/EVIDENCE.md).
+For deeper technical definitions, use the linked reference pages when you reach them.
 
 ## When you are ready to keep building
 
@@ -79,7 +63,7 @@ Continue to [the everyday modding loop](../01-basic/README.md) when you can repe
 
 - where your project lives;
 - where the game lives;
-- which runtime lane you are using;
+- whether your game setup is Mono or IL2CPP;
 - how to build;
 - where your DLL/content output goes;
 - where to look when it fails.
