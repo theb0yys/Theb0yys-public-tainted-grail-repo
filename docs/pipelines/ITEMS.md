@@ -1,5 +1,7 @@
 # Item Pipeline
 
+> **Reference page.** Use this while working on an item and you need the detailed Merlin contract. For the guided first item, use [Make Your First Piece of Content](../../00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md).
+
 Evidence state: **STATIC_CONFIRMED**  
 Fresh editor/game execution for this document: **NOT_RUN**
 
