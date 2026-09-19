@@ -27,7 +27,7 @@ First identify whether your installed game uses **IL2CPP or Mono**:
 Then build the matching first plug-in:
 
 - **[IL2CPP plug-in →](00-never-made-a-mod-start-here/03_FIRST_IL2CPP_PLUGIN.md)**
-- **[Legacy Mono plug-in →](00-never-made-a-mod-start-here/04_FIRST_MONO_PLUGIN.md)**
+- **[Mono plug-in →](00-never-made-a-mod-start-here/04_FIRST_MONO_PLUGIN.md)**
 
 After your first plug-in loads successfully:
 
@@ -128,7 +128,7 @@ A previously captured local validation on **2026-08-30** identified Steam public
 
 That is a historical compatibility receipt, **not a guarantee for later game or BepInEx builds**. Re-check your installed runtime before choosing a template.
 
-The older Mono lane used BepInEx `5.4.23.5` with UnityDoorstop `4.5.0`. Mono and IL2CPP are separate lanes; do not mix their loader files or plug-in APIs.
+The supported Mono lane uses BepInEx `5.4.23.5` with UnityDoorstop `4.5.0`. Mono and IL2CPP are separate supported Tainted Grail modding lanes; do not mix their loader files or plug-in APIs.
 
 See [docs/RUNTIME_GUIDE.md](docs/RUNTIME_GUIDE.md) for the exact distinction and source references.
 
