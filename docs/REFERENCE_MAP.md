@@ -28,6 +28,10 @@ That format is deliberate. The repository should teach not only **how**, but **w
 
 The cross-cutting rules extracted from successful paths and failed attempts: full-path equivalence, native ownership, exact identity, lifecycle timing, asset-vs-registration separation, cleanup, evidence boundaries, version scope, and fail-closed behavior.
 
+### [What Works, What Does Not, and Why](reference/WORKS_FAILS_WHY.md)
+
+Successful, partial and rejected approaches connected to the failure or ownership lesson that explains the final rule.
+
 ### [Working, Partial, and Rejected Patterns](reference/WORKING_REJECTED_PATTERNS.md)
 
 A status ledger for techniques that are currently bounded-working, source/static only, blocked, or explicitly rejected—and why.
@@ -84,6 +88,10 @@ Template GUID serialization/restoration, registration timing, session-only conte
 
 Routes questions to the right game-knowledge/native-system owner: items, weapons, armour, creatures, recipes, merchants, spells, UI, spawning, saves, world/scenes, and more.
 
+### [FoA Game-Knowledge Index](reference/GAME_KNOWLEDGE_INDEX.md)
+
+All 38 research domains—items, actors, combat, quests, dialogue, world, UI, assets, saves, versioning and more—with ownership boundaries and related domains.
+
 ### [Mechanics Catalogue](reference/MECHANICS_CATALOGUE.md)
 
 Human-readable status map of reusable mechanics extracted from the working repository, including their evidence state and forbidden generalisations.
@@ -139,6 +147,10 @@ Exact meanings of deeper testing/evidence states.
 ### [Hook Catalogue](reference/HOOK_CATALOGUE.md)
 
 Selected exact types/methods, patch kind, lifecycle meaning, proven use, risks and proof boundary.
+
+### [Hook Research Inventory](reference/HOOK_RESEARCH_INVENTORY.md)
+
+Broader source-level inventory of researched Harmony targets across items, theft, crafting, combat, dialogue, travel, map, UI, economy, saves and rendering.
 
 ### [Identity Catalogue](reference/IDENTITY_CATALOGUE.md)
 
