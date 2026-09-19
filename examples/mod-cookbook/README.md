@@ -49,6 +49,12 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [15 Dialogue-choice observer](15-dialogue-choice-observer-mono/README.md) | dialogue observation | LOAD_EVIDENCED |
 | [16 Quest-completion observer](16-quest-completion-observer-mono/README.md) | quest observation | LOAD_EVIDENCED |
 | [17 Movement FOV kick](17-fov-kick-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
+| [18 Personal helper light](18-personal-helper-light-mono/README.md) | environment / lighting | SOURCE_BUILD_EVIDENCED |
+| [19 Context lane observer](19-context-lane-observer-mono/README.md) | contextual routing | RUNTIME_EVIDENCED for selected inputs |
+| [20 Camera shake strength](20-camera-shake-strength-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
+| [21 FOV transition duration](21-fov-transition-duration-mono/README.md) | camera / comfort | SOURCE_BUILD_EVIDENCED |
+| [22 Native music mute](22-native-music-mute-mono/README.md) | audio / native music | LOAD_EVIDENCED |
+| [23 Character damage observer](23-character-damage-observer-mono/README.md) | damage / VFX foundation | RUNTIME_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -75,6 +81,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Spell VFX overlays](recipes/06-spell-vfx/README.md)
 - [Safe save-backup architecture](recipes/07-save-backup/README.md)
 - [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
+- [Combat VFX sidecars](recipes/09-combat-vfx/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -90,13 +97,15 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - stamina drain: cookbook example 01;
 - carry capacity: cookbook example 02;
 - skill caps/uncapping: maintainer path has load evidence, but the real XP/cap path is too invasive to compress into a beginner snippet without reimplementing native XP handling; not promoted yet;
-- movement/traversal: extra-air-jump example 08; camera-relative movement remains a later advanced example.
+- movement/traversal: extra-air-jump example 08; camera-relative movement remains a later advanced example;
+- camera comfort: examples 17, 20 and 21 cover movement FOV kick, camera shake and FOV transition duration.
 
 ### Damage and combat
 - fall damage: example 03;
 - magic projectile speed: example 04;
 - item/weapon combat stats: content example 01/02;
-- general damage multipliers, status buildup and spell cost/cooldown paths exist in the maintainer workspace but are not all independently runtime-proved; add them one at a time when their evidence is strong enough.
+- general damage/status examples now include 10 (magic damage), 13 (status buildup) and 23 (character damage observation);
+- combat VFX lifecycle guidance lives under recipes/09-combat-vfx/.
 
 ### Items, equipment and creatures
 - item stats: content example 01;
@@ -118,11 +127,14 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 ### Audio
 - direct replacement gate: proven-path audio example;
 - real FoA hero footstep target: example 07;
-- contextual music routing has useful runtime lane evidence, but the complete music system is too large for a first cookbook slice.
+- contextual routing starts at example 19;
+- example 22 demonstrates the separate native-music-start suppression seam without shipping replacement music;
+- the complete contextual music system remains intentionally larger than a single cookbook mod.
 
 ### Environment and visuals
 - skybox apply/restore: proven-path skybox example;
-- torch helper-light and weather systems have useful partial evidence but still contain unresolved visual/runtime matrices; not promoted as proven recipes yet.
+- personal/helper lighting: example 18;
+- torch detection and weather systems still contain wider visual/runtime matrices and remain larger recipes.
 
 ### Persistence
 - a save-backup plug-in reached build/load/config/folder creation, but actual backup archive creation remained unproved in the inspected evidence. It is intentionally not presented as a working save example yet.

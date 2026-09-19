@@ -24,11 +24,16 @@ This index is the broad map. A category appears here even when its current evide
 | HUD | 05 | RUNTIME_EVIDENCED |
 | Small runtime overlay | proven-path/03 | mechanism-backed |
 | Footstep replacement | 07 | RUNTIME_EVIDENCED |
-| Contextual music | recipe 03 | RUNTIME_EVIDENCED for selected lane decisions |
+| Contextual music | 19 context lane observer + recipe 03 | RUNTIME_EVIDENCED for selected lane decisions |
 | Skybox ownership | proven-path/05 | source mechanism with owner-side live apply evidence |
-| Held/helper lighting | recipe 02 | SOURCE_BUILD_EVIDENCED |
+| Held/helper lighting | 18 personal helper light + recipe 02 | SOURCE_BUILD_EVIDENCED |
 | Movement extra jump | 08 | LOAD_EVIDENCED |
 | Movement FOV kick | 17 | LOAD_EVIDENCED |
+| Camera shake | 20 | LOAD_EVIDENCED |
+| FOV transition duration | 21 | SOURCE_BUILD_EVIDENCED |
+| Native music suppression | 22 | LOAD_EVIDENCED |
+| Character damage observation | 23 | RUNTIME_EVIDENCED |
+| Combat VFX sidecars | recipe 09 | RUNTIME_EVIDENCED owner path; public recipe NOT_RUN |
 | Save lifecycle observation | 14 | LOAD_EVIDENCED |
 | Save backups | recipe 07 | LOAD_EVIDENCED; archive creation not proved |
 | Dialogue offered | 15 | LOAD_EVIDENCED |
