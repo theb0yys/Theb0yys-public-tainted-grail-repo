@@ -1,14 +1,36 @@
-# 03 - Build Your First IL2CPP Plug-in
+# Build Your First IL2CPP Plug-in
 
-Use this for the current/modern IL2CPP lane.
+## What you're doing
 
-The goal is **not** to alter gameplay. The goal is to prove:
+You are building the smallest useful IL2CPP plug-in test.
+
+The goal is **not** to alter gameplay. The goal is to prove this complete path:
 
 ~~~text
 your source -> build -> DLL -> BepInEx -> log
 ~~~
 
-## Step 1 - Copy the starter
+## What you need
+
+- an installation you already identified as IL2CPP;
+- the matching BepInEx 6 IL2CPP lane installed and able to start;
+- the starter repository;
+- .NET build tooling;
+- your real `GameRoot`.
+
+## What you'll learn
+
+You will learn how to:
+
+- copy the IL2CPP starter into your own workspace;
+- give a plug-in its own identity;
+- build against local game/BepInEx references;
+- deploy only your plug-in DLL;
+- prove that BepInEx loaded your code.
+
+## Steps
+
+### 1. Copy the starter
 
 Create a workspace:
 
@@ -28,9 +50,9 @@ Open:
 C:\TGModding\MyFirstTGMod\Plugin.cs
 ~~~
 
-## Step 2 - Give the plug-in your own identity
+### 2. Give the plug-in your own identity
 
-Replace Plugin.cs with this, changing yourname to your own stable name/handle:
+Replace `Plugin.cs` with this, changing `yourname` to your own stable name/handle:
 
 ~~~csharp
 using BepInEx;
@@ -54,7 +76,7 @@ public sealed class Plugin : BasePlugin
 
 The GUID must be unique to your project.
 
-## Step 3 - Build
+### 3. Build
 
 Open PowerShell in the project directory:
 
@@ -74,8 +96,6 @@ Build:
 dotnet build .\Il2CppBasic.csproj -c Release -p:GameRoot="$GameRoot"
 ~~~
 
-### What success looks like
-
 Near the end, you should see:
 
 ~~~text
@@ -90,7 +110,7 @@ bin\Release\net6.0\TGCommunity.Il2CppBasic.dll
 
 The filename stays that way until you later rename the assembly in the project file. That is fine for this first smoke test.
 
-## Step 4 - Deploy only your DLL
+### 4. Deploy only your DLL
 
 Create a dedicated plug-in folder:
 
@@ -107,7 +127,7 @@ Copy-Item .\bin\Release\net6.0\TGCommunity.Il2CppBasic.dll $PluginDir -Force
 
 Do not copy your source tree into the game.
 
-## Step 5 - Launch the game
+### 5. Launch and check the log
 
 Launch FoA normally.
 
@@ -125,27 +145,26 @@ Search for:
 MY FIRST MOD LOADED SUCCESSFULLY
 ~~~
 
-If that line exists, your first plug-in pipeline works.
+## What success looks like
 
-## If the build fails
+Your first IL2CPP plug-in test passes when:
 
-Read the **first real error**, not the last 30 follow-on errors.
+- the project builds;
+- the new DLL is in your dedicated BepInEx plug-in folder;
+- BepInEx discovers the plug-in;
+- the log contains `MY FIRST MOD LOADED SUCCESSFULLY`;
+- no plug-in load exception is produced.
 
-Common causes:
+Do not add Harmony or game-target code until this smoke test passes.
 
-- GameRoot is wrong;
-- BepInEx IL2CPP is not installed;
-- the required assemblies are not in BepInEx\core;
-- the .NET build tooling is missing.
+## Common problems
 
-## If the build succeeds but the log line never appears
+**The build fails:** read the **first real error**, not the last set of follow-on errors. Common causes are a wrong `GameRoot`, missing BepInEx IL2CPP assemblies, or missing .NET tooling.
 
-Check:
+**The build succeeds but the log line never appears:** verify BepInEx produced a log, the DLL is under `BepInEx\plugins\MyFirstTGMod`, its timestamp matches your newest build, and you used the IL2CPP template.
 
-1. BepInEx itself produced a log;
-2. your DLL is actually under BepInEx\plugins\MyFirstTGMod;
-3. the DLL timestamp matches your newest build;
-4. you used the IL2CPP template, not the Mono one;
-5. read the earliest plug-in load error in the BepInEx log.
+**The wrong DLL keeps loading:** compare the build output timestamp with the deployed DLL timestamp.
 
-Do not add Harmony/game code until this smoke test passes.
+## Where to go next
+
+Use **[What Success Looks Like](06_SUCCESS_CHECKLIST.md)** to confirm the whole first loop, then continue to **[Learn the Everyday Modding Loop](../01-basic/README.md)**.
