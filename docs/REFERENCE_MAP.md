@@ -1,47 +1,84 @@
-# Reference Map
+# Reference Library
 
-This starter intentionally contains only a small public surface.
+This is the repository's **lookup layer**, not a learning path.
 
-## Primary FoA authoring reference
+If you are learning from the beginning, use the **[repository front page](../README.md)** and follow the learning pages it links to. You do **not** need to read the files in `docs/` in order.
 
-### Merlin Workshop
+Use this page when you already know the question you are trying to answer.
 
-https://github.com/theb0yys/merlin-workshop
+## Runtime and loader lookup
 
-Merlin Workshop is the Tainted Grail: The Fall of Avalon modding toolkit used as the source for the authoring-pipeline documents in this repository.
+### [Runtime Guide](RUNTIME_GUIDE.md)
 
-Current pinned source snapshot for the pipeline notes:
+Use when you need to answer questions such as:
 
-`073bdab3e09d6adad5003339fc49b021738d71e6` — 2026-02-06.
+- Is this installation Mono or IL2CPP?
+- Which BepInEx lane belongs with it?
+- Which local assemblies should an IL2CPP project reference?
+- What changes after generated interop becomes necessary?
 
-The public documents paraphrase structure and workflow. They do not copy game assets or bulk game/toolkit implementation source.
+### [Debugging](DEBUGGING.md)
 
-## Runtime references
+Use when something that previously should have worked is not loading, patching, resolving, or surviving a game update.
 
-### BepInEx Tainted Grail loader work
+It is organized by failure symptom rather than by learning stage.
 
-https://github.com/theb0yys/BepInEx-Tainted-Grail
+## Mod-design lookup
 
-Contains BepInEx-based loader/runtime work and historical FoA runtime receipts.
+### [Mod Architecture](MOD_ARCHITECTURE.md)
 
-### BepInEx
+Use when a working experiment is becoming large enough that you need clearer boundaries between:
 
-https://github.com/BepInEx/BepInEx
+- plug-in startup;
+- configuration;
+- patches;
+- reusable services;
+- diagnostics;
+- cleanup.
 
-Primary loader/framework upstream.
+This is architectural guidance, not a starter template you must reproduce exactly.
 
-### HarmonyX
+## Testing-status lookup
 
-https://github.com/BepInEx/HarmonyX
+### [Testing and Evidence Status](EVIDENCE.md)
 
-Harmony patching implementation used by BepInEx ecosystems.
+Use when you need the exact meanings of repository status labels or need to distinguish:
 
-## Evidence rule
+- source inspection;
+- build results;
+- plug-in load;
+- editor execution;
+- in-game behaviour;
+- packaged-release validation.
 
-Each pipeline document states its evidence level.
+Beginners do not need to memorize these labels.
 
-- **STATIC_CONFIRMED** means the authoring path and contracts are directly present in the inspected Merlin Workshop source.
-- **RUNTIME_PASSED** may be used only when that exact result was actually executed and recorded.
-- **NOT_RUN** means no runtime claim is being made.
+## Content-authoring lookup
 
-Source inspection is not runtime proof, and a runtime result on one build is not proof for a later build.
+### [FoA Authoring Pipelines](pipelines/README.md)
+
+Use when you are already working on Merlin Workshop content and need the detailed contract for a specific content type:
+
+- [Items](pipelines/ITEMS.md)
+- [Weapons](pipelines/WEAPONS.md)
+- [Armour](pipelines/ARMOUR.md)
+- [Creatures / NPCs / Kandra](pipelines/CREATURES_KANDRA.md)
+
+The learning path introduces these pages when the detail becomes useful. They are intentionally denser than the tutorials.
+
+## Old start-page compatibility
+
+### [Start Here](START_HERE.md)
+
+This path is retained for old bookmarks. It only routes readers to the current front door, learning pages, or references; it is not a second curriculum.
+
+## External technical sources
+
+These are source/upstream projects used by the repository's reference material:
+
+- Merlin Workshop / Tainted Grail authoring toolkit: https://github.com/theb0yys/merlin-workshop
+- BepInEx Tainted Grail loader work: https://github.com/theb0yys/BepInEx-Tainted-Grail
+- BepInEx upstream: https://github.com/BepInEx/BepInEx
+- HarmonyX upstream: https://github.com/BepInEx/HarmonyX
+
+For the current Merlin Workshop source snapshot and authoring-status boundary, see [FoA Authoring Pipelines](pipelines/README.md).
