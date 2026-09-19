@@ -2,13 +2,21 @@
 
 This starter intentionally contains only a small public surface.
 
-## Community/public references
+## Primary FoA authoring reference
 
-### FOA-SDK
+### Merlin Workshop
 
-https://github.com/theb0yys/FOA-SDK
+https://github.com/theb0yys/merlin-workshop
 
-Broader unofficial authoring/mod-development SDK work. Use it for architecture and tooling context. This starter does not copy its internal process material or implementation wholesale.
+Merlin Workshop is the Tainted Grail: The Fall of Avalon modding toolkit used as the source for the authoring-pipeline documents in this repository.
+
+Current pinned source snapshot for the pipeline notes:
+
+`073bdab3e09d6adad5003339fc49b021738d71e6` — 2026-02-06.
+
+The public documents paraphrase structure and workflow. They do not copy game assets or bulk game/toolkit implementation source.
+
+## Runtime references
 
 ### BepInEx Tainted Grail loader work
 
@@ -30,13 +38,10 @@ Harmony patching implementation used by BepInEx ecosystems.
 
 ## Evidence rule
 
-When documenting a compatibility claim, record:
+Each pipeline document states its evidence level.
 
-- game build/version;
-- runtime lane;
-- BepInEx version/commit;
-- what was actually observed;
-- date;
-- limitations.
+- **STATIC_CONFIRMED** means the authoring path and contracts are directly present in the inspected Merlin Workshop source.
+- **RUNTIME_PASSED** may be used only when that exact result was actually executed and recorded.
+- **NOT_RUN** means no runtime claim is being made.
 
-A source-code inspection is not a runtime test, and a runtime test on one build is not proof for later builds.
+Source inspection is not runtime proof, and a runtime result on one build is not proof for a later build.

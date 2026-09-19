@@ -9,6 +9,7 @@ This repository is deliberately separated from private project code. It contains
 ## What is here
 
 - `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
+- `docs/pipelines/` — public-safe FoA authoring pipelines derived from Merlin Workshop's actual toolkit structure.
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
 - `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
@@ -18,11 +19,24 @@ This repository is deliberately separated from private project code. It contains
 ## Start here
 
 1. Read [docs/START_HERE.md](docs/START_HERE.md).
-2. Identify whether your installed game is **Mono** or **IL2CPP** using [docs/RUNTIME_GUIDE.md](docs/RUNTIME_GUIDE.md).
-3. Copy the matching template into your own project directory.
-4. Point the project at your **local** BepInEx/game installation. Do not commit those binaries.
-5. Build the plug-in and place only your built plug-in DLL in your local `BepInEx/plugins` folder for testing.
-6. Use [docs/DEBUGGING.md](docs/DEBUGGING.md) when the plug-in does not load.
+2. For Merlin Workshop content authoring, start with [docs/pipelines/README.md](docs/pipelines/README.md).
+3. Identify whether your installed game is **Mono** or **IL2CPP** using [docs/RUNTIME_GUIDE.md](docs/RUNTIME_GUIDE.md).
+4. Copy the matching BepInEx template into your own project directory when writing a runtime plug-in.
+5. Point the project at your **local** BepInEx/game installation. Do not commit those binaries.
+6. Build the plug-in and place only your built plug-in DLL in your local `BepInEx/plugins` folder for testing.
+7. Use [docs/DEBUGGING.md](docs/DEBUGGING.md) when the plug-in does not load.
+
+## Merlin Workshop pipeline reference
+
+The public authoring documents are grounded in the Tainted Grail modding toolkit:
+
+`theb0yys/merlin-workshop`
+
+Pinned source snapshot used for the current documents:
+
+`073bdab3e09d6adad5003339fc49b021738d71e6` — **Update with new game content** (2026-02-06).
+
+The documents distinguish what is directly established by toolkit source from what still requires local Unity/game runtime validation.
 
 ## Known runtime reference
 
@@ -49,9 +63,7 @@ Use local references when a template needs game/BepInEx assemblies. The reposito
 
 ## Reference projects
 
-These existing repositories contain broader work and upstream/runtime context. They are references, not dependencies of the starter templates:
-
-- FOA-SDK: https://github.com/theb0yys/FOA-SDK
+- Merlin Workshop / Tainted Grail modding toolkit: https://github.com/theb0yys/merlin-workshop
 - BepInEx Tainted Grail loader work: https://github.com/theb0yys/BepInEx-Tainted-Grail
 - BepInEx upstream: https://github.com/BepInEx/BepInEx
 - HarmonyX upstream: https://github.com/BepInEx/HarmonyX
