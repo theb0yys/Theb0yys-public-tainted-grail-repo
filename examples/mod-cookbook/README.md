@@ -71,6 +71,9 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [37 Combat state observer](37-combat-state-observer-mono/README.md) | combat / state observation | SOURCE_BUILD_EVIDENCED |
 | [38 Guard / block / parry observer](38-guard-block-parry-observer-mono/README.md) | combat / defence-result observation | SOURCE_BUILD_EVIDENCED guard entry; RUNTIME_EVIDENCED damage-result fields |
 | [39 Attack / cast action observer](39-attack-cast-action-observer-mono/README.md) | combat / action lifecycle observation | SOURCE_CONFIRMED lifecycle seams |
+| [40 Poise-break observer](40-poise-break-observer-mono/README.md) | combat / poise outcome observation | SOURCE_CONFIRMED |
+| [41 Stagger observer](41-stagger-observer-mono/README.md) | combat / stagger outcome observation | SOURCE_CONFIRMED |
+| [42 Character death observer](42-character-death-observer-mono/README.md) | combat / terminal character observation | SOURCE_BUILD_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -102,6 +105,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Consumable effect attribution](recipes/11-consumable-effect-attribution/README.md)
 - [Equipment lifecycle attribution](recipes/12-equipment-lifecycle-attribution/README.md)
 - [Combat action lifecycle attribution](recipes/13-combat-action-lifecycle-attribution/README.md)
+- [Downstream combat outcome attribution](recipes/14-downstream-combat-outcome-attribution/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -129,7 +133,11 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - combat-state transitions with equipped-hand context: example 37;
 - guard entry plus observed block/parry damage results: example 38;
 - melee, ranged-draw and spell-cast lifecycle observation: example 39;
-- action-to-result ownership and attribution boundaries: recipe 13.
+- action-to-result ownership and attribution boundaries: recipe 13;
+- native poise-break entry: example 40;
+- native stagger entry/duration observation: example 41;
+- terminal character death observation: example 42;
+- downstream outcome ownership plus the knockback evidence gate: recipe 14.
 
 ### Statuses and character state
 - status buildup remains example 13;

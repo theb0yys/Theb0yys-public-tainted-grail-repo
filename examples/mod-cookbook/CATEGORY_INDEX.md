@@ -30,6 +30,11 @@ This index is the broad map. A category appears here even when its current evide
 | Guard / block / parry observation | 38 guard / block / parry observer | SOURCE_BUILD_EVIDENCED guard entry; RUNTIME_EVIDENCED damage-result fields |
 | Attack / cast lifecycle observation | 39 attack / cast action observer | SOURCE_CONFIRMED lifecycle seams |
 | Combat action lifecycle attribution | recipe 13 | SOURCE_CONFIRMED lifecycle map; public recipe NOT_RUN |
+| Poise-break observation | 40 poise-break observer | SOURCE_CONFIRMED |
+| Stagger observation | 41 stagger observer | SOURCE_CONFIRMED |
+| Character death observation | 42 character death observer | SOURCE_BUILD_EVIDENCED |
+| Knockback / forced displacement | recipe 14 evidence gate | BLOCKED; exact native displacement consumer NOT_PROVEN |
+| Downstream combat outcome attribution | recipe 14 | SOURCE_CONFIRMED lifecycle map; public recipe NOT_RUN |
 | Item stats | content/01 | STATIC_CONFIRMED |
 | Weapons | content/02 | STATIC_CONFIRMED |
 | Armour | content/03 | STATIC_CONFIRMED |
