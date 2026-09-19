@@ -6,15 +6,17 @@ The maintainer's working mod workspace was inspected for paths that had more tha
 
 The public examples then reimplement only the reusable mechanism with neutral, self-owned demo targets.
 
-## Critical evidence rule
+## Testing-status rule
 
-A proven source mechanism does **not** make a newly written template automatically runtime-proven.
+A source mechanism that worked in the maintainer's environment does **not** make a newly written public template automatically runtime-proven.
 
 For every example below:
 
-- source mechanism: evidence-backed in the maintainer's working environment;
+- source mechanism: checked in the maintainer's working environment;
 - public clean-room template: **NOT_RUN** until somebody builds and tests this exact example;
 - any game target you substitute: **NOT_PROVEN** until you verify that exact target on your installed build.
+
+For the exact meanings of those formal labels, see [Testing and Evidence Status](../../docs/EVIDENCE.md).
 
 ## First batch
 
