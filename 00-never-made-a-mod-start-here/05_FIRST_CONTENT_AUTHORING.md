@@ -64,6 +64,10 @@ Assets -> TG Data -> Miscellaneous -> Item
 
 Use that route to create a new `ItemTemplate` prefab.
 
+An **ItemTemplate** is the game's reusable definition for an item: its identity and the data other systems use to understand what the item is.
+
+A **prefab** is a reusable Unity object saved in the project. Merlin Workshop stores this item definition in prefab form so it can be edited and reused through the authoring pipeline.
+
 Give the test item a unique mod-owned identity/name.
 
 Do not copy a vanilla/game icon or model just to make the test look complete. Use your own legally redistributable source material or leave optional visual polish for later.
