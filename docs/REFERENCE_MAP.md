@@ -70,6 +70,18 @@ Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and othe
 
 AssetBundles, Addressables, `ARAssetReference`, prefabs, icons, models/materials, Merlin Workshop's actual boundary, and why an asset load is not gameplay registration.
 
+### [Localisation and Questline Babel](reference/LOCALIZATION_BABEL.md)
+
+`LocString`, fallback text, semantic IDs, positional Babel IDs, `LightLocString`, multilingual boundaries, and why raw text does not register a translation.
+
+### [Story Graphs, Dialogue, Choices, and Runtime Execution](reference/STORY_DIALOGUE_CHOICES.md)
+
+XNode authoring vs compiled Story runtime, graph GUIDs, bookmarks, Story Model ownership, choices, and persistence limits.
+
+### [Serialization, Unity Archives, and .arch](reference/SERIALIZATION_ARCHIVES.md)
+
+Separates Questline payload formats from the Unity Archive outer container and corrects the assumption that every `.arch` shares one proprietary schema.
+
 ### [Questline Rendering and Proprietary Runtime Systems](reference/PROPRIETARY_RENDERING_SYSTEMS.md)
 
 Drake, Kandra, Leshy, Medusa, HLOD, mip streaming, scene baking, and why ordinary Unity renderer assumptions often fail.
@@ -100,6 +112,14 @@ Human-readable status map of reusable mechanics extracted from the working repos
 
 Native stat ownership, non-saved `StatTweak` patterns, item costs, parry/block, poise-vs-stagger, and scoped damage-event tuning.
 
+### [Crime, Stealth, Bounty, Guards, and Consequences](reference/CRIME_STEALTH_BOUNTY.md)
+
+Native crime ownership, bounty, witnesses, guard response, jail, stolen pricing, reversible stealth tuning, and why template taxonomy is not spawn authority.
+
+### [Skills, Progression, XP, Talents, and Reversible Stat Growth](reference/PROGRESSION_SKILLS.md)
+
+XP context vs save-affecting sink, native multipliers, non-saved progression effects, and talent-spend transaction boundaries.
+
 ### [Recipes, Merchants, and Economy Integration](reference/RECIPES_ECONOMY.md)
 
 Separates recipe learning, runtime recipe append, custom registration, merchant insertion, loot and reward lanes.
@@ -111,6 +131,14 @@ Separates recipe learning, runtime recipe append, custom registration, merchant 
 ### [UI, Input, Focus, and Command Routing](reference/UI_INPUT_INTEGRATION.md)
 
 The full UI path: owner, lifecycle, input/control, cursor/focus, dispatch, handler, command, close and restoration.
+
+### [Interactions, Prompts, Pickups, Containers, and Illegal Actions](reference/INTERACTIONS_USABLES.md)
+
+The native interaction stack and the Hold-to-Steal failure sequence that proves why prompt text, callback, authorization, and final action ownership must be mapped separately.
+
+### [Audio, FMOD, Event Identity, and Safe Replacement Boundaries](reference/AUDIO_FMOD_INTEGRATION.md)
+
+Exact FMOD event identity, actor/item scoping, hash-pinned sidecars, parameter limitations, ownership conflicts, and fail-closed compatibility.
 
 ### [Asset and Resource Lifetime](reference/RESOURCE_LIFETIME.md)
 
@@ -148,6 +176,10 @@ Exact meanings of deeper testing/evidence states.
 
 Selected exact types/methods, patch kind, lifecycle meaning, proven use, risks and proof boundary.
 
+### [Source-Located Hook Atlas](reference/HOOK_ATLAS_CANDIDATES.md)
+
+A broader research atlas of exact Harmony targets found across the working repository. Entries are leads, not automatic recommendations.
+
 ### [Hook Research Inventory](reference/HOOK_RESEARCH_INVENTORY.md)
 
 Broader source-level inventory of researched Harmony targets across items, theft, crafting, combat, dialogue, travel, map, UI, economy, saves and rendering.
@@ -178,6 +210,10 @@ This page also explains the failed batch/timing assumptions that produced the fi
 ### [Content Domains: Do Not Generalise One Process Across Everything](reference/CONTENT_DOMAINS.md)
 
 Why weapons, armour, creatures, spells, recipes, vendors and world content each require their own native graph and proven process.
+
+### [Weapons: Native Item, Equip, Combat, and Presentation Lifecycle](reference/WEAPONS_NATIVE_LIFECYCLE.md)
+
+The real native weapon graph: `ItemTemplate → Item → ItemEquipSpec → ItemEquip → CharacterHandBase → native combat/presentation`, plus save and Drake boundaries.
 
 ## Runtime and mod structure
 
