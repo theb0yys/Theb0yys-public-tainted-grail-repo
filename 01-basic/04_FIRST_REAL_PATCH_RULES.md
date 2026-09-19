@@ -106,7 +106,11 @@ Re-check the exact target before deciding the mod is broken somewhere else.
 
 ## What success looks like
 
-You have a real target that is explicitly tied to the game build you inspected, your patch is narrow enough to reason about, and the observed behaviour matches the one small change you intended.
+**Progress: Start → Loader working → First plug-in → _First game change_ → First complete mod**
+
+For a game-specific patch, you have reached **First game change** when the verified target runs on the build you tested and the observed behaviour matches the one small change you intended.
+
+You have a real target that is explicitly tied to the game build you inspected, and your patch is narrow enough to reason about.
 
 ## Common problems
 
@@ -119,6 +123,8 @@ You have a real target that is explicitly tied to the game build you inspected, 
 **A version-specific assumption fails silently:** log the failure and disable the affected feature instead of guessing.
 
 ## Where to go next
+
+When that one feature works reliably, use **[Finish Your First Complete Mod](07_FIRST_COMPLETE_MOD.md)** to close the beginner loop.
 
 Use the **[Tainted Grail Mod Cookbook](../examples/mod-cookbook/README.md)** for game-target teaching examples that show how far each path has actually been checked.
 
