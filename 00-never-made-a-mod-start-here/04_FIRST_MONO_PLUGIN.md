@@ -1,8 +1,8 @@
-# 04 - Build Your First Legacy Mono Plug-in
+# Build Your First Mono Plug-in
 
-Use this only when you have confirmed a genuine Mono/BepInEx 5 setup.
+Use this when you have confirmed a Mono/BepInEx 5 setup.
 
-Do not use this guide simply because an old tutorial mentions BepInEx 5.
+Choose this guide because your installed Tainted Grail setup is using the Mono/BepInEx 5 lane, not because of an assumption based on another guide.
 
 ## Step 1 - Copy the starter
 
