@@ -1,5 +1,7 @@
 # Debugging
 
+> **Reference page.** Use this when you have a specific failure to diagnose. If your current tutorial has not failed, keep following the learning path instead of reading this front-to-back.
+
 ## Plug-in does not appear in logs
 
 Check, in order:
