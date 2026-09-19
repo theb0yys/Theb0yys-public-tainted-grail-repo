@@ -31,6 +31,15 @@ Use the surface that matches your question:
 - [Identity catalogue](../reference/identities/README.md)
 - [Hook catalogue](../reference/hooks/README.md)
 
-Large domain pages such as Items, Weapons, Armour and Creatures remain at their legacy locations until their chapter-family migrations are source-mapped. They are not being split merely for file size.
+## Domain chapter families
+
+The first source-mapped domain conversions are now canonical:
+
+- [Items](../systems/items/README.md) · [mechanics](../mechanics/items/README.md)
+- [Weapons](../systems/weapons/README.md) · [mechanics](../mechanics/weapons/README.md)
+- [Armour](../systems/armour/README.md) · [mechanics](../mechanics/armour/README.md)
+- [Creatures and Actors](../systems/creatures/README.md) · [mechanics](../mechanics/creatures/README.md)
+
+Legacy domain paths remain compatibility redirects. Chapter families were split by information responsibility, not file size.
 
 The mandatory design and authoring rules are in [Documentation Architecture](../contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
