@@ -26,7 +26,7 @@ You will learn how to:
 - create a basic `ItemTemplate`;
 - give content a mod-owned identity;
 - configure only the minimum fields first;
-- distinguish source-confirmed authoring structure from runtime proof.
+- tell the difference between something confirmed in the toolkit source and something actually tested in the editor or game.
 
 ## Steps
 
@@ -93,11 +93,11 @@ Weapons and armour are specialized item pipelines.
 
 Creatures are a larger pipeline involving visual preparation plus NPC spec/template/fighting-style wiring.
 
-### 6. Record the evidence you actually produced
+### 6. Know what has and has not been tested
 
-The current public pipeline documents identify the authoring structure from inspected Merlin source as **STATIC_CONFIRMED**.
+The authoring route in these public guides was confirmed by inspecting Merlin Workshop source. The public recipe itself was not run end-to-end during that documentation pass unless a page explicitly says it was.
 
-A fresh end-to-end editor/game run was **NOT_RUN** during that documentation pass unless a document explicitly says otherwise.
+You do not need the formal status labels while following this tutorial. They are documented in [Testing and Evidence Status](../docs/EVIDENCE.md) for reference.
 
 For your own successful content test, record:
 
@@ -116,7 +116,7 @@ Your first content-authoring session passes when you can:
 - save it without project errors;
 - explain its template/category relationship;
 - repeat the edit/save cycle;
-- state clearly whether you have editor evidence, game-runtime evidence, or both.
+- state clearly whether you checked it only in the editor or also tested it in the game.
 
 ## Common problems
 
