@@ -1,12 +1,14 @@
-# 04 - Moving to a Real Game Patch
+# Move to a Real Game Patch
 
-This guide intentionally does **not** invent a game method for you to patch.
+## What you're doing
 
-A real target must come from current evidence for the game build you are testing.
+You are moving from a self-owned test target to a real game method while keeping the first change small, reversible, and tied to evidence from the game build you are actually testing.
 
-## Before writing the patch
+This guide intentionally does **not** invent a Tainted Grail method for you to patch.
 
-Write down:
+## What you need
+
+Before writing the patch, identify:
 
 - exact game build/version;
 - runtime lane;
@@ -16,13 +18,27 @@ Write down:
 - what behaviour you observed;
 - what minimal change you want.
 
-## Beginner target rule
+A real target must come from current evidence for the game build you are testing.
+
+## What you'll learn
+
+You will learn how to:
+
+- choose a small first target;
+- prefer a postfix when it can preserve original behaviour;
+- avoid high-risk first patches;
+- keep placeholder example code separate from game facts;
+- make version-specific assumptions fail visibly.
+
+## Steps
+
+### 1. Choose a narrow target
 
 Choose a method where a **postfix** can make the change if possible.
 
 Postfixes usually preserve more original behaviour than replacing the method.
 
-## Avoid this first
+### 2. Avoid high-risk first targets
 
 Do not begin with:
 
@@ -36,7 +52,7 @@ Do not begin with:
 
 Choose a small reversible behaviour.
 
-## Generic patch shape
+### 3. Start from the generic patch shape
 
 ~~~csharp
 [HarmonyPatch(typeof(SomeType), nameof(SomeType.SomeMethod))]
@@ -49,12 +65,36 @@ internal static class SomePatch
 }
 ~~~
 
-The placeholder names above are not FoA facts. Replace them only with a target you have actually verified for your game build.
+The placeholder names above are not FoA facts.
 
-## Fail visibly
+Replace them only with a target you have actually verified for your game build.
+
+### 4. Fail visibly when an assumption is wrong
 
 If your patch depends on a version-specific assumption, log when that assumption is not satisfied instead of silently continuing.
 
-## After a game update
+### 5. Re-check the target after a game update
+
+Do not assume an old type/method identity remains valid.
 
 Re-check the exact target before deciding the mod is broken somewhere else.
+
+## What success looks like
+
+You have a real target that is explicitly tied to the game build you inspected, your patch is narrow enough to reason about, and the observed behaviour matches the one small change you intended.
+
+## Common problems
+
+**A placeholder type or method was treated as a real FoA symbol:** placeholders in this guide are only patch-shape examples.
+
+**The patch replaces too much original behaviour:** prefer a narrower postfix or another smaller target where practical.
+
+**A game update breaks the patch:** re-establish the exact type, method, overload, and runtime evidence before changing unrelated code.
+
+**A version-specific assumption fails silently:** log the failure and disable the affected feature instead of guessing.
+
+## Where to go next
+
+Use the **[Tainted Grail Mod Cookbook](../examples/mod-cookbook/README.md)** for game-target teaching examples with explicit evidence labels.
+
+For the underlying engineering model, continue to **[Understand How Mods Work](../02-foundational/README.md)**.
