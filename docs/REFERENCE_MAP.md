@@ -1,84 +1,133 @@
 # Reference Library
 
-This is the repository's **lookup layer**, not a learning path.
+This is the repository's **technical handbook and lookup layer**, not a second beginner curriculum.
 
-If you are learning from the beginning, use the **[repository front page](../README.md)** and follow the learning pages it links to. You do **not** need to read the files in `docs/` in order.
+If you are learning from the beginning, use the **[repository front page](../README.md)**. Open handbook pages when a tutorial sends you there or when you are investigating a specific system.
 
-Use this page when you already know the question you are trying to answer.
+## The page format
 
-## Runtime and loader lookup
+Every technical handbook page answers the same questions:
 
-### [Runtime Guide](RUNTIME_GUIDE.md)
+~~~text
+What this system is
+Who owns it in FoA
+Important identities, types, and methods
+Where it exists in the lifecycle
+How we interact with it
+Why this route
+What goes wrong
+How to verify
+Current proof boundary
+~~~
 
-Use when you need to answer questions such as:
+That format is deliberate. The repository should teach not only **how**, but **why the working route has its current shape** and **what failures established the rule**.
 
-- Is this installation Mono or IL2CPP?
-- Which BepInEx lane belongs with it?
-- Which local assemblies should an IL2CPP project reference?
-- What changes after generated interop becomes necessary?
+## Foundation
 
-### [Debugging](DEBUGGING.md)
+### [Game and Runtime Architecture](reference/GAME_RUNTIME_ARCHITECTURE.md)
 
-Use when something that previously should have worked is not loading, patching, resolving, or surviving a game update.
+How BepInEx, Unity, FoA services/templates, `World`, and live runtime objects fit together.
 
-It is organized by failure symptom rather than by learning stage.
+### [Identity: GUIDs, Names, Addresses, and Stable IDs](reference/IDENTITY_GUIDS_NAMES.md)
 
-## Mod-design lookup
+Native GUIDs, custom GUIDs, template names, display names, plug-in GUIDs, Unity GUIDs and Addressables addresses—and why they are not interchangeable.
 
-### [Mod Architecture](MOD_ARCHITECTURE.md)
+### [Templates and Registries](reference/TEMPLATES_REGISTRIES.md)
 
-Use when a working experiment is becoming large enough that you need clearer boundaries between:
+`TemplatesLoader`, `TemplatesProvider`, readiness, lookup, cloning, registration, collision risk, and the difference between an object existing and a definition being registered.
 
-- plug-in startup;
-- configuration;
-- patches;
-- reusable services;
-- diagnostics;
-- cleanup.
+### [Lifecycle and Hooks](reference/LIFECYCLE_HOOKS.md)
 
-This is architectural guidance, not a starter template you must reproduce exactly.
+Harmony Prefix/Postfix choices, lifecycle timing, template readiness, merchant timing, save observation, and why hook position matters.
 
-## Testing-status lookup
+### [Native Object Ownership](reference/NATIVE_OBJECT_OWNERSHIP.md)
+
+Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and other native owners matter.
+
+### [Assets, Addressables, and Presentation](reference/ASSETS.md)
+
+AssetBundles, Addressables, `ARAssetReference`, prefabs, icons, models/materials, Merlin Workshop's actual boundary, and why an asset load is not gameplay registration.
+
+### [Saving and Persistence](reference/SAVING_PERSISTENCE.md)
+
+Template GUID serialization/restoration, registration timing, session-only content, missing-mod risk, save/load proof, and current unknowns.
+
+## Process and diagnostics
+
+### [Debugging and Diagnostics](reference/DIAGNOSTICS.md)
+
+How to find the earliest failed stage instead of changing unrelated systems.
+
+### [Failures and Constraints](reference/FAILURES_CONSTRAINTS.md)
+
+Reusable lessons extracted from failed attempts and corrected hypotheses.
+
+### [Research Method](reference/RESEARCH_METHOD.md)
+
+How the repository turns source, hypothesis, diagnostics, successes and failures into a reusable process.
 
 ### [Testing and Evidence Status](EVIDENCE.md)
 
-Use when you need the exact meanings of repository status labels or need to distinguish:
+Exact meanings of deeper testing/evidence states.
 
-- source inspection;
-- build results;
-- plug-in load;
-- editor execution;
-- in-game behaviour;
-- packaged-release validation.
+## Catalogues
 
-Beginners do not need to memorize these labels.
+### [Hook Catalogue](reference/HOOK_CATALOGUE.md)
 
-## Content-authoring lookup
+Selected exact types/methods, patch kind, lifecycle meaning, proven use, risks and proof boundary.
 
-### [FoA Authoring Pipelines](pipelines/README.md)
+### [Identity Catalogue](reference/IDENTITY_CATALOGUE.md)
 
-Use when you are already working on Merlin Workshop content and need the detailed contract for a specific content type:
+Curated native/custom GUIDs used by documented examples. This is intentionally not a bulk game-data dump.
 
-- [Items](pipelines/ITEMS.md)
-- [Weapons](pipelines/WEAPONS.md)
-- [Armour](pipelines/ARMOUR.md)
-- [Creatures / NPCs / Kandra](pipelines/CREATURES_KANDRA.md)
+## Proven content processes
 
-The learning path introduces these pages when the detail becomes useful. They are intentionally denser than the tutorials.
+### [Items: Proven Custom Item Integration](reference/ITEMS.md)
+
+The first fully reasoned new-content process:
+
+~~~text
+native prototype
+→ custom identity
+→ clone validation
+→ native registration
+→ provider resolution
+→ World-owned Item
+→ controlled acquisition
+→ runtime verification
+~~~
+
+This page also explains the failed batch/timing assumptions that produced the final process.
+
+### [Content Domains: Do Not Generalise One Process Across Everything](reference/CONTENT_DOMAINS.md)
+
+Why weapons, armour, creatures, spells, recipes, vendors and world content each require their own native graph and proven process.
+
+## Runtime and mod structure
+
+### [Runtime Guide](RUNTIME_GUIDE.md)
+
+Mono vs IL2CPP, loader/tooling differences, and local IL2CPP reference layers.
+
+### [Mod Architecture](MOD_ARCHITECTURE.md)
+
+How to organize a working plug-in without turning a small mod into unnecessary framework code.
+
+### [Debugging](DEBUGGING.md)
+
+Short symptom-oriented troubleshooting for loader, plug-in and Harmony failures.
+
+## Merlin Workshop
+
+Merlin Workshop remains important, but its role is bounded:
+
+- official Questline modding/replacement toolkit;
+- useful for replacing supported existing Addressables/assets;
+- first-party source of information about native types, GUIDs, addresses and relationships;
+- **not a general process for registering genuinely new FoA content**.
+
+Older `docs/pipelines/` links are retained only as compatibility redirects. They no longer describe those Merlin structures as a new-content pipeline.
 
 ## Old start-page compatibility
 
-### [Start Here](START_HERE.md)
-
-This path is retained for old bookmarks. It only routes readers to the current front door, learning pages, or references; it is not a second curriculum.
-
-## External technical sources
-
-These are source/upstream projects used by the repository's reference material:
-
-- Merlin Workshop / Tainted Grail authoring toolkit: https://github.com/theb0yys/merlin-workshop
-- BepInEx Tainted Grail loader work: https://github.com/theb0yys/BepInEx-Tainted-Grail
-- BepInEx upstream: https://github.com/BepInEx/BepInEx
-- HarmonyX upstream: https://github.com/BepInEx/HarmonyX
-
-For the current Merlin Workshop source snapshot and authoring-status boundary, see [FoA Authoring Pipelines](pipelines/README.md).
+[Start Here](START_HERE.md) exists only for old bookmarks and routes back to the current front door/reference pages.
