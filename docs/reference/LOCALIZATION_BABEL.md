@@ -1,3 +1,7 @@
-# Localisation and Babel
+# Moved
 
-Read [Localisation and Questline Babel](LOCALISATION_BABEL.md) for text identities, fallback text, caching and multilingual presentation.
+This compatibility alias now points directly to the canonical Wave 5 owner:
+
+**[Open the canonical page →](../../systems/localisation/README.md)**
+
+The alias remains so older links continue to resolve.
