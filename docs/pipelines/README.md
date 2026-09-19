@@ -2,7 +2,7 @@
 
 These notes describe the public-safe authoring routes visible in **Merlin Workshop**, the Tainted Grail: The Fall of Avalon modding toolkit.
 
-## Evidence snapshot
+## Source snapshot
 
 Source repository:
 
@@ -14,15 +14,13 @@ Pinned commit:
 
 This documentation was produced from direct inspection of that source tree. No FOA-SDK material is used here.
 
-## Status vocabulary
+## How far these guides were checked
 
-**STATIC_CONFIRMED** — the editor menu, component contract, inheritance rule, addressable grouping, or preparation code exists in the pinned Merlin Workshop source.
+The authoring structure in these guides was confirmed by direct inspection of the pinned Merlin Workshop source.
 
-**RUNTIME_PASSED** — reserved for an exact local/editor/game execution result that was actually run and recorded.
+Fresh end-to-end editor/game execution was not part of that documentation pass unless an individual page explicitly says otherwise.
 
-**NOT_RUN** — runtime/editor execution was not performed as part of this documentation pass.
-
-For the documents below, the authoring structure is **STATIC_CONFIRMED**. Fresh end-to-end runtime execution is **NOT_RUN** unless a document explicitly says otherwise.
+For the formal status labels used in deeper reference material, see [Testing and Evidence Status](../EVIDENCE.md).
 
 ## Pipelines
 
