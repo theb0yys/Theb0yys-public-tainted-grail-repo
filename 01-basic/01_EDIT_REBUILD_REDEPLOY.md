@@ -16,7 +16,7 @@ Then:
 
 ~~~powershell
 cd C:\TGModding\MyFirstTGMod
-$GameRoot = "D:\SteamLibrary\steamapps\common\Tainted Grail FoA"
+$GameRoot = "C:\Path\To\Tainted Grail FoA"
 
 dotnet build .\Il2CppBasic.csproj -c Release -p:GameRoot="$GameRoot"
 
