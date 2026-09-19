@@ -240,6 +240,18 @@ Parenting a GameObject does not automatically reproduce:
 
 ---
 
+### Patching `HeroItems.Add` during plug-in startup
+
+**Observed failure:** an experimental diagnostic patch on `HeroItems.Add` installed through `Harmony.PatchAll` during plug-in startup caused hero-inventory initialization/save-load failures and was removed.
+
+**Why:** a low-level owner method can run while FoA is reconstructing critical state. Hooking a central method merely because it sees every item addition can disturb the lifecycle being observed.
+
+**Correction:** abandon that broad diagnostic seam and use a safer, more specific lifecycle/owner surface.
+
+**Golden rule:** the broadest hook is rarely the safest hook; never patch a central owner method without understanding when it runs during initialization/restoration.
+
+---
+
 ### Build success
 
 **Works for:** proving source compiles against the selected references.
