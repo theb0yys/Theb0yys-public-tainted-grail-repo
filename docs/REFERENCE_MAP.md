@@ -42,4 +42,24 @@ The first source-mapped domain conversions are now canonical:
 
 Legacy domain paths remain compatibility redirects. Chapter families were split by information responsibility, not file size.
 
+
+## Wave 5 canonical families
+
+The remaining substantive legacy handbook pages have been audited and moved by document responsibility:
+
+- [AI](../systems/ai/README.md) · [mechanics](../mechanics/ai/README.md)
+- [Assets](../systems/assets/README.md) · [mechanics](../mechanics/assets/README.md)
+- [Audio](../systems/audio/README.md) · [mechanics](../mechanics/audio/README.md)
+- [Combat](../systems/combat/README.md) · [mechanics](../mechanics/combat/README.md)
+- [Crime and stealth](../systems/crime/README.md) · [mechanics](../mechanics/crime/README.md)
+- [Interactions](../systems/interactions/README.md) · [mechanics](../mechanics/interactions/README.md)
+- [Localisation](../systems/localisation/README.md) · [mechanics](../mechanics/localisation/README.md)
+- [Progression](../systems/progression/README.md) · [mechanics](../mechanics/progression/README.md)
+- [Magic and status effects](../systems/magic/README.md) · [mechanics](../mechanics/magic/README.md)
+- [Story, quests and dialogue](../systems/story/README.md) · [mechanics](../mechanics/story/README.md)
+- [Environment](../systems/environment/README.md) · [mechanics](../mechanics/environment/README.md)
+- [World, travel and placement](../systems/world/README.md) · [mechanics](../mechanics/world/README.md)
+
+`docs/reference/` is now a compatibility path only. New documentation must target the canonical surface directly.
+
 The mandatory design and authoring rules are in [Documentation Architecture](../contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
