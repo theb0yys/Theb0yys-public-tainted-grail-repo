@@ -85,7 +85,7 @@ Do not "clean" by deleting random files from the game installation.
 
 ## What success looks like
 
-You can make a small source change, rebuild, redeploy, launch the game, and see evidence from the new build rather than an older DLL.
+You can make a small source change, rebuild, redeploy, launch the game, and see the new build's log message rather than one from an older DLL.
 
 ## Common problems
 
