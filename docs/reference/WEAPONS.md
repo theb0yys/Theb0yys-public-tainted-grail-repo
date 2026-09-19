@@ -50,6 +50,8 @@ registered ItemTemplate
 
 For Drake-backed rigid weapons the presentation chain additionally includes Drake-owned renderer/resource state.
 
+For the system-level explanation of that renderer/resource lifecycle, read [Drake and MergedDrake](DRAKE.md). The weapon page owns the end-to-end gameplay process; the Drake page owns the proprietary rendering mechanism inside it.
+
 The durable gameplay object is the native `Item`.
 
 A custom importer should not invent a parallel universal “Weapon Model” that bypasses this chain.
