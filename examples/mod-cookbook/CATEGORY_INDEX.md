@@ -1,12 +1,10 @@
 # Cookbook Sections
 
-| Section | Entry point |
+| Section | Topics |
 | --- | --- |
-| Gameplay | [gameplay/README.md](gameplay/README.md) |
-| Graphics | [graphics/README.md](graphics/README.md) |
-| Visual effects | [visual-effects/README.md](visual-effects/README.md) |
-| Audio | [audio/README.md](audio/README.md) |
-| UI & HUD | [ui-hud/README.md](ui-hud/README.md) |
-| Systems | [systems/README.md](systems/README.md) |
-
-The numbered folders that remain in the cookbook are working implementation examples, not a maturity scale.
+| [Gameplay](gameplay/README.md) | magic, theft, item grants, economy, bonfires, mounts, companions, NPC AI, encounters, damage/death |
+| [Graphics](graphics/README.md) | fog and runtime visual ownership |
+| [Visual Effects](visual-effects/README.md) | combat and death presentation |
+| [Audio](audio/README.md) | hero footsteps and replacement gating |
+| [UI & HUD](ui-hud/README.md) | action receipts and overlays |
+| [Systems](systems/README.md) | native ownership, Harmony patterns, cross-mod APIs |

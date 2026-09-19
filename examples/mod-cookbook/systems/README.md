@@ -1,19 +1,17 @@
 # Systems Cookbook
 
-These are the reusable implementation shapes underneath gameplay, graphics, audio and UI mods.
+## Native ownership
 
-## Harmony result postfix
+- [Native-owner-first pattern](NATIVE_OWNER_FIRST.md)
+- [Harmony result postfix](../../proven-paths/01-harmony-result-postfix-mono/README.md)
+- [Harmony action guard](../../proven-paths/02-harmony-action-guard-mono/README.md)
 
-[Harmony result postfix](../../proven-paths/01-harmony-result-postfix-mono/README.md)
+## Cross-mod integration
 
-Use when the game already owns a calculation and the mod only needs to adjust the returned value.
+- [Fail-closed cross-mod API bridge](CROSS_MOD_API.md)
 
-## Harmony action guard
+## Game-specific map
 
-[Harmony action guard](../../proven-paths/02-harmony-action-guard-mono/README.md)
+- [Proven mechanics index](PROVEN_MECHANICS.md)
 
-Use when a mod needs to allow or block a narrow action while leaving the native action path intact.
-
-## Working game-specific paths
-
-See [Proven mechanics](PROVEN_MECHANICS.md) for the game-specific patterns currently represented in this cookbook.
+These patterns are the reusable engineering layer underneath the gameplay, graphics, VFX, audio and UI examples.

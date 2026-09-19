@@ -1,32 +1,56 @@
 # Tainted Grail Modding Cookbook
 
-This cookbook is organised by the kind of mod you want to build.
+This cookbook is organised by the type of mod you want to build. It contains working patterns taken from real Tainted Grail mod implementations.
 
-Only working, reusable paths belong here. Internal research notes, unfinished hook ideas and untested procedures are not part of the cookbook.
+## Gameplay
 
-## Sections
+[Open Gameplay →](gameplay/README.md)
 
-| Section | Working patterns |
-| --- | --- |
-| [Gameplay](gameplay/README.md) | projectile tuning, theft guards, character damage and death hooks |
-| [Graphics](graphics/README.md) | runtime visual ownership patterns |
-| [Visual effects](visual-effects/README.md) | damage/death VFX sidecars |
-| [Audio](audio/README.md) | hero footstep replacement |
-| [UI & HUD](ui-hud/README.md) | runtime overlay ownership |
-| [Systems](systems/README.md) | Harmony guards/postfixes and reusable ownership rules |
+Covers:
 
-For the reusable implementation shapes shared across several mod types, see [Proven path examples](../proven-paths/README.md).
+- magic projectile tuning;
+- theft/interaction guards;
+- existing-item grants;
+- vendor pricing;
+- native bonfire services;
+- mount velocity;
+- one-session companions;
+- exact-target NPC tuning;
+- fixed native encounters;
+- character damage/death observation.
 
-## Runtime lane
+## Graphics
 
-The game-target examples in this cookbook use the **Mono / BepInEx 5** path.
+[Open Graphics →](graphics/README.md)
 
-Build against your own local game references. Do not redistribute game DLLs, Unity DLLs, BepInEx binaries or game assets.
+Covers active HDRP/FoA fog ownership and runtime visual-state control.
 
-## Build pattern
+## Visual Effects
 
-~~~powershell
-dotnet build .\Example.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
-~~~
+[Open Visual Effects →](visual-effects/README.md)
 
-Each recipe explains the game owner it relies on and the current limitation that matters to the modder.
+Covers character damage/death VFX sidecars and bounded cleanup.
+
+## Audio
+
+[Open Audio →](audio/README.md)
+
+Covers native hero-footstep replacement through FoA's existing FMOD parameters.
+
+## UI & HUD
+
+[Open UI & HUD →](ui-hud/README.md)
+
+Covers action receipts and runtime overlay ownership.
+
+## Systems
+
+[Open Systems →](systems/README.md)
+
+Covers native-owner-first patching and fail-closed cross-mod APIs.
+
+## Build lane
+
+The game-specific examples here target **Mono / BepInEx 5** unless a page says otherwise.
+
+Build against your own local game references. Do not redistribute game DLLs, Unity DLLs, BepInEx binaries or extracted game assets.
