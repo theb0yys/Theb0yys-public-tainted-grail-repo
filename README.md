@@ -31,7 +31,7 @@ Then build the matching first plug-in:
 
 After your first plug-in loads successfully:
 
-**[Continue into basic modding →](01-basic/README.md)**
+**[Learn the everyday modding loop →](01-basic/README.md)**
 
 ---
 
@@ -64,16 +64,16 @@ It helps narrow a problem down from the loader, runtime, plug-in, patch, or cont
 
 Go deeper according to what you are trying to understand:
 
-**[Foundations →](02-foundational/README.md)**  
+**[Understand how mods work →](02-foundational/README.md)**  
 Understand runtimes, dependencies, identity, compatibility, and why mods work.
 
-**[Advanced modding →](03-advanced/README.md)**  
+**[Build robust game changes →](03-advanced/README.md)**  
 Work with more complicated patches, failures, compatibility, packaging, and diagnostics.
 
-**[Frameworks →](04-framework/README.md)**  
+**[Build reusable mod systems →](04-framework/README.md)**  
 Learn how reusable mod systems and stable contracts are designed.
 
-**[Infrastructure →](05-infrastructure/README.md)**  
+**[Ship and maintain mods →](05-infrastructure/README.md)**  
 Learn about repositories, CI, validation, contribution flows, versioning, and releases.
 
 ---
