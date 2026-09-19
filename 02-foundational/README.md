@@ -1,6 +1,6 @@
-# 02 — Foundational
+# Understand How Mods Work
 
-This level explains why a working mod works.
+This section explains why a working mod works, so you can reason about problems instead of relying on trial and error.
 
 ## Runtime layers
 
@@ -91,6 +91,6 @@ After a game update, re-establish the stack from the bottom:
 
 Prefer the claim "tested on game build X with loader Y" over "works on all versions."
 
-## When to move to Advanced
+## When to move into advanced modding
 
-Move to 03-advanced when you can explain your mod's runtime lane, dependencies, identities, compatibility assumptions, and failure boundaries without guessing.
+Move to [Build Robust Game Changes](../03-advanced/README.md) when you can explain your mod's runtime lane, dependencies, identities, compatibility assumptions, and failure boundaries without guessing.
