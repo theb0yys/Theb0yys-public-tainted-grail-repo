@@ -1,16 +1,9 @@
-# Public Documentation Standard
+# Moved
 
-This repository is a current modding handbook.
+This page has moved to the canonical location:
 
-Every instructional path published here must already be strong enough to teach as a working route. Public pages focus on:
+**[Open the canonical page →](../reference/evidence/README.md)**
 
-- the game system and its real owner;
-- the working modding path;
-- the supported runtime/environment;
-- concise limitations that affect actual use.
+This legacy path is retained for compatibility with existing links and bookmarks.
 
-Internal engineering history and development bookkeeping stay outside the public instructions.
-
-When a working path changes, update the handbook to the current path instead of keeping the obsolete workflow beside it.
-
-**Publish the working route, its real owner, and its real limits.**
+The canonical information architecture is defined in [Documentation Architecture](../contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
