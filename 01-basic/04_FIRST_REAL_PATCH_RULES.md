@@ -52,7 +52,30 @@ Do not begin with:
 
 Choose a small reversible behaviour.
 
-### 3. Start from the generic patch shape
+### 3. If you are on IL2CPP, add only the local game references you need
+
+Your first IL2CPP runtime-change example used Unity APIs and did not need a Tainted Grail game assembly.
+
+A game-specific Harmony patch is the next layer.
+
+For a verified FoA target, your project will normally need:
+
+- the BepInEx 6 IL2CPP references you already use;
+- the local `0Harmony.dll`;
+- the generated interop assembly containing the target, from `<GameRoot>\BepInEx\interop\`;
+- any additional generated type assembly required by that target's signature.
+
+For example, if the type you verified is in generated `TG.Main.dll`, reference your installation's:
+
+~~~text
+<GameRoot>\BepInEx\interop\TG.Main.dll
+~~~
+
+Do not copy that DLL into this repository.
+
+Read [Runtime Guide — IL2CPP references after the smoke test](../docs/RUNTIME_GUIDE.md#il2cpp-references-after-the-smoke-test) for the layer model.
+
+### 4. Start from the generic patch shape
 
 ~~~csharp
 [HarmonyPatch(typeof(SomeType), nameof(SomeType.SomeMethod))]
@@ -69,11 +92,11 @@ The placeholder names above are not FoA facts.
 
 Replace them only with a target you have actually verified for your game build.
 
-### 4. Fail visibly when an assumption is wrong
+### 5. Fail visibly when an assumption is wrong
 
 If your patch depends on a version-specific assumption, log when that assumption is not satisfied instead of silently continuing.
 
-### 5. Re-check the target after a game update
+### 6. Re-check the target after a game update
 
 Do not assume an old type/method identity remains valid.
 
