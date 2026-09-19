@@ -21,3 +21,10 @@ These routes teach a domain in sequence while linking to canonical system/mechan
 - [Creatures](content-authoring/creatures/README.md)
 
 Each journey preserves the domain's actual ownership/proof boundaries rather than treating every content type as the same pipeline.
+
+## Understand the reasoning model
+
+- [Understand FoA modding](understand-foa/README.md)
+- [Golden Rules](understand-foa/golden-rules.md)
+
+These pages explain the cross-cutting reasoning model while canonical technical truth remains in Systems, Mechanics, and Reference.
