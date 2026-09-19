@@ -35,7 +35,7 @@ Use `templates/il2cpp-basic`.
 
 A Unity Mono install normally exposes managed game assemblies under the game's `*_Data/Managed` directory, including an `Assembly-CSharp.dll`-style game assembly.
 
-The older Tainted Grail Mono loader lane used:
+The supported Tainted Grail Mono loader lane uses:
 
 - BepInEx `5.4.23.5`
 - UnityDoorstop `4.5.0`
