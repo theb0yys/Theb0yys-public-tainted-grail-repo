@@ -2,7 +2,7 @@
 
 ## What you're doing
 
-You are proving the Harmony patch mechanism on code the example owns before trying to patch a real Tainted Grail method.
+You are proving **Harmony**—the patching library used to attach your code to existing methods—on code the example owns before trying to patch a real Tainted Grail method.
 
 The repository includes:
 
@@ -23,8 +23,8 @@ This specific example is for the supported **Mono/BepInEx 5** lane.
 
 You will learn how to recognize:
 
-- a `HarmonyPatch` target;
-- a postfix;
+- a `HarmonyPatch` target — the method Harmony should attach to;
+- a **postfix** — code Harmony runs after the original target method;
 - a returned value modified through `ref __result`;
 - `PatchAll()`;
 - `UnpatchSelf()`;
@@ -72,8 +72,8 @@ Harmony self-test result: patched
 
 Find these pieces in the example:
 
-- `HarmonyPatch` identifies the target;
-- `Postfix` runs after the target method;
+- `HarmonyPatch` identifies the method being patched;
+- `Postfix` runs after that original method finishes;
 - `ref string __result` changes the returned string;
 - `PatchAll()` installs the patch;
 - `UnpatchSelf()` removes this Harmony owner's patches.
