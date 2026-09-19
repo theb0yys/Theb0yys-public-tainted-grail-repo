@@ -18,7 +18,7 @@ Work through:
 
 1. [Move from items to weapons, armour, and creatures](05_CONTENT_PROGRESSION.md)
 2. Read the matching docs/pipelines/ document before each specialization.
-3. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep editor/runtime evidence separate.
+3. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep "worked in the editor" separate from "worked in the game".
 
 ## What you should be able to do
 
