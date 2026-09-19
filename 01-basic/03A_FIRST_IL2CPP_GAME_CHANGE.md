@@ -127,6 +127,10 @@ Do not mutate global runtime state and then forget what it was before your plug-
 
 ## What success looks like
 
+**Progress: Start → Loader working → First plug-in → _First game change_ → First complete mod**
+
+You have reached **First game change** when your code causes one observable change in the running game and you can explain exactly what changed.
+
 This exercise succeeds when:
 
 - the project builds against your installed IL2CPP environment;
@@ -150,5 +154,7 @@ This exact public example has not been run end-to-end during this documentation 
 ## Where to go next
 
 Continue to **[Move to a Real Game Patch](04_FIRST_REAL_PATCH_RULES.md)** for the rules around game-specific targets.
+
+When your own small feature works end-to-end, use **[Finish Your First Complete Mod](07_FIRST_COMPLETE_MOD.md)** as the final beginner checkpoint.
 
 If you want to understand the generated IL2CPP assemblies first, read **[Runtime Guide](../docs/RUNTIME_GUIDE.md)** and inspect your local `BepInEx\interop` directory.
