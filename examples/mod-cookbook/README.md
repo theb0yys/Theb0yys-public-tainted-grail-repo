@@ -6,6 +6,20 @@ This folder answers a different question from the minimal templates:
 
 The examples here use real FoA Mono symbols where the maintainer's working mod workspace provides enough evidence to identify the path. They are rewritten as small clean-room teaching examples; they do not copy the finished mod's design.
 
+## Using this cookbook on IL2CPP
+
+If your installed game is IL2CPP, start with **[First IL2CPP Game Change](../il2cpp-first-game-change/README.md)** before using the game-target examples below.
+
+The code examples in this cookbook are primarily **Mono/BepInEx 5 target investigations**. A type or method shown here can be a useful research lead for IL2CPP, but it is **not automatically proof that the same generated IL2CPP type, signature, or patch shape is correct on your current build**.
+
+For an IL2CPP game-specific patch:
+
+1. inspect your local generated interop;
+2. verify the exact current type and method;
+3. reference only the local interop assembly you need;
+4. adapt the example;
+5. build and test that exact IL2CPP version.
+
 ## Testing status
 
 Every example keeps two things separate: how far the underlying source path was checked in the maintainer's working environment, and whether the exact rewritten public example has itself been run.
