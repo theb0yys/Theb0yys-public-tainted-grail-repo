@@ -1,3 +1,7 @@
-# Story, Dialogue and Choices
+# Moved
 
-Read [Story Graphs, Quests, Dialogue and Choices](STORY_QUEST_DIALOGUE.md) for runtime ownership, choice handling, localisation and persistence.
+This compatibility alias now points directly to the canonical Wave 5 owner:
+
+**[Open the canonical page →](../../systems/story/README.md)**
+
+The alias remains so older links continue to resolve.
