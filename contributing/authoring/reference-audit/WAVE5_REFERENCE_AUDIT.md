@@ -1,6 +1,6 @@
 # Wave 5 — Legacy `docs/reference/` Archetype Audit
 
-Status: **migration control for Wave 5**  
+Status: **PASSED on `docs/researched-information-architecture` — audit and migration complete**  
 Scope: remaining legacy `docs/reference/` files on `docs/researched-information-architecture` after Waves 1–4.
 
 ## Audit rule
@@ -156,3 +156,43 @@ Wave 5 is an **information-responsibility migration**, not a fresh technical-cla
 - New system/mechanic pages must identify that the split does not itself revalidate every underlying technical claim.
 - Private production source, bulk decompilation and proprietary assets remain excluded.
 - Any new technical claim beyond the current public body requires a separate evidence review.
+
+
+## Completion result
+
+Wave 5 completed the audit-driven migration exactly as classified above:
+
+- **18 / 18 mixed-role substantive pages: PASSED**
+  - every page received a packet before migration;
+  - every page was split into a canonical native-system page plus a canonical mechanic page;
+  - every legacy path now redirects.
+- **14 / 14 single-role substantive pages: PASSED**
+  - migrated directly to their canonical surface;
+  - no artificial packet was created;
+  - every legacy path now redirects.
+- **4 / 4 small aliases: PASSED**
+  - each alias now redirects directly to its canonical owner.
+- **Previously migrated Waves 1–4 redirects: preserved.**
+
+### Legacy-tree validation
+
+Validation against `docs/researched-information-architecture` found:
+
+- legacy `docs/reference/` file count: **61**;
+- files larger than 500 bytes: **0**;
+- largest remaining legacy file: **406 bytes**;
+- sampled mixed-role legacy pages begin with `# Moved`;
+- sampled alias pages begin with `# Moved`;
+- therefore `docs/reference/` is now a **compatibility-only surface**, not a substantive knowledge owner.
+
+### Branch / execution boundary
+
+- branch comparison to `main`: ahead, not behind at the validation point;
+- repository mutation in this wave: documentation/navigation only;
+- new runtime validation: **NOT_RUN**;
+- new save/persistence validation: **NOT_RUN**;
+- new decompilation/static extraction: **NOT_RUN**;
+- compatibility/release validation: **NOT_RUN**;
+- hosted commit-status entries at the validation point: **none reported**.
+
+This audit does not convert existing technical claims into stronger evidence. It only establishes their canonical public documentation ownership.
