@@ -1,13 +1,5 @@
-# Creature / NPC / Kandra Pipeline — Compatibility Redirect
+# Creatures and NPCs
 
-> **Withdrawn as a proven new-content process.** Merlin Workshop exposes valuable first-party NPC, Kandra, template and editor structures, but those structures are not by themselves a complete custom-creature integration process.
+Read [Creatures and NPCs](../reference/CREATURES_NPCS.md) for actor, animation and presentation ownership.
 
-Use:
-
-- [Content Domains](../reference/CONTENT_DOMAINS.md)
-- [Assets](../reference/ASSETS.md)
-- [Native Object Ownership](../reference/NATIVE_OBJECT_OWNERSHIP.md)
-- [Lifecycle and Hooks](../reference/LIFECYCLE_HOOKS.md)
-- [Research Method](../reference/RESEARCH_METHOD.md)
-
-The dedicated creature process must be derived from the proven creature-injection gates: visual transport, animation mapping, template/actor contract, runtime lifecycle, live behavior, cleanup and save policy.
+Supporting references: [Actors and Locations](../reference/ACTORS_LOCATIONS_SPAWNING.md), [Assets](../reference/ASSETS.md), and [Lifecycle Hooks](../reference/LIFECYCLE_HOOKS.md).

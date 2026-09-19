@@ -1,7 +1,3 @@
-# Story / Dialogue / Choices — Redirect
+# Story, Dialogue and Choices
 
-This subject is maintained on the canonical page:
-
-**[Story Graphs, Quests, Dialogue, and Choices](STORY_QUEST_DIALOGUE.md)**
-
-That page covers Story Graph compilation/runtime ownership, dialogue/choice hooks, quest/state boundaries, persistence, localisation coupling, and failure modes.
+Read [Story Graphs, Quests, Dialogue and Choices](STORY_QUEST_DIALOGUE.md) for runtime ownership, choice handling, localisation and persistence.

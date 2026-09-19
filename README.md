@@ -50,7 +50,7 @@ Then use the technical handbook to understand the systems underneath it:
 - [Lifecycle and hooks](docs/reference/LIFECYCLE_HOOKS.md)
 - [Content domains](docs/reference/CONTENT_DOMAINS.md)
 
-Weapons, armour, creatures, spells, recipes and world content are **separate integration problems**. This repository will add each process from proven working/research evidence rather than pretending the item path automatically applies to them.
+Weapons, armour, creatures, spells, recipes and world content are **separate integration problems**. Use the reference for the specific domain; item registration alone does not supply its equip, combat, presentation or persistence behaviour.
 
 ---
 
@@ -103,14 +103,14 @@ You are not expected to know all of the terminology before you begin. The guides
 ## What is here
 
 - `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
-- `docs/reference/` — the FoA technical handbook: identity, templates, hooks, lifecycle, ownership, assets, persistence, failures, catalogues, and proven content processes.
-- `docs/pipelines/` — compatibility redirects for older links; these no longer present Merlin Workshop structures as a new-content process.
+- `docs/reference/` — the FoA technical handbook: identity, templates, hooks, lifecycle, ownership, assets, persistence and content integration.
+- `docs/pipelines/` — topic entry points for item, weapon, armour and creature documentation.
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
 - `examples/il2cpp-first-game-change/` — a small reversible BepInEx 6 / IL2CPP runtime-state change that bridges plug-in loading to changing the running game.
 - `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
-- `examples/proven-paths/` — clean-room mechanism templates based on paths that have been tested in the maintainer's working environment, without copying finished mod designs.
-- `examples/mod-cookbook/` — real FoA-target teaching mods for stats, damage, magic, HUD, interaction, audio, movement, and content authoring, with each example showing how far it has actually been checked.
+- `examples/proven-paths/` — reusable mechanism demonstrations for result postfixes, action guards, overlays, audio replacement and visual-state ownership.
+- `examples/mod-cookbook/` — [Gameplay, Graphics, Visual Effects, Audio, UI & HUD, and Systems](examples/mod-cookbook/README.md), with topic navigation and game-specific examples.
 - `tools/verify-public-surface.ps1` — CI-purpose repository guard.
 - `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
 
@@ -127,11 +127,11 @@ Common lookups:
 - [Technical Handbook](docs/REFERENCE_MAP.md) — the complete reference index.
 - [Golden Rules](docs/reference/GOLDEN_RULES.md) — the cross-cutting rules behind reliable FoA modding.
 - [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
-- [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — first reasoned new-content path.
-- [Hook Catalogue](docs/reference/HOOK_CATALOGUE.md) — selected researched lifecycle hooks.
+- [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — the native item registration and acquisition path.
+- [Hook Catalogue](docs/reference/HOOK_CATALOGUE.md) — selected native lifecycle hooks.
 - [Identity Catalogue](docs/reference/IDENTITY_CATALOGUE.md) — curated GUIDs/identities used by examples.
 - [Debugging](docs/DEBUGGING.md) — troubleshoot a specific failure.
-- [Testing and Evidence Status](docs/EVIDENCE.md) — exact meanings of deeper testing-status labels.
+- [Public Documentation Standard](docs/EVIDENCE.md) — requirements for publishing instructions.
 
 ## Public-repository boundary
 

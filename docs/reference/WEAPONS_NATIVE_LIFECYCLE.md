@@ -1,7 +1,3 @@
-# Weapons — Redirect
+# Native Weapon Lifecycle
 
-This subject is maintained on the canonical page:
-
-**[Weapons: Native Architecture and Current Proven Boundary](WEAPONS.md)**
-
-That page contains the complete `ItemTemplate → Item → ItemEquip → CharacterHandBase/CharacterWeapon → renderer` ownership chain, archetype-preserving process, failure modes, and current importer/registrar blockers.
+Read [Weapons](WEAPONS.md) for the native item, equip, hand, combat and presentation ownership chain.

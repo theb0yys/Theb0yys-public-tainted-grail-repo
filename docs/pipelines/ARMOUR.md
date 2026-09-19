@@ -1,12 +1,5 @@
-# Armour Pipeline — Compatibility Redirect
+# Armour
 
-> **Withdrawn as a proven new-content process.** The previous page described native armour/item structures visible in Merlin Workshop without proving the full native clothes/Kandra/equip lifecycle for custom armour.
+Read [Armour and Kandra](../reference/ARMOUR.md) for clothing, skinning, stitching and equip ownership.
 
-Use:
-
-- [Content Domains](../reference/CONTENT_DOMAINS.md)
-- [Assets](../reference/ASSETS.md)
-- [Native Object Ownership](../reference/NATIVE_OBJECT_OWNERSHIP.md)
-- [Research Method](../reference/RESEARCH_METHOD.md)
-
-A dedicated armour process will be published from the proven armour/Kandra evidence rather than inferred from generic item authoring.
+Supporting references: [Content Domains](../reference/CONTENT_DOMAINS.md), [Assets](../reference/ASSETS.md), and [Native Object Ownership](../reference/NATIVE_OBJECT_OWNERSHIP.md).

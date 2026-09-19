@@ -1,7 +1,3 @@
-# Localisation / Babel — Redirect
+# Localisation and Babel
 
-The canonical handbook page uses the repository's British-English naming:
-
-**[Localisation and Questline Babel](LOCALISATION_BABEL.md)**
-
-It covers `LocString`, fallback text, semantic IDs, positional `LocalizationEntryId` values, `LightLocString`, Babel corpus compatibility, consumer caching, and the current boundary for mod-owned multilingual text.
+Read [Localisation and Questline Babel](LOCALISATION_BABEL.md) for text identities, fallback text, caching and multilingual presentation.
