@@ -1,5 +1,7 @@
 # Creature / NPC / Kandra Pipeline
 
+> **Reference page.** Use this when you are actively working on a creature/NPC and need the detailed visual, Kandra, spec, fighting-style, and runtime contract. The learning path is [Move from Items to Weapons, Armour, and Creatures](../../01-basic/05_CONTENT_PROGRESSION.md).
+
 Evidence state: **STATIC_CONFIRMED**  
 Fresh editor/game execution for this document: **NOT_RUN**
 
