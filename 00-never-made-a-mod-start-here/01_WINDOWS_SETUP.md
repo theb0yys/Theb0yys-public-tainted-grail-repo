@@ -16,7 +16,7 @@ For either path:
 
 For runtime plug-ins:
 
-- the correct BepInEx lane installed and able to start;
+- **BepInEx** installed for your runtime and able to start. BepInEx is the loader that discovers and starts your mod plug-in DLLs;
 - **Visual Studio 2022 Community** or another editor/build environment capable of building the supplied C# projects.
 
 For Merlin Workshop content authoring:
@@ -91,7 +91,7 @@ Before continuing, you should have:
 - a normal modding workspace outside the game;
 - the starter repository available locally;
 - your code editor/build tools installed;
-- for runtime plug-ins, BepInEx already able to start;
+- for runtime plug-ins, BepInEx—the mod loader—already able to start;
 - for content authoring, the correct Merlin Workshop project available separately.
 
 ## Common problems
