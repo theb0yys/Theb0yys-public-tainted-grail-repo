@@ -26,6 +26,7 @@ You can branch into either runtime plug-in development or content authoring from
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
 - `examples/mono-harmony-self-test/` — a Harmony example that patches only its own test method; it does not modify game behavior.
+- `examples/proven-paths/` — clean-room mechanism templates derived from owner-side runtime-evidenced paths without copying finished mod designs.
 - `tools/verify-public-surface.ps1` — CI-purpose repository guard.
 - `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
 
