@@ -1,5 +1,7 @@
 # Mod Architecture
 
+> **Reference page.** Use this after a working mod starts becoming large enough to need clearer internal structure. It is not a required starter layout.
+
 A small mod is easier to debug when responsibilities are separated.
 
 ## Suggested shape
