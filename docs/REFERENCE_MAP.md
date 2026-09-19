@@ -36,6 +36,16 @@ Successful, partial and rejected approaches connected to the failure or ownershi
 
 A status ledger for techniques that are currently bounded-working, source/static only, blocked, or explicitly rejected—and why.
 
+## Start with the rules
+
+### [Golden Rules of FoA Modding](reference/GOLDEN_RULES.md)
+
+The cross-cutting rules established by successful paths and failed attempts: exact identity, native ownership, lifecycle timing, lane separation, cleanup, persistence boundaries, version scope, and failure discipline.
+
+### [FoA Systems and Knowledge Map](reference/GAME_SYSTEMS_MAP.md)
+
+A map of the research corpus: combat, items, weapons, armour, creatures, recipes, merchants, UI, world, quests, audio, VFX, save systems, and the boundary between game facts, native systems, modding mechanics, and runtime evidence.
+
 ## Foundation
 
 ### [Game and Runtime Architecture](reference/GAME_RUNTIME_ARCHITECTURE.md)
@@ -52,7 +62,11 @@ Native GUIDs, custom GUIDs, template names, display names, plug-in GUIDs, Unity 
 
 ### [Lifecycle and Hooks](reference/LIFECYCLE_HOOKS.md)
 
-Harmony Prefix/Postfix choices, lifecycle timing, template readiness, merchant timing, save observation, and why hook position matters.
+Harmony Prefix/Postfix concepts, lifecycle timing, template readiness, merchant timing, save observation, and why hook position matters.
+
+### [Hook and Intervention Process](reference/HOOKS_AND_INTERVENTION_PROCESS.md)
+
+The full process for selecting an intervention: native owner → lifecycle map → observation → smallest hook/API → downstream proof → cleanup → compatibility.
 
 ### [FoA MVC: Models, Elements, Views, Events, and Services](reference/MVC_MODELS_ELEMENTS_EVENTS.md)
 
@@ -165,6 +179,10 @@ Reusable lessons extracted from failed attempts and corrected hypotheses.
 ### [Research Method](reference/RESEARCH_METHOD.md)
 
 How the repository turns source, hypothesis, diagnostics, successes and failures into a reusable process.
+
+### [Validation and Compatibility](reference/VALIDATION_AND_COMPATIBILITY.md)
+
+How to separate source/build/load/feature/cleanup/persistence/release claims and how to scope compatibility evidence.
 
 ### [Testing and Evidence Status](EVIDENCE.md)
 
