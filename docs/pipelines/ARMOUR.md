@@ -36,7 +36,9 @@ Weight class is therefore part of the template lineage, not just a display label
 
 ## 2. Select the equipment slot
 
-Add/configure `ItemEquipSpec` with the intended armour `EquipmentType`.
+Add/configure `ItemEquipSpec`, the attachment that describes how the item is equipped and represented, with the intended armour `EquipmentType`.
+
+For armour, **EquipmentType** is the worn equipment slot/category such as cuirass, helmet, gauntlets, greaves, boots, or back.
 
 Merlin defines armour slots including:
 
