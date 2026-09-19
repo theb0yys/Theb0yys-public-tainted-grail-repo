@@ -1,38 +1,99 @@
 name: Bug report
-description: Report a reproducible problem in the starter docs, templates, examples, or repository guard.
+description: Report a reproducible problem in the learning paths, templates, examples, references, or repository checks.
 title: "[Bug] "
 labels: ["bug"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the repository.
+
+        Keep reports public-safe. Do not include credentials, personal data, unredacted private paths, proprietary game content, game DLLs, saves, or bulk decompiled source. If the report is security-sensitive, stop here and follow SECURITY.md instead.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Beginner learning path
+        - Runtime setup / BepInEx
+        - IL2CPP template or example
+        - Mono template or example
+        - Merlin Workshop / content pipeline docs
+        - Debugging / reference docs
+        - CI / public-surface guard
+        - Repository / community workflow
+        - Other
+    validations:
+      required: true
+
   - type: dropdown
     id: lane
     attributes:
-      label: Runtime lane
+      label: Runtime or content lane
       options:
-        - Mono / BepInEx 5
         - IL2CPP / BepInEx 6
-        - Repository/docs only
-        - Unknown
+        - Mono / BepInEx 5
+        - Merlin Workshop / content authoring
+        - Documentation / repository only
+        - Unknown / not applicable
+    validations:
+      required: true
+
+  - type: input
+    id: game_version
+    attributes:
+      label: Game version or build
+      description: Leave blank when not relevant.
+      placeholder: "Example: 1.25.029 / Steam build 24246014"
+
+  - type: input
+    id: tooling_version
+    attributes:
+      label: Loader / toolkit version
+      description: BepInEx version/build, Merlin Workshop commit/release, or other relevant tooling.
+      placeholder: "Example: BepInEx 6 build 785"
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Describe the smallest expected result.
     validations:
       required: true
 
   - type: textarea
-    id: problem
+    id: actual
     attributes:
-      label: Problem
-      description: Describe what happened. Do not upload proprietary game content or secrets.
+      label: What actually happened?
+      description: Include the first meaningful failure rather than a long chain of follow-on errors.
     validations:
       required: true
 
   - type: textarea
     id: steps
     attributes:
-      label: Reproduction
-      description: Give the smallest reproducible steps.
+      label: Smallest reproduction
+      description: Give the shortest sequence another person could follow to reproduce the problem.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
     validations:
       required: true
 
   - type: textarea
-    id: validation
+    id: diagnostics
     attributes:
-      label: Evidence
-      description: Include versions and redacted log lines where useful.
+      label: Redacted diagnostics
+      description: Paste only the relevant log lines, error text, or screenshots. Redact private paths and personal data.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public-safety check
+      options:
+        - label: I have not included credentials, personal data, unredacted private paths, saves, proprietary game content, game/Unity/BepInEx binaries, or generated interop assemblies.
+          required: true
+        - label: This is not a security-sensitive report. If it is, I will use SECURITY.md instead of a public issue.
+          required: true
