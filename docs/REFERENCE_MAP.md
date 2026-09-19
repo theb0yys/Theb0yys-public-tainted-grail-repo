@@ -80,6 +80,10 @@ Startup ordering, SceneService, Addressables scene discovery, template loading l
 
 Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and other native owners matter.
 
+### [Drake and MergedDrake: ECS Rigid-Mesh Rendering](reference/DRAKE.md)
+
+How FoA converts rigid Unity renderer authoring into Drake-owned ECS entities, loads mesh/material resources, realizes Entities Graphics state, manages LOD and lifetime, compacts scene-static content through MergedDrake, and how a custom rigid weapon should enter the system without duplicating its loading state machine.
+
 ### [Proprietary System Documentation Standard](reference/PROPRIETARY_SYSTEMS.md)
 
 Mandatory structure for Drake, Kandra, proprietary rendering/runtime systems, and future reverse-engineered system pages. It requires purpose, ownership, identities/data contracts, lifecycle, vanilla entry, mod entry, accept/reject behavior, failure history, verification, the integrated custom-content process, and explicit proof boundaries.
