@@ -57,7 +57,7 @@ public sealed class Plugin : BaseUnityPlugin
 }
 ~~~
 
-Change the GUID to one you own.
+The **plug-in GUID** is the stable unique identifier BepInEx uses to distinguish your plug-in. Change it to an identifier you control and keep it stable once the mod is in use.
 
 ### 3. Build
 
