@@ -39,7 +39,10 @@ Useful starting points:
 - [Systems](systems/README.md)
 - [Mechanics](mechanics/README.md)
 - [Reference](reference/README.md)
-- [Items domain](docs/reference/ITEMS.md)
+- [Items](systems/items/README.md) · [journey](learn/content-authoring/items/README.md)
+- [Weapons](systems/weapons/README.md) · [journey](learn/content-authoring/weapons/README.md)
+- [Armour](systems/armour/README.md) · [journey](learn/content-authoring/armour/README.md)
+- [Creatures](systems/creatures/README.md) · [journey](learn/content-authoring/creatures/README.md)
 
 ### 🔧 Something isn't working
 
