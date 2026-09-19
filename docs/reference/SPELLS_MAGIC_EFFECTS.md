@@ -1,3 +1,7 @@
-# Spells and Magic Effects
+# Moved
 
-See [Spells and Effects](SPELLS_EFFECTS.md) for the current native cast, cost, projectile, status and presentation paths.
+This compatibility alias now points directly to the canonical Wave 5 owner:
+
+**[Open the canonical page →](../../systems/magic/spells-and-effects.md)**
+
+The alias remains so older links continue to resolve.
