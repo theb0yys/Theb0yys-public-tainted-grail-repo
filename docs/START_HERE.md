@@ -6,7 +6,7 @@ Tainted Grail has existed across distinct Unity runtime/loader lanes. Do not cho
 
 Read [RUNTIME_GUIDE.md](RUNTIME_GUIDE.md).
 
-For the captured Steam public build validated on 2026-08-30, the game was IL2CPP. Older community setups may still involve the Mono/BepInEx 5 lane.
+For the captured Steam public build validated on 2026-08-30, the game was IL2CPP. Tainted Grail modding also supports the Mono/BepInEx 5 lane; identify the runtime of the installation you are actually targeting.
 
 ## 2. Install the correct BepInEx lane locally
 
