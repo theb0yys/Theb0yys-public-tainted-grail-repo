@@ -1,35 +1,9 @@
-# Recipes and Crafting
+# Moved
 
-This page documents the native owners around recipes and crafting.
+This page has moved to its canonical Wave 5 location:
 
-## Native ownership
+**[Open the canonical page →](../../systems/crafting/README.md)**
 
-Keep these concepts separate:
+This legacy path is retained for compatibility.
 
-- recipe identity;
-- learned-recipe state;
-- station/runtime recipe enumeration;
-- ingredient ownership and consumption;
-- crafting UI.
-
-A mod should use the native owner for each stage instead of treating a visible recipe row as complete registration.
-
-## Existing recipes
-
-For existing loaded recipes, use the native recipe identity and the game's normal learning/crafting owners.
-
-## Crafting interaction
-
-Let the native station and inventory systems own:
-
-- availability;
-- ingredient checks;
-- quantity changes;
-- item creation;
-- UI refresh.
-
-Do not reimplement those transactions in a parallel mod-owned inventory model.
-
-## Rule
-
-Recipe identity, learning, crafting and persistence are separate owners. Only publish a custom-content path when the complete lifecycle is established.
+Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
