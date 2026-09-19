@@ -2,7 +2,12 @@
 
 ## What you're doing
 
-You are finding the actual Tainted Grail installation you will mod and determining whether it uses the **IL2CPP** or **Mono** runtime lane.
+You are finding the actual Tainted Grail installation you will mod and determining whether it uses **IL2CPP** or **Mono**.
+
+Here, **runtime** means the form of Unity/.NET execution the installed game uses. It matters because Mono and IL2CPP need different BepInEx files, project references, and plug-in base classes.
+
+- **IL2CPP** is Unity's native-code runtime path. Modding it uses BepInEx 6 plus generated managed interop assemblies.
+- **Mono** is Unity's managed runtime path. This repository uses the supported BepInEx 5 setup for it.
 
 Do this before choosing a C# template.
 
@@ -106,7 +111,7 @@ BepInEx\LogOutput.log
 
 If BepInEx itself does not start, stop here. Your own mod is not the first problem yet.
 
-### 5. Keep the runtime lanes separate
+### 5. Keep the two runtime setups separate
 
 Do not copy Mono loader files on top of IL2CPP files or vice versa.
 
