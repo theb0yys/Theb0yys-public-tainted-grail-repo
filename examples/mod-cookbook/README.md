@@ -15,6 +15,7 @@ Every example has two separate states.
 - **RUNTIME_EVIDENCED** — the relevant mechanism produced useful in-game/runtime evidence.
 - **LOAD_EVIDENCED** — build/deploy/plugin-load or patch-registration evidence exists, but the feature behavior itself is not fully proved.
 - **SOURCE_BUILD_EVIDENCED** — source/target research and build evidence exist, but useful live feature proof is still missing.
+- **SOURCE_CONFIRMED** — a concrete implementation/target exists in inspected source, but this pass did not establish a completed build/load/feature proof for that path.
 - **STATIC_CONFIRMED** — an editor/toolkit authoring contract is confirmed from source, but this exact public recipe has not been run end-to-end.
 
 **Public example status** is separate. Every newly written example in this cookbook is currently **NOT_RUN** until someone builds and tests that exact rewritten example.
@@ -31,6 +32,15 @@ Every example has two separate states.
 | [06 Modifier-gated illegal pickup](06-illegal-pickup-guard-mono/README.md) | interaction / theft | RUNTIME_EVIDENCED |
 | [07 Hero footstep beep replacement](07-footstep-beep-replacement-mono/README.md) | audio / event replacement | RUNTIME_EVIDENCED |
 | [08 One extra airborne jump](08-extra-air-jump-mono/README.md) | movement | LOAD_EVIDENCED |
+| [09 Player magic mana cost](09-mana-cost-mono/README.md) | magic / mana | SOURCE_BUILD_EVIDENCED |
+| [10 Player magic damage](10-magic-damage-mono/README.md) | combat / magic | SOURCE_BUILD_EVIDENCED |
+| [11 Merchant gold floor](11-merchant-gold-floor-mono/README.md) | economy / merchant wealth | SOURCE_CONFIRMED |
+| [12 Restock on shop open](12-merchant-restock-on-open-mono/README.md) | economy / merchant stock | SOURCE_BUILD_EVIDENCED |
+| [13 Status buildup](13-status-buildup-mono/README.md) | statuses | SOURCE_BUILD_EVIDENCED |
+| [14 Save-slot observer](14-save-slot-observer-mono/README.md) | persistence observation | LOAD_EVIDENCED |
+| [15 Dialogue-choice observer](15-dialogue-choice-observer-mono/README.md) | dialogue observation | LOAD_EVIDENCED |
+| [16 Quest-completion observer](16-quest-completion-observer-mono/README.md) | quest observation | LOAD_EVIDENCED |
+| [17 Movement FOV kick](17-fov-kick-mono/README.md) | camera / comfort | LOAD_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -44,6 +54,21 @@ These use the Merlin Workshop authoring path rather than a BepInEx code plug-in:
 - [Creature / NPC](content/04-creature/README.md)
 
 Their current evidence level is **STATIC_CONFIRMED** because the authoring contracts exist in inspected Merlin source. The exact public recipes remain **NOT_RUN**.
+
+## Larger-system recipes and scaffolds
+
+These are intentionally not all compileable one-file mods. They document the smallest honest route for systems where a tiny snippet would hide important lifecycle, persistence or evidence requirements.
+
+- [Skill caps and progression](recipes/01-skill-caps/README.md)
+- [Held-light / helper-light mods](recipes/02-helper-light/README.md)
+- [Contextual music routing](recipes/03-contextual-music/README.md)
+- [Loot and corpse loot](recipes/04-loot/README.md)
+- [Crafting and runtime recipe prototypes](recipes/05-crafting/README.md)
+- [Spell VFX overlays](recipes/06-spell-vfx/README.md)
+- [Safe save-backup architecture](recipes/07-save-backup/README.md)
+- [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
+
+For the full category/evidence map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
 ## Category map
 
