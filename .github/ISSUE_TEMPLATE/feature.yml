@@ -1,19 +1,75 @@
-name: Starter improvement
-description: Propose a reusable template, example, document, or public-surface check.
+name: Repository improvement
+description: Propose a learning, reference, example, tooling, or public-trust improvement.
 title: "[Idea] "
 labels: ["enhancement"]
 body:
-  - type: textarea
-    id: need
+  - type: markdown
     attributes:
-      label: What problem would this solve?
+      value: |
+        Proposals should make the repository easier to learn from, safer to share, or more precise to maintain. Keep private project implementations and proprietary game content out of the proposal.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of improvement is this?
+      options:
+        - Learning path / tutorial
+        - Runtime template / example
+        - Content-authoring guide
+        - Reference documentation
+        - Debugging / diagnostics
+        - CI / public-surface safety
+        - Contribution / community workflow
+        - Other
     validations:
       required: true
 
   - type: textarea
-    id: scope
+    id: need
     attributes:
-      label: Proposed public-safe solution
-      description: Keep it independent from private project implementations and proprietary assets.
+      label: What problem would this solve?
+      description: Describe the learner, contributor, or maintainer problem before describing the solution.
     validations:
       required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed public-safe solution
+      description: Explain the smallest reusable improvement that would solve the problem.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lane
+    attributes:
+      label: Applies to
+      options:
+        - IL2CPP / BepInEx 6
+        - Mono / BepInEx 5
+        - Both runtime lanes
+        - Merlin Workshop / content authoring
+        - Documentation / repository only
+        - Multiple / not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: How could it be checked?
+      description: State what build, editor, runtime, documentation, or repository check would demonstrate success.
+
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Known boundaries
+      description: Note any version dependence, untested behavior, redistribution concern, or assumption that should stay explicit.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public-safety check
+      options:
+        - label: The proposal does not require committing proprietary game content, game/Unity/BepInEx binaries, generated interop assemblies, secrets, saves, or private-project code.
+          required: true
