@@ -119,6 +119,10 @@ If you are uncertain, read [the Runtime Guide](../docs/RUNTIME_GUIDE.md) before 
 
 ## What success looks like
 
+**Progress: Start → _Loader working_ → First plug-in → First game change → First complete mod**
+
+You have reached **Loader working** when BepInEx starts for the correct runtime and writes a log before your own plug-in is part of the problem.
+
 You can answer all four questions without guessing:
 
 - Where is my real `GameRoot`?
