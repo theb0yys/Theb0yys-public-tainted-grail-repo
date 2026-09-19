@@ -16,7 +16,7 @@ Follow these in order:
 4. Mono: [Build your first Mono plug-in](04_FIRST_MONO_PLUGIN.md)
 5. [Check that your first mod really worked](06_SUCCESS_CHECKLIST.md)
 
-Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the BepInEx log.
+Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the **BepInEx log**—the log written by the mod loader that starts your plug-in.
 
 ### B. I want to make items, weapons, armour, or creatures
 
@@ -42,8 +42,8 @@ Do not upload or commit:
 - the whole game;
 - game DLLs;
 - Unity DLLs;
-- BepInEx binaries;
-- generated IL2CPP interop assemblies;
+- BepInEx loader binaries;
+- generated IL2CPP interop assemblies — managed type files generated for your local IL2CPP game/tooling setup;
 - game assets;
 - saves;
 - credentials;
