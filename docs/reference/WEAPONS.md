@@ -25,6 +25,8 @@ There is no need to invent a second universal runtime `Weapon` Model.
 
 The durable gameplay object is the native `Item`.
 
+The private evidence source also contains a proposed owner-level weapon-importer process and a working native registrar core. That material is useful evidence, but its own document control says `REVIEW_REQUIRED`, with implementation, runtime mutation, persistence and compatibility authority not granted. This page therefore separates the **implemented registrar/native graph** from the **unproven complete importer**.
+
 ## Who owns it in FoA
 
 - `ItemTemplate` — identity, classification, abstract-template lineage, attachments, UI/economy references.
@@ -192,6 +194,27 @@ A complete weapon proof should separately verify:
 10. audio/trail/animation events;
 11. unequip cleanup and asset release;
 12. save/load only when explicitly claimed.
+
+## Registrar evidence and fail-stop boundary
+
+The implemented registrar core in the private evidence repository currently demonstrates a narrower sequence:
+
+~~~text
+accepted weapon definition
+→ wait for TemplatesProvider.AllLoaded
+→ reject unsupported clone profile / identity collision
+→ resolve reviewed source ItemTemplate
+→ clone source GameObject
+→ apply bounded custom identity/presentation fields
+→ compare bounded component/reference profile
+→ TemplatesLoader.AddToMap(...)
+→ verify provider lookup returns inserted template
+→ retain successful clone for process session
+~~~
+
+This is meaningful weapon-registration evidence, but it is not the complete weapon lifecycle. In particular, the owner process explicitly records that acquisition, FPP/TPP/preview presentation, save reconstruction, missing-package behavior and multi-package compatibility still require their own proof.
+
+The native map mutation is also non-transactional in the inspected static contract. The current design therefore treats uncertainty or failure after native visibility as a **fail-stop/process-restart boundary**, not as evidence that hot rollback/unregistration works.
 
 ## Current proof boundary
 
