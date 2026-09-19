@@ -2,6 +2,22 @@
 
 This section explains why a working mod works, so you can reason about problems instead of relying on trial and error.
 
+## Use the technical handbook
+
+The [Technical Handbook](../docs/REFERENCE_MAP.md) is the detailed reference layer behind this section.
+
+In particular:
+
+- [Game and Runtime Architecture](../docs/reference/GAME_RUNTIME_ARCHITECTURE.md)
+- [Identity](../docs/reference/IDENTITY_GUIDS_NAMES.md)
+- [Templates and Registries](../docs/reference/TEMPLATES_REGISTRIES.md)
+- [Lifecycle and Hooks](../docs/reference/LIFECYCLE_HOOKS.md)
+- [Native Object Ownership](../docs/reference/NATIVE_OBJECT_OWNERSHIP.md)
+- [Assets](../docs/reference/ASSETS.md)
+- [Saving and Persistence](../docs/reference/SAVING_PERSISTENCE.md)
+
+Use these to understand why a working process has its current shape rather than memorizing calls.
+
 ## Runtime layers
 
 Think of a runtime mod as a stack:
@@ -51,7 +67,7 @@ Stable identity matters more than display text.
 
 For plug-ins, use a stable unique BepInEx GUID.
 
-For authored content, use mod-owned identifiers where the toolchain supports them.
+For new content, use stable mod-owned identities where the proven integration path requires them. Do not confuse native template GUIDs, custom template GUIDs, Unity asset GUIDs, Addressables addresses, plug-in GUIDs, or display names.
 
 Do not use a visible/display name as the only durable identity for an object.
 
