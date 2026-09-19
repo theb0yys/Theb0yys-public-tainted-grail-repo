@@ -12,6 +12,7 @@ Work through:
 4. **Mono:** [Run the Harmony self-test](03_HARMONY_SELF_TEST.md)
 5. **Both lanes:** [Move to a real game patch](04_FIRST_REAL_PATCH_RULES.md)
 6. [Debug the basic loop](06_BASIC_DEBUGGING_FLOW.md)
+7. [Finish your first complete mod](07_FIRST_COMPLETE_MOD.md)
 
 ## Content-authoring track
 
@@ -21,9 +22,15 @@ Work through:
 2. Read the matching docs/pipelines/ document before each specialization.
 3. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep "worked in the editor" separate from "worked in the game".
 
+## Your progress
+
+**Start → Loader working → First plug-in → First game change → First complete mod**
+
+This section carries you from a working first plug-in to the final **First complete mod** checkpoint.
+
 ## What you should be able to do
 
-By the end, you should be able to make a small change, rebuild or re-author it, deploy and test it, diagnose a failure, and restore a known-good state without random file copying.
+By the end, you should be able to make a small change, rebuild or re-author it, deploy and test it, diagnose a failure, restore a known-good state, and finish one small mod without random file copying.
 
 ## Real FoA examples
 
