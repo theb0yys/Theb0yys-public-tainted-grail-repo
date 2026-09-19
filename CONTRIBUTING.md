@@ -1,62 +1,50 @@
 # Contributing
 
-This repository is a public, clean-room starter for Tainted Grail modding.
+This repository is a public, source-only Tainted Grail: The Fall of Avalon modding knowledge base.
 
-## Before opening an issue
+## Put knowledge in one canonical place
 
-Use the repository issue forms for public-safe bug reports and improvement proposals.
+| Question | Area |
+| --- | --- |
+| How do I learn this in order? | `learn/` |
+| How do I perform a task? | `how-to/` |
+| How does the game own/execute it? | `systems/` |
+| What exact identifier/type/hook do I need? | `reference/` |
+| What did a real working mod prove? | `case-studies/` |
+| Where is the minimal runnable code? | `examples/` |
+| Where did the claim come from? | `sources/` |
+| Where is a starter project? | `templates/` |
 
-Before submitting:
+Do not maintain parallel current explanations. Link to the canonical owner.
 
-- reduce a problem to the smallest useful reproduction;
-- state the runtime/content lane and exact versions when relevant;
-- share only the relevant redacted diagnostics;
-- search for an existing report covering the same problem.
+## Evidence
 
-Do **not** put a sensitive vulnerability, credential, personal data, unredacted private path, or proprietary game content into a public issue. Follow [SECURITY.md](SECURITY.md) instead.
+Follow [sources/evidence-standard.md](sources/evidence-standard.md). State exactly what was inspected/tested and which runtime/build it applies to. Static inspection is not runtime proof; one launch is not persistence or compatibility proof.
 
 ## Good contributions
 
-- corrections to setup/runtime documentation;
-- small reusable C# examples;
-- starter templates that depend only on locally supplied references;
-- diagnostics that do not expose private paths or proprietary content;
-- CI checks that keep the repository source-only;
-- documentation for reproducible, legal mod-development workflows.
+- setup/runtime corrections;
+- source-only C# examples;
+- exact identities, hooks or architecture notes with evidence;
+- reproducible procedures;
+- case studies from working mods;
+- public-safe diagnostics and CI checks.
 
 ## Do not contribute
 
-- game assets, extracted commercial content, localization dumps, maps, audio, textures, models, scenes, asset bundles, or saves;
-- game DLLs, Unity DLLs, BepInEx binaries, generated interop assemblies, executables, archives, or compiled plug-ins;
+- game assets, extracted commercial content, localization dumps, maps, audio, textures, models, scenes, asset bundles or saves;
+- game DLLs, Unity DLLs, BepInEx binaries, generated interop assemblies, executables, archives or compiled plug-ins;
 - bulk decompiled game source;
-- secrets, API keys, tokens, signing material, private paths, or personal data;
+- secrets, tokens, signing material, private paths or personal data;
 - code copied from private projects without an explicit decision to publish that exact code;
-- claims that a runtime/build works unless the evidence and scope are stated.
+- unscoped claims that a runtime/build works.
 
 ## Pull requests
 
-The pull-request template is a checklist, not ceremony: it exists to keep public claims, redistribution boundaries, and validation scope explicit.
+State what changed, the Mono/IL2CPP/Merlin/hybrid/documentation lane, what was actually tested, local dependencies used, and why the contribution is safe to redistribute.
 
-Keep each pull request focused. Explain:
+The public-surface guard is a redistribution backstop; it does not prove game/editor/runtime behaviour.
 
-1. what the change adds or fixes;
-2. which runtime lane it applies to: Mono, IL2CPP, both, or documentation-only;
-3. what you actually tested;
-4. whether the change references any local game/BepInEx files;
-5. why the contribution is safe to redistribute.
+## Licence status
 
-Do not describe static inspection as runtime proof.
-
-Before submitting, run the applicable repository checks. The hosted public-surface guard is a backstop; it does not prove game/editor behaviour.
-
-## Licence changes
-
-This repository does not currently include a general licence.
-
-Do not add, replace, or reinterpret the repository licence through an ordinary contribution. Licence selection is an explicit maintainer decision because it changes the legal terms under which repository material may be reused.
-
-## Examples and templates
-
-Examples should teach one concept at a time. Prefer neutral names and self-contained demonstrations over code lifted from a real mod.
-
-Game-specific patches are acceptable only when they are small, well explained, independently authored, and do not require redistributing proprietary game content.
+No general repository licence is included yet. Public visibility does not itself grant redistribution or relicensing rights.
