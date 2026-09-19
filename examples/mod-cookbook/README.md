@@ -26,7 +26,7 @@ Every example keeps two things separate: how far the underlying source path was 
 
 The table below uses the repository's formal status labels so those distinctions stay precise. See [Testing and Evidence Status](../../docs/EVIDENCE.md) for the definitions.
 
-The exact rewritten public examples are **NOT_RUN** until somebody builds and tests those specific examples.
+The exact rewritten public examples are **NOT_RUN** until somebody builds and tests those specific examples. The current authored public set is therefore marked **NEEDS_VALIDATION** as a workflow reminder; **NOT_RUN** remains the formal execution-status label.
 
 ## Code examples
 
@@ -59,6 +59,9 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [25 Motion blur toggle](25-motion-blur-toggle-mono/README.md) | graphics / comfort | LOAD_EVIDENCED |
 | [26 Move and sprint speed](26-move-sprint-speed-mono/README.md) | traversal / player stats | LOAD_EVIDENCED |
 | [27 Simple damage numbers](27-simple-damage-numbers-mono/README.md) | HUD / combat feedback | LOAD_EVIDENCED |
+| [28 Status application observer](28-status-application-observer-mono/README.md) | statuses / application observation | SOURCE_BUILD_EVIDENCED |
+| [29 Active status observer](29-active-status-observer-mono/README.md) | statuses / active-set observation | SOURCE_BUILD_EVIDENCED |
+| [30 Character-state observer](30-character-state-observer-mono/README.md) | character state / diagnostics | SOURCE_BUILD_EVIDENCED |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -86,6 +89,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Safe save-backup architecture](recipes/07-save-backup/README.md)
 - [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
 - [Combat VFX sidecars](recipes/09-combat-vfx/README.md)
+- [Buff/debuff tuning evidence gate](recipes/10-buff-debuff-tuning/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -108,8 +112,15 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - fall damage: example 03;
 - magic projectile speed: example 04;
 - item/weapon combat stats: content example 01/02;
-- general damage/status examples now include 10 (magic damage), 13 (status buildup) and 23 (character damage observation);
+- general damage examples include 10 (magic damage) and 23 (character damage observation);
 - combat VFX lifecycle guidance lives under recipes/09-combat-vfx/.
+
+### Statuses and character state
+- status buildup remains example 13;
+- status application observation: example 28;
+- active status membership changes: example 29;
+- character-state transitions: example 30;
+- buff/debuff strength and duration tuning: recipe 10; the stat surfaces are known, but mutation remains evidence-gated until exact consumer semantics are proved.
 
 ### Items, equipment and creatures
 - item stats: content example 01;

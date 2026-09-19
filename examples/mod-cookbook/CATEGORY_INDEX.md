@@ -14,6 +14,10 @@ This index is the broad map. A category appears here even when its current evide
 | Mana cost | 09 mana cost | SOURCE_BUILD_EVIDENCED |
 | Magic damage | 10 magic damage | SOURCE_BUILD_EVIDENCED |
 | Status buildup | 13 status buildup | SOURCE_BUILD_EVIDENCED |
+| Status application observation | 28 status application observer | SOURCE_BUILD_EVIDENCED |
+| Active status observation | 29 active status observer | SOURCE_BUILD_EVIDENCED |
+| Character state observation | 30 character-state observer | SOURCE_BUILD_EVIDENCED for selected state reads |
+| Buff/debuff tuning | recipe 10 | SOURCE_CONFIRMED stat surfaces; consumer semantics NOT_PROVEN |
 | Item stats | content/01 | STATIC_CONFIRMED |
 | Weapons | content/02 | STATIC_CONFIRMED |
 | Armour | content/03 | STATIC_CONFIRMED |
@@ -55,4 +59,4 @@ The table is not a ranking of maturity. It is an evidence map.
 
 When a source path says `LOAD_EVIDENCED`, that means the underlying mod reached load/registration evidence—not that every feature behavior was proven.
 
-Every rewritten public example remains `NOT_RUN` until that exact public file set is built and exercised.
+Every rewritten public example remains `NOT_RUN` until that exact public file set is built and exercised. The cookbook uses `NEEDS_VALIDATION` as a workflow marker for that pending work; it does not replace the formal `NOT_RUN` execution status.
