@@ -58,7 +58,7 @@ Then look for:
 Fall of Avalon_Data\il2cpp_data\Metadata\global-metadata.dat
 ~~~
 
-If those exist together, that is strong evidence you are looking at the IL2CPP layout.
+If those exist together, that is a strong sign you are looking at the IL2CPP layout.
 
 The validated local snapshot recorded on **2026-08-30** was IL2CPP.
 
