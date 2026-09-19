@@ -1,5 +1,7 @@
 # FoA Authoring Pipelines
 
+> **Reference library.** Open only the pipeline for the content type you are currently making. The guided content-learning path starts at [Make Your First Piece of Content](../../00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md).
+
 These notes describe the public-safe authoring routes visible in **Merlin Workshop**, the Tainted Grail: The Fall of Avalon modding toolkit.
 
 ## Source snapshot
