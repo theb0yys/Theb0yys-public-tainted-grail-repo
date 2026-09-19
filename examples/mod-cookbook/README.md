@@ -6,19 +6,13 @@ This folder answers a different question from the minimal templates:
 
 The examples here use real FoA Mono symbols where the maintainer's working mod workspace provides enough evidence to identify the path. They are rewritten as small clean-room teaching examples; they do not copy the finished mod's design.
 
-## Evidence labels
+## Testing status
 
-Every example has two separate states.
+Every example keeps two things separate: how far the underlying source path was checked in the maintainer's working environment, and whether the exact rewritten public example has itself been run.
 
-**Source-path evidence** describes how far the underlying path reached in the maintainer's working environment:
+The table below uses the repository's formal status labels so those distinctions stay precise. See [Testing and Evidence Status](../../docs/EVIDENCE.md) for the definitions.
 
-- **RUNTIME_EVIDENCED** — the relevant mechanism produced useful in-game/runtime evidence.
-- **LOAD_EVIDENCED** — build/deploy/plugin-load or patch-registration evidence exists, but the feature behavior itself is not fully proved.
-- **SOURCE_BUILD_EVIDENCED** — source/target research and build evidence exist, but useful live feature proof is still missing.
-- **SOURCE_CONFIRMED** — a concrete implementation/target exists in inspected source, but this pass did not establish a completed build/load/feature proof for that path.
-- **STATIC_CONFIRMED** — an editor/toolkit authoring contract is confirmed from source, but this exact public recipe has not been run end-to-end.
-
-**Public example status** is separate. Every newly written example in this cookbook is currently **NOT_RUN** until someone builds and tests that exact rewritten example.
+The exact rewritten public examples are **NOT_RUN** until somebody builds and tests those specific examples.
 
 ## Code examples
 
@@ -68,7 +62,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Safe save-backup architecture](recipes/07-save-backup/README.md)
 - [Dialogue and quest mutation boundary](recipes/08-dialogue-quest-mutation/README.md)
 
-For the full category/evidence map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
+For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
 ## Category map
 
@@ -134,7 +128,7 @@ Do not install a Mono example into an IL2CPP game setup.
 ## Rule for adapting an example
 
 1. Get the example running unchanged where practical.
-2. Read the evidence label.
+2. Check the testing-status label.
 3. Change one behavior.
 4. Rebuild and retest.
 5. If you change the target type/method/field, treat that as new research.
