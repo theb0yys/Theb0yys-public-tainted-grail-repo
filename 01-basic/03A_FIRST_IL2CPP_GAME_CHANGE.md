@@ -6,7 +6,7 @@ Your first IL2CPP plug-in already proved that BepInEx can load your code.
 
 Now you will make one small change to the **running Tainted Grail process**: temporarily cap its target frame rate to 30 FPS.
 
-This is deliberately simpler than a Harmony patch. It teaches runtime ownership before game-internal method patching.
+This is deliberately simpler than a **Harmony patch**—a patch made with the Harmony library to run your code around an existing method. It teaches runtime ownership before game-internal method patching.
 
 ## What you need
 
