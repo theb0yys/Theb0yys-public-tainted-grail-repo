@@ -85,7 +85,7 @@ This page is complete when your chosen path satisfies its full checklist **and**
 
 **An old DLL loaded once:** change your log message, rebuild, redeploy, and prove the new build is the one running.
 
-**The editor saved an asset, so the game supports it:** editor success and game-runtime success are separate evidence states.
+**The editor saved an asset, so the game supports it:** saving successfully in the editor and working successfully in the game are two different checks.
 
 **You cannot undo the test:** establish a clean rollback before adding more moving parts.
 
