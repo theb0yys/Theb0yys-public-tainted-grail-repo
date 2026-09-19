@@ -30,16 +30,16 @@ Follow these in order:
 
 Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the **BepInEx log**—the log written by the mod loader that starts your plug-in.
 
-### B. I want to make items, weapons, armour, or creatures
+### B. I want to add genuinely new content
 
-Follow:
+Start with the smallest proven new-content route:
 
 1. [Set up Windows for modding](01_WINDOWS_SETUP.md)
-2. [Make your first piece of content](05_FIRST_CONTENT_AUTHORING.md)
-3. [Check that your first content session really worked](06_SUCCESS_CHECKLIST.md)
-4. Then continue to [the everyday modding loop](../01-basic/README.md).
+2. [Add your first new item](05_FIRST_CONTENT_AUTHORING.md)
+3. [Check what you actually proved](06_SUCCESS_CHECKLIST.md)
+4. Use the [technical handbook](../docs/REFERENCE_MAP.md) when the tutorial links to a system such as identity, templates, hooks, assets or persistence.
 
-The content route uses the public Merlin Workshop authoring guides under `docs/pipelines/`. Each guide tells you plainly what was confirmed from the toolkit source and what still needs to be tried in the editor or game.
+The first public custom-item process is currently a **Mono/BepInEx 5 proven path**. It does not claim that IL2CPP, weapons, armour, creatures, spells or recipes use the same registration process. Those domains get separate processes only when their native ownership and working path have been established.
 
 ## One rule for beginners
 
