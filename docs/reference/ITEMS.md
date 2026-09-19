@@ -6,7 +6,7 @@
 
 The proven baseline creates a **new FoA item template identity at runtime** by cloning a reviewed native prototype, registering the custom definition in FoA's loaded template maps, constructing a normal native `Item`, and giving that item to one controlled native acquisition surface.
 
-The clearest bounded runtime proof is **Green Avalon Apple**.
+The item process is supported by two complementary evidence classes: the bounded **Green Avalon Apple** merchant proof, and independent source-inspected consumers such as **Tainted Lockpick** and **Realistic Longsword** that exercise the same native clone/register/resolve/`World.Add(new Item(...))` mechanism. The merchant proof establishes the UI/acquisition timing; the additional consumers establish that the registration and native-item construction shape is not Apple-specific.
 
 ~~~text
 native ItemTemplate
@@ -250,6 +250,26 @@ Minimum first-item proof:
 10. exact proof boundary is recorded.
 
 Runtime evidence for the Green Avalon Apple established a separate visible custom identity in merchant UI with inherited native behavior/presentation characteristics.
+
+## Cross-consumer confirmation
+
+The private working repository contains multiple independent consumers of this mechanism:
+
+- **Tainted Lockpick** waits for `TemplatesProvider.AllLoaded`, resolves the vanilla lockpick prototype, clones the source GameObject, assigns a separate custom GUID/name, compares the clone's component-type set with the source, calls the private loader map insertion, resolves the custom GUID, creates the runtime item with `World.Add(new Item(...))`, and hands it to `HeroItems.Add(...)`.
+- **Realistic Longsword** independently uses the custom-template registration/resolve path and constructs a native `Item` before hero or merchant acquisition. Its weapon-specific presentation work is a separate domain and does not broaden the generic item claim.
+- The repository mechanics inventory therefore classifies custom-item registration as **source-inspected multi-consumer** evidence, while explicitly withholding cross-version and save-safety claims.
+
+This confirms an important separation:
+
+~~~text
+definition registration
+!= runtime Item construction
+!= acquisition
+!= presentation
+!= persistence
+~~~
+
+Each transition needs its own owner and verification.
 
 ## Current proof boundary
 
