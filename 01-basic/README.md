@@ -14,13 +14,14 @@ Work through:
 6. [Debug the basic loop](06_BASIC_DEBUGGING_FLOW.md)
 7. [Finish your first complete mod](07_FIRST_COMPLETE_MOD.md)
 
-## Content-authoring track
+## New-content track
 
 Work through:
 
-1. [Move from items to weapons, armour, and creatures](05_CONTENT_PROGRESSION.md)
-2. Open the matching `docs/pipelines/` reference only for the content type you are currently making.
-3. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep "worked in the editor" separate from "worked in the game".
+1. [Add your first new item](../00-never-made-a-mod-start-here/05_FIRST_CONTENT_AUTHORING.md) on the currently proven Mono/BepInEx 5 item lane.
+2. [Move beyond the first custom item](05_CONTENT_PROGRESSION.md) without assuming the item APIs automatically apply to weapons, armour, creatures, spells or recipes.
+3. Use the [technical handbook](../docs/REFERENCE_MAP.md) for identity, templates, hooks, ownership, assets, persistence and failure reasoning.
+4. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to separate registration, runtime ownership, presentation and persistence failures.
 
 ## Your progress
 
@@ -34,4 +35,4 @@ By the end, you should be able to make a small change, rebuild or re-author it, 
 
 ## Real FoA examples
 
-After your first smoke test and the everyday modding loop make sense, browse [examples/mod-cookbook](../examples/mod-cookbook/README.md) as an example library rather than another required sequence. It contains small real-game examples: stamina, carry capacity, fall damage, magic projectiles, HUD, illegal pickups, footsteps, jumping, and Merlin content authoring.
+After your first smoke test and the everyday modding loop make sense, browse [examples/mod-cookbook](../examples/mod-cookbook/README.md) as an example library rather than another required sequence. It contains small real-game examples for runtime behavior changes. Treat any older content-authoring example as historical context unless it points to a current proven handbook process.
