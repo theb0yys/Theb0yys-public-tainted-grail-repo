@@ -22,6 +22,10 @@ This index is the broad map. A category appears here even when its current evide
 | Healing/recovery observation | 32 healing and recovery observer | SOURCE_BUILD_EVIDENCED |
 | Consumable status deltas | 33 status cure/removal observer | SOURCE_BUILD_EVIDENCED |
 | Consumable effect attribution | recipe 11 | SOURCE_BUILD_EVIDENCED attribution shape; exact public recipe NOT_RUN |
+| Equipment change observation | 34 equipment change observer | SOURCE_CONFIRMED item-level equip lifecycle |
+| Main/off-hand observation | 35 main/off-hand observer | SOURCE_BUILD_EVIDENCED selected read surfaces |
+| Weapon visibility/state observation | 36 weapon visibility/state observer | LOAD_EVIDENCED read surface; exact public example NOT_RUN |
+| Equipment lifecycle attribution | recipe 12 | SOURCE_CONFIRMED lifecycle map; public recipe NOT_RUN |
 | Item stats | content/01 | STATIC_CONFIRMED |
 | Weapons | content/02 | STATIC_CONFIRMED |
 | Armour | content/03 | STATIC_CONFIRMED |

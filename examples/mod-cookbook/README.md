@@ -65,6 +65,9 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [31 Consumable use observer](31-consumable-use-observer-mono/README.md) | items / consumable observation | SOURCE_BUILD_EVIDENCED |
 | [32 Healing and recovery observer](32-healing-recovery-observer-mono/README.md) | healing / item-use delta observation | SOURCE_BUILD_EVIDENCED |
 | [33 Status cure/removal observer](33-status-cure-observer-mono/README.md) | statuses / consumable delta observation | SOURCE_BUILD_EVIDENCED |
+| [34 Equipment change observer](34-equipment-change-observer-mono/README.md) | equipment / lifecycle observation | SOURCE_CONFIRMED |
+| [35 Main/off-hand observer](35-hand-item-observer-mono/README.md) | equipment / hand-state observation | SOURCE_BUILD_EVIDENCED |
+| [36 Weapon visibility/state observer](36-weapon-visibility-state-observer-mono/README.md) | weapon presentation / state observation | LOAD_EVIDENCED read surface |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -94,6 +97,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Combat VFX sidecars](recipes/09-combat-vfx/README.md)
 - [Buff/debuff tuning evidence gate](recipes/10-buff-debuff-tuning/README.md)
 - [Consumable effect attribution](recipes/11-consumable-effect-attribution/README.md)
+- [Equipment lifecycle attribution](recipes/12-equipment-lifecycle-attribution/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -138,6 +142,10 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - armour authoring: content example 03;
 - creature/NPC authoring: content example 04;
 - custom runtime weapon registration/presentation remains outside the beginner cookbook until its full live registration/equip path is proved.
+- item-level equipment transition observation: example 34;
+- current main/off-hand projection and item classification: example 35;
+- draw/sheathe and weapon-presentation state observation: example 36;
+- equipment lifecycle ownership and attribution boundaries: recipe 12.
 
 ### Interaction and economy
 - illegal pickup guard: example 06;
