@@ -1,0 +1,116 @@
+# Tainted Grail Mod Cookbook
+
+This folder answers a different question from the minimal templates:
+
+> What does a small **real Tainted Grail mod** look like for the kinds of things people actually want to change?
+
+The examples here use real FoA Mono symbols where the maintainer's working mod workspace provides enough evidence to identify the path. They are rewritten as small clean-room teaching examples; they do not copy the finished mod's design.
+
+## Evidence labels
+
+Every example has two separate states.
+
+**Source-path evidence** describes how far the underlying path reached in the maintainer's working environment:
+
+- **RUNTIME_EVIDENCED** — the relevant mechanism produced useful in-game/runtime evidence.
+- **LOAD_EVIDENCED** — build/deploy/plugin-load or patch-registration evidence exists, but the feature behavior itself is not fully proved.
+- **SOURCE_BUILD_EVIDENCED** — source/target research and build evidence exist, but useful live feature proof is still missing.
+- **STATIC_CONFIRMED** — an editor/toolkit authoring contract is confirmed from source, but this exact public recipe has not been run end-to-end.
+
+**Public example status** is separate. Every newly written example in this cookbook is currently **NOT_RUN** until someone builds and tests that exact rewritten example.
+
+## Code examples
+
+| Example | Category | Source-path evidence |
+| --- | --- | --- |
+| [01 Stamina drain](01-stamina-drain-mono/README.md) | player stats / stamina | SOURCE_BUILD_EVIDENCED |
+| [02 Carry capacity](02-carry-capacity-mono/README.md) | player stats / inventory | LOAD_EVIDENCED |
+| [03 No fall damage](03-no-fall-damage-mono/README.md) | damage | SOURCE_BUILD_EVIDENCED |
+| [04 Magic projectile speed](04-magic-projectile-speed-mono/README.md) | magic / projectiles | RUNTIME_EVIDENCED |
+| [05 Force hero HUD bars visible](05-force-hero-hud-mono/README.md) | UI / HUD | RUNTIME_EVIDENCED |
+| [06 Modifier-gated illegal pickup](06-illegal-pickup-guard-mono/README.md) | interaction / theft | RUNTIME_EVIDENCED |
+| [07 Hero footstep beep replacement](07-footstep-beep-replacement-mono/README.md) | audio / event replacement | RUNTIME_EVIDENCED |
+| [08 One extra airborne jump](08-extra-air-jump-mono/README.md) | movement | LOAD_EVIDENCED |
+
+Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
+
+## Content-authoring examples
+
+These use the Merlin Workshop authoring path rather than a BepInEx code plug-in:
+
+- [Item stats](content/01-item-stats/README.md)
+- [Weapon](content/02-weapon/README.md)
+- [Armour](content/03-armour/README.md)
+- [Creature / NPC](content/04-creature/README.md)
+
+Their current evidence level is **STATIC_CONFIRMED** because the authoring contracts exist in inspected Merlin source. The exact public recipes remain **NOT_RUN**.
+
+## Category map
+
+### Fundamentals
+- configuration and hotkeys: level 00/01 beginner guides;
+- Harmony postfix/prefix: proven-path templates;
+- diagnostics/logging: all examples;
+- small runtime UI: proven-path runtime UI example.
+
+### Player stats
+- stamina drain: cookbook example 01;
+- carry capacity: cookbook example 02;
+- skill caps/uncapping: maintainer path has load evidence, but the real XP/cap path is too invasive to compress into a beginner snippet without reimplementing native XP handling; not promoted yet;
+- movement/traversal: extra-air-jump example 08; camera-relative movement remains a later advanced example.
+
+### Damage and combat
+- fall damage: example 03;
+- magic projectile speed: example 04;
+- item/weapon combat stats: content example 01/02;
+- general damage multipliers, status buildup and spell cost/cooldown paths exist in the maintainer workspace but are not all independently runtime-proved; add them one at a time when their evidence is strong enough.
+
+### Items, equipment and creatures
+- item stats: content example 01;
+- weapon authoring: content example 02;
+- armour authoring: content example 03;
+- creature/NPC authoring: content example 04;
+- custom runtime weapon registration/presentation remains outside the beginner cookbook until its full live registration/equip path is proved.
+
+### Interaction and economy
+- illegal pickup guard: example 06;
+- merchant restock/gold paths exist, but current feature evidence is not strong enough for a "proven" public recipe;
+- lockpicking has source/build evidence but not game-feature evidence, so it is not promoted yet.
+
+### UI
+- simple overlay: proven-path UI example;
+- hero HUD decision patch: example 05;
+- complex native menu extension is deliberately excluded until a smaller complete focus/input/close lifecycle can be published without dragging in a finished mod's design.
+
+### Audio
+- direct replacement gate: proven-path audio example;
+- real FoA hero footstep target: example 07;
+- contextual music routing has useful runtime lane evidence, but the complete music system is too large for a first cookbook slice.
+
+### Environment and visuals
+- skybox apply/restore: proven-path skybox example;
+- torch helper-light and weather systems have useful partial evidence but still contain unresolved visual/runtime matrices; not promoted as proven recipes yet.
+
+### Persistence
+- a save-backup plug-in reached build/load/config/folder creation, but actual backup archive creation remained unproved in the inspected evidence. It is intentionally not presented as a working save example yet.
+
+## Build assumption
+
+These game-target examples are for the **Mono / BepInEx 5** lane because that is where these particular source paths were investigated.
+
+Typical build:
+
+~~~powershell
+dotnet build .\Example.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+~~~
+
+Do not install a Mono example into an IL2CPP game setup.
+
+## Rule for adapting an example
+
+1. Get the example running unchanged where practical.
+2. Read the evidence label.
+3. Change one behavior.
+4. Rebuild and retest.
+5. If you change the target type/method/field, treat that as new research.
+6. Never turn a source/build example into a runtime claim without running it.

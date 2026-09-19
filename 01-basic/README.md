@@ -23,3 +23,7 @@ Work through:
 ## Goal of this level
 
 You should finish level 01 able to make a small change, rebuild/re-author, deploy/test it, diagnose a failure, and restore a known-good state without random file copying.
+
+## Real FoA examples
+
+After the level-00 smoke test and the level-01 mechanics make sense, use [examples/mod-cookbook](../examples/mod-cookbook/README.md) for small real-game examples: stamina, carry capacity, fall damage, magic projectiles, HUD, illegal pickups, footsteps, jumping, and Merlin content authoring.
