@@ -8,9 +8,10 @@ Work through:
 
 1. [Edit, rebuild, and redeploy](01_EDIT_REBUILD_REDEPLOY.md)
 2. [Add your first config option](02_FIRST_CONFIG_OPTION.md)
-3. [Run the Harmony self-test](03_HARMONY_SELF_TEST.md)
-4. [Move from a self-test to a real game patch](04_FIRST_REAL_PATCH_RULES.md)
-5. [Debug the basic loop](06_BASIC_DEBUGGING_FLOW.md)
+3. **IL2CPP:** [Make your first runtime game change](03A_FIRST_IL2CPP_GAME_CHANGE.md)
+4. **Mono:** [Run the Harmony self-test](03_HARMONY_SELF_TEST.md)
+5. **Both lanes:** [Move to a real game patch](04_FIRST_REAL_PATCH_RULES.md)
+6. [Debug the basic loop](06_BASIC_DEBUGGING_FLOW.md)
 
 ## Content-authoring track
 
