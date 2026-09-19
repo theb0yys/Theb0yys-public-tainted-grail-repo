@@ -22,6 +22,16 @@ Current proof boundary
 
 That format is deliberate. The repository should teach not only **how**, but **why the working route has its current shape** and **what failures established the rule**.
 
+## Golden rules
+
+### [Golden Rules of Tainted Grail Modding](reference/GOLDEN_RULES.md)
+
+The cross-cutting rules extracted from successful paths and failed attempts: full-path equivalence, native ownership, exact identity, lifecycle timing, asset-vs-registration separation, cleanup, evidence boundaries, version scope, and fail-closed behavior.
+
+### [Working, Partial, and Rejected Patterns](reference/WORKING_REJECTED_PATTERNS.md)
+
+A status ledger for techniques that are currently bounded-working, source/static only, blocked, or explicitly rejected—and why.
+
 ## Foundation
 
 ### [Game and Runtime Architecture](reference/GAME_RUNTIME_ARCHITECTURE.md)
@@ -40,6 +50,14 @@ Native GUIDs, custom GUIDs, template names, display names, plug-in GUIDs, Unity 
 
 Harmony Prefix/Postfix choices, lifecycle timing, template readiness, merchant timing, save observation, and why hook position matters.
 
+### [FoA MVC: Models, Elements, Views, Events, and Services](reference/MVC_MODELS_ELEMENTS_EVENTS.md)
+
+The native logical lifecycle behind `World.Add`, Model/Element ownership, View teardown, events, listener cleanup, and services.
+
+### [Scene, Service, and Template Lifecycle](reference/SCENES_SERVICES_TEMPLATES.md)
+
+Startup ordering, SceneService, Addressables scene discovery, template loading labels, `TemplatesLoader`, and `TemplatesProvider` readiness.
+
 ### [Native Object Ownership](reference/NATIVE_OBJECT_OWNERSHIP.md)
 
 Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and other native owners matter.
@@ -48,9 +66,23 @@ Why `World.Add`, `HeroItems.Add`, `Stock.AddItem`, `Location` ownership and othe
 
 AssetBundles, Addressables, `ARAssetReference`, prefabs, icons, models/materials, Merlin Workshop's actual boundary, and why an asset load is not gameplay registration.
 
+### [Questline Rendering and Proprietary Runtime Systems](reference/PROPRIETARY_RENDERING_SYSTEMS.md)
+
+Drake, Kandra, Leshy, Medusa, HLOD, mip streaming, scene baking, and why ordinary Unity renderer assumptions often fail.
+
+### [Private APIs, Reflection, and Compatibility](reference/PRIVATE_APIS_COMPATIBILITY.md)
+
+How to use private/reflected surfaces as explicit version-scoped interventions rather than pretending they are stable public APIs.
+
 ### [Saving and Persistence](reference/SAVING_PERSISTENCE.md)
 
 Template GUID serialization/restoration, registration timing, session-only content, missing-mod risk, save/load proof, and current unknowns.
+
+## Native systems and research routing
+
+### [FoA Systems and Knowledge Map](reference/GAME_SYSTEMS_MAP.md)
+
+Routes questions to the right game-knowledge/native-system owner: items, weapons, armour, creatures, recipes, merchants, spells, UI, spawning, saves, world/scenes, and more.
 
 ## Process and diagnostics
 
