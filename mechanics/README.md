@@ -15,3 +15,21 @@ Start with [Intervention selection](intervention-selection.md).
 - [Actors and spawning](actors/README.md)
 
 Every mechanic must still link back to the native owner and state its evidence boundary.
+
+## Wave 5 mechanic families
+
+- [AI](ai/README.md)
+- [Assets](assets/README.md)
+- [Audio](audio/README.md)
+- [Combat](combat/README.md)
+- [Crime and stealth](crime/README.md)
+- [Interactions](interactions/README.md)
+- [Localisation](localisation/README.md)
+- [World and travel](world/README.md)
+- [Progression](progression/README.md)
+- [Magic and status effects](magic/README.md)
+- [Story and dialogue](story/README.md)
+- [Environment and weather](environment/README.md)
+- [Harmony/lifecycle hooks](harmony-hooks/README.md)
+
+Each mechanic links back to the native system that owns the relevant state/lifecycle.
