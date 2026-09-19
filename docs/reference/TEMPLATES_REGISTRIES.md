@@ -25,7 +25,7 @@ For the researched item route:
 - `TemplatesLoader` owns template-map construction;
 - `TemplatesProvider` owns normal lookup of loaded templates;
 - `TemplatesProvider._loader` reaches the loader used by the direct proof route;
-- private `TemplatesLoader.AddToMap(string, ITemplate)` is the historical direct insertion mechanism used by several working-repo implementations.
+- private `TemplatesLoader.AddToMap(string, ITemplate)` is the direct insertion mechanism used by the working item path.
 
 The current internal architecture is moving toward shared registrar ownership so individual consumer mods do not each reflect into `AddToMap`.
 
@@ -59,7 +59,7 @@ Several working implementations use the `FinishedLoading` setter as a retry boun
 
 ## How we interact with it
 
-Historical proven/custom-item pattern:
+Working custom-item pattern:
 
 1. wait for template readiness;
 2. resolve a safe native source template;

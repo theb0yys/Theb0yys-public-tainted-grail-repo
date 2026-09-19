@@ -1,28 +1,12 @@
-# 42 — Character Death Observer
+# Character Death Observer
 
-**Category:** combat / terminal character observation  
-**Source-path evidence:** SOURCE_BUILD_EVIDENCED  
-**Validation:** NEEDS_VALIDATION  
-**This rewritten public example:** NOT_RUN
+This example uses the terminal character-death lifecycle used by working death-presentation mods.
 
-This example observes FoA's common terminal health/death event seam:
+## What this event means
 
-~~~text
-HealthElement.OnDeathEvents(...)
-~~~
+The death event is the correct place for terminal character-side presentation such as a bounded death burst, death marker or cleanup trigger.
 
-It requires `HealthElement.ParentModel` to implement `ICharacter`, classifies the target as the current hero or another character, and suppresses duplicate terminal rows for the same runtime target.
-
-A death-event row does **not** by itself prove that:
-
-- an NPC corpse has been created;
-- loot is ready;
-- the living NPC has been discarded;
-- death animation or ragdoll presentation completed;
-- XP/rewards were granted;
-- persistence/save state completed.
-
-Those belong to later native lifecycle owners.
+It is **not** the owner of every downstream system. Corpse creation, loot, rewards and persistence have their own lifecycles.
 
 ## Build
 
@@ -30,6 +14,10 @@ Those belong to later native lifecycle owners.
 dotnet build .\CharacterDeathObserverExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-The example does not kill characters, alter health, create corpses, change loot/rewards or write saves.
+## Pattern
 
-The public rewrite is **NOT_RUN** and **NEEDS_VALIDATION**.
+1. observe the native terminal death event;
+2. identify the character once;
+3. run only the mod-owned death sidecar;
+4. deduplicate repeated callbacks;
+5. leave corpse/loot/reward ownership to their native systems.

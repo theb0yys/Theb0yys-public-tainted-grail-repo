@@ -246,7 +246,7 @@ Research found three separate causes:
 
 ### A plausible "fists" guard was wrong
 
-A later defense gate matched the exact baseline item GUID and block geometry but rejected the actor because an assumed fists classification was false.
+The exact baseline item GUID and block geometry must match the actor's real classification; do not infer a fists classification.
 
 Read-only native research showed the native block owner did not require that classification.
 
@@ -274,7 +274,7 @@ Can allow package/registration success while runtime actor initialization fails.
 
 ### Raw fallback templates
 
-Rejected because they fork identity and bypass provider ownership.
+They fork identity and bypass provider ownership, so they are outside the supported path.
 
 ### Random/world population too early
 

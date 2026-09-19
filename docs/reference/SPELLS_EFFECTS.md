@@ -178,4 +178,3 @@ For a spell/effect feature, independently verify:
 
 **Runtime/evidence caution:** current overlay examples do not prove native per-spell VFX replacement or a generic custom spell registration path.
 
-Exact native spell traces and several cost/cast/projectile/buildup surfaces are known, but a generic durable **custom spell registration** process remains blocked on registration, acquisition, UI/localisation, save/uninstall behavior, compatibility, and live end-to-end validation.

@@ -35,4 +35,4 @@ By the end, you should be able to make a small change, rebuild or re-author it, 
 
 ## Real FoA examples
 
-After your first smoke test and the everyday modding loop make sense, browse [examples/mod-cookbook](../examples/mod-cookbook/README.md) as an example library rather than another required sequence. It contains small real-game examples for runtime behavior changes. Treat any older content-authoring example as historical context unless it points to a current proven handbook process.
+After your first smoke test and the everyday modding loop make sense, browse [examples/mod-cookbook](../examples/mod-cookbook/README.md) as an example library rather than another required sequence. It contains small real-game examples for runtime behavior changes. Use the current handbook and cookbook paths linked from the repository.

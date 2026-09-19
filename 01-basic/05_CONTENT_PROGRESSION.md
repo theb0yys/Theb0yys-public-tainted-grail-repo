@@ -56,7 +56,7 @@ Do not assume those exact APIs are the answer for another domain.
 
 ### 2. For a weapon, map the extra owners
 
-A weapon is not proven merely because it is also an item.
+A weapon requires both native item ownership and the weapon-specific equip/combat/presentation path.
 
 A complete weapon process must separately establish:
 
@@ -126,7 +126,7 @@ That is how a private experiment becomes a public reusable process.
 
 ## What success looks like
 
-You can take a proposed content feature and identify:
+For a content feature, identify:
 
 - its definition owner;
 - its identity;

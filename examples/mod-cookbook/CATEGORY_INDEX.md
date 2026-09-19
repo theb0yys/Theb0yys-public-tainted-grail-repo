@@ -1,6 +1,4 @@
-# Cookbook Section Index
-
-The cookbook is now organized by subject instead of one flat numbered progression.
+# Cookbook Sections
 
 | Section | Entry point |
 | --- | --- |
@@ -10,13 +8,5 @@ The cookbook is now organized by subject instead of one flat numbered progressio
 | Audio | [audio/README.md](audio/README.md) |
 | UI & HUD | [ui-hud/README.md](ui-hud/README.md) |
 | Systems | [systems/README.md](systems/README.md) |
-| Research / candidate hooks | [research/README.md](research/README.md) |
-| Proven working-mod lineage | [systems/PROVEN_MECHANICS.md](systems/PROVEN_MECHANICS.md) |
 
-## Compatibility note
-
-The existing numbered implementation folders remain in place so old repository links continue to resolve.
-
-They are identifiers only. They are no longer the primary category system and they do not represent increasing maturity.
-
-For formal evidence meanings, see [Testing and Evidence Status](../../docs/EVIDENCE.md).
+The numbered folders that remain in the cookbook are working implementation examples, not a maturity scale.

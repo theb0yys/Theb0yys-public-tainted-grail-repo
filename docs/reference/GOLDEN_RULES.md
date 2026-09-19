@@ -184,7 +184,7 @@ Do not promote evidence sideways.
 
 Prove one identity, one owner, one hook, one item, one actor, one route.
 
-Do not begin with a batch if the mechanism itself is not yet proven.
+Start with one established mechanism before expanding to a batch.
 
 The custom-item history showed why: batch expansion hid which descriptor or lifecycle assumption actually failed.
 

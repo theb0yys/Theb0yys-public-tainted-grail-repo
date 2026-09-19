@@ -1,23 +1,12 @@
-# 07 — Hero Footstep Beep Replacement
+# Hero Footstep Replacement
 
-**Category:** audio / replacement  
-**Source-path evidence:** RUNTIME_EVIDENCED  
-**This rewritten public example:** NOT_RUN
+This example uses the same FMOD interception shape as a working custom-footstep mod.
 
-This is intentionally silly but real: when enabled, hero footstep FMOD events are intercepted and replaced by a tiny generated beep.
+Instead of shipping audio files, the example generates a simple beep so the repository remains source-only.
 
-No sound assets are included.
+## Owner
 
-## Why this example exists
-
-It teaches the exact safe replacement rule:
-
-1. filter to the event owner you intend to replace;
-2. successfully start your replacement;
-3. only then suppress the native call;
-4. if replacement fails, let the native call continue.
-
-The filter is VHeroFootsteps on the exact FMODManager.PlayOneShot overload used by the owner-side replacement path.
+The hook observes FMOD one-shot playback and filters to the hero footstep owner before replacing playback.
 
 ## Build
 
@@ -25,8 +14,12 @@ The filter is VHeroFootsteps on the exact FMODManager.PlayOneShot overload used 
 dotnet build .\FootstepBeepExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-The example defaults to disabled. Set General.Enabled=true in its generated config.
+## Pattern
 
-## Next iteration
+1. intercept the native one-shot call;
+2. confirm the debug/source object is the hero footstep owner;
+3. select the replacement sound for the reported surface/context;
+4. suppress the matching native footstep only when the replacement will play;
+5. leave every unrelated FMOD event alone.
 
-Replace the generated tone with your own licensed clips, then use the FMOD parameters to map FoA surfaces rather than replacing every hero step with one sound.
+For a reusable generic gate, see [Audio replacement gate](../../proven-paths/04-audio-replacement-gate-mono/README.md).

@@ -1,30 +1,18 @@
-# 04 — Magic Projectile Speed Example
+# Magic Projectile Speed
 
-**Category:** magic / projectiles  
-**Source-path evidence:** RUNTIME_EVIDENCED  
-**This rewritten public example:** NOT_RUN
+This example teaches the native projectile-tuning path used by a working Magic Tweaks implementation.
 
-This example scales the velocity of player-owned magic projectiles.
+It scales player-owned magic projectile speed while leaving unrelated projectiles unchanged.
 
-The owner-side path has actual user-reported projectile-speed behavior plus plugin-load/patch evidence.
+## What it changes
 
-## Why there are two hooks
+The patch adjusts the projectile velocity produced by the native magic projectile configuration path.
 
-FoA has more than one projectile setup route. The example observes:
+Use a multiplier of:
 
-- DamageDealingProjectile.SetBaseDamageParams
-- ConfigureShootProjectile.ApplyToProjectile
-
-A ConditionalWeakTable marker prevents the same projectile from being scaled twice.
-
-## Filter
-
-The example changes only projectiles that:
-
-- are owned by Hero.Current; and
-- are MagicProjectile or use a magic source item.
-
-This avoids teaching a global "multiply every projectile in the game" patch.
+- `1.0` for vanilla speed;
+- above `1.0` for faster projectiles;
+- below `1.0` for slower projectiles.
 
 ## Build
 
@@ -32,8 +20,11 @@ This avoids teaching a global "multiply every projectile in the game" patch.
 dotnet build .\MagicProjectileSpeedExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-Try SpeedMultiplier=1.5 first, not an extreme value.
+## Pattern
 
-## Important detail
+1. let the game create/configure the projectile;
+2. confirm it belongs to the intended magic/player path;
+3. scale only the projectile value the mod owns;
+4. leave targeting, damage and unrelated projectile systems native.
 
-The code separates the projectile's existing position-offset velocity from its main launch velocity before scaling, then adds the offset back. That preserves the native offset/aim correction better than blindly multiplying the whole vector.
+This is a Mono / BepInEx 5 example.

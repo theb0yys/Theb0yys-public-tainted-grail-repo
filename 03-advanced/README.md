@@ -13,7 +13,7 @@ For IL2CPP, debug in this order:
 5. target type resolution;
 6. gameplay behaviour.
 
-Do not jump directly to your patch when the lower layers are not proven.
+Start from an established lower-layer path before adding the advanced patch.
 
 Generated interop state can change after game updates. A source-compatible plug-in can still fail because the runtime representation changed.
 

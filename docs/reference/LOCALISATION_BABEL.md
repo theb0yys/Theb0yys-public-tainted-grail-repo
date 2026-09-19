@@ -159,4 +159,3 @@ For true multilingual support, verify at least two language payloads and the con
 
 **Safe now:** package-owned semantic identities plus source-language fallback and offline translation manifests.
 
-**Blocked/unproven:** arbitrary native Babel corpus mutation, custom global numeric ID allocation, base `languages.arch` replacement as a general mod API, full hot-switch support, and generic IL2CPP equivalence.

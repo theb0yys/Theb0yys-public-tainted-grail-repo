@@ -1,20 +1,20 @@
-# 23 — Character Damage Observer
+# Character Damage Observer
 
-**Category:** damage / diagnostics / VFX foundation  
-**Source-path evidence:** RUNTIME_EVIDENCED  
-**This rewritten public example:** NOT_RUN
+This example uses the character-damage lifecycle that working combat/VFX mods use for read-only observation and presentation sidecars.
 
-This example observes the real character damage route without changing damage.
+It does not replace native damage calculation.
 
-Target:
+## Useful event data
 
-~~~text
-HealthElement.TakeDamage(Damage)
-~~~
+The native damage object exposes the information needed for common sidecars such as:
 
-The postfix logs a bounded number of character-target damage events.
-
-Before writing damage numbers, blood, hit sounds, hit markers, wounds, reactive UI or combat telemetry, prove that your event filter sees the targets you intend and excludes mining/resource nodes.
+- target;
+- damage dealer;
+- amount;
+- stamina damage;
+- critical hit;
+- weak-spot hit;
+- blocked/parried result.
 
 ## Build
 
@@ -22,8 +22,8 @@ Before writing damage numbers, blood, hit sounds, hit markers, wounds, reactive 
 dotnet build .\CharacterDamageObserverExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-This example intentionally does not mutate damage, spawn VFX or write files.
+## Pattern
 
-See Combat VFX sidecars under recipes/09-combat-vfx for the next stage.
+Observe the completed damage event, classify only the event you care about, then hand it to your own UI/VFX/audio logic.
 
-The public rewrite is **NOT_RUN**.
+Keep damage calculation and target resolution native unless your mod explicitly owns those systems.

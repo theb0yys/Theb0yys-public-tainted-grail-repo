@@ -36,7 +36,6 @@ This page does not change that ownership. It only routes readers to the correct 
 | Weapons | Runtime equipped prototype / native presentation rebinding | Source-inspected | Intended route identified; legacy direct-renderer fallback is not the production proof |
 | Recipes | Runtime alchemy recipe append | Source-inspected validation prototype | Runtime-only lane; explicitly not persistent proof |
 | Recipes | Runtime "known" shim | Source-inspected | UI/access shim is not recipe persistence |
-| Recipes | Learn existing loaded recipe through `HeroRecipes.LearnRecipe` | Source-inspected, live save validation pending | Native mutation route exists; durable claim remains pending |
 | Merchants | Restock on `Shop.OpenShop` | Source-inspected, owner runtime unverified | Hook exists; not a promoted general restock recipe |
 | Merchants | Filter restock categories via private stock internals | Source-inspected, runtime unverified | High patch risk because private fields/backing fields are reflected |
 | Spells | Classify spell family from template-name fragments | Source-inspected heuristic | Discovery only; **not native spell/VFX identity truth** |

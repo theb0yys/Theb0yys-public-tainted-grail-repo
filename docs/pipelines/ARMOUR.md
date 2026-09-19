@@ -1,17 +1,12 @@
 # Armour Pipeline — Compatibility Redirect
 
-> **Compatibility redirect.** The earlier Merlin-centric interpretation was withdrawn because authoring structures alone do not establish a genuinely new armour integration process.
+> **Withdrawn as a proven new-content process.** The previous page described native armour/item structures visible in Merlin Workshop without proving the full native clothes/Kandra/equip lifecycle for custom armour.
 
-**[Open the canonical armour process →](../reference/ARMOUR.md)**
-
-Use the canonical armour handbook process for source/deformation evidence, Kandra package and runtime-registration gates, native clothes/equip ownership, cleanup, and the still-unproven end-to-end target-armour boundary.
-
-Supporting shared references:
+Use:
 
 - [Content Domains](../reference/CONTENT_DOMAINS.md)
 - [Assets](../reference/ASSETS.md)
 - [Native Object Ownership](../reference/NATIVE_OBJECT_OWNERSHIP.md)
-- [Lifecycle and Hooks](../reference/LIFECYCLE_HOOKS.md)
 - [Research Method](../reference/RESEARCH_METHOD.md)
 
-Merlin remains useful as a replacement-oriented tool and first-party source of native structure/identity information; it is not substituted for the evidence-backed new-content process.
+A dedicated armour process will be published from the proven armour/Kandra evidence rather than inferred from generic item authoring.

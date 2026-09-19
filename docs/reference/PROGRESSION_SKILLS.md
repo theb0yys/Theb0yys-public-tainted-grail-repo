@@ -190,4 +190,4 @@ For spending:
 
 The XP sink/context/multiplier and many stat-owner mappings are source/decompile-backed.
 
-A generic replacement progression system or always-on custom talent-spending gate is not yet justified by these mechanics alone.
+Keep progression changes on the native XP, proficiency and talent-spending paths documented above.

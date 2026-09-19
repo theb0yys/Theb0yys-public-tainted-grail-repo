@@ -1,61 +1,25 @@
-# Hook and Intervention Process
+# Hooks and Intervention Rules
 
-> **Reference/process page.** Use this before adding a Harmony patch, event listener, reflected call, runtime mutation, or other intervention.
+Use the game's real owner and intervene as narrowly as possible.
 
-## What this system is
+## Result adjustment
 
-~~~text
-goal → native owner → exact identity → lifecycle map
-→ read-only observation → smallest intervention
-→ downstream observation → cleanup → compatibility record
-~~~
+Use a postfix when the game should perform its normal calculation and the mod only adjusts the returned result.
 
-## Who owns it in FoA
+## Action guard
 
-The native method/type/event owns the lifecycle. Harmony, reflection or a framework API is only the access mechanism.
+Use a prefix/guard when the game owns the action and the mod only decides whether that exact action may continue.
 
-## Important identities, types, and methods
+## Observation
 
-Record target assembly, fully qualified type, exact method/overload, patch kind, state before/after, original-method behavior, version/fingerprint, evidence, runtime validation, and cleanup.
+Use a postfix/event observer when the mod only needs completed game state for UI, VFX, audio or diagnostics.
 
-## Where it exists in the lifecycle
+## Ownership rules
 
-A useful hook sits after the required state exists and before the downstream consumer commits or caches it.
+- keep targeting, inventory transfer, damage calculation and persistence native unless the mod explicitly owns them;
+- filter to the exact actor/item/context the feature supports;
+- do not patch a broad manager when a narrower owner exists;
+- undo mod-owned runtime state on disable/unload;
+- keep hot-path work bounded.
 
-Merchant example:
-
-~~~text
-Shop.OpenShop → stock usable/decompressed
-→ ShopUI.OnFullyInitialized Prefix
-→ stock mutation
-→ original UI snapshots list
-~~~
-
-## How we interact with it
-
-1. Define the exact effect.
-2. Identify the native owner.
-3. Map creation, readiness, mutation, consumption and cleanup.
-4. Observe read-only first where practical.
-5. Prefer native/public API, then events, then narrow Harmony, then documented reflection; transpiler last.
-6. Preserve original behavior unless suppression is intentional.
-7. Fail closed on missing owner, identity or readiness.
-8. Verify the downstream owner, not merely the hook marker.
-9. Clean up what the mod owns.
-10. Revalidate patch-sensitive targets after updates.
-
-## Why this route
-
-Repository failures show that partial path copying is insufficient. One matching API call does not reproduce ownership, input, lifecycle, dispatch, or cleanup semantics.
-
-## What goes wrong
-
-Wrong overload; too-early/late hook; original accidentally skipped; UI already cached state; input never reaches handler; reflection drift; cleanup omitted; hook-fire mistaken for feature success.
-
-## How to verify
-
-Prove target resolution, hook invocation, preconditions, one mutation, downstream observation, cleanup/restoration, and exact build scope.
-
-## Current proof boundary
-
-See [Hook Catalogue](HOOK_CATALOGUE.md) for researched surfaces. Entries remain version-sensitive where appropriate.
+See [Hook Catalogue](HOOK_CATALOGUE.md) for working game surfaces.

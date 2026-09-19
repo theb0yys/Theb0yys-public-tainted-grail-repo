@@ -98,4 +98,4 @@ For each private integration:
 
 ## Current proof boundary
 
-This handbook includes private surfaces only where there is concrete evidence and a clear reason. Private members should never be presented as future-stable public APIs.
+This handbook includes private surfaces only where there is concrete evidence and a clear reason. Private members should never be presented as stable public APIs.

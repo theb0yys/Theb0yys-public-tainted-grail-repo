@@ -28,7 +28,7 @@ The narrowest relevant domain owns the subject fact. Cross-domain relationships 
 | cameras | gameplay/dialogue/cinematic cameras, FOV, camera effects/states | cutscenes, dialogue, UI, animation |
 | combat | damage, block/parry/stagger/critical, mitigation, death/execution | weapons, armour, stats, effects, creatures |
 | containers-loot-rewards | containers, loot pools, drops, rewards, randomization, respawn | items, quests, spawns, merchants |
-| content-versioning | DLC/content-pack ownership, patch-added/removed records, historical applicability | every version-sensitive domain |
+| content-versioning | DLC/content-pack ownership, patch-added/removed records, version-specific applicability | every version-sensitive domain |
 | crafting-alchemy-recipes | recipes, ingredients, outputs, stations, discovery, crafting requirements | items, interactions, merchants, skills |
 | creatures-enemies | creatures, enemy archetypes, variants, bosses, roles, resistances, loot | AI, combat, spawning, assets, animation |
 | cutscenes-sequences | cutscene/timeline identities, cameras, dialogue sequences, scripted encounters | cameras, dialogue, events, animation, audio |

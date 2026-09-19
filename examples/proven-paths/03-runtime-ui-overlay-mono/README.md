@@ -23,4 +23,3 @@ Press the configured key (default F6) to toggle the panel.
 
 A production settings screen, complex controller UI, or native-screen extension needs proper input/cursor/focus ownership. Do not scale this one \`OnGUI\` example into an entire UI framework.
 
-Public template validation: **NOT_RUN**.

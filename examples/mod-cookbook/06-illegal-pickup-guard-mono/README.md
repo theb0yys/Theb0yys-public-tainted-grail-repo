@@ -1,17 +1,17 @@
-# 06 — Illegal Pickup Modifier Guard
+# Modifier-Gated Illegal Pickup
 
-**Category:** interaction / theft  
-**Source-path evidence:** RUNTIME_EVIDENCED  
-**This rewritten public example:** NOT_RUN
+This example teaches the theft-guard pattern used by the working Hold to Steal path.
 
-This real FoA-target example patches Pickable.StartInteraction.
+The important rule is to guard the **native theft action** rather than reimplement inventory transfer.
 
-For an illegal world pickup:
+## Covered interaction families
 
-- modifier held → let the original game interaction continue;
-- modifier not held → return false and skip the original pickup.
+The working implementation lineage covers:
 
-The underlying owner path had user-reported allow/block checks for illegal world and container theft. This public example intentionally narrows that design to **world Pickable only**.
+- direct loose-world theft;
+- container item transfer;
+- container take-all;
+- readable-item theft.
 
 ## Build
 
@@ -19,10 +19,11 @@ The underlying owner path had user-reported allow/block checks for illegal world
 dotnet build .\IllegalPickupGuardExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-Default modifier: LeftAlt.
+## Pattern
 
-## Safety
+1. let the game decide that the action is illegal;
+2. check the mod's additional input requirement;
+3. allow the native action when authorised;
+4. block only the guarded theft action otherwise.
 
-Test on a disposable save. This changes interaction authorization, not item ownership/persistence rules.
-
-Do not add container/take-all/readable-item patches until each path is understood separately.
+Legal pickup remains native.

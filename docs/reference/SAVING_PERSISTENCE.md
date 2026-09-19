@@ -128,6 +128,4 @@ For a durable claim, test separately:
 
 Custom item GUID serialization/lookup is supported by static native-contract research. The general public custom-item path in this repository must **not** claim cold-save, missing-mod or uninstall safety until those exact tests are recorded.
 
-Native save-domain injection is **blocked as a generic route** by the current researched binary because no mutable arbitrary-domain registrar was recovered.
 
-A mod-owned sidecar contract has promising static lifecycle candidates but remains under evaluation pending controlled runtime/crash/recovery validation.

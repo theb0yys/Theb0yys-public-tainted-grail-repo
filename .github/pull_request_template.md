@@ -22,7 +22,7 @@ State exactly what you ran or observed. Do not turn source inspection, a success
 - BepInEx/toolkit version, if relevant:
 - Commands/checks run:
 - Observed result:
-- Not tested / remaining limits:
+- Known limits:
 
 ## Learning and reference placement
 

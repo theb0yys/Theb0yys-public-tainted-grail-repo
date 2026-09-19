@@ -144,7 +144,7 @@ The correct behavior is to disable the custom binding until revalidated.
 
 ### Unity AudioSource forced into an FMOD-owned lane
 
-The tested active-injection route was rejected.
+Use the replacement/ownership route described below rather than active injection.
 
 ### Raw audio committed without rights/provenance
 

@@ -126,7 +126,7 @@ If a validation fails, destroy/reject the clone rather than inserting a malforme
 
 ### 7. Register the new definition
 
-The historical proven Mono path reaches the native loader and invokes the private template-map insertion:
+The proven Mono path reaches the native loader and invokes the private template-map insertion:
 
 ~~~text
 TemplatesProvider._loader

@@ -31,4 +31,3 @@ The default is false so simply installing the template does not replace the user
 
 A real environment mod also needs scene/context gates, transition behavior, lighting/exposure review, performance testing, and current-game visual validation.
 
-Public template validation: **NOT_RUN**.

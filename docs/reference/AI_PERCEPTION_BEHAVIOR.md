@@ -116,7 +116,7 @@ A private crime helper ultimately refreshed the native alert stack. The better i
 
 Native `NpcAI.ExitCombat` already includes lost-view delay and close-range rules.
 
-Research therefore rejected adding a parallel generic search timer before understanding the native one.
+Use the native search/disengagement timer; do not add a parallel generic search timer.
 
 ### Search-for-criminal state
 

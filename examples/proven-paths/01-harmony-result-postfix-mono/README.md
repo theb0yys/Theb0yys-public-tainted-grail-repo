@@ -50,4 +50,3 @@ Preserve these invariants:
 - if the target cannot be found, fail closed and log it;
 - after a game update, reverify the target.
 
-Public template validation: **NOT_RUN**.

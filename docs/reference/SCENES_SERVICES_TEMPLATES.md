@@ -178,4 +178,3 @@ Template loading/provider lifecycle is strongly established for the researched M
 
 Custom template registration has bounded implementation/runtime evidence but private API risk and incomplete general persistence proof.
 
-The minimal new additive-scene path is source/static coherent in the working research but remains explicitly **NOT_RUN** as a full runtime gate and is not presented here as a proven custom-scene tutorial.

@@ -113,7 +113,6 @@ The Unity scene can load while FoA's SceneService/MapScene/AdditiveScene handsha
 
 ### Static custom-scene research called runtime proof
 
-The current external additive-scene path is coherent in source/decompilation, but the locked empirical gate remains NOT_RUN.
 
 ### Coordinates treated as placement proof
 

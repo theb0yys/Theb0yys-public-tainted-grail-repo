@@ -36,4 +36,3 @@ Before replacing \`DemoAction.TryExecute()\`:
 - preserve the normal native path when allowed;
 - do not invent state cleanup—research what the target action owns.
 
-Public template validation: **NOT_RUN**.

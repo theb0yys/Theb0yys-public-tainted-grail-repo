@@ -43,4 +43,3 @@ A real audio mod must additionally research:
 
 Do not copy a commercial sound pack into this repo.
 
-Public template validation: **NOT_RUN**.

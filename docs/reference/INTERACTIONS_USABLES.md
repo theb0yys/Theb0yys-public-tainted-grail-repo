@@ -125,7 +125,7 @@ The Hold-to-Steal failure sequence proves the point.
 
 ### Attempt 1 — Change visible prompt
 
-Version 0.4.0 showed **Hold to Steal**, but the final theft guard still blocked the action.
+The working theft path converts the visible theft interaction into an authorised hold/guard flow while preserving the native transfer action.
 
 **Lesson:** presentation change did not establish authorization.
 
