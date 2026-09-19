@@ -1,10 +1,32 @@
 # Build Your First Mono Plug-in
 
-Use this when you have confirmed a Mono/BepInEx 5 setup.
+## What you're doing
 
-Choose this guide because your installed Tainted Grail setup is using the Mono/BepInEx 5 lane, not because of an assumption based on another guide.
+You are building the smallest useful plug-in test for the supported **Mono/BepInEx 5** Tainted Grail lane.
 
-## Step 1 - Copy the starter
+The goal is to prove the complete path from your source code to a log message produced by your loaded plug-in.
+
+## What you need
+
+- an installation you already identified as Mono;
+- the matching BepInEx 5 lane installed and able to start;
+- the starter repository;
+- .NET Framework 4.7.2 targeting/developer pack;
+- your real `GameRoot`.
+
+## What you'll learn
+
+You will learn how to:
+
+- copy the Mono starter;
+- give the plug-in its own stable identity;
+- build the net472 project against your local installation;
+- deploy only your plug-in DLL;
+- confirm that BepInEx loaded your code.
+
+## Steps
+
+### 1. Copy the starter
 
 ~~~powershell
 New-Item -ItemType Directory -Force C:\TGModding\MyFirstTGMonoMod | Out-Null
@@ -12,7 +34,7 @@ Copy-Item .\templates\mono-basic\* C:\TGModding\MyFirstTGMonoMod\
 cd C:\TGModding\MyFirstTGMonoMod
 ~~~
 
-## Step 2 - Edit Plugin.cs
+### 2. Edit `Plugin.cs`
 
 Replace it with:
 
@@ -37,7 +59,7 @@ public sealed class Plugin : BaseUnityPlugin
 
 Change the GUID to one you own.
 
-## Step 3 - Build
+### 3. Build
 
 Set your real game path:
 
@@ -57,9 +79,7 @@ The output is expected under:
 bin\Release\net472\TGCommunity.MonoBasic.dll
 ~~~
 
-If the build complains about .NET Framework reference assemblies/targeting packs, install the .NET Framework 4.7.2 developer/targeting pack through Visual Studio Installer and retry.
-
-## Step 4 - Deploy
+### 4. Deploy
 
 ~~~powershell
 $PluginDir = Join-Path $GameRoot "BepInEx\plugins\MyFirstTGMonoMod"
@@ -67,10 +87,32 @@ New-Item -ItemType Directory -Force $PluginDir | Out-Null
 Copy-Item .\bin\Release\net472\TGCommunity.MonoBasic.dll $PluginDir -Force
 ~~~
 
+### 5. Launch and check the log
+
 Launch the game, close it, then search the BepInEx log for:
 
 ~~~text
 MY FIRST MONO MOD LOADED SUCCESSFULLY
 ~~~
 
-That is the complete success condition for this first exercise.
+## What success looks like
+
+Your first Mono plug-in test passes when:
+
+- the project builds;
+- the DLL is deployed under your dedicated BepInEx plug-in folder;
+- BepInEx discovers the plug-in;
+- the log contains `MY FIRST MONO MOD LOADED SUCCESSFULLY`;
+- no plug-in load exception is produced.
+
+## Common problems
+
+**The build reports missing .NET Framework reference assemblies:** install the .NET Framework 4.7.2 developer/targeting pack through Visual Studio Installer and retry.
+
+**The log line never appears:** confirm that BepInEx itself starts, the DLL is in the correct plug-in folder, and the deployed DLL matches your newest build.
+
+**You used this project against an IL2CPP installation:** return to **[Find the Game and Identify the Runtime](02_FIND_GAME_AND_RUNTIME.md)** and use the starter that matches the installed runtime.
+
+## Where to go next
+
+Use **[What Success Looks Like](06_SUCCESS_CHECKLIST.md)** to confirm the whole first loop, then continue to **[Learn the Everyday Modding Loop](../01-basic/README.md)**.
