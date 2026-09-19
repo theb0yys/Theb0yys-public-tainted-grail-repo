@@ -19,7 +19,7 @@ Work through:
 Work through:
 
 1. [Move from items to weapons, armour, and creatures](05_CONTENT_PROGRESSION.md)
-2. Read the matching docs/pipelines/ document before each specialization.
+2. Open the matching `docs/pipelines/` reference only for the content type you are currently making.
 3. Use [the basic debugging flow](06_BASIC_DEBUGGING_FLOW.md) to keep "worked in the editor" separate from "worked in the game".
 
 ## Your progress
@@ -34,4 +34,4 @@ By the end, you should be able to make a small change, rebuild or re-author it, 
 
 ## Real FoA examples
 
-After your first smoke test and the everyday modding loop make sense, use [examples/mod-cookbook](../examples/mod-cookbook/README.md) for small real-game examples: stamina, carry capacity, fall damage, magic projectiles, HUD, illegal pickups, footsteps, jumping, and Merlin content authoring.
+After your first smoke test and the everyday modding loop make sense, browse [examples/mod-cookbook](../examples/mod-cookbook/README.md) as an example library rather than another required sequence. It contains small real-game examples: stamina, carry capacity, fall damage, magic projectiles, HUD, illegal pickups, footsteps, jumping, and Merlin content authoring.
