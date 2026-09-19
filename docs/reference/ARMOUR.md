@@ -33,6 +33,8 @@ Static native evidence identifies:
 
 Current Kandra inspection identifies normal renderer registration entry through `KandraRenderer.OnEnable()`, with manager-side finalisation in its update lifecycle.
 
+The private evidence archive also establishes the native clothing handoff more concretely: `BaseClothes` owns a `KandraRig`; its inspected equip path loads the clothing asset and calls `ClothStitcher.Stitch(clothPrefab, _kandraRig)`. The Kandra-specific stitch route includes `KandraRenderer.RedirectToRig`, mesh-cover/culling state, VFX renderer rebinding, and armour-feature bone mapping. These are static native-contract findings, not proof that an arbitrary custom armour package will equip correctly.
+
 ## Important identities, types, and methods
 
 Native/static surfaces include:
@@ -165,6 +167,16 @@ A complete custom-armour process eventually needs:
 11. unequip/re-equip cleanup;
 12. scene/load transitions;
 13. save/load and missing-mod behavior.
+
+## Evidence maturity
+
+The armour evidence must remain split into three lanes:
+
+- **Importer/conversion evidence:** source geometry, canonical representation, deformation and package work.
+- **Kandra registration evidence:** proof-package/runtime renderer registration and associated validation.
+- **Native clothing static contract:** `ItemTemplate → BaseClothes → ClothStitcher → KandraRig/KandraRenderer → cleanup/release`.
+
+None of those lanes can substitute for the missing end-to-end target-armour proof. A successful Kandra registration does not prove native item/equip integration; the decompiled clothes path does not prove a custom converter; and successful geometry conversion does not prove runtime deformation or persistence.
 
 ## Current proof boundary
 
