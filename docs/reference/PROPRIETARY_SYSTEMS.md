@@ -22,6 +22,45 @@ A reader should finish a proprietary-system page able to say:
 
 The documentation must therefore translate reverse-engineered evidence into a **system model**, not dump raw decompilation or present a sequence of unexplained gates.
 
+
+## Fixed documentation sequence
+
+Every proprietary-system page must follow this reasoning order:
+
+~~~text
+1. map the system
+2. explain what it does and how it works
+3. trace the complete lifecycle
+4. trace the normal vanilla FoA route through it
+5. identify the safe mod entry seam
+6. document the proven custom-content process
+7. extract the system-specific Golden Rules
+8. define the full validation/test matrix
+9. preserve failure history and diagnostics
+10. state exact proof boundaries and unknowns
+~~~
+
+This order is mandatory because the process is only understandable after the reader understands the system that the process is satisfying.
+
+## Completeness rule
+
+Do not shorten a proprietary-system page merely to make it look cleaner.
+
+If a material owner, identity, state transition, resource contract, readiness condition, failure state, cleanup path, persistence implication, compatibility dependency, or required proof is necessary to understand or reproduce the integration, it belongs in the documentation.
+
+A page is incomplete when a reader still has to reverse engineer one of the following to use it safely:
+
+- who owns the transition;
+- what state exists before or after the transition;
+- what input identity or resource is expected;
+- what makes the transition complete;
+- what rejects or defers it;
+- what cleanup is required;
+- what evidence proves it;
+- what evidence still does not exist.
+
+The standard is **complete enough to reproduce the reasoning**, not artificially short.
+
 ---
 
 # 1. Mandatory page structure
