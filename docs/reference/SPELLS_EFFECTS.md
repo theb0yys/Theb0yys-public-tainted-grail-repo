@@ -44,6 +44,52 @@ Evidence-backed surfaces:
 
 The working spell research found dozens of non-story `ItemTemplate_Magic_*` rows, but a complete item→SkillGraph→VFX join was not automatically present in the basic dump.
 
+## Exact native spell traces
+
+Two researched spells show why the whole chain must be traced instead of classifying spells by name.
+
+### Wolf's Call — summon exemplar
+
+~~~text
+ItemTemplate_Magic_Tier1_SummonWolf
+→ ItemActionType = CastSpell
+→ Magic_Summon_Ally SkillGraph
+→ item-effect SummonPrefab override
+→ Spec_Summon_AnimalFrostWolf
+→ NPCTemplate_AnimalFrostWolf_Summon
+~~~
+
+The spell item, SkillGraph, summon-spec identity and spawned actor template are separate links.
+
+A prior comparison used a plain wolf spec as contextual evidence; exact serialized tracing corrected the direct Wolf's Call target to the **Frost Wolf** summon spec. That correction is why comparison/name evidence must not be promoted into an exact relationship.
+
+### Burning Ember — projectile/status exemplar
+
+~~~text
+ItemTemplate_Magic_Tier1_BurningEmber
+→ ItemActionType = CastSpell
+→ Magic_Projectile_Pistol
+→ projectile entries
+→ Projectile_OnHit_ApplyStatus
+→ Status_Fire1_Burn
+~~~
+
+Projectile entries can override graph defaults such as the status template and buildup values.
+
+### Other researched runtime surfaces
+
+- `MagicUtils.GetManaCostMultiplier`
+- `MagicUtils.GetModifiedManaCost(...)`
+- heavy mana-cost getters
+- `MagicLightBase.OnPerformCast(...)`
+- `MagicFSM.OnPerformCast` / `MagicFSM.EndCasting`
+- projectile velocity/range owners
+- `HealthElement.OnDamage`
+- persistent AoE owners
+- `CharacterStatuses.BuildupStatus(...)`
+
+These surfaces support bounded tuning and diagnostics; they do not by themselves establish a durable custom-spell registration path.
+
 ## Where it exists in the lifecycle
 
 A cast-facing VFX overlay can observe:
@@ -111,16 +157,20 @@ It also exposed that:
 
 For a spell/effect feature, independently verify:
 
-1. exact spell item identity;
-2. effect/SkillGraph identity;
-3. one-cast event semantics;
-4. target/cost/cooldown if modified;
-5. gameplay effect result;
-6. VFX binding;
-7. VFX renderer correctness;
-8. audio if relevant;
-9. cleanup;
-10. save/acquisition only if claimed.
+1. exact magic ItemTemplate GUID/name;
+2. exact action type;
+3. exact ItemEffectsSpec / SkillReference / SkillGraph;
+4. item-level overrides;
+5. cast trigger and animation/FSM timing;
+6. target/cost/cooldown if modified;
+7. projectile/AoE/summon identity where applicable;
+8. gameplay damage/status/summon result;
+9. VFX binding and renderer correctness;
+10. audio separately;
+11. cleanup;
+12. acquisition/UI/localisation;
+13. save/load only if durable;
+14. disable/uninstall behavior.
 
 ## Current proof boundary
 
@@ -128,4 +178,4 @@ For a spell/effect feature, independently verify:
 
 **Runtime/evidence caution:** current overlay examples do not prove native per-spell VFX replacement or a generic custom spell registration path.
 
-Exact spell/effect additions require a separate proven process.
+Exact native spell traces and several cost/cast/projectile/buildup surfaces are known, but a generic durable **custom spell registration** process remains blocked on registration, acquisition, UI/localisation, save/uninstall behavior, compatibility, and live end-to-end validation.
