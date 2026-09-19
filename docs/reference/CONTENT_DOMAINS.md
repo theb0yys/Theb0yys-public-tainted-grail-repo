@@ -1,22 +1,9 @@
-# Content Domains and Native Owners
+# Moved
 
-FoA content shares identity, templates, assets and lifecycle concepts, but each content type has its own runtime owners.
+This page has moved to its canonical Wave 5 location:
 
-| Content | Native owners | Reference |
-| --- | --- | --- |
-| Items | `ItemTemplate`, `Item`, inventory and stock | [Items](ITEMS.md) |
-| Weapons | Item, equip, hand, combat and rigid presentation | [Weapons](WEAPONS.md) |
-| Armour | Item, native clothes, stitching and Kandra | [Armour](ARMOUR.md) |
-| Creatures and NPCs | `NpcTemplate`, `LocationTemplate`, actor, AI and presentation | [Creatures and NPCs](CREATURES_NPCS.md) |
-| Spells | Item, skill/effect graph and cast lifecycle | [Spells and Effects](SPELLS_EFFECTS.md) |
-| Recipes | Recipe definitions, station collections and learned recipes | [Recipes and Crafting](RECIPES_CRAFTING.md) |
-| Merchants | Shop, stock, pricing and shop UI | [Merchants and Distribution](DISTRIBUTION_MERCHANTS_LOOT.md) |
-| World content | Scenes, locations, spawners and travel | [World, Scenes and Travel](WORLD_SCENES_TRAVEL.md) |
+**[Open the canonical page →](../../reference/content-domains.md)**
 
-## Keep responsibilities separate
+This legacy path is retained for compatibility.
 
-Item registration does not supply weapon presentation. A loaded model does not supply an NPC's gameplay components. A recipe displayed in a menu does not establish persistent recipe identity.
-
-Use each domain's native owner for its operation. Keep asset loading, gameplay behaviour, cleanup and persistence distinct.
-
-Supporting references: [Identity](IDENTITY_GUIDS_NAMES.md), [Templates and Registries](TEMPLATES_REGISTRIES.md), [Native Object Ownership](NATIVE_OBJECT_OWNERSHIP.md), and [Resource Lifetime](RESOURCE_LIFETIME.md).
+Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
