@@ -1,16 +1,35 @@
-# 05 - Content Progression
+# Move from Items to Weapons, Armour, and Creatures
 
-Do not learn all content pipelines simultaneously.
+## What you're doing
 
-Use this order.
+You are learning the content-authoring paths in an order that adds one layer of responsibility at a time instead of trying to learn every pipeline simultaneously.
 
-## 1. Item
+## What you need
 
-Read docs/pipelines/ITEMS.md.
+- a working Merlin Workshop authoring environment;
+- a completed first item-authoring session;
+- the public pipeline references under `docs/pipelines/`;
+- a habit of recording what was source-confirmed, editor-validated, or runtime-tested.
+
+## What you'll learn
+
+You will learn how the content paths build on each other:
+
+~~~text
+item -> weapon / armour -> creature / NPC
+~~~
+
+You will also learn which responsibilities are new at each stage.
+
+## Steps
+
+### 1. Learn the item pipeline
+
+Read [ITEMS.md](../docs/pipelines/ITEMS.md).
 
 Learn:
 
-- ItemTemplate creation;
+- `ItemTemplate` creation;
 - inheritance/category;
 - localization;
 - icon/addressable concept;
@@ -20,28 +39,28 @@ Learn:
 
 Do not worry about custom combat behaviour yet.
 
-## 2. Weapon
+### 2. Add weapon-specific responsibilities
 
-Read docs/pipelines/WEAPONS.md.
+Read [WEAPONS.md](../docs/pipelines/WEAPONS.md).
 
 A weapon builds on the item pipeline.
 
 Add only the weapon-specific responsibilities:
 
 - correct abstract weapon family;
-- ItemEquipSpec;
-- EquipmentType;
+- `ItemEquipSpec`;
+- `EquipmentType`;
 - weapon representation prefab;
-- Weapon component;
-- WeaponType;
+- `Weapon` component;
+- `WeaponType`;
 - collider;
 - combat stats.
 
 Test the logical item before tuning every stat.
 
-## 3. Armour
+### 3. Add armour-specific responsibilities
 
-Read docs/pipelines/ARMOUR.md.
+Read [ARMOUR.md](../docs/pipelines/ARMOUR.md).
 
 Armour also builds on the item pipeline.
 
@@ -55,9 +74,9 @@ Add:
 
 Keep worn representation and drop/pick-up representation conceptually separate.
 
-## 4. Creature / NPC
+### 4. Move to a creature or NPC last
 
-Read docs/pipelines/CREATURES_KANDRA.md.
+Read [CREATURES_KANDRA.md](../docs/pipelines/CREATURES_KANDRA.md).
 
 Only start here once the authoring workflow feels familiar.
 
@@ -73,8 +92,28 @@ The source-confirmed preparation route includes:
 8. then test combat, weapons, loot and death;
 9. only then introduce custom fighting-style/animation changes.
 
-## Evidence warning
+### 5. Keep the evidence state explicit
 
 The current public pipeline documents are source-contract documentation. Their headers state whether fresh editor/game execution was actually performed.
 
 When you successfully run one, record the exact toolkit/game versions and result.
+
+## What success looks like
+
+You can explain what the base item pipeline owns, what weapons and armour add, and why creatures/NPCs are a larger authoring problem.
+
+You can also work through one layer at a time without presenting source-confirmed structure as runtime proof.
+
+## Common problems
+
+**You start with a creature before understanding items:** too many new systems become unknown at once.
+
+**You tune every weapon or armour field before proving the logical definition:** validate the smallest working shape first.
+
+**You treat editor/source evidence as game-runtime evidence:** keep those evidence states separate.
+
+**You change inheritance, visuals, stats, and behaviour in one test:** reduce the change until a failure tells you something useful.
+
+## Where to go next
+
+When the staged content loop makes sense, continue to **[Understand How Mods Work](../02-foundational/README.md)** or follow the specific pipeline reference for the content you are building.
