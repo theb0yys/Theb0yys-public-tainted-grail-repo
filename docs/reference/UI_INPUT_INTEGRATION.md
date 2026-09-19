@@ -1,3 +1,7 @@
-# UI and Input Integration
+# Moved
 
-Read [UI, Input, Focus and Command Routing](UI_INPUT.md) for cursor ownership, modal input, native dispatch and cleanup.
+This compatibility alias now points directly to the canonical Wave 5 owner:
+
+**[Open the canonical page →](../../systems/ui-input/README.md)**
+
+The alias remains so older links continue to resolve.
