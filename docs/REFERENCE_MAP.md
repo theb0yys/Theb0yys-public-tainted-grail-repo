@@ -84,6 +84,38 @@ Template GUID serialization/restoration, registration timing, session-only conte
 
 Routes questions to the right game-knowledge/native-system owner: items, weapons, armour, creatures, recipes, merchants, spells, UI, spawning, saves, world/scenes, and more.
 
+### [Mechanics Catalogue](reference/MECHANICS_CATALOGUE.md)
+
+Human-readable status map of reusable mechanics extracted from the working repository, including their evidence state and forbidden generalisations.
+
+### [Combat, Stats, Costs, Poise, and Stagger](reference/COMBAT_STATS_EFFECTS.md)
+
+Native stat ownership, non-saved `StatTweak` patterns, item costs, parry/block, poise-vs-stagger, and scoped damage-event tuning.
+
+### [Recipes, Merchants, and Economy Integration](reference/RECIPES_ECONOMY.md)
+
+Separates recipe learning, runtime recipe append, custom registration, merchant insertion, loot and reward lanes.
+
+### [Actors, Locations, Spawning, and Session Ownership](reference/ACTORS_LOCATIONS_SPAWNING.md)
+
+`LocationTemplate`, `Location`, `NpcElement`, session-only actors, death/corpse handoff, cleanup and persistence boundaries.
+
+### [UI, Input, Focus, and Command Routing](reference/UI_INPUT_INTEGRATION.md)
+
+The full UI path: owner, lifecycle, input/control, cursor/focus, dispatch, handler, command, close and restoration.
+
+### [Asset and Resource Lifetime](reference/RESOURCE_LIFETIME.md)
+
+Async load, owner adoption, cancellation, release, and why logical/GameObject/renderer lifetimes must be handled separately.
+
+### [World, Scenes, Portals, and Travel](reference/WORLD_SCENES_TRAVEL.md)
+
+Native travel chain, SceneService, scene identity/config, additive lifecycle and the still-NOT_RUN external custom-scene gate.
+
+### [Reverse Engineering and Discovery](reference/REVERSE_ENGINEERING_DISCOVERY.md)
+
+How to discover new GUIDs, types, methods and ownership relationships without turning guesses or decompilation into unsupported runtime claims.
+
 ## Process and diagnostics
 
 ### [Debugging and Diagnostics](reference/DIAGNOSTICS.md)
