@@ -1,81 +1,16 @@
 # Start Here
 
-## 1. Identify your runtime first
+The canonical entry point for this repository is the **[root README](../README.md)**.
 
-Tainted Grail has existed across distinct Unity runtime/loader lanes. Do not choose a template by guesswork.
+This page is kept so old bookmarks and links still lead somewhere useful. It intentionally does not repeat setup instructions.
 
-Read [RUNTIME_GUIDE.md](RUNTIME_GUIDE.md).
+Choose the page that matches what you need:
 
-For the captured Steam public build validated on 2026-08-30, the game was IL2CPP. Tainted Grail modding also supports the Mono/BepInEx 5 lane; identify the runtime of the installation you are actually targeting.
+- **Never made a mod:** [Make Your First Tainted Grail Mod](../00-never-made-a-mod-start-here/README.md)
+- **Need to identify Mono vs IL2CPP:** [Runtime Guide](RUNTIME_GUIDE.md)
+- **IL2CPP plug-in already loads:** [Make Your First IL2CPP Game Change](../01-basic/03A_FIRST_IL2CPP_GAME_CHANGE.md)
+- **Making items, weapons, armour, or creatures:** [FoA Authoring Pipelines](pipelines/README.md)
+- **Something is failing:** [Debugging](DEBUGGING.md)
+- **Need the formal testing-status definitions:** [Testing and Evidence Status](EVIDENCE.md)
 
-## 2. Install the correct BepInEx lane locally
-
-Use upstream BepInEx documentation and a loader package appropriate for your installed game runtime.
-
-Do not copy BepInEx or game binaries into this repository.
-
-Typical local structure after a successful loader install:
-
-```text
-<GameRoot>/
-  BepInEx/
-    core/
-    plugins/
-  ...
-```
-
-The exact root files differ between Mono and IL2CPP.
-
-## 3. Choose a starter
-
-### Mono
-
-Use `templates/mono-basic` when the game installation is genuinely Unity Mono and the matching BepInEx 5 lane is installed.
-
-Build:
-
-```powershell
-dotnet build templates/mono-basic/MonoBasic.csproj -c Release -p:GameRoot="D:\Games\Tainted Grail FoA"
-```
-
-### IL2CPP
-
-Use `templates/il2cpp-basic` when the game installation is Unity IL2CPP with BepInEx 6 IL2CPP installed.
-
-Build:
-
-```powershell
-dotnet build templates/il2cpp-basic/Il2CppBasic.csproj -c Release -p:GameRoot="D:\Games\Tainted Grail FoA"
-```
-
-Change the path to your local installation. Do not commit it.
-
-## 4. Deploy only your plug-in
-
-Copy your compiled plug-in DLL into:
-
-```text
-<GameRoot>/BepInEx/plugins/
-```
-
-Keep source and build outputs in your own workspace. Do not commit generated DLLs to this starter repository.
-
-## 5. Confirm loader entry before debugging gameplay
-
-Start the game and inspect BepInEx logs. First prove:
-
-- the expected BepInEx lane started;
-- your plug-in GUID/name/version was discovered;
-- your plug-in reached its startup method.
-
-Only then debug Harmony/game behavior.
-
-## 6. Add game references cautiously
-
-A real gameplay mod may need local references to game or generated interop assemblies.
-
-Reference them from the local installation with `HintPath` or a machine-local build property. Never redistribute those assemblies from this repository.
-
-## 7. Keep patches narrow
-
-Prefer a small, reversible Harmony prefix/postfix/transpiler over broad mutation. Log enough context to diagnose failures without dumping proprietary or personal data.
+For general browsing, return to the **[root README](../README.md)** and choose what you want to make.
