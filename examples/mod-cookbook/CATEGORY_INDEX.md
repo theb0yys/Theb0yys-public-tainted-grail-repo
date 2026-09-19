@@ -26,6 +26,10 @@ This index is the broad map. A category appears here even when its current evide
 | Main/off-hand observation | 35 main/off-hand observer | SOURCE_BUILD_EVIDENCED selected read surfaces |
 | Weapon visibility/state observation | 36 weapon visibility/state observer | LOAD_EVIDENCED read surface; exact public example NOT_RUN |
 | Equipment lifecycle attribution | recipe 12 | SOURCE_CONFIRMED lifecycle map; public recipe NOT_RUN |
+| Combat state observation | 37 combat state observer | SOURCE_BUILD_EVIDENCED |
+| Guard / block / parry observation | 38 guard / block / parry observer | SOURCE_BUILD_EVIDENCED guard entry; RUNTIME_EVIDENCED damage-result fields |
+| Attack / cast lifecycle observation | 39 attack / cast action observer | SOURCE_CONFIRMED lifecycle seams |
+| Combat action lifecycle attribution | recipe 13 | SOURCE_CONFIRMED lifecycle map; public recipe NOT_RUN |
 | Item stats | content/01 | STATIC_CONFIRMED |
 | Weapons | content/02 | STATIC_CONFIRMED |
 | Armour | content/03 | STATIC_CONFIRMED |

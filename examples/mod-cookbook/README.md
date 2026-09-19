@@ -68,6 +68,9 @@ The exact rewritten public examples are **NOT_RUN** until somebody builds and te
 | [34 Equipment change observer](34-equipment-change-observer-mono/README.md) | equipment / lifecycle observation | SOURCE_CONFIRMED |
 | [35 Main/off-hand observer](35-hand-item-observer-mono/README.md) | equipment / hand-state observation | SOURCE_BUILD_EVIDENCED |
 | [36 Weapon visibility/state observer](36-weapon-visibility-state-observer-mono/README.md) | weapon presentation / state observation | LOAD_EVIDENCED read surface |
+| [37 Combat state observer](37-combat-state-observer-mono/README.md) | combat / state observation | SOURCE_BUILD_EVIDENCED |
+| [38 Guard / block / parry observer](38-guard-block-parry-observer-mono/README.md) | combat / defence-result observation | SOURCE_BUILD_EVIDENCED guard entry; RUNTIME_EVIDENCED damage-result fields |
+| [39 Attack / cast action observer](39-attack-cast-action-observer-mono/README.md) | combat / action lifecycle observation | SOURCE_CONFIRMED lifecycle seams |
 
 Also see [proven-path mechanism templates](../proven-paths/README.md) for generic patching, UI, audio-gating and skybox ownership shapes.
 
@@ -98,6 +101,7 @@ These are intentionally not all compileable one-file mods. They document the sma
 - [Buff/debuff tuning evidence gate](recipes/10-buff-debuff-tuning/README.md)
 - [Consumable effect attribution](recipes/11-consumable-effect-attribution/README.md)
 - [Equipment lifecycle attribution](recipes/12-equipment-lifecycle-attribution/README.md)
+- [Combat action lifecycle attribution](recipes/13-combat-action-lifecycle-attribution/README.md)
 
 For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 
@@ -122,6 +126,10 @@ For the full category/testing map, see [CATEGORY_INDEX.md](CATEGORY_INDEX.md).
 - item/weapon combat stats: content example 01/02;
 - general damage examples include 10 (magic damage) and 23 (character damage observation);
 - combat VFX lifecycle guidance lives under recipes/09-combat-vfx/.
+- combat-state transitions with equipped-hand context: example 37;
+- guard entry plus observed block/parry damage results: example 38;
+- melee, ranged-draw and spell-cast lifecycle observation: example 39;
+- action-to-result ownership and attribution boundaries: recipe 13.
 
 ### Statuses and character state
 - status buildup remains example 13;
