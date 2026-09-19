@@ -110,14 +110,20 @@ You are not expected to know all of the terminology before you begin. The guides
 - `tools/verify-public-surface.ps1` — CI-purpose repository guard.
 - `.github/workflows/public-surface.yml` — runs the public-surface guard on pushes and pull requests.
 
-## Reference docs
+## Learn vs reference
 
-Use these when you need detail rather than a learning path:
+**Learning pages** are the guided paths linked above. Follow those in order when you are building your first mods.
 
-- [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP, current reference snapshot, and local IL2CPP reference layers.
-- [FoA Authoring Pipelines](docs/pipelines/README.md) — Merlin Workshop items, weapons, armour, and creatures/NPCs.
-- [Debugging](docs/DEBUGGING.md) — loader, plug-in, patch, and content troubleshooting.
-- [Testing and Evidence Status](docs/EVIDENCE.md) — exact meanings of the repository's deeper testing-status labels.
+**Reference pages** are for lookup. You do not need to read `docs/` front-to-back.
+
+**[Open the reference library →](docs/REFERENCE_MAP.md)**
+
+Common lookups:
+
+- [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
+- [FoA Authoring Pipelines](docs/pipelines/README.md) — detailed Merlin Workshop content contracts.
+- [Debugging](docs/DEBUGGING.md) — troubleshoot a specific failure.
+- [Testing and Evidence Status](docs/EVIDENCE.md) — exact meanings of deeper testing-status labels.
 
 ## Public-repository boundary
 
