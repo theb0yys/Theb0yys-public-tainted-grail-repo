@@ -115,6 +115,56 @@ Evidence boundaries:
 - no private production source or proprietary asset is copied;
 - no new runtime, save, decompilation, compatibility or release validation was performed by this migration.
 
+## Wave 5 — legacy reference archetype audit
+
+Status: **PASSED on this migration branch**, subject to final branch validation recorded in PR review.
+
+Control artifacts:
+- `contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md`
+- `contributing/authoring/reference-audit/packets/README.md`
+
+Audit result:
+- 18 mixed-role substantive legacy pages received packets and were split into canonical system + mechanic pages.
+- 14 single-role substantive legacy pages migrated directly without artificial packets.
+- 4 small aliases now redirect directly to canonical owners.
+- previously migrated Waves 1–4 redirects were preserved.
+
+Mixed-role families completed:
+- AI;
+- Assets;
+- Audio;
+- Combat;
+- Crime;
+- Interactions;
+- Localisation;
+- Map/travel/scenes;
+- Progression;
+- Magic/status effects;
+- Story/quest/dialogue;
+- Environment/world placement.
+
+Single-role direct migrations completed:
+- assemblies/system-owner lookup;
+- content-domain map;
+- game-knowledge index;
+- game/system routing map;
+- Golden Rules;
+- identity kinds;
+- lifecycle hooks;
+- persistence architecture;
+- private API compatibility;
+- rendering ownership;
+- crafting/economy boundaries;
+- resource lifetime;
+- serialization/archive boundary.
+
+Legacy `docs/reference/` is retained only for compatibility redirects/aliases. New substantive documentation must use the canonical information surfaces.
+
+Evidence boundary:
+- Wave 5 reorganizes existing public knowledge by responsibility.
+- It does not newly validate runtime, save, compatibility, performance, or release claims.
+- No private production source, bulk decompilation, or proprietary assets were copied.
+
 ## Completion criteria for each migration
 
 A migrated page must:
