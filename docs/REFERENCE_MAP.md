@@ -2,6 +2,12 @@
 
 Use this page to find the current technical reference for the system you are modding.
 
+## Proprietary system architecture
+
+**[FoA Proprietary Systems Library →](systems/README.md)**
+
+System-by-system pages cover Drake, Kandra, Medusa, Leshy, HLOD, Scenes Baking, mipmap streaming, Critter VAT/ECS, runtime lifetime/orchestration, Story Graphs, Babel, archives/IO, weapons, the managed assembly map and native glider movement.
+
 ## Runtime and architecture
 
 - [Runtime guide](RUNTIME_GUIDE.md)
@@ -45,5 +51,3 @@ Use this page to find the current technical reference for the system you are mod
 
 - [Proven path examples](../examples/proven-paths/README.md)
 - [Modding cookbook](../examples/mod-cookbook/README.md)
-
-The reference set is intentionally limited to current material that is useful for building mods.

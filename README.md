@@ -103,7 +103,8 @@ You are not expected to know all of the terminology before you begin. The guides
 ## What is here
 
 - `docs/` — practical setup, runtime selection, architecture, debugging, and reference notes.
-- `docs/reference/` — the FoA technical handbook: identity, templates, hooks, lifecycle, ownership, assets, persistence and content integration.
+- `docs/reference/` — gameplay/content reference pages: identity, templates, hooks, ownership, assets and persistence.
+- `docs/systems/` — [system-by-system FoA architecture](docs/systems/README.md): Drake, Kandra, Medusa, Leshy, HLOD, Scenes Baking, mipmaps, Critter VAT/ECS, runtime lifecycle/orchestration, Story Graphs, Babel, archives, weapons, managed assemblies and glider movement.
 - `docs/pipelines/` — topic entry points for item, weapon, armour and creature documentation.
 - `templates/mono-basic/` — minimal BepInEx 5 / Unity Mono plug-in starter.
 - `templates/il2cpp-basic/` — minimal BepInEx 6 / Unity IL2CPP plug-in starter.
@@ -125,6 +126,7 @@ You are not expected to know all of the terminology before you begin. The guides
 Common lookups:
 
 - [Technical Handbook](docs/REFERENCE_MAP.md) — the complete reference index.
+- [Proprietary Systems Library](docs/systems/README.md) — what each FoA system is, what it owns, and how it fits into the runtime.
 - [Golden Rules](docs/reference/GOLDEN_RULES.md) — the cross-cutting rules behind reliable FoA modding.
 - [Runtime Guide](docs/RUNTIME_GUIDE.md) — Mono vs IL2CPP and local IL2CPP reference layers.
 - [Items: Proven Custom Item Integration](docs/reference/ITEMS.md) — the native item registration and acquisition path.
