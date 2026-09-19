@@ -145,7 +145,7 @@ This exact public example has not been run end-to-end during this documentation 
 
 **FPS is not exactly 30:** scheduling and measurement vary. Confirm that the target value changed in the log before treating small counter differences as a plug-in failure.
 
-**You want to patch a Tainted Grail class next:** that is the next layer. You will need generated interop assemblies such as `TG.Main.dll`, plus Harmony, and you must verify the exact target for your current game build.
+**You want to patch a Tainted Grail class next:** that is the next layer. You will need generated **interop assemblies** such as `TG.Main.dll`. These are managed representations generated from the IL2CPP game so your C# project can refer to Tainted Grail types and methods. You will also need Harmony, and you must verify the exact target for your current game build.
 
 ## Where to go next
 
