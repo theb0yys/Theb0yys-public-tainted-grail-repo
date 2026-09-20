@@ -1,5 +1,5 @@
 # Quests and Dialogue
 
-Use this section for quest, Story, dialogue, and external-dialogue integration work. These systems are strongly stateful, so the guides focus on exact native identities, lifecycle/state gates, migration, and safe fallback behaviour.
+Use this section when you are working with quests, dialogue, Story graphs, or external dialogue integrations.
 
-Native ownership: [Story/quests/dialogue](../../../knowledge/systems/world/story-quest-dialogue.md) and [Story Graphs](../../../knowledge/systems/world/story-graphs/README.md).
+These tasks depend heavily on exact story/quest ownership and lifecycle, so the guides focus on identifying the real story object, changing the correct stage, and avoiding state that becomes inconsistent across save/load or fallback paths.
