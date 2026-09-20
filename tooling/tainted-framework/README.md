@@ -2,6 +2,12 @@
 
 **Posture: Capability-gated — not a general FoA gameplay SDK**
 
+**Obtain:** https://www.nexusmods.com/taintedgrailthefallofavalon/mods/312
+
+**Stability boundary:** public distribution of the framework does not make every internal service public. Only specifically promoted capability contracts, such as the documented `framework.runtime-report` lane, are consumer surfaces.
+
+Do not derive an API-semver promise from the Nexus display/file version. See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Tainted Framework is the shared runtime-facing implementation layer for services that have been promoted for common use.
 
 The existence of an internal service, capability ID, host assembly or decision document does **not** make it consumer-ready.
