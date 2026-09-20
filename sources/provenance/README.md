@@ -3,27 +3,24 @@
 This ledger tracks **knowledge extraction**, not file copying.
 
 ## Waves 1–4 — 2026-09-20
-
-Covered PR #407's authoring model, the complete private mechanics catalogue, all deep-lifecycle rows, private hook index, bounded identity intake, and the first weapon/mount/companion/UI/persistence/armour/merchant/lockpick/spell/Addressables knowledge.
+PR #407 authoring model, complete private mechanics/deep-lifecycle/hook indexes, bounded identity intake, and first core domain knowledge.
 
 ## Wave 5 — 2026-09-20
-
-Published Tainted Economy and Better Bonfire Menu knowledge: final vendor-price ownership, validated price adjustment, regional/reward/harvest/container/corpse lanes, and native bonfire service/submenu ownership.
+Tainted Economy and Better Bonfire Menu: validated price seam, higher-risk loot/runtime-row lanes, native service ownership and submenu lifecycle.
 
 ## Wave 6 — 2026-09-20
+Crime & Consequences, Tainted Weather and Tainted Interface: native crime reporting/bounty, semantic extension model, bounded weather owner stack, native inventory/Character Sheet ownership and read-only UI projection boundary.
 
-Mined Crime & Consequences, Tainted Weather, and Tainted Interface installed-build research:
+## Wave 7 — 2026-09-20
+Tainted Music, Tainted Performance and Tainted Blood:
 
-- native crime witness/deferred-report/bounty ownership;
-- passive crime-awareness and guard-response boundaries;
-- project incident/witness/report/case/attribution extension model while preserving native bounty;
-- Weather → Skybox → Water owner split and bounded `Rain / Day / GreenShallows` live integration;
-- exact native Character Sheet / InventoryUI / HeroItems / Item ownership chain;
-- read-only custom inventory projection boundary and its still-outstanding runtime host matrix;
-- shared Tainted Interface / FoA Mod Manager UI-scope ownership.
+- native music vs ambience ownership;
+- plugin-owned contextual FMOD music lanes;
+- scoped native-music and ambient-zone suppression with explicit validation gaps;
+- bounded performance telemetry and causality rules;
+- post-damage/death presentation sidecar pattern;
+- real target-resolution-hook regression and lifecycle correction.
 
 ## Measurement rule
 
 A knowledge unit counts only when claims are extracted from inspectable evidence, owner/lifecycle/reasoning are reconstructed, clean-room public prose is written, evidence limits are stated and the page is linked into canonical navigation.
-
-The private corpus remains substantially larger than the published waves.
