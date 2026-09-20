@@ -5,6 +5,10 @@ Use this guide to change visible world fog without creating a competing renderin
 Canonical mechanic: [Control World Fog Through Existing HDRP Owners](../../../knowledge/mechanics/rendering/hdrp-volume-fog.md).  
 Working lineage: [HDRP / FoA Fog Control](../../../research/case-studies/rendering/fog-control.md).
 
+## Runnable source
+
+Start from the minimal public example: [HDRP fog control example](../../../examples/mono/rendering/hdrp-fog-control/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
