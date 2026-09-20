@@ -1,5 +1,8 @@
 # Observe Native Save Completion
 
+
+> **Start with source:** [Save completion example](../../../examples/mono/infrastructure/save-observer-backup/README.md)
+
 Use FoA's concrete cloud-service completion methods as a post-save notification surface. Do not invent a new native save domain.
 
 Working lineage: [Native Save Completion Observer](../../../research/case-studies/persistence/native-save-completion-observer.md).
