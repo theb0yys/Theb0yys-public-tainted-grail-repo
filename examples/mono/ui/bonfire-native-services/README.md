@@ -1,14 +1,24 @@
-# Bonfire Native Services
+# Bonfire Native Services and Submenu
 
-This example keeps the UI layer deliberately small and demonstrates the important owner boundary: route into the existing FireplaceUI service methods instead of rebuilding their gameplay transactions.
+This example demonstrates both parts of the bonfire extension pattern:
 
-At an initialized bonfire:
+1. observe the active VFireplaceUI / FireplaceUI owner;
+2. clone FoA's existing Level Up ButtonConfig to add a native-looking Services entry;
+3. open a small Services submenu made from the same native button template;
+4. route each submenu button into the real FireplaceUI service method;
+5. destroy only the mod-owned cloned rows when Back is selected or the owner changes.
 
-- F6 → OpenHeroStorage()
-- F7 → CookAction()
-- F8 → AlchemyAction()
+## Native services used
 
-VFireplaceUI.OnInitialize is observed only to capture the current native FireplaceUI owner.
+~~~text
+Stash         → FireplaceUI.OpenHeroStorage()
+Cooking       → FireplaceUI.CookAction()
+Alchemy       → FireplaceUI.AlchemyAction()
+Handcrafting  → FireplaceUI.HandcraftingAction()
+Back          → destroy the mod-owned submenu rows
+~~~
+
+The service transactions themselves remain FoA-owned.
 
 ## Build
 
@@ -16,9 +26,13 @@ VFireplaceUI.OnInitialize is observed only to capture the current native Firepla
 dotnet build .\BonfireNativeServices.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-## Boundary
+## What to change first
 
-The production Better Bonfire Menu also proved native-styled service entries/grid. This example focuses on the reusable service-routing mechanism and does not claim a production submenu/input lifecycle.
+Add another submenu row by cloning the existing button template in AddSubmenuButton(...) and point it at another known FireplaceUI service method.
 
-Guide: [Add native services to the bonfire menu](../../../../guides/tasks/ui/add-native-services-to-the-bonfire-menu.md)  
-Evidence: [Native bonfire services](../../../../research/case-studies/gameplay/bonfire-services.md)
+Do not rebuild stash/cooking/alchemy logic inside the UI layer.
+
+Related guides:
+
+- [Add native services to the bonfire menu](../../../../guides/tasks/ui/add-native-services-to-the-bonfire-menu.md)
+- [Build a native-looking bonfire services submenu](../../../../guides/tasks/ui/build-a-native-looking-bonfire-services-menu.md)
