@@ -1,5 +1,5 @@
 # Avalon Cheat Panel — Dual-Runtime Starter
 
-Feature boundary: runtime cheat/debug panel.
+Use this starter for a cross-runtime cheat or debug panel that shares feature logic while keeping Mono and IL2CPP host code separate.
 
-Start from `../../tainted-framework-consumer/`. Private source family: `mods/avalon-cheat-panel/src/AvalonCheatPanel.csproj`.
+The shared project should own the panel's feature model; runtime-specific projects should own only the loader, interop, and exact FoA access needed on that runtime.
