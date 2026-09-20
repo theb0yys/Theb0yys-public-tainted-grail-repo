@@ -4,6 +4,11 @@ Use the common projectile configuration path, preserve FoA's offset-correction v
 
 Working lineage: [Projectile Route Coverage and Aim Correction](../../../research/case-studies/magic/projectile-route-and-aim.md).
 
+## Runnable source
+
+Start from the buildable example: [Projectile speed](../../../examples/mono/magic/projectile-speed/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Main hook
 
 The current implementation uses a postfix on:
