@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
-$docRoots = @('case-studies', 'examples', 'how-to', 'investigate', 'learn', 'mechanics', 'reference', 'sources', 'systems', 'templates', 'tooling')
+$docRoots = @('case-studies', 'contributing', 'diagnose', 'examples', 'how-to', 'investigate', 'learn', 'mechanics', 'reference', 'sources', 'systems', 'templates', 'tooling')
 $failures = New-Object System.Collections.Generic.List[string]
 
 function Normalize-RepoPath([string]$path) {
@@ -9,7 +9,7 @@ function Normalize-RepoPath([string]$path) {
     while ($normalized.StartsWith('./')) {
         $normalized = $normalized.Substring(2)
     }
-    return $normalized.TrimStart('/')
+    return $normalized.TrimStart('/').TrimEnd('/')
 }
 function Get-RelativeRepoPath([string]$fullPath) {
     $relative = [System.IO.Path]::GetRelativePath($repoRoot, $fullPath)
@@ -137,7 +137,81 @@ foreach ($path in $markdown) {
 
     $topKeys = @{}
     for ($i = 1; $i -lt $close; $i++) {
-        if ($lines[$i] -match '^(?<key>[A-Za-z0-9_-]+):\ts*(?<value>.*)$') {
+        if ($lines[$i] -match '^(?<key>[A-Za-z0-9_-]+):\s*(?<value>.*)) {
+            $key = $Matches['key']
+            if ($topKeys.ContainsKey($key)) {
+                $failures.Add("Duplicate front-matter key '$key': $path")
+            }
+            else {
+                $topKeys[$key] = $Matches['value'].Trim()
+            }
+        }
+    }
+
+    foreach ($required in @('document_type', 'scope', 'last_verified')) {
+        if (-not $topKeys.ContainsKey($required) -or [string]::IsNullOrWhiteSpace($topKeys[$required])) {
+            $failures.Add("Front matter missing '$required': $path")
+        }
+    }
+    if ($topKeys.ContainsKey('last_verified') -and $topKeys['last_verified'] -notmatch '^\d{4}-\d{2}-\d{2}$') {
+        $failures.Add("Front matter last_verified must be YYYY-MM-DD: $path")
+    }
+}
+
+# 3. Directory indexes expose direct Markdown children and child sections.
+foreach ($root in $docRoots) {
+    $rootPrefix = "$root/"
+    $readmes = @($markdown | Where-Object { $_ -eq "$root/README.md" -or ($_.StartsWith($rootPrefix) -and $_.EndsWith('/README.md')) })
+    foreach ($readme in $readmes) {
+        $dirFs = Split-Path -Parent ($readme -replace '/', [System.IO.Path]::DirectorySeparatorChar)
+        $dir = Normalize-RepoPath $dirFs
+        $prefix = if ([string]::IsNullOrEmpty($dir)) { '' } else { "$dir/" }
+
+        $directPages = @($markdown | Where-Object {
+            $_.StartsWith($prefix) -and $_ -ne $readme -and
+            -not $_.Substring($prefix.Length).Contains('/')
+        })
+
+        $childDirs = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparer]::Ordinal)
+        foreach ($candidate in $markdown) {
+            if (-not $candidate.StartsWith($prefix) -or $candidate -eq $readme) { continue }
+            $rest = $candidate.Substring($prefix.Length)
+            if ($rest.Contains('/')) {
+                $first = $rest.Split('/')[0]
+                $childReadme = "$prefix$first/README.md"
+                if ($trackedSet.Contains($childReadme)) { [void]$childDirs.Add("$prefix$first") }
+            }
+        }
+
+        $content = Get-Content -LiteralPath (Join-Path $repoRoot ($readme -replace '/', [System.IO.Path]::DirectorySeparatorChar)) -Raw
+        $linked = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparer]::Ordinal)
+        foreach ($rawTarget in (Get-MarkdownTargets $content)) {
+            $resolved = Resolve-InternalTarget $readme $rawTarget
+            if ($null -eq $resolved -or $resolved.EscapesRepo) { continue }
+            [void]$linked.Add((Normalize-RepoPath $resolved.Path))
+        }
+
+        foreach ($page in $directPages) {
+            if (-not $linked.Contains($page)) {
+                $failures.Add("Index does not expose direct page: $readme -> $page")
+            }
+        }
+        foreach ($childDir in $childDirs) {
+            if (-not $linked.Contains($childDir) -and -not $linked.Contains("$childDir/README.md")) {
+                $failures.Add("Index does not expose child section: $readme -> $childDir/")
+            }
+        }
+    }
+}
+
+if ($failures.Count -gt 0) {
+    Write-Host 'Documentation audit FAILED:' -ForegroundColor Red
+    $failures | Sort-Object -Unique | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
+    exit 1
+}
+
+Write-Host "Documentation audit PASSED for $($markdown.Count) Markdown files."
+) {
             $key = $Matches['key']
             if ($topKeys.ContainsKey($key)) {
                 $failures.Add("Duplicate front-matter key '$key': $path")
