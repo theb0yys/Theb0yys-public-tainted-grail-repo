@@ -10,5 +10,7 @@
     <Compile Include="Stubs.cs" />
     <Compile Include="..\..\runtime-tracer\Plugin.cs" Link="RuntimeTracer.Plugin.cs" />
     <Compile Include="..\..\harmony-runtime-audit\Plugin.cs" Link="HarmonyRuntimeAudit.Plugin.cs" />
+    <Compile Include="..\..\..\..\examples\mono\harmony\patch-health\PatchHealth.cs" Link="PatchHealth.PatchHealth.cs" />
+    <Compile Include="..\..\..\..\examples\mono\harmony\patch-health\Plugin.cs" Link="PatchHealth.Plugin.cs" />
   </ItemGroup>
 </Project>
