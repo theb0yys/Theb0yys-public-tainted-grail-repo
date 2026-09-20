@@ -1,6 +1,7 @@
 using System;
 using Awaken.TG.Main.AI.SummonsAndAllies;
 using Awaken.TG.Main.Character;
+using Awaken.TG.Main.Fights;
 using Awaken.TG.Main.Fights.Factions;
 using Awaken.TG.Main.Fights.NPCs;
 using Awaken.TG.Main.Heroes;
