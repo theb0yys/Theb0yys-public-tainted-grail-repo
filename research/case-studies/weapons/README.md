@@ -1,3 +1,3 @@
 # Weapon Case Studies
 
-- [Evil Greatsword: equip/presentation proof boundary](evil-greatsword-presentation.md)
+These case studies cover weapon work across custom identity, native Item/equip ownership, CharacterWeapon combat, Drake presentation, cleanup, and the difference between “the mesh appears” and “the weapon is fully integrated.”
