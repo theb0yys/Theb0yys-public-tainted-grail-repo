@@ -29,11 +29,11 @@ plugin Awake / PatchAll
 → hero-dependent listeners/UI/state setup
 ~~~
 
-This is stronger evidence than merely checking whether `Hero.Current` is non-null.
+This is stronger evidence than merely checking whether `Hero.Current` is non-null. It is still not a universal guarantee that every child Element, View or later scene-dependent system is ready.
 
 ### Hero RPG-stat initialization
 
-Public mods use `HeroRPGStats.AfterHeroFullyInitialized` for stat-system changes that require the hero and `TweakSystem` to be ready.
+Public mods use `HeroRPGStats.AfterHeroFullyInitialized` for stat-system changes that require the hero and `TweakSystem` to be ready. Exact Mono inspection shows `HeroRPGStats.OnInitialize()` initializes its wrapper and registers `AfterHeroFullyInitialized` on the parent Hero's fully-initialized callback.
 
 ~~~text
 hero exists
@@ -143,4 +143,4 @@ For a hook, prove:
 
 The hook catalogue in this repository contains only surfaces backed by inspected examples or research. It is not an exhaustive list of FoA methods.
 
-See [Hook Catalogue](catalogue.md).
+See [Hook Catalogue](catalogue.md) and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
