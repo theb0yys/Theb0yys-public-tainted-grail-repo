@@ -1,6 +1,5 @@
 # Compatibility
 
-Use this section when a mod depends on private methods, reflected fields, game-build-specific signatures, another mod's API, or any integration likely to break after an update. The goal is to establish exactly what must be revalidated and how to fail safely.
+Use this section when a mod depends on patch-sensitive game internals or needs to keep working across FoA updates.
 
-- [Validation and compatibility](validation.md)
-- [Compatibility reference](../../../knowledge/reference/compatibility/README.md)
+The guides show how to record the exact target/build, detect breakage, revalidate reflected/private APIs, and distinguish “the plug-in still loads” from “the feature still works correctly.”
