@@ -1,10 +1,8 @@
 # Better Bonfire Menu Public Template
 
-Use this starter when you want to build a bonfire service menu without rebuilding the services themselves. Shared code can own menu/configuration rules; runtime hosts should route actions to the exact native bonfire, shop, crafting, storage, and UI owners.
+Use this starter for a bonfire-services menu or similar hub UI.
 
-Source family: `better-bonfire-menu`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It provides shared feature structure plus separate runtime hosts for connecting to native bonfire services and UI. Reuse the game's service owners rather than reimplementing storage, crafting, saving, travel, or merchant transactions.
 
 ## Reusable mechanisms
 
