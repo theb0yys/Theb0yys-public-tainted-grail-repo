@@ -63,6 +63,10 @@ function Protect-Object {
         return Protect-Text -Text $Value -ResolvedGameRoot $ResolvedGameRoot
     }
 
+    if ($Value -is [ValueType]) {
+        return $Value
+    }
+
     if ($Value -is [System.Collections.IDictionary]) {
         $copy = [ordered]@{}
         foreach ($key in $Value.Keys) {
