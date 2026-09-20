@@ -68,6 +68,10 @@ Examples:
 - Leshy and Medusa are scene services;
 - critters can have separate gameplay, controller and visual entities.
 
+## Deeper reference
+
+- [Teardown and restoration across runtime owners](teardown-and-restoration.md)
+
 ## Modding relevance
 
 When adding runtime objects, decide who owns:
