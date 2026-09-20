@@ -4,6 +4,10 @@ The working route-patrol implementation keeps route authority, actor ownership, 
 
 Working lineage: [Wyrd Route Patrol: Three Owners, One Feature](../../../research/case-studies/encounters/wyrd-route-patrol-ownership.md).
 
+## Runnable source
+
+Start with the [Owned route patrol example](../../../examples/mono/gameplay/owned-route-patrol/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Working owner split
 
 - Wyrd Hunt publishes the read-only Wyrdness/exposure state.
