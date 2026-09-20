@@ -33,6 +33,10 @@ your mod
 
 For exact GUIDs/assemblies/API entry points, use the [Component reference](ecosystem/component-reference.md).
 
+For verified acquisition routes and version meanings, use [Public distribution and versioning](ecosystem/distribution-and-versioning.md).
+
+For supported, versioned, promoted and gated API boundaries, use [API stability and capability promotion](ecosystem/api-stability.md).
+
 For hard/soft dependency and packaging rules, use [Dependency and packaging](ecosystem/dependency-and-packaging.md).
 
 For recommended combinations, use [Author stacks](ecosystem/author-stacks.md).
