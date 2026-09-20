@@ -43,7 +43,17 @@ Reorganized the public example surface around runtime/authoring roots and functi
 - project filenames were normalized to concise mechanism names;
 - the private corpus was mapped into extraction domains without publishing private production implementation source.
 
-The extraction map distinguishes directly inspected runtime source surfaces from routing-only source-family labels. It does not treat private runtime success as validation of newly authored public examples.
+## Wave 18 — 2026-09-20
+
+Expanded `templates/` from six starter families into a reusable public template library:
+
+- normalized Mono domains for Harmony, audio, combat, items, magic, rendering and UI;
+- added copy-ready Mono starters derived from public-safe mechanism extractions;
+- added IL2CPP Harmony, audio, UI and frame-sampling starters using the thin `BasePlugin` + registered-behaviour patterns seen in released IL2CPP mods;
+- added a Tainted Framework dual-runtime consumer starter with one shared feature source and separate Mono/IL2CPP hosts;
+- added `templates/SOURCE-MAP.md` to make the private-source-family-to-public-template relationship explicit without copying private production implementation wholesale.
+
+The new templates remain starting points. Their source structure does not inherit private runtime, compatibility, persistence or release proof.
 
 ## Measurement rule
 
