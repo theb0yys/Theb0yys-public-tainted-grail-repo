@@ -1,10 +1,8 @@
 # Runtime UI Overlay
 
-Use this example when you need a small diagnostic or tool overlay that your plugin owns completely, without replacing a native FoA screen.
+Use this example when you need a tiny mod-owned IMGUI window for diagnostics or a narrow tool.
 
-A tiny BepInEx-owned IMGUI overlay.
-
-It deliberately does **not** replace a native FoA screen, own the cursor, freeze gameplay, or use private art.
+It intentionally owns only its own panel. Native FoA menus, cursor state, pausing, focus, and controller input remain outside this example.
 
 ## What it teaches
 
