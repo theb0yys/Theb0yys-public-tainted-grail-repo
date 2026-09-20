@@ -12,20 +12,9 @@ last_verified: 2026-09-20
 
 # Weapons
 
-A FoA weapon crosses several owners. Treat these as separate lanes:
+Use this section when you are implementing a weapon feature and need to understand which part of the weapon you are actually changing.
 
-```text
-definition / identity
-→ native ItemTemplate registration
-→ acquisition
-→ ItemEquip / CharacterHandBase lifecycle
-→ combat owner
-→ Drake presentation
-→ hide/show / teardown
-→ persistence and compatibility
-```
-
-A weapon can be valid in inventory and combat while its equipped presentation is wrong. Do not reopen registration or damage logic for a presentation-only failure.
+A FoA weapon spans definition, runtime Item state, equip lifecycle, combat behavior, presentation, teardown, and persistence. Treat those as separate responsibilities so a visual or inventory success is not mistaken for a complete weapon integration.
 
 ## Mechanics
 
