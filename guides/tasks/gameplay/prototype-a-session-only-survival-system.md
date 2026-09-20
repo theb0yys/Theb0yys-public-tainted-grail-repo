@@ -4,6 +4,11 @@ Build the survival model from native activity observations and runtime-only Stat
 
 Working lineage: [Session First, Persistence Later](../../../research/case-studies/survival/session-first.md).
 
+## Runnable source
+
+Start from the buildable example: [Session survival](../../../examples/mono/gameplay/session-survival/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Movement input
 
 The maintained Tainted Survival implementation observes:
