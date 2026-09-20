@@ -3,6 +3,11 @@
 Reuse the current VFireplaceUI/FireplaceUI rather than rebuilding bonfire gameplay.
 
 Working lineage: [Native Service Reuse and Submenu Ownership](../../../research/case-studies/bonfire/native-service-reuse.md).  
+
+## Runnable source
+
+Start from the buildable example: [Bonfire native services submenu](../../../examples/mono/ui/bonfire-native-services/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
 Native services: [Bonfire / Fireplace Native Services](../../../knowledge/systems/world/bonfire-services.md).
 
 ## Capture the active bonfire owner
