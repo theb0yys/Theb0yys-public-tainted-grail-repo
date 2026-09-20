@@ -23,7 +23,8 @@ StatusTemplate status =
 The exact null-handling differs by caller, but the useful distinction is:
 
 - GUID → `TemplatesProvider.Get<T>(guid)`
-- `TemplateReference` → `TryGet<T>()`
+- typed enumeration → `TemplatesProvider.GetAllOfType<T>()`
+- `TemplateReference` → `TryGet<T>()` / `Get<T>()` where appropriate
 
 ## Useful related types
 
@@ -35,6 +36,36 @@ The exact null-handling differs by caller, but the useful distinction is:
 - `NpcTemplate`
 - `CraftingTemplate`
 - `CommonReferences`
+
+## Current Mono static contract
+
+Exact-build decompilation establishes:
+
+~~~text
+TemplatesLoader.CreateAndLoad
+→ LoadAssets
+→ LoadAssetsInBuild
+→ process Addressables label "template"
+→ process Addressables label "templateSO"
+→ AddToMap(guid, template)
+→ FinishedLoading = true
+~~~
+
+`TemplatesLoader` owns a GUID map and a type map. `AddToMap` inserts the template into both and assigns `template.GUID`.
+
+`TemplatesProvider.AllLoaded` reflects loader completion. Its typed lookup validates readiness, GUID presence and requested type.
+
+For saved template references, the inspected Mono chain is:
+
+~~~text
+saved template GUID
+→ SaveReader.ReadTemplate<T>()
+→ TemplatesUtil.Load<T>()
+→ World.Services.Get<TemplatesProvider>()
+→ TemplatesProvider.Get<T>(guid)
+~~~
+
+This is static contract evidence, not a universal persistence-safety claim for custom templates.
 
 ## Readiness
 
@@ -49,3 +80,5 @@ A public IL2CPP-native implementation observed stale/freed pointers inside `Craf
 ## Evidence boundary
 
 Exact template GUIDs belong in identity/domain reference pages. This page owns lookup mechanics and readiness, not a bulk template dump.
+
+The exact loader/provider/save-resolution details are bound to the inspected Mono evidence recorded in [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
