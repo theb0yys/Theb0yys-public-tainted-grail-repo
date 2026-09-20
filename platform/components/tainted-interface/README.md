@@ -1,20 +1,8 @@
 # Tainted Interface
 
-**Posture: Author-ready for shared UI styles/resources**
+Use Tainted Interface when your mod needs shared UI styles, textures, icons, HUD helpers, or other common visual resources.
 
-Use Tainted Interface when your mod needs:
-
-- shared IMGUI styles;
-- render-only styles for passive HUDs;
-- semantic texture/icon lookup;
-- item icon lookup;
-- curated UI pack resources;
-- common HUD badge helpers;
-- optional custom-UI scope helpers.
-
-The public API is:
-
-`TaintedInterface.TaintedInterfaceApi`
+These UI resources are intended for ordinary mod authors. Consume the public semantic APIs instead of depending on the package's internal file layout.
 
 ## Prefer semantic IDs
 
