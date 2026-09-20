@@ -8,35 +8,69 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Vendor Pricing Ownership
+# Vendor Pricing
 
-The narrow final-price owner used by Tainted Economy is:
+Use this page when you want to change **the price the player pays or receives in a native trade** without replacing the trade transaction itself.
 
-`TradeUtils.Price(IMerchant seller, IMerchant buyer, Item item, int count = 1)`
+The narrow final-price method is:
 
-The method returns the final vanilla price consumed by later affordability and trade logic.
+~~~csharp
+TradeUtils.Price(
+    IMerchant seller,
+    IMerchant buyer,
+    Item item,
+    int count = 1)
+~~~
 
-## Ownership model
+It returns the final vanilla integer price consumed by later trade/affordability logic.
 
-```text
-native item/shop/player modifiers
+## Native transaction flow
+
+~~~text
+item/shop/player modifiers
 → TradeUtils.Price(...)
 → final integer price
-→ vanilla trade checks / TradeUtils.TryTrade
+→ vanilla affordability/trade checks
+→ TradeUtils.TryTrade
 → native item/wealth transfer
-```
+~~~
 
-This makes the **return value** a useful tuning seam while keeping the transaction itself native.
+That makes the return value a useful pricing seam.
 
-## Preserve
+## What a price mod should leave native
 
-A bounded price mod should preserve:
+Unless the feature explicitly owns something else, preserve:
 
-- vanilla zero-price/blocked-sale outcomes;
-- stolen/fence handling unless explicitly proven otherwise;
-- merchant stock ownership;
-- merchant wealth ownership;
+- zero-price/blocked-sale outcomes;
+- stolen/fence behavior;
+- merchant stock;
+- merchant wealth;
 - item/template state;
-- transaction execution.
+- actual transaction execution.
 
-Changing the final price has **indirect** save consequences only when the player completes a native transaction using that price; it is not itself a direct save-write API.
+The pricing mod should change **the price**, then let the native trade system perform the trade.
+
+## Persistence
+
+Changing `TradeUtils.Price` is not itself a save write.
+
+Save-visible consequences happen indirectly if the player completes the native transaction and native inventory/wealth state changes.
+
+## How to verify
+
+Check:
+
+1. exact seller/buyer;
+2. exact item/count;
+3. vanilla price;
+4. modified final price;
+5. blocked/zero-price cases preserved;
+6. stolen/fence cases behave as intended;
+7. affordability uses the modified value;
+8. native trade executes once;
+9. stock and wealth update normally;
+10. unrelated merchants/items remain unchanged.
+
+## Evidence
+
+This final-price seam is decompilation/source-corroborated and has bounded runtime validation in the project vendor lane.
