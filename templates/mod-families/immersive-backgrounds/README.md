@@ -1,8 +1,10 @@
 # Immersive Backgrounds Public Template
 
+Use this starter when you are building a background/choice presentation feature that should share rules across runtimes. Keep content-selection and configuration shared; keep exact FoA UI/presentation access in the runtime host.
+
 Source family: `immersive-backgrounds`
 
-This is a public, source-only starter distilled from the Immersive Backgrounds mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
