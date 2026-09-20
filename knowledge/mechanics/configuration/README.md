@@ -1,5 +1,7 @@
 # Configuration
 
+Use this page when you are designing player settings, feature toggles, presets, live config changes, or migration of older cfg files for a FoA mod.
+
 Reusable configuration mechanics for FoA mods.
 
 This page is about **FoA ecosystem practice**, not generic BepInEx API documentation. Exact framework APIs still belong to their upstream documentation.
