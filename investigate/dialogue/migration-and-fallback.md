@@ -1,3 +1,9 @@
+---
+document_type: investigation
+scope: dialogue migration, fallback, and ownership boundaries
+last_verified: 2026-09-20
+---
+
 # Dialogue Migration and Fallback
 
 A safe migration should be **per exact conversation identity**, not a global Story replacement.
