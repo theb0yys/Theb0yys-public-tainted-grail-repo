@@ -7,6 +7,10 @@ This is the beginner-facing version of the proven TGE owned-encounter lifecycle.
 Canonical platform contract: [TGE Owned Encounters](../../../platform/components/tainted-grail-extender/encounters.md).  
 Working lineage: [TGE Owned Encounter Lifecycle](../../../research/case-studies/frameworks/tge-owned-encounter.md).
 
+## Runnable source
+
+Start from the runnable public example: [TGE owned encounter](../../../examples/hybrid/encounters/tge-owned-encounter/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
