@@ -1,12 +1,12 @@
 # Glossary
 
-- **Native owner** — the game system that actually owns a responsibility/lifecycle.
-- **Mono** — managed Unity runtime lane.
-- **IL2CPP** — Unity IL2CPP runtime lane using interop/runtime bindings for mods.
-- **BepInEx** — community plug-in loader.
-- **Harmony / HarmonyX** — runtime method patching.
+- **Native owner** — the game system that actually controls a piece of state or behavior and its lifecycle.
+- **Mono** — the managed runtime version of FoA used by Mono/BepInEx 5 mods.
+- **IL2CPP** — the IL2CPP build of FoA, where mods normally use generated/interoperability bindings rather than the original managed game assemblies.
+- **BepInEx** — community plug-in loader commonly used for runtime FoA mods.
+- **Harmony / HarmonyX** — libraries used to patch managed methods at runtime.
 - **Merlin's Workshop** — Questline's official Unity/Addressables modding project.
-- **Static evidence** — source/metadata/decompilation evidence without live observation.
-- **Runtime evidence** — behaviour directly observed in the target environment.
+- **Static evidence** — information established from source, metadata, or decompilation without observing the game live.
+- **Runtime evidence** — behavior directly observed in the target game/runtime environment.
 
-See [Evidence standard](../../../sources/evidence-standard.md).
+See [Evidence Standards](../../../contributing/evidence-standards.md).
