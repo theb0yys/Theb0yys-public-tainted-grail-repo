@@ -1,15 +1,17 @@
 # Case Studies
 
-Case studies preserve what real mod work taught us without publishing the private workspace wholesale.
+Lessons taken from real mod work and rewritten as public-safe technical case studies.
 
-- [Bug fixes/recovery](bugfixes/README.md)
-- [Frameworks/tooling](frameworks/README.md)
+Use these when you want to see how a concrete problem was investigated, what failed, what eventually worked, and what can be reused elsewhere.
+
+- [Bug fixes and recovery](bugfixes/README.md)
+- [Frameworks and tooling](frameworks/README.md)
 - [Combat](combat/README.md)
 - [Storage](storage/README.md)
 - [Lockpicking](lockpicking/README.md)
 - [Dialogue](dialogue/README.md)
-- [Encounters/spawning](encounters/README.md)
-- [Travel/navigation](travel/README.md)
+- [Encounters and spawning](encounters/README.md)
+- [Travel and navigation](travel/README.md)
 - [Companions](companions/README.md)
 - [Runtime stats](stats/README.md)
 - [Magic](magic/README.md)
@@ -19,7 +21,7 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Armour](armour/README.md)
 - [Movement](movement/README.md)
 - [Camera](camera/README.md)
-- [Map/notes](map/README.md)
+- [Map and notes](map/README.md)
 - [Progression](progression/README.md)
 - [Survival](survival/README.md)
 - [Merchants](merchants/README.md)
@@ -33,4 +35,4 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Performance](performance/README.md)
 - [Rendering](rendering/README.md)
 - [Persistence](persistence/README.md)
-- [Failures/fixes](failures-and-fixes/README.md)
+- [Failures and fixes](failures-and-fixes/README.md)
