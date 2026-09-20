@@ -2,6 +2,12 @@
 
 **Posture: Provider/consumer discovery is usable; lifecycle execution is lane-specific**
 
+**Distribution:** **NOT-PUBLISHED-STANDALONE.** No verified independent public package route is recorded as of 2026-09-20.
+
+**Stability boundary:** the provider/consumer discovery and readback contract shape is documented, but that documentation is not authority to create a new public hard dependency while the host/package cannot be independently obtained. Lifecycle execution remains lane-specific.
+
+See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Use Avalon Contracts when separate mods need one shared model for contract/provider discovery, catalog/state/evidence readback and carefully promoted lifecycle semantics.
 
 Do not use it merely because your mod has a config option named “contract”.
