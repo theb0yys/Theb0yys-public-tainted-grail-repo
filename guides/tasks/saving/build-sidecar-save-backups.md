@@ -1,60 +1,124 @@
 # Build Sidecar Save Backups
 
-**Evidence status: PARTIAL.** The safer architecture is established, but the cited private validation had not yet proven actual backup archive creation.
+A working backup implementation can copy FoA's existing save-slot contents into a mod-owned ZIP without changing FoA's slot count or serialization format.
 
 Working lineage: [Smart Backups Without More Save Slots](../../../research/case-studies/persistence/smart-backup-boundary.md).  
-Observation guide: [Observe Native Save Completion](observe-native-save-completion.md).
+Observer: [Observe native save completion](observe-native-save-completion.md).
 
-## Goal
+## Storage location
 
-Add redundancy without changing FoA's native slot count or save-domain model.
+Keep backups under a plug-in-owned directory, for example:
 
-## Architecture
+~~~csharp
+_backupRoot = Path.Combine(Paths.ConfigPath, PluginGuid);
+Directory.CreateDirectory(_backupRoot);
+~~~
 
-```text
-observe native save/slot identity
-→ read/copy existing native save through supported provider/read surface
-→ write mod-owned archive outside native slots
-→ retain metadata/hash
-→ restore only through an explicit separate tool/process
-```
+Do not write additional files into FoA's native save-slot archive.
 
-## Why sidecar
+## Fresh-save flow
 
-The user wants backup redundancy, not a new native save system.
+The working implementation uses:
 
-Keeping archives outside native slot rotation preserves:
+~~~text
+snapshot requested
+→ verify CloudService/world/hero readiness
+→ LoadSave.Get.CanAutoSave()
+→ SaveSlot.GetAutoSave(allowCreate:false)
+→ pendingReasons[saveSlot.SaveFileName] = reason
+→ LoadSave.Get.Save(saveSlot, ...)
+→ concrete CloudService.EndSave(saveSlot.SaveFileName)
+→ enqueue completed slot ID
+→ Update drains queue
+→ build backup from that exact slot
+~~~
 
-- native UI;
-- native slot policy;
-- native serialization ownership.
+If a fresh autosave is not allowed, the same implementation can fall back to:
 
-## Process to prove
+~~~text
+SaveSlot.LastSaveSlotOfCurrentHero
+or
+SaveSlot.LastSaveSlot
+~~~
 
-1. observe exact completed/native save slot;
-2. obtain bytes/file through the reviewed provider/read route;
-3. write a timestamped/versioned backup in a mod-owned directory;
-4. hash/verify the backup;
-5. enforce retention policy;
-6. test restore on disposable data separately.
+depending on the feature policy.
 
-## Do not claim yet
+## Read the existing slot through CloudService
 
-- backup created successfully until bytes/hash are verified;
-- restore works until performed on a disposable copy;
-- every cloud/provider backend behaves identically.
+To copy one completed slot:
 
-## Verification
+~~~csharp
+CloudService.Get.BeginLoadSlot(slotId);
+try
+{
+    foreach (string entryName in CloudService.Get.EnumerateFilesInSlot())
+    {
+        if (!CloudService.Get.TryLoadSlotFile(entryName, out byte[] data))
+            continue;
 
-Require:
+        // write data to the mod-owned archive
+    }
+}
+finally
+{
+    CloudService.Get.EndLoadSlot(slotId);
+}
+~~~
 
-- exact source slot;
-- non-empty backup;
-- checksum;
-- repeated-save naming/retention;
-- failure leaves native save untouched;
-- restore procedure tested independently.
+This uses the same provider abstraction FoA already uses instead of assuming a Steam-only file path.
 
-## Current proof boundary
+## Write a temporary archive first
 
-Architecture and boundary are established. Actual archive creation/restore still require explicit runtime validation before release claims.
+The working implementation creates:
+
+~~~text
+<final-backup>.zip.tmp
+~~~
+
+then writes each readable provider entry into a ZIP entry and only after success performs:
+
+~~~csharp
+File.Move(tempPath, backupPath);
+~~~
+
+If no slot entries could be read, delete the temporary file and report failure.
+
+Do not leave a zero-entry archive looking like a valid backup.
+
+## Backup contents
+
+The implementation writes each provider entry into the ZIP with a stable entry name and separately writes metadata such as:
+
+- creation time;
+- snapshot reason;
+- source slot ID;
+- hero name;
+- hero level;
+- area;
+- entry count.
+
+Keep this metadata outside the native save data.
+
+## Retention
+
+Enumerate only files inside your own backup directory.
+
+Sort backups by creation/last-write time and delete only entries beyond the configured retention count. Before deleting, verify the candidate path remains inside the owned backup root.
+
+Do not recursively delete unknown files/directories.
+
+## Useful snapshot triggers
+
+The working mod queues snapshots from several independent triggers:
+
+- before dialogue choices;
+- before quest turn-in;
+- timed interval;
+- entering configured key areas;
+- explicit save completion.
+
+Those are trigger policies. The backup mechanism itself remains the same.
+
+## Restore policy
+
+Restoration should be a separate explicit operation. Do not make normal backup creation silently overwrite FoA's active save slot.
