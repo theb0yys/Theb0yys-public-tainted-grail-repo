@@ -4,6 +4,11 @@ Change the Character Sheet map presentation while leaving MapMemory.visitedPixel
 
 Working lineage: [Map Fog: Display Without Rewriting Discovery Memory](../../../research/case-studies/map/map-fog-display-only.md).
 
+## Runnable source
+
+Start from the buildable example: [Map fog display](../../../examples/mono/ui/map-fog-display/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Native discovery memory
 
 FoA persists map discovery in:
