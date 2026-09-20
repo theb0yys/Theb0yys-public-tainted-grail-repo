@@ -1,5 +1,7 @@
 # Story Graphs
 
+> **Canonical architecture page.** Runtime choice/quest/dialogue observation and Story consumer behavior live in [Story, Quests, Dialogue, and Choices](../story-quest-dialogue.md).
+
 ## What it is
 
 FoA's Story Graph system is a custom authoring, compilation and runtime execution stack built on top of XNode.
