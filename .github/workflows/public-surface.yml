@@ -19,6 +19,6 @@ jobs:
         shell: pwsh
         run: ./contributing/tools/verify-public-surface.ps1
 
-      - name: Verify documentation links, metadata, and indexes
+      - name: Audit documentation links and indexes
         shell: pwsh
-        run: ./contributing/tools/verify-documentation.ps1
+        run: ./contributing/tools/verify-docs.ps1
