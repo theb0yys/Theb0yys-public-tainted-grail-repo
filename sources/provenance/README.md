@@ -18,6 +18,18 @@ Mined Tainted BugFixes, focused quest-fix research, official Merlin quest eviden
 - existing-item grant from hero Pickaxe/mining damage context;
 - additional evidence-scoped candidate identities.
 
+## Wave 16 — 2026-09-20
+
+Extracted public-safe starter structure from the private mod-template family and reconciled it with existing public examples and the official Merlin project boundary:
+
+- reusable Mono Harmony lifecycle wiring with a self-contained, non-game patch target;
+- reusable small runtime-UI starter with explicit native-UI ownership limits;
+- Merlin content-overlay structure that keeps the official Workshop project authoritative;
+- hybrid Merlin + BepInEx layout with separate authoring/runtime lifecycles and an explicit identity contract;
+- no private production implementation source was published.
+
+Newly authored public starters retain their own validation state; private success does not make them runtime-proven.
+
 ## Measurement rule
 
 A knowledge unit counts only when claims are extracted from inspectable evidence, owner/lifecycle/reasoning are reconstructed, clean-room public prose is written, evidence limits are stated and the page is linked into canonical navigation.
