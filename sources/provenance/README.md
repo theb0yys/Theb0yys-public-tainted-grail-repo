@@ -2,25 +2,45 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-The private workspace contains thousands of research, documentation and evidence files. Public completion is measured by whether reusable claims have been reconstructed into canonical public pages with explicit proof boundaries.
-
 ## Wave 1 — 2026-09-20
 
-| Public knowledge unit | Private source families inspected | Public state |
-| --- | --- | --- |
-| Intervention selection / native-owner-first | mechanics catalogue + working mod cases | Published |
-| Item template resolution/grant | mechanics inventory + item consumers | Published |
-| Custom weapon registration | Tainted Weapons + registrar ownership | Published, persistence bounded |
-| Drake equipped weapon presentation | Tainted Weapons + Evil Greatsword runtime receipt | Published, lifecycle partial |
-| Native horse velocity | Avalon Mounts N2/N3 evidence | Published for tested seam |
-| One-session companion | companion shared implementation/research | Published, explicitly non-persistent |
-| Modal companion UI | Avalon Companions UI research/design | Published, not native Story dialogue |
-| Runtime vs persistent recipe | mechanics inventory + recipe consumers | Published with save boundary |
-| Native arbitrary save-domain boundary | current-binary save research | Published negative static result |
-| Sidecar persistence direction | persistence research | Investigation only |
-| Provider/consumer ownership | framework and registrar decisions | Published |
-| Documentation archetypes/authoring process | PR #407 research + underlying source model | Published as maintainer process |
+Published:
 
-## What this does not mean
+- native-owner/intervention-selection model;
+- item template resolution and hero grant;
+- custom weapon registration and Drake presentation;
+- native mount velocity;
+- one-session companion lifecycle;
+- modal companion UI/input ownership;
+- runtime-vs-persistent recipe distinction;
+- native arbitrary save-domain negative result and sidecar direction;
+- provider/consumer ownership;
+- documentation archetypes and private-to-public process.
 
-This wave does **not** mean the private corpus is broadly ported. It is the first evidence-backed extraction wave. Future waves should expand by domain and update this ledger.
+## Wave 2 — 2026-09-20
+
+Published:
+
+- native clothes/Kandra equip/unequip static contract;
+- merchant restock candidate and its explicit runtime-validation gap;
+- lockpick durability guard;
+- spell-cast VFX overlay with name-heuristic identity warning;
+- completed Addressables-handle bridge;
+- native save-completion observation seam;
+- lifecycle-precondition diagnosis for `TemplatesProvider.AllLoaded`;
+- reflection/update compatibility diagnosis;
+- runtime-shim-vs-persistence diagnosis;
+- armour, merchant and save-observation case studies.
+
+## Measurement rule
+
+A private file is not counted as “ported” merely because a similarly named public file exists. A knowledge unit counts only when:
+
+1. its claims were extracted from inspectable private evidence;
+2. owner/lifecycle/reasoning were reconstructed;
+3. a public archetype was selected;
+4. clean-room public prose was written;
+5. evidence limits were stated;
+6. the public page is linked into the canonical navigation.
+
+The private corpus remains much larger than these first waves. Future waves continue by domain.

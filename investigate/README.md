@@ -2,11 +2,10 @@
 
 Investigation is a first-class FoA modding skill.
 
-Use this section when the behaviour you need is not already supported by a current mechanic.
-
 - [Finding the native owner](finding-the-native-owner.md)
 - [Tracing a lifecycle](tracing-lifecycles.md)
 - [Static/source evidence vs runtime evidence](source-vs-runtime.md)
+- [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
 - [Proving a new mechanic](proving-a-new-mechanic.md)
 - [Persistence investigation](persistence/README.md)
 
