@@ -1,6 +1,5 @@
 # Weapons
 
-Use these guides when you are adding or modifying weapons. A complete weapon crosses item registration, equip lifecycle, combat ownership, first/third-person presentation, renderer ownership, audio/VFX, cleanup, and persistence.
+Use this section when you are adding or changing weapons.
 
-- [Native integration](native-integration.md)
-- Native owner: [Weapons](../../../knowledge/systems/gameplay/weapons.md) and [Native weapon integration](../../../knowledge/systems/gameplay/native-weapons/README.md)
+Weapon work crosses item definition, equip state, hand Views, combat behavior, rendering, audio/VFX, and persistence. These guides help you change the layer you actually intend instead of treating the visible mesh as the whole weapon.
