@@ -1,18 +1,25 @@
 # Harmony Runtime Audit
 
-A read-only Mono / BepInEx 5 / Harmony plug-in that snapshots Harmony's live patch table.
+A read-only Harmony patch-table auditor with separate Mono / BepInEx 5 and IL2CPP / BepInEx 6 hosts over one shared audit core.
 
 It complements source-level symbol inventories by answering a different question: which original methods are actually patched in the running AppDomain, and which Harmony owner IDs installed those patches?
 
 ## Build
 
+    # Mono / BepInEx 5
     dotnet build HarmonyRuntimeAudit.csproj -c Release -p:FoAGameRoot="<GameRoot>"
 
-The project references BepInEx, Harmony and Unity from the user's own local game installation.
+    # IL2CPP / BepInEx 6
+    dotnet build HarmonyRuntimeAudit.IL2CPP.csproj -c Release -p:FoAGameRoot="<GameRoot>"
+
+Both projects reference BepInEx and Harmony from the user's own local game installation.
 
 ## Configuration
 
 The audit is disabled by default.
+
+The Mono host supports `DelaySeconds` before its snapshot. The IL2CPP host takes its snapshot during `BasePlugin.Load()`; its result therefore reflects the patch table visible at that point in BepInEx load order.
+
 
     [General]
     Enabled = true
