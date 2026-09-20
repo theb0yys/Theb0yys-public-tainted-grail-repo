@@ -46,9 +46,9 @@ A later wolf-mount ownership brief adds another warning: logging an internal “
 
 ## Canonical dependencies
 
-- [Research method](../../../investigate/research-method.md)
+- [Research method](../../../investigate/finding-the-native-owner.md)
 - [Native object ownership](../../../systems/core/native-object-ownership.md)
-- [Intervention selection](../../../mechanics/intervention-selection.md)
+- [Intervention selection](../../../mechanics/intervention-selection/README.md)
 
 ## Public outputs
 
