@@ -32,14 +32,14 @@ function Get-RuntimeLane {
     return "unspecified"
 }
 
-function Get-ProjectName {
+function Get-ProjectFile {
     param([System.IO.FileInfo]$SourceFile)
 
     $directory = $SourceFile.Directory
     while ($null -ne $directory) {
         $projects = @(Get-ChildItem -LiteralPath $directory.FullName -Filter "*.csproj" -File -ErrorAction SilentlyContinue)
         if ($projects.Count -eq 1) {
-            return $projects[0].Name
+            return $projects[0]
         }
         $directory = $directory.Parent
     }
@@ -47,22 +47,28 @@ function Get-ProjectName {
     return $null
 }
 
+function Get-ProjectName {
+    param([System.IO.FileInfo]$SourceFile)
+
+    $projectFile = Get-ProjectFile -SourceFile $SourceFile
+    if ($null -eq $projectFile) {
+        return $null
+    }
+
+    return $projectFile.Name
+}
+
 function Get-Owner {
     param([System.IO.FileInfo]$SourceFile, [hashtable]$Cache)
 
-    $project = Get-ProjectName -SourceFile $SourceFile
-    if ([string]::IsNullOrWhiteSpace($project)) {
-        return $null
-    }
-
-    if ($Cache.ContainsKey($project)) {
-        return $Cache[$project]
-    }
-
-    $projectFile = Get-ChildItem -LiteralPath $SourceFile.Directory.FullName -Filter $project -File -ErrorAction SilentlyContinue | Select-Object -First 1
+    $projectFile = Get-ProjectFile -SourceFile $SourceFile
     if ($null -eq $projectFile) {
-        $Cache[$project] = $null
         return $null
+    }
+
+    $project = $projectFile.Name
+    if ($Cache.ContainsKey($projectFile.FullName)) {
+        return $Cache[$projectFile.FullName]
     }
 
     $text = (
@@ -83,7 +89,7 @@ function Get-Owner {
         }
     }
 
-    $Cache[$project] = $owner
+    $Cache[$projectFile.FullName] = $owner
     return $owner
 }
 
@@ -238,8 +244,31 @@ foreach ($sourceFile in $sourceFiles) {
     }
 }
 
+$filteredAnchors = @(
+    foreach ($anchor in $anchors) {
+        if ($anchor.SignatureExplicit) {
+            $anchor
+            continue
+        }
+
+        $hasExactSibling = @(
+            $anchors | Where-Object {
+                $_.SignatureExplicit -and
+                $_.Source -eq $anchor.Source -and
+                $_.TypeExpression -eq $anchor.TypeExpression -and
+                $_.MemberName -eq $anchor.MemberName -and
+                $_.MemberKind -eq $anchor.MemberKind
+            }
+        ).Count -gt 0
+
+        if (-not $hasExactSibling) {
+            $anchor
+        }
+    }
+)
+
 $deduped = @(
-    $anchors |
+    $filteredAnchors |
         Sort-Object Runtime, Project, Owner, TypeExpression, MemberName, MemberKind, SignatureExplicit, Source, Pattern -Unique
 )
 
