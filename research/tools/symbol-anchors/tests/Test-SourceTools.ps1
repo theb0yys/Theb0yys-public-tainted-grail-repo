@@ -49,7 +49,13 @@ try {
         throw "Unexpected Beta parameter extraction."
     }
 
-    $report = & $verifier -Manifest $manifestPath -AssemblyRoot $assemblyRoot -IlSpyCmd $IlSpyCmd -OutputPath $reportPath -FailOnMissing
+    try {
+        $report = & $verifier -Manifest $manifestPath -AssemblyRoot $assemblyRoot -IlSpyCmd $IlSpyCmd -OutputPath $reportPath -FailOnMissing
+    }
+    catch {
+        $_ | Format-List * -Force | Out-Host
+        throw
+    }
 
     if ([string]$report.Format -ne "foa-symbol-anchor-verification/1") {
         throw "Unexpected anchor verification format."
