@@ -2,6 +2,10 @@
 
 > **Reference page.** Use this when working with models, textures, icons, prefabs, AssetBundles, Addressables or `ARAssetReference`.
 
+## Start with
+
+- [Asset transport, registration, and presentation](transport-registration-and-presentation.md)
+
 ## What this system is
 
 Assets are presentation/data payloads. They are not automatically gameplay registrations.
