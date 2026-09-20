@@ -119,29 +119,11 @@ $fingerprints = & $fingerprintScript -GameRoot $resolvedGameRoot -Quiet
 $protectedFingerprints = Protect-Object -Value $fingerprints -ResolvedGameRoot $resolvedGameRoot
 ConvertTo-Json -InputObject @($protectedFingerprints) -Depth 8 | Set-Content -LiteralPath (Join-Path $outputPath "fingerprints.json") -Encoding UTF8
 
-$pluginRoot = Join-Path $resolvedGameRoot "BepInEx\plugins"
-$plugins = @()
-
-if (Test-Path -LiteralPath $pluginRoot -PathType Container) {
-    $plugins = @(
-        Get-ChildItem -LiteralPath $pluginRoot -Filter "*.dll" -File -Recurse |
-            ForEach-Object {
-                $hash = Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256
-                $version = $_.VersionInfo
-
-                [pscustomobject]@{
-                    Path = Protect-Text -Text $_.FullName -ResolvedGameRoot $resolvedGameRoot
-                    FileName = $_.Name
-                    Length = $_.Length
-                    SHA256 = $hash.Hash
-                    FileVersion = $version.FileVersion
-                    ProductVersion = $version.ProductVersion
-                }
-            }
-    )
-}
-
-ConvertTo-Json -InputObject @($plugins) -Depth 6 | Set-Content -LiteralPath (Join-Path $outputPath "installed-plugins.json") -Encoding UTF8
+$inventoryScript = Join-Path $PSScriptRoot "Get-FoAModInventory.ps1"
+$inventory = & $inventoryScript -GameRoot $resolvedGameRoot -Quiet
+$protectedInventory = Protect-Object -Value $inventory -ResolvedGameRoot $resolvedGameRoot
+$protectedInventory | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $outputPath "installed-mod-inventory.json") -Encoding UTF8
+$plugins = @($inventory.Items)
 
 $projectResult = $null
 if (-not [string]::IsNullOrWhiteSpace($Project)) {
@@ -183,6 +165,7 @@ $summary.Add("Loader: $($environment.Loader)")
 $summary.Add("Environment ready: $($environment.Ready)")
 $summary.Add("Interop ready: $($environment.InteropReady)")
 $summary.Add("Installed DLL count: $($plugins.Count)")
+$summary.Add("Installed duplicate/conflict findings: $($inventory.ConflictCount)")
 
 if ($null -ne $projectResult) {
     $summary.Add("Project doctor ready: $($projectResult.Ready)")
