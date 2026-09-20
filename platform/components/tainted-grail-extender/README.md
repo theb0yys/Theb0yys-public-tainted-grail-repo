@@ -1,13 +1,8 @@
 # Tainted Grail Extender
 
-**Posture: Advanced/SDK**
+Use Tainted Grail Extender for advanced integrations that cannot be handled cleanly by a normal in-process BepInEx dependency.
 
-Tainted Grail Extender is for cases where a normal BepInEx plugin dependency is not enough:
-
-- extension packages hosted by TGE;
-- authenticated local development/SDK clients;
-- reviewed service calls exposed by the extender;
-- external tooling that needs a controlled bridge into a running game.
+Typical uses include TGE-hosted extensions, authenticated local SDK clients, reviewed extender services, and external development tools that need a controlled bridge into the running game.
 
 ## Main routes
 
