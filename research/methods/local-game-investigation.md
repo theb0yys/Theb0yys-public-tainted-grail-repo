@@ -172,16 +172,9 @@ A public note may record:
 
 Do not paste bulk decompiled method bodies merely to make the note look stronger.
 
-## Result states
+## Recording the conclusion
 
-Use the repository status vocabulary:
-
-- **PASSED** — the bounded static question was answered for the identified artifacts.
-- **PARTIAL** — useful evidence exists but identity, semantics, or build scope remains incomplete.
-- **FAILED** — inspected evidence contradicts the proposed model.
-- **BLOCKED** — required local artifact/tool/reference is unavailable.
-- **NOT_RUN** — inspection has not been performed.
-- **NOT_APPLICABLE** — the method does not apply to the runtime/artifact in question.
+Record what the inspected artifacts establish, the exact build/runtime scope, and any remaining unknowns. Do not upgrade an unobserved runtime or persistence property into a fact merely because the static model is plausible.
 
 ## Public boundary
 
