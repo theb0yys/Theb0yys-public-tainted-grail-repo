@@ -1,3 +1,12 @@
+---
+document_type: investigation
+scope: travel ownership boundaries
+runtime: mixed
+evidence:
+  current_state: RESEARCH_ONLY
+last_verified: 2026-09-20
+---
+
 # Travel Ownership Boundaries
 
 A travel feature sits between several existing owners.
