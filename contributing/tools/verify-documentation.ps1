@@ -35,20 +35,19 @@ function Get-NonCodeText([string]$content) {
 function Get-MarkdownTargets([string]$content) {
     $clean = Get-NonCodeText $content
     $results = New-Object System.Collections.Generic.List[string]
-    $pattern = '!?(?<!\!)\[[^\]]*\]\((?<target>[^)])+\)'
+    $pattern = '!?(?<!\!)\[[^\]]*\]\((?<target>[^)]*)\)'
     foreach ($match in [regex]::Matches($clean, $pattern)) {
         $raw = $match.Groups['target'].Value.Trim()
         if ($raw.StartsWith('<') -and $raw.Contains('>')) {
             $raw = $raw.Substring(1, $raw.IndexOf('>') - 1)
         }
-        elseif ($raw -match '^(?<url>\S+)(?:\s+["'_][^"']*Uฒ'_])$') {
-            $raw = $Matches['url']
+        elseif ($raw -match '\s') {
+            $raw = ($raw -split '\s+', 2)[0]
         }
         $results.Add($raw)
     }
     return $results
 }
-
 function Resolve-InternalTarget([string]$sourcePath, [string]$rawTarget) {
     if ([string]::IsNullOrWhiteSpace($rawTarget)) { return $null }
     if ($rawTarget.StartsWith('#')) { return $null }
@@ -196,7 +195,7 @@ foreach ($root in $docRoots) {
 }
 
 if ($failures.Count -gt 0) {
-    Write-Host 'Documentation audit FAILED#ง -ForegroundColor Red
+    Write-Host 'Documentation audit FAILED#ยง -ForegroundColor Red
     $failures | Sort-Object -Unique | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
     exit 1
 }
