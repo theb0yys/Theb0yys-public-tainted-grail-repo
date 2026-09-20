@@ -1,8 +1,8 @@
 # Mono Death Observer
 
-Starter for bounded terminal character-death observation.
+Use this starter when you need to react after a character reaches FoA's native death stage.
 
-It observes the native death lifecycle, deduplicates repeated callbacks, and does not claim corpse, loot, reward, respawn or persistence ownership.
+It observes the death lifecycle, avoids processing duplicate callbacks, and leaves corpse creation, loot, rewards, respawn, and persistence to the systems that own them.
 
 Build:
 
