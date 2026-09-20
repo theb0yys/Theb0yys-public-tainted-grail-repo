@@ -119,7 +119,7 @@ function Get-TypeInventory {
         }
     }
 
-    return @($records)
+    return $records.ToArray()
 }
 
 function Resolve-TypeRecord {
@@ -391,7 +391,7 @@ $report = [pscustomobject]@{
     AnchorCount = $results.Count
     MissingOrAmbiguousCount = $missing.Count
     SignatureUncertainCount = $uncertain.Count
-    Results = @($results)
+    Results = $results.ToArray()
     Limitation = "Identity presence does not establish runtime execution, semantic equivalence, compatibility, persistence, or behavior."
 }
 
