@@ -42,4 +42,4 @@ A successful clone/map insertion does not by itself prove:
 - equipment presentation;
 - merchant/loot/recipe integration.
 
-See [Template save identity](template-save-identity.md) and [Native item registrar ownership](../../tooling/frameworks/native-item-registrar.md).
+See [Template save identity](template-save-identity.md) and [Native item registrar ownership](../../tooling/tainted-framework/native-item-registrar.md).
