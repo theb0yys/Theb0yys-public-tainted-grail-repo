@@ -69,11 +69,14 @@ TraceArguments = true
 TraceResult = true
 ```
 
-This patches only:
+This patches only the host assembly's self-owned target:
 
 ```text
-TGCommunity.RuntimeTracer::
-TGCommunity.RuntimeTracer.SelfTestTarget.Ping(System.Int32)->System.Int32
+Mono:
+TGCommunity.RuntimeTracer::TGCommunity.RuntimeTracer.SelfTestTarget.Ping(System.Int32)->System.Int32
+
+IL2CPP:
+TGCommunity.RuntimeTracer.IL2CPP::TGCommunity.RuntimeTracer.SelfTestTarget.Ping(System.Int32)->System.Int32
 ```
 
 and invokes it once.
