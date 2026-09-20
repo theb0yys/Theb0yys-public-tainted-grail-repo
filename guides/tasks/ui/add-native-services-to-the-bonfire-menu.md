@@ -5,6 +5,10 @@ Use this guide when you want to expose additional bonfire actions without reimpl
 Canonical owner: [Bonfire / Fireplace Native Services](../../../knowledge/systems/world/bonfire-services.md).  
 Working lineage: [Native Bonfire Services](../../../research/case-studies/gameplay/bonfire-services.md).
 
+## Runnable source
+
+Start from the runnable public example: [Bonfire native services](../../../examples/mono/ui/bonfire-native-services/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
