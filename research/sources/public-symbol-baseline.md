@@ -13,6 +13,7 @@ This baseline deliberately excludes generic Unity, BepInEx and Harmony knowledge
 | S1 | Questline — `AR-Questline/merlin-workshop` | `073bdab3e09d6adad5003339fc49b021738d71e6` |
 | S2 | jonanoj — `jonanoj/FallOfAvalonMods` | `a5c361b87e287733f8962f941e8d76f919dda6f8` |
 | S3 | Grailwright — `keenanselbee/grailwright` | `663c29d82044f76f0f1b24b7174888ddee81d662` |
+| S4 | apodworny — `apodworny/FallOfAvalonMods` | `cf167112eb2d93c3a1714399b57647392d3d1ed5` |
 
 S1 is Questline's official public Merlin-compatible source surface. S2 and S3 are public mod/source projects. Evidence lanes remain distinct: Merlin source exposure is not automatically shipped-runtime equivalence, while working mod source demonstrates a use against the author's tested runtime/build but is not automatically cross-version proof.
 
@@ -39,6 +40,10 @@ S1 is Questline's official public Merlin-compatible source surface. S2 and S3 ar
 | `ItemEquip.EquipmentType` | getter hook | override effective handedness/equipment type | Mono | S2 — `DualTwoHanded/ItemEquipPatch.cs` | hooks + types |
 | `ItemsSorting.Compare(Item, Item)` | Prefix target | inject equipped/loadout priority into native item sorting | Mono | S2 — `ImprovedInventory/Inventory/Sorting/Equippable/ItemsSortingPatch.cs` | hook gap closed in this pass |
 | `MapUI.AfterViewSpawned` | Postfix target | map-view-ready boundary | Mono | S2 — `FastTravelAlways/MapUIPatch.cs` | hooks |
+| `VHeroHUD.AfterFullyInitialized` | Postfix target | hero HUD ready for child UI attachment/repositioning | Mono | S4 — `ProficiencyHud/VHeroHUD_Patch.cs`, `RepositionHud/VHeroHUD_Patch.cs` | hook gap closed in this pass |
+| `VHeroKeys.Handle(UIEvent)` | Prefix target | hero input dispatch before native action handling | Mono | S4 — `HotkeyQuickslots/VHeroKeys_Patch.cs` | hook gap closed in this pass |
+| `VCEnemyHealthBar.StartPointing(Location)` | Postfix target | enemy-target HUD acquires a Location and can resolve its NPC element | Mono | S4 — `DisplayEnemyLevels/VCEnemyHealthBar_Patch.cs` | baseline only; domain-specific UI |
+| `VCEnemyBars.UpdateHP(Location)` | Postfix target | enemy-bar refresh with Location → NPC access | Mono | S4 — `ViewEnemyHealthAndStamina/VCEnemyBars_Patch.cs` | baseline only; domain-specific UI |
 | `HeroStorageUI.OnFullyInitialized` | Postfix target | storage UI ready for prompt extension | Mono | S2 — `ImprovedStorage/HeroStoragePatch.cs` | hooks + types |
 | `PContainerUI.OnFullyInitialized` | Postfix target | pickup/container UI ready | Mono | S2 — `ImprovedInventory/Loot/PContainerOneTimePatch.cs` | hooks + types |
 | `PContainerElement.CacheVisualElements` | Postfix target | extend cached row visual tree | Mono | S2 — `ImprovedInventory/Loot/PContainerElementPatch.cs` | hooks + types |
@@ -72,6 +77,7 @@ S1 is Questline's official public Merlin-compatible source surface. S2 and S3 ar
 | `World.Only<GameRealTime>()` | singleton world model | Merlin | S1 — `Assets/Code/Main/Analytics/MapAnalytics.cs` | runtime access |
 | `World.Services.Get<T>()` | registered service | Merlin + Mono | S1 + S2 | runtime access + services |
 | `model.TryGetElement<T>()` | owned MVC element | Merlin + Mono | S1 `SkillRole.cs`; S2 `HeroRPGStatsPatch.cs` | runtime access |
+| `Location.TryGetElement<T>()` | element attached to a runtime Location | Mono | S4 — enemy HUD mods resolve `NpcElement` from `Location` | runtime-access gap closed in this pass |
 | `TemplatesProvider.Get<T>(guid)` | typed native template by GUID | Mono | S2 — `WeightControl/HeroPatch.cs`, `UnlimitedOriginPotions/HeroPatch.cs` | templates + runtime access |
 | `TemplateReference.TryGet<T>()` | typed template behind reference | Mono | S2 — `HigherWeightLimit/HeroPatch.cs` | templates + runtime access |
 | `ActorRef.Get()` | actor from actor reference | Merlin | S1 — `Assets/Code/Main/Stories/Actors/ActorRef.cs` | runtime access |
