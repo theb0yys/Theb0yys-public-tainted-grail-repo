@@ -1,0 +1,34 @@
+name: Research tools
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  source-tools:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pinned ILSpy CLI
+        shell: pwsh
+        run: dotnet tool install --global ilspycmd --version 11.0.0.9283
+
+      - name: Build synthetic anchor fixture
+        shell: pwsh
+        run: dotnet build ./research/tools/symbol-anchors/tests/FixtureAssembly/FixtureAssembly.csproj -c Release
+
+      - name: Exercise symbol extraction and verification
+        shell: pwsh
+        run: |
+          $ilspy = Join-Path $env:USERPROFILE ".dotnet\tools\ilspycmd.exe"
+          ./research/tools/symbol-anchors/tests/Test-SourceTools.ps1 -IlSpyCmd $ilspy
+
+      - name: Compile-smoke Mono research plug-ins against stubs
+        shell: pwsh
+        run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.csproj -c Release
