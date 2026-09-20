@@ -1,10 +1,5 @@
 ---
-document_type: mechanic-index
-scope: reusable FoA modding capabilities
-game_build: mixed
-runtime: mixed
-last_verified: 2026-09-20
----
+
 
 # Mechanics
 
