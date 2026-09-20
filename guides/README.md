@@ -1,6 +1,6 @@
 # Guides
 
-Human workflows for learning, building, diagnosing and shipping Tainted Grail mods.
+Step-by-step help for learning, building, debugging, and releasing Tainted Grail mods.
 
 - [Getting started](getting-started/README.md)
 - [Learning paths](learning-paths/README.md)
@@ -8,4 +8,4 @@ Human workflows for learning, building, diagnosing and shipping Tainted Grail mo
 - [Troubleshooting](troubleshooting/README.md)
 - [Shipping](shipping/README.md)
 
-Canonical technical facts belong in [Knowledge](../knowledge/README.md). Unknown or unproven behaviour belongs in [Research](../research/README.md).
+Use [Knowledge](../knowledge/README.md) for technical facts and exact references. Use [Research](../research/README.md) when the behaviour is still uncertain or under investigation.
