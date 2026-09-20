@@ -1,8 +1,10 @@
 # Dungeon Exit Marker Public Template
 
+Use this starter when you are building a dungeon-exit marker or navigation helper across both runtimes. Keep marker rules shared; resolve scene, map, marker, and lifecycle access in the runtime-specific host.
+
 Source family: `dungeon-exit-helper`
 
-This is a public, source-only starter distilled from the Dungeon Exit Marker mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
