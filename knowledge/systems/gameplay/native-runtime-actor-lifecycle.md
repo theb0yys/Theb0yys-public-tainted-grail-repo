@@ -10,6 +10,8 @@ last_verified: 2026-09-20
 
 # Native Runtime Actor Lifecycle
 
+Use this page when you are creating or cleaning up a runtime NPC or creature and need to know what must exist beyond the spawned GameObject.
+
 A runtime NPC/creature in FoA is more than a spawned GameObject.
 
 A recurring native ownership chain is:
