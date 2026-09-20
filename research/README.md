@@ -1,6 +1,6 @@
-# Investigate
+# Research
 
-Investigation is a first-class FoA modding skill.
+Use this section when a FoA behaviour, identity, lifecycle, or integration path is not yet known well enough to document as established fact.
 
 - [Finding the native owner](methods/finding-the-native-owner.md)
 - [Tracing a lifecycle](methods/tracing-lifecycles.md)
@@ -16,4 +16,15 @@ Investigation is a first-class FoA modding skill.
   - [External engine integration](investigations/dialogue/external-engine-integration.md)
   - [Migration and fallback](investigations/dialogue/migration-and-fallback.md)
 
-The goal is to establish **identity → owner → lifecycle → downstream consumer → cleanup → proof** before mutation.
+A useful investigation should answer, in order:
+
+```text
+what is it?
+→ what owns it?
+→ when does it exist?
+→ who consumes the result?
+→ how is it cleaned up?
+→ what evidence proves the behaviour?
+```
+
+Do not turn an assumption into a Knowledge page just because a hook compiles or fires once.
