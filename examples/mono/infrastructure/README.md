@@ -1,4 +1,7 @@
 # Mono Infrastructure Examples
+- [Performance telemetry](performance-telemetry/README.md)
+- [Native save completion observer](save-completion-observer/README.md)
+- [Smart save backup](smart-save-backup/README.md)
 
 These examples show how a normal Mono/BepInEx mod can consume the shared infrastructure documented under [tooling](../../../platform/README.md).
 
