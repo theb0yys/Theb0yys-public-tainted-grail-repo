@@ -1,31 +1,33 @@
 # Tainted Grail: The Fall of Avalon — Community Modding Platform
 
-An unofficial, source-only modding platform for **Tainted Grail: The Fall of Avalon**. It combines author guidance, game-system knowledge, shared modding infrastructure, research, runnable examples, and reusable project starters.
+An unofficial public knowledge base and toolkit for **Tainted Grail: The Fall of Avalon** modding. It brings together step-by-step guides, technical game knowledge, shared modding tools, research, focused code examples, and starter projects.
 
 > **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
 ## Start here
 
 - **New to modding:** [Guides](guides/README.md) → [Getting started](guides/getting-started/README.md)
-- **Need a known capability or exact game fact:** [Knowledge](knowledge/README.md)
-- **Building against shared infrastructure:** [Platform](platform/README.md)
-- **Investigating unknown behaviour or evidence:** [Research](research/README.md)
-- **Need working source:** [Examples](examples/README.md)
-- **Starting a project:** [Templates](templates/README.md)
+- **Need an exact game fact, hook, type, service, or known technique:** [Knowledge](knowledge/README.md)
+- **Want to use shared tools or framework APIs:** [Tooling and shared infrastructure](platform/README.md)
+- **Trying to figure out behavior that is still unclear:** [Research](research/README.md)
+- **Need code you can read and adapt:** [Examples](examples/README.md)
+- **Want a starter project:** [Templates](templates/README.md)
 
-## Repository structure
+## What's in the repository?
 
-| Surface | Owns |
+| Section | What you'll find |
 | --- | --- |
-| [platform/](platform/README.md) | Shared infrastructure, component contracts, ecosystem rules and integration recipes |
-| [guides/](guides/README.md) | Getting started, learning paths, task guides, troubleshooting and shipping |
-| [knowledge/](knowledge/README.md) | Canonical systems, reusable mechanics and exact reference material |
-| [research/](research/README.md) | Investigation methods, open investigations, case studies and source provenance |
-| [examples/](examples/README.md) | Focused public-safe code examples that demonstrate specific modding techniques |
-| [templates/](templates/README.md) | Reusable project and mod-family starters |
-| [contributing/](contributing/README.md) | Repository taxonomy, evidence standards and authoring rules |
+| [platform/](platform/README.md) | Shared tools, framework APIs, dependency guidance, and integration recipes |
+| [guides/](guides/README.md) | Getting started, learning paths, task guides, troubleshooting, and shipping |
+| [knowledge/](knowledge/README.md) | How the game works, reusable modding techniques, and exact reference information |
+| [research/](research/README.md) | Investigation methods, unresolved questions, case studies, and source provenance |
+| [examples/](examples/README.md) | Focused public-safe code examples for specific modding techniques |
+| [templates/](templates/README.md) | Reusable starter projects |
+| [contributing/](contributing/README.md) | Writing, evidence, and contribution rules |
 
-## Core reasoning model
+## A useful way to reason about game changes
+
+When changing FoA behavior, work through this chain:
 
 ```text
 exact subject / identity
@@ -37,15 +39,17 @@ exact subject / identity
 → verify the intended behaviour
 ```
 
-## Canonical ownership
+The important idea is simple: find the part of the game that actually owns the behavior before deciding where to patch it.
 
-Put information where it belongs, then link to it. A subject can legitimately appear in several surfaces because each surface answers a different question.
+## Where information lives
 
-See [Repository taxonomy](contributing/taxonomy.md).
+Keep one maintained explanation for each technical claim and link to it from other pages instead of maintaining competing copies.
+
+See [Repository taxonomy](contributing/taxonomy.md) if you need the detailed contribution structure.
 
 ## Public-repository boundary
 
-Do not commit proprietary game binaries, extracted commercial assets, localization dumps, generated interop assemblies, saves, private diagnostics, credentials or bulk decompiled game source.
+Do not commit proprietary game binaries, extracted commercial assets, localization dumps, generated interop assemblies, saves, private diagnostics, credentials, or bulk decompiled game source.
 
 ## Upstream projects
 
@@ -53,4 +57,4 @@ Do not commit proprietary game binaries, extracted commercial assets, localizati
 - BepInEx: https://github.com/BepInEx/BepInEx
 - HarmonyX: https://github.com/BepInEx/HarmonyX
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [documentation authoring standards](contributing/README.md), and [evidence standards](contributing/evidence-standards.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [documentation guidance](contributing/README.md), and [evidence standards](contributing/evidence-standards.md).
