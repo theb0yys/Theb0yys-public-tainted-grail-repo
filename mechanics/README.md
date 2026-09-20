@@ -16,3 +16,10 @@ Loot additions now include:
 - [Grant an existing item from mining-damage context](loot/mining-damage-item-grant.md)
 
 Generic quest repair remains under [Investigate](../investigate/bugfixes/rule-pack-recovery.md), not under mechanics.
+
+## Section indexes
+
+- [Economy](economy/README.md)
+- [Intervention selection](intervention-selection/README.md)
+- [Save state](save-state/README.md)
+- [Weapons](weapons/README.md)
