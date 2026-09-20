@@ -1,5 +1,5 @@
 # World
 
-Use these guides when the feature changes scenes, travel, placement, navigation, weather, map behaviour, or other world systems. Prove scene identity, lifecycle, placement safety, and persistence separately instead of treating a coordinate or loaded scene as the whole feature.
+Use this section when your mod changes scenes, travel, placement, navigation, weather, discovery, or other world behavior.
 
-World ownership: [World systems](../../../knowledge/systems/world/README.md). Task-oriented placement/travel/environment procedures belong here.
+The guides focus on exact scene/world identity, safe placement, native travel and scene lifecycle, cleanup across transitions, and the difference between changing world presentation and changing persistent world state.
