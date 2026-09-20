@@ -33,7 +33,7 @@ Gate 0 is complete only when all of the following are true:
 
 ## Current Gate 0 status
 
-- Public-path cleanup: **IN_PROGRESS**
-- Public-surface CI: **IN_PROGRESS**
+- Public-path cleanup: **PASSED**
+- Public-surface CI: **PASSED**
 - General repository licence: **BLOCKED** — owner licence choice is required; no licence is inferred from public visibility.
 - Operational tooling phases: **NOT_RUN**
