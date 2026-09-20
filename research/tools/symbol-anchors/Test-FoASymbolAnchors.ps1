@@ -104,7 +104,24 @@ function Get-TypeInventory {
                     continue
                 }
 
-                $match = [regex]::Match($trimmed, '^(Class|Interface|Struct|Delegate|Enum)\s+(.+)
+                $match = [regex]::Match($trimmed, '^(Class|Interface|Struct|Delegate|Enum)\s+(.+)$')
+                if (-not $match.Success) {
+                    continue
+                }
+
+                $fullName = $match.Groups[2].Value.Trim()
+                $records.Add([pscustomobject]@{
+                    AssemblyPath = $assembly.FullName
+                    AssemblyFile = $assembly.Name
+                    Kind = $match.Groups[1].Value
+                    FullName = $fullName
+                    SimpleName = Get-SimpleTypeName -Name $fullName
+                })
+            }
+        }
+    }
+
+    return $records.ToArray()
 }
 
 function Resolve-TypeRecord {
