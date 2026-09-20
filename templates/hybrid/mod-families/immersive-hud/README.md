@@ -1,3 +1,5 @@
 # Immersive HUD — Dual-Runtime Starter
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Use this starter for a HUD visibility or presentation feature that must support both Mono and IL2CPP.
+
+Keep the visibility/configuration rules shared, and let each runtime host connect them to the correct native HUD lifecycle and refresh points.
