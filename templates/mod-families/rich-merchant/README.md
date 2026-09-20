@@ -1,10 +1,8 @@
 # Rich Merchant Public Template
 
-Use this starter when you are building merchant-economy changes such as wealth or stock tuning across both runtimes. Keep configuration and feature rules shared, while each host connects them to the exact merchant/shop owners.
+Use this starter for merchant wealth, stock, or trading changes that need cross-runtime support.
 
-Source family: `rich-merchant`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep configuration and feature rules shared, while each runtime host connects them to the exact native merchant/shop owners required by the implementation.
 
 ## Reusable mechanisms
 
