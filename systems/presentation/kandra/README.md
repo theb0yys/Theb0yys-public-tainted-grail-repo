@@ -70,6 +70,10 @@ The Kandra toolchain builds garment/body relationships into triangle-visibility 
 
 This matters for armour mods: a visible skinned mesh is only one piece of the clothing lifecycle.
 
+## Deeper reference
+
+- [Kandra armour and clothing boundary](armour-and-clothing-boundary.md)
+
 ## Modding relevance
 
 Kandra knowledge is essential for:
