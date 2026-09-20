@@ -1,25 +1,27 @@
 # Mechanics Catalogue
 
-Curated public view of reusable private mechanics. Status is claim-specific.
+Quick reference for reusable FoA modding techniques and how strong the supporting evidence currently is.
 
-| Mechanic | Public state | Important boundary |
+| Technique | Evidence | What it does **not** prove |
 | --- | --- | --- |
-| Resolve `ItemTemplate` after `TemplatesProvider.AllLoaded` | Static/source inspected | Exact identity/runtime scope matter |
-| Grant `Item` to hero inventory | Static/source inspected; consumer-used | Does not prove save safety |
-| Direct clone + `TemplatesLoader.AddToMap` | Multi-consumer static/source evidence | Private API; patch-sensitive; shared registrar preferred |
-| Template GUID restoration dependency | Current-binary static contract | Registration/restoration order still runtime-sensitive |
-| Item helper classification | Source inspected | Helpers are not a universal taxonomy |
-| Lockpick `ConsumePickHP` guard | Static/source inspected | Live custom-item route separately validated |
-| Native clothes/Kandra equip lifecycle | Decompiled static contract | No custom-armour runtime pass implied |
-| Custom weapon registration + Drake prototype | Static + bounded runtime evidence | Persistence/full lifecycle separate |
-| Runtime alchemy recipe append | Source inspected | Not persistent learning |
-| Existing recipe `HeroRecipes.LearnRecipe` | Source inspected | Throwaway save/reload still required |
-| Merchant restock | Source inspected | Owner review recorded runtime gap |
-| Spell cast VFX overlay | Source inspected | Family mapping is name heuristic |
-| One-session companion lifecycle | Source + representative runtime lineage | Explicitly not saved |
-| Avalon Awakened resolver | Project API boundary | Not native FoA API |
-| Completed Addressables handle bridge | Source inspected | Specific bridge, not global substitution |
-| ModService catalogue layout | Offline two-cycle proof | No game deployment/actor proof |
-| Native save completion observation | Source/decompiled candidate | Not generic durable-success semantics |
-| Arbitrary native mod save domain | **Blocked by static verdict** | No supported mutable registrar found |
-| Sidecar persistence | Under evaluation | Static lifecycle candidates; runtime/save matrix incomplete |
+| Resolve `ItemTemplate` after `TemplatesProvider.AllLoaded` | Source inspected | A template ID is valid on every game build |
+| Grant an `Item` to Hero inventory | Source inspected and used by real consumers | Save/reload safety |
+| Clone a template and call `TemplatesLoader.AddToMap` | Seen in multiple source implementations | Long-term compatibility; it uses private internals |
+| Restore a saved template by GUID | Exact Mono binary contract inspected | Custom registration will always happen early enough at runtime |
+| Use `ItemTemplate` helper properties for classification | Source inspected | Those helpers form one complete universal item taxonomy |
+| Suppress `LockpickingInteraction.ConsumePickHP` | Source inspected | Every custom lockpick flow has been runtime-tested |
+| Use the native clothes/Kandra equip lifecycle | Decompiled static contract | Custom armour has passed a complete live validation |
+| Register a custom weapon and serve a Drake prototype | Static evidence plus limited runtime evidence | Full persistence and lifecycle safety |
+| Append a runtime alchemy recipe | Source inspected | Persistent recipe learning |
+| Call `HeroRecipes.LearnRecipe` for an existing recipe | Source inspected | Save/reload safety without a throwaway-save test |
+| Restock merchants on `Shop.OpenShop` | Source inspected | Full runtime ownership/compatibility validation |
+| Add a spell-cast VFX overlay | Source inspected | Template-name family matching is an exact native spell identity |
+| Run a one-session companion lifecycle | Source plus representative runtime evidence | Persistence; the demonstrated route is intentionally not saved |
+| Use the Avalon Awakened resolver | Project API contract | Native FoA API behavior |
+| Build a completed Addressables handle bridge | Source inspected | Arbitrary Addressables substitution is safe |
+| Use the documented ModService catalogue layout | Repeated offline proof | In-game actor/content integration |
+| Observe concrete native save completion callbacks | Source plus decompiled targets | A general-purpose custom save serializer |
+| Register an arbitrary new native save domain | **No supported route found in the inspected Mono build** | That no future build or different mechanism could provide one |
+| Store mod-owned state in a sidecar | Research in progress | A general save-safe public implementation yet |
+
+Use the linked system/mechanic pages for the actual implementation details and version limits.
