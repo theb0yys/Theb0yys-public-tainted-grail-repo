@@ -1,5 +1,5 @@
 # Audio
 
-Use these guides when you want to replace or augment FoA audio. They focus on identifying the exact FMOD event and playback owner, keeping replacements narrowly scoped, and preserving native audio behaviour when your custom path cannot reproduce it safely.
+Use this section when you want to observe, replace, or add game audio.
 
-Native ownership: [Audio/FMOD](../../../knowledge/systems/presentation/audio-fmod-integration.md). Working patterns: [Audio case studies](../../../research/case-studies/audio/README.md).
+The guides focus on finding the exact FMOD/gameplay owner, scoping replacements to the intended event or actor, preserving native behavior where needed, and cleaning up mod-owned audio resources.
