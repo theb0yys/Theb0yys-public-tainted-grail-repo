@@ -5,6 +5,7 @@ Infrastructure is the machinery around the mod or framework itself.
 This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
 
 - [Validate mods after a game update](game-update-validation.md)
+- [Mono development loop](mono-development-loop.md)
 
 ## Repository structure
 
