@@ -1,51 +1,81 @@
 # Change Post-Roll Container Contents
 
-**Evidence status: PARTIAL.** The save-backed ownership boundary is understood; complete runtime/persistence validation is not recorded.
+Modify the generated runtime rows after FoA has rolled the container. Do not rewrite the source loot table just to apply a post-roll rule.
 
 Working lineage: [Container Rules: Post-Roll and Save-Backed](../../../research/case-studies/economy/container-row-boundary.md).
 
-## Key distinction
+## Runtime owner
 
-Changing a generated container row **after roll** is not the same as editing the source loot table.
+The working economy implementation operates on:
 
-The relevant runtime list, such as `SearchAction._itemsInsideContainer`, can be save-backed state.
+~~~text
+Awaken.TG.Main.Locations.Actions.SearchAction
+→ SearchAction.OnInitialize
+→ private _itemsInsideContainer
+→ ItemSpawningDataRuntime rows
+~~~
 
-## Bounded operations
+The list is read from the current `SearchAction` instance after the container contents exist.
 
-Keep these separate:
+## What a row gives you
 
-- quantity scaling;
-- rule-based remove/scale;
-- corpse-specific filtering.
+Each `ItemSpawningDataRuntime` can expose information such as:
 
-Do not mix them with:
+- `ItemTemplate`;
+- quantity;
+- item level;
+- weight level;
+- New Game Plus level.
+
+Use the resolved `ItemTemplate` and its flags/tags to classify the row. Do not infer everything from display text when a native flag exists.
+
+## Bounded post-roll rules
+
+Keep individual operations simple:
+
+### Quantity scaling
+
+~~~text
+matching generated row
+→ quantity × multiplier
+→ clamp/remove zero row as intended
+~~~
+
+### Keep/drop rule
+
+Use a deterministic per-row roll if you want stable results for the same row/context rather than calling a fresh random generator repeatedly during UI refreshes.
+
+### Container-specific policy
+
+Build a normalized container identity from the current `SearchAction`, its parent/location, and attached native context.
+
+The working code also distinguishes useful context such as:
+
+- a `LockAction` being present;
+- lock state;
+- an attached `NpcElement`;
+- corpse/enemy-corpse context.
+
+## Do not mix owners
+
+This route is **after** content generation. It is not:
 
 - loot-table authoring;
-- metadata edits;
-- item transfer rewrites.
+- template registration;
+- item transfer;
+- container UI replacement.
 
-## Process
+Let `ContainerUI` and native transfer continue with the modified runtime rows.
 
-```text
-container/corpse contents generated
-→ inspect runtime ItemSpawningDataRuntime rows
-→ apply one bounded post-roll rule
-→ native ContainerUI/transfer continues
-```
+## Save-backed warning
 
-## Persistence warning
+`_itemsInsideContainer` can participate in saved container state.
 
-Because the list can be save-backed, your mutation may become durable.
+That means the correct mental model is:
 
-Validate on a disposable save:
+~~~text
+generated runtime row mutation
+→ may become the container's durable rolled state
+~~~
 
-- initial generation;
-- rule application;
-- save;
-- reload;
-- reopen;
-- no double-application.
-
-## Current proof boundary
-
-Ownership and risk are established. Runtime/save behaviour for each concrete rule must be proven before promotion.
+So never reapply an irreversible rule on every reopen without checking whether the row has already been transformed.
