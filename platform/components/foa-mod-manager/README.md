@@ -1,15 +1,8 @@
 # FoA Mod Manager
 
-**Posture: Author-ready**
+Use FoA Mod Manager when your mod needs shared settings UI, controller actions, custom-screen input/cursor handling, or a read-only runtime status entry.
 
-Use FoA Mod Manager when your mod needs one or more of:
-
-- normal BepInEx config shown in a common manager;
-- display metadata for config entries;
-- controller-triggered mod actions;
-- shared cursor/input/world-freeze ownership for a custom screen;
-- controller cursor support;
-- a read-only runtime status row.
+These integrations are intended for ordinary mod authors. Your mod still owns its gameplay state and its own screen contents; the manager owns only the shared management and input responsibilities documented below.
 
 ## Public API
 
