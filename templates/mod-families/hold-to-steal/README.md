@@ -1,8 +1,10 @@
 # Hold to Steal Public Template
 
+Use this starter when you are building an illegal-interaction guard such as Hold to Steal. Keep the input/permission rule shared, and let each runtime host connect it to the exact native theft action while preserving normal item transfer and crime behavior.
+
 Source family: `hold-to-steal`
 
-This is a public, source-only starter distilled from the Hold to Steal mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
