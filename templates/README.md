@@ -43,3 +43,8 @@ Each named template is self-contained with:
 - [Merlin overlay](merlin/basic/) — owned content root layered into the official Merlin Workshop project.
 
 See [Template Source-Family Map](SOURCE-MAP.md) for provenance. Templates are starting points, not runtime, persistence, compatibility, or release proof. Use [examples](../examples/README.md) for mechanism demonstrations and [tooling](../tooling/README.md) for shared infrastructure contracts.
+
+## Section indexes
+
+- [Hybrid / dual-runtime templates](hybrid/README.md)
+- [Merlin templates](merlin/README.md)
