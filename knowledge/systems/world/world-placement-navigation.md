@@ -1,42 +1,28 @@
-# World Placement, Navigation, Routes, and Spawn Safety
+# World Placement and Navigation
 
-> **Reference page.** Use this when placing actors/objects, choosing spawn anchors, building patrol routes, or reasoning from map coordinates.
+Use this page when you are choosing **where to place an actor/object, where to spawn something, or how to define a patrol/route**.
 
-## What this system is
+A coordinate tells you only where a point is.
 
-A world coordinate answers only:
+It does **not** prove the point is safe, reachable, or appropriate.
 
-> where is this point?
+## A safe placement needs more than XYZ
 
-It does **not** answer:
+Check separately:
 
-- can an actor safely stand there?
-- can it navigate from there?
-- is it inside the intended scene/region?
-- is the route actually connected?
-- is a crossing a real navigable intersection?
-- is the location quest/story-owned?
-- will duplicate actors stack there?
-- does the placement survive leave/return or save/load?
+- scene/region/worldspace;
+- physical clearance;
+- ground/height;
+- navigation/traversability;
+- access/state gates;
+- nearby quest/story ownership;
+- duplicate/density behavior;
+- leave/return behavior;
+- persistence policy.
 
-The research treats those as separate proofs.
+## Keep world identities separate
 
-## Who owns it in FoA
-
-Relevant owners can include:
-
-- scene/worldspace identity;
-- `MapScene` / scene services;
-- native location/spawner systems;
-- navigation/pathfinding owners;
-- roads/routes/intersections as game-knowledge relationships;
-- actor `Location` ownership;
-- population/density owners;
-- quest/state gates controlling access.
-
-## Important identities, types, and methods
-
-The game-knowledge model distinguishes:
+Useful distinctions include:
 
 - region;
 - worldspace;
@@ -54,134 +40,128 @@ The game-knowledge model distinguishes:
 - spawn definition;
 - encounter.
 
-These identities should not be collapsed into one coordinate string.
+Do not collapse all of these into one coordinate string.
 
-For native actor creation, a researched runtime surface is still `LocationTemplate.SpawnLocation(...)`, but using that call does not prove the chosen placement is safe.
+## Spawn anchor vs spawn definition
 
-## Where it exists in the lifecycle
+The **anchor** answers:
 
-A safe placement/spawn investigation is:
+> where?
+
+The **spawn definition/owner** answers:
+
+- what actor/object;
+- count;
+- conditions;
+- respawn;
+- density;
+- lifecycle;
+- persistence.
+
+A valid anchor does not prove a valid population system.
+
+## Safe one-actor progression
+
+For a new spawn route, prove in this order:
 
 ~~~text
-resolve scene/region
-→ identify candidate anchor
-→ prove physical clearance
-→ prove navigation/traversability
-→ prove access/state conditions
-→ prove actor/template eligibility
-→ create one controlled actor/object
-→ observe movement/combat/use
+scene/region
+→ candidate anchor
+→ clearance
+→ navigation
+→ access/state
+→ exact actor/template eligibility
+→ one controlled spawn
+→ movement/combat/use
 → leave/return
-→ duplicate/density
+→ duplicates/density
 → save/load if persistent
-→ cleanup/rollback
+→ cleanup
 ~~~
 
-A moving route adds:
+Only after that should you expand to population/density/respawn logic.
 
-~~~text
-ordered route steps
-→ exact road/segment/node relationships
-→ entry/exit direction
-→ movement owner
-→ blocked-route fallback
-→ interruption/combat
-→ resume/return/despawn
-~~~
+## Routes need topology, not just lines
 
-## How we interact with it
+If two roads visually cross, do not call them connected until traversal proves there is an actual junction.
 
-### Record topology, not just positions
+A route should record:
 
-If two roads visually cross, do not call it an intersection until a traversable join is established.
+- ordered segments/nodes;
+- entry/exit direction;
+- access conditions;
+- movement owner;
+- blocked-route fallback;
+- combat/interruption behavior;
+- resume/return/despawn behavior.
 
-### Treat a route as an ordered relationship
+A polyline on a map is not enough.
 
-A route should identify the ordered segments/nodes and access conditions, not merely a polyline drawn on a map.
+## Keep unique/story actors blocked by default
 
-### Separate spawn anchor from spawn definition
+Do not reuse:
 
-The anchor answers where.
+- unique actors;
+- bosses;
+- civilians;
+- quest/story characters;
+- tutorial actors;
+- summon-only actors;
 
-The spawn definition answers what, ownership, count, respawn, density, conditions and lifecycle.
+for ambient spawning unless their ownership/eligibility is actually established.
 
-### Validate a single actor before population logic
+## Common mistakes
 
-For a new spawn path:
+### Visual crossing = nav intersection
 
-1. one exact non-unique actor/template;
-2. one safe anchor;
-3. one controlled session;
-4. native lifecycle;
-5. cleanup;
-6. only then density/respawn/persistent population.
+Can produce impossible route graphs.
 
-### Keep unique/story actors denied by default
+### Static path exists = AI can traverse it
 
-Unresolved unique, boss, civilian, quest, story, tutorial or summon ownership blocks ambient reuse.
+Movement/state ownership can still fail.
 
-## Why this route
+### Template exists = safe ambient spawn
 
-The game-knowledge programme repeatedly records:
+The template may be story-owned, unique, summon-only, or otherwise context-bound.
 
-> Coordinates alone are not safe placement proof.
+### Spawn once = placement safe
 
-It also preserves observed **absence** rather than inventing a route/spawner.
+The actor may be stuck, off-nav, inside geometry, or duplicate after revisit.
 
-The bounty-hunter example is instructive: templates existed, but repeated diagnostics found no observed vanilla spawner references. The correct result was "spawn route not established," not "pick a coordinate and spawn one."
+### MarkedNotSaved actor = persistent population
 
-## What goes wrong
+It proves the opposite: deliberate session-only ownership.
 
-### Visual road crossing = intersection
+### Ignoring density
 
-Can create impossible route graphs.
+Individually valid spawns can still create gameplay/performance failures when repeated.
 
-### Static route geometry = moving actor proof
+## How to verify a placement
 
-A path can exist while AI/movement/state transitions fail.
-
-### Template exists = ambient-spawn safe
-
-Templates can be unique, story-owned, summon-only, debug, or otherwise context-bound.
-
-### Spawn succeeds once = placement safe
-
-Actor may be stuck, inside geometry, off navigation, invalid after reload, or stacked after revisit.
-
-### One-session actor = persistent population
-
-A `MarkedNotSaved` proof deliberately avoids the persistent problem.
-
-### Density ignored
-
-Even individually valid spawns can create performance/gameplay failure when duplicated.
-
-## How to verify
-
-For a placement candidate:
+Check:
 
 1. exact scene/region/worldspace;
 2. exact anchor identity;
 3. position/rotation;
 4. collision/clearance;
-5. ground/height correctness;
-6. nav/path evidence;
-7. access/gate/state conditions;
+5. ground/height;
+6. navigation/path evidence;
+7. access/state conditions;
 8. actor/template eligibility;
-9. distance from unsafe transitions/quest objects;
+9. nearby transition/quest hazards;
 10. one controlled spawn;
-11. movement from anchor;
-12. combat/interruption if applicable;
+11. movement;
+12. combat/interruption if relevant;
 13. leave/return;
-14. duplicate/density;
+14. duplicates/density;
 15. save/load if persistent;
 16. cleanup/rollback;
-17. performance/log review.
+17. performance/log behavior.
 
-For a route, additionally prove every ordered segment/junction and full traversal.
+For routes, also prove every ordered segment/junction and a complete traversal.
 
-## Current proof boundary
+## Evidence limits
 
-The handbook can teach the placement/topology validation model and several controlled actor lifecycle paths.
+The repository can teach the placement/topology validation method and several controlled actor lifecycles.
 
-It does not claim a generic spawn-anchor database or universal population injection API. Those require reviewed game-knowledge identities and lane-specific runtime validation.
+It does not provide a universal safe-spawn database or universal population injection API.
