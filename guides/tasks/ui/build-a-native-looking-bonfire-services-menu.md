@@ -1,65 +1,106 @@
 # Build a Native-Looking Bonfire Services Submenu
 
-**Evidence status: PARTIAL.** Native service calls and a representative Services entry worked; the newest full submenu still lacked complete input/layout/service-return validation.
+Reuse the current VFireplaceUI/FireplaceUI rather than rebuilding bonfire gameplay.
 
 Working lineage: [Native Service Reuse and Submenu Ownership](../../../research/case-studies/bonfire/native-service-reuse.md).  
-Native services: [Bonfire / Fireplace Native Services](../../../knowledge/systems/world/bonfire-services.md).  
-UI lifecycle: [UI, Cursor, Focus, and Input Ownership](../../../knowledge/systems/presentation/ui-input.md).
+Native services: [Bonfire / Fireplace Native Services](../../../knowledge/systems/world/bonfire-services.md).
 
-## Two separate proofs
+## Capture the active bonfire owner
 
-Do not conflate:
+Observe:
 
-1. **service invocation works**;
-2. **custom submenu lifecycle works**.
+~~~text
+VFireplaceUI.OnInitialize
+~~~
 
-This guide focuses on the second.
+and read its GenericTarget as FireplaceUI.
 
-## Process
+Keep that current FireplaceUI reference only while the view/model is alive.
 
-```text
-bonfire UI initialized
-→ clone/reuse native-looking button style
-→ open mod-owned Services submenu
-→ acquire UI/input scope
-→ focus/select
-→ invoke real FireplaceUI service action
-→ service screen runs natively
-→ return/reopen submenu as designed
-→ close and restore input/cursor
-```
+## Reuse a native button as the visual template
 
-## Required UI responsibilities
+The maintained Better Bonfire Menu reads VFireplaceUI members including:
 
-Your submenu owns:
+- buttonContent;
+- levelUp;
+- ShowDescription.
 
-- button objects;
-- focus;
+A working native-looking entry is created by cloning the existing Level Up button config:
+
+~~~csharp
+GameObject clone =
+    Instantiate(levelUpConfig.gameObject, parent);
+~~~
+
+Rename the clone, place it at the intended sibling index, replace its label/action/description bindings, and leave the original native button untouched.
+
+The submenu implementation uses the same principle for each child row: clone the native button template rather than constructing an unrelated visual style.
+
+## Native service calls
+
+Route each custom button to the real FireplaceUI method.
+
+Known services include:
+
+~~~text
+OpenHeroStorage()
+CookAction()
+AlchemyAction()
+HandcraftingAction()
+GoToSleepAction()
+LevelUpAction()
+SaveGame()
+~~~
+
+For an upgraded Wyrd-repelling fireplace, additional native services include:
+
+~~~text
+FastTravel()
+RecallPet()
+~~~
+
+Do not duplicate the transaction behind those methods.
+
+## Submenu lifecycle
+
+The custom submenu owns only:
+
+- cloned button GameObjects;
+- labels/descriptions;
+- selected/focused row;
 - disabled state;
-- descriptions;
 - Back/Cancel;
 - cursor/input scope;
 - teardown.
 
-The native service still owns gameplay.
+The native FireplaceUI still owns the service.
 
-## Verification still required
+A good sequence is:
 
-Test:
+~~~text
+VFireplaceUI initialized
+→ attach one Services entry
+→ Services clicked
+→ hide/suspend normal row presentation as needed
+→ show cloned service rows
+→ focus first usable row
+→ invoke real FireplaceUI action
+→ close/rebuild submenu after native service returns
+~~~
 
-- mouse;
-- keyboard;
-- controller;
-- initial focus;
-- disabled rows;
-- service opens;
-- returning from service;
-- Back/Cancel;
-- scene transition;
-- plugin disable;
-- cursor/input restoration;
-- no duplicate menu objects.
+## Input
 
-## Current proof boundary
+Do not disable the EventSystem that your buttons require.
 
-Representative service flow and native Services entry worked. Full native-style submenu lifecycle remains partial until the complete input/layout/return matrix is run.
+Acquire a UI/input scope that suppresses gameplay controls while keeping UI event dispatch alive. Restore exactly the previous cursor/input state when the submenu closes.
+
+## Teardown
+
+On VFireplaceUI discard, scene change, feature disable, or plug-in unload:
+
+- destroy only your cloned rows/containers;
+- clear the captured owner;
+- release cursor/input scope;
+- restore any native presentation state you changed.
+
+Never leave duplicated service buttons behind after reopening a bonfire.
