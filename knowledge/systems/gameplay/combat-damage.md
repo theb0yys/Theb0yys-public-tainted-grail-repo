@@ -1,127 +1,155 @@
 # Combat, Damage, Death, and Attribution
 
-Use this page when your mod needs to **observe or change damage, death, fall damage, kill attribution, or other combat outcomes**.
+> **Reference page.** Combat hooks are high-value and high-risk because the same native damage/death surfaces are shared by many systems.
 
-The most important rule is:
+## What this system is
 
-> Patch the narrowest native stage that actually owns the effect you want to change.
+FoA combat is not one method.
 
-FoA damage is a pipeline, not one method.
-
-## A useful combat model
+A useful high-level model is:
 
 ~~~text
 attack/action owner
 → hit/target resolution
-→ Damage context
-→ health/damage handling
-→ reactions/state changes
+→ Damage object/context
+→ HealthElement.TakeDamage
+→ health/reaction/state changes
 → lethal transition
 → NPC death processing
-→ corpse/loot/encounter consequences
+→ dummy/corpse/loot/encounter consequences
 ~~~
 
-Specialized damage such as fall damage can enter through narrower upstream methods before reaching shared health handling.
+Different damage categories can enter through specialised upstream utilities before converging on health.
 
-## Important types and methods
+## Who owns it in FoA
 
-Useful researched surfaces include:
+Important owners include:
 
-- `HealthElement.OnDamage(Damage)`
+- weapon/action systems such as `CharacterWeapon`;
+- `Damage` and source/target context;
+- `HealthElement`;
+- hero/NPC stat owners;
+- `NpcElement`;
+- `DeathElement`;
+- `NpcDummy`;
+- `Corpse`;
+- combat AI/state owners;
+- fall-damage/mining/other specialised upstream routes.
+
+## Important identities, types, and methods
+
+Research-backed surfaces include:
+
 - `HealthElement.TakeDamage(Damage)`
 - `FallDamageUtil.DealFallDamage(...)`
 - `NpcElement.DeathNonCriticalFunctions(...)`
 - `Damage.TargetPure`
 - `Damage.DamageDealerPure`
+- `ItemStat.ModifiedValue`
+- native weapon stamina-cost stats
+- native death/corpse transitions
 - `NpcAI.EnterCombatWith(...)`
 
-Related state is also owned by Hero/NPC stats, death Elements, corpse/dummy state, AI/combat state, and weapon/action systems.
+## Where it exists in the lifecycle
 
-## Observe damage vs change damage
+### Damage observation
 
-A later hook such as a Postfix around `HealthElement.TakeDamage` is useful when you need to observe the outcome while leaving the input untouched.
+A Postfix on `HealthElement.TakeDamage` can observe damage after the native call while leaving the input unchanged.
 
-A Prefix that changes `Damage` changes the calculation path and has greater compatibility implications.
+This is used in several diagnostics/features for hero-involved damage context.
 
-For narrow mechanics, prefer a narrower upstream method when one exists.
+### Damage modification
 
-Example:
+A Prefix that changes `Damage` has different compatibility implications.
 
-~~~text
-fall-damage mechanic
-→ FallDamageUtil.DealFallDamage
-→ shared health/damage path
-~~~
+Upstream specialised routes can be safer for narrow effects.
 
-A fall-damage mod normally has less reason to patch all damage globally.
+Example: fall damage has its own `FallDamageUtil.DealFallDamage` path before calling health.
 
-## Preserve source and target identity
+### NPC death observation
 
-Do not infer "player damage" or "enemy damage" from object names.
+`NpcElement.DeathNonCriticalFunctions` is a useful researched death-processing observation point.
 
-Use the native dealer/target/context information carried by the damage path.
+It exposes enough context for some hero-credited death/hunt resolution logic.
 
-Attribution matters for:
+It is **not** automatically an exactly-once universal death event for every actor class/path.
 
-- player-dealt vs player-received damage;
-- summons;
-- mining/resource targets;
-- kill credit;
-- rewards/loot;
-- combat-state reactions.
+## How we interact with it
 
-## Let native death own the death lifecycle
+### Patch as high as necessary, as low as safe
 
-Observing a death method does not give your mod ownership of:
+For a narrow mechanic, prefer the specialised upstream owner when it cleanly identifies the effect.
 
-- the `Location`;
-- corpse retention;
-- encounter completion;
-- loot/rewards;
-- actor cleanup.
+Examples:
 
-When native death is the intended lifecycle, let the native death/corpse path finish and observe the state you need.
+- fall damage → fall-damage utility;
+- weapon stamina cost → exact item stat;
+- mining candidate observation → damage context with exact target/source classification.
 
-## Common mistakes
+Use global `HealthElement.TakeDamage` only when the feature truly needs that shared boundary.
 
-### Global damage patch for a narrow feature
+### Preserve attribution
 
-This can affect unrelated damage categories and interact with other multipliers.
+Do not infer player damage from object names.
 
-### Multiple Prefixes mutating the same Damage payload
+Use native source/target/dealer identities.
 
-Patch order/load order can change results.
+### Let native death own death
 
-### Treating a death callback as an exactly-once universal death event
+For custom actors where native death is the intended lifecycle, validate the full lethal transition and only accept it when the expected native dummy/corpse state exists.
 
-Different actor families or lifecycle paths may not behave identically.
+## Why this route
 
-### Copying summon assumptions to ordinary NPCs
+The repository contains several examples of **not** patching `HealthElement.TakeDamage` because a narrower upstream path exists.
 
-Summons/allies can have different markers and corpse/death handling.
+That is an important golden rule:
 
-### Treating animation/VFX as hit proof
+> A lower/shared method can technically work while being the wrong ownership boundary.
 
-A rendered attack is not proof that native damage/health state changed.
+It increases compatibility collisions and makes it harder to distinguish combat, fall, mining and other contexts.
 
-## How to verify combat changes
+## What goes wrong
 
-Check:
+### Global damage patch for a narrow mechanic
 
-1. exact damage/action category;
-2. dealer identity;
-3. target identity;
-4. damage value before your intervention;
-5. exact native method that fired;
-6. resulting health;
-7. reaction/combat state;
-8. lethal path if applicable;
-9. death/corpse transition;
-10. rewards/loot separately;
-11. interaction with other relevant patches.
+Can affect unrelated damage and interact unpredictably with other multipliers.
 
-## Evidence limits
+### Prefix ordering conflicts
 
-The repository has concrete uses of several combat hooks and strong static/source mapping of the shared damage path.
+Multiple mods mutating `Damage.RawData` or skipping originals can make load order matter.
 
-`HealthElement.OnDamage`, `HealthElement.TakeDamage`, and `NpcElement.DeathNonCriticalFunctions` are useful targets, not guaranteed universal mod APIs for every actor/build/runtime.
+### Death observer treated as actor cleanup owner
+
+Observing death does not automatically own `Location`, corpse retention, rewards or encounter lifecycle.
+
+### Summon death assumptions copied to ordinary NPCs or vice versa
+
+Summon/native ally markers change some death/corpse behavior.
+
+### Rendered attack mistaken for damage proof
+
+Animation/VFX playback does not prove native hit/health transition.
+
+## How to verify
+
+For combat work, verify:
+
+- exact attack/damage category;
+- dealer identity;
+- target identity;
+- damage before/after;
+- native method actually invoked;
+- health result;
+- hit reaction;
+- combat state;
+- lethal path if applicable;
+- death animation/state;
+- dummy/corpse;
+- rewards/loot separately;
+- compatibility with other patches.
+
+## Current proof boundary
+
+The repository has many concrete source/runtime uses of specialised combat/damage hooks.
+
+The public handbook treats `HealthElement.TakeDamage` and `NpcElement.DeathNonCriticalFunctions` as valuable shared surfaces, but not stable universal mod APIs or complete combat ownership contracts.

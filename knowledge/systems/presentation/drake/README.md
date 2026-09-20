@@ -1,52 +1,29 @@
 # Drake and MergedDrake
 
-Use this page when a **rigid mesh, equipped weapon, runtime rigid prefab, or large static rigid scene group** is rendered through FoA's Drake system instead of an ordinary Unity Renderer path.
+## What it is
 
-## What Drake does
+**Drake** is Questline's rigid-mesh rendering system. It takes conventional Unity rigid-mesh authoring and represents the render side through Unity ECS / Entities Graphics while preserving the gameplay or scene object that owns the content.
 
-Drake is Questline's rigid-mesh rendering system.
+**MergedDrake** is the scene-static bulk form. It is used when large numbers of static Drake renderers can be compiled into a compact dataset and created as ECS render entities without keeping thousands of ordinary renderer components alive.
 
-It takes conventional rigid-mesh authoring data and represents the runtime rendering side through Unity ECS / Entities Graphics while the original gameplay or scene object keeps owning the gameplay state.
+## What it owns
 
-A useful mental model is:
+Drake owns the rigid presentation layer:
 
-~~~text
-gameplay / scene owner
-→ Drake mesh/material identity
-→ Drake manager registration
-→ ECS render entity
-→ visibility / LOD / transform updates
-→ owner-led release
-~~~
-
-## What Drake owns
-
-Drake owns rendering concerns such as:
-
-- mesh/material resource identity;
-- Addressables-backed resource loading;
+- mesh and material resource identity;
+- Addressables-backed mesh/material loading;
 - resource reference counts;
 - ECS render entities;
-- render archetype;
+- render archetype selection;
 - LOD/load state;
-- transform synchronization for movable objects;
-- material state;
-- mipmap-demand participation;
-- renderer resource cleanup.
+- scene lifetime;
+- movable transform synchronisation;
+- runtime material state;
+- mipmap-demand participation.
 
-It does **not** own:
+It does **not** own item identity, inventory, combat, saves or NPC logic.
 
-- item identity;
-- inventory;
-- weapon combat;
-- NPC AI;
-- save state.
-
-For an equipped weapon, the `Item` / equip / hand chain remains the gameplay owner while Drake handles the visual representation.
-
-## Main runtime types
-
-Important types include:
+## Main public/runtime types
 
 - `DrakeMeshRenderer`
 - `DrakeLodGroup`
@@ -59,86 +36,58 @@ Important types include:
 
 Primary managed assembly: `Awaken.ECS.dll`.
 
-## Normal Drake lifecycle
+## Ordinary Drake lifecycle
 
 ~~~text
 MeshRenderer / MeshFilter / optional LODGroup
 → Drake authoring bridge
 → mesh/material Addressable identities
-→ manager registration
+→ Drake manager registration
 → resource acquisition
-→ ECS entity creation
+→ ECS render entity creation
 → Entities Graphics mesh/material IDs
 → LOD / visibility / transform updates
 → owner-led release
 ~~~
 
-For movable objects, the gameplay/equip owner remains responsible for when the object exists; Drake owns the render representation underneath it.
+Movable gameplay objects such as equipped rigid weapons keep their gameplay/equip owner while Drake owns the render entities underneath.
 
-## MergedDrake
-
-MergedDrake is the bulk/static form used for large groups of static Drake content.
+## MergedDrake lifecycle
 
 ~~~text
-eligible static scene content
+eligible scene-static Drake content
 → scene build processing
-→ merged records
+→ merged static records
 → StreamingAssets/DrakeMR/merged_drakes.arch
 → runtime reader
 → bulk ECS entity creation
-→ Drake resource realization
+→ normal Drake resource realisation
 ~~~
 
-Use MergedDrake when investigating large static populations.
+MergedDrake is for large static populations, not the normal starting point for a runtime weapon or other movable gameplay object.
 
-Do **not** treat it as the normal starting point for an equipped weapon or other movable runtime object.
+## Resource ownership
 
-## Shared resources matter
+Drake tracks first-owner / shared-owner / last-owner resource lifetime. Multiple renderers can share one loaded mesh/material resource; final release occurs when the last owner releases it.
 
-Drake can share one loaded mesh/material resource across several renderers.
+That is why direct manipulation of internal resource counters or ECS state is unsafe: the visible entity is only one part of the ownership graph.
 
-That means lifetime is not just "delete this one entity."
+## Modding relevance
 
-The system tracks first/shared/last ownership so final resource release happens only when the final owner releases it.
+Use Drake knowledge when working with:
 
-Do not manipulate internal reference counts or ECS resources directly unless you have mapped that ownership.
-
-## When this page is useful
-
-Use Drake knowledge for:
-
-- rigid equipped weapon visuals;
-- rigid runtime prefabs;
+- rigid equipped weapon presentation;
+- runtime rigid prefabs;
 - static rigid scene content;
-- critter visuals rendered through Drake;
-- Drake-owned material overrides.
+- critter visuals that render through Drake;
+- material overrides on Drake-owned content.
 
-## Common mistakes
+The public cookbook's general rule applies: preserve the gameplay owner and integrate with the real presentation owner instead of replacing the entire object just to change its mesh.
 
-- replacing only the visible Unity MeshRenderer and ignoring the Drake entity;
-- making the Drake entity the source of gameplay truth;
-- manually deleting shared resources;
-- assuming MergedDrake applies to movable objects;
-- treating a successful visual spawn as proof of equip/combat/save integration.
+## Related systems
 
-## What to verify
-
-Check:
-
-1. which gameplay/scene owner creates the visual;
-2. exact Drake renderer/resource identity;
-3. registration;
-4. mesh/material resource load;
-5. ECS entity creation;
-6. LOD/visibility;
-7. transform sync if movable;
-8. release when the gameplay owner is removed;
-9. no shared-resource leak;
-10. scene/equip lifecycle as relevant.
-
-## Related pages
-
-- [Native weapons](../../gameplay/native-weapons/README.md)
-- [Critter VAT / ECS](../critter-vat/README.md)
 - [Shared mipmap streaming](../mipmap-streaming/README.md)
+- [Scenes Baking](../../world/scenes-baking/README.md)
+- [Critter VAT / ECS](../critter-vat/README.md)
+- [Native weapons](../../gameplay/native-weapons/README.md)
 - [Runtime lifetime](../../core/runtime-lifecycle/README.md)

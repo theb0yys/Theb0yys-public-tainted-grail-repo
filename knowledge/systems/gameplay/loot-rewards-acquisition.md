@@ -1,129 +1,217 @@
-# Loot, Rewards, Containers, and Item Acquisition
+# Loot, Rewards, Containers, Pickups, and Acquisition
 
-Use this page when you are deciding **how an item should enter the player's possession**.
+> **Reference page.** Use this when deciding how an item enters the player's possession: direct grant, world pickup, container, corpse loot, vendor, reward, or crafting output.
 
-A valid `ItemTemplate` can exist without any way for the player to obtain it.
+## What this system is
 
-## Acquisition routes
+**Item definition** and **item acquisition** are separate systems.
 
-Common routes include:
+An item can exist as a valid registered template without being obtainable.
 
-- direct inventory grant;
+Acquisition lanes include:
+
+- direct existing-item grant;
 - world pickup;
 - container transfer;
 - corpse/search loot;
 - vendor stock;
 - quest/reward grant;
 - crafting output;
-- loot-table integration.
+- custom loot-table integration.
 
-Choose the route that matches the gameplay meaning you want.
+Each has a different owner and proof requirement.
 
-## Direct grant
+## Who owns it in FoA
 
-The best-established controlled grant is:
+Important owners/surfaces include:
+
+- `TemplatesProvider` — resolves the item definition;
+- `World` — constructs live `Item` instances;
+- `HeroItems` — player inventory;
+- `PickItemAction` / `Pickable` — world pickup;
+- `ContainerUI` / container owners — inventory transfer from containers;
+- native loot/search owners such as searched locations/corpses;
+- `RestockableStock` — vendor acquisition;
+- recipe/crafting owners;
+- quest/reward systems for story-driven acquisition.
+
+## Important identities, types, and methods
+
+The best-established direct grant shape is:
 
 ~~~csharp
 Item item = World.Add(new Item(template, quantity));
 hero.HeroItems.Add(item);
 ~~~
 
-Use this when you want to prove an existing loaded item can be acquired without also changing vendors, loot tables, quests, or crafting.
+Working reward/browser research additionally filters out unsafe loaded templates before granting, including classes such as:
 
-## Not every loaded template is safe to grant
+- abstract;
+- hidden;
+- cannot-drop;
+- debug/test/tutorial;
+- quest/story-sensitive;
+- explicitly unsafe/unbalanced rows.
 
-A provider can contain:
+Other exact surfaces found include:
 
-- abstract definitions;
-- hidden/system entries;
-- cannot-drop items;
-- debug/test/tutorial items;
-- quest/story-sensitive items.
+- `HeroItems.Remove(item, discard, announce)`;
+- `PickItemAction.OnStart`;
+- `ContainerUI.TakeItemFromContainer`;
+- `ContainerUI.TakeAllItems`;
+- `SearchAction.ShowContainerContents` in loot/search research;
+- NPC template loot/corpse-loot references;
+- merchant stock insertion;
+- recipe outcome references.
 
-Resolve exact identities and filter out inappropriate templates.
+## Where it exists in the lifecycle
 
-"Provider can resolve it" does not mean "player should own it."
-
-## World pickup
-
-A world pickup path includes:
+### Direct grant
 
 ~~~text
-world owner / Pickable
-→ interaction
-→ crime/legality checks if relevant
-→ PickItemAction
-→ Hero inventory
-→ pickup/world cleanup
+templates ready
+→ exact ItemTemplate resolves
+→ validate item is appropriate for grant
+→ World.Add(Item)
+→ HeroItems.Add
+→ inventory/UI/gameplay observes item
+→ save/load if durable
 ~~~
 
-If you change interaction timing, preserve the native transfer and crime logic where possible.
+### World pickup
 
-## Containers
+~~~text
+world owner/pickable
+→ interaction
+→ illegal/crime check if applicable
+→ PickItemAction
+→ Item enters Hero inventory
+→ world pickup owner cleans up
+~~~
 
-A container route typically includes:
+### Container
 
 ~~~text
 container owns Item
-→ UI/prompt
-→ theft/pickpocket classification if relevant
+→ UI prompt/action
+→ theft/pickpocket classification if applicable
 → TakeItemFromContainer
+→ optional StolenItemElement / crime
 → Hero inventory
 ~~~
 
-The UI transfer is downstream of whatever created the container contents.
+### Loot/corpse
 
-## Corpse/search loot
+~~~text
+actor/container/search owner
+→ loot definition/reference
+→ search/loot generation
+→ live Item(s)
+→ transfer to hero/container
+→ persistence/respawn/death policy
+~~~
 
-Treat corpse loot as part of actor/death ownership.
+## How we interact with it
 
-Do not bolt arbitrary loot onto a custom creature before its:
+### Use the direct grant path for controlled proofs
 
-- actor lifecycle;
-- death;
-- corpse;
-- cleanup;
+When proving an **existing loaded item** can be acquired, use exact template resolution + native item creation + `HeroItems.Add`.
 
-are already understood.
+This is narrower than altering loot tables, quest rewards, or vendors.
 
-## Quest/reward items
+### Filter grantable templates
 
-Quest/story items are especially risky as generic rewards.
+A template existing in the provider does not mean it is safe to grant.
 
-Granting one outside its intended story path can create impossible quest state even if the item itself is technically valid.
+Exclude:
 
-## Common mistakes
+- abstract definitions;
+- hidden/system rows;
+- cannot-drop rows where inappropriate;
+- debug/test/tutorial;
+- quest/story-owned content;
+- known unsafe identities.
 
-- loaded template = safe player reward;
-- direct grant = loot-table integration;
-- container UI hook = loot generation;
-- corpse contents changed without mapping corpse/death lifecycle;
-- quest item treated like ordinary loot;
-- current-session custom item grant = save-safe custom item.
+### Preserve native transfer/crime behavior for world/container pickups
 
-## How to verify acquisition
+If changing interaction timing or UI, keep the native item/crime transfer owner where possible.
 
-Check:
+### Treat corpse loot as part of actor design
 
-1. exact item template;
-2. item is appropriate for this acquisition route;
+A custom creature's loot/corpse-loot policy belongs in the creature/NPC contract and death lifecycle.
+
+Do not bolt random loot onto a creature before the actor/death/corpse owner is proven.
+
+## Why this route
+
+The working research repeatedly uses direct grants as a **controlled acquisition proof** because it avoids conflating:
+
+- custom item registration;
+- vendor behavior;
+- loot generation;
+- story rewards;
+- recipes.
+
+That allows the item itself to be tested before its final distribution method is chosen.
+
+It also shows why a "safe item browser" filters loaded templates: the provider contains content whose existence does not imply safe player ownership.
+
+## What goes wrong
+
+### Loaded template = safe reward
+
+False. Quest/debug/abstract/system templates can resolve perfectly and still be unsafe to grant.
+
+### Direct grant = loot-table integration
+
+False. It proves inventory acquisition, not loot ownership or drop probabilities.
+
+### Container UI hook = loot generation
+
+A UI transfer occurs after the container/loot owner has already determined what exists.
+
+### Corpse loot changed without death/corpse lifecycle
+
+Can create ownership or persistence inconsistencies.
+
+### Quest item granted as ordinary loot
+
+Can bypass story gates or create impossible quest state.
+
+### Custom item save safety assumed from direct grant
+
+The inventory can contain a custom GUID during the current session while cold restore remains unproven.
+
+## How to verify
+
+For any acquisition route, prove:
+
+1. exact item template identity;
+2. source/definition is valid;
 3. native `Item` creation;
 4. acquisition owner;
-5. stack/duplicate behavior;
-6. crime/legal state if relevant;
-7. inventory/UI visibility;
-8. use/drop behavior;
-9. source world/container cleanup;
-10. no story/quest bypass;
-11. save/load for durable state;
-12. missing-mod behavior for custom definitions.
+5. duplicate/stack behavior;
+6. legal/crime ownership if relevant;
+7. UI visibility;
+8. item use/drop behavior;
+9. source container/world cleanup;
+10. save/load if durable;
+11. missing-mod behavior for custom definitions;
+12. no quest/story bypass.
 
-For true loot-table work, also verify table identity, weights/counts, eligibility, repeat/respawn behavior, and economy impact.
+For loot tables, additionally validate:
 
-## Evidence limits
+- table identity;
+- weights/counts;
+- eligibility conditions;
+- respawn/repeat behavior;
+- corpse/container ownership;
+- economy sanity.
+
+## Current proof boundary
 
 Direct existing-item grants have strong source/runtime precedent.
 
-World pickup and container ownership are well mapped for several routes.
+Container/world pickup ownership is well mapped for several interaction paths.
 
-A generic custom loot/reward-table injection framework is not yet established.
+A generic **custom loot-table/reward-table injection framework** is not yet promoted from the current evidence and must remain a separate domain process.

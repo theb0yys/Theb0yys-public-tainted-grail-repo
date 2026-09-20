@@ -1,50 +1,47 @@
-# Runtime Access
+# Runtime Access Reference
 
-Use this page when you know **what runtime object you need** and want the shortest known way to reach it.
+Exact lookup for obtaining important runtime owners and objects.
 
-Finding an object does not prove that it is initialized, still valid, or the real owner of the behavior you want to change. Use [Systems](../../systems/README.md) when you need ownership and lifecycle details.
+Access to an object does not by itself prove gameplay, persistence or lifecycle ownership. For ownership, use [Systems](../../systems/README.md).
 
-## Common access patterns
+## Managed runtime access patterns
 
-| Need | Access pattern | Important note |
+| Need | Public access surface | What the public evidence establishes |
 | --- | --- | --- |
-| Current Hero | `Hero.Current` | Common direct access; non-null does not mean every Hero subsystem is ready |
-| Any Hero Model | `World.Any<Hero>()` | Useful null-checkable world lookup |
-| One expected Model | `World.Only<T>()` | Used when the game expects a single Model of that type |
-| All Models of a type | `World.All<T>()` | Prefer for startup/discovery or bounded work, not blind continuous polling |
-| Shared service | `World.Services.Get<T>()` | Service availability depends on lifecycle timing |
-| Optional service | `World.Services?.Get<T>()` | Useful when startup timing is uncertain |
-| Required child Element | `model.Element<T>()` | Use when one related Element is expected |
-| Child Elements | `model.Elements<T>()` | Enumerate Elements owned by a Model |
-| Optional child Element | `model.TryGetElement<T>()` | Common safe lookup for optional Elements |
-| Location Element | `location.TryGetElement<T>()` | Public mods use this for things such as `NpcElement` |
-| Element owner | `element.ParentModel` | Resolve an Element back to its Model |
-| Model View | `World.View<T>(model)` | Resolve a FoA View associated with a Model |
-| Template by GUID | `World.Services.Get<TemplatesProvider>().Get<T>(guid)` | Wait for template readiness first |
-| All loaded templates of a type | `TemplatesProvider.GetAllOfType<T>()` | Treat large enumeration as bounded work |
-| Typed template reference | `TemplateReference.TryGet<T>()` | Resolves the template behind a reference |
-| Active scene | `World.Services.Get<SceneService>().ActiveSceneRef` | Scene identity is not the same as full scene readiness |
-| Actor from `ActorRef` | `ActorRef.Get()` | Public source routes this through `ActorsRegister` |
-| Main UI canvas | `Services.Get<ViewHosting>().OnMainCanvas()` | UI-host lookup; does not imply gameplay ownership |
-| Global event listener | `World.EventSystem.ListenTo(...)` | Install after the EventSystem is actually ready |
-| Remove event listener | `World.EventSystem.RemoveListener(listener)` | Keep handles for cleanup |
+| Current hero | `Hero.Current` | Widely used by Questline public source and public Mono mods |
+| Any current hero model | `World.Any<Hero>()` | Public Mono mod uses this as a null-checkable hero lookup |
+| Global/service owner | `World.Services.Get<T>()` | Used publicly for `TweakSystem`, `TemplatesProvider`, `SceneService`, `ActorsRegister`, `NpcGrid` and other services |
+| Optional service lookup | `World.Services?.Get<T>()` | Public mods fail closed when the service collection/provider is not ready |
+| Single world model | `World.Only<T>()` | Questline public source uses `World.Only<GameRealTime>()` |
+| Element owned by a model | `model.TryGetElement<T>()` | Public source uses `Hero.Current.TryGetElement<HeroStats>()` and `hero.TryGetElement<ArmorWeight>()` |
+| Element attached to a Location | `location.TryGetElement<T>()` / `location.TryGetElement(out T)` | Public enemy-HUD mods resolve `NpcElement` and `IWithHealthBar` from a runtime `Location` |
+| Template by GUID | `World.Services.Get<TemplatesProvider>().Get<T>(guid)` | Public Mono mods resolve status/item templates this way |
+| Template reference | `TemplateReference.TryGet<T>()` | Public mod resolves `CommonReferences.Get?.OverEncumbranceStatus` to `StatusTemplate` |
+| Active scene reference | `World.Services.Get<SceneService>().ActiveSceneRef` | Questline public source uses this for scene identity/current-scene access |
+| Actor by actor reference | `ActorRef.Get()` → `World.Services.Get<ActorsRegister>().GetActor(this)` | Questline public source exposes the resolution path |
+| Main UI canvas | `Services.Get<ViewHosting>().OnMainCanvas()` | Questline public source uses this from multiple views |
+| World event subscription | `World.EventSystem.ListenTo(...)` | Public Mono mod installs event listeners after hero initialization |
+| World event cleanup | `World.EventSystem.RemoveListener(listener)` | Same public mod removes the listener before replacing/disposal |
+| Enumerate world models | `World.All<T>()` | Preserved developer lifecycle documentation exposes broad model enumeration; prefer it for startup/discovery rather than continuous polling |
+| Required child element | `model.Element<T>()` | Access a related element when the caller expects one |
+| Child elements | `model.Elements<T>()` | Enumerate related elements owned by a model |
+| Element parent | `element.ParentModel` | Resolve an element back to its owning model |
+| Model view | `World.View<T>(model)` | Resolve a FoA View associated with a model |
+| Enumerate loaded templates | `TemplatesProvider.GetAllOfType<T>()` | Current Mono static evidence confirms a typed enumeration surface; treat as bounded/read-only unless a stronger use is proven |
 
-## Hero-owned state
+## Hero-owned runtime surfaces
 
-Useful Hero-related objects include:
-
-| Need | Access / lifecycle point | Important note |
+| Subject | Public access surface | Scope / caveat |
 | --- | --- | --- |
-| Hero items | `HeroItems.OnRestore` in the public IL2CPP-native example | Good restore-time owner capture; pointer lifetime still matters |
-| Known-item state | `KnownItems` | Used by public mods for reconstruction/backfill |
-| Learn an existing recipe | `HeroRecipes.LearnRecipe` | Does not register a new recipe definition |
-| Hero stats | `Hero.Current.HeroStats` | Use after the relevant Hero/stat initialization point |
-| RPG stats | `Hero.Current.HeroRPGStats` | Same lifecycle caution |
-| Hero storage | `HeroStorage.Items` | Documented in the storage context |
+| Hero-owned items | `HeroItems.OnRestore` | IL2CPP-native availability point; receiving a valid instance does not prove indefinite pointer lifetime |
+| Known item state | `KnownItems` | Public mods use it for startup reconstruction/backfill after player load |
+| Recipe learning | `HeroRecipes.LearnRecipe` | Existing/native recipe learning; does not establish custom recipe registration |
+| Stats | `Hero.Current.HeroStats`, `Hero.Current.HeroRPGStats` | Public Mono mods use these after hero/stat initialization |
+| Storage | `HeroStorage.Items` | Public storage mod documents access in the storage UI context |
 
-## Useful services
+## Service examples
 
-Frequently encountered services include:
+Useful publicly visible service types include:
 
 - `TemplatesProvider`
 - `TweakSystem`
@@ -57,43 +54,30 @@ Frequently encountered services include:
 - `GameConstants`
 - `GameplayMemory`
 
-See [Services](../services/README.md) for what they are used for.
+See [Services](../services/README.md).
 
-## Timing matters
+## Availability matters
 
-A useful mental model is:
+Public mod evidence distinguishes plugin load from usable gameplay state.
 
 ~~~text
 plugin loaded
-→ World/services begin coming online
-→ Hero becomes available
+→ world/services may still be incomplete
 → Hero.OnFullyInitialized
-→ Hero-owned subsystems finish their own initialization/restore
-→ UI/scene-specific systems may become ready later
+→ hero-dependent systems become usable
+→ subsystem-specific restore/init may happen later
 ~~~
 
-Examples:
+A public damage-number mod waits for `Hero.OnFullyInitialized` before using `World.EventSystem` and HUD-dependent state. Public stat mods wait for `HeroRPGStats.AfterHeroFullyInitialized` before resolving `TweakSystem`. A public IL2CPP mod uses `HeroItems.OnRestore` rather than an earlier generic lookup.
 
-- a public damage-number mod waits for `Hero.OnFullyInitialized` before installing HUD/event work;
-- public stat mods wait for `HeroRPGStats.AfterHeroFullyInitialized` before applying stat tweaks;
-- a public IL2CPP-native recipe mod captures `HeroItems` at `HeroItems.OnRestore`.
+## Unsafe or misleading access patterns
 
-## Unsafe shortcuts
+- Do not treat `Hero.Current != null` as proof that every hero-owned subsystem is initialized.
+- Do not treat a successful pointer/type lookup as proof that the object is currently valid.
+- A public IL2CPP implementation reported stale/freed entries while traversing `CraftingTemplate.recipes` (`TemplateReference[]`); pointer/class checks alone were insufficient.
+- A cached native pointer needs its own lifetime proof.
+- Access to a presentation object does not prove ownership of the underlying gameplay state.
 
-Avoid these assumptions:
+## Evidence provenance
 
-- `Hero.Current != null` means all Hero systems are ready;
-- a pointer/type lookup proves a native IL2CPP object is still alive;
-- a cached native pointer stays valid indefinitely;
-- access to a View or presentation object means it owns the underlying gameplay state;
-- a large `World.All<T>()` scan is appropriate every frame.
-
-A public IL2CPP example hit stale/freed entries while traversing `CraftingTemplate.recipes`; pointer/class checks alone were not enough to prove lifetime.
-
-## Evidence
-
-This reference combines Questline public source, public FoA mod source, preserved developer lifecycle documentation, and exact-build Mono static inspection.
-
-See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
-
-Exact signatures and cross-runtime equivalence should be rechecked when the game/runtime changes.
+Evidence combines Questline public source, public FoA mod source, preserved developer lifecycle documentation and exact-build Mono static inspection. See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md). Exact signatures, assembly ownership and cross-runtime equivalence should be added only when independently established.

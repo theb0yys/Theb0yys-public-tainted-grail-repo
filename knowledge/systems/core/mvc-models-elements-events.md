@@ -1,93 +1,93 @@
-# Models, Elements, Views, and Events
+# FoA MVC: Models, Elements, Views, Events, and Services
 
-Use this page when you need to understand **what a FoA object actually is, who owns it, and when it is safe to use or discard**.
+> **Reference page.** This is the core native lifecycle model behind many FoA runtime systems.
 
-FoA does not treat every piece of game state as a Unity `GameObject`. Much of the game runs through its own Model/Element/View system.
+## What this system is
+
+FoA uses its own logical model layer on top of Unity.
 
 The important distinction is:
 
 ~~~text
-FoA game-state lifetime
+logical game lifetime
 ≠
 Unity GameObject lifetime
 ~~~
 
-## The main pieces
+Core concepts include:
 
-- `Model` — a logical game object registered with `World`.
-- `Element<TParent>` — state or behavior attached to a parent Model and tied to that Model's lifecycle.
-- `View` — Unity-facing presentation associated with a Model.
-- `World.Events` / EventSystem — event routing with listener ownership.
-- services — shared runtime objects resolved by type.
+- `Model` — logical game object owned by `World`;
+- `Element<TParent>` — functionality/state that shares a parent model's lifecycle;
+- `View` — Unity-facing presentation associated with a Model;
+- `World.Events` / EventSystem — owner-aware event routing;
+- Services — type-keyed shared runtime owners.
 
-## Creating a Model
+## Who owns it in FoA
 
-A Model normally enters the game through:
+`World` owns Model registration/removal and associated lifecycle.
+
+A Model can own Elements.
+
+A View has its own Unity lifetime but can be bound to a Model through FoA's View APIs.
+
+The EventSystem tracks event listeners and listener owners.
+
+Services are registered and resolved by type/key and may have domain/scene lifetime implications.
+
+## Important identities, types, and methods
+
+### Model creation
 
 ~~~csharp
 World.Add(model);
 ~~~
 
-The documented order is:
+The documented lifecycle is:
 
-1. register the Model;
-2. initialize it;
-3. spawn its default Views;
-4. initialize its Elements;
-5. call `OnFullyInitialized`.
+1. register model;
+2. initialize model;
+3. spawn default Views;
+4. initialize Elements;
+5. invoke `OnFullyInitialized`.
 
-If your code needs a fully usable Model, do not assume construction alone is enough.
-
-## Adding an Element
+### Element creation
 
 ~~~csharp
 model.AddElement(element);
 ~~~
 
-The Element is registered with the parent Model.
+The element is registered to the parent. If the parent Model is not yet fully initialized, Element initialization is deferred until the parent's element-initialization stage; otherwise the Element is added through `World.Add` immediately.
 
-If the parent is still initializing, the Element's own initialization is deferred until the parent's Element-initialization stage. If the parent is already fully initialized, the Element can be added through `World.Add` immediately.
-
-This matters when a mod adds behavior dynamically: **parent existence is not the same as parent readiness**.
-
-## Discarding a Model
-
-Use the FoA lifecycle rather than destroying only its Unity presentation:
+### Model removal
 
 ~~~csharp
 model.Discard();
 ~~~
 
-The documented teardown order includes:
+Documented teardown includes:
 
 1. `OnBeforeDiscard`;
 2. `OnDiscard`;
-3. relation cleanup;
+3. break relations;
 4. `BeingDiscarded`;
-5. Element removal/discard;
-6. removal of listeners owned by the Model;
+5. remove/discard Elements;
+6. remove owned listeners;
 7. `World.Remove(model)`;
 8. `AfterDiscarded`;
-9. cleanup of remaining listeners tied to the discarded source or its Elements;
+9. remove remaining listeners;
 10. `OnFullyDiscarded`.
 
-If your mod owns listeners, Elements, or other Model-linked state, this lifecycle is the cleanup path you need to respect.
+### Access
 
-## Finding Models, Elements, and Views
+- `World.All<T>()`
+- `model.Element<T>()`
+- `model.Elements<T>()`
+- `element.ParentModel`
+- `World.View<T>(model)`
 
-Useful access methods include:
+### Events
 
-- `World.All<T>()` — enumerate registered Models of a type;
-- `model.Element<T>()` — get one related Element when one is expected;
-- `model.Elements<T>()` — enumerate related Elements;
-- `element.ParentModel` — get the Element's owning Model;
-- `World.View<T>(model)` — resolve an associated View.
-
-Use broad `World.All<T>()` enumeration mainly for startup, discovery, diagnostics, or genuinely bounded operations. For ongoing reactions, prefer events when an appropriate event exists.
-
-## Events
-
-Documented Model lifecycle events include:
+Model events include:
 
 - `BeforeFullyInitialized`
 - `AfterFullyInitialized`
@@ -97,53 +97,100 @@ Documented Model lifecycle events include:
 - `AfterDiscarded`
 - `AfterElementsCollectionModified`
 
-Typical listening forms include target-specific listeners, limited listeners, and global/any-source listeners.
+Listening patterns include target-specific and wildcard-source listeners.
 
-Listener ownership is important because normal Model teardown can remove listeners owned by the discarded Model.
+## Where it exists in the lifecycle
 
-## When to use each layer
+Model lifecycle is separate from Unity scene/GameObject lifecycle.
 
-Use a **Model** when the thing needs FoA logical lifetime, World registration, relations, Elements, or game events.
+A logical Model can be invalid/discarded while a Unity presentation is still in a transition/exit animation.
 
-Use an **Element** when behavior should live and die with an existing Model.
+Likewise a renderer/ECS representation may have its own resource/lifetime owner.
 
-Use a **View** when you need FoA-aware Unity presentation tied to a Model.
+This is why cleanup must follow the relevant owner at each layer.
 
-Use a plain **GameObject** only when you intentionally own its Unity lifetime yourself and do not need Model/Element semantics.
+## How we interact with it
 
-## Common mistakes
+### Use Model when you need FoA logical lifetime
 
-### Treating transform parenting as Model ownership
+A mod-defined logical object that needs:
 
-Putting one GameObject under another does not create Model/Element ownership.
+- World registration;
+- parent/element semantics;
+- event cleanup;
+- relations;
+- FoA lifecycle hooks;
 
-### Destroying only the View GameObject
+should use the FoA Model/Element path rather than only a GameObject.
 
-`Destroy(view.gameObject)` can bypass FoA View/Model cleanup, listener cleanup, and resource-release behavior.
+### Use Element when behavior should share a parent lifetime
 
-### Leaving listeners without a useful owner
+Unity transform parenting does not reproduce Element ownership.
 
-Owner-backed listeners can be cleaned up automatically with their owner. Long-lived ownerless listeners are easier to leak.
+### Use FoA View binding when you need Model↔View semantics
 
-### Assuming every rendered object is a View
+Directly instantiating a View prefab does not automatically establish World association or standard teardown.
 
-Drake, Kandra, Leshy, Medusa, and other renderer systems have their own lifetimes. A visible object is not automatically an MVC View.
+### Use owner-backed event listeners
 
-## What to verify
+A stable owner allows bulk cleanup when the owner is discarded.
+
+## Why this route
+
+The native lifecycle already solves:
+
+- registration;
+- initialization ordering;
+- parent ownership;
+- event ownership;
+- listener cleanup;
+- discard ordering.
+
+Bypassing it creates hidden lifecycle work for the mod.
+
+## What goes wrong
+
+### Raw GameObject parenting
+
+It looks similar to parent ownership but does not reproduce Model/Element semantics.
+
+### `Destroy(view.gameObject)` instead of `View.Discard()`
+
+This can bypass:
+
+- View hooks;
+- World deregistration;
+- event cleanup;
+- registered asset release;
+- deferred/retained GameObject policy.
+
+### Ownerless listeners
+
+They cannot benefit from normal owner-based cleanup and can survive longer than intended.
+
+### Broad `World.All<T>()` polling
+
+Useful for startup/discovery, but expensive and fragile as an ongoing reaction system compared with events.
+
+### Assuming render objects are Views
+
+Drake/Kandra/Leshy/Medusa have their own rendering lifetimes. A rendered object is not automatically an MVC View.
+
+## How to verify
 
 For Model/Element work, verify:
 
-- the Model was added to `World`;
-- the expected initialization stage completed;
-- Elements belong to the intended parent;
-- the expected events fire;
-- the View association is correct if one is used;
-- discard follows the native teardown path;
-- listeners/resources are cleaned up;
-- no Unity or ECS representation is left orphaned.
+- `World.Add` occurred;
+- expected initialization completed;
+- Elements are owned by the intended parent;
+- expected events fire;
+- View association is correct if used;
+- discard calls the native teardown path;
+- listener/resource cleanup occurs;
+- no orphan Unity/ECS representation remains.
 
-## Evidence limits
+## Current proof boundary
 
-The creation, Element, event, and discard lifecycle above is supported by preserved developer documentation plus source/decompilation work.
+Model/Element/Event lifecycle is supported by preserved official developer documentation and source/decompilation work.
 
-The preserved developer material did **not** document saved-Model restoration in the same detail. Do not infer restore ordering from the normal creation lifecycle.
+Saved-Model restoration was not documented in the preserved official lifecycle material and should not be invented from the runtime creation path.

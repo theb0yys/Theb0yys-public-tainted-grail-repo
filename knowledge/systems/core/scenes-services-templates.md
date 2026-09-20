@@ -1,156 +1,181 @@
-# Scenes, Services, and Templates
+# Scene, Service, and Template Lifecycle
 
-Use this page when your mod depends on **a service being available, templates being loaded, or a scene being ready**.
+> **Reference page.** Use this when a mod depends on startup ordering, scene readiness, Addressables-backed templates, or scene transitions.
 
-These three areas are related because FoA brings them online in stages. A plugin can be loaded while the game systems it wants are still unavailable.
+## What this system is
 
-## Template loading
-
-FoA templates are Addressables-backed definitions loaded into native lookup maps.
-
-The researched Mono path is:
+FoA startup and scene content are orchestrated through several layers:
 
 ~~~text
-TemplatesLoader.CreateAndLoad
-→ load Addressables label "template"
-→ load Addressables label "templateSO"
-→ AddToMap(guid, template)
+Unity subsystem registration
+→ Questline service/renderer managers initialize
+→ application/map scene services initialize
+→ mod catalogues / Addressables locators
+→ scene reference discovery
+→ scene load
+→ scene load-based behaviors
+→ templates/services/runtime gameplay
+~~~
+
+Templates are Addressables-backed native definitions loaded into GUID/type maps.
+
+Scenes are also Addressables-driven through `SceneService`.
+
+## Who owns it in FoA
+
+Important owners:
+
+- `Awaken.Orchestrating.Orchestrator` — subsystem-registration startup;
+- `SceneService` — scene reference discovery/load/unload;
+- `TemplatesLoader` — Addressables template load and maps;
+- `TemplatesProvider` — template lookup;
+- `TemplateService` — selected abstract/template references;
+- `ApplicationScene` / MapScene/AdditiveScene — scene-level service/lifecycle orchestration.
+
+## Important identities, types, and methods
+
+### Startup orchestrator
+
+The researched Mono build initializes shared systems including:
+
+- configuration;
+- mip streaming;
+- Kandra renderer manager;
+- player-loop lifetime;
+- HLOD manager;
+- Animancer disposal tracking;
+- Unity update provider.
+
+This ordering is useful context, not permission to mutate those managers.
+
+### Template loading
+
+`TemplatesLoader.LoadAssetsInBuild()` loads two Addressables labels:
+
+~~~text
+template
+templateSO
+~~~
+
+GameObject templates must contain an `ITemplate`.
+
+ScriptableObject templates must implement `ITemplate`.
+
+`AddToMap(guid, template)`:
+
+- stores in GUID map;
+- stores by concrete type;
+- assigns `template.GUID = guid`.
+
+`FinishedLoading` becomes true after both passes.
+
+### Provider
+
+`TemplatesProvider.AllLoaded` reflects loader completion.
+
+`Get<T>(guid)` rejects access before readiness and performs GUID + type validation. Exact Mono inspection also exposes `GetAllOfType<T>()` for typed enumeration of loaded templates.
+
+### Scene loading
+
+`SceneService.InitAllSceneReferences()` discovers Addressables locations labelled:
+
+~~~text
+scene
+~~~
+
+`LoadSceneAsync(sceneRef, mode)` uses Addressables and tracks operations by scene name.
+
+## Where it exists in the lifecycle
+
+### Templates
+
+~~~text
+StartLoading
+→ Addressables resource locations
+→ load template/templateSO assets
+→ AddToMap
 → FinishedLoading = true
-→ normal TemplatesProvider lookup
+→ normal provider lookup
 ~~~
 
-GameObject templates must contain an `ITemplate`. ScriptableObject templates must implement `ITemplate`.
-
-`AddToMap(guid, template)` stores the template by GUID and concrete type, then assigns `template.GUID`.
-
-## Looking up templates
-
-`TemplatesProvider` is the normal lookup service.
-
-Useful members include:
-
-- `AllLoaded`
-- `Get<T>(guid)`
-- `GetAllOfType<T>()`
-
-Do not call `Get<T>` just because you already know the GUID. The provider can exist before its templates are ready.
-
-## Services
-
-Shared game systems are commonly resolved through:
-
-~~~csharp
-World.Services.Get<T>()
-~~~
-
-Service presence is lifecycle-dependent. A known service type is not proof that the service is available during plugin `Awake()`.
-
-Examples documented elsewhere include:
-
-- `TemplatesProvider`
-- `SceneService`
-- `TweakSystem`
-- `ActorsRegister`
-- `NpcGrid`
-- `ViewHosting`
-
-## Scene loading
-
-`SceneService` owns FoA's scene discovery and managed load/unload flow.
-
-The researched path includes:
+### Scenes
 
 ~~~text
-Addressables locations labelled "scene"
-→ SceneService scene-reference discovery
+mod locators/catalogues installed
+→ SceneService builds scene reference list
 → LoadSceneAsync
-→ Unity scene load
-→ MapScene / AdditiveScene setup
+→ Unity scene creates MapScene/AdditiveScene
 → SceneLoaded
 → scene initialization
 → SceneInitialized
-→ later readiness milestones
-→ UnloadSceneAsync
+→ later readiness milestones as applicable
+→ eventual UnloadSceneAsync
 ~~~
 
-If you need FoA scene ownership, loading UI, domains, services, and cleanup, prefer this native path over calling Unity's scene loader directly.
+## How we interact with it
 
-## Scene identity is not full readiness
+### Template consumers
 
-A scene can be known before every system in that scene is ready.
+Wait for readiness. Do not suppress the native readiness exception and proceed with null/default data.
 
-Treat these as different questions:
+### Custom runtime registration
 
-- Which scene/domain is active?
-- Has the Unity scene loaded?
-- Has FoA initialized the scene?
-- Have later game/story systems finished?
-- Is the specific service/model your feature needs available?
+If using a private map-insertion route, do it only after native readiness and immediately verify normal provider lookup.
 
-Choose the milestone that matches your actual dependency.
+### Scene work
 
-## Adding custom templates
+Prefer the native scene/loading lifecycle over a parallel `SceneManager.LoadScene` path when you need FoA scene ownership, loading UI, domains, services, and cleanup.
 
-If you use a private map-insertion route:
+### Mod Addressables
 
-1. wait for native template loading to finish;
-2. register the custom template;
-3. immediately resolve the custom GUID back through `TemplatesProvider`;
-4. only then allow downstream consumers to use it.
+Installed mod locators can contribute Addressables locations before later services query labels. Treat catalogue installation, asset address, and gameplay registration as separate responsibilities.
 
-Successful insertion is not proof of save/reload safety.
+## Why this route
 
-## Adding custom scenes or Addressables
+The source/decompilation work explains several failures that otherwise look random:
 
-Keep these separate:
+- template lookup before readiness throws;
+- an asset without the expected `ITemplate` shape is not a valid template;
+- a scene address/name mismatch can break native operation tracking;
+- a custom scene can need a `SceneConfig` before native travel uses it;
+- Addressables catalogue discovery does not prove game-system integration.
 
-~~~text
-catalogue/locator installed
-≠
-asset address resolves
-≠
-FoA scene reference exists
-≠
-scene initializes correctly
-≠
-gameplay objects are registered
-~~~
+## What goes wrong
 
-A custom scene may also need native metadata such as `SceneConfig` before travel works correctly.
-
-## Common failures
-
-- template lookup before `AllLoaded`;
-- a prefab loads but is not a registered template;
-- a custom template is inserted before the native maps stabilize;
-- Unity loads a scene but FoA's scene/domain lifecycle is bypassed;
-- scene address and Unity scene name do not match;
-- a catalogue is installed successfully but no game system actually consumes the content.
+- calling `TemplatesProvider.Get` before `AllLoaded`;
+- assuming a prefab in an Addressables bundle is a registered template;
+- changing a custom template map before native load has stabilized;
+- loading a custom scene through Unity but bypassing FoA's scene/domain lifecycle;
+- mismatching Unity scene name and native scene address;
+- treating a static/source-established custom scene route as runtime-proven before the empirical gate runs.
 
 ## How to verify
 
-For templates:
+### Template path
 
-1. loader finished;
+Verify:
+
+1. loader reports finished;
 2. source/native GUID resolves;
 3. custom insertion succeeds if used;
-4. custom GUID resolves through `TemplatesProvider`;
-5. returned type is correct.
+4. custom GUID resolves through provider;
+5. correct concrete type is returned.
 
-For scenes:
+### Scene path
 
-1. the catalogue/locator resolves the scene;
-2. FoA has a scene reference;
-3. the transition uses the native path;
+Verify:
+
+1. mod catalogue/locator resolves the scene;
+2. native scene reference exists;
+3. transition begins through native lifecycle;
 4. Addressables loads the scene;
-5. `SceneLoaded` / `SceneInitialized` complete;
-6. player control resumes where expected;
+5. SceneLoaded/SceneInitialized complete;
+6. control resumes;
 7. unload/return cleans up correctly.
 
-## Evidence limits
+## Current proof boundary
 
-Template-loader/provider behavior is strongly established for the inspected Mono build.
+Template loading/provider lifecycle is strongly established for the researched Mono build.
 
-Custom template registration has working implementation evidence but still uses patch-sensitive/private internals and does not have one universal save-safety guarantee.
+Custom template registration has bounded implementation/runtime evidence but private API risk and incomplete general persistence proof.
 
-Scene loading has strong static/source evidence, but each custom-scene route still needs its own runtime validation.

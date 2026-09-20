@@ -1,149 +1,180 @@
-# Spells, Magic, and Effects
+# Spells, Magic, Effects, and VFX
 
-Use this page when you want to change **spell costs, casting, projectiles, summons, status application, or spell VFX**.
+> **Reference page.** Spell identity, gameplay effect ownership, and visual effects are separate layers.
 
-The key rule is:
+## What this system is
 
-> Spell identity, gameplay behavior, and visual effects are separate layers.
-
-A VFX hook firing does not tell you which SkillGraph or gameplay effect actually owns the spell.
-
-## Native spell chain
-
-A useful model is:
+Current research exposes a chain roughly like:
 
 ~~~text
 magic ItemTemplate
-→ ItemEffectsSpec / SkillReference
-→ SkillGraph
+→ item effects / SkillReference
+→ SkillGraph / runtime skill behavior
 → cast lifecycle
-→ projectile / summon / status / other gameplay effect
-→ VFX and audio
+→ gameplay effects/projectiles/summons
+→ VFX/audio presentation
 ~~~
 
-## Important types and surfaces
+A VFX hook does not prove the spell's gameplay graph or native visual ownership.
 
-Useful researched pieces include:
+## Who owns it in FoA
 
-- `ItemTemplate_Magic_*` families;
-- `ItemEffectsSpec`;
-- `SkillReference`;
-- `SkillGraph`;
-- `ShareableARAssetReference`;
-- `PrefabPool`;
-- `MagicVFXWrapper`;
-- `VCCharacterMagicVFX`;
-- `VCCharacterMagicVFX.CastingBegun`;
-- `MagicUtils.GetManaCostMultiplier`;
-- `MagicUtils.GetModifiedManaCost(...)`;
-- `MagicLightBase.OnPerformCast(...)`;
-- `MagicFSM.OnPerformCast`;
-- `MagicFSM.EndCasting`;
-- projectile velocity/range owners;
-- `CharacterStatuses.BuildupStatus(...)`.
+Important researched owners include:
 
-## Trace the exact spell, not the name
+- `ItemTemplate_Magic_*` families
+- `ItemEffectsSpec`
+- `SkillReference`
+- `SkillGraph`
+- `ShareableARAssetReference`
+- `PrefabPool`
+- `MagicVFXWrapper`
+- `VCCharacterMagicVFX`
+- concrete spell/effect behavior owners
+- status/effect systems
 
-### Wolf's Call example
+## Important identities, types, and methods
+
+Evidence-backed surfaces:
+
+- `VCCharacterMagicVFX.CastingBegun`
+- native VFX lifecycle signals such as begun/cancelled/failed/ended
+- `ShareableARAssetReference` VFX references
+- exact magic item-template GUID/name
+- exact SkillGraph GUID/identity where resolved
+
+The working spell research found dozens of non-story `ItemTemplate_Magic_*` rows, but a complete item→SkillGraph→VFX join was not automatically present in the basic dump.
+
+## Exact native spell traces
+
+Two researched spells show why the whole chain must be traced instead of classifying spells by name.
+
+### Wolf's Call — summon exemplar
 
 ~~~text
 ItemTemplate_Magic_Tier1_SummonWolf
-→ CastSpell
+→ ItemActionType = CastSpell
 → Magic_Summon_Ally SkillGraph
-→ SummonPrefab override
+→ item-effect SummonPrefab override
 → Spec_Summon_AnimalFrostWolf
 → NPCTemplate_AnimalFrostWolf_Summon
 ~~~
 
-The item, SkillGraph, summon spec, and spawned actor are separate identities.
+The spell item, SkillGraph, summon-spec identity and spawned actor template are separate links.
 
-Earlier contextual comparison pointed toward a plain wolf; exact serialized tracing corrected the real target to the Frost Wolf summon spec.
+A prior comparison used a plain wolf spec as contextual evidence; exact serialized tracing corrected the direct Wolf's Call target to the **Frost Wolf** summon spec. That correction is why comparison/name evidence must not be promoted into an exact relationship.
 
-That is why names and visual similarity are not enough.
-
-### Burning Ember example
+### Burning Ember — projectile/status exemplar
 
 ~~~text
 ItemTemplate_Magic_Tier1_BurningEmber
-→ CastSpell
+→ ItemActionType = CastSpell
 → Magic_Projectile_Pistol
 → projectile entries
 → Projectile_OnHit_ApplyStatus
 → Status_Fire1_Burn
 ~~~
 
-Projectile entries can override defaults such as status/buildup values.
+Projectile entries can override graph defaults such as the status template and buildup values.
 
-## VFX overlay vs native replacement
+### Other researched runtime surfaces
 
-A bounded overlay route is:
+- `MagicUtils.GetManaCostMultiplier`
+- `MagicUtils.GetModifiedManaCost(...)`
+- heavy mana-cost getters
+- `MagicLightBase.OnPerformCast(...)`
+- `MagicFSM.OnPerformCast` / `MagicFSM.EndCasting`
+- projectile velocity/range owners
+- `HealthElement.OnDamage`
+- persistent AoE owners
+- `CharacterStatuses.BuildupStatus(...)`
+
+These surfaces support bounded tuning and diagnostics; they do not by themselves establish a durable custom-spell registration path.
+
+## Where it exists in the lifecycle
+
+A cast-facing VFX overlay can observe:
 
 ~~~text
 native casting begins
 → VCCharacterMagicVFX.CastingBegun
-→ verify player/spell context
-→ spawn short-lived mod-owned VFX
-→ clean it up
+→ verify player ownership / selected spell context
+→ attach mod-owned short-lived VFX overlay
+→ clean up after bounded lifetime
 ~~~
 
-That proves an overlay only.
+This proves an overlay route only.
 
-To replace native spell VFX, identify the exact VFX reference owner in the item/SkillGraph/effect path.
+Native replacement requires identifying the exact VFX reference owner inside the spell/SkillGraph/effect path.
 
-## Keep VFX compatible with FoA rendering
+## How we interact with it
 
-One failure from spell-VFX work was loading effects authored for the wrong render pipeline.
+### For VFX experiments
 
-A prefab can load successfully and still render incorrectly in FoA's HDRP environment.
+Use a short-lived, script-free, mod-owned prefab built for the correct render pipeline.
 
-Use script-free, correctly built mod assets for early VFX proofs.
+Patch the smallest cast lifecycle point and keep the effect an **overlay** until exact native ownership is proven.
 
-## Exact spell changes need the full chain
+### For exact spell changes
 
-For a gameplay change, resolve:
+Resolve the full chain:
 
-- exact magic item;
-- action type;
+- exact spell item;
 - effect spec;
-- `SkillReference`;
-- `SkillGraph`;
-- item-level overrides;
-- concrete runtime effect;
+- SkillReference;
+- SkillGraph;
+- concrete runtime behavior;
+- VFX/audio references;
 - costs/cooldowns/targeting;
-- projectile/AoE/summon/status identity;
-- VFX/audio;
-- acquisition/persistence if relevant.
+- persistence/acquisition.
 
-## Common mistakes
+### Keep name classification diagnostic-only
 
-- classifying spells only by template-name fragments;
-- calling a VFX overlay a native VFX replacement;
-- treating one cast callback as exactly one cast without checking duplicate components/callbacks;
-- assuming a prefab means a new SkillGraph/effect is registered;
-- inferring summon gameplay from its visual;
-- ignoring acquisition/save behavior for a new spell.
+Name fragments can help group candidates, but do not turn them into authoritative spell-family/effect mappings.
+
+## Why this route
+
+The spell VFX work demonstrated a key failure:
+
+default-pipeline VFX prefabs could load but render incorrectly in FoA's HDRP environment.
+
+It also exposed that:
+
+- a visible overlay is not native VFX replacement;
+- multiple `VCCharacterMagicVFX` components/callbacks can make "one trigger per cast" nontrivial;
+- a spell template name does not prove the SkillGraph/VFX relationship.
+
+## What goes wrong
+
+- AssetBundle VFX loads but shader/render pipeline is wrong;
+- cast hook fires multiple times for what the mod considers one cast;
+- string heuristic chooses the wrong spell family;
+- overlay is described as native replacement;
+- new effect/SkillGraph identity is assumed registered because a prefab exists;
+- summon/actor behavior is inferred from visual effect;
+- acquisition/save behavior is ignored.
 
 ## How to verify
 
-Check:
+For a spell/effect feature, independently verify:
 
-1. exact magic `ItemTemplate`;
-2. action type;
-3. exact effect spec / `SkillReference` / `SkillGraph`;
+1. exact magic ItemTemplate GUID/name;
+2. exact action type;
+3. exact ItemEffectsSpec / SkillReference / SkillGraph;
 4. item-level overrides;
-5. cast/FSM timing;
-6. cost/cooldown/targeting if changed;
-7. projectile/AoE/summon/status identity;
-8. actual gameplay result;
-9. VFX binding/rendering;
+5. cast trigger and animation/FSM timing;
+6. target/cost/cooldown if modified;
+7. projectile/AoE/summon identity where applicable;
+8. gameplay damage/status/summon result;
+9. VFX binding and renderer correctness;
 10. audio separately;
 11. cleanup;
 12. acquisition/UI/localisation;
 13. save/load only if durable;
 14. disable/uninstall behavior.
 
-## Evidence limits
+## Current proof boundary
 
-The item/effect/SkillGraph/VFX architecture and a bounded `CastingBegun` overlay route are source-inspected.
+**Source-inspected:** magic item/effect/SkillGraph/VFX architecture and a bounded `CastingBegun` overlay hook.
 
-There is not yet a generic public process for durable custom spell registration or universal native per-spell VFX replacement.
+**Runtime/evidence caution:** current overlay examples do not prove native per-spell VFX replacement or a generic custom spell registration path.
+

@@ -1,19 +1,15 @@
-# Armour and Native Clothing
+# Armour: Native Clothes, Kandra, and Importer Boundary
 
-Use this page when you are trying to build or integrate **custom wearable armour/clothing**, especially where Kandra deformation is involved.
+> **Reference/process page.** The current armour work has significant real implementation and Kandra runtime-registration evidence, but **full custom armour equip/deformation/persistence is not yet a general proven process**.
 
-The key rule is:
+## What this system is
 
-> A skinned mesh loading successfully is only one step. It is not proof of a complete FoA armour item.
-
-## The full problem
-
-A custom armour path can involve:
+Custom armour crosses several separate problems:
 
 ~~~text
 source geometry
-→ import/canonical representation
-→ deformation compatibility
+→ canonical/import representation
+→ deformation/compatibility proof
 → Kandra payload/renderer registration
 → item/equipment definition
 → native clothes/equip lifecycle
@@ -22,20 +18,24 @@ source geometry
 → persistence
 ~~~
 
-Treat each step separately.
+A skinned mesh loading successfully proves only one part.
 
-## Native clothing owners
+## Who owns it in FoA
 
-Static evidence identifies:
+Static native evidence identifies:
 
-- `ItemTemplate` — armour/equipment definition;
+- `ItemTemplate` — logical armour/equipment definition;
 - `BaseClothes` — native clothing presentation/equip owner;
-- `KandraRig` — character rig;
+- `KandraRig` — target character rig owner;
 - `ClothStitcher` — native stitching path;
-- `KandraRenderer` — clothing/character render representation;
-- `KandraRendererManager` — runtime Kandra registration.
+- `KandraRenderer` — character/clothing render representation;
+- `KandraRendererManager` — runtime Kandra registration owner.
 
-Useful methods/surfaces include:
+Current Kandra inspection identifies normal renderer registration entry through `KandraRenderer.OnEnable()`, with manager-side finalisation in its update lifecycle.
+
+## Important identities, types, and methods
+
+Native/static surfaces include:
 
 - `BaseClothes.EquipTask`
 - `BaseClothes.Equip`
@@ -43,21 +43,25 @@ Useful methods/surfaces include:
 - `BaseClothes.SafeUnequip`
 - `ClothStitcher.Stitch(GameObject, KandraRig)`
 - `KandraRenderer.RedirectToRig`
+- `KandraRendererManager.Register(KandraRenderer)`
 - `KandraRenderer.OnEnable()`
-- `KandraRendererManager.Register(...)`
+- manager-side `FinalizeRegistration()`
 - `KandraRendererManager.IsRegistered`
+- Kandra mesh-memory lookup/verification surfaces
 
-## Native clothes lifecycle
+## Where it exists in the lifecycle
 
-The inspected shape is:
+### Native clothes path
+
+The decompiled native shape is:
 
 ~~~text
 equipped armour item
-→ BaseClothes loads/resolves clothing asset
-→ target KandraRig available
+→ BaseClothes resolves/loads clothing asset
+→ target KandraRig is available
 → ClothStitcher.Stitch(...)
-→ Kandra renderer redirected/stiched to rig
-→ clothing remains active
+→ Kandra renderer is redirected/stiched to target rig
+→ native clothing presentation remains active
 
 unequip
 → native clothes cleanup
@@ -65,115 +69,109 @@ unequip
 → asset reference released
 ~~~
 
-A production custom armour route needs to work with this lifecycle, not only with a standalone renderer proof.
+### Current custom Kandra research path
 
-## Prove deformation before equip
-
-Before integrating with a live armour item, prove the source geometry can deform correctly on the target rig.
-
-A mesh can be structurally accepted and still:
-
-- collapse;
-- invert triangles;
-- clip badly;
-- bind to the wrong bones;
-- deform incorrectly.
-
-Registration is not visual correctness.
-
-## Separate conversion from runtime ownership
-
-Importer/conversion tooling should be able to produce and validate canonical geometry/package data without creating live FoA objects.
-
-Then test runtime registration separately.
-
-That keeps format/conversion bugs separate from live equip/lifecycle bugs.
-
-## Prove Kandra registration separately
-
-A structurally valid Kandra package is not the same thing as a `KandraRenderer` successfully registering in the live game.
-
-Likewise, a registered proof renderer is not yet an armour item.
-
-## Let native clothes own actual equip
-
-When the target armour is ready, integrate through:
+The standalone Tainted Armour importer has progressively separated:
 
 ~~~text
-BaseClothes
-→ ClothStitcher
-→ KandraRig / KandraRenderer
+source/import
+→ deformation validation
+→ canonical package
+→ loose Kandra package writer
+→ package validation
+→ registration preflight
+→ registration candidate
+→ runtime registration dry run
+→ explicit invocation approval
+→ FoA host registration proof
+→ same-mesh A/B decode/visual proof
+→ later target conversion/equip
 ~~~
 
-Do not stop at "the renderer appeared."
+The first accepted live host-registration proof is a proof mesh, **not a production custom armour item**.
 
-## Preserve unequip/release
+## How we interact with it
 
-A correct armour integration must also:
+### 1. Treat deformation as a first-class gate
 
-- detach/unstitch cleanly;
-- destroy/release owned presentation;
-- survive re-equip;
-- avoid leaked renderer/mesh registrations.
+Before runtime equip, prove that source geometry can actually deform correctly on the target rig.
 
-## Common mistakes
+### 2. Keep conversion/provider logic separate from FoA runtime ownership
 
-### "Kandra registered, therefore armour works"
+The importer core should not need to create live FoA objects merely to define canonical geometry/compatibility.
 
-False. Registration proves only that part of the renderer path.
+### 3. Prove the Kandra registration contract separately
 
-### "I have a skinned Unity mesh, so I have native clothing"
+A custom Kandra package being structurally valid is not the same as a runtime `KandraRenderer` successfully registering.
 
-FoA clothing also has native equip/stitch/cleanup ownership.
+### 4. Use the native clothes owner for actual equipping
 
-### Editing native archives as a shortcut
+When target armour is ready, the native `BaseClothes` / `ClothStitcher` / Kandra lifecycle is the owner to integrate with.
 
-Current work deliberately uses mod-owned proof packages and gated registration instead of mutating native archives.
+### 5. Preserve unequip/release behavior
+
+Do not stop after "it appears on the body."
+
+## Why this route
+
+The armour research found several distinct failure classes that cannot be solved by one generic "import mesh" step:
+
+- geometry may be incompatible with the target rig;
+- packed Kandra representation may be wrong;
+- registration metadata may not match payload;
+- renderer registration may fail;
+- a registered renderer may still not be a valid equipped clothing item;
+- deformation can look wrong even if bytes/register calls are accepted;
+- unequip/cleanup and save state are separate.
+
+The staged importer exists to prevent one pass from being mistaken for all of them.
+
+## What goes wrong
+
+### Treating Kandra registration as armour integration
+
+A registered proof renderer is not a custom armour item.
+
+### Treating a skinned Unity mesh as native clothing
+
+Native clothes include rig/stitch/renderer ownership and teardown.
+
+### Mutating native game archives directly
+
+Current work deliberately uses mod-owned/loose proof packages and explicit gates rather than patching native Kandra archives as a shortcut.
 
 ### Skipping deformation validation
 
-A package can load and still render incorrectly.
+A mesh can register and still collapse, reverse triangles, clip badly or bind incorrectly.
 
-### Reusing a proof fixture as the production item
+### Reusing proof identity/payload as a target item
 
-Proof identity/payload does not establish final armour semantics.
+The current gates explicitly reject using the proof fixture as if it were a target armour package.
 
-## What to verify
+## How to verify
 
-A complete armour proof eventually needs:
+A complete custom-armour process eventually needs:
 
-1. source/provenance;
-2. target body/rig;
-3. deformation compatibility;
+1. source/provenance and geometry capture;
+2. target body/rig identity;
+3. deterministic deformation/compatibility result;
 4. Kandra payload/metadata consistency;
-5. live Kandra registration;
-6. visual A/B check;
+5. runtime Kandra registration;
+6. visual A/B evidence;
 7. custom item/equipment identity;
-8. native `BaseClothes` equip;
+8. native BaseClothes equip;
 9. stitch/rig correctness;
-10. body-cover/culling/material behavior;
+10. body-cover/culling/material correctness;
 11. unequip/re-equip cleanup;
 12. scene/load transitions;
-13. save/load and missing-mod behavior if claimed.
+13. save/load and missing-mod behavior.
 
-## Evidence limits
+## Current proof boundary
 
-Proven in current work:
+**Proven in current work:** importer pipeline infrastructure, real geometry fixtures, substantial Kandra package/registration contract recovery, and at least one guarded live Kandra host-registration proof for a proof mesh.
 
-- importer/tooling infrastructure;
-- real geometry fixtures;
-- substantial Kandra package/registration contract recovery;
-- guarded live host registration for a proof mesh.
+**Static native contract:** BaseClothes → ClothStitcher → Kandra rig/renderer equip/unequip ownership.
 
-Static native contract:
+**Not yet a general public custom-armour process:** production target conversion, target armour runtime registration, item/equip integration, deformation acceptance across real armour families, persistence, uninstall/migration, or universal Kandra writer semantics.
 
-- `BaseClothes` → `ClothStitcher` → Kandra rig/renderer ownership.
-
-Not yet a universal custom-armour process:
-
-- production target conversion;
-- final item/equip integration;
-- deformation acceptance across armour families;
-- persistence;
-- uninstall/migration;
-- universal Kandra writer semantics.
+The public rule is therefore: **do not teach "make a skinned mesh and equip it." Teach the staged ownership/proof problem.**

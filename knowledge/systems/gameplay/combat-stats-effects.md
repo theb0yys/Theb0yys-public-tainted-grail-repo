@@ -1,134 +1,185 @@
-# Combat Stats, Costs, Poise, and Stagger
+# Combat, Stats, Costs, Poise, and Stagger
 
-Use this page when you want to change **stamina costs, parry/block behavior, attack feel, poise damage, or other combat values that are already exposed as native stats**.
+> **Reference page.** Use this when changing combat feel, stamina costs, parry/block behavior, poise, stagger, or item-driven combat values.
 
-The practical rule is:
+## What this system is
 
-> If FoA already represents the behavior as a native stat, change that stat or apply a scoped tweak before rewriting the action/animation that consumes it.
-
-## Where combat values live
-
-FoA separates several layers:
+FoA combat frequently separates:
 
 - action/state execution;
+- character stats;
+- item stats;
+- temporary stat tweaks;
+- damage payloads;
+- AI/combat state machines.
+
+A useful rule from the research is:
+
+> If the game already exposes the behavior through a native stat owner, prefer a scoped native stat/tweak route before rewriting the action or animation that consumes it.
+
+## Who owns it in FoA
+
+Relevant owners include:
+
 - `CharacterStats` / `HeroStats`;
 - `ItemStats` / `ItemStat`;
-- temporary `StatTweak` modifiers;
+- `StatTweak`;
+- hero combat states such as block/parry/heavy attack;
 - `Damage` / `DamageParameters`;
-- NPC combat/AI state.
+- NPC combat/AI owners such as `NpcGeneralFSM` and `EnemyBaseClass`.
 
-Useful researched examples include:
+## Important identities, types, and methods
 
-- `CharacterStats.StaminaUsageMultiplier`
-- `HeroStats.ParryWindowBonus`
-- `HeroStats.ParryStaminaDamageMultiplier`
-- `HeroStats.BlockingStaminaDamageMultiplier`
-- `ItemStats.ParryStaminaCost`
-- `ItemStats.BlockStaminaCostMultiplier`
-- `ItemStats.HoldItemCostPerTick`
-- `ItemStats.PoiseDamage`
-- `ItemStats.PoiseDamageHeavyAttackMultiplier`
-- `ItemStats.PoiseDamagePushMultiplier`
-- `ItemStat.ModifiedValue`
-- `DamageParameters.PoiseDamage`
-- `NpcStats.PoiseThreshold`
+Researched examples include:
 
-## Character/Hero stat tweaks
+- `CharacterStats.StaminaUsageMultiplier`;
+- `HeroStats.ParryWindowBonus`;
+- `HeroStats.ParryStaminaDamageMultiplier`;
+- `HeroStats.BlockingStaminaDamageMultiplier`;
+- `ItemStats.ParryStaminaCost`;
+- `ItemStats.BlockStaminaCostMultiplier`;
+- `ItemStats.HoldItemCostPerTick`;
+- `ItemStats.PoiseDamage`;
+- `ItemStats.PoiseDamageHeavyAttackMultiplier`;
+- `ItemStats.PoiseDamagePushMultiplier`;
+- `ItemStat.ModifiedValue`;
+- `DamageParameters.PoiseDamage`;
+- `NpcStats.PoiseThreshold`.
 
-A common route is:
+Useful lifecycle/patch points found in the working research include stat-wrapper initialization, exact action methods, and the NPC damage-processing state.
+
+## Where it exists in the lifecycle
+
+### Hero/character stat tweaks
 
 ~~~text
 native stat wrapper initializes
 → mod adds non-saved StatTweak
 → native action reads ModifiedValue
-→ config/owner changes
-→ tweak updates or is removed
+→ mod removes/discards tweak when disabled/owner changes
 ~~~
 
-Useful examples:
-
-- broad action stamina multiplier → `CharacterStats`;
-- parry window → `HeroStats`;
-- block/parry/hold costs → `ItemStats`.
-
-## Item stat tweaks
-
-For item-owned combat values:
-
-1. identify the exact `ItemStat`;
-2. verify the item owner;
-3. verify equipped state/slot when relevant;
-4. apply the scoped runtime tweak;
-5. remove it when the item/owner no longer qualifies.
-
-Avoid mutating the `ItemTemplate` for a temporary runtime effect when an instance/stat tweak can express the change.
-
-## Poise is not stagger
-
-The researched poise path is:
+### Item stat tweaks
 
 ~~~text
-DamageParameters.PoiseDamage
-→ NpcGeneralFSM.OnDamageTaken
-→ EnemyBaseClass.DealPoiseDamage
-→ NpcStats.PoiseThreshold accumulated meter
-→ poise break
+ItemStats initializes
+→ hero-owned item receives scoped non-saved tweak
+→ attack/block/parry consumer reads ItemStat
+→ owner/item changes
+→ tweak removed
 ~~~
 
-Stagger is a different behavior with different conditions.
+### Poise processing
 
-Do not force stagger just because you want stronger poise effects.
+The research distinguishes poise break from stagger:
 
-## Event-local poise changes
+~~~text
+attack/item/damage source
+→ DamageParameters.PoiseDamage
+→ NpcGeneralFSM.OnDamageTaken
+→ EnemyBaseClass.DealPoiseDamage
+→ accumulated NpcStats.PoiseThreshold meter
+→ poise break when meter reaches max
+~~~
 
-One narrow pattern is:
+Stagger is a separate behavior tied to other conditions such as stamina depletion or explicit entry.
 
-1. capture the original `Damage.Parameters.PoiseDamage`;
-2. apply a scaled value for the intended processing call;
-3. let native poise logic run;
-4. restore the original payload.
+## How we interact with it
 
-That avoids leaking a temporary multiplier to later consumers.
+### Prefer stat ownership for persistent combat-feel changes
 
-## Common mistakes
+Examples:
 
-### Treating NpcStats.PoiseThreshold as a simple threshold constant
+- action stamina multiplier → CharacterStats;
+- parry window → HeroStats;
+- parry/block/hold costs → ItemStats;
+- equipped-weapon cost effect → `ItemStat.ModifiedValue` with strict owner/type checks.
 
-Research indicates it behaves as an accumulated `LimitedStat` meter. Writing it can change current poise state, not merely difficulty.
+### Scope tweaks to the real owner
 
-### Patching ItemStat.ModifiedValue globally without checks
+If a tweak should affect only the hero:
 
-This getter is broad. Verify:
+- verify `Hero.Current`;
+- verify item owner;
+- verify equipped slot when relevant;
+- mark temporary tweak not saved where appropriate;
+- remove it when no longer applicable.
+
+### For event-local changes, restore after the event
+
+The poise research chose a narrow prefix/postfix strategy:
+
+1. capture original `Damage.Parameters.PoiseDamage`;
+2. write a scaled copy only for the intended processing call;
+3. allow native poise logic to run;
+4. restore original payload afterward.
+
+This avoids leaking the multiplier to unrelated later listeners.
+
+## Why this route
+
+The research repeatedly avoided broader rewrites:
+
+- parry timing can be changed through `ParryWindowBonus` instead of animation rewrites;
+- block/parry costs can use native ItemStats rather than template mutation;
+- poise damage can be scoped at the damage-processing boundary instead of modifying the NPC poise meter/animation state directly.
+
+This preserves more of the native combat lifecycle.
+
+## What goes wrong
+
+### Poise and stagger treated as the same system
+
+They are separate native behaviors.
+
+Directly forcing stagger because you want stronger poise effects changes a different system.
+
+### Modifying `NpcStats.PoiseThreshold` as if it were only a threshold scalar
+
+Research indicates it is an accumulated `LimitedStat` meter with an upper limit. Mutating it can alter current poise state, not just difficulty.
+
+### Item template mutation for temporary combat tuning
+
+Changes the definition and can have wider/save-visible effects when a runtime stat tweak would suffice.
+
+### Global hot getter patch without ownership checks
+
+`ItemStat.ModifiedValue` is broad. A safe patch must verify:
 
 - stat type;
 - item owner;
 - equipped state;
-- intended feature condition.
+- intended hero/mod condition.
 
-### Rewriting combat actions when a native stat already controls the value
+### Action rewrite when post-action correction is enough
 
-That increases compatibility/lifecycle risk unnecessarily.
+Some movement-cost experiments snapshot native stamina before/after the action, then adjust only the observed cost. That can be safer than replacing movement logic, but still needs exact action validation.
 
-### Saving temporary tuning
+## How to verify
 
-A runtime combat tweak should not silently become persistent base-state mutation unless that is intentional.
+For a stat-based change, prove:
 
-## How to verify stat-based changes
-
-Verify:
-
-1. correct stat owner;
+1. correct native stat owner;
 2. tweak added once;
-3. `ModifiedValue` changes as expected;
-4. the intended native action reads that value;
-5. unrelated actors/items remain unchanged;
-6. config/disable updates or removes the tweak;
-7. temporary state is not accidentally saved.
+3. `ModifiedValue` changes as intended;
+4. native action consumes the changed value;
+5. unrelated owners/items remain unchanged;
+6. disable/config change removes or updates tweak;
+7. save state does not accidentally persist temporary tweaks;
+8. combat result matches expected direction.
 
-For poise, also prove the original damage payload is restored and stagger is not forced unintentionally.
+For poise:
 
-## Evidence limits
+1. classify attacker/damage type;
+2. capture original poise damage;
+3. apply scoped multiplier;
+4. native poise meter changes;
+5. poise-break state triggers as expected;
+6. original damage payload is restored;
+7. stagger is not unintentionally forced.
 
-The ownership/stat mappings above are source/decompilation-backed and used by project implementations.
+## Current proof boundary
 
-Exact combat feel, exclusions, tooltip/UI refresh, and cross-build behavior still require feature-specific runtime testing.
+This page summarizes source/decompilation-backed combat ownership and implemented patterns from the working repository.
+
+Exact gameplay feel, boss exclusions, tooltip refresh behavior, and cross-build compatibility remain feature-specific runtime validation questions.

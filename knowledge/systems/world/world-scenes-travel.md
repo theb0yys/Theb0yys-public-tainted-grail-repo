@@ -1,14 +1,12 @@
-# Scenes, Portals, and Travel
+# World, Scenes, Portals, and Travel
 
-Use this page when you are changing **scene transitions, portals, custom interiors, arrival behavior, or scene-lifetime hooks**.
+> **Reference page.** Use this when investigating scene transitions, custom interiors, portals, world placement, or scene-lifetime hooks.
 
-The key rule is:
+## What this system is
 
-> A door animation or raw Unity scene load is not the same thing as FoA travel.
+FoA scene travel is not owned by a door animation and is not equivalent to raw Unity scene loading.
 
-## Native travel flow
-
-The researched player path is:
+The researched player travel path is:
 
 ~~~text
 TravelAction.OnStart
@@ -21,18 +19,20 @@ TravelAction.OnStart
 → Addressables.LoadSceneAsync
 ~~~
 
-Then the loaded scene enters FoA's own scene lifecycle.
+The loaded scene then participates in FoA's scene lifecycle.
 
-## Main owners
+## Who owns it in FoA
 
-- `TravelAction` / `Portal` — travel request and portal handoff;
+Important owners include:
+
+- `TravelAction` / `Portal` — travel intent and portal handoff;
 - `ScenePreloader` / loading UI — transition orchestration;
-- `SceneService` — scene discovery, load/unload, operation tracking;
-- `MapScene` / `AdditiveScene` — FoA scene lifecycle;
+- `SceneService` — scene discovery/load/unload and operation tracking;
+- `MapScene` / `AdditiveScene` — FoA scene lifecycle owner;
 - `SceneConfig` — transition metadata;
-- `HeroTeleportMovement` — arrival/portal targeting.
+- `HeroTeleportMovement` — native arrival/portal targeting.
 
-## What a custom scene needs
+## Important identities, types, and methods
 
 A native scene route can depend on:
 
@@ -44,14 +44,16 @@ A native scene route can depend on:
 - previous-scene/portal tag;
 - optional scene-spec identity for authored gameplay objects.
 
-The researched no-hook route requires the Addressables address to match the actual Unity scene name so `SceneService` can complete its same-name operation tracking.
+The researched no-hook contract for an external scene requires its Addressables address to match the actual Unity scene name so SceneService can complete the same-name operation handshake.
 
-## Native additive scene lifecycle
+## Where it exists in the lifecycle
+
+A native additive transition shape is:
 
 ~~~text
 mod catalogue/locator active
-→ SceneService discovers scene-labelled resource
-→ SceneConfig available
+→ SceneService discovers scene-labelled locations
+→ SceneConfig exists
 → native Portal/ScenePreloader transition
 → SceneService.LoadSceneAsync
 → Unity loads scene
@@ -59,13 +61,15 @@ mod catalogue/locator active
 → SceneService.SceneLoaded
 → scene initialization
 → SceneService.SceneInitialized
-→ later readiness events
-→ native unload/return
+→ loading completes
+→ eventual native unload/return
 ~~~
 
-## Scene identity is not readiness
+## Scene identity is not scene readiness
 
-Useful scene state includes:
+The scene/domain system exposes several distinct milestones.
+
+Static/source research establishes:
 
 ~~~text
 SceneService.MainSceneRef
@@ -73,78 +77,87 @@ SceneService.AdditiveSceneRef
 ActiveSceneRef = AdditiveSceneRef when present, otherwise MainSceneRef
 ~~~
 
-Additional lifecycle signals include:
+A domain/scene identity change is earlier than full gameplay readiness. Additional researched lifecycle signals include:
 
-- `AfterNewDomainSet`
-- `EverythingInitialized`
-- `AfterSceneFullyInitialized`
-- `AfterSceneStoriesExecuted`
-- `SafeAfterSceneChanged`
+- `AfterNewDomainSet` — domain identity/lifetime changed;
+- `EverythingInitialized`;
+- `AfterSceneFullyInitialized`;
+- `AfterSceneStoriesExecuted`;
+- `SafeAfterSceneChanged`.
 
-Do not start Hero/Story/scene-owned work merely because `ActiveSceneRef` changed.
+Do not treat `ActiveSceneRef` changing, or even a new domain being set, as proof that every scene-owned system, Story or Hero-dependent consumer is ready. Select the milestone that matches the state your mod actually needs.
 
-Use the readiness point that matches what your feature actually needs.
+## How we interact with it
 
-## Prefer the native travel path
+### Prefer the native travel path
 
-If your feature needs:
+If you want FoA-managed travel, use the native scene/travel ownership rather than bypassing it with a parallel Unity load path.
 
-- FoA loading screens;
-- scene/domain ownership;
-- native services;
-- arrival targeting;
-- correct unload/cleanup;
+### Treat scene metadata as part of the mechanism
 
-then use the native Portal/SceneService flow rather than a parallel `SceneManager.LoadScene` path.
+A bundle containing a scene is not enough.
 
-## Prove transport before gameplay
+The native transition can require:
 
-For a new custom scene, first prove a minimal scene can:
+- scene label;
+- exact name/address;
+- config entry;
+- expected FoA scene root/lifecycle component.
 
-1. be discovered;
-2. load through the native transition;
-3. initialize;
-4. give control back to the player;
-5. unload/return cleanly.
+### Isolate transport before gameplay
 
-Only then add NPCs, Story, navigation, complex rendering, or custom specs.
+For custom-scene research, first prove a minimal additive interior before adding:
 
-## Common mistakes
+- NPCs;
+- story;
+- navigation;
+- complex renderer systems;
+- custom specs.
 
-### Door state treated as travel ownership
+## Why this route
 
-A door can open/animate without owning a map change.
+Static/source research found several concrete failure boundaries:
 
-### Addressables load treated as complete scene integration
+- door animation/state is not scene travel ownership;
+- name/address mismatch can break `SceneService.SceneLoaded` lookup;
+- missing `SceneConfig` can break the transition path;
+- raw Unity loading can skip FoA domain/loading orchestration.
 
-Unity may load the scene while FoA's domain/scene handshake is incomplete.
+## What goes wrong
 
-### Missing/mismatched SceneConfig or scene name/address
+### Door code treated as travel owner
 
-The native path can fail even though the bundle itself is valid.
+A door can animate/toggle without owning the map change.
 
-### Coordinates treated as a complete destination
+### Addressables load treated as native scene integration
 
-Arrival still depends on scene identity, portal targeting, placement safety, and native movement ownership.
+The Unity scene can load while FoA's SceneService/MapScene/AdditiveScene handshake is incomplete.
 
-## How to verify custom travel
+### Static custom-scene research called runtime proof
 
-Check:
+
+### Coordinates treated as placement proof
+
+Valid placement also needs scene/region identity, collision/clearance, navigation/owner, activation and persistence policy.
+
+## How to verify
+
+For a custom scene/travel proof:
 
 1. catalogue resolves the scene;
 2. scene-labelled resource is discoverable;
 3. `SceneConfig` exists;
 4. native transition begins;
-5. Addressables loads the exact scene;
+5. Addressables loads exact scene;
 6. `SceneLoaded` completes;
 7. `SceneInitialized` completes;
 8. arrival/player control is valid;
 9. native return works;
-10. additive scene unloads;
-11. Models/listeners/assets are cleaned up.
+10. additive scene unloads cleanly;
+11. Models/listeners/assets are not leaked.
 
-## Evidence limits
+## Current proof boundary
 
-The native travel/`SceneService` path is strongly mapped in the inspected Mono build.
+The native travel/SceneService path is strongly mapped in the researched Mono build.
 
-A genuinely new external mod-owned additive scene still needs end-to-end runtime validation before it should be called proven.
+The claim that a genuinely new external mod-owned additive scene works end-to-end remains an explicit runtime-validation gap and should stay labelled that way.

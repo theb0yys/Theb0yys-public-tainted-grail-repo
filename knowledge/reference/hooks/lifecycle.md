@@ -1,143 +1,146 @@
-# Choosing a Hook by Lifecycle Timing
+# Lifecycle and Hooks
 
-Use this page when you have found several possible patch targets and need to decide **which one runs at the right time**.
+> **Reference page.** Use this before choosing a Harmony target. A method is useful only if its position in the native lifecycle matches what you need to change.
 
-The most important question is not:
+## What this system is
 
-> What method can I patch?
+A hook is an intervention at a particular point in execution.
 
-It is:
-
-> What is guaranteed to be true immediately before and after this method runs?
-
-## Prefix, Postfix, and Transpiler
-
-Harmony commonly gives you:
+Harmony commonly provides:
 
 - **Prefix** — runs before the original method;
 - **Postfix** — runs after the original method;
-- **Transpiler** — rewrites the method body.
+- **Transpiler** — rewrites method instructions and should be reserved for cases that cannot be expressed safely with a narrower hook.
 
-Prefer Prefix/Postfix when they can express the change. A Transpiler should normally be the last option because it couples the mod more tightly to implementation details.
+The important question is not only **what method can I patch?** but **what is true immediately before and after this method?**
 
-## Useful FoA lifecycle boundaries
+## Publicly useful lifecycle boundaries
 
-### Hero.OnFullyInitialized
+### Hero initialization
 
-Public Mono mods use this for Hero-dependent setup after basic Hero initialization.
+Public Mono mods use `Hero.OnFullyInitialized` as a practical boundary for hero-dependent setup.
+
+One working damage-number mod explicitly uses its Postfix because the mod loads before `World.EventSystem` and the HUD are ready; it installs its damage listener only after this hero initialization point.
 
 ~~~text
 plugin Awake / PatchAll
-→ game/world systems come online
+→ game/world infrastructure starts
 → Hero.OnFullyInitialized
-→ Hero-dependent listener/UI/state setup
+→ hero-dependent listeners/UI/state setup
 ~~~
 
-This is stronger than checking only `Hero.Current != null`, but it is not proof that every child Element, UI View, restored owner, or later scene system is ready.
+This is stronger evidence than merely checking whether `Hero.Current` is non-null. It is still not a universal guarantee that every child Element, View or later scene-dependent system is ready.
 
-### HeroRPGStats.AfterHeroFullyInitialized
+### Hero RPG-stat initialization
 
-Use this when the work specifically needs Hero RPG/stat infrastructure.
-
-Exact Mono inspection shows that `HeroRPGStats.OnInitialize()` initializes its wrapper and registers this callback on the parent Hero's fully-initialized event.
+Public mods use `HeroRPGStats.AfterHeroFullyInitialized` for stat-system changes that require the hero and `TweakSystem` to be ready. Exact Mono inspection shows `HeroRPGStats.OnInitialize()` initializes its wrapper and registers `AfterHeroFullyInitialized` on the parent Hero's fully-initialized callback.
 
 ~~~text
-Hero exists
-→ HeroRPGStats initializes
-→ parent Hero reaches fully initialized
+hero exists
+→ hero RPG stats finish initialization
 → HeroRPGStats.AfterHeroFullyInitialized
-→ stat-dependent work
+→ resolve Hero.Current / TweakSystem
+→ add stat tweaks
 ~~~
 
-### UI-specific readiness
+### UI initialization
 
-Public mods use UI-owner callbacks such as:
+Public mods use several `OnFullyInitialized` / view-created surfaces for modifications that depend on concrete UI state:
 
 - `HeroStorageUI.OnFullyInitialized`
 - `PContainerUI.OnFullyInitialized`
 - `MapUI.AfterViewSpawned`
-- `VHeroHUD.AfterFullyInitialized`
 
-These are useful when the change depends on concrete UI state. They are not general gameplay-ready events.
+These should not be generalized into gameplay-ready hooks; they are specific UI-owner boundaries.
 
-### Restore-specific readiness
+### Restore boundaries
 
-A public IL2CPP-native recipe implementation uses `HeroItems.OnRestore` to obtain a valid restored `HeroItems` instance.
+A public IL2CPP-native recipe implementation uses `HeroItems.OnRestore` because that point supplies a valid restored `HeroItems` instance. That is a restore/availability boundary, not a generic "hero loaded" synonym.
 
-Restore callbacks answer a different question from normal initialization callbacks.
+## Existing inspected lifecycle examples
 
-## Timing examples
+- `TemplatesLoader.set_FinishedLoading(bool)` — template readiness boundary;
+- `Shop.OpenShop()` — merchant open/decompression lifecycle;
+- `ShopUI.OnFullyInitialized()` — UI initialization boundary used before its item-list snapshot;
+- `LockpickingInteraction.ConsumePickHP(float)` — lockpick durability consumption;
+- `VCCharacterMagicVFX.CastingBegun` — spell-cast VFX observation;
+- concrete cloud-service `EndSave(string)` — completed save-slot write observation.
 
-### Damage
+## Why timing matters
+
+The same semantic area can expose several different hook points.
+
+For damage, public source shows both:
 
 ~~~text
 HealthElement.OnDamage
-→ incoming Damage can still be changed
+→ mutation of incoming Damage is still possible
 
-HealthElement.TakeDamage / damage events
-→ later observation/presentation work
+HealthElement.TakeDamage / emitted damage events
+→ downstream observation/presentation use
 ~~~
 
-Use the earlier point for mutation and the later point for observation when that matches the feature.
-
-### UI snapshots
+For UI:
 
 ~~~text
-underlying state
+owner/model state
 → UI initializes
-→ UI caches/builds a list or visual tree
-→ rows refresh / SetData
+→ cached visual tree/list snapshot
+→ later row refreshes / SetData
 ~~~
 
-If you patch after a UI has already taken its snapshot, changing the underlying data may not update what the player sees until you trigger the correct refresh.
+Choosing a hook after a snapshot may require an explicit refresh even if the underlying data changed correctly.
 
-## Before choosing a target
+## Hook-selection checklist
 
-Record:
+Record for every hook:
 
+- assembly;
 - fully qualified type;
 - exact method/signature;
-- assembly;
-- Prefix/Postfix/other patch type;
-- what is initialized before it runs;
-- what becomes true after it runs;
-- whether the original method must still execute;
-- approximate call frequency;
-- build/runtime evidence;
+- Prefix/Postfix/other patch kind;
+- lifecycle state before the method;
+- lifecycle state after the method;
+- whether the original should still run;
+- call frequency;
+- version/build evidence;
 - cleanup/unpatch behavior.
 
-## Prefer
+Prefer:
 
-- the narrowest method that owns the behavior;
-- observation before mutation when you are still learning the system;
-- exact overloads/signatures;
-- fail-closed checks when required state is missing;
-- normal original execution unless the feature intentionally replaces it.
+- observation before mutation;
+- Prefix/Postfix over transpiler;
+- exact signatures over broad name matching;
+- fail-closed checks when state/preconditions are missing;
+- normal original execution unless the feature explicitly requires suppression.
 
-## Common mistakes
+## What goes wrong
 
-- choosing a method because its name sounds relevant without checking when it runs;
-- patching the wrong overload;
-- suppressing the original unintentionally;
-- assuming UI automatically refreshes after data changes;
-- treating `Hero.Current != null` as full Hero readiness;
-- moving code to later and later hooks when the real issue is wrong ownership;
-- keeping a private/reflected target after a game update without rechecking it.
+Known failures:
 
-One public hand-regrow mod is a useful example: several plausible restore/init hooks were still too early for the specific Element-removal operation, while a later presentation callback was safe enough for that operation.
+- patching a method that is semantically related but too early/late;
+- wrong overload/signature;
+- suppressing original behavior unintentionally;
+- assuming a UI refresh happens automatically after its snapshot;
+- using a name heuristic instead of exact target identity;
+- patching private internals and not revalidating after game updates;
+- treating `Hero.Current != null` as proof that every hero-owned subsystem is initialized;
+- moving downstream code when the real problem is an upstream lifecycle/ownership boundary.
 
-## How to verify a hook
+## How to verify
 
-Prove these separately:
+For a hook, prove:
 
-1. the target resolves;
-2. the patch installs;
-3. the hook actually fires;
-4. required state is valid at that moment;
-5. the intended change happens exactly when expected;
-6. downstream game code sees the result;
-7. cleanup/unpatch restores normal behavior where required.
+1. target resolves;
+2. patch installs;
+3. marker/log shows the hook actually fires;
+4. preconditions are true at that point;
+5. intended state changes exactly once;
+6. downstream owner observes the change;
+7. cleanup/unpatch restores expected state where applicable.
 
-A hook firing is not the same as the feature working.
+## Current proof boundary
+
+The hook catalogue in this repository contains only surfaces backed by inspected examples or research. It is not an exhaustive list of FoA methods.
 
 See [Hook Catalogue](catalogue.md) and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).

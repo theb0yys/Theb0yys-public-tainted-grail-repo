@@ -1,135 +1,167 @@
-# Weather and Environment
+# Weather, Environment, Sky, Water, and World-State Ownership
 
-Use this page when you want to change **weather, rain/fog/storms, sky, water response, environmental audio, or time-dependent world presentation**.
+> **Reference page.** Use this when modifying weather, rain/fog/storms, skybox, water, environmental audio, or time-dependent presentation.
 
-The key rule is:
+## What this system is
 
-> Weather is not one renderer or one boolean. It is state consumed by several systems.
-
-## Separate weather state from its consumers
-
-A useful model is:
+A visible "weather system" is usually several owners working together:
 
 ~~~text
-time / region / biome / shelter context
-→ weather state
-→ renderer/provider
-→ sky
-→ water
-→ fog / precipitation / lighting
+weather truth/state
+→ scheduler/context
+→ native/external weather renderer
+→ sky/skybox presentation
+→ water/ocean response
+→ lighting/fog/precipitation/material effects
 → audio
-→ optional gameplay/AI consumers
+→ downstream AI/gameplay consumers
 ~~~
 
-If several mods independently write these systems, they can easily disagree.
+These layers should not all write the same state independently.
 
-## Keep one weather truth
+## Who owns it in FoA
 
-A custom weather system should expose one stable state/snapshot that downstream consumers can read.
+Research identifies separate native/project ownership concerns for:
+
+- FoA game time/day-night;
+- native weather state/controller;
+- weather visual provider/runtime;
+- sky/skybox renderer;
+- water/ocean truth and sampling;
+- weather audio;
+- world/region/biome/shelter context;
+- downstream AI/gameplay consumers.
+
+The working weather architecture intentionally assigns one **weather-truth owner** and lets other systems consume its state rather than each system inventing weather independently.
+
+## Important identities, types, and methods
+
+Research/source surfaces include:
+
+- native day/night system;
+- native `WeatherController`;
+- native weather-audio biome/context systems;
+- water sampling via `WaterSurfaceSampler`;
+- water raycast/layer ownership;
+- weather-event/state APIs;
+- optional Weather Maker runtime/provider integration;
+- separate skybox and water consumer contracts.
+
+Weather Maker research also found first-class precipitation paths for:
+
+- rain;
+- snow;
+- hail;
+- sleet;
+- custom precipitation.
+
+That means unsupported/unfinished weather families should not be silently routed through arbitrary visual fallbacks if a real provider path exists but has not yet been validated.
+
+## Where it exists in the lifecycle
+
+A clean environment stack is:
+
+~~~text
+world/scene available
+→ determine region/biome/shelter/time context
+→ weather authority selects state
+→ state-change event
+→ visual/audio/water/sky consumers plan/apply
+→ gameplay consumers read approved state
+→ scene/context changes
+→ consumers reapply/release
+~~~
+
+## How we interact with it
+
+### Keep one truth owner
+
+A mod may own a custom weather policy, but its consumers should receive one stable state/snapshot rather than each reading/writing unrelated provider internals.
+
+### Separate state from rendering provider
 
 For example:
 
-~~~text
-weather state = LightRain
+- weather state can say "LightRain";
+- Weather Maker can be one rendering provider;
+- skybox can be another consumer;
+- water can respond separately;
+- audio can use local/native FMOD logic.
 
-visual provider → renders rain
-sky system      → adjusts sky
-water           → reacts separately
-audio           → plays local/native ambience
-gameplay        → reads approved state if needed
-~~~
+This allows a provider to be changed without redefining gameplay truth.
 
-Do not let each presentation subsystem invent its own weather state.
+### Make external providers optional when possible
 
-## FoA/native concerns
+A rendering package should not automatically become authority over:
 
-Research separates:
+- FoA game time;
+- native quest/weather semantics;
+- skybox ownership;
+- water ownership;
+- AI state.
 
-- game time/day-night;
-- native `WeatherController`;
-- weather audio/biome context;
-- water/ocean sampling;
-- sky/skybox ownership;
-- region/biome/shelter context;
-- downstream gameplay/AI.
+### Use exact validated provider profiles
 
-Useful researched surfaces include:
+Do not treat "Rain", "Snow", "Hail" or "Storm" as interchangeable string labels if the provider has exact profiles/assets/states.
 
-- native day/night state;
-- `WeatherController`;
-- weather-audio biome/context;
-- `WaterSurfaceSampler`;
-- water raycast/layer ownership.
+## Why this route
 
-## External weather providers
+The weather research went through many staged gates precisely because **provider capability is not the same as integration authority**.
 
-Optional packages such as Weather Maker can supply rendering capability without becoming the owner of all FoA weather semantics.
+It also found contradictory version assumptions for Weather Maker and corrected them through exact identity/fingerprint admission.
 
-Keep external providers optional where practical.
+That produces a general rule:
 
-They should not automatically take ownership of:
+> Third-party capability must be version-identified and fitted into FoA ownership; it does not become the owner because it has more features.
 
-- game time;
-- quest/weather logic;
-- sky state;
-- water truth;
-- AI behavior.
+## What goes wrong
 
-## Use exact provider profiles
+### Several mods write weather independently
 
-If a provider has distinct profiles/assets for Rain, Snow, Hail, Sleet, Storm, or custom precipitation, use the exact validated profile.
+Creates last-writer-wins behavior, flicker, stale state and impossible downstream semantics.
 
-Do not silently substitute a generic effect because a family has not been validated yet.
+### Weather provider owns game time by accident
 
-The research found contradictory provider-version assumptions until exact source/runtime/bundle identity was checked, so provider version matters.
+Can interfere with quests, rest, day/night systems or scene state.
 
-## Scene/context changes
+### Skybox, water and weather share hidden mutable state
 
-A clean lifecycle is:
+Makes cleanup and replacement impossible to reason about.
 
-~~~text
-scene/world ready
-→ determine context
-→ select weather state
-→ emit state change
-→ consumers apply
-→ scene/context changes
-→ consumers reapply or release
-~~~
+### Provider version assumed from folder/name
 
-A scene transition can invalidate presentation/resource ownership even when the weather state itself stays logically the same.
+The weather research explicitly found version claims that were contradicted until exact source/runtime/bundle identity was established.
 
-## Common mistakes
+### "Unsupported family" replaced by generic visual
 
-- several mods independently writing weather state;
-- a visual provider accidentally controlling game time;
-- sky, water, and weather sharing hidden mutable state;
-- assuming provider version from a folder name;
-- substituting unvalidated generic visuals for an unsupported family;
-- calling a material/VFX proof a complete weather-system proof.
+Can hide the fact that a real provider path exists but simply lacks a validated profile.
+
+### Material/effect proof called weather-system proof
+
+Loading/applying rain/fog material effects does not prove scheduler, state, world context or persistence.
 
 ## How to verify
 
-Check:
+For environment integration:
 
-1. exact weather-state owner;
-2. time/region/biome/shelter inputs;
-3. selected state;
-4. exact provider/profile;
-5. state-change event;
-6. precipitation/fog/visual application;
-7. sky response;
-8. water response;
-9. audio response;
-10. gameplay/AI consumers if used;
-11. scene/context transition;
-12. provider failure/disable fallback;
+1. exact weather truth owner;
+2. current time/region/biome/shelter inputs;
+3. chosen state;
+4. provider/profile identity;
+5. weather event emitted;
+6. visual application;
+7. sky consumer;
+8. water consumer;
+9. audio consumer;
+10. gameplay/AI consumers if any;
+11. context/scene transition;
+12. provider disable/failure fallback;
 13. cleanup/restoration;
 14. performance;
-15. persistence only if weather state is deliberately durable.
+15. save/persistence only if the weather state is meant to be durable.
 
-## Evidence limits
+## Current proof boundary
 
-The working project has extensive source/live evidence for its weather-provider integration and separation of consumers.
+The working project has extensive gated source/live evidence for its weather-provider stack and consumer separation.
 
-This page uses that work to explain the design and validation rules. It does not require or universally endorse one third-party weather package for FoA mods.
+This handbook uses that research to teach ownership and validation rules, not to declare a particular third-party weather package a required FoA modding dependency.
