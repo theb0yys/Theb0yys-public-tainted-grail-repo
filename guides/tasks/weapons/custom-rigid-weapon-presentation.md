@@ -3,6 +3,11 @@
 Keep FoA's Item/equip/hand path and replace only the registered weapon presentation through the existing Drake pipeline.
 
 Working lineage: [Evil Greatsword: Equip and Presentation Boundary](../../../research/case-studies/weapons/evil-greatsword-presentation.md).  
+
+## Runnable source
+
+Start from the buildable example: [Rigid weapon Drake consumer](../../../examples/mono/items/custom-rigid-weapon-presentation/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
 Canonical owners: [Native Weapon Integration](../../../knowledge/systems/gameplay/native-weapons/README.md) and [Drake](../../../knowledge/systems/presentation/drake/README.md).
 
 ## Native chain to preserve
