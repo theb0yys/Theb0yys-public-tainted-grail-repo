@@ -1,3 +1,10 @@
+---
+document_type: investigation-index
+scope: FoA investigation routing and owner/lifecycle research
+runtime: mixed
+last_verified: 2026-09-20
+---
+
 # Investigate
 
 Investigation is a first-class FoA modding skill.
