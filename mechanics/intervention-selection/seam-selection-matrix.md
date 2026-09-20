@@ -1,3 +1,14 @@
+---
+document_type: mechanic
+scope: intervention seam selection after native-owner discovery
+game_build: mixed
+runtime: both
+evidence:
+  static: SUPPORTED
+  runtime: MIXED
+last_verified: 2026-09-20
+---
+
 # Intervention Seam Selection Matrix
 
 Use this after identifying the native owner but before choosing a patch/API.
