@@ -1,56 +1,158 @@
-# Items: Proven Custom Item Integration
+# Custom Items
 
-> **Reference/process page.** This is the first fully reasoned new-content path. It teaches the proven runtime custom-item mechanism and the evidence explaining each step.
+Use this page when you want to add a **new runtime item identity** without replacing an existing vanilla item.
 
-## What this system is
-
-The proven baseline creates a **new FoA item template identity at runtime** by cloning a reviewed native prototype, registering the custom definition in FoA's loaded template maps, constructing a normal native `Item`, and giving that item to one controlled native acquisition surface.
-
-The clearest bounded runtime proof is **Green Avalon Apple**.
+The proven baseline is:
 
 ~~~text
 native ItemTemplate
-→ clone
-→ new mod-owned GUID/name
-→ validate clone
-→ register in native template map
-→ resolve through TemplatesProvider
-→ World.Add(new Item(...))
-→ RestockableStock.AddItem(...)
-→ shop UI shows separate custom item
+→ clone it
+→ give the clone a new GUID/name
+→ register it
+→ resolve it normally
+→ create a native Item
+→ hand that Item to one native acquisition owner
+→ verify the player can see/use it
 ~~~
 
-This is different from replacing an existing Addressable with Merlin Workshop.
+The clearest bounded proof is the **Green Avalon Apple** merchant example.
 
-## Who owns it in FoA
+## What actually owns an item
 
-The important owners are:
+The important parts are:
 
 - `ItemTemplate` — reusable item definition;
-- `TemplatesLoader` — native template-map insertion/loading;
+- `TemplatesLoader` — template-map loading/insertion;
 - `TemplatesProvider` — normal template lookup;
-- `World` — native/MVC item-instance ownership;
-- `RestockableStock` — merchant stock owner for the first proven acquisition route;
-- `ShopUI` — presentation owner that captures the stock item list.
+- `World` — runtime `Item` Model ownership;
+- `RestockableStock` — merchant-stock owner in the proven example;
+- `ShopUI` — UI that snapshots/displays the stock.
 
-## Important identities, types, and methods
+A cloned prefab by itself is not a registered FoA item.
 
-Proven example identities:
+## Proven example identity
 
 ~~~text
-source:
+source
 ItemTemplate_Crafting_Cooking_Apple
 1527b1864369efd48b49abb54f1e42e4
 
-custom:
+custom
 ItemTemplate_Mod_FoodDrink_AppleGreen
 fdaf0000000000000000000000000001
 
-display:
+display name
 Green Avalon Apple
 ~~~
 
-Important methods/surfaces:
+## Step 1: choose a native prototype
+
+Resolve one existing `ItemTemplate` that already behaves close to the item you want.
+
+Why this helps:
+
+- you inherit native classification;
+- expected attachments are already present;
+- normal UI/economy behavior is more likely to remain intact.
+
+Do not build a completely guessed item shape first unless you are specifically researching that path.
+
+Verify the source GUID resolves to the expected `ItemTemplate`.
+
+## Step 2: give the clone its own identity
+
+Clone the source template's GameObject, obtain the cloned `ItemTemplate`, and assign:
+
+- a new stable mod-owned GUID;
+- a new template name;
+- any deliberately changed fields.
+
+Do **not** reuse the source GUID.
+
+Verify the source template stays unchanged.
+
+At this point the clone still exists only in memory; FoA cannot necessarily resolve it by GUID yet.
+
+## Step 3: change as little as possible
+
+For the first proof, change only what you need.
+
+The Green Avalon Apple proof kept most native behavior/presentation from the source while proving the identity and registration path.
+
+Avoid changing identity, icon, model, price, effects, recipe, vendor logic, and acquisition route all at once. If the proof fails, you want to know which step failed.
+
+## Step 4: register the template
+
+After native templates are ready, insert the custom template into the native maps.
+
+The direct proven route is:
+
+~~~text
+TemplatesProvider._loader
+→ TemplatesLoader.AddToMap(customGuid, customTemplate)
+~~~
+
+Then resolve the custom GUID back through `TemplatesProvider`.
+
+If the provider cannot resolve it, downstream consumers will not have a normal native identity to work with.
+
+This direct route uses private internals and is patch-sensitive.
+
+## Step 5: create a real native Item
+
+Use the game's runtime Item model:
+
+~~~csharp
+Item item = World.Add(new Item(customTemplate, quantity));
+~~~
+
+This gives the custom definition a normal FoA runtime item instance.
+
+A loose Unity object is not an inventory/shop item.
+
+## Step 6: use one native acquisition route
+
+The first proven route uses merchant stock.
+
+After stock is decompressed but before the shop UI takes its item-list snapshot:
+
+~~~csharp
+stock.AddItem(item, allowStacking: true);
+~~~
+
+Then allow the normal shop UI flow to continue.
+
+This proves merchant acquisition only. It does not prove loot, crafting, quest rewards, world pickups, or every inventory route.
+
+## Step 7: prove one item before making a framework
+
+The first successful item should stay simple and visible.
+
+The Apple proof worked because the process narrowed to one known-good item after broader batch experiments exposed timing/descriptor assumptions.
+
+Generalize only after one item succeeds end to end.
+
+## Step 8: add custom presentation later
+
+Once identity, registration, and acquisition work, add custom:
+
+- icon;
+- mesh/model;
+- material;
+- VFX;
+- special behavior.
+
+Asset loading and item registration are separate problems. A custom icon or model loading successfully does not prove the item exists correctly in game state.
+
+## Step 9: test persistence separately
+
+Native item/template research shows that saved template references are restored by GUID.
+
+That means a saved custom item can fail later if its custom template is not registered early enough during load.
+
+If the item must survive restart/save/load, test that exact lifecycle on a disposable save.
+
+## Useful methods
 
 - `TemplatesProvider.AllLoaded`
 - `TemplatesProvider.Get<ItemTemplate>(guid)`
@@ -60,203 +162,49 @@ Important methods/surfaces:
 - `RestockableStock.AddItem(item, allowStacking: true)`
 - `ShopUI.OnFullyInitialized()`
 
-## Where it exists in the lifecycle
-
-The proven merchant path is:
-
-~~~text
-BepInEx plug-in loaded
-→ FoA templates finish loading
-→ source native ItemTemplate resolves
-→ custom clone is validated and registered
-→ custom GUID resolves through TemplatesProvider
-→ Shop.OpenShop decompresses stock
-→ ShopUI.OnFullyInitialized Prefix
-→ create Item through World
-→ add Item to RestockableStock
-→ original ShopUI captures the item list
-→ player sees the separate custom item
-~~~
-
-Timing is part of the process.
-
-## How we interact with it
-
-### Step 1 — Pick a reviewed native prototype
-
-**Do:** resolve one existing `ItemTemplate` whose native behavior is close to what you want.
-
-**Why:** an item template carries more than name and stats. It participates in native classification, attachments, UI behavior and other contracts.
-
-**What goes wrong:** constructing an arbitrary item shape from assumptions can omit behavior/attachments that native code expects.
-
-**Verify:** exact source GUID resolves and returns the expected `ItemTemplate`.
-
-**Boundary:** no custom item exists yet.
-
-### Step 2 — Create a separate mod-owned identity
-
-**Do:** clone `sourceTemplate.gameObject`, obtain the cloned `ItemTemplate`, assign a new stable custom GUID/template name, and leave the source untouched.
-
-**Why:** a new item must be distinguishable from its prototype. Reusing/mutating the native identity changes or collides with the original.
-
-**What goes wrong:** source GUID = custom GUID creates replacement/collision risk; mutating the source changes the vanilla item.
-
-**Verify:** source remains unchanged; clone has the new GUID/name and expected component shape.
-
-**Boundary:** the clone still is not registered.
-
-### Step 3 — Change only what the proof needs
-
-**Do:** initially change the custom identity/presentation and keep native behavior/attachments from the safe source.
-
-The Green Avalon Apple proof kept the source's native behavior, icon and ordinary item characteristics while proving the new identity path.
-
-**Why:** fewer changed variables make a failure meaningful.
-
-**What goes wrong:** changing identity, icon, value, effects, assets, recipe, vendor logic and behavior at once makes the failure impossible to localize.
-
-**Verify:** clone contract checks pass and the native source was not mutated.
-
-**Boundary:** custom visuals/effects are separate later integrations.
-
-### Step 4 — Register the custom template
-
-**Do:** after the template system is ready, insert the validated custom template into the native template maps.
-
-Direct registration route:
-
-~~~text
-TemplatesProvider._loader
-→ TemplatesLoader.AddToMap(customGuid, customTemplate)
-~~~
-
-**Why:** a cloned Unity object is not automatically discoverable by FoA's normal template lookup.
-
-**What goes wrong:** without registration, downstream GUID lookup fails. Registering too early can race template readiness. Private reflection is patch-sensitive.
-
-**Verify:** resolve the custom GUID back through `TemplatesProvider`.
-
-**Boundary:** registration does not equal acquisition or save safety.
-
-### Step 5 — Construct a normal FoA Item
-
-**Do:**
-
-~~~csharp
-Item item = World.Add(new Item(customTemplate, quantity));
-~~~
-
-**Why:** the custom definition should enter the same runtime item ownership model as native items.
-
-**What goes wrong:** a disconnected Unity object or private POCO is not a native inventory/shop item.
-
-**Verify:** returned `Item` is valid and points at the custom template identity.
-
-**Boundary:** the item still needs an acquisition owner.
-
-### Step 6 — Integrate through one acquisition surface
-
-For the first proven path, use merchant stock.
-
-**Do:** after stock decompression but before the original shop UI captures its item list, add the native `Item` to a decompressed `RestockableStock`.
-
-~~~csharp
-stock.AddItem(item, allowStacking: true);
-~~~
-
-**Why:** registration and acquisition are different capabilities. The shop owner must receive the runtime item, and the UI must see it before its list snapshot.
-
-**What goes wrong:** later mutations can leave a stale UI list; broader first-batch injection exposed descriptor/timing assumptions and merchant-menu failures.
-
-**Verify:** stock contains the custom GUID and the shop UI visibly shows the separate custom item.
-
-**Boundary:** this proves merchant acquisition, not loot/recipe/reward/world-pickup integration.
-
-### Step 7 — Prove one item before generalising
-
-**Do:** keep one known-good descriptor until the mechanism is visible and stable.
-
-**Why:** the Apple proof established the mechanism. Later Bread/Cheese/other experiments tested whether it generalized.
-
-**What goes wrong:** the early batch expansion outpaced per-item proof. The process had to narrow back to the screenshot-proven Apple path before broadening again.
-
-**Verify:** one item succeeds end-to-end; each new family/profile proves its own preconditions.
-
-**Boundary:** one successful prototype does not prove every `ItemTemplate` family behaves identically.
-
-### Step 8 — Add assets, icons and gameplay separately
-
-**Do:** only after identity/registration/acquisition works, add custom icon, model, effects or other presentation/behavior as separate lanes.
-
-**Why:** later Gems work demonstrates that custom assets/icons/effects can be layered onto a working registered identity.
-
-**What goes wrong:** if registration and custom presentation are introduced together, a white icon or missing model can be mistaken for registration failure.
-
-**Verify:** test each layer independently.
-
-**Boundary:** an AssetBundle loading does not register an item.
-
-### Step 9 — Treat persistence as a separate gate
-
-**Do:** if the item must survive save/load, validate that exact lifecycle separately.
-
-**Why:** native-contract research shows item template identity is serialized by GUID and restored through template lookup.
-
-**What goes wrong:** a saved item can reference a GUID that is unavailable during restoration.
-
-**Verify:** disposable cold save/load plus documented missing/disabled-mod behavior.
-
-**Boundary:** the current public item baseline does **not** claim universal uninstall/missing-mod/save safety.
-
-## Why this route
-
-This process is the smallest path that survived both successful and failed experiments:
-
-- native item grant behavior was already understood;
-- vendor lifecycle was probed read-only;
-- one custom native-derived template was introduced;
-- Green Avalon Apple became visible as a separate shop item;
-- broad batch assumptions caused problems;
-- the process narrowed;
-- decompilation/lifecycle research corrected UI timing;
-- later architecture work added collision/idempotency/persistence requirements without pretending those later gates were already passed.
-
-## What goes wrong
-
-The major failure lessons are:
-
-- **prefab/template shape without registration:** FoA cannot resolve the new identity;
-- **native GUID reuse:** collision/replacement risk;
-- **too-early lookup:** provider/templates not ready;
-- **too-late shop mutation:** UI can hold a stale list;
-- **batch-first development:** one bad descriptor obscures which assumption failed;
-- **asset-success confusion:** a loaded icon/model does not prove item registration;
-- **runtime-success confusion:** visible current-session item does not prove save/uninstall safety.
-
-## How to verify
-
-Minimum first-item proof:
-
-1. source native GUID resolves;
-2. source remains unchanged;
-3. custom GUID is unique and stable;
-4. clone passes shape/profile checks;
+## Common failures
+
+- custom prefab exists but was never registered;
+- source and custom GUID collide;
+- registration happens before templates are ready;
+- stock is changed after the UI already cached its list;
+- several new item families are tested at once;
+- asset success is mistaken for gameplay registration;
+- current-session success is mistaken for save safety.
+
+## Minimum proof
+
+Verify:
+
+1. source GUID resolves;
+2. source stays unchanged;
+3. custom GUID is unique/stable;
+4. clone has the expected native shape;
 5. registration succeeds;
-6. custom GUID resolves through provider;
-7. `World.Add(new Item(...))` succeeds;
-8. controlled owner receives item;
-9. downstream UI/gameplay sees it;
-10. exact proof boundary is recorded.
+6. custom GUID resolves through `TemplatesProvider`;
+7. native `Item` construction succeeds;
+8. one native acquisition owner receives it;
+9. downstream UI/gameplay sees the separate custom item;
+10. the exact proof boundary is recorded.
 
-Runtime evidence for the Green Avalon Apple established a separate visible custom identity in merchant UI with inherited native behavior/presentation characteristics.
+## Evidence limits
 
-## Current proof boundary
+Proven in a bounded Mono route:
 
-**Proven/bounded:** native-prototype clone, separate custom GUID, runtime registration mechanism, native Item creation, controlled merchant stock insertion, visible separate custom item.
+- native-prototype clone;
+- separate custom GUID;
+- runtime registration;
+- native `Item` creation;
+- controlled merchant-stock insertion;
+- visible separate custom item.
 
-**Source/multi-consumer evidence:** similar clone/registration shape appears in Lockpick, Longsword and later custom-content implementations.
+Similar clone/registration shapes also appear in other project implementations.
 
-**Not yet a general public guarantee:** cold-save restoration, missing-mod behavior, uninstall/orphan cleanup, cross-mod collision handling across all consumers, migration, arbitrary from-scratch ItemTemplate construction, universal loot/recipe/reward/world-pickup integration.
+Not yet a universal guarantee:
 
-The internal project is moving toward a shared collision-safe registrar, but that registrar's full runtime/save validation gate is not yet promoted as the public baseline.
+- cold-save restoration;
+- missing-mod/uninstall behavior;
+- collision handling across all mods;
+- arbitrary from-scratch `ItemTemplate` construction;
+- every acquisition route;
+- cross-runtime equivalence.
