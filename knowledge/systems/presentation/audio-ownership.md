@@ -7,32 +7,48 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Native Music and Ambience Ownership
+# Music and Ambience Ownership
 
-FoA's audio stack separates several responsibilities that should not be treated as one “background audio” channel.
+Use this page when you are changing **background music, combat music, Wyrd ambience, or environmental audio** and need to know which native lane you are actually replacing.
+
+FoA does not have one generic "background audio" owner.
 
 ## Native music
 
-`AudioCore` maintains separate exploration, alert and combat music managers/emitters.
+`AudioCore` maintains separate music owners for:
 
-The inspected implementation starts those lanes through separate internal paths and also registers a default world-exploration source during initialization.
+- exploration;
+- alert;
+- combat.
+
+The inspected implementation starts these through separate internal paths and registers a default world-exploration source during initialization.
 
 ## Native ambience
 
-`AudioBiome` owns arrays for ambient sources separately from its music/alert/combat sources.
+`AudioBiome` keeps ambient sources separate from its music/alert/combat sources.
 
-`ManualAudioZone` derives from `AudioBiome` and activates/deactivates as the hero enters/exits its zone.
+`ManualAudioZone` derives from `AudioBiome` and activates/deactivates as the Hero enters or leaves its zone.
 
-Public `AudioCore.RegisterAudioSources` / `UnregisterAudioSources` surfaces can operate on a specific `AudioType`.
+Public `AudioCore.RegisterAudioSources` / `UnregisterAudioSources` calls can operate on a specific `AudioType`.
 
-## Consequence
+## Keep the lanes separate
 
-```text
-native ambience
+~~~text
+ambience
 ≠ exploration music
 ≠ alert music
 ≠ combat music
-≠ dialogue/UI/SFX
-```
+≠ dialogue
+≠ UI
+≠ ordinary SFX
+~~~
 
-A compatibility-minded music mod should suppress or coexist with the exact lane it intends to replace and leave unrelated audio owners untouched.
+If a mod wants to replace combat music, it should not suppress ambience by accident.
+
+If it wants to replace Wyrd ambience, it should not treat the exploration-music manager as the same owner.
+
+## Practical rule
+
+Identify the exact audio category and native owner you intend to replace, then suppress or coexist with only that path.
+
+Leave unrelated audio categories native.
