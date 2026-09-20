@@ -117,12 +117,71 @@ foreach ($path in $markdownFiles) {
 
 foreach ($root in @('mechanics/','investigate/')) {
     $rootFiles = @($markdownFiles | Where-Object { $_.StartsWith($root) })
-    $withMeta = @($rootFiles | Where-Object { $frontMatterFiles.Contains($_) })
-    $withoutMeta = @($rootFiles | Where-Object { -not $frontMatterFiles.Contains($_) })
-    if ($withMeta.Count -gt 0 -and $withMeta.Count -lt $rootFiles.Count) {
-        $warnings.Add("Inconsistent front matter under $root : $($withMeta.Count)/$($rootFiles.Count) Markdown files use YAML metadata.")
-        foreach ($missingPath in $withoutMeta) {
-            $warnings.Add("Missing front matter: $missingPath")
+    foreach ($metadataPath in $rootFiles) {
+        if (-not $frontMatterFiles.Contains($metadataPath)) {
+            $failures.Add("Missing front matter: $metadataPath")
+            continue
+        }
+
+        $metadataContent = Get-Content -LiteralPath (Join-Path $repoRoot $metadataPath) -Raw
+        $metadataMatch = [regex]::Match($metadataContent, '(?s)^---\s*\r?\n(?<yaml>.*?)\r?\n---')
+        if (-not $metadataMatch.Success) {
+            $failures.Add("Malformed front matter: $metadataPath")
+            continue
+        }
+
+        $yaml = $metadataMatch.Groups['yaml'].Value
+        foreach ($requiredKey in @('document_type','scope','last_verified')) {
+            if ($yaml -notmatch "(?m)^$requiredKey\s*:") {
+                $failures.Add("Front matter missing required key '$requiredKey': $metadataPath")
+            }
+        }
+
+        $dateMatch = [regex]::Match($yaml, '(?m)^last_verified\s*:\s*(?<date>[^\r\n]+)')
+        if ($dateMatch.Success -and $dateMatch.Groups['date'].Value.Trim() -notmatch '^\d{4}-\d{2}-\d{2}
+
+$paragraphOwners = @{}
+foreach ($path in $markdownFiles) {
+    if ($path.StartsWith('templates/')) { continue }
+    if ($path.StartsWith('contributing/authoring/reference-audit/packets/')) { continue }
+
+    $content = Get-Content -LiteralPath (Join-Path $repoRoot $path) -Raw
+    foreach ($paragraph in [regex]::Split($content, '(?:\r?\n){2,}')) {
+        $normalized = (($paragraph -replace '\s+', ' ').Trim())
+        if ($normalized.Length -lt 160) { continue }
+        if ($normalized.StartsWith('#') -or $normalized.StartsWith([string][char]96) -or $normalized.StartsWith('~~~')) { continue }
+
+        if (-not $paragraphOwners.ContainsKey($normalized)) {
+            $paragraphOwners[$normalized] = New-Object System.Collections.Generic.List[string]
+        }
+        $paragraphOwners[$normalized].Add($path)
+    }
+}
+
+foreach ($entry in $paragraphOwners.GetEnumerator()) {
+    $owners = @($entry.Value | Sort-Object -Unique)
+    if ($owners.Count -gt 1) {
+        $failures.Add("Duplicate long paragraph in: $($owners -join ', ')")
+    }
+}
+
+Write-Host "Documentation audit: $($markdownFiles.Count) Markdown files."
+Write-Host "Front matter present on $($frontMatterFiles.Count) Markdown files."
+
+if ($warnings.Count -gt 0) {
+    Write-Host 'Documentation audit warnings:' -ForegroundColor Yellow
+    $warnings | Sort-Object -Unique | ForEach-Object { Write-Host " - $_" -ForegroundColor Yellow }
+}
+
+if ($failures.Count -gt 0) {
+    Write-Host 'Documentation audit FAILED:' -ForegroundColor Red
+    $failures | Sort-Object -Unique | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
+    exit 1
+}
+
+Write-Host 'Documentation audit PASSED.' -ForegroundColor Green
+) {
+            $failures.Add("Front matter last_verified is not YYYY-MM-DD: $metadataPath")
         }
     }
 }
