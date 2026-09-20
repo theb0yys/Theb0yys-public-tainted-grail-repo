@@ -4,6 +4,11 @@ Store personal location notes under BepInEx config using Hero.Current.Coords. Do
 
 Working lineage: [Sidecar Pinbook Instead of Native Map Injection](../../../research/case-studies/map/mod-owned-pinbook.md).
 
+## Runnable source
+
+Start from the buildable example: [Sidecar pinbook](../../../examples/mono/ui/sidecar-pinbook/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Position source
 
 Use the current hero first:
