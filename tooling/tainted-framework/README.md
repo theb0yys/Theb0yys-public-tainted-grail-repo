@@ -4,6 +4,8 @@
 
 **Obtain:** https://www.nexusmods.com/taintedgrailthefallofavalon/mods/312
 
+**Runtime support: Mono + IL2CPP.** Tainted Framework is the common cross-runtime dependency layer. Mono runs over BepInEx 5; IL2CPP runs over BepInEx 6/Il2CppInterop through the runtime-specific host behind the shared contracts. Authors should target the promoted shared contract/capability instead of scattering loader-specific code through feature logic.
+
 **Stability boundary:** public distribution of the framework does not make every internal service public. Only specifically promoted capability contracts, such as the documented `framework.runtime-report` lane, are consumer surfaces.
 
 Do not derive an API-semver promise from the Nexus display/file version. See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
