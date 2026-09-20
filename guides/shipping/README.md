@@ -4,6 +4,8 @@ Infrastructure is the machinery around the mod or framework itself.
 
 This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
 
+- [Validate mods after a game update](game-update-validation.md)
+
 ## Repository structure
 
 Keep authored source separate from:
@@ -90,7 +92,7 @@ Test-FoAModProject
 → perform runtime/feature/save validation separately
 ~~~
 
-New-FoARelease deliberately records runtime and feature validation as NOT_RUN; package construction cannot promote those evidence lanes.
+New-FoARelease does not perform runtime or feature validation; package construction cannot substitute for those checks.
 
 ## Infrastructure is not authority
 
