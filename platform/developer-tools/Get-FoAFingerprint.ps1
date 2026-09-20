@@ -66,12 +66,24 @@ if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
 
+    $portableRows = @(
+        $rows | ForEach-Object {
+            [pscustomobject]@{
+                Key = $_.Key
+                Exists = $_.Exists
+                Length = $_.Length
+                SHA256 = $_.SHA256
+                FileVersion = $_.FileVersion
+            }
+        }
+    )
+
     [pscustomobject]@{
         Format = "foa-runtime-fingerprint/1"
         Generated = [DateTimeOffset]::Now.ToString("o")
         Runtime = $environment.Runtime
         Loader = $environment.Loader
-        Files = $rows
+        Files = $portableRows
     } | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
 }
 
