@@ -1,8 +1,10 @@
 # Immersive HUD Public Template
 
+Use this starter when you are building HUD visibility or presentation changes across both runtimes. Keep visibility rules and configuration shared, and connect them to the correct native HUD lifecycle/refresh points in each host.
+
 Source family: `always-show-hud`
 
-This is a public, source-only starter distilled from the Immersive HUD mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
