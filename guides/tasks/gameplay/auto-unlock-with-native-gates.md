@@ -6,6 +6,11 @@ Working lineage: [Auto-Unlock Without Bypassing Every Lock Rule](../../../resear
 
 ## Runnable source
 
+Start from the buildable example: [Auto-unlock with native gates](../../../examples/mono/gameplay/auto-unlock/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
+## Runnable source
+
 Start with the [Lockpicking auto-unlock example](../../../examples/mono/gameplay/lockpicking-auto-unlock/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
 ## Patch target
