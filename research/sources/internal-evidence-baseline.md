@@ -100,3 +100,43 @@ When publishing:
 5. do not upgrade static evidence into runtime/save/compatibility claims.
 
 See [Evidence Standards](../../contributing/evidence-standards.md).
+
+
+## Configuration intake findings
+
+Internal FoA mod evidence strengthens the configuration guidance with production-oriented patterns:
+
+- ConfigurationManager-compatible metadata can hide diagnostic/internal settings while preserving the raw BepInEx cfg keys for compatibility and manual recovery.
+- Large tuning surfaces use a small player-facing preset/mode layer with advanced raw settings retained underneath.
+- `SettingChanged` subscriptions are used only where runtime state can be reapplied deliberately, with teardown unsubscribing.
+- Structural settings are explicitly documented as restart-required instead of being presented as live.
+- Legacy plugin-GUID cfg migration can move the old file and then call `Config.Reload()`.
+- Schema/default migration is treated as explicit state transition rather than silently changing the meaning of an existing key.
+
+These findings support public configuration mechanics; they do not make a specific third-party config manager a required dependency.
+
+## Performance intake findings
+
+Internal performance notes and source reviews identify recurring FoA mod risk patterns:
+
+- repeated scene-wide/object-wide scans;
+- per-frame actor eligibility work;
+- excessive navigation repaths;
+- logging or string formatting inside common combat/event hooks;
+- repeated reflection and UI hierarchy discovery;
+- repeated UI reconstruction;
+- leaked actor/scene references;
+- synchronous file I/O inside gameplay hot loops.
+
+Project source also demonstrates mitigations that are safe to describe publicly:
+
+- cache stable reflection metadata and hierarchy references;
+- clear caches on the native lifecycle event that invalidates them;
+- throttle periodic discovery and stop polling once the required owner/object is resolved;
+- prefer event/native-owner hooks over broad scanning when a suitable event exists;
+- keep hot Harmony hooks to early guards and constant/bounded work;
+- bound diagnostics with row/ring caps and rate-limited logs;
+- keep report formatting/file writing outside the ordinary closed/idle hot path;
+- use controlled baseline-versus-feature profiling before assigning cause.
+
+No numeric FPS, frame-time, allocation or memory budget from internal project gates is promoted as a fact about FoA.
