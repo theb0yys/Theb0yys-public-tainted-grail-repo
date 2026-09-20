@@ -1,5 +1,5 @@
 # IL2CPP UI Templates
 
-- [Runtime overlay](runtime-overlay/) — IL2CPP-registered MonoBehaviour with a small toggleable IMGUI surface.
+Use these templates when you need a small IL2CPP runtime overlay or diagnostic screen.
 
-Keep native FoA cursor, modal, pause and controller ownership separate unless the corresponding shared infrastructure contract is deliberately consumed.
+The starter owns only its own IMGUI panel. Native FoA cursor, pause, modal, focus, and controller behavior remain separate unless you deliberately integrate the shared UI tooling that owns those responsibilities.
