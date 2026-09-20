@@ -1,5 +1,5 @@
 # Immersive Backgrounds — Dual-Runtime Starter
 
-Feature boundary: background/choice presentation.
+Use this starter for a cross-runtime background or choice-presentation feature.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Shared code can own the feature rules and configuration; runtime hosts should own the exact FoA UI/presentation access needed to display or update the feature.
