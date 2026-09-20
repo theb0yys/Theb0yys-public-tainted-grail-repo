@@ -1,8 +1,10 @@
 # FoA Mod Manager Public Template
 
+Use this starter when you are building shared mod-management infrastructure such as settings, controller actions, UI scope, or runtime status. Keep common management logic shared and isolate loader/game integration in the Mono and IL2CPP hosts.
+
 Source family: `foa-mod-manager`
 
-This is a public, source-only starter distilled from the FoA Mod Manager mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
