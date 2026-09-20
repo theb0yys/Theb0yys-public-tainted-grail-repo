@@ -25,7 +25,7 @@ $expectsBep5Mono = $projectText -match "BepInEx\.dll"
 $expectsBep6Mono = $projectText -match "BepInEx\.Unity\.Mono"
 $expectsInterop = ($projectText -match "BepInEx\\interop") -or
                   ($projectText -match "Il2Cppmscorlib") -or
-                  ($projectText -match "<Reference Include=""TG\.Main""")
+                  ($projectText -match '<Reference Include="TG\.Main"')
 
 if ($expectsIl2Cpp -and $environment.Runtime -ne "IL2CPP") {
     throw "Project expects IL2CPP, but the selected game installation was detected as '$($environment.Runtime)'."
@@ -67,7 +67,7 @@ if ($NoRestore) {
 }
 
 Write-Host "dotnet $($arguments -join ' ')"
-& dotnet @arguments
+& dotnet @arguments | Out-Host
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE."
