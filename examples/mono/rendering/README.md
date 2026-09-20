@@ -1,5 +1,5 @@
 # Mono Rendering Examples
 
-Use these examples when your mod temporarily replaces or adds presentation state and must restore the previous rendering state cleanly when disabled or unloaded.
+Use these examples for rendering changes where your mod temporarily owns presentation state.
 
-- [Skybox ownership](skybox-ownership/README.md)
+The current example shows the full ownership pattern: capture the previous state, create only mod-owned resources, apply the change, restore the original state, and destroy only what your mod created.
