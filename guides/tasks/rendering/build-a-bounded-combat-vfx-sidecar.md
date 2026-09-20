@@ -4,6 +4,11 @@ Attach mod-owned visuals after FoA accepts character damage and after FoA enters
 
 Working lineage: [Combat VFX Sidecars](../../../research/case-studies/rendering/combat-vfx.md).
 
+## Runnable source
+
+Start from the buildable example: [Damage and death VFX sidecar](../../../examples/mono/rendering/damage-death-vfx/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Living-hit hook
 
 Patch:
