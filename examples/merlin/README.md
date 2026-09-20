@@ -1,3 +1,9 @@
 # Merlin Examples
 
-Merlin-specific examples belong here. Start with [First content authoring](../../learn/first-mod/first-content-authoring.md) and [official sources](../../sources/official/README.md).
+Merlin examples focus on authoring/runtime boundaries rather than duplicating the official toolkit.
+
+- [Merlin content overlay boundary](content-overlay-boundary.md)
+- Start learning with [First content authoring](../../learn/first-mod/first-content-authoring.md).
+- Use [Official Sources](../../sources/official/README.md) for Questline-owned Merlin documentation.
+
+For copyable starters, use [Merlin templates](../../templates/merlin/README.md).
