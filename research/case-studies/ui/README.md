@@ -1,5 +1,8 @@
 # UI Case Studies
 
+These case studies cover custom and native UI work, especially cursor/input ownership, controller focus, native button reuse, UI refresh, close/restoration paths, and failures where a screen rendered correctly but was not actually usable.
+
+
 - [Action receipts](action-receipts.md)
 - [Companion dialogue input ownership](companion-dialogue-input.md)
 - [Inventory truth vs presentation ownership](inventory-truth-boundary.md)
