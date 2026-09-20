@@ -2,49 +2,92 @@
 
 Canonical location for established knowledge about native player/hero ownership and execution.
 
-## Publicly established surfaces
+## Publicly established hero access
 
-Public FoA mod work consistently treats the hero as a runtime owner that is not guaranteed to be usable merely because a plugin has loaded.
+Public source demonstrates more than one way to reach the hero:
 
-Examples of publicly demonstrated hero-owned surfaces include:
+- `Hero.Current` — dominant direct current-hero access pattern;
+- `World.Any<Hero>()` — null-checkable world lookup used by a public Mono mod.
 
-- `HeroItems` for hero item state;
+These are access paths, not interchangeable lifecycle guarantees.
+
+## Publicly established hero-owned surfaces
+
+Examples include:
+
+- `HeroItems` for hero item ownership/state;
 - `KnownItems` for known/discovered item state;
 - `HeroRecipes.LearnRecipe` for learning existing/native recipes;
-- `Hero.Current.ProficiencyStats.TryAddXP` for native proficiency XP;
-- `HeroStorage.Items` for hero-storage contents in the documented storage UI context.
+- `HeroStats` for gameplay stats such as encumbrance and summon limit;
+- `HeroRPGStats` for RPG/progression stats;
+- `CharacterStatuses` / `Hero.Statuses` for active hero statuses;
+- `HeroStorage.Items` for hero-storage contents in the documented storage context;
+- `Hero.TryGetElement<T>()` for hero-owned MVC elements such as `ArmorWeight`.
 
 These surfaces belong to different responsibilities. Do not collapse them into a single generic "player object" API.
 
 ## Lifecycle
 
-Public mod evidence establishes at least these practical boundaries:
+Public Mono mods establish two especially useful initialization boundaries.
+
+### `Hero.OnFullyInitialized`
+
+Used for:
+
+- installing event listeners once world/HUD infrastructure is ready;
+- clearing per-save caches;
+- checking/removing hero statuses;
+- hero-dependent initialization generally.
+
+One public mod explicitly comments that `World.EventSystem` and the HUD are not initialized when the plugin itself loads, so it waits for this Postfix.
+
+### `HeroRPGStats.AfterHeroFullyInitialized`
+
+Used for stat-system changes requiring both hero stats and `TweakSystem`.
+
+Public mods resolve:
 
 ~~~text
-plugin initialization
-→ player/hero becomes available
-→ hero-owned state restores/initializes
-→ gameplay use
+Hero.Current
+→ HeroStats / HeroRPGStats
+→ World.Services.Get<TweakSystem>()
+→ TweakSystem.AddTweak(...)
 ~~~
 
-A public recipe mod performs its `KnownItems` startup backfill only once the player is loaded. A public IL2CPP implementation captures `HeroItems` at `HeroItems.OnRestore`, where the instance is valid, instead of relying on an unsafe earlier/generic lookup.
+at this stage.
 
-A separate public progression mod reported that installing a broad `HeroItems.Add` Harmony patch during `Plugin.Awake()` / `Harmony.PatchAll` could disrupt `HeroItems` initialization and prevent saves from loading. Treat that as evidence for the specific lifecycle hazard, not as a claim that `HeroItems.Add` can never be patched safely.
+### Restore-specific owners
+
+A public IL2CPP-native implementation captures `HeroItems` at `HeroItems.OnRestore`, where the restored owner instance is valid, instead of relying on an unsafe generic lookup.
+
+## Public stat/member examples
+
+Public mods access:
+
+- `hero.HeroStats.EncumbranceLimit`
+- `hero.HeroStats.ArmorWeightMultiplier`
+- `hero.HeroStats.SummonLimit`
+- `hero.HeroRPGStats`
+- `hero.AliveStats.Health`
+- `hero.AliveStats.MaxHealth`
+- `hero.Statuses`
+
+These names are useful navigation/reference facts; their complete ownership and persistence behavior remains system-specific.
 
 ## Persistence boundary
 
-Public mod evidence also distinguishes hero/session state from saved native progression:
+Public evidence distinguishes hero/session state from saved native progression:
 
-- `Hero.Current.ProficiencyStats.TryAddXP` is used to award native proficiency XP and therefore changes saved progression.
+- `ProficiencyStats.TryAddXP` changes native proficiency progression.
 - Mod-owned practice/session ledgers can remain non-saved until deliberately converted into native progression.
-- Known-item reconstruction can be performed once per loaded session without implying that the reconstruction mechanism itself owns persistence.
+- Known-item reconstruction can run per loaded session without implying that the reconstruction mechanism owns persistence.
 
 ## Presentation is separate
 
-Questline's public Merlin source and public mods expose hero-related HUD/camera/presentation types, but access to those presentation objects does not establish ownership of hero gameplay state.
+Questline public source and public mods expose hero-related HUD/camera/presentation types, but access to those presentation objects does not establish ownership of hero gameplay state.
 
-See [Runtime Access](../../reference/runtime-access/README.md) for acquisition patterns and [Hooks](../../reference/hooks/README.md) for intervention points.
+See [Runtime Access](../../reference/runtime-access/README.md), [Types](../../reference/types/README.md) and [Hooks](../../reference/hooks/README.md).
 
 ## Current proof boundary
 
-This page currently records only publicly documented FoA behaviour. Exact construction/destruction ordering, cross-scene identity, death/reload replacement semantics and complete model/view ownership remain unclaimed until stronger evidence is reviewed.
+This page currently records only publicly documented FoA behavior. Exact construction/destruction ordering, cross-scene identity, death/reload replacement semantics and complete model/view ownership remain unclaimed until stronger evidence is reviewed.
