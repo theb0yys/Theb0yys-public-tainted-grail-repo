@@ -78,12 +78,20 @@ Use configurable local build paths. Do not commit a developer-machine absolute p
 
 For every direct infrastructure dependency record:
 
+- verified public acquisition route;
+- installed package version;
 - plugin GUID;
 - assembly/API surface;
 - minimum contract/API version where one exists;
 - Mono/IL2CPP applicability;
 - what happens when incompatible;
 - teardown/unregister behaviour.
+
+Keep package version, BepInEx plugin version, assembly/file version and API-contract version separate. See [Public distribution and versioning](distribution-and-versioning.md).
+
+If a component has no verified standalone public distribution, do not create a new third-party hard dependency on it and do not vendor private/shared DLLs as a workaround.
+
+Use [API stability and capability promotion](api-stability.md) to confirm that the exact member/capability is an author-facing contract.
 
 Do not infer compatibility from the DLL loading successfully.
 
