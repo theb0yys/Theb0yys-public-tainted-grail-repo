@@ -1,5 +1,5 @@
 # Easy Avalon — Dual-Runtime Starter
 
-Feature boundary: difficulty/ease tuning.
+Use this starter for cross-runtime difficulty or quality-of-life tuning.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Put the player-facing options and shared tuning rules in common code, then let each runtime host connect those rules to the exact FoA stats, hooks, or services available on Mono or IL2CPP.
