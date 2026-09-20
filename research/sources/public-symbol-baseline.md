@@ -15,7 +15,7 @@ This baseline deliberately excludes generic Unity, BepInEx and Harmony knowledge
 | S3 | Grailwright — `keenanselbee/grailwright` | `663c29d82044f76f0f1b24b7174888ddee81d662` |
 | S4 | apodworny — `apodworny/FallOfAvalonMods` | `cf167112eb2d93c3a1714399b57647392d3d1ed5` |
 
-S1 is Questline's official public Merlin-compatible source surface. S2 and S3 are public mod/source projects. Evidence lanes remain distinct: Merlin source exposure is not automatically shipped-runtime equivalence, while working mod source demonstrates a use against the author's tested runtime/build but is not automatically cross-version proof.
+S1 is Questline's official public Merlin-compatible source surface. S2, S3 and S4 are public mod/source projects. Evidence lanes remain distinct: Merlin source exposure is not automatically shipped-runtime equivalence, while working mod source demonstrates a use against the author's tested runtime/build but is not automatically cross-version proof.
 
 ## Hook and lifecycle inventory
 
