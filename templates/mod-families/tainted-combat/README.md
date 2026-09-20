@@ -1,10 +1,8 @@
 # Tainted Combat Public Template
 
-Use this starter when you are building combat features that share rules across runtimes but require runtime-specific damage, stat, action, or death hooks. Keep shared combat policy separate from the exact native integration.
+Use this starter for combat features that need one shared feature model with separate Mono and IL2CPP integration.
 
-Source family: `Tainted Combat`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep configuration and combat policy shared, while each host owns the exact damage, stat, action, or lifecycle hooks used by that runtime.
 
 ## Reusable mechanisms
 
