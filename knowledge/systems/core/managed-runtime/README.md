@@ -1,5 +1,9 @@
 # Managed Runtime and Proprietary Assembly Map
 
+Use this page when you need to understand FoA's managed assemblies and runtime structure before locating a type, service, or patch target.
+
+It is most useful for reverse engineering, assembly ownership, and version-sensitive Mono work rather than ordinary gameplay design.
+
 ## What it is
 
 FoA's proprietary systems are distributed across several managed assemblies rather than one monolithic engine DLL.
