@@ -1,37 +1,33 @@
-# Audio, FMOD, Event Identity, and Safe Replacement Boundaries
+# Audio and FMOD Integration
 
-> **Reference page.** Use this when replacing or augmenting weapon, creature, world, or magic audio.
+Use this page when you want to **replace, augment, or selectively intercept weapon, creature, world, or magic audio**.
 
-## What this system is
+The first rule is:
 
-FoA uses FMOD Studio/runtime integrations for game audio.
+> A WAV filename is not a native FMOD event identity.
 
-The working research distinguishes:
+FoA audio behavior is owned by FMOD playback routes and game-side callers, not by whatever file name looks semantically similar.
 
-- exact native FMOD event identity;
-- native playback owner;
-- optional mod-owned raw PCM/WAV sidecar playback;
-- Studio event parameters/buses/occlusion;
-- selector/authority mapping;
-- audio file discovery/semantics.
+## Useful native playback owners
 
-A WAV filename is not the same thing as a native FMOD event identity.
-
-## Who owns it in FoA
-
-Important researched owners include:
+Researched examples include:
 
 - `VLocation.PlayAudioClip(EventReference, bool, GameObject, FMODParameter[])` for actor/location audio;
-- `CharacterHandBase.PlayAudioClip(ItemAudioType, bool, FMODParameter[])` for equipped item audio;
-- native FMOD manager/emitter routes;
-- `EventReference.Guid` for exact native event identity;
-- item/actor template GUIDs for scoping replacement authority.
+- `CharacterHandBase.PlayAudioClip(ItemAudioType, bool, FMODParameter[])` for equipped-item audio;
+- FMOD manager/emitter routes;
+- `EventReference.Guid` for exact native event identity.
 
-## Important identities, types, and methods
+Template IDs are also useful for scoping:
 
-### Actor audio selector
+- actor/location template GUID;
+- NPC template GUID;
+- item template GUID.
 
-A proven/researched selector shape is:
+## Bind replacements to exact identity
+
+A safe selector should include enough information to avoid replacing unrelated sounds.
+
+Actor example:
 
 ~~~text
 actorTemplateGuid
@@ -39,137 +35,105 @@ actorTemplateGuid
 + originalEventGuid
 ~~~
 
-The original FMOD event GUID is part of the authority key.
-
-### Item audio selector
-
-A researched equipped-item selector shape is:
+Item example:
 
 ~~~text
 itemTemplateGuid
-+ consumerId
++ consumer/action
 + originalEventGuid
 ~~~
 
-### Raw replacement playback
+Do not replace "all sword sounds" or "all attack sounds" based on file/category names alone.
 
-The active replacement proof uses FMOD Core:
+## Raw FMOD Core sidecar playback
+
+One working replacement path uses FMOD Core with in-memory PCM/WAV data:
 
 ~~~text
 OPENMEMORY | CREATESAMPLE
 ~~~
 
-with pinned PCM WAV bytes.
-
-The native Studio call is normally allowed to continue unless a separately proven replacement policy says otherwise.
-
-## Where it exists in the lifecycle
-
-A safe scoped sidecar/replacement path is:
+The flow is roughly:
 
 ~~~text
-native playback method called
-→ identify exact actor/item + original event GUID
-→ check binding/authority manifest
-→ validate pinned source/hash
-→ optional mod-owned FMOD Core one-shot
-→ native Studio path continues
-→ transient channel/resource cleanup
+native playback method fires
+→ identify exact actor/item/event
+→ check replacement binding
+→ validate replacement asset
+→ optionally play mod-owned FMOD Core one-shot
+→ preserve native Studio call unless policy explicitly suppresses it
+→ clean up transient channel/resources
 ~~~
 
-Parameterized/persistent native events are a different class of problem.
+## Do not replace parameterized Studio events blindly
 
-## How we interact with it
+Raw Core playback cannot reproduce every FMOD Studio behavior:
 
-### Scope replacement to exact native identities
-
-Do not replace "all sword sounds" based only on filename/category guesses.
-
-Bind:
-
-- exact item/actor identity;
-- exact native event GUID;
-- exact consumer/action;
-- exact replacement asset/hash.
-
-### Preserve native playback when parameters matter
-
-Raw FMOD Core playback cannot reproduce every Studio event feature:
-
-- parameters;
-- authored buses;
-- event timelines;
+- event parameters;
+- bus routing;
+- authored timeline logic;
 - occlusion;
 - persistent emitter state.
 
-The working audio proof therefore leaves parameterized/persistent calls native-only.
+If the native event relies on those features, keep the Studio path native unless you have a separate proven replacement.
 
-### Fail closed on build/hash mismatch
+## Use FMOD when FMOD owns the behavior
 
-The audio research includes a useful compatibility event: after a game update changed `TG.Main.dll`, stale pinned authority failed closed with zero active bindings rather than bypassing the guard.
+Earlier experiments found Unity `AudioSource` unsuitable for the targeted active injection path in the tested FoA process.
 
-That is the correct behavior.
+That does not mean Unity audio APIs never exist; it means the targeted behavior was FMOD-owned.
 
-### Guard against foreign Harmony ownership
+Do not force a Unity audio route into a path the game itself owns through FMOD.
 
-For exact high-value audio overloads, inspect Harmony patch ownership before attaching a conflicting replacement patch.
+## Fail closed after updates
 
-## Why this route
+If your replacement depends on:
 
-Earlier experiments established that Unity `AudioSource` was not a reliable active-injection path in the tested FoA process.
+- exact method signature;
+- exact assembly build;
+- exact event GUID;
+- exact asset hash;
 
-Diagnostics showed unusable/zeroed Unity audio state for the intended path, so the active proof moved to FMOD Core rather than forcing Unity audio.
+disable the custom binding when those expectations no longer match.
 
-This is a key failure lesson:
+Do not "best effort" your way past a stale identity.
 
-> The engine contains Unity audio APIs, but the native game owner for the target behavior is FMOD. Use the actual owner.
+## Check for competing Harmony patches
 
-## What goes wrong
+High-value broad audio methods may already be patched by another mod.
 
-### Filename/category semantics treated as event authority
+Before attaching a replacement patch, inspect existing Harmony ownership where practical.
 
-A file named "attack" does not prove which native event should trigger it.
+A narrow caller/source filter is safer than globally replacing every invocation.
 
-### Raw Core sound replaces parameterized Studio event
+## Common mistakes
 
-Loses authored parameter semantics, mixer routing, occlusion or event state.
+- filename/category = event identity;
+- raw Core sound used to replace a parameterized Studio event;
+- global playback hook without actor/item filtering;
+- stale event/assembly authority used after a game update;
+- Unity `AudioSource` forced into an FMOD-owned path;
+- unlicensed audio committed to the public repo.
 
-### Global audio hook
+## How to verify a replacement
 
-Can replace unrelated actors/items and collide with other mods.
+Check:
 
-### Stale exact assembly/event authority used after update
-
-The correct behavior is to disable the custom binding until revalidated.
-
-### Unity AudioSource forced into an FMOD-owned lane
-
-Use the replacement/ownership route described below rather than active injection.
-
-### Raw audio committed without rights/provenance
-
-Public packaging must respect asset rights; local research assets should stay local unless redistribution is allowed.
-
-## How to verify
-
-For an audio replacement:
-
-1. exact native playback owner;
+1. exact native playback method;
 2. exact actor/item template identity;
-3. exact original FMOD event GUID/path;
-4. exact replacement asset hash;
-5. binding authority manifest;
-6. patch ownership;
-7. custom sound loads;
-8. native call behavior (preserved/suppressed) matches design;
-9. 3D position/follow owner is correct;
-10. parameterized events remain native when unsupported;
-11. no warnings/errors;
-12. game update causes fail-closed until revalidated;
-13. subjective in-game audition passes.
+3. exact original event GUID/path;
+4. replacement asset identity/hash;
+5. patch ownership/conflicts;
+6. replacement sound loads;
+7. native call is preserved/suppressed exactly as intended;
+8. 3D position/follow owner is correct;
+9. unsupported parameterized events stay native;
+10. cleanup occurs;
+11. update mismatch fails closed;
+12. in-game listening confirms the intended result.
 
-## Current proof boundary
+## Evidence limits
 
-The repository has strong bounded actor/item audio replacement evidence through exact FMOD-owned hooks and hash-pinned sidecar assets.
+The repository has strong bounded evidence for actor/item audio replacement through exact FMOD-owned hooks and pinned replacement assets.
 
-It does not imply every FMOD Studio event can be safely replaced by raw Core playback, and it does not establish a universal event semantic map from filenames alone.
+It does not prove that every FMOD Studio event is safely replaceable with raw Core playback, nor that file names provide a universal semantic event map.
