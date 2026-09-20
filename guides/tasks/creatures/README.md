@@ -1,8 +1,5 @@
 # Creatures
 
-Use these guides when you are working with NPCs, creatures, companions, runtime spawning, or creature presentation. Start by proving the exact template and native actor lifecycle before adding AI, combat, persistence, or custom visuals.
+Use this section when you are spawning, modifying, or integrating creatures and NPCs.
 
-- [Kandra integration](kandra-integration.md)
-- [Native creature process](native-process.md)
-- Native owner: [Creatures/NPCs](../../../knowledge/systems/gameplay/creatures-npcs.md)
-- Working lineage: [Companion lifecycle](../../../research/case-studies/companions/native-companion-lifecycle.md)
+Creature work involves more than a prefab: the guides connect exact templates, Location/Npc ownership, placement, AI/combat, death/corpse handling, cleanup, and persistence where applicable.
