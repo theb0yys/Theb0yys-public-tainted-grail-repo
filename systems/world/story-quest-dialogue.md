@@ -1,173 +1,103 @@
-# Story Graphs, Quests, Dialogue, and Choices
+# Story, Quests, Dialogue, and Choices
 
-> **Reference page.** Questline Story Graphs are a compiled runtime system with their own binary/runtime lifecycle. A dialogue hook is not the same as owning Story state.
+> **Runtime-consumer page.** The canonical Story Graph authoring → compilation → `.story` → runtime interpreter architecture lives in [Story Graphs](story-graphs/README.md).
 
-## What this system is
+Use this page for **runtime Story ownership, choice observation, quest side effects, and lifecycle boundaries**.
 
-The recovered high-level architecture is:
+## Runtime owners
 
-~~~text
-StoryGraph authoring (XNode-based)
-→ StoryGraphParser
-→ StoryGraphRuntime
-→ handwritten .story binary payload
-→ Story archive
-→ runtime Story : MVC Model
-→ StepSequenceRunner
-→ StoryStep / StoryCondition
-→ StepResult async waits
-→ dialogue / choices / quests / scene actions / other effects
-~~~
+Important runtime owners include:
 
-This is a custom Questline system, not simply Unity UI dialogue data.
+- `Story` — MVC Model coordinating the active Story runtime;
+- `StepSequenceRunner` — step progression;
+- `StoryStep` / `StoryCondition`;
+- `StepResult` — pending/asynchronous completion;
+- `Choice` / `VChoice` — choice presentation/selection boundaries;
+- quest-specific state owners;
+- Story Views/dialogue panels;
+- scene/services/actions invoked by concrete steps.
 
-## Who owns it in FoA
+Compilation, binary type IDs, archive storage, and authoring graph structure are owned by [Story Graphs](story-graphs/README.md), not repeated here.
 
-Important owners include:
+## Runtime progression
 
-- `StoryGraph`
-- `StoryGraphRuntime`
-- runtime `Story` MVC Model
-- `StepSequenceRunner`
-- `StoryStep`
-- `StoryCondition`
-- `StepResult`
-- `Choice` / `VChoice`
-- Story Views such as dialogue/story panels
-- quest-specific step/state owners
-- Babel/localisation for compiled text
-- scene/services/actions invoked by individual concrete steps
+A Story resolves an entry/start/bookmark and advances through compiled steps.
 
-## Important identities, types, and methods
+A step may complete immediately or return a pending `StepResult`:
 
-Research-backed surfaces include:
-
-- Story graph GUID
-- bookmark/chapter name
-- `Story.OfferChoice(ChoiceConfig)`
-- `VChoice.Select(Choice)`
-- `Choice.OnInitialize`
-- Mono `Choice.HoverInfos` getter path
-- quest completion candidate methods such as qualifying `QuestUtils.Complete` / `SetQuestState`
-- `NewGameLoading.OnComplete` as one loading-phase observation
-- compiled step/condition byte type IDs
-- `LightLocString` for compiled Story text
-
-## Where it exists in the lifecycle
-
-### Runtime Story
-
-The Story Model resolves an entry/start/bookmark, loads compiled graph data, then advances through ordered runtime steps.
-
-A step can return immediately complete or a pending `StepResult`.
-
-For pending work:
-
-~~~text
+```text
 Step.Execute
 → StepResult pending
 → external operation completes
 → StepResult.Complete()
-→ later runner Advance observes completion
-~~~
+→ runner later advances
+```
 
-The exact rescheduling mechanism remains incompletely recovered.
+The exact rescheduling behavior is still evidence-bounded; do not build a generic async Story API from that sequence alone.
 
-### Important save fact
+## Choice observation
+
+Useful bounded observation points include:
+
+- `Story.OfferChoice(ChoiceConfig)` — a choice is offered;
+- `VChoice.Select(Choice)` — a concrete option is selected;
+- branch/runtime-specific preview or hover surfaces.
+
+These facts are different.
+
+“Choice offered” is not “choice selected”, and either is not automatically a complete dialogue lifecycle event.
+
+For a practical observation procedure, see [Observe a Dialogue Choice](../../how-to/quests-dialogue/observe-a-choice-safely.md).
+
+## Preserve callback ownership
+
+A working IL2CPP correction in the research lineage moved from callback wrapping/component injection to a bounded `VChoice.Select` observation.
+
+The reusable lesson is:
+
+> observe the native transition when possible instead of replacing the Story callback owner.
+
+That reduces lifecycle/freeze risk and keeps Story advancement with the game.
+
+## Quest and durable-state boundary
 
 The active `Story` Model reports `IsNotSaved == true`.
 
-Therefore the ordinary MVC save path does **not** persist the active runner position/wait state as a saved Model.
+Do not infer that arbitrary runner position or pending wait state is persisted by normal MVC save behavior.
 
-Durable consequences belong in other saved owners: quests/flags/items/etc.
+Durable consequences should remain with the native owner of the durable fact—quest state, flags, items, or another separately proven persistence route.
 
-## How we interact with it
+## Scene and cancellation boundary
 
-### Observe choices at exact UI/runtime boundaries
+Story runtime can outlive or reference scene-bound actors/views.
 
-`Story.OfferChoice` can observe an offered choice.
+When observing or extending it, test:
 
-`VChoice.Select(Choice)` can observe actual selection.
-
-Do not assume either one is a complete public event for all dialogue semantics without scenario validation.
-
-### Preserve game callback ownership
-
-The IL2CPP Immersive Backgrounds correction replaced delegate wrapping/component injection with a direct bounded `VChoice.Select` patch and left callback ownership with the game.
-
-That is a useful pattern: observe the native transition rather than replacing its callback system unnecessarily.
-
-### Treat Mono/IL2CPP choice-preview hooks separately
-
-The inspected branches needed different preview integration points.
-
-Do not assume a Mono getter hook maps one-to-one to IL2CPP.
-
-### For custom Story content
-
-A raw XNode graph is not enough.
-
-The production-compatible path would need the Questline parser/writer/binary/archive/localisation/dependency pipeline.
-
-## Why this route
-
-Story research exposed several dangerous shortcuts:
-
-- a graph asset is not the shipping runtime representation;
-- compiled node types rely on byte IDs and serializer mappings;
-- active Story runner state is not ordinary saved Model state;
-- Story can belong to a broader domain than scene-bound actors/views it references;
-- async completion/cancellation cleanup matters.
-
-That means "add dialogue by creating a graph" is not a complete process.
-
-## What goes wrong
-
-### Custom binary node IDs guessed
-
-The concrete type-ID registry is incomplete. Collision/incompatible payload schemas can corrupt interpretation.
-
-### Raw visible strings used instead of Babel-compiled identity
-
-Story text is transformed through the localisation/Babel compilation path.
-
-### Story runner state assumed saveable
-
-Active runner state is explicitly not ordinary MVC-saved state.
-
-### Choice hook treated as universal dialogue lifecycle
-
-Offer/selection/hover are individual surfaces; line progression, speaker resolution, audio, interruption and cleanup require their own evidence.
-
-### Scene transition during pending Story step ignored
-
-Story can reference scene-bound actors/views while living in a broader domain.
-
-### Callback wrapping replacing native ownership
-
-Can introduce freeze/lifecycle issues, especially across IL2CPP boundaries.
-
-## How to verify
-
-For a Story/dialogue integration:
-
-- exact graph/story identity;
-- exact runtime step/choice target;
-- offer/selection scenario;
-- cancellation/back/interrupt;
+- Back/cancel/interrupt;
 - dialogue View cleanup;
-- audio/subtitle behavior if involved;
-- quest/state side effect;
-- scene transition if involved;
-- save during pending state if claimed;
-- Mono/IL2CPP separately.
+- scene transition;
+- missing/discarded actor targets;
+- pending step completion after owner loss;
+- duplicate observation after re-entry.
 
-For a custom Story compiler/content path, also verify binary type mapping, archive mounting, localisation, dependencies and version compatibility.
+## Runtime compatibility
 
-## Current proof boundary
+Mono and IL2CPP may expose different convenient preview/inspection seams.
 
-**Strong architecture evidence:** XNode authoring → compiled runtime graph → `.story` binary → MVC Story/runner/steps.
+Do not assume a Mono getter/property hook maps one-to-one to generated IL2CPP representation.
 
-**Useful bounded hooks:** choice offered/selected and several quest/new-game observation candidates.
+Keep the semantic event you need stable, then resolve a runtime-specific observation adapter.
 
-**Not generally solved:** complete current node-type registry, custom Story packaging/mounting, dialogue/audio lifecycle, async cancellation across every step, custom Story save compatibility, or universal Mono/IL2CPP parity.
+## What this page does not provide
+
+This is not a custom Story authoring/compiler guide.
+
+Creating new production-compatible Story content still requires the architecture described in [Story Graphs](story-graphs/README.md), including compilation, binary mappings, archive/package integration, localisation, and dependencies.
+
+## Proof boundary
+
+**Strong:** runtime owner model, bounded offered/selected choice observations, non-saved active Story Model fact.
+
+**Partial:** generic async rescheduling/cancellation across all steps, universal quest mutation seams, universal Mono/IL2CPP observation parity.
+
+**Not generally solved:** public custom Story compiler/package pipeline and generic custom Story persistence.
