@@ -1,7 +1,5 @@
 # Gameplay
 
-Use this section when the change affects gameplay rather than only presentation. The guides cover how to choose a hook or intervention point, preserve the native owner, and verify that the downstream game behaviour actually changed as intended.
+Use this section when you want to change gameplay behavior but are not yet sure which narrower task area applies.
 
-- [Hooks and intervention](hooks-and-intervention.md)
-- [Gameplay systems](../../../knowledge/systems/gameplay/README.md)
-- [Gameplay case studies](../../../research/case-studies/gameplay/README.md)
+Start here for gameplay hooks, player/combat systems, and examples of how to choose an intervention that changes the intended native behavior without unnecessarily replacing the surrounding system.
