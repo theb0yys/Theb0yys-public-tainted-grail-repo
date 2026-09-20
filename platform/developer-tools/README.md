@@ -10,9 +10,16 @@ These scripts automate repetitive setup work around the repository's existing te
 Test-FoAEnvironment.ps1
 → Get-FoAFingerprint.ps1
 → New-FoAMod.ps1
+→ Test-FoAModProject.ps1
 → Build-FoAMod.ps1
 → Install-FoAMod.ps1
 → Watch-FoALog.ps1
+
+support problem?
+→ New-FoADiagnosticBundle.ps1
+
+ready to stage a release?
+→ New-FoARelease.ps1
 ~~~
 
 ## Scripts
@@ -69,6 +76,78 @@ The script updates the project filename, assembly name, root namespace, C# names
 
 The generated Harmony target is self-owned. Confirm its self-test before replacing it with a verified FoA target.
 
+### Test-FoAModProject.ps1
+
+Runs a non-destructive project doctor before build/release.
+
+It checks:
+
+- Mono vs IL2CPP host/reference consistency;
+- plug-in GUID/name/version extraction;
+- unrenamed starter identities;
+- BepInEx host lifecycle shape;
+- Harmony usage/reference mismatch;
+- Private=true or missing Private=false on game/loader/runtime references;
+- user-specific absolute paths;
+- accidentally bundled game/loader/runtime binaries;
+- selected local environment compatibility when -GameRoot is supplied.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\Test-FoAModProject.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA"
+~~~
+
+Use -FailOnError when another script/CI lane should stop on blocking findings.
+
+A project-doctor pass is a static/project-layout claim. It does not prove the plug-in loads.
+
+### New-FoADiagnosticBundle.ps1
+
+Creates a sanitized support folder without copying game assemblies, generated interop assemblies, saves, or proprietary assets.
+
+The bundle can include:
+
+- environment/runtime summary;
+- local binary fingerprints;
+- installed plug-in DLL names/versions/hashes;
+- filtered BepInEx log lines;
+- optional project-doctor report;
+- bundle file manifest/hashes.
+
+Paths and common secret/token patterns are redacted on a best-effort basis.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\New-FoADiagnosticBundle.ps1 -GameRoot "C:\Games\Tainted Grail FoA" -Project ".\MyFirstMod\MyFirstMod.csproj"
+~~~
+
+Always review the generated text/JSON before sharing it publicly.
+
+### New-FoARelease.ps1
+
+Stages a reproducible source-traceable mod package.
+
+It:
+
+- requires the project doctor to pass;
+- builds by default;
+- copies only the built mod DLL, common documentation, and explicitly supplied additional files;
+- rejects known game/BepInEx/Unity/interop binaries;
+- writes release-manifest.json;
+- writes SHA256SUMS.txt;
+- records the source Git commit when available;
+- can optionally create a local ZIP with -Zip.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\New-FoARelease.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -Zip
+~~~
+
+Packaging deliberately records runtime/feature validation as NOT_RUN. A package is not proof that the mod works in game.
+
 ### Build-FoAMod.ps1
 
 Validates the local environment against the project lane, then runs dotnet build with the selected GameRoot.
@@ -112,7 +191,14 @@ environment/reference validation
 ≠ persistence
 ~~~
 
-Only New-FoAMod.ps1 and Install-FoAMod.ps1 mutate files. The former writes to the requested project destination. The latter writes to the selected local game's BepInEx plug-in directory and backs up an existing DLL before replacement.
+File-writing tools have explicit ownership boundaries:
+
+- New-FoAMod.ps1 writes only to the requested scaffold destination.
+- Install-FoAMod.ps1 writes to the selected local game's dedicated BepInEx plug-in folder and backs up an existing DLL.
+- New-FoADiagnosticBundle.ps1 writes only to its requested diagnostic output directory.
+- New-FoARelease.ps1 writes only to its requested/local release staging directory and replaces an existing staged package only with -Force.
+
+Test-FoAEnvironment.ps1, Get-FoAFingerprint.ps1, Test-FoAModProject.ps1, and Watch-FoALog.ps1 are read-only with respect to the game/project.
 
 ## Source lineage
 
