@@ -57,6 +57,10 @@ compiled story payloads
 
 Story text participates in the game's localisation pipeline. Compiled text identity therefore intersects with Babel's corpus/index rules.
 
+## Deeper reference
+
+- [Story Graph compiled runtime boundary](compiled-runtime-boundary.md)
+
 ## Modding relevance
 
 Use this map for:
