@@ -180,3 +180,27 @@ A public symbol should move from this baseline into canonical `knowledge/` when 
 4. it documents a proven hazard that changes safe implementation choices.
 
 Public visibility alone is not sufficient.
+
+
+## Configuration evidence
+
+Public FoA mod source establishes several recurring ecosystem conventions:
+
+- BepInEx `ConfigFile` / `ConfigEntry<T>` is the normal configuration surface in public Mono mods.
+- Multiple public projects temporarily set `SaveOnConfigSet = false` while binding their full setting set, call `Save()` once, then restore automatic saving.
+- Public mods use enum entries for modes, `AcceptableValueRange<T>` for bounded numeric values, named sections, and separate language/display-name entries for mod-owned UI text.
+- Public Grailwright source demonstrates schema-versioned configuration, backup/reset behavior, preservation of compatible settings and bounded values.
+
+These patterns support the [Configuration](../../knowledge/mechanics/configuration/README.md) page; they do not imply that every setting can be safely applied live.
+
+## Performance evidence
+
+Public FoA source exposes several high-value performance-shaping surfaces:
+
+- `World.All<T>()` is a broad registered-model enumeration path and appears in Questline source for debug, startup/indexing, one-shot cleanup and selected gameplay queries.
+- `NpcGrid.GetHearingNpcs(position, range)` provides a native spatial NPC-query route for its specific hearing use case.
+- public mods demonstrate lifecycle caches instead of repeated recalculation (for example cached `ItemEquip` handedness decisions cleared on hero/stat reinitialization);
+- public mods use event/hook-driven work for damage, UI, inventory and interaction changes rather than requiring broad per-frame scans;
+- Questline exposes services such as `RecurringActions` and `UnityUpdateProvider` for bounded scheduled/update ownership in relevant native systems.
+
+These are source-visible design facts, not measured performance rankings. Exact cost and causality require runtime profiling.
