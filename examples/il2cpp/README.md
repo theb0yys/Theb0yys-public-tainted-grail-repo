@@ -1,7 +1,7 @@
 # IL2CPP Examples
 
-IL2CPP/BepInEx examples are grouped by functional domain.
+Examples for IL2CPP builds and IL2CPP-compatible modding approaches.
 
 - [Basics](basics/README.md)
 
-Additional domains should be added only when a public-safe example exists for them.
+Add a new category only when there is a useful public-safe example to put in it.
