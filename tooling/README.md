@@ -37,6 +37,8 @@ For verified acquisition routes and version meanings, use [Public distribution a
 
 For supported, versioned, promoted and gated API boundaries, use [API stability and capability promotion](ecosystem/api-stability.md).
 
+For Mono/IL2CPP support and what evidence is required before claiming cross-runtime compatibility, use [Runtime compatibility](ecosystem/runtime-compatibility.md).
+
 For hard/soft dependency and packaging rules, use [Dependency and packaging](ecosystem/dependency-and-packaging.md).
 
 For recommended combinations, use [Author stacks](ecosystem/author-stacks.md).
