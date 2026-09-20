@@ -1,4 +1,4 @@
-# Runtime Tracer — Gate 2
+# Runtime Tracer
 
 A source-only, configurable **Mono / BepInEx 5 / Harmony** runtime observation tool.
 
@@ -6,14 +6,9 @@ Its purpose is narrow: after static investigation identifies an exact method, th
 
 It does not establish persistence, broad compatibility, semantic equivalence after a game update, or release readiness.
 
-## Runtime support
+## Runtime scope
 
-| Lane | State |
-| --- | --- |
-| Mono / BepInEx 5 | **IMPLEMENTED — runtime validation still required on an installed game** |
-| IL2CPP | **NOT_APPLICABLE in Gate 2** |
-
-IL2CPP tracer parity is a later, separately validated gate.
+This tracer targets **Mono / BepInEx 5 / Harmony**. IL2CPP uses a different runtime integration path and is outside this tool's scope.
 
 ## Safety model
 
@@ -117,24 +112,23 @@ ParameterTypeNames = <none>
 
 If the method name is overloaded and no signature is supplied, resolution fails rather than choosing one candidate.
 
-## Evidence states
+## Runtime output
 
-Startup distinguishes:
+Startup reports target resolution and patch installation separately:
 
 ```text
 targetResolution=PASSED / FAILED
 patchInstallation=PASSED / FAILED
-runtimeObservation=NOT_RUN
 ```
 
-Once a configured target is observed, the session summary becomes:
+Session summaries report whether the configured target was observed and how many invocations were seen:
 
 ```text
-runtimeObservation=PASSED
+observed=true / false
 invocationCount=<n>
 ```
 
-This means the target executed while this tracer was installed in that environment.
+`observed=true` means the target executed while this tracer was installed in that environment.
 
 It still does not prove:
 
@@ -171,9 +165,3 @@ The finalizer observes exceptions but does not replace or suppress them. Excepti
 
 Before publishing excerpts, follow [Runtime log evidence](../../methods/runtime-log-evidence.md). Local logs may still contain machine or game information and must be reviewed before publication.
 
-## Gate 2 validation status
-
-See [VALIDATION.md](VALIDATION.md) for the gated validation record.
-
-
-Repository/public-surface validation can prove the source is public-safe. Actual tracer runtime proof requires an installed Mono/BepInEx 5 game environment and remains a separate runtime evidence lane.
