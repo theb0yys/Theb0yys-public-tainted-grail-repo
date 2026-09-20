@@ -1,5 +1,9 @@
 # Serialization and .arch Packaging
 
+Use this page when you need implementation-level detail about FoA's serialization/archive machinery.
+
+It is primarily for reverse engineering and persistence research. For normal mod persistence decisions, start with the higher-level saving and persistence pages first.
+
 ## What it is
 
 FoA uses **Unity Archive** as the physical container for several Questline datasets.
