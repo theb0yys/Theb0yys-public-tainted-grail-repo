@@ -1,4 +1,3 @@
 # Mono Magic Examples
-- [Projectile speed and aim](projectile-speed-and-aim/README.md)
 
-- [Projectile speed](projectile-speed/README.md)
+- [Projectile speed and aim-preserving scaling](projectile-speed/README.md)
