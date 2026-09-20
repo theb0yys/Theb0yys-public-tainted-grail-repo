@@ -1,5 +1,7 @@
 # Kandra
 
+Use this page when you are working with skinned or deforming character visuals such as body parts, armour, clothing, hair, or creature meshes that follow a character rig.
+
 ## What it is
 
 **Kandra** is Questline's proprietary skinned/deforming character-rendering stack.
