@@ -9,6 +9,9 @@ Investigation is a first-class FoA modding skill.
 - [Proving a new mechanic](proving-a-new-mechanic.md)
 - [Persistence investigation](persistence/README.md)
 - [Travel investigation](travel/README.md)
+- Bug fixes
+  - [Rule-pack-first recovery](bugfixes/rule-pack-recovery.md)
+  - [Verify current build first](bugfixes/current-build-first.md)
 - Dialogue
   - [External engine integration](dialogue/external-engine-integration.md)
   - [Migration and fallback](dialogue/migration-and-fallback.md)

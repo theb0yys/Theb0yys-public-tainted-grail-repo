@@ -2,6 +2,7 @@
 
 Case studies preserve what real mod work taught us without publishing the private workspace wholesale.
 
+- [Bug fixes/recovery](bugfixes/README.md)
 - [Frameworks/tooling](frameworks/README.md)
 - [Combat](combat/README.md)
 - [Storage](storage/README.md)

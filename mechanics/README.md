@@ -8,12 +8,11 @@ last_verified: 2026-09-20
 
 # Mechanics
 
-Newly extracted domains now include:
+Current public mechanics include combat, stats, magic, storage, lockpicking, items/weapons/armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, UI/map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
 
-- Combat: [enemy pressure](combat/enemy-pressure.md), [parry/block](combat/parry-block-tuning.md), [poise damage](combat/player-poise-damage.md), [consumable cooldown](combat/consumable-cooldown.md)
-- Storage: [stash count clarity](storage/stash-count-clarity.md), [native campfire stash](storage/native-campfire-stash.md)
-- Lockpicking: [tolerance/pick damage](lockpicking/tolerance-and-pick-damage.md), [auto-unlock](lockpicking/auto-unlock.md)
+Loot additions now include:
 
-The repository also covers stats/magic/HUD, items/weapons/armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
+- [Add an existing item to a search row](loot/add-existing-item-search-row.md)
+- [Grant an existing item from mining-damage context](loot/mining-damage-item-grant.md)
 
-Dialogue replacement remains under [Investigate](../investigate/dialogue/external-engine-integration.md), not a promoted mechanic.
+Generic quest repair remains under [Investigate](../investigate/bugfixes/rule-pack-recovery.md), not under mechanics.
