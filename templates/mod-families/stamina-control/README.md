@@ -1,8 +1,10 @@
 # StaminaControl Public Template
 
+Use this starter when you are building stamina-action or stamina-cost control across Mono and IL2CPP. Keep the player-facing rules shared and apply them through the exact native stat/action owner in each runtime host.
+
 Source family: `stamina-action-control`
 
-This is a public, source-only starter distilled from the StaminaControl mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
