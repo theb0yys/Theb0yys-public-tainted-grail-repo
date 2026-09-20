@@ -1,8 +1,8 @@
 # Debugging and Diagnostics
 
-Use these guides when something that should work does not, or when you need evidence before changing code. They focus on collecting the smallest useful runtime facts—identities, lifecycle stages, owners, and failures—without mutating the game just to investigate it.
+Use this section when something is failing and you need evidence about where the failure occurs.
 
-> **Reference page.** Use this when a known process fails and you need to identify which layer stopped working.
+These guides focus on collecting the smallest useful runtime information—identities, lifecycle timing, owner state, patch activity, and relevant context—without turning diagnostics into gameplay mutation.
 
 ## What this system is
 
