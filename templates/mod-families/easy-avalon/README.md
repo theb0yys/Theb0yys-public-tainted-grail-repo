@@ -1,8 +1,10 @@
 # Easy Avalon Public Template
 
+Use this starter when you are building a collection of difficulty or quality-of-life tweaks that should share configuration across runtimes. Each actual game change should still be connected to its exact FoA stat, method, or service in the runtime host.
+
 Source family: `easy-avalon`
 
-This is a public, source-only starter distilled from the Easy Avalon mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
