@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$GameRoot
+    [string]$GameRoot,
+    [switch]$Quiet
 )
 
 Set-StrictMode -Version Latest
@@ -50,5 +51,8 @@ $rows = foreach ($path in $paths) {
     }
 }
 
-$rows | Format-Table -AutoSize | Out-Host
+if (-not $Quiet) {
+    $rows | Format-Table -AutoSize | Out-Host
+}
+
 return $rows
