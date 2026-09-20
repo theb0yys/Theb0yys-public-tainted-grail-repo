@@ -37,6 +37,10 @@ State what changed, the runtime/authoring lane, what was actually tested, local 
 
 The public-surface guard is a redistribution backstop; it does not prove game/editor/runtime behaviour.
 
-## Licence status
+## Licensing
 
-No general repository licence is included yet. Public visibility does not itself grant redistribution or relicensing rights.
+Original software code and software artifacts contributed to this repository are licensed under the **Apache License 2.0** unless a more specific notice applies. Original documentation and research material are licensed under **CC BY 4.0** unless a more specific notice applies.
+
+See [LICENSE](LICENSE) and [LICENSE-DOCS](LICENSE-DOCS).
+
+Do not assume contribution or inclusion in this repository relicenses third-party, upstream, mirrored, proprietary, or trademarked material. Contributors must have authority to publish their contribution under the applicable repository licence, or preserve and identify the controlling separate terms.

@@ -48,6 +48,15 @@ See [Repository taxonomy](contributing/taxonomy.md).
 
 Do not commit proprietary game binaries, extracted commercial assets, localization dumps, generated interop assemblies, saves, private diagnostics, credentials or bulk decompiled game source.
 
+## Licensing
+
+This repository uses a split licensing model:
+
+- original software code and software artifacts: **Apache License 2.0** — see [LICENSE](LICENSE);
+- original documentation and research material: **CC BY 4.0** — see [LICENSE-DOCS](LICENSE-DOCS).
+
+Third-party, upstream, mirrored, proprietary, and trademarked material is not relicensed merely by appearing in or being referenced by this repository. A more specific file, directory, or upstream notice controls where present.
+
 ## Upstream projects
 
 - Questline Merlin's Workshop: https://github.com/AR-Questline/merlin-workshop

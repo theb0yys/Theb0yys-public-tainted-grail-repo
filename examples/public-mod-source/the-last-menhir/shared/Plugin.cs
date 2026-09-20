@@ -1399,7 +1399,7 @@ public sealed class Plugin : MonoBehaviour
         string stackTrace = string.Join(Environment.NewLine, new[]
         {
             @"System.InvalidOperationException: Synthetic The Last Menhir validation incident. This is not a real crash.",
-            @"  at ExampleValidationPlugin.SyntheticCrashProbe.Run() in C:\Users\TestPlayer\AppData\LocalLow\Awaken Realms\Tainted Grail FoA\ValidationProbe.cs:line 42",
+            @"  at ExampleValidationPlugin.SyntheticCrashProbe.Run() in C:\ExampleUser\AppData\LocalLow\Awaken Realms\Tainted Grail FoA\ValidationProbe.cs:line 42",
             $"  at AvalonExceptions.ValidationHarness.QueueSyntheticIncident() in {pluginPath}:line 1"
         });
 
