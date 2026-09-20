@@ -6,6 +6,11 @@ Working lineage: [Native HUD Ownership vs Custom Visual Proof](../../../research
 
 ## Runnable source
 
+Start from the buildable example: [HUD visibility](../../../examples/mono/ui/hud-visibility/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
+## Runnable source
+
 Start with the [HUD visibility and theme example](../../../examples/mono/ui/hud-visibility-and-theme/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
 ## Force or yield native hero-bar visibility
