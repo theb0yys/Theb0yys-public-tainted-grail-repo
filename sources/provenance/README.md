@@ -2,37 +2,27 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Wave 1 — 2026-09-20
+## Waves 1–4 — 2026-09-20
 
-Published ownership/intervention, item grant, weapon registration/presentation, mount velocity, one-session companion, modal UI, recipe distinction, native save-domain boundary, sidecar direction, provider/consumer ownership, and authoring standards.
+Covered PR #407's authoring model, the complete private mechanics catalogue, all deep-lifecycle rows, private hook index, bounded identity intake, and the first weapon/mount/companion/UI/persistence/armour/merchant/lockpick/spell/Addressables knowledge.
 
-## Wave 2 — 2026-09-20
+## Wave 5 — 2026-09-20
 
-Published armour/Kandra static contract, merchant restock and validation gap, lockpick durability guard, spell VFX overlay/identity warning, completed Addressables-handle bridge, save-completion observation, lifecycle/reflection diagnostics, and related case studies.
+Mined Tainted Economy and Better Bonfire Menu project research/history and published:
 
-## Wave 3 — 2026-09-20
-
-Published direct custom-template registration, template GUID restore dependency, item classification, merchant category-filtering risk, ModService catalogue layout, Avalon Awakened resolver boundary, stronger sidecar lifecycle candidates, recipe-learning boundary, and related diagnostics.
-
-## Wave 4 — 2026-09-20
-
-Published the extracted private hook catalogue with validation/risk state and a separate candidate-identity intake so unreviewed native claims and project-owned IDs are not silently promoted.
-
-## Source inventory consumed so far
-
-These waves explicitly mined:
-
-- PR #407 public-architecture/authoring research;
-- `documents/modding/mechanics/index/mechanics.csv`;
-- `failures-and-constraints.csv`;
-- `deep-lifecycle-surfaces.csv`;
-- `implementations.csv`;
-- `hooks.csv`;
-- `native-references.csv`;
-- underlying weapon, mount, companion/UI, persistence, armour, merchant, lockpick, spell/VFX, recipe and ModService source/evidence.
+- FoA final vendor-price ownership and the validated `TradeUtils.Price` lane;
+- regional price composition;
+- positive Wealth reward scaling;
+- harvest runtime-row quantity scaling;
+- save-backed generated container row scaling;
+- post-roll container rules and corpse-specific material filtering;
+- native bonfire/fireplace service ownership;
+- native service reuse mechanic;
+- runtime-built native-style bonfire submenu ownership with partial runtime UI status;
+- economy/bonfire case studies and troubleshooting.
 
 ## Measurement rule
 
 A knowledge unit counts only when claims are extracted from inspectable evidence, owner/lifecycle/reasoning are reconstructed, clean-room public prose is written, evidence limits are stated and the page is linked into canonical navigation.
 
-The private corpus remains much larger than these first waves.
+The private corpus remains substantially larger than the published waves.
