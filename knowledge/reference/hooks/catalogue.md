@@ -12,21 +12,49 @@ Hooks are only one segment of a complete mechanic. A method target does not prov
 | `TemplatesLoader.set_FinishedLoading(bool)` | Postfix | Source inspected across several consumers | **Critical** | Retry/readiness boundary for template registration |
 | concrete `CloudService.EndSave(string)` providers | Postfix | Source inspected + decompiled target research | High | Observe slot IDs; **not** generic durable-success semantics |
 
-## Existing public working hook families
+## Public working hook catalogue
 
-| System | Native surface | Working use |
-| --- | --- | --- |
-| Hero item lifecycle | `HeroItems.OnRestore` | capture a valid restored `HeroItems` instance; public IL2CPP implementation replaced an unsafe generic lookup/field-offset approach with this hook |
-| Crafting recipes | `Crafting.get_Recipes` | observe/extend station recipe content in a public IL2CPP implementation |
-| Resource extraction | `LootInteractAction.AddItemsToAttacker(heroItems)` | invoke the same resource-loot transfer path used by a vein death callback in a narrow auto-mine implementation |
-| Hero proficiency | `Hero.Current.ProficiencyStats.TryAddXP` | award native proficiency XP after a separately validated gameplay event; affects saved progression |
-| Magic projectiles | projectile configuration / base-damage projectile setup | scale player-owned projectile speed/range/homing without replacing projectile ownership |
-| Direct theft | `PickItemAction.OnStart` | guard illegal loose-world pickup while preserving native transfer |
-| Container theft | `ContainerUI.TakeItemFromContainer`, `ContainerUI.TakeAllItems` | guard native container theft/take-all |
-| Readable theft | `VReadablePopupUI.OnSteal` | guard the native readable steal action |
-| Hero footsteps | `FMODManager.PlayOneShot(...)` filtered to `VHeroFootsteps` | replace only hero footstep playback |
-| Character damage | `HealthElement.TakeDamage(Damage)` | observe completed character damage for UI/VFX/audio sidecars |
-| Character death | `HealthElement.OnDeathEvents` | attach terminal character presentation/cleanup sidecars |
+| Native surface | Patch | Publicly demonstrated use | Notes |
+| --- | --- | --- | --- |
+| `Hero.OnFullyInitialized` | Postfix | initialize mod state after hero/gameplay infrastructure is available | Public mods use this to set up event listeners, refresh hero-dependent state and clear per-save caches |
+| `HeroRPGStats.AfterHeroFullyInitialized` | Postfix | apply stat tweaks after hero RPG stats are ready | Public mods resolve `Hero.Current`, `TweakSystem` and hero stats here |
+| `HealthElement.OnDamage(Damage)` | Prefix | modify raw damage before downstream handling | Public difficulty mod excludes `AliveLocation` targets to avoid altering mining/woodcutting-style damage |
+| `HealthElement.TakeDamage(Damage)` | Existing public hook family | observe completed character damage for UI/VFX/audio sidecars | Different lifecycle position from `OnDamage`; do not treat the two as interchangeable |
+| `HealthElement.OnDeathEvents` | Existing public hook family | attach terminal character presentation/cleanup sidecars | Death boundary rather than damage boundary |
+| `Hero.ChangingStatWealth` | Postfix | adjust incoming positive wealth changes while preserving change context | Public mod distinguishes trade from reward context |
+| `ProficiencyStats.TryAddXP` | Prefix | scale proficiency XP before native application | `ProfStatType` and XP amount are directly available |
+| `NpcTemplate.GetExpReward` | Postfix | modify kill-XP result | Return-value patch point |
+| `Objective.ExperiencePoints` getter | Postfix | modify objective XP result | Return-value patch point |
+| `Quest.ExperiencePoints` getter | Postfix | modify quest XP result | Return-value patch point |
+| `FallDamageUtil.DealFallDamage` | Prefix | alter fall damage before application | Public mod also resolves the hero at this point |
+| `Item.Weight` getter | Prefix | override effective item weight by item category/state | Getter suppression can fully replace the returned weight |
+| `ItemEquip.EquipmentType` getter | Postfix | alter effective equipment handedness/type | Public mod caches decisions and clears them when hero/stats are reinitialized |
+| `MapUI.AfterViewSpawned` | Postfix | run after map UI view creation | Public mod calls `AllowFastTravel()` here |
+| `HeroStorageUI.OnFullyInitialized` | Postfix | extend storage prompts after storage UI initialization | Public mod accesses current storage tab and prompt collection |
+| `PContainerUI.OnFullyInitialized` | Postfix | alter pickup/container UI after initialization | Public mod unpatches its one-shot UI change afterward |
+| `PContainerElement.CacheVisualElements` | Postfix | add cached visual elements to container rows | UI Toolkit surface |
+| `PContainerElement.SetData` | Postfix | populate row UI from the current `Item` | Useful after custom row elements have been cached |
+| `ItemTooltipFooterComponent.SetupCounters` | Postfix | augment item tooltip counters | Receives `IItemDescriptor` |
+| `Prompt` constructor taking key/name/press-type/action/position/control-scheme/hold-time | Prefix | inspect or alter native prompt hold/tap behavior | Exact constructor signature matters |
+| `HeroCameraShakes.MeleeSlowDownTime` / `RangedSlowDownTime` | Prefix | suppress selected kill-camera slow-motion calls | Public mod intentionally suppresses the original method |
+| `SlowDownTime.OnInitialize` | Postfix | detect/shorten other slowdown sources | Different owner from hero-camera entry points |
+| `HeroWyrdNightEdge.Execute` | Prefix | alter Wyrd-night edge presentation behavior | Presentation-specific hook |
+| `HeroItems.OnRestore` | IL2CPP native hook | capture a valid restored `HeroItems` instance | Public native implementation replaced an unsafe generic lookup/field-offset approach |
+| `Crafting.get_Recipes` | IL2CPP native hook | observe/extend station recipe content | Native pointer lifetime must be validated |
+| `PickItemAction.OnStart` | Public Harmony hook | guard illegal loose-world pickup while preserving native transfer | Theft/action owner |
+| `ContainerUI.TakeItemFromContainer`, `ContainerUI.TakeAllItems` | Public Harmony hooks | guard native container theft/take-all | Container action owners |
+| `VReadablePopupUI.OnSteal` | Public Harmony hook | guard native readable steal action | Readable-specific action |
+| `FMODManager.PlayOneShot(...)` filtered to `VHeroFootsteps` | Public Harmony hook | replace only hero footstep playback | Broad audio method requires narrow caller/source filtering |
+
+## Public runtime/event access used alongside hooks
+
+Not every useful interception point is a Harmony patch:
+
+- `World.EventSystem.ListenTo(EventSelector.AnySource, HealthElement.Events.OnDamageDealt, ...)` is used publicly after `Hero.OnFullyInitialized`.
+- `Hero.ListenTo(Hero.Events.HeroSprintingStateChanged, ...)` appears in Questline's public source.
+- `World.EventSystem.RemoveListener(listener)` is the corresponding cleanup path shown by a public mod.
+
+See [Events](../events/README.md).
 
 ## Publicly documented bad or hazardous targets
 
@@ -35,6 +63,7 @@ Hooks are only one segment of a complete mechanic. A method target does not prov
 | broad `HeroItems.Add` patch installed during `Plugin.Awake()` / `Harmony.PatchAll` | public mod report says it could interfere with `HeroItems` initialization and prevent saves loading | a semantically relevant method can still be the wrong lifecycle intervention |
 | generic `TryGetElement<HeroItems>` plus field-offset pointer recovery | public IL2CPP implementation replaced it after the approach proved broken/dangerous | prefer a lifecycle point that hands you the valid owner |
 | direct traversal of `CraftingTemplate.recipes` native pointers | stale/freed entries caused an access violation in a public IL2CPP implementation | native pointer/type checks do not prove memory lifetime |
+| broad audio hooks without caller/source filtering | public working footstep replacement relies on filtering to `VHeroFootsteps` | a technically valid broad hook may still be too wide for compatibility |
 
 ## Rules
 
