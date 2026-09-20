@@ -22,6 +22,21 @@ A finding in one lane is not automatically an equivalent API in another.
 - That same native implementation documents stale/freed pointers while traversing `CraftingTemplate.recipes`, illustrating that IL2CPP-native access adds memory-lifetime hazards absent from ordinary managed references.
 - Questline describes Merlin's Workshop as a toolkit for replacing Addressables assets and ships a simplified compatible source surface plus selected templates/assets. Merlin evidence is therefore valuable for names, relationships and authoring surfaces, but should not silently be treated as proof that every shipped-game runtime implementation is identical.
 
+## Exact Mono evidence baseline
+
+One inspected Mono environment is pinned strongly enough for patch-sensitive static reference:
+
+- Steam build `24270691`;
+- `TG.Main.dll` SHA-256 `749AABBFBEC121BB69BDA0AE226223154406D2C990DF3312AD12365D513FA982`;
+- MVID `68528841-991C-481E-BD94-7F1776FC3579`;
+- BepInEx `5.4.23.3`;
+- Harmony `2.9.0.0`;
+- Unity `6000.0.41.4645959`.
+
+Static/decompiled facts explicitly tied to this baseline should not be silently generalized to other Mono builds or IL2CPP.
+
+See [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
+
 ## Version discipline
 
 Record runtime lane alongside game/build evidence. For IL2CPP work, generated/interop surfaces may need regeneration after game updates; native offsets and detour targets require their own revalidation.
