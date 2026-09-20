@@ -52,8 +52,8 @@ weapon exists
 
 ## Canonical dependencies
 
-- [Native weapon lifecycle](../../../systems/weapons/native-lifecycle.md)
-- [Custom weapon integration](../../../mechanics/weapons/custom-weapon-integration.md)
+- [Native weapon lifecycle](../../../systems/gameplay/native-weapons/README.md)
+- [Custom weapon integration](../../../mechanics/weapons/equipped-presentation.md)
 - [Evidence status](../../../reference/evidence/README.md)
 
 ## Public outputs
