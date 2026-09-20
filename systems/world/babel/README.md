@@ -61,6 +61,10 @@ numeric LocalizationEntryId
 → language provider
 ~~~
 
+## Deeper reference
+
+- [Babel semantic and positional identities](semantic-and-positional-identities.md)
+
 ## Modding relevance
 
 For public mods, semantic identifiers plus explicit fallback text are the useful safe-facing model.
