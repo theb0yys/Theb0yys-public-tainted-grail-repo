@@ -4,6 +4,10 @@ Use this guide when you want a Mono/BepInEx mod to give the player an item that 
 
 This is deliberately simpler than creating a new item. You will reuse FoA's own `ItemTemplate`, create a normal runtime `Item`, and hand that item to the native hero inventory owner.
 
+## Runnable source
+
+Start from the minimal public example: [Existing item grant example](../../../examples/mono/items/grant-existing-item/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 A small command/action that:
