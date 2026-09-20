@@ -1,5 +1,8 @@
 # Change Carry Capacity Safely
 
+
+> **Start with source:** [Carry-capacity example](../../../examples/mono/gameplay/carry-capacity/README.md)
+
 FoA's current carry-capacity owner is `HeroStats.EncumbranceLimit`. Apply a runtime tweak to the **current** stat instance each time hero stats initialize.
 
 Working lineage: [Carry Tweak Must Follow the Current Stat Instance](../../../research/case-studies/stats/carry-stale-tweak.md).
