@@ -1,10 +1,8 @@
 # Tainted Diagnostic Tool Public Template
 
-Use this starter when you are building a diagnostics tool that should inspect both Mono and IL2CPP without mutating gameplay. Keep report/query logic shared and put exact runtime access in the corresponding host.
+Use this starter for a read-only diagnostics tool that needs to inspect both Mono and IL2CPP builds.
 
-Source family: `Tainted-Diagnostic Tool`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep reporting and query logic shared; runtime hosts should own the exact object access and interop needed to collect evidence safely.
 
 ## Reusable mechanisms
 
