@@ -2,6 +2,14 @@
 
 **Posture: Package-authoring contracts are public; live execution stays single-host/capability-gated**
 
+**Obtain Host:** https://www.nexusmods.com/taintedgrailthefallofavalon/mods/220
+
+**Version signal:** current public Host version is `0.8.2`.
+
+**Stability boundary:** third-party packages bind to the explicitly versioned `AvalonAI.Contracts.V2` contract, not the FoA Host implementation. Host/runtime internals and direct package-to-FoA execution remain gated.
+
+See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Use Avalon AI Runtime when your mod owns domain truth that should participate in shared AI decisions.
 
 Do **not** ship another independent scheduler/host for the same actors.
