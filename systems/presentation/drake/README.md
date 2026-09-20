@@ -72,6 +72,10 @@ Drake tracks first-owner / shared-owner / last-owner resource lifetime. Multiple
 
 That is why direct manipulation of internal resource counters or ECS state is unsafe: the visible entity is only one part of the ownership graph.
 
+## Deeper reference
+
+- [Drake resource and entity lifetime](resource-and-entity-lifetime.md)
+
 ## Modding relevance
 
 Use Drake knowledge when working with:
