@@ -5,6 +5,10 @@ Use this guide to create a temporary companion for the current session while kee
 Working lineage: [One-Session Native Companion Lifecycle](../../../research/case-studies/companions/native-companion-lifecycle.md).  
 Canonical actor model: [Creatures and NPCs](../../../knowledge/systems/gameplay/creatures-npcs.md).
 
+## Runnable source
+
+Start from the runnable public example: [One-session native companion](../../../examples/mono/gameplay/native-session-companion/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
