@@ -15,11 +15,11 @@ https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167
 Checked claims:
 
 - public acquisition route exists;
-- public changelog contains the current `0.6.x` implementation line including `0.6.62`;
-- plugin GUID remains `kane.tgfoa.mod-manager`;
-- mod-author API entries include custom UI scope and controller/status integration.
+- public acquisition route exists;
+- the public page documents mod-author integration for custom UI scope, controller actions and read-only status providers;
+- the current private engineering release manifest records source-side version `0.6.62` and plugin GUID `kane.tgfoa.mod-manager`.
 
-The exact Main file downloaded should still be inspected before a consumer declares a minimum package version.
+The source-side version does not prove which public Main file a user downloaded. Inspect the exact public package before declaring a minimum package version.
 
 ## Tainted Interface
 
