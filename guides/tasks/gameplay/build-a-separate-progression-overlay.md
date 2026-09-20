@@ -4,6 +4,11 @@ FoA already has character level, proficiencies, RPG stats and talent trees. If y
 
 Working lineage: [Visible Talent Group ≠ Native Proficiency](../../../research/case-studies/progression/visible-tree-vs-proficiency.md).
 
+## Runnable source
+
+Start from the buildable example: [Progression overlay](../../../examples/mono/gameplay/progression-overlay/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Record actual practice
 
 The maintained Immersive Progression implementation funnels observed activity into:
