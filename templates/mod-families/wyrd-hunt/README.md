@@ -1,8 +1,10 @@
 # Wyrd Hunt Public Template
 
+Use this starter when you are building hunt or encounter features that need shared rules with runtime-specific actor, death, reward, scene, or tracking integration.
+
 Source family: `wyrd-hunt`
 
-This is a public, source-only starter distilled from the Wyrd Hunt mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
