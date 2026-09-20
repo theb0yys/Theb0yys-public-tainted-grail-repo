@@ -1,5 +1,7 @@
 # Learn the Everyday Modding Loop
 
+Use this path after your first mod loads successfully. It teaches the repeatable day-to-day loop: identify the exact game behaviour, make one controlled change, verify it in game, and only then expand the feature.
+
 Once your first test works, this section teaches the repeatable loop you will use while actually making mods.
 
 ## Runtime plug-in track

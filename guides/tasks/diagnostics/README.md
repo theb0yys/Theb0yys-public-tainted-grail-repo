@@ -1,5 +1,7 @@
 # Debugging and Diagnostics
 
+Use these guides when something that should work does not, or when you need evidence before changing code. They focus on collecting the smallest useful runtime facts—identities, lifecycle stages, owners, and failures—without mutating the game just to investigate it.
+
 > **Reference page.** Use this when a known process fails and you need to identify which layer stopped working.
 
 ## What this system is
