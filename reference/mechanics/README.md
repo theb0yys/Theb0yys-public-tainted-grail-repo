@@ -1,20 +1,25 @@
 # Mechanics Catalogue
 
-This is a curated public view of reusable routes extracted from the private mechanics inventory. Status is claim-specific.
+Curated public view of reusable private mechanics. Status is claim-specific.
 
-| Mechanic | Current public status | Important boundary |
+| Mechanic | Public state | Important boundary |
 | --- | --- | --- |
-| Resolve `ItemTemplate` through `TemplatesProvider` after `AllLoaded` | Static/source inspected | Exact identity and runtime/build scope still matter |
-| Construct `Item` and add to `HeroItems` | Static/source inspected; used by consumers | Does not prove save safety |
-| Register custom item/weapon template | Multi-consumer source evidence; bounded runtime evidence | Persistence/missing-package remain separate |
-| Patch lockpick durability consumption | Static/source inspected | Patch-sensitive across builds |
-| Merchant restock on shop open | Static/source inspected | Owner evidence exists; broad runtime claim not implied |
-| Runtime alchemy recipe append | Static/source inspected | Explicitly not persistent learning |
-| Learn existing recipe through `HeroRecipes.LearnRecipe` | Static/source inspected | Save/reload proof remains separate |
-| One-session companion spawn/ally lifecycle | Source + representative runtime evidence | Explicitly non-persistent |
-| Native mount running/turning velocity postfix | Runtime proven on tested stack | Not custom-mount ownership |
-| Observe native save completion | Source/decompiled candidate | Not a custom serialization API |
-| Arbitrary native mod save-domain registration | **Blocked by current-binary static verdict** | No supported mutable registrar found |
-| Mod sidecar persistence | Under evaluation | Static candidates exist; production runtime/save matrix not complete |
-
-Canonical mechanics live under [mechanics/](../../mechanics/README.md).
+| Resolve `ItemTemplate` after `TemplatesProvider.AllLoaded` | Static/source inspected | Exact identity/runtime scope matter |
+| Grant `Item` to hero inventory | Static/source inspected; consumer-used | Does not prove save safety |
+| Direct clone + `TemplatesLoader.AddToMap` | Multi-consumer static/source evidence | Private API; patch-sensitive; shared registrar preferred |
+| Template GUID restoration dependency | Current-binary static contract | Registration/restoration order still runtime-sensitive |
+| Item helper classification | Source inspected | Helpers are not a universal taxonomy |
+| Lockpick `ConsumePickHP` guard | Static/source inspected | Live custom-item route separately validated |
+| Native clothes/Kandra equip lifecycle | Decompiled static contract | No custom-armour runtime pass implied |
+| Custom weapon registration + Drake prototype | Static + bounded runtime evidence | Persistence/full lifecycle separate |
+| Runtime alchemy recipe append | Source inspected | Not persistent learning |
+| Existing recipe `HeroRecipes.LearnRecipe` | Source inspected | Throwaway save/reload still required |
+| Merchant restock | Source inspected | Owner review recorded runtime gap |
+| Spell cast VFX overlay | Source inspected | Family mapping is name heuristic |
+| One-session companion lifecycle | Source + representative runtime lineage | Explicitly not saved |
+| Avalon Awakened resolver | Project API boundary | Not native FoA API |
+| Completed Addressables handle bridge | Source inspected | Specific bridge, not global substitution |
+| ModService catalogue layout | Offline two-cycle proof | No game deployment/actor proof |
+| Native save completion observation | Source/decompiled candidate | Not generic durable-success semantics |
+| Arbitrary native mod save domain | **Blocked by static verdict** | No supported mutable registrar found |
+| Sidecar persistence | Under evaluation | Static lifecycle candidates; runtime/save matrix incomplete |

@@ -3,57 +3,54 @@ document_type: investigation
 scope: FoA save-domain and sidecar persistence research
 runtime: mono
 evidence:
-  static: CURRENT_BINARY_VERDICT
-  runtime: PARTIAL_CANDIDATES
-  persistence: NOT_PRODUCTION_READY
+  static: CURRENT_BINARY_PARTIAL
+  runtime: NOT_PRODUCTION_READY
 last_verified: 2026-09-20
 ---
 
 # Persistence Investigation
 
-The inspected native save architecture does not expose a supported mutable arbitrary-domain registrar.
+The inspected native save architecture exposes no supported mutable arbitrary-domain registrar.
 
-That negative result changes the design space.
+## Current sidecar lifecycle candidates
 
-## Native boundary
+### Save capture
 
-Native FoA owns:
+`LoadSave.Save(SaveSlot,bool)` Prefix is the strongest static capture candidate because it owns the exact `SaveSlot` before asynchronous provider work begins.
 
-- save guards and slot selection;
-- native domain serialization;
-- provider writes;
-- load/cache operations;
-- Gameplay and scene restoration;
-- save-slot UI/archive format.
+Capture candidates:
 
-## Candidate sidecar model
+- `SaveSlot.ID`
+- `SaveSlot.SaveFileName`
+- `SaveSlot.HeroId`
+- transaction sequence
+- immutable namespace payloads
 
-A sidecar design should separate:
+### Native success
+
+`SaveInProgressHandle.MarkSucceeded()` is the strongest current-binary static success milestone found.
+
+Do not treat provider `EndSave(string)` alone as sufficient success proof.
+
+### Load stage
+
+`LoadSave.LoadSaveSlotToCache(SaveSlot)` is the strongest static stage point. Validate the sidecar here but **do not apply it yet**.
+
+### Post-restore apply
+
+`SceneLifetimeEvents.Events.AfterSceneStoriesExecuted` is the strongest static native delayed-apply pattern identified for save-slot-owned post-load state.
+
+## Identity
+
+Current static model:
 
 ```text
-save request
-→ capture immutable mod payload
-→ native save proceeds
-→ correlate successful native completion
-→ atomically commit sidecar
-
-load selection
-→ stage sidecar
-→ native gameplay/scene restore
-→ consumer dependencies ready
-→ validate binding/schema/integrity
-→ apply once
+primary storage key = provider + SaveSlot.SaveFileName
+runtime/model alias = SaveSlot.ID
+secondary mismatch guard = HeroId
+visible save name = display only
 ```
 
-## Still unresolved before a production mechanic
+## Remaining proof
 
-- stable slot/provider identity across rename/copy/delete/rotation;
-- success/failure semantics for each provider;
-- overlapping-save generation correlation;
-- crash-consistent Windows atomic replacement;
-- exact post-restore apply point;
-- schema migration/downgrade;
-- missing/corrupt/removed-mod behaviour;
-- manual/quick/auto-save matrix.
-
-Until those close, sidecar persistence remains a research/design surface.
+Overlapping saves, retries, provider differences, crash consistency, delete/key reuse, filesystem copy, quick/auto-save rotation, apply ordering and migrations remain runtime/save validation work.

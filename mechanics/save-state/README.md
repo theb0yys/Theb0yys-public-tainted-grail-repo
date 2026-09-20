@@ -3,7 +3,7 @@ document_type: mechanic
 scope: mod-owned durable state
 runtime: mono
 evidence:
-  static: PARTIAL
+  static: CURRENT_BINARY_PARTIAL
   runtime: NOT_RUN_FOR_GENERIC_SIDECAR
   persistence: BLOCKED_FOR_GENERIC_IMPLEMENTATION
 last_verified: 2026-09-20
@@ -11,31 +11,44 @@ last_verified: 2026-09-20
 
 # Mod-Owned Save State
 
-There is currently **no supported public mechanic here for injecting an arbitrary mod-owned FoA save domain**.
+There is currently **no supported public mechanic for injecting an arbitrary mod-owned FoA save Domain**.
 
-## Current-binary static result
+## Fixed native-domain result
 
-For the inspected `TG.Main.dll` SHA-256:
+For inspected `TG.Main.dll` SHA-256:
 
 `749AABBFBEC121BB69BDA0AE226223154406D2C990DF3312AD12365D513FA982`
 
-the native save-domain set is fixed. The inspected code exposes no supported mutable arbitrary-domain registrar.
+the native domain set is fixed and no supported mutable arbitrary-domain registrar was found.
 
-An unknown `<name>.data` file may be cached and round-trip into a later archive, but the native restoration path does not construct an arbitrary matching Domain and does not deserialize it as game/mod state.
+Unknown `<name>.data` entries may passively round-trip, but native restoration does not deserialize arbitrary names as new mod state.
 
-**Passive round-trip is not restoration.**
+## Sidecar direction: stronger static candidates
 
-## Consequence
+Later current-binary lifecycle research narrowed the candidate sidecar path:
 
-Do not publish a recipe that:
+```text
+LoadSave.Save(SaveSlot,bool) Prefix
+→ capture ID + SaveFileName + HeroId + immutable payload
+→ native save proceeds
+→ SaveInProgressHandle.MarkSucceeded Postfix
+→ correlate exact pending generation
+→ atomically commit sidecar
 
-- fabricates a Domain through reflection;
-- appends arbitrary domains to `DomainUtils.SaveSlotDomainsInUse`;
-- patches save readers/writers to inject an unsupported domain;
-- writes arbitrary files into native FoA save archives.
+LoadSave.LoadSaveSlotToCache(SaveSlot)
+→ stage sidecar inertly
+→ native Gameplay + scene restoration
+→ SceneLifetimeEvents.AfterSceneStoriesExecuted
+→ verify generation/hero/scene/prerequisites
+→ apply namespace once
+```
 
-## Research direction
+Important corrections:
 
-A **mod-owned sidecar** is the current design direction, with separate capture/commit and stage/apply transactions. That design still requires runtime/save/crash/rename/delete/copy validation before becoming a public production mechanic.
+- `CloudService.EndSave(string)` is useful observation evidence but is **not** the strongest static success milestone; the native coordinator evaluates its result before `MarkSucceeded()`.
+- visible save rename does not change `SaveFileName` in the inspected binary.
+- `SaveSlot.ID` and storage `SaveFileName` can differ, so one identifier is not sufficient for transaction correlation.
 
-See [Persistence investigation](../../investigate/persistence/README.md) and [Native save-domain negative evidence](../../case-studies/persistence/native-save-domain-boundary.md).
+## Still blocked before production
+
+Runtime/provider/save-kind/crash/copy/delete/rotation/migration validation remains required.

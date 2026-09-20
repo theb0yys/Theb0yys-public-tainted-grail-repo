@@ -4,43 +4,28 @@ This ledger tracks **knowledge extraction**, not file copying.
 
 ## Wave 1 — 2026-09-20
 
-Published:
-
-- native-owner/intervention-selection model;
-- item template resolution and hero grant;
-- custom weapon registration and Drake presentation;
-- native mount velocity;
-- one-session companion lifecycle;
-- modal companion UI/input ownership;
-- runtime-vs-persistent recipe distinction;
-- native arbitrary save-domain negative result and sidecar direction;
-- provider/consumer ownership;
-- documentation archetypes and private-to-public process.
+Published ownership/intervention, item grant, weapon registration/presentation, mount velocity, one-session companion, modal UI, recipe distinction, native save-domain boundary, sidecar direction, provider/consumer ownership, and authoring standards.
 
 ## Wave 2 — 2026-09-20
 
+Published armour/Kandra static contract, merchant restock and validation gap, lockpick durability guard, spell VFX overlay/identity warning, completed Addressables-handle bridge, save-completion observation, lifecycle-precondition and reflection diagnostics, and related case studies.
+
+## Wave 3 — 2026-09-20
+
 Published:
 
-- native clothes/Kandra equip/unequip static contract;
-- merchant restock candidate and its explicit runtime-validation gap;
-- lockpick durability guard;
-- spell-cast VFX overlay with name-heuristic identity warning;
-- completed Addressables-handle bridge;
-- native save-completion observation seam;
-- lifecycle-precondition diagnosis for `TemplatesProvider.AllLoaded`;
-- reflection/update compatibility diagnosis;
-- runtime-shim-vs-persistence diagnosis;
-- armour, merchant and save-observation case studies.
+- direct custom template clone/`AddToMap` mechanic and its shared-registrar migration direction;
+- template GUID save/restoration dependency;
+- item helper classification;
+- merchant category-filtering compatibility boundary;
+- FoA ModService Addressables catalogue layout from an offline two-cycle proof;
+- Avalon Awakened creature resolver as a project API boundary;
+- stronger current-binary sidecar lifecycle candidates (`LoadSave.Save`, `MarkSucceeded`, `LoadSaveSlotToCache`, `AfterSceneStoriesExecuted`);
+- persistent existing-recipe route with explicit live save/reload gap;
+- missing-registrar and ModService troubleshooting pages.
 
 ## Measurement rule
 
-A private file is not counted as “ported” merely because a similarly named public file exists. A knowledge unit counts only when:
+A knowledge unit counts only when claims are extracted from inspectable evidence, owner/lifecycle/reasoning are reconstructed, clean-room public prose is written, evidence limits are stated and the page is linked into canonical navigation.
 
-1. its claims were extracted from inspectable private evidence;
-2. owner/lifecycle/reasoning were reconstructed;
-3. a public archetype was selected;
-4. clean-room public prose was written;
-5. evidence limits were stated;
-6. the public page is linked into the canonical navigation.
-
-The private corpus remains much larger than these first waves. Future waves continue by domain.
+The private corpus remains much larger than these first three waves.
