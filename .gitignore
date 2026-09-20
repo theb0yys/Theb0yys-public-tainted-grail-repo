@@ -24,6 +24,13 @@ libs/
 References/
 references/
 
+# Local reverse-engineering / research output
+.local-research/
+Decompiled/
+decompiled/
+AssetRipperExport/
+assetripper-export/
+
 # Never commit binaries, archives, or game/content assets here
 *.dll
 *.exe

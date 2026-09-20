@@ -7,6 +7,10 @@ Investigation is a first-class FoA modding skill.
 - [Static/source evidence vs runtime evidence](methods/source-vs-runtime.md)
 - [Name heuristic vs native identity](methods/name-heuristic-vs-native-identity.md)
 - [Proving a new mechanic](methods/proving-a-new-mechanic.md)
+- [Local game investigation](methods/local-game-investigation.md)
+- [Local asset inspection](methods/local-asset-inspection.md)
+- [Runtime log evidence](methods/runtime-log-evidence.md)
+- [Research tools](tools/README.md) — source-only evidence collection and validation utilities
 - [Persistence investigation](investigations/persistence/README.md)
 - [Travel investigation](investigations/travel/README.md)
 - Bug fixes
