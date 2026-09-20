@@ -1,8 +1,10 @@
 # Tainted Interface Public Template
 
+Use this starter when you are building shared UI-resource or presentation infrastructure across both runtimes. Keep semantic asset/catalog behavior shared and isolate loader/runtime registration or game access in the hosts.
+
 Source family: `Tainted Interface`
 
-This is a public, source-only starter distilled from the Tainted Interface mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
