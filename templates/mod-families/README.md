@@ -1,5 +1,7 @@
 # Named Mod-Family Templates
 
+Use these templates when you are starting a mod in one of the existing feature families and want the shared Mono/IL2CPP project structure already laid out for you.
+
 These 31 public templates correspond to the current cross-runtime first-party mod families being used as source/reference material.
 
 Every family now contains:
