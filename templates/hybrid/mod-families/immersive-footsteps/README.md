@@ -1,5 +1,5 @@
 # Immersive Footsteps — Dual-Runtime Starter
 
-Feature boundary: footstep audio replacement.
+Use this starter for footstep-audio replacement that needs to support both Mono and IL2CPP.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Keep replacement selection/configuration shared, while each runtime host handles the exact FMOD/game hook and interop needed to identify the native footstep event safely.
