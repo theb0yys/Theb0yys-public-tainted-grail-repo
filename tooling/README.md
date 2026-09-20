@@ -31,9 +31,13 @@ your mod
 | publish/query cross-mod contract data | [Avalon Contracts](avalon-contracts/README.md) | **Read-only/provider-first; lifecycle lane-specific** |
 | run an external local development client | [Tainted Grail Extender](tainted-grail-extender/README.md) | **Advanced/SDK** |
 
+For exact GUIDs/assemblies/API entry points, use the [Component reference](ecosystem/component-reference.md).
+
 For recommended combinations, use [Author stacks](ecosystem/author-stacks.md).
 
 For copyable workflows, use [Integration recipes](recipes/README.md).
+
+For full source projects, use [Mono infrastructure examples](../examples/mono/infrastructure/README.md).
 
 ## Default recommendation
 
