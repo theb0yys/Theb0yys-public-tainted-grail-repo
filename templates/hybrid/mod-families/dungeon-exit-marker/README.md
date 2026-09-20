@@ -1,5 +1,5 @@
 # Dungeon Exit Marker — Dual-Runtime Starter
 
-Feature boundary: dungeon exit marker/navigation.
+Use this starter for a cross-runtime dungeon-exit marker or navigation helper.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Keep marker/feature rules shared, but resolve scene, map, UI, and runtime-specific FoA access separately in the Mono and IL2CPP hosts.
