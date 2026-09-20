@@ -37,4 +37,3 @@ Gate 0 is complete only when all of the following are true:
 - Public-surface CI: **PASSED**
 - General repository licence: **PASSED** — Apache-2.0 for original software; CC BY 4.0 for original documentation/research, with separate third-party/upstream terms preserved.
 - Gate 0 overall: **PASSED**
-- Operational tooling phases: **NOT_RUN**
