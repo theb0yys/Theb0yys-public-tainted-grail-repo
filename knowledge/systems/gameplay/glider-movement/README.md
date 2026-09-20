@@ -1,5 +1,9 @@
 # Native Glider Movement
 
+Use this page when you are working with glider movement and need to understand which native movement state and inputs actually control it.
+
+It is a system reference, not a generic movement tutorial, so use it when a glider-specific feature needs exact ownership or lifecycle detail.
+
 ## What it is
 
 FoA contains a native **glider movement** system. It is a first-class hero movement type, not a general free-flight framework.
