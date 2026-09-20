@@ -1,5 +1,5 @@
 # Hold to Steal — Dual-Runtime Starter
 
-Feature boundary: guarded illegal interaction.
+Use this starter for a guarded illegal-interaction feature such as Hold to Steal across both runtimes.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Keep the input/permission rule shared, and put the exact theft-action hook and runtime-specific interop in the Mono or IL2CPP host that owns it.
