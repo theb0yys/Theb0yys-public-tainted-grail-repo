@@ -9,6 +9,10 @@ Working lineage: [Projectile Route Coverage and Aim Correction](../../../researc
 Start with the [Projectile speed and aim example](../../../examples/mono/magic/projectile-speed-and-aim/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
 
+## Runnable source
+
+Start from the buildable public source: [Projectile speed and aim example](../../../examples/mono/magic/projectile-speed/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Main hook
 
 The current implementation uses a postfix on:
