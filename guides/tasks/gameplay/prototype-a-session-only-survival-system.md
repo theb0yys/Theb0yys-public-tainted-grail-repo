@@ -1,52 +1,143 @@
 # Prototype a Session-Only Survival System
 
-**Evidence status: PARTIAL.** The staged session model is established; durable persistence is deliberately not part of this first guide.
+Build the survival model from native activity observations and runtime-only StatTweak effects. Do not start by changing FoA save serialization.
 
 Working lineage: [Session First, Persistence Later](../../../research/case-studies/survival/session-first.md).
 
-## Goal
+## Movement input
 
-Test whether a survival mechanic is fun and technically stable **before** inventing a save schema.
+The maintained Tainted Survival implementation observes:
 
-## Staged path
+~~~text
+ProficiencyEventListener.XPGainEvent
+~~~
 
-```text
-observe native rest/movement/damage/status/environment
-→ session-only fatigue model
-→ passive overlay
-→ optional non-saved stat effects
-→ food/rest/environment integration
-```
+with a Harmony prefix.
 
-## Process
+The prefix receives:
 
-1. choose one session variable, e.g. fatigue;
-2. define exact native observations that increase/decrease it;
-3. keep the value in mod-owned session memory;
-4. expose a read-only overlay;
-5. optionally apply one reversible non-saved native tweak;
-6. reset cleanly on new session/reload.
+- ProfStatType proficiencyToLevel;
+- BaseXPType targetXPType;
+- float xpGainParameter.
 
-## Do not start with
+It filters to movement sources, respects ProficiencyGainBlockerModel, reads whether Hero.Current is in combat, then calls the session model:
 
-- save migration;
-- native save-domain changes;
-- dozens of needs/meters;
-- permanent debuffs;
-- broad food/rest rewrites.
+~~~csharp
+FatigueDryRunModel.RecordMovement(
+    proficiencyName,
+    sourceName,
+    xpGainParameter,
+    heroInCombat);
+~~~
 
-## Verification
+This reuses activity FoA has already classified instead of polling player velocity every frame.
 
-Measure:
+## Rest input
 
-- event counts;
-- accumulation rate;
-- rest recovery;
-- scene/session reset;
-- overlay accuracy;
-- non-saved tweak cleanup;
-- no duplicate subscriptions.
+Observe:
 
-## Current proof boundary
+~~~text
+RestPopupUI.SkipWeatherTime(...)
+~~~
 
-This teaches the staged architecture. Persistence, migration and a complete balance/feel matrix remain outside the current proof.
+with a postfix.
+
+The working signature supplies:
+
+~~~text
+Hero hero
+GameRealTime gameRealTime
+float hourValue
+bool isSafelyResting
+~~~
+
+Convert hourValue to minutes and pass it to:
+
+~~~csharp
+FatigueDryRunModel.RecordRest(
+    minutes,
+    isSafelyResting,
+    heroPresent);
+~~~
+
+Do not replace the native rest action.
+
+## Other useful session observations
+
+The same model can consume bounded events for:
+
+- wound/damage shock;
+- food/preparation;
+- alcohol;
+- disease/curse pressure;
+- weather/night pressure;
+- camp-preparedness services.
+
+Keep each input as an observation that updates one mod-owned fatigue state.
+
+## Session state
+
+A small implementation only needs:
+
+~~~text
+current fatigue value
+current fatigue stage
+temporary buffers/recovery state
+last relevant event timestamps
+~~~
+
+Reset/rebind when the hero/session changes.
+
+Do not persist the first version.
+
+## Apply runtime effects through current stat owners
+
+The working implementation patches both:
+
+~~~text
+CharacterStats.CharacterStatsWrapper.Initialize
+HeroStats.HeroStatsWrapper.Initialize
+~~~
+
+CharacterStats effects target:
+
+- SprintCostMultiplier;
+- StaminaUsageMultiplier.
+
+HeroStats effects target:
+
+- EncumbranceLimit;
+- SpellChargeSpeed.
+
+Each effect is a mod-owned runtime StatTweak attached to the current hero/stat instance.
+
+When the fatigue stage or config changes:
+
+~~~text
+Hero.Current
+→ current CharacterStats/HeroStats
+→ discard/update owned tweaks
+→ apply multipliers for current fatigue stage
+~~~
+
+When the system is disabled, reapply neutral values/remove the owned tweaks.
+
+## Overlay
+
+Render the current fatigue value/stage from the mod-owned session state.
+
+The overlay should read the model; it should not become the model.
+
+## A clean first feature
+
+A useful first survival slice is:
+
+~~~text
+movement practice increases fatigue
+→ safe rest reduces fatigue
+→ current stage affects sprint/action stamina
+→ HUD shows current stage
+→ reload resets session state
+~~~
+
+That is already enough to test the mechanic without inventing a save format.
