@@ -1,5 +1,9 @@
 # Shared Mipmap Streaming
 
+Use this page when a rendering issue involves texture sharpness, mip residency, or material/texture demand across FoA's specialized renderers.
+
+Mipmap streaming is shared infrastructure used by several rendering systems; it is not itself the gameplay owner of the object being rendered.
+
 ## What it is
 
 Questline's shared mipmap system coordinates **texture mip demand** across multiple proprietary renderers.
