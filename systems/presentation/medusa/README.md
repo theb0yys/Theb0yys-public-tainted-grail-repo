@@ -59,6 +59,10 @@ Medusa keeps that geometry in a representation suited to:
 - efficient per-view culling;
 - large static populations.
 
+## Deeper reference
+
+- [Medusa static visual ownership](static-visual-ownership.md)
+
 ## Modding relevance
 
 Use Medusa knowledge when analysing cliffs, rock fields or other large static environment groups whose visual representation does not behave like a normal runtime `MeshRenderer`.
