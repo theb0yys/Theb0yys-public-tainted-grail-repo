@@ -1,5 +1,5 @@
 # FoA Mod Manager — Dual-Runtime Starter
 
-Feature boundary: mod-manager/runtime integration.
+Use this starter when building shared mod-management features that need both Mono and IL2CPP hosts.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Keep common settings, command, and status logic shared while runtime-specific projects own the loader integration and any exact FoA UI/input access.
