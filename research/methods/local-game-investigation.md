@@ -157,7 +157,7 @@ static target identified
 → downstream behaviour checked separately
 ```
 
-Use the [Gate 2 runtime tracer](../tools/runtime-tracer/README.md) for the Mono/BepInEx 5 observation lane. Treat its target-resolution, patch-installation and invocation states as separate evidence.
+Use the [runtime tracer](../tools/runtime-tracer/README.md) for the Mono/BepInEx 5 observation lane. Treat target resolution, patch installation and observed invocation as separate facts.
 
 ## 8. Preserve a public-safe evidence note
 
