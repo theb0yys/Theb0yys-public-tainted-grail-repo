@@ -51,7 +51,14 @@ function Get-MarkdownTargets([string]$content) {
 function Resolve-InternalTarget([string]$sourcePath, [string]$rawTarget) {
     if ([string]::IsNullOrWhiteSpace($rawTarget)) { return $null }
     if ($rawTarget.StartsWith('#')) { return $null }
-    if ($rawTarget -match '^(?i)(https?:[|mailto:|tel:|data:|javascript:|//)') { return $null }
+    $lowerTarget = $rawTarget.ToLowerInvariant()
+    if ($lowerTarget.StartsWith('http://') -or
+        $lowerTarget.StartsWith('https://') -or
+        $lowerTarget.StartsWith('mailto:') -or
+        $lowerTarget.StartsWith('tel:') -or
+        $lowerTarget.StartsWith('data:') -or
+        $lowerTarget.StartsWith('javascript:') -or
+        $lowerTarget.StartsWith('//')) { return $null }
 
     $target = $rawTarget
     $hash = $target.IndexOf('#')
