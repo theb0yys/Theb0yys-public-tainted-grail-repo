@@ -76,6 +76,23 @@ Exact lookup for important FoA types and members. This is intentionally selectiv
 | `Hero.Events.HeroSprintingStateChanged` | Hero sprint-state event used by Questline code | Questline public source |
 | `ViewHosting.OnMainCanvas()` | Main-canvas host lookup | Questline public source |
 
+## Settings, input, audio and integration
+
+| Type / member | Publicly demonstrated relevance | Evidence boundary |
+| --- | --- | --- |
+| `Difficulty.ManaUsage` | effective difficulty mana-use multiplier | Public Mono mod |
+| `Difficulty.StaminaUsage` | effective difficulty stamina-use multiplier | Public Mono mod |
+| `Difficulty.MaxEnemiesAttacking` | effective simultaneous-attacker limit | Public Mono mod |
+| `ItemsSorting.Compare(Item, Item)` | native inventory item comparison surface | Public Mono mod |
+| `ReInput.MappingHelper.UserAssignableMapCategories` | user-assignable Rewired category list | Public Mono mod |
+| `ReInput.MappingHelper.MapCategories` | all available Rewired map categories used to construct filtered assignable lists | Public Mono mod |
+| `AudioCore.DetermineMusicToPlay` | native music selection receives combat level | Public Mono mod |
+| `WyrdnessAudioProvider.IsPlayerWithinZone` | Wyrdness ambience-zone predicate | Public Mono mod |
+| `ModManagerUI.InitializeModEntries` | native mod-manager entry initialization | Public Mono integration mod |
+| `ModEntryUI.ToggleActive` | native mod-entry toggle action | Public Mono integration mod |
+| `World.SpawnView<T>(...)` | spawn a view for an MVC model/element; used when injecting mod-manager rows | Public Mono integration mod |
+| `Hero.Actor` | Questline source resolves hero actor through `DefinedActor.Hero.Retrieve()` | Questline public Merlin source |
+
 ## Public namespaces worth knowing
 
 Questline's public Merlin Workshop source and public Mono mods expose game-facing namespaces including:
