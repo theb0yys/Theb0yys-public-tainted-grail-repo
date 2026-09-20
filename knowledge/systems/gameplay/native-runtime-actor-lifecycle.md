@@ -8,58 +8,52 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Runtime Actor Lifecycle
+# Native Runtime Actor Lifecycle
 
-Use this page as the compact lifecycle map for a **native runtime NPC/creature**.
+A runtime NPC/creature in FoA is more than a spawned GameObject.
 
-A FoA actor is more than a GameObject.
+A recurring native ownership chain is:
 
-## Native chain
-
-~~~text
+```text
 reviewed LocationTemplate
 → placement verification
 → LocationTemplate.SpawnLocation / LocationCreator
 → Location
-→ World registration
+→ World ownership
 → Location initialization
 → NpcElement
-→ native View/visual
-→ AI/faction/combat
-→ death/discard/scene lifecycle
-~~~
+→ native visual/view
+→ AI/faction/combat owners
+→ death / discard / scene lifecycle
+```
 
-## When is the actor actually ready?
+## Readiness matters
 
-Do not treat "SpawnLocation returned" as the readiness boundary.
+A useful runtime actor should not be treated as “appeared” merely because a spawn call returned.
 
-Stronger checks used by project implementations include:
+Projects that needed stronger ownership waited for:
 
-- Location exists and is not discarded;
-- expected template identity matches;
-- Location/NPC initialization completed;
-- expected `NpcElement` is alive where required;
-- visual/View is active where the feature needs presentation.
+- non-discarded Location;
+- expected template identity;
+- complete location/NPC initialization;
+- living NpcElement where relevant;
+- active/loaded visual where relevant.
 
-Choose the readiness check that matches your feature.
+## Session-only ownership
 
-## Temporary actors
+For plugin-owned proof/temporary actors, `MarkedNotSaved=true` is a recurring defense-in-depth rule.
 
-For plugin-owned proof or temporary actors, `MarkedNotSaved = true` is a recurring guard against accidental persistence.
+It does not by itself prove every save-neutrality edge case, but it clearly distinguishes temporary actor ownership from persistent world ownership.
 
-It does not replace cleanup.
+## Cleanup authority
 
-## Cleanup
+Delete by the **owned Location reference/handle**, not by searching for a matching native ID globally.
 
-Delete by the exact `Location` reference your mod owns.
+`Location.Discard()` is the recurring owned cleanup operation; serious validation observes downstream model/view destruction rather than assuming a return from `Discard` means cleanup is complete.
 
-Use `Location.Discard()` rather than performing a global search by template/actor ID.
+## Separate concerns
 
-Then observe downstream cleanup rather than assuming the call returning means every View/resource is gone.
-
-## Keep these concerns separate
-
-~~~text
+```text
 template identity
 ≠ placement
 ≠ actor ownership
@@ -67,6 +61,6 @@ template identity
 ≠ movement
 ≠ target selection
 ≠ persistence
-~~~
+```
 
-A successful result in one category does not automatically prove the others.
+Each deserves its own evidence.

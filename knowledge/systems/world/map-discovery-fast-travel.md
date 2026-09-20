@@ -1,12 +1,12 @@
-# Map Discovery and Fast Travel
+# Map, Discovery, Markers, Fog, and Fast Travel
 
-Use this page when you want to change **map visibility, discovery, fast-travel permission, marker selection, or teleport behavior**.
+> **Reference page.** Use this when changing map visibility, discovery, fast-travel eligibility, map markers, or teleport behavior.
 
-Opening the map and teleporting are not the same operation.
+## What this system is
 
-## Fast-travel flow
+Opening the map, allowing fast travel, selecting a marker, and actually teleporting are separate stages.
 
-A researched route is:
+A researched route includes:
 
 ~~~text
 service / fireplace / discovery action
@@ -14,97 +14,145 @@ service / fireplace / discovery action
 → MapUI allows fast travel
 → player selects MapMarker
 → MapSceneUI.TryFastTravel(MapMarker)
-→ marker/location teleport owner
-→ native travel/scene/Hero movement
+→ cross-scene/local marker teleport owner
+→ FoA travel/scene/hero movement lifecycle
 ~~~
 
-Useful methods include:
+Map fog is another presentation/data layer and should not be confused with travel ownership.
 
-- `MapUI.AllowFastTravel()`
-- `MapUI.FastTravelAllowed`
-- `MapSceneUI.TryFastTravel(MapMarker)`
-- `LocationDiscovery.OnStart(...)`
-- `LocationDiscovery.Teleport`
-- `CrossSceneLocationMarker.Teleport`
+## Who owns it in FoA
 
-Some actions that look like "fast travel" only open the map and enable travel; they do not perform the teleport themselves.
+Important source-located owners include:
 
-## Discovery is another stage
+- `MapUI`;
+- `MapSceneUI`;
+- `MapMarker`;
+- `LocationDiscovery`;
+- `CrossSceneLocationMarker`;
+- native portal/travel/SceneService owners downstream;
+- `FogOfWar` for one map-fog surface.
+
+## Important identities, types, and methods
+
+Research/source-located surfaces include:
+
+- `MapUI.AllowFastTravel()`;
+- `MapUI.FastTravelAllowed`;
+- `MapSceneUI.TryFastTravel(MapMarker)`;
+- `LocationDiscovery.OnStart(...)`;
+- `LocationDiscovery.Teleport`;
+- `CrossSceneLocationMarker.Teleport`;
+- `MapUI.ToggleFogOfWar`;
+- `FogOfWar.CreateMaskTexture`.
+
+Some fireplace/service paths open the map but **do not themselves teleport**.
+
+That distinction is important.
+
+## Where it exists in the lifecycle
+
+### Fast travel
 
 ~~~text
-LocationDiscovery activates
-→ map/discovery state updates
-→ marker/fast-travel availability changes
-→ later selected teleport route
+fast-travel source/service
+→ map open
+→ travel permission enabled
+→ marker selection
+→ TryFastTravel
+→ confirmation/validation
+→ marker/location teleport
+→ cross-scene/native travel
+→ hero arrival
 ~~~
 
-Do not patch marker UI text and assume you changed discovery truth.
+### Discovery
 
-## Fog is presentation, not travel
+~~~text
+LocationDiscovery becomes active/started
+→ map/discovery state
+→ marker/fast-travel availability
+→ eventual teleport owner
+~~~
 
-Relevant fog surfaces include:
+### Fog
 
-- `MapUI.ToggleFogOfWar`
-- `FogOfWar.CreateMaskTexture`
+Fog/mask creation and map rendering are presentation/discovery surfaces. They do not by themselves own the world travel action.
 
-Changing the map mask can change what the player sees without changing:
+## How we interact with it
 
-- destination ownership;
-- travel permission;
-- scene transition;
-- discovery persistence.
-
-## Patch the stage you actually mean
+### Patch the stage you actually want to change
 
 Examples:
 
-- hide/show fog → fog owner;
-- allow/disallow travel → permission/validation stage;
-- change selection/confirmation → map UI route;
-- change destination → marker/location owner;
-- change cross-scene transport → Portal/SceneService lifecycle.
+- show/hide fog → map/fog owner;
+- allow/disallow travel → `MapUI.FastTravelAllowed`/validation stage;
+- modify selection/confirmation → map UI route;
+- alter destination → marker/location owner;
+- alter cross-scene load → portal/scene lifecycle.
 
-## Add guards before teleport begins
+### Preserve native travel when possible
 
-If you want to block unsafe travel, intercept before the native teleport/scene transition starts.
+If a mod wants to add a guard condition (e.g. unsafe area), intercept before the native teleport and then let the game's marker/travel owner execute when allowed.
 
-Then, when allowed, let the native marker/travel owner continue.
+### Treat marker identity and location identity separately
 
-## Marker identity vs destination identity
-
-A visible marker can be only the presentation of a `LocationDiscovery` or other world subject.
+A visible marker can be presentation for a LocationDiscovery/world subject.
 
 Do not use marker text as the sole destination identity.
 
-## Common mistakes
+## Why this route
 
-- map opened = teleport occurred;
-- marker UI = destination owner;
-- fog hook = travel guard;
-- cross-scene marker patched without handling scene lifecycle;
-- block added after teleport already started.
+Research on world protection/travel found:
 
-## How to verify fast-travel changes
+- a fireplace FastTravel action opens the map but does not teleport;
+- `LocationDiscovery.OnStart` can open the map and enable fast travel;
+- the actual selected marker route proceeds through `MapSceneUI.TryFastTravel` and marker/location teleport ownership.
 
-Check:
+This prevents patching the wrong "fast travel" method merely because it has the right name.
 
-1. what opens the map;
-2. current map state;
+## What goes wrong
+
+### Map open = travel executed
+
+False.
+
+### Marker UI = destination owner
+
+Not necessarily.
+
+### Fog hook used to gate world travel
+
+Presentation and travel ownership differ.
+
+### Cross-scene marker patched without scene lifecycle
+
+The downstream native scene/portal path still has its own identity/config/load requirements.
+
+### Fast-travel guard added after teleport already started
+
+Too late; lifecycle timing matters.
+
+## How to verify
+
+For fast-travel changes:
+
+1. source/service that opens map;
+2. map state;
 3. `FastTravelAllowed`;
 4. exact marker identity;
 5. selection event;
 6. validation/confirmation;
 7. `TryFastTravel`;
 8. destination marker/location;
-9. scene/local teleport;
-10. Hero arrival;
-11. blocked-case feedback;
+9. scene travel/teleport;
+10. hero arrival;
+11. blocked-case UI feedback;
 12. save/discovery state if modified.
 
-For fog changes, verify mask generation, visibility, discovery semantics, map/scene transition, and restoration independently.
+For fog changes, verify mask generation, map visibility, discovery semantics, scene/map change, and restoration independently.
 
-## Evidence limits
+## Current proof boundary
 
-The map/travel path is strongly mapped for several concrete cases.
+The working research maps several concrete map/travel surfaces and the downstream native scene route.
 
-Arbitrary new fast-travel markers and persistent discovery records still require their own identity and persistence validation.
+This is not a blanket proof for arbitrary new fast-travel markers or persistent discovery records; those need their own identity/persistence validation.

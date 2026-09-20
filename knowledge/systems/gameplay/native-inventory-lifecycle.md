@@ -11,17 +11,11 @@ source_artifact_sha256: 749aabbfbec121bb69bda0ae226223154406d2c990df3312ad12365d
 
 # Native Inventory Lifecycle
 
-Use this page when your mod needs to **read or change the player's inventory, equipment, loadouts, quick slots, or Character Sheet UI**.
+The inspected FoA build exposes a concrete inventory path. Do not invent generic `InventoryManager` abstractions over it.
 
-The key rule is:
+## Entry and screen lifecycle
 
-> Keep native `HeroItems` / `Item` state as the source of truth. A custom UI should project that state, not replace it.
-
-## Opening the native inventory
-
-The inspected Mono path is:
-
-~~~text
+```text
 VHeroKeys.Handle
 → CharacterSheetUI.ToggleCharacterSheet(Inventory, ...)
 → CharacterSheetUI
@@ -34,79 +28,49 @@ VHeroKeys.Handle
       ├─ LoadoutsUI
       └─ HeroArmorSetsUI
 → TryDiscard / OnDiscard / OnFullyDiscarded
-~~~
+```
 
-The Character Sheet also participates in renderer/HLOD freeze handling and the native back/close lifecycle.
+The Character Sheet also owns renderer/HLOD freeze bookkeeping and native close/back lifecycle.
 
-## What owns inventory state?
+## Authoritative data owners
 
 `HeroItems` is the player inventory/equipment owner.
 
-It exposes or owns native state for:
+Important native projections include:
 
-- contained/owned items;
+- `Inventory` / contained items;
+- `Items` / owned items;
 - loadouts;
-- equipment slots;
-- quick slots;
+- equipment-slot state;
+- quick-slot state;
 - weight;
 - add/remove/drop/move operations;
 - serialization/deserialization.
 
-`Item` is the runtime item instance and carries/derives state such as:
+`Item` is the concrete item-instance model and owns/derives presentation and action state such as quantity, template, favorite, equipped state, tags, item class, stolen/quest flags, effects, price and action methods.
 
-- quantity;
-- template;
-- favorite/equipped state;
-- tags/classification;
-- stolen/quest flags;
-- effects;
-- price;
-- item actions.
+## Action owners
 
-## Use native actions for gameplay changes
-
-FoA already has native operations for:
+Native operations already exist for:
 
 - equip/unequip;
 - item use;
-- quick-slot handling;
+- quick slots;
 - item movement;
 - container transfer;
-- crime/restriction checks;
+- restrictions/crime;
 - persistence.
 
-Prefer calling the native operation that owns the action instead of maintaining a parallel inventory model.
+## Public modding boundary
 
-## Safe custom-UI pattern
+A custom UI should normally:
 
-A custom inventory UI should normally do this:
+```text
+read native HeroItems / Item projection
+→ present/search/group locally
+→ request a native operation through a narrow adapter
+→ observe native result/events
+→ refresh from native truth
+```
 
-~~~text
-read HeroItems / Item state
-→ build search/filter/sort locally
-→ user chooses an action
-→ call the narrow native operation
-→ observe result/events
-→ refresh from HeroItems / Item state
-~~~
-
-That allows the custom UI to own presentation while native systems continue to own gameplay state.
-
-## What not to duplicate
-
-Do not create a second source of truth for:
-
-- item quantity;
-- equipped slots;
-- loadouts;
-- quick slots;
-- crime/stolen rules;
-- item persistence.
-
-If your UI disagrees with `HeroItems`, the UI should refresh rather than forcing the game to match its private copy.
-
-## Evidence limits
-
-This page is based on current Mono static/decompilation evidence for the inspected build.
-
-The page maps native ownership and lifecycle. It does not by itself prove every custom UI action path at runtime.
+Do not maintain a second inventory, equipment or quick-slot truth.
