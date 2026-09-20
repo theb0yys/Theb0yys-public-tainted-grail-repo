@@ -48,10 +48,6 @@ jobs:
           Write-Host ("Repository unresolved sources: {0}" -f $manifest.UnresolvedCount)
 
           if ($generated -cne $baseline) {
-            $bytes = [System.IO.File]::ReadAllBytes((Resolve-Path $generatedPath))
-            Write-Host "DRIFT_MANIFEST_BASE64_BEGIN"
-            Write-Host ([Convert]::ToBase64String($bytes))
-            Write-Host "DRIFT_MANIFEST_BASE64_END"
             throw "Repository Harmony anchor inventory changed. Regenerate and review repository-symbol-anchors.json."
           }
 
