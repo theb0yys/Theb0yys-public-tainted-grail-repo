@@ -118,8 +118,12 @@ foreach ($path in $markdownFiles) {
 foreach ($root in @('mechanics/','investigate/')) {
     $rootFiles = @($markdownFiles | Where-Object { $_.StartsWith($root) })
     $withMeta = @($rootFiles | Where-Object { $frontMatterFiles.Contains($_) })
+    $withoutMeta = @($rootFiles | Where-Object { -not $frontMatterFiles.Contains($_) })
     if ($withMeta.Count -gt 0 -and $withMeta.Count -lt $rootFiles.Count) {
         $warnings.Add("Inconsistent front matter under $root : $($withMeta.Count)/$($rootFiles.Count) Markdown files use YAML metadata.")
+        foreach ($missingPath in $withoutMeta) {
+            $warnings.Add("Missing front matter: $missingPath")
+        }
     }
 }
 
