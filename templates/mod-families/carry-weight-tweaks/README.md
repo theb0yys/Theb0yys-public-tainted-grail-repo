@@ -1,10 +1,8 @@
 # CarryWeightTweaks Public Template
 
-Use this starter when you are building carry-weight tuning that should share configuration across Mono and IL2CPP. The runtime hosts are where you connect the shared rule to the exact FoA encumbrance/stat owner.
+Use this starter for carry-weight tuning that should share settings and feature rules across Mono and IL2CPP.
 
-Source family: `carry-weight-tweaks`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Each runtime host is responsible for connecting those rules to the exact FoA stat owner or hook used on that runtime.
 
 ## Reusable mechanisms
 
