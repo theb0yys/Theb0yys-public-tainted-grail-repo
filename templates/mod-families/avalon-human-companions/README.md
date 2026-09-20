@@ -1,10 +1,8 @@
 # Avalon Human Companions Public Template
 
-Use this starter when you are building human-companion features across Mono and IL2CPP. Keep companion rules and commands shared, while each host handles the exact FoA actor, faction, interaction, and lifecycle access for that runtime.
+Use this starter for human-companion features that need one shared feature model with separate Mono and IL2CPP integration.
 
-Source family: `avalon-human-companions`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+The shared project is for companion behavior and configuration; runtime hosts are where exact FoA actor, AI, dialogue, combat, or UI access belongs.
 
 ## Reusable mechanisms
 
