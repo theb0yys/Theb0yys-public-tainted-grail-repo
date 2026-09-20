@@ -20,6 +20,20 @@ Runtime is expressed by the parent directory. Child folders do not repeat `mono`
 
 A new domain folder is created only when at least one public-safe example exists.
 
+## Corpus inventory boundary
+
+The connected private repository's current `mods/` tree was inspected recursively on **2026-09-20**:
+
+- **108** direct mod-owner folders were present;
+- **30,413** paths existed beneath `mods/`;
+- **95** owners contained a conventional `src/*.cs` surface, but that structural fact alone does **not** classify them as Mono;
+- **6** owners had explicit IL2CPP-named project roots: `avalon-exceptions`, `foa-mod-manager`, `immersive-backgrounds`, `tainted-framework`, `tainted-music`, and `tainted-performance`;
+- `rich-merchant` adds a seventh directly inspectable IL2CPP implementation owner through one conditional project that builds distinct Mono and IL2CPP targets.
+
+The maintainer reports a larger IL2CPP corpus. That larger count is **not derivable from the connected repository's current committed tree using claim-fit implementation evidence**. It may include local/uncommitted work or projects represented under another convention. This map therefore records only the seven directly inspectable IL2CPP implementation owners and does not manufacture the remainder.
+
+Compatibility documents were also checked because an `IL2CPP` mention is not implementation proof. Examples of explicit non-support include `missing-pebbles`, `tainted-survival`, `lockpicking-reforged`, `tainted-bugfixes`, `avalon-awakened`, `origins-of-avalon`, `magic-tweaks`, `wyrd-hunt`, `tainted-blood`, and `avalon-companions`.
+
 ## Direct IL2CPP implementation surfaces verified in the private repository
 
 These rows require a committed IL2CPP project/source surface, not merely a compatibility note or research mention.
