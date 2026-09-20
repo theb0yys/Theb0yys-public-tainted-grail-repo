@@ -1,5 +1,5 @@
 # Avalon Stash — Dual-Runtime Starter
 
-Feature boundary: stash/storage integration.
+Use this starter for stash or storage features that need to support both Mono and IL2CPP.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+Keep shared storage behavior and UI-independent logic in the common project, while each runtime host handles the exact Hero/storage access and loader-specific wiring.
