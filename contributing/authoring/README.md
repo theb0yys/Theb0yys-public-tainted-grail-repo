@@ -3,6 +3,7 @@
 Current standards:
 
 - [Document archetypes](document-archetypes.md)
+- [Canonicality and cross-link rules](canonicality-and-cross-links.md)
 - [Private-to-public process](private-to-public-process.md)
 - [Evidence and provenance](evidence-and-provenance.md)
 - [Public clean-room boundary](public-clean-room-boundary.md)
