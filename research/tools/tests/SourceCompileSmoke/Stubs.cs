@@ -172,3 +172,20 @@ namespace UnityEngine
         }
     }
 }
+
+
+namespace BepInEx.Unity.IL2CPP
+{
+    public abstract class BasePlugin
+    {
+        public BepInEx.Configuration.ConfigFile Config { get; } = new BepInEx.Configuration.ConfigFile();
+        public BepInEx.Logging.ManualLogSource Log { get; } = new BepInEx.Logging.ManualLogSource();
+
+        public abstract void Load();
+
+        public virtual bool Unload()
+        {
+            return true;
+        }
+    }
+}
