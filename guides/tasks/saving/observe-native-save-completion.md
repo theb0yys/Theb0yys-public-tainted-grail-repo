@@ -4,6 +4,11 @@ Use FoA's concrete cloud-service completion methods as a post-save notification 
 
 Working lineage: [Native Save Completion Observer](../../../research/case-studies/persistence/native-save-completion-observer.md).
 
+## Runnable source
+
+Start from the buildable example: [Save observer and backup](../../../examples/mono/infrastructure/save-observer-backup/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Concrete targets
 
 The working implementation resolves `EndSave(string)` on these concrete types:
