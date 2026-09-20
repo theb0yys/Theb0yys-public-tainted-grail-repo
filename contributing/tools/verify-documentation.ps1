@@ -137,17 +137,19 @@ foreach ($path in $markdown) {
 
     $topKeys = @{}
     for ($i = 1; $i -lt $close; $i++) {
-        if ($lines[$i] -match '^(?<key>[A-Za-z0-9_-]+):\s*(?<value>.*)) {
-            $key = $Matches['key']
+        $line = $lines[$i]
+        if ($line -match '^[A-Za-z0-9_-]+:') {
+            $colon = $line.IndexOf(':')
+            $key = $line.Substring(0, $colon).Trim()
+            $value = $line.Substring($colon + 1).Trim()
             if ($topKeys.ContainsKey($key)) {
                 $failures.Add("Duplicate front-matter key '$key': $path")
             }
             else {
-                $topKeys[$key] = $Matches['value'].Trim()
+                $topKeys[$key] = $value
             }
         }
     }
-
     foreach ($required in @('document_type', 'scope', 'last_verified')) {
         if (-not $topKeys.ContainsKey($required) -or [string]::IsNullOrWhiteSpace($topKeys[$required])) {
             $failures.Add("Front matter missing '$required': $path")
