@@ -1,8 +1,6 @@
 # Native Weapon Integration
 
-## What it is
-
-A FoA weapon is not one object. It is a chain of native owners covering definition, runtime item state, equip, hand representation, combat and rendering.
+Use this page as a compact map of **which native FoA layer owns which part of a weapon**.
 
 ## Ownership chain
 
@@ -12,51 +10,54 @@ ItemTemplate
 → ItemEquipSpec
 → ItemEquip
 → CharacterHandBase
-→ CharacterWeapon / combat systems
-→ presentation owner (for example Drake for rigid meshes)
+→ CharacterWeapon / combat
+→ presentation owner such as Drake
 ~~~
 
-## Definition and runtime state
+## Definition
 
-`ItemTemplate` supplies the native definition and attachment graph.
+`ItemTemplate` defines the weapon's native item identity and attachment graph.
 
-`Item` is the runtime MVC Model and owns instance state such as quantity, level, equipped slots and attachments.
+## Runtime item state
+
+`Item` is the runtime Model and carries instance state such as quantity, level, equipped slots, and Elements/attachments.
 
 ## Equip
 
-`ItemEquipSpec` makes an item equippable and defines equipment type plus representation data.
+`ItemEquipSpec` makes an item equippable and provides equipment/representation data.
 
-`ItemEquip` is the runtime equip Element.
+`ItemEquip` owns the runtime equip/unequip representation lifecycle.
 
-`CharacterHandBase` is a key presentation/equip owner for held weapons.
+`CharacterHandBase` is the held-weapon View used by the native equip chain.
 
 ## Combat
 
-Native combat remains owned by weapon/combat systems such as `CharacterWeapon` rather than by the rendered mesh.
+`CharacterWeapon` and related combat systems own melee combat behavior.
 
-That separation is important: replacing a visible model does not create a complete weapon.
+Changing the visible mesh does not create or redefine a complete weapon.
 
 ## Presentation
 
-Rigid weapon visuals can enter Drake while the Item/equip/hand chain remains the gameplay owner.
+Rigid weapon visuals can be rendered through Drake while the `Item` / equip / hand chain remains the gameplay owner.
 
-First-person, third-person and inventory-preview presentation are distinct consumers and should stay on their native lifecycle.
+First-person, third-person, and inventory-preview presentation can be separate consumers. Keep them on their native lifecycles.
 
-## Modding relevance
+## Decide what you are changing
 
-When changing an existing weapon, decide which layer you are actually changing:
+Before patching, identify the layer:
 
-- definition/stat;
-- runtime item;
-- equip;
+- item definition/stat;
+- runtime item instance;
+- equip behavior;
 - combat;
-- presentation;
+- visual presentation;
 - audio/VFX.
 
-Do not make a presentation object the source of truth for the weapon.
+Do not make the presentation object the source of truth for the weapon.
 
-## Related systems
+## Related pages
 
+- [Weapons](../weapons.md)
 - [Drake](../../presentation/drake/README.md)
 - [Runtime lifetime](../../core/runtime-lifecycle/README.md)
 - [Runtime orchestration/templates](../../core/runtime-orchestration/README.md)
