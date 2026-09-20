@@ -12,5 +12,5 @@ Each tool answers a bounded technical question. Keep symbol identity, patch inst
 
 Symbol-anchor extraction is source-based and covers Mono, IL2CPP, hybrid and unspecified source lanes. Symbol verification can inspect Mono managed assemblies or generated IL2CPP interop assemblies through the runtime filter.
 
-The current in-process runtime tracer and Harmony live-audit hosts target Mono / BepInEx 5. Their core Harmony concepts transfer to IL2CPP, but the BepInEx 6 IL2CPP host lifecycle and interop behavior require separate host implementations rather than treating the Mono binaries as cross-runtime tools.
+The runtime tracer and Harmony live audit use shared cores with separate Mono / BepInEx 5 and IL2CPP / BepInEx 6 host projects. Runtime-specific binaries remain separate even though the target-resolution and Harmony inspection contracts are shared.
 
