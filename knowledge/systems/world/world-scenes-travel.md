@@ -65,6 +65,28 @@ mod catalogue/locator active
 → eventual native unload/return
 ~~~
 
+## Scene identity is not scene readiness
+
+The scene/domain system exposes several distinct milestones.
+
+Static/source research establishes:
+
+~~~text
+SceneService.MainSceneRef
+SceneService.AdditiveSceneRef
+ActiveSceneRef = AdditiveSceneRef when present, otherwise MainSceneRef
+~~~
+
+A domain/scene identity change is earlier than full gameplay readiness. Additional researched lifecycle signals include:
+
+- `AfterNewDomainSet` — domain identity/lifetime changed;
+- `EverythingInitialized`;
+- `AfterSceneFullyInitialized`;
+- `AfterSceneStoriesExecuted`;
+- `SafeAfterSceneChanged`.
+
+Do not treat `ActiveSceneRef` changing, or even a new domain being set, as proof that every scene-owned system, Story or Hero-dependent consumer is ready. Select the milestone that matches the state your mod actually needs.
+
 ## How we interact with it
 
 ### Prefer the native travel path
