@@ -1,10 +1,8 @@
 # Avalon Contracts
 
-**Posture: Provider/consumer discovery is usable; lifecycle execution is lane-specific**
+Use Avalon Contracts when separate mods need a common way to publish and discover provider data, capabilities, state, evidence, or validation results.
 
-Use Avalon Contracts when separate mods need one shared model for contract/provider discovery, catalog/state/evidence readback and carefully promoted lifecycle semantics.
-
-Do not use it merely because your mod has a config option named “contract”.
+Provider/consumer discovery is available for normal use. Lifecycle execution is more restricted: use only the specific lifecycle routes documented as available for the integration you are building.
 
 ## Public model
 
