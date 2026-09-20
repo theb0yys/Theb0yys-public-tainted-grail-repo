@@ -1,10 +1,8 @@
 # Immersive HUD Public Template
 
-Use this starter when you are building HUD visibility or presentation changes across both runtimes. Keep visibility rules and configuration shared, and connect them to the correct native HUD lifecycle/refresh points in each host.
+Use this starter for HUD visibility or presentation changes that should behave consistently across both runtimes.
 
-Source family: `always-show-hud`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep visibility rules and configuration shared, and let the Mono/IL2CPP hosts connect them to the correct native HUD lifecycle and refresh methods.
 
 ## Reusable mechanisms
 
