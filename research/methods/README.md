@@ -7,5 +7,8 @@ Reusable methods for establishing trustworthy FoA modding knowledge.
 - [Static/source evidence vs runtime evidence](static-vs-runtime-evidence.md)
 - [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
 - [Proving a new mechanic](proving-a-mechanic.md)
+- [Local game investigation](local-game-investigation.md)
+- [Local asset inspection](local-asset-inspection.md)
+- [Runtime log evidence](runtime-log-evidence.md)
 
 Subject-specific work belongs under [Investigations](../investigations/).
