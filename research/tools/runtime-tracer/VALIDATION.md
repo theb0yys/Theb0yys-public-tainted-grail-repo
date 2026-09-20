@@ -9,7 +9,7 @@ This record separates repository/source validation from runtime proof.
 | Check | State | Evidence / limit |
 | --- | --- | --- |
 | Gate 2 diff contains only runtime-tracer implementation/integration | **PASSED** | Compare against Gate 1 head before promotion. |
-| Public-surface guard | **IN_PROGRESS** | Must pass on the final Gate 2 branch head. |
+| Public-surface guard | **PASSED** | GitHub Actions public-surface guard passed on the Gate 2 branch before this status update; the final status commit must pass the same guard. |
 | No configured target installs no patch | **PASSED (source review)** | `General.Enabled=false` by default; enabled + no target returns before Harmony creation. |
 | Exact target identity / overload ambiguity fails closed | **PASSED (source review)** | Assembly, full declaring type and declared method are resolved explicitly; ambiguous overloads require `ParameterTypeNames`. |
 | Explicit zero-parameter overload selection | **PASSED (source review)** | `ParameterTypeNames=<none>` selects an exact zero-parameter signature. |
