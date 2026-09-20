@@ -1,6 +1,8 @@
 # Types and Members Reference
 
-Exact lookup for important FoA types and members. This is intentionally selective: include a member when knowing it saves meaningful FoA-specific source hunting or reverse engineering.
+Exact lookup for important FoA types and members.
+
+- [Hero and Character stat surfaces](hero-character-stats.md) — exact inspected Mono stat/member inventory and base-vs-modified save semantics This is intentionally selective: include a member when knowing it saves meaningful FoA-specific source hunting or reverse engineering.
 
 ## Lifecycle and owner types
 
@@ -14,6 +16,11 @@ Exact lookup for important FoA types and members. This is intentionally selectiv
 | `World.Any<T>()` | Null-checkable lookup for a world model such as `Hero` | Public Mono mod |
 | `World.Only<T>()` | Resolve a single expected world model | Questline public source |
 | `World.Services.Get<T>()` | Resolve registered services | Questline public source + public Mono mods |
+| `World.All<T>()` | Broad enumeration of registered models | Preserved developer lifecycle documentation |
+| `model.Element<T>()` / `model.Elements<T>()` | Access one/all related Elements | Preserved developer lifecycle documentation |
+| `element.ParentModel` | Resolve Element owner | Preserved developer lifecycle documentation |
+| `World.View<T>(model)` | Resolve an associated View | Preserved developer lifecycle documentation |
+| `Model.MarkedNotSaved` / `IsNotSaved` | Explicit non-saved Model state; save preparation skips normal save callback for not-saved Models | Exact Mono static inspection |
 
 ## Templates, stats and progression
 
@@ -21,6 +28,10 @@ Exact lookup for important FoA types and members. This is intentionally selectiv
 | --- | --- | --- |
 | `TemplatesProvider.Get<T>(guid)` | Resolve a native template by GUID | Public Mono mods |
 | `TemplateReference.TryGet<T>()` | Resolve a typed template from a template reference | Public Mono mod |
+| `TemplatesProvider.GetAllOfType<T>()` | Enumerate loaded templates of a requested type | Exact Mono static inspection |
+| `SaveWriter.WriteTemplate<T>()` | Persist a template relationship as its GUID | Exact Mono static inspection |
+| `SaveReader.ReadTemplate<T>()` | Restore a saved template through `TemplatesUtil.Load<T>()` | Exact Mono static inspection |
+| `TemplatesUtil.Load<T>()` | Resolve a saved GUID through `TemplatesProvider` | Exact Mono static inspection |
 | `CommonReferences.Get` | Public source of common game template references | Public Mono mods / Questline source |
 | `TweakSystem.Tweak(...)` / `AddTweak(...)` | Build and register native stat tweaks | Public Mono mods |
 | `StatTweak.Add` / `StatTweak.Multi` | Publicly used additive/multiplicative stat tweak constructors | Public Mono mods |
@@ -130,3 +141,5 @@ When a type/member is promoted into this reference, record where known:
 - evidence source and maturity.
 
 Do not turn this area into a bulk decompilation archive. Follow the repository's public-source boundary.
+
+Private/internal evidence-derived entries are scoped in [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
