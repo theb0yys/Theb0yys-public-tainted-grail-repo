@@ -73,7 +73,7 @@ ScriptableObject templates must implement `ITemplate`.
 
 `TemplatesProvider.AllLoaded` reflects loader completion.
 
-`Get<T>(guid)` rejects access before readiness and performs GUID + type validation.
+`Get<T>(guid)` rejects access before readiness and performs GUID + type validation. Exact Mono inspection also exposes `GetAllOfType<T>()` for typed enumeration of loaded templates.
 
 ### Scene loading
 
@@ -108,6 +108,7 @@ mod locators/catalogues installed
 → SceneLoaded
 → scene initialization
 → SceneInitialized
+→ later readiness milestones as applicable
 → eventual UnloadSceneAsync
 ~~~
 
