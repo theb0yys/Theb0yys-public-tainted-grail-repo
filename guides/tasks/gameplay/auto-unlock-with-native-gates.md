@@ -1,5 +1,8 @@
 # Auto-Unlock Without Bypassing Native Lock Rules
 
+
+> **Start with source:** [Auto-unlock example](../../../examples/mono/gameplay/auto-unlock/README.md)
+
 Skip the lockpicking interaction only after FoA has already established that the current lock is a normal lockpickable target.
 
 Working lineage: [Auto-Unlock Without Bypassing Every Lock Rule](../../../research/case-studies/lockpicking/auto-unlock-boundary.md).
