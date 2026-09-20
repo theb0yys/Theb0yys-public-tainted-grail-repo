@@ -1,4 +1,4 @@
-# 01 — Harmony Result Postfix
+# Harmony Result Postfix
 
 Use this pattern when the original method should still run and you only need to adjust its final decision/result.
 
@@ -21,13 +21,13 @@ That is substantially safer than replacing an entire method when all you need is
 ## Build
 
 \`\`\`powershell
-dotnet build .\ResultPostfixTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\HarmonyResultPostfix.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 \`\`\`
 
 Optional local deploy:
 
 \`\`\`powershell
-dotnet build .\ResultPostfixTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA" -p:DeployOnBuild=true
+dotnet build .\HarmonyResultPostfix.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA" -p:DeployOnBuild=true
 \`\`\`
 
 ## Expected demo log

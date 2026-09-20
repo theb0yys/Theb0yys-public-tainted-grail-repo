@@ -17,6 +17,6 @@ Build:
 dotnet build .\RuntimeUiBasic.csproj -c Release -p:GameRoot="C:\Games\Tainted Grail FoA"
 ```
 
-See [Runtime UI overlay example](../../../examples/mono/runtime-ui-overlay/README.md) for the mechanism demonstration.
+See [Runtime UI overlay example](../../../examples/mono/ui/runtime-overlay/README.md) for the mechanism demonstration.
 
 **Evidence state:** template structure only. Runtime behaviour is not claimed until separately observed on the target build.

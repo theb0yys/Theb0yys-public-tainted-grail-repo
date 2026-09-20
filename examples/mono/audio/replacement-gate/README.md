@@ -1,4 +1,4 @@
-# 04 — Audio Replacement Gate
+# Audio Replacement Gate
 
 This example preserves the important invariant from a runtime-proven replacement-audio path:
 
@@ -25,7 +25,7 @@ Unexpected exceptions also fail open.
 ## Build
 
 \`\`\`powershell
-dotnet build .\AudioReplacementTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\AudioReplacementGate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 \`\`\`
 
 Set \`Demo.RunOnLoad=true\` to run the self-owned demonstration.

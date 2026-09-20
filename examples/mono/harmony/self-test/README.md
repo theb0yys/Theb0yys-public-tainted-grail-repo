@@ -13,5 +13,5 @@ Use it only on the Mono/BepInEx 5 lane.
 Build:
 
 ```powershell
-dotnet build HarmonySelfTest.csproj -c Release -p:GameRoot="D:\Games\Tainted Grail FoA"
+dotnet build HarmonySelfTest.csproj -c Release -p:GameRoot="C:\Path\To\Tainted Grail FoA"
 ```

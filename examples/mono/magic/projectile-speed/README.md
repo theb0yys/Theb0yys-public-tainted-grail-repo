@@ -17,7 +17,7 @@ Use a multiplier of:
 ## Build
 
 ~~~powershell
-dotnet build .\MagicProjectileSpeedExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\MagicProjectileSpeed.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
 ## Pattern

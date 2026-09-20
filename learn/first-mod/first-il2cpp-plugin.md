@@ -41,7 +41,7 @@ New-Item -ItemType Directory -Force C:\TGModding\MyFirstTGMod | Out-Null
 From the root of this starter repository:
 
 ~~~powershell
-Copy-Item .\templates\il2cpp-basic\* C:\TGModding\MyFirstTGMod\
+Copy-Item .\templates\il2cpp\basic\* C:\TGModding\MyFirstTGMod\
 ~~~
 
 Open:

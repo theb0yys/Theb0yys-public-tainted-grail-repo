@@ -30,7 +30,7 @@ You will learn how to:
 
 ~~~powershell
 New-Item -ItemType Directory -Force C:\TGModding\MyFirstTGMonoMod | Out-Null
-Copy-Item .\templates\mono-basic\* C:\TGModding\MyFirstTGMonoMod\
+Copy-Item .\templates\mono\basic\* C:\TGModding\MyFirstTGMonoMod\
 cd C:\TGModding\MyFirstTGMonoMod
 ~~~
 

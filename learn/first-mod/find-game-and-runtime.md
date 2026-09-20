@@ -70,7 +70,7 @@ The validated local snapshot recorded on **2026-08-30** was IL2CPP.
 For that lane, use:
 
 ~~~text
-templates\il2cpp-basic
+templates\il2cpp\basic
 ~~~
 
 ### 3. Check for Mono
@@ -86,7 +86,7 @@ and an `Assembly-CSharp.dll`-style game assembly.
 For a Mono setup, use:
 
 ~~~text
-templates\mono-basic
+templates\mono\basic
 ~~~
 
 Mono and IL2CPP are separate supported Tainted Grail modding lanes. Use the tooling that matches the installation you are actually targeting.

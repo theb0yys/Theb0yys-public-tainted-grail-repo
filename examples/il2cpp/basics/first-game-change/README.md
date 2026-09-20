@@ -19,7 +19,7 @@ From this repository root:
 $GameRoot = "C:\Path\To\Tainted Grail FoA"
 
 dotnet build `
-  .\examples\il2cpp-first-game-change\FirstGameChange.csproj `
+  .\examples\il2cpp\basics\first-game-change\FirstGameChange.csproj `
   -c Release `
   -p:GameRoot="$GameRoot"
 ~~~
@@ -27,7 +27,7 @@ dotnet build `
 The output is:
 
 ~~~text
-examples\il2cpp-first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll
+examples\il2cpp\basics\first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll
 ~~~
 
 ## Deploy
@@ -39,7 +39,7 @@ $PluginDir = Join-Path $GameRoot "BepInEx\plugins\TGCommunity.Il2CppFirstGameCha
 New-Item -ItemType Directory -Force $PluginDir | Out-Null
 
 Copy-Item `
-  .\examples\il2cpp-first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll `
+  .\examples\il2cpp\basics\first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll `
   $PluginDir `
   -Force
 ~~~
@@ -80,4 +80,4 @@ This exact public teaching example was written from the current BepInEx 6 / Unit
 
 Do not describe it as runtime-tested until this exact project is built, deployed, and observed on the target installation.
 
-See [Testing and Evidence Status](../../../sources/evidence-standard.md) for the repository's formal status terminology.
+See [Testing and Evidence Status](../../../../sources/evidence-standard.md) for the repository's formal status terminology.

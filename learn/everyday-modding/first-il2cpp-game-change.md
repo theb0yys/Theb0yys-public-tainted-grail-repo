@@ -37,7 +37,7 @@ From the repository root:
 $GameRoot = "C:\Path\To\Tainted Grail FoA"
 
 dotnet build `
-  .\examples\il2cpp-first-game-change\FirstGameChange.csproj `
+  .\examples\il2cpp\basics\first-game-change\FirstGameChange.csproj `
   -c Release `
   -p:GameRoot="$GameRoot"
 ~~~
@@ -56,7 +56,7 @@ Those remain local references. Do not copy them into this repository.
 Open:
 
 ~~~text
-examples\il2cpp-first-game-change\Plugin.cs
+examples\il2cpp\basics\first-game-change\Plugin.cs
 ~~~
 
 The important sequence is:
@@ -78,7 +78,7 @@ $PluginDir = Join-Path $GameRoot "BepInEx\plugins\TGCommunity.Il2CppFirstGameCha
 New-Item -ItemType Directory -Force $PluginDir | Out-Null
 
 Copy-Item `
-  .\examples\il2cpp-first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll `
+  .\examples\il2cpp\basics\first-game-change\bin\Release\net6.0\TGCommunity.Il2CppFirstGameChange.dll `
   $PluginDir `
   -Force
 ~~~

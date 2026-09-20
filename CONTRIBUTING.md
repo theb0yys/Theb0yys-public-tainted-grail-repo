@@ -39,6 +39,16 @@ Follow [sources/evidence-standard.md](sources/evidence-standard.md). State exact
 - code copied from private projects without an explicit decision to publish that exact code;
 - unscoped claims that a runtime/build works.
 
+## Example layout
+
+Keep `examples/` shallow and predictable:
+
+```text
+examples/<mono|il2cpp|merlin|hybrid>/<domain>/<mechanism>/
+```
+
+For Mono and IL2CPP examples, use lowercase kebab-case domain/mechanism folders, do not use numeric ordering prefixes, and do not repeat the runtime in child names. Project files should use concise PascalCase mechanism names rather than `*Template.csproj` or `*Example.csproj` suffixes. Add a domain folder only when it contains a public-safe example.
+
 ## Pull requests
 
 State what changed, the Mono/IL2CPP/Merlin/hybrid/documentation lane, what was actually tested, local dependencies used, and why the contribution is safe to redistribute.

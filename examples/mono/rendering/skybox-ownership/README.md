@@ -1,4 +1,4 @@
-# 05 — Skybox Runtime Ownership
+# Skybox Runtime Ownership
 
 This example teaches a general Unity runtime-ownership pattern:
 
@@ -13,7 +13,7 @@ The template uses a tiny procedurally generated cubemap. It includes no HDRI or 
 ## Build
 
 \`\`\`powershell
-dotnet build .\SkyboxOwnershipTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\SkyboxOwnership.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 \`\`\`
 
 Set \`Skybox.ApplyDemoOnLoad=true\` to apply the demonstration skybox.

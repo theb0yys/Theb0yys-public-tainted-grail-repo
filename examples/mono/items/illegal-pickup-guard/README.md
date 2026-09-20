@@ -16,7 +16,7 @@ The working implementation lineage covers:
 ## Build
 
 ~~~powershell
-dotnet build .\IllegalPickupGuardExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\IllegalPickupGuard.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
 ## Pattern

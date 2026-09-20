@@ -11,7 +11,7 @@ The hook observes FMOD one-shot playback and filters to the hero footstep owner 
 ## Build
 
 ~~~powershell
-dotnet build .\FootstepBeepExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\FootstepReplacement.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
 ## Pattern
@@ -22,4 +22,4 @@ dotnet build .\FootstepBeepExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\
 4. suppress the matching native footstep only when the replacement will play;
 5. leave every unrelated FMOD event alone.
 
-For a reusable generic gate, see [Audio replacement gate](../audio-replacement-gate/README.md).
+For a reusable generic gate, see [Audio replacement gate](../replacement-gate/README.md).

@@ -1,4 +1,4 @@
-# 02 — Harmony Action Guard
+# Harmony Action Guard
 
 Use this pattern when a native/original action should run normally **unless a specific guard blocks it**.
 
@@ -19,7 +19,7 @@ The key idea is that your mod does not become the whole action system. It only o
 ## Build
 
 \`\`\`powershell
-dotnet build .\ActionGuardTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\HarmonyActionGuard.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 \`\`\`
 
 With \`Demo.AllowAction=false\`, the demo should log a blocked result and the original execution count should stay at zero.

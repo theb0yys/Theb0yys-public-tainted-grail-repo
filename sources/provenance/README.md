@@ -2,6 +2,8 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
+- [Example extraction map](example-extraction-map.md)
+
 ## Waves 1–14
 
 Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, shared frameworks/SDK, actor/companion ownership, save/travel, stats/magic/HUD, combat/storage/lockpicking/dialogue.
@@ -29,6 +31,19 @@ Extracted public-safe starter structure from the private mod-template family and
 - no private production implementation source was published.
 
 Newly authored public starters retain their own validation state; private success does not make them runtime-proven.
+
+## Wave 17 — 2026-09-20
+
+Reorganized the public example surface around runtime/authoring roots and functional domains:
+
+- `examples/` now exposes only `mono/`, `il2cpp/`, `merlin/`, and `hybrid/` as directories;
+- Mono examples moved from a flat list into audio, combat, Harmony, items, magic, rendering, and UI domains;
+- the IL2CPP first-change example moved under `il2cpp/basics/`;
+- numeric ordering and redundant runtime/domain words were removed from example paths;
+- project filenames were normalized to concise mechanism names;
+- the private corpus was mapped into extraction domains without publishing private production implementation source.
+
+The extraction map distinguishes directly inspected runtime source surfaces from routing-only source-family labels. It does not treat private runtime success as validation of newly authored public examples.
 
 ## Measurement rule
 

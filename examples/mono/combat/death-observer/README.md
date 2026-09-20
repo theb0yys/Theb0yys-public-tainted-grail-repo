@@ -11,7 +11,7 @@ It is **not** the owner of every downstream system. Corpse creation, loot, rewar
 ## Build
 
 ~~~powershell
-dotnet build .\CharacterDeathObserverExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\DeathObserver.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
 ## Pattern

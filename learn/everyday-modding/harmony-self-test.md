@@ -7,7 +7,7 @@ You are proving **Harmony**—the patching library used to attach your code to e
 The repository includes:
 
 ~~~text
-examples\mono-harmony-self-test
+examples\mono\harmony\self-test
 ~~~
 
 This specific example is for the supported **Mono/BepInEx 5** lane.
@@ -49,7 +49,7 @@ From the repository root:
 $GameRoot = "C:\Path\To\Tainted Grail FoA"
 
 dotnet build `
-  .\examples\mono-harmony-self-test\HarmonySelfTest.csproj `
+  .\examples\mono\harmony\self-test\HarmonySelfTest.csproj `
   -c Release `
   -p:GameRoot="$GameRoot"
 ~~~

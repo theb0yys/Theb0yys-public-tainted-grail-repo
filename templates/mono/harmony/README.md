@@ -18,6 +18,6 @@ Build:
 dotnet build .\HarmonyBasic.csproj -c Release -p:GameRoot="C:\Games\Tainted Grail FoA"
 ```
 
-For the same mechanism as an example rather than a starter, see [Harmony self-test](../../../examples/mono/harmony-self-test/README.md).
+For the same mechanism as an example rather than a starter, see [Harmony self-test](../../../examples/mono/harmony/self-test/README.md).
 
 **Evidence state:** template structure only. A successful build or self-test does not prove any FoA hook, runtime behaviour, persistence, compatibility, or release package.

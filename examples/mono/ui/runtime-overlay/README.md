@@ -1,4 +1,4 @@
-# 03 — Runtime UI Overlay
+# Runtime UI Overlay
 
 A tiny BepInEx-owned IMGUI surface.
 
@@ -14,7 +14,7 @@ It deliberately does **not** replace a native FoA screen, own the cursor, freeze
 ## Build
 
 \`\`\`powershell
-dotnet build .\RuntimeUiTemplate.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\RuntimeUiOverlay.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 \`\`\`
 
 Press the configured key (default F6) to toggle the panel.

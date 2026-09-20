@@ -19,7 +19,7 @@ The native damage object exposes the information needed for common sidecars such
 ## Build
 
 ~~~powershell
-dotnet build .\CharacterDamageObserverExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
+dotnet build .\DamageObserver.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
 ## Pattern
