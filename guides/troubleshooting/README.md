@@ -12,3 +12,12 @@ Troubleshooting should identify the **earliest failed owner/stage**.
 - [Addressables works offline but not through ModService](addressables-loads-offline-not-in-game.md)
 - [Private reflection broke after update](private-reflection-broke-after-update.md)
 - [Presentation-only failure](presentation-only-failure.md)
+
+## Case-study corrections
+
+- [Verify the current build before reapplying a bug fix](bugfixes/verify-current-build-first.md)
+- [Crafting looks stash-unaware but native logic already uses the stash](gameplay/crafting-stash-counts.md)
+- [Modal UI opens but buttons do not fire](ui/modal-ui-opens-but-buttons-do-not-fire.md)
+- [When a VFX hook breaks gameplay](rendering/when-a-vfx-hook-breaks-gameplay.md)
+- [Fog setting applies but the screen does not change](rendering/fog-setting-applies-but-screen-does-not-change.md)
+- [Do not invent a native save domain](saving/do-not-invent-a-native-save-domain.md)
