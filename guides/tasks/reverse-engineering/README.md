@@ -1,8 +1,5 @@
 # Reverse Engineering and Discovery
 
-Use these guides when the public API or existing documentation is not enough and you need to inspect FoA itself. The emphasis is on answering a specific question with source or decompilation evidence, then validating runtime assumptions separately.
+Use this section when the game does not expose enough information publicly and you need to inspect source, metadata, decompiled code, or runtime state.
 
-- [Discovery process](discovery.md)
-- [Evidence standard](../../../sources/evidence-standard.md)
-
-Find the native owner first and keep static/source evidence separate from runtime proof.
+The goal is not to collect internals for their own sake. It is to answer a specific modding question: exact identity, native owner, lifecycle, method signature, data flow, or another fact needed to make a safe implementation decision.
