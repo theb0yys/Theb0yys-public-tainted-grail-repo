@@ -87,7 +87,7 @@ function Invoke-IlSpy {
 }
 
 function Get-TypeInventory {
-    param([System.IO.FileInfo[]]$Assemblies)
+    param($Assemblies)
 
     $records = New-Object System.Collections.Generic.List[object]
 
@@ -123,7 +123,7 @@ function Get-TypeInventory {
 }
 
 function Resolve-TypeRecord {
-    param([string]$Expression, [object[]]$Inventory)
+    param([string]$Expression, $Inventory)
 
     $normalized = Normalize-SourceTypeName -Name $Expression
     if ([string]::IsNullOrWhiteSpace($normalized)) {
@@ -138,29 +138,29 @@ function Resolve-TypeRecord {
     )
 
     if ($exact.Count -eq 1) {
-        return [pscustomobject]@{ State = "resolved"; Matches = $exact }
+        return [pscustomobject]@{ State = "resolved"; Matches = @($exact) }
     }
 
     if ($exact.Count -gt 1) {
-        return [pscustomobject]@{ State = "ambiguous-type"; Matches = $exact }
+        return [pscustomobject]@{ State = "ambiguous-type"; Matches = @($exact) }
     }
 
     $simpleName = Get-SimpleTypeName -Name $normalized
     $simple = @($Inventory | Where-Object { $_.SimpleName -eq $simpleName })
 
     if ($simple.Count -eq 1) {
-        return [pscustomobject]@{ State = "resolved"; Matches = $simple }
+        return [pscustomobject]@{ State = "resolved"; Matches = @($simple) }
     }
 
     if ($simple.Count -gt 1) {
-        return [pscustomobject]@{ State = "ambiguous-type"; Matches = $simple }
+        return [pscustomobject]@{ State = "ambiguous-type"; Matches = @($simple) }
     }
 
     return [pscustomobject]@{ State = "missing-type"; Matches = @() }
 }
 
 function Resolve-ParameterName {
-    param([string]$Expression, [object[]]$Inventory)
+    param([string]$Expression, $Inventory)
 
     $normalized = Normalize-SourceTypeName -Name $Expression
     if ([string]::IsNullOrWhiteSpace($normalized)) {
