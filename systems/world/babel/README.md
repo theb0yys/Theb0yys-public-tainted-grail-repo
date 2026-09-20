@@ -1,5 +1,7 @@
 # Babel Localisation
 
+> **Canonical architecture page.** Consumer-facing localisation behavior and fallback guidance live in [Localisation Consumer Boundaries](../localisation-babel.md).
+
 ## What it is
 
 **Babel** is Questline's compiled runtime localisation system layered on top of Unity Localization authoring data.
