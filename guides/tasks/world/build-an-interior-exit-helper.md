@@ -4,6 +4,10 @@ The working Dungeon Exit Helper is intentionally small: remember where the hero 
 
 Working lineage: [Small Exit Helper Instead of a Dungeon Map](../../../research/case-studies/travel/interior-exit-helper.md).
 
+## Runnable source
+
+Start with the [Interior exit helper example](../../../examples/mono/ui/interior-exit-helper/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Scene owner
 
 Use SceneService when available:
