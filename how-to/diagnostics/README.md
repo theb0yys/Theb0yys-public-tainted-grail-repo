@@ -2,6 +2,10 @@
 
 > **Reference page.** Use this when a known process fails and you need to identify which layer stopped working.
 
+## Start with
+
+- [Capture the smallest useful diagnostic evidence](minimal-evidence-capture.md)
+
 ## What this system is
 
 Diagnostics should answer **which stage failed**, not generate the largest possible log.
