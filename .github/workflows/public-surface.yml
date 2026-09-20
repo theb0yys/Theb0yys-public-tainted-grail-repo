@@ -17,4 +17,4 @@ jobs:
 
       - name: Reject assets, binaries, archives, large files, and obvious secrets
         shell: pwsh
-        run: ./tooling/verify-public-surface.ps1
+        run: ./contributing/tools/verify-public-surface.ps1
