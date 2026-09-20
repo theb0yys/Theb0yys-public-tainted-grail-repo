@@ -4,6 +4,11 @@ Use the native coordination and stamina systems instead of replacing combat AI o
 
 Working lineage: [Combat Pressure Without Raw Damage Multipliers](../../../research/case-studies/combat/pressure-not-damage.md).
 
+## Runnable source
+
+Start from the buildable example: [Combat pressure and poise](../../../examples/mono/combat/combat-pressure-poise/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Native surfaces
 
 The working combat-feel implementation uses three existing FoA inputs:
