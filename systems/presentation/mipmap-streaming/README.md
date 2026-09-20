@@ -48,6 +48,10 @@ Without a common service, each renderer would need its own material-to-texture c
 
 The shared layer provides one place to coordinate texture demand while allowing very different rendering systems.
 
+## Deeper reference
+
+- [Mipmap demand and material registration](demand-and-material-registration.md)
+
 ## Modding relevance
 
 When changing materials or renderer ownership, remember that texture residency may be driven by this shared demand path rather than the visible renderer alone.
