@@ -1,5 +1,5 @@
 # Mono UI Examples
 
-Use these examples for small runtime UI tools and overlays. They deliberately avoid claiming ownership of FoA's native menu, cursor, pause, focus, or controller systems.
+Use these examples when you need a small runtime UI for diagnostics or a focused mod tool.
 
-- [Runtime overlay](runtime-overlay/README.md)
+The current overlay example deliberately stays simple: it owns its own panel but does not claim FoA's native menu, cursor, pause, focus, or controller state.
