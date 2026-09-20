@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$GameRoot,
+    [string]$OutputPath,
     [switch]$Quiet
 )
 
@@ -10,49 +11,77 @@ $ErrorActionPreference = "Stop"
 $environmentScript = Join-Path $PSScriptRoot "Test-FoAEnvironment.ps1"
 $environment = & $environmentScript -GameRoot $GameRoot -Quiet
 
-$paths = New-Object System.Collections.Generic.List[string]
+$targets = New-Object System.Collections.Generic.List[object]
 
 if ($environment.Runtime -eq "Mono") {
-    $paths.Add((Join-Path $environment.ManagedDir "TG.Main.dll"))
-    $paths.Add((Join-Path $environment.BepInExCore "BepInEx.dll"))
-    $paths.Add((Join-Path $environment.BepInExCore "0Harmony.dll"))
+    $targets.Add([pscustomobject]@{ Key = "game/TG.Main.dll"; Path = (Join-Path $environment.ManagedDir "TG.Main.dll") })
+    $targets.Add([pscustomobject]@{ Key = "loader/BepInEx.dll"; Path = (Join-Path $environment.BepInExCore "BepInEx.dll") })
+    $targets.Add([pscustomobject]@{ Key = "loader/0Harmony.dll"; Path = (Join-Path $environment.BepInExCore "0Harmony.dll") })
 }
 elseif ($environment.Runtime -eq "IL2CPP") {
-    $paths.Add((Join-Path $environment.GameRoot "GameAssembly.dll"))
-    $paths.Add((Join-Path $environment.GameRoot "Fall of Avalon_Data\il2cpp_data\Metadata\global-metadata.dat"))
-    $paths.Add((Join-Path $environment.BepInExCore "BepInEx.Core.dll"))
-    $paths.Add((Join-Path $environment.BepInExCore "BepInEx.Unity.IL2CPP.dll"))
-    $paths.Add((Join-Path $environment.BepInExCore "Il2CppInterop.Runtime.dll"))
-    $paths.Add((Join-Path $environment.InteropDir "TG.Main.dll"))
+    $targets.Add([pscustomobject]@{ Key = "game/GameAssembly.dll"; Path = (Join-Path $environment.GameRoot "GameAssembly.dll") })
+    $targets.Add([pscustomobject]@{ Key = "game/global-metadata.dat"; Path = (Join-Path $environment.GameRoot "Fall of Avalon_Data\il2cpp_data\Metadata\global-metadata.dat") })
+    $targets.Add([pscustomobject]@{ Key = "loader/BepInEx.Core.dll"; Path = (Join-Path $environment.BepInExCore "BepInEx.Core.dll") })
+    $targets.Add([pscustomobject]@{ Key = "loader/BepInEx.Unity.IL2CPP.dll"; Path = (Join-Path $environment.BepInExCore "BepInEx.Unity.IL2CPP.dll") })
+    $targets.Add([pscustomobject]@{ Key = "loader/Il2CppInterop.Runtime.dll"; Path = (Join-Path $environment.BepInExCore "Il2CppInterop.Runtime.dll") })
+    $targets.Add([pscustomobject]@{ Key = "interop/TG.Main.dll"; Path = (Join-Path $environment.InteropDir "TG.Main.dll") })
 }
 else {
     throw "Cannot fingerprint an unknown runtime lane."
 }
 
-$rows = foreach ($path in $paths) {
-    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
-        [pscustomobject]@{
-            Path = $path
-            Exists = $false
-            Length = $null
-            SHA256 = $null
-        }
-        continue
-    }
+$rows = @(
+    foreach ($target in $targets) {
+        $path = [string]$target.Path
 
-    $item = Get-Item -LiteralPath $path
-    $hash = Get-FileHash -LiteralPath $path -Algorithm SHA256
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+            [pscustomobject]@{
+                Key = [string]$target.Key
+                Path = $path
+                Exists = $false
+                Length = $null
+                SHA256 = $null
+                FileVersion = $null
+            }
+            continue
+        }
+
+        $item = Get-Item -LiteralPath $path
+        $hash = Get-FileHash -LiteralPath $path -Algorithm SHA256
+
+        [pscustomobject]@{
+            Key = [string]$target.Key
+            Path = $item.FullName
+            Exists = $true
+            Length = $item.Length
+            SHA256 = $hash.Hash
+            FileVersion = $item.VersionInfo.FileVersion
+        }
+    }
+)
+
+if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
+    $parent = Split-Path -Parent $OutputPath
+    if (-not [string]::IsNullOrWhiteSpace($parent)) {
+        New-Item -ItemType Directory -Path $parent -Force | Out-Null
+    }
 
     [pscustomobject]@{
-        Path = $item.FullName
-        Exists = $true
-        Length = $item.Length
-        SHA256 = $hash.Hash
-    }
+        Format = "foa-runtime-fingerprint/1"
+        Generated = [DateTimeOffset]::Now.ToString("o")
+        Runtime = $environment.Runtime
+        Loader = $environment.Loader
+        Files = $rows
+    } | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
 }
 
 if (-not $Quiet) {
-    $rows | Format-Table -AutoSize | Out-Host
+    $rows | Format-Table Key, Exists, Length, SHA256 -AutoSize | Out-Host
+
+    if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
+        Write-Host ""
+        Write-Host "Fingerprint baseline written to: $OutputPath"
+    }
 }
 
 return $rows
