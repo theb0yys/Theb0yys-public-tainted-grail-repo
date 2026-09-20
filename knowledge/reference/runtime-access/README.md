@@ -1,5 +1,7 @@
 # Runtime Access Reference
 
+Use this page when you know which runtime object or service you need and want the established way to reach it. Access and readiness are separate questions, so keep the lifecycle caveats attached to each pattern.
+
 Exact lookup for obtaining important runtime owners and objects.
 
 Access to an object does not by itself prove gameplay, persistence or lifecycle ownership. For ownership, use [Systems](../../systems/README.md).
