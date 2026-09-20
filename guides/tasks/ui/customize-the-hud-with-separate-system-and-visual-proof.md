@@ -4,10 +4,6 @@ Use VHeroHUD as the lifecycle/visibility owner, then alter only the child Canvas
 
 Working lineage: [Native HUD Ownership vs Custom Visual Proof](../../../research/case-studies/ui/hud-owner-and-visual-proof.md).
 
-## Runnable source
-
-Start from the buildable example: [HUD visibility](../../../examples/mono/ui/hud-visibility/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
-
 
 ## Runnable source
 
