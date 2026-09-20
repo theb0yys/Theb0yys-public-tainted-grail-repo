@@ -109,7 +109,11 @@ TraceResult = false
 
 The names above are placeholders, not Tainted Grail facts.
 
-Use `ParameterTypeNames` when the method is overloaded. The list is semicolon-separated so assembly-qualified names can still contain commas.
+Use `ParameterTypeNames` when the method is overloaded. The list is semicolon-separated so assembly-qualified names can still contain commas. For an explicitly selected zero-parameter overload, set:
+
+```ini
+ParameterTypeNames = <none>
+```
 
 If the method name is overloaded and no signature is supplied, resolution fails rather than choosing one candidate.
 
