@@ -1,8 +1,8 @@
 # Mono Gameplay Examples
-- [Lockpicking auto-unlock](lockpicking-auto-unlock/README.md)
+- [Auto-unlock with native gates](auto-unlock/README.md)
 - [Owned route patrol](owned-route-patrol/README.md)
 - [Temporary human ally](temporary-human-ally/README.md)
-- [Carry capacity tweak](carry-capacity-tweak/README.md)
+- [Carry capacity](carry-capacity/README.md)
 - [Progression overlay](progression-overlay/README.md)
 - [Session survival](session-survival/README.md)
 - [Merchant restock](merchant-restock/README.md)
