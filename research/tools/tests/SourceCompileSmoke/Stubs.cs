@@ -79,6 +79,15 @@ namespace BepInEx.Logging
 
 namespace HarmonyLib
 {
+    public enum HarmonyPatchType
+    {
+        All,
+        Prefix,
+        Postfix,
+        Transpiler,
+        Finalizer
+    }
+
     public sealed class Harmony
     {
         public Harmony(string id)
@@ -96,6 +105,10 @@ namespace HarmonyLib
         }
 
         public void UnpatchSelf()
+        {
+        }
+
+        public void Unpatch(MethodBase original, HarmonyPatchType type, string harmonyID = "*")
         {
         }
 
@@ -133,6 +146,11 @@ namespace HarmonyLib
     public static class AccessTools
     {
         public static MethodInfo? Method(Type type, string name)
+        {
+            return typeof(object).GetMethod(nameof(object.ToString));
+        }
+
+        public static MethodInfo? Method(Type type, string name, Type[] parameters)
         {
             return typeof(object).GetMethod(nameof(object.ToString));
         }
