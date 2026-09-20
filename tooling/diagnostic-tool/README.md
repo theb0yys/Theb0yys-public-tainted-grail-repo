@@ -2,6 +2,14 @@
 
 **Posture: Author-ready read-only research tool**
 
+**Obtain:** https://www.nexusmods.com/taintedgrailthefallofavalon/mods/182
+
+**Version signal:** the current engineering source line is `0.4.56`; verify the exact public package installed before declaring a minimum version.
+
+**Stability boundary:** this is an installed evidence-collection tool, not a feature-mod compile-time library. Its output is evidence to review, not mutation authority.
+
+See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Use it before guessing.
 
 The tool writes timestamped CSV/TXT evidence from the loaded game runtime.
