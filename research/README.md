@@ -10,6 +10,7 @@ Investigation is a first-class FoA modding skill.
 - [Local game investigation](methods/local-game-investigation.md)
 - [Local asset inspection](methods/local-asset-inspection.md)
 - [Runtime log evidence](methods/runtime-log-evidence.md)
+- [Research tools](tools/README.md) — source-only evidence collection and validation utilities
 - [Persistence investigation](investigations/persistence/README.md)
 - [Travel investigation](investigations/travel/README.md)
 - Bug fixes
