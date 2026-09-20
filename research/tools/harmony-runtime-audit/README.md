@@ -30,6 +30,14 @@ ExpectedTargets accepts pipe-separated canonical target identities in the same s
 
 The audit compares exact strings and logs each missing expected target.
 
+## Generate expected targets from a verification report
+
+After running the symbol-anchor verifier, derive the exact live-audit target list instead of maintaining it separately:
+
+    .\Get-FoAHarmonyExpectedTargets.ps1 -VerificationReport ".\.local-research\symbol-anchor-report.json" -Owner "your.plugin.guid" -AsConfigBlock
+
+Only anchors that were verified as exact method signatures and have a canonical live identity are included. Name-only or ambiguous targets are omitted rather than guessed.
+
 ## Output
 
 For each included patched method, the plug-in logs:
