@@ -1,10 +1,8 @@
 # No Fall Damage Public Template
 
-Use this starter when you are building a fall-damage change across both runtimes. Keep the feature toggle/rule shared and connect it to the narrow native fall-damage path in each runtime host rather than patching all damage globally.
+Use this starter for a fall-damage feature that should support both Mono and IL2CPP.
 
-Source family: `no-fall-damage`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep the setting and high-level rule shared; each runtime host should connect it to the narrow native fall-damage path instead of patching all damage globally.
 
 ## Reusable mechanisms
 
