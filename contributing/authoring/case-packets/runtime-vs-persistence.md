@@ -47,8 +47,8 @@ Reviewed persistence research separately establishes:
 
 ## Canonical dependencies
 
-- [Saving and Persistence](../../../systems/persistence/README.md)
-- [Custom Item Integration](../../../mechanics/items/custom-item-integration.md)
+- [Saving and Persistence](../../../systems/world/saving-persistence.md)
+- [Custom Item Integration](../../../mechanics/items/register-custom-template.md)
 - [Evidence status](../../../reference/evidence/README.md)
 
 ## Public outputs
