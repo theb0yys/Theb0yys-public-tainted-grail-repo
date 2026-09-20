@@ -61,6 +61,10 @@ This is the basis for native item/NPC/template lookup.
 - `TemplatesProvider`
 - `TemplateService`
 
+## Deeper reference
+
+- [Startup order and readiness](startup-order-and-readiness.md)
+
 ## Modding relevance
 
 Use these owners when you need to know:
