@@ -18,3 +18,7 @@ jobs:
       - name: Reject assets, binaries, archives, large files, and obvious secrets
         shell: pwsh
         run: ./contributing/tools/verify-public-surface.ps1
+
+      - name: Verify documentation links, metadata, and indexes
+        shell: pwsh
+        run: ./contributing/tools/verify-documentation.ps1
