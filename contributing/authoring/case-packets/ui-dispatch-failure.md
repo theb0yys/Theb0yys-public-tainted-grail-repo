@@ -42,7 +42,7 @@ Reviewed private companion-menu evidence records several partial states:
 
 ## Canonical dependencies
 
-- [UI, Cursor, Focus, and Input Ownership](../../../systems/ui-input/README.md)
+- [UI, Cursor, Focus, and Input Ownership](../../../systems/presentation/ui-input.md)
 - [Evidence status](../../../reference/evidence/README.md)
 
 ## Public outputs
