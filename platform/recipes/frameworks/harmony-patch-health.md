@@ -60,4 +60,4 @@ Log:
 
 Do not treat "plug-in loaded" as equivalent to "feature patch installed".
 
-See the runnable [Mono patch-health example](../../../examples/mono/harmony/patch-health/README.md).
+See the runnable [Mono patch-health example](../../../examples/mono/harmony/patch-health/README.md) and [IL2CPP patch-health example](../../../examples/il2cpp/harmony/patch-health/README.md).
