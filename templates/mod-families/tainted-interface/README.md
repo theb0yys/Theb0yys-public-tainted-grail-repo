@@ -1,10 +1,8 @@
 # Tainted Interface Public Template
 
-Use this starter when you are building shared UI-resource or presentation infrastructure across both runtimes. Keep semantic asset/catalog behavior shared and isolate loader/runtime registration or game access in the hosts.
+Use this starter for shared UI resources or presentation infrastructure across both runtimes.
 
-Source family: `Tainted Interface`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep semantic resource/catalog logic common, and put runtime-specific registration or FoA integration in the Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
