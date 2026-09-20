@@ -1,22 +1,54 @@
-# Bonfire Services Submenu
+# Add a Services Menu to a Bonfire
 
-This example observes VFireplaceUI.OnInitialize, resolves the native buttonContent and levelUp ButtonConfig, clones the native button visual, and adds a small Services submenu.
+This example adds a small **Services** menu to the existing bonfire screen.
 
-The submenu routes directly to the current FireplaceUI owner:
+The new buttons still call Tainted Grail's own stash, cooking, and alchemy actions.
 
-~~~text
-Stash   → OpenHeroStorage()
-Cooking → CookAction()
-Alchemy → AlchemyAction()
-Back    → return to native bonfire content
-~~~
-
-Build:
+## Build it
 
 ~~~powershell
 dotnet build .\BonfireServicesSubmenu.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-The example owns only cloned UI objects. The actual services remain native FireplaceUI actions.
+## Try it in game
 
-Guide: ../../../../guides/tasks/ui/build-a-native-looking-bonfire-services-menu.md
+Open a bonfire.
+
+The example adds a Services entry containing:
+
+~~~text
+Stash
+Cooking
+Alchemy
+Back
+~~~
+
+Open each service and confirm the normal Tainted Grail screen/action appears.
+
+Close the bonfire and reopen it. The mod should not create duplicate buttons.
+
+## What to change first
+
+Add or remove **one** service row.
+
+For example, start by removing Alchemy, rebuild, and confirm the submenu updates cleanly.
+
+## How it works
+
+The mod waits for the normal bonfire view to initialize.
+
+It copies one of the game's existing button styles so the new rows match the rest of the screen.
+
+When a custom button is clicked, it calls the current FireplaceUI object's normal service method, such as:
+
+~~~text
+OpenHeroStorage()
+CookAction()
+AlchemyAction()
+~~~
+
+The mod owns only the extra menu buttons. Tainted Grail still owns the actual stash/crafting services.
+
+## Next
+
+[Read the bonfire submenu guide](../../../../guides/tasks/ui/build-a-native-looking-bonfire-services-menu.md)
