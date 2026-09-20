@@ -1,5 +1,7 @@
 # Services
 
+Use this page when you need a shared FoA runtime service and want to know how callers obtain it, when it is available, and what responsibility it actually owns.
+
 Canonical ownership: [Scenes/services/templates](../../systems/core/scenes-services-templates.md).
 
 ## Publicly visible service-access pattern
