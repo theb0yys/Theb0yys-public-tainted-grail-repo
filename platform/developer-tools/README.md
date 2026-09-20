@@ -12,13 +12,22 @@ Test-FoAEnvironment.ps1
 → New-FoAMod.ps1
 → Test-FoAModProject.ps1
 → Build-FoAMod.ps1
+→ Compare-FoAModInstall.ps1
 → Install-FoAMod.ps1
 → Watch-FoALog.ps1
+
+game/loader updated?
+→ Compare-FoAFingerprint.ps1
+
+mod-stack problem?
+→ Get-FoAModInventory.ps1
+→ Get-FoAHarmonyOwnership.ps1
 
 support problem?
 → New-FoADiagnosticBundle.ps1
 
-ready to stage a release?
+pre-release?
+→ Test-FoAReleaseReady.ps1
 → New-FoARelease.ps1
 ~~~
 
@@ -168,6 +177,133 @@ Use -SkipBuild only when you intentionally want to install an already-built arti
 
 This helper verifies file copy identity. It does **not** launch the game or claim the plug-in loaded.
 
+### Get-FoAModInventory.ps1
+
+Inventories DLLs under BepInEx/plugins without loading them into PowerShell.
+
+It records assembly/file identity, version, size and SHA-256, then reports potential:
+
+- exact duplicate assemblies;
+- duplicate assembly names with different hashes;
+- multiple assembly versions;
+- duplicate file names with different hashes.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\Get-FoAModInventory.ps1 -GameRoot "C:\Games\Tainted Grail FoA"
+~~~
+
+Use -OutputPath to save JSON and -FailOnConflict when a validation lane should stop on duplicate findings.
+
+This is a file/assembly identity inventory. It does not extract BepInPlugin GUIDs and does not prove two mods are behaviourally incompatible.
+
+### Compare-FoAModInstall.ps1
+
+Compares the current build artifact with the installed DLL by SHA-256.
+
+States include:
+
+~~~text
+MATCH
+DIFFERENT
+NOT_INSTALLED
+BUILD_NOT_FOUND
+~~~
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\Compare-FoAModInstall.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA"
+~~~
+
+This is useful when source changes appear to have no effect because the game is still loading an older DLL.
+
+The script can also restore the latest backup created by Install-FoAMod.ps1:
+
+~~~powershell
+.\platform\developer-tools\Compare-FoAModInstall.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -RestoreLatestBackup
+~~~
+
+Rollback is explicit and exact. Before restoring, the currently installed DLL is preserved as a pre-restore backup.
+
+### Compare-FoAFingerprint.ps1
+
+Compares the current game/loader fingerprint with a previously saved baseline.
+
+Create a baseline:
+
+~~~powershell
+.\platform\developer-tools\Get-FoAFingerprint.ps1 -GameRoot "C:\Games\Tainted Grail FoA" -OutputPath ".\foa-fingerprint.json"
+~~~
+
+Compare after an update:
+
+~~~powershell
+.\platform\developer-tools\Compare-FoAFingerprint.ps1 -Baseline ".\foa-fingerprint.json" -GameRoot "C:\Games\Tainted Grail FoA"
+~~~
+
+A change means **revalidation required**. It does not automatically mean the mod is broken.
+
+### Get-FoAHarmonyOwnership.ps1
+
+Statically inventories supported literal Harmony target declarations across source projects and reports cross-owner target overlaps.
+
+It recognizes common patterns such as:
+
+- HarmonyPatch(typeof(Type), nameof(Type.Method));
+- HarmonyPatch(typeof(Type), "Method");
+- HarmonyPatch("Namespace.Type", "Method");
+- AccessTools.Method/PropertyGetter/PropertySetter with literal targets.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\Get-FoAHarmonyOwnership.ps1 -Root ".\mods"
+~~~
+
+This is deliberately a **source-level ownership report**. Dynamic targets and unsupported source shapes are marked as unparsed. The script does not claim to enumerate Harmony's live in-process patch table.
+
+### Test-FoAReleaseReady.ps1
+
+Runs the broad pre-release/static readiness sequence and reports explicit evidence states.
+
+It can cover:
+
+- environment;
+- project doctor;
+- optional compatibility fingerprint;
+- build;
+- source-level Harmony ownership;
+- installed mod duplicate/conflict inventory;
+- built-vs-installed comparison;
+- optional release package staging;
+- runtime/feature/persistence evidence state.
+
+Example:
+
+~~~powershell
+.\platform\developer-tools\Test-FoAReleaseReady.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -BaselineFingerprint ".\foa-fingerprint.json" -StagePackage
+~~~
+
+Typical output intentionally includes:
+
+~~~text
+Environment              PASSED
+ProjectStructure         PASSED
+CompatibilityFingerprint PASSED/PARTIAL/NOT_RUN
+Build                    PASSED
+HarmonySourceOwnership   PASSED/PARTIAL
+InstalledModConflicts    PASSED/PARTIAL
+BuiltVsInstalled         PASSED/PARTIAL/NOT_RUN
+ReleasePackage           PASSED/NOT_RUN
+RuntimeLoad              NOT_RUN
+FeatureValidation        NOT_RUN
+PersistenceValidation    NOT_RUN/NOT_APPLICABLE
+~~~
+
+The umbrella command never upgrades runtime or feature validation just because static/build/package checks pass.
+
 ### Watch-FoALog.ps1
 
 Tails BepInEx\LogOutput.log, optionally filtering lines.
@@ -197,8 +333,10 @@ File-writing tools have explicit ownership boundaries:
 - Install-FoAMod.ps1 writes to the selected local game's dedicated BepInEx plug-in folder and backs up an existing DLL.
 - New-FoADiagnosticBundle.ps1 writes only to its requested diagnostic output directory.
 - New-FoARelease.ps1 writes only to its requested/local release staging directory and replaces an existing staged package only with -Force.
+- Compare-FoAModInstall.ps1 is read-only by default; -RestoreLatestBackup explicitly mutates only the exact installed mod DLL and its owned _backup folder.
+- Test-FoAReleaseReady.ps1 writes build output when build runs and writes release staging only when -StagePackage is requested.
 
-Test-FoAEnvironment.ps1, Get-FoAFingerprint.ps1, Test-FoAModProject.ps1, and Watch-FoALog.ps1 are read-only with respect to the game/project.
+Test-FoAEnvironment.ps1, Get-FoAFingerprint.ps1 (unless -OutputPath is used), Test-FoAModProject.ps1, Get-FoAModInventory.ps1 (unless -OutputPath is used), Compare-FoAFingerprint.ps1 (unless -OutputPath is used), Get-FoAHarmonyOwnership.ps1 (unless -OutputPath is used), Compare-FoAModInstall.ps1 without rollback, and Watch-FoALog.ps1 are read-only with respect to the game/project.
 
 ## Source lineage
 
