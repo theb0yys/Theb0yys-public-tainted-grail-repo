@@ -1,5 +1,9 @@
 # Story Graphs
 
+Use this page when you are tracing quests, dialogue, or scripted world behavior into FoA's Story Graph system.
+
+Story Graph work is identity- and lifecycle-sensitive: use this material to find the exact graph/state owner before changing dialogue or quest behavior.
+
 ## What it is
 
 FoA's Story Graph system is a custom authoring, compilation and runtime execution stack built on top of XNode.
