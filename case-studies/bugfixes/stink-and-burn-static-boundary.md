@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Stink and Burn recovery research
-evidence:
-  official_tooling: MERLIN_STATIC
-  runtime: NOT_RUN
-last_verified: 2026-09-20
----
-
 # Stink and Burn: Static Identity Is Not a Repair
 
 The research successfully resolved several identities from Merlin Workshop metadata/source:
