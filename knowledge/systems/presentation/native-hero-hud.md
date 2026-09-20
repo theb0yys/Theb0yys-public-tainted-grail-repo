@@ -8,33 +8,69 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Native Hero HUD Ownership
+# Native Hero HUD
 
-`VHeroHUD` owns the combined hero-bar/quickslot visibility path.
+Use this page when you want to change **Hero health/stamina/mana bars, quickslot visibility, or native HUD show/hide policy**.
 
-## Core path
+The key rule is:
+
+> Prefer changing visibility policy and asking the native HUD to refresh instead of replacing the HUD's gameplay state.
+
+## Main owner
+
+`VHeroHUD` owns the combined Hero bars/quickslot visibility flow.
 
 The private `ShowBars` property participates in `UpdateCanvasGroups()`.
 
-Its normal fallback includes `Hero.WeaponsVisible`, explaining why the hero HUD can hide when weapons are sheathed.
+Its normal fallback includes `Hero.WeaponsVisible`, which explains why parts of the HUD can hide when weapons are sheathed.
 
-The HUD also owns concrete child bar components and a selected quickslot surface.
+## Use the native refresh path
 
-## Useful native refresh
+If your mod changes only visibility rules, a narrow approach is:
 
-When a mod changes only visibility policy, asking the cached `VHeroHUD` to re-run `UpdateCanvasGroups()` is narrower than polling/mutating the hierarchy every frame.
+~~~text
+change mod-owned visibility condition
+→ call cached VHeroHUD.UpdateCanvasGroups()
+→ native HUD reapplies its CanvasGroup state
+~~~
 
-A later project correction used that refresh when menu/dialogue/cursor hide-context state changed, because the vanilla HUD could otherwise remain hidden until another native event re-ran the update path.
+This is preferable to scanning and mutating the hierarchy every frame.
 
-## Selected quickslot
+A project correction used this approach when menu/dialogue/cursor context changed because the vanilla HUD could otherwise remain hidden until another native event refreshed it.
 
-`VCSelectedQuickSlot.UpdateIcon()` can refresh the quickslot independently. A mod that hides the quickslot through CanvasGroup state may need to reapply that visibility after native icon refresh.
+## Quickslot refresh is separate
 
-## Ownership boundary
+`VCSelectedQuickSlot.UpdateIcon()` can refresh the selected quickslot independently.
 
-Prefer CanvasGroup/visibility policy over:
+If your mod applies CanvasGroup visibility to the quickslot, native icon refresh may overwrite/reapply parts of its state.
 
-- deactivating native root GameObjects;
-- skipping native update methods;
-- replacing native stat values;
-- creating duplicate health/stamina/mana truth.
+Reapply your visibility policy at the appropriate quickslot refresh point rather than polling the hierarchy.
+
+## What not to replace
+
+For a visibility-only mod, do not:
+
+- deactivate native HUD root GameObjects;
+- skip native update methods broadly;
+- rewrite health/stamina/mana values;
+- create duplicate gameplay stat state.
+
+The HUD should remain a presentation of native Hero state.
+
+## How to verify
+
+Check:
+
+1. normal HUD visible state;
+2. weapons sheathed/drawn;
+3. pause/menu/dialogue/cursor hide contexts;
+4. health/stamina/mana bars;
+5. selected quickslot;
+6. relevant config changes;
+7. native refresh after state changes;
+8. no per-frame hierarchy scan;
+9. restoration when the mod is disabled.
+
+## Evidence
+
+The ownership/refresh path is decompilation/source-corroborated with representative runtime load/patch markers.
