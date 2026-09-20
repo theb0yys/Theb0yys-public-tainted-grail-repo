@@ -57,6 +57,10 @@ scene source renderers
 
 At long distances, full source geometry, objects and per-object visibility work are expensive. HLOD substitutes cheaper representations and reduces the amount of active detailed content.
 
+## Deeper reference
+
+- [HLOD proxy vs source ownership](proxy-vs-source-ownership.md)
+
 ## Modding relevance
 
 Use HLOD knowledge when changing:
