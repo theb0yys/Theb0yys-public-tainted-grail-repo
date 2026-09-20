@@ -1,5 +1,9 @@
 # Shared Archive, File and Buffer Primitives
 
+Use this page when you need to understand how FoA reads or writes archive data at the file/stream level.
+
+This is lower-level implementation material for save/archive work; start with the higher-level persistence pages if your question is simply whether a mod-owned feature survives save/load.
+
 ## What it is
 
 `Awaken.Utility.dll` contains shared low-level primitives used by several proprietary systems.
