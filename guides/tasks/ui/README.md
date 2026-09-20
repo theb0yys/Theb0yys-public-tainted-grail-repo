@@ -1,5 +1,5 @@
 # UI
 
-Use these guides when you are building or modifying FoA UI. They cover screen ownership, cursor/input/focus, native refresh timing, controller behaviour, close/restoration, and keeping gameplay state outside the UI layer.
+Use this section when you are building or modifying a menu, HUD, prompt, overlay, or other interactive UI.
 
-Native ownership: [UI/input](../../../knowledge/systems/presentation/ui-input.md). Working patterns: [UI case studies](../../../research/case-studies/ui/README.md).
+The guides cover practical UI ownership problems such as cursor/input scope, focus, native UI refresh, controller behavior, close/restoration paths, and keeping gameplay state outside the presentation layer.
