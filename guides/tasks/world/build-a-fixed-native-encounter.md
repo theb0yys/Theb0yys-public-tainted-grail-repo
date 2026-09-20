@@ -4,6 +4,10 @@ Use this guide to create a bounded encounter from one exact native enemy profile
 
 Working lineage: [Fixed Native Wyrdspirit Encounter](../../../research/case-studies/gameplay/wyrdspirit-encounter.md).
 
+## Runnable source
+
+Start from the runnable public example: [Fixed native Wyrdspirit encounter](../../../examples/mono/gameplay/fixed-native-encounter/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
