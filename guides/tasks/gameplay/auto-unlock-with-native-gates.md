@@ -1,57 +1,98 @@
 # Auto-Unlock Without Bypassing Native Lock Rules
 
-**Evidence status: PARTIAL.** The safe ownership boundary is established, but this case does not record a complete runtime validation matrix.
+Skip the lockpicking interaction only after FoA has already established that the current lock is a normal lockpickable target.
 
 Working lineage: [Auto-Unlock Without Bypassing Every Lock Rule](../../../research/case-studies/lockpicking/auto-unlock-boundary.md).
 
-## Goal
+## Patch target
 
-Skip the lockpicking **interaction/minigame** only when the hero is already legitimately allowed to open the lock.
+The working implementation patches:
 
-Keep native:
+~~~text
+Awaken.TG.Main.Locations.Actions.Lockpicking.LockAction.OnStart(
+    Hero,
+    IInteractableWithHero)
+~~~
 
-- key-only rules;
-- key possession checks;
-- lock eligibility;
-- crime/legal consequences;
-- native unlock state.
+with a Harmony prefix.
 
-## Process
+It also resolves three existing `LockAction` members:
 
-Classify the target lock first:
+- private/property getter `HeroCanLockpick`;
+- private/property getter `WillBeOpenWithKey`;
+- method `Unlock(bool)`.
 
-```text
-key-only lock
-→ leave native
+If any of those members cannot be resolved, Auto Unlock is disabled and vanilla lockpicking continues.
 
-hero can open with key
-→ leave native
+## The gate
 
-ordinary lockpickable lock
-+ active lockpicking interaction
-→ optional auto path
-→ call/use native unlock/crime route
-```
+Before skipping the interaction, check all of these:
 
-The mod should skip the interaction, not invent the unlock result.
+~~~text
+AutoUnlock enabled
++ no LockpickingInteraction already attached
++ WillBeOpenWithKey == false
++ HeroCanLockpick == true
+~~~
 
-## Fail closed
+If any check fails, return `true` from the prefix and let `LockAction.OnStart` run normally.
 
-If you cannot establish that the current target is the supported lockpicking case, do nothing.
+The working shape is:
 
-Do not turn "locked object" into a universal unlock permission.
+~~~csharp
+if (__instance.ParentModel.HasElement<LockpickingInteraction>())
+    return true;
 
-## Verification
+if (WillBeOpenWithKey(__instance))
+    return true;
 
-Test:
+if (!HeroCanLockpick(__instance))
+    return true;
+~~~
 
-- key-only lock remains protected;
-- owned key route still works;
-- ordinary lockpickable target auto-completes only when eligible;
-- crime/witness behaviour remains native;
-- quest/progression locks are not bypassed;
-- disabling the feature restores normal minigame flow.
+That preserves key-driven and non-lockpickable cases.
 
-## Current proof boundary
+## Complete through the native lock owner
 
-The classification and owner-preserving rule are established. Full runtime validation for every lock class and crime/progression interaction remains to be demonstrated.
+For the supported case:
+
+~~~csharp
+UnlockMethod.Invoke(__instance, new object[] { false });
+CommitCrime.Lockpicking(__instance.ParentModel);
+return false;
+~~~
+
+The mod skips the minigame, but it still uses the lock's own unlock method and the game's existing lockpicking-crime route.
+
+Do not set a generic `Locked=false` field or edit arbitrary quest objects.
+
+## Related difficulty tweaks
+
+The same implementation also demonstrates two separate lockpicking adjustments:
+
+- postfix `LockAction.Tolerance` to replace the native `LockTolerance` result;
+- prefix `LockpickingInteraction.ConsumePickHP(float)` to scale pick-damage time.
+
+Keep those features separate from Auto Unlock.
+
+## Failure behavior
+
+If reflection or invocation fails:
+
+- log once;
+- return to vanilla `LockAction.OnStart`;
+- do not attempt a second unlock strategy.
+
+That is the correct fallback for a patch-sensitive private member.
+
+## Practical test
+
+Test at least:
+
+- normal lockpickable target;
+- key-opened target;
+- target the hero cannot lockpick;
+- criminal lockpicking target;
+- repeated interaction after unlock.
+
+The important check is that only the ordinary lockpicking interaction is skipped.
