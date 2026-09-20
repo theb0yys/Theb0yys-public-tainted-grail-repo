@@ -38,7 +38,7 @@ Creature source assets, native baseline, visual transport, animation mapping, `N
 - [Native object ownership](../../../systems/core/native-object-ownership.md)
 - scene/service lifecycle
 - asset/resource lifetime
-- [Saving and persistence](../../../systems/persistence/README.md)
+- [Saving and persistence](../../../systems/world/saving-persistence.md)
 
 ## Public source set
 
