@@ -1,10 +1,8 @@
 # Avalon Stash Public Template
 
-Use this starter when you are building stash or storage features across both runtimes. Keep shared storage rules and UI-independent logic common, while the runtime hosts connect to the exact Hero/storage owners.
+Use this starter for stash and storage features that need to support both Mono and IL2CPP.
 
-Source family: `Avalon Stash`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep shared storage behavior and UI-independent logic common, while each host connects to the exact Hero/storage lifecycle and runtime APIs available on that build.
 
 ## Reusable mechanisms
 
