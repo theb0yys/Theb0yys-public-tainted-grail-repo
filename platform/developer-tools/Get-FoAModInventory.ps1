@@ -130,7 +130,20 @@ if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
 
-    $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+    $portableResult = [pscustomobject]@{
+        Format = $result.Format
+        GameRoot = "<GAME_ROOT>"
+        Runtime = $result.Runtime
+        Loader = $result.Loader
+        PluginRoot = "<GAME_ROOT>/BepInEx/plugins"
+        IncludeBackups = $result.IncludeBackups
+        ItemCount = $result.ItemCount
+        ConflictCount = $result.ConflictCount
+        Items = $result.Items
+        Conflicts = $result.Conflicts
+    }
+
+    $portableResult | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
 }
 
 if (-not $Quiet) {
