@@ -883,7 +883,7 @@ internal static class ValueRenderer
 
         if (value is string text)
         {
-            return """ + Truncate(EscapeScalar(text), maxValueChars) + """;
+            return "\"" + Truncate(EscapeScalar(text), maxValueChars) + "\"";
         }
 
         if (value is char character)
@@ -935,7 +935,7 @@ internal static class ValueRenderer
     {
         string type = exception.GetType().FullName ?? exception.GetType().Name;
         string message = Truncate(EscapeScalar(exception.Message ?? string.Empty), maxValueChars);
-        return type + ":"" + message + """;
+        return type + ":\"" + message + "\"";
     }
 
     private static bool IsNumeric(Type type)
@@ -967,7 +967,7 @@ internal static class ValueRenderer
             .Replace("\r", "\\r")
             .Replace("\n", "\\n")
             .Replace("\t", "\\t")
-            .Replace(""", "\\"");
+            .Replace("\"", "\\\"");
     }
 
     private static string Truncate(string value, int maxChars)
