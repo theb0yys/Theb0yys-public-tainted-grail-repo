@@ -1,8 +1,10 @@
 # Tainted Core's Public Template
 
+Use this starter when you are building shared Core-style discovery or infrastructure rather than a feature mod. Keep public contracts and portable logic shared, and isolate runtime-specific host access behind the Mono and IL2CPP entry points.
+
 Source family: `avalon-core`
 
-This is a public, source-only starter distilled from the Tainted Core's mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
