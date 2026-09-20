@@ -105,6 +105,10 @@ If you draw your own vitals:
 - scale placement from Screen width/height;
 - do not write health/stamina/mana values from the UI.
 
+## Runnable source
+
+Start from the buildable public source: [HUD visibility example](../../../examples/mono/ui/hud-visibility/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Owner changes
 
 Cache the current VHeroHUD instance.
