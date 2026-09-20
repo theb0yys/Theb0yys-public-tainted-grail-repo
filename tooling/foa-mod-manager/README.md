@@ -2,6 +2,12 @@
 
 **Posture: Author-ready**
 
+**Obtain:** https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167
+
+**Stability boundary:** the documented `FoAModManagerApi` members are a supported public surface. Do not infer a permanent ABI guarantee for undocumented manager internals. Record the exact package version tested before declaring a minimum dependency.
+
+See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Use FoA Mod Manager when your mod needs one or more of:
 
 - normal BepInEx config shown in a common manager;
