@@ -2,6 +2,14 @@
 
 **Posture: Read-only/discovery baseline unless a named capability says otherwise**
 
+**Obtain:** Tainted Core public package — https://www.nexusmods.com/taintedgrailthefallofavalon/mods/193
+
+**Version signal:** current public source/plugin line is `0.8.4`.
+
+**Stability boundary:** documented trust/registry/capability discovery is the supported read-only surface. Discovery does not promote private adapters or gameplay mutation into public APIs.
+
+See [distribution/versioning](../ecosystem/distribution-and-versioning.md) and [API stability](../ecosystem/api-stability.md).
+
 Use Avalon Core when your mod needs shared:
 
 - host/trust report readback;
