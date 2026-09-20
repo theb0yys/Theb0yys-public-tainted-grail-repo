@@ -1,169 +1,135 @@
-# Status Effects, Buildup, Sources, and Safe Observation
+# Status Effects and Buildup
 
-> **Reference page.** Use this when working with buffs, debuffs, diseases, curses, burn/bleed/poison buildup, or status-driven gameplay.
+Use this page when you want to **observe or change buffs, debuffs, diseases, curses, burn/bleed/poison buildup, or other status-driven effects**.
 
-## What this system is
+The key distinction is:
 
-FoA distinguishes at least three status concerns:
+> Adding a Status and building up toward a Status are different native paths.
+
+## Native status flow
+
+A useful model is:
 
 ~~~text
-status identity/template
-→ status addition/replacement/stacking
-→ optional buildup threshold/application
-→ Status initialization / skill/stat effect
+StatusTemplate identity
+→ direct add OR buildup
+→ add/upgrade/replace/stack decision
+→ Status instance
+→ Status.OnInitialize
+→ stat/skill/gameplay effect
 → duration/refresh/removal
 ~~~
 
-A buildup-capable effect is not the same thing as an immediately added status.
+## Main native owners
 
-## Who owns it in FoA
+- `StatusTemplate` — status definition.
+- `CharacterStatuses` — status collection and add/buildup entry points.
+- `Status` — runtime status instance.
+- `StatusSourceInfo` — source character/item context.
+- buildup attachment/type data — threshold/application behavior.
+- status-owned skill/stat logic — actual gameplay effect after initialization.
 
-Important owners include:
+## Direct status addition
 
-- `StatusTemplate`;
-- `CharacterStatuses`;
-- `Status`;
-- `StatusSourceInfo`;
-- buildup attachments/types;
-- skill/stat logic initialized by the Status.
+Useful surfaces include:
 
-## Important identities, types, and methods
+- `CharacterStatuses.AddStatus(StatusTemplate, StatusSourceInfo, ...)`
+- `CharacterStatuses.AddResult`
+- result kinds such as Add, Upgrade, AddAndProlong, AddAndRenew, Replace, and Stack
+- `StatusSourceInfo.GetSourceCharacter`
+- `StatusSourceInfo.GetSourceItemSafe`
 
-Researched surfaces include:
+A Postfix observer here can tell you:
 
-- `CharacterStatuses.AddStatus(StatusTemplate, StatusSourceInfo, ...)`;
-- `CharacterStatuses.AddResult`;
-- add-result types including Add, Upgrade, AddAndProlong, AddAndRenew, Replace and Stack;
-- `StatusSourceInfo.GetSourceCharacter`;
-- `StatusSourceInfo.GetSourceItemSafe`;
-- positive/negative classification from Status/StatusTemplate type;
-- `CharacterStatuses.BuildupStatus(float, StatusTemplate, StatusSourceInfo)`;
-- `BuildupAttachment.BuildupStatusType`;
-- `SetStatusBuildupUnit` / buildup-threshold relationships;
-- `Status.OnInitialize()` initializing status skill/stat behavior.
+- target;
+- old/new Status;
+- result type;
+- positive/negative classification;
+- source character;
+- source item.
 
-A traced spell example connects:
+That is a good place to learn what actually reaches a character before attempting mutation.
+
+## Buildup
+
+Useful surfaces include:
+
+- `CharacterStatuses.BuildupStatus(float, StatusTemplate, StatusSourceInfo)`
+- `BuildupAttachment.BuildupStatusType`
+- buildup threshold/unit relationships.
+
+A typical buildup path is:
+
+~~~text
+source action
+→ buildup amount
+→ BuildupStatus
+→ buildup category/threshold
+→ threshold reached
+→ actual Status applied
+~~~
+
+If the goal is "this buildup accumulates faster," changing the buildup input is usually narrower than rewriting every projectile/source that can contribute to it.
+
+## Exact source matters
+
+Broad status hooks can see:
+
+- Hero self-effects;
+- NPC-vs-NPC effects;
+- spells;
+- items;
+- environmental effects;
+- scripted effects.
+
+If the mod is player-only, filter source and target explicitly.
+
+Use native positive/negative classification where available instead of guessing from names.
+
+## Example traced spell
+
+One researched projectile route connects:
 
 ~~~text
 Projectile_OnHit_ApplyStatus
 → Status_Fire1_Burn
 ~~~
 
-with projectile-entry overrides for status/buildup fields.
+Projectile entries can also override status/buildup values, so do not assume the SkillGraph default is always the final runtime value.
 
-## Where it exists in the lifecycle
+## Keep secondary mod state separate
 
-### Direct status addition
+A mod can react to a native negative status by adding its own session-only mechanic without changing the native Status itself.
 
-~~~text
-source/action
-→ CharacterStatuses.AddStatus
-→ add/upgrade/replace/stack decision
-→ Status instance
-→ Status.OnInitialize
-→ skill/stat effect
-→ duration/renew/remove
-~~~
+That is a different operation and should be documented as such.
 
-### Buildup path
+## Common mistakes
 
-~~~text
-source action
-→ buildup strength
-→ BuildupStatus
-→ buildup type/threshold
-→ threshold reached
-→ status application
-~~~
-
-## How we interact with it
-
-### Observe `AddStatus` to learn what actually reaches a character
-
-A postfix observer can inspect:
-
-- target;
-- old/new Status;
-- result type;
-- positive/negative class;
-- source character;
-- source item.
-
-This is useful before deciding to mutate status behavior.
-
-### Tune buildup at the buildup owner
-
-If the goal is "burn builds 1.5x faster," a scoped `BuildupStatus` input multiplier is closer to the native owner than rewriting every projectile or source that can apply burn.
-
-### Scope by source/target
-
-Broad status hooks are global/high-value.
-
-For player-only effects, verify source and target explicitly.
-
-### Keep status mutation separate from secondary mod state
-
-A mod can react to a negative status by adding its own session-only fatigue, for example, without changing the native disease/curse itself.
-
-That is a different claim and can be safer.
-
-## Why this route
-
-The working research deliberately began with **diagnostic-only** status observation.
-
-That allowed it to establish:
-
-- which statuses are actually added;
-- which are positive/negative;
-- who sourced them;
-- how add/upgrade/stack behavior appears;
-
-before adding any mutation.
-
-Magic research then found buildup has its own native owner, allowing buildup tuning without rewriting every effect source.
-
-## What goes wrong
-
-### AddStatus = buildup
-
-False. Some statuses accumulate before being applied.
-
-### Broad global multiplier without source/target filter
-
-Can affect NPC-vs-NPC, environmental, self, item, spell and scripted status routes.
-
-### Positive/negative name heuristic
-
-Use native status classification where available.
-
-### Status observer called persistence proof
-
-Seeing a Status object added does not prove save/restore/duration across restart.
-
-### Custom spell/status template confused with existing-status tuning
-
-Registering a genuinely new StatusTemplate has separate identity/registration/persistence requirements.
+- treating `AddStatus` as if every status uses buildup;
+- applying a global buildup/status multiplier without source/target filters;
+- classifying positive/negative from names;
+- treating a status observer as persistence proof;
+- assuming a custom `StatusTemplate` is registered because a related prefab or effect exists.
 
 ## How to verify
 
-For status observation/tuning:
+Check:
 
-1. exact target character;
-2. exact StatusTemplate;
+1. exact target;
+2. exact `StatusTemplate`;
 3. source character/item;
-4. direct-add or buildup path;
-5. result type;
-6. stack/refresh behavior;
-7. duration;
-8. native gameplay effect;
-9. removal/expiry;
-10. unrelated status routes unchanged;
-11. save/load if persistence is claimed.
+4. direct-add or buildup route;
+5. add/upgrade/replace/stack result;
+6. duration/refresh behavior;
+7. actual gameplay effect;
+8. removal/expiry;
+9. unrelated status routes remain unchanged;
+10. save/load only if you intend to claim persistence.
 
-For buildup tuning, also verify threshold progression before/after and the final applied status identity.
+For buildup tuning, also verify threshold progress before/after and the exact final Status applied.
 
-## Current proof boundary
+## Evidence limits
 
-`CharacterStatuses.AddStatus` and `BuildupStatus` are well-researched native surfaces.
+`CharacterStatuses.AddStatus` and `BuildupStatus` are well-mapped native surfaces.
 
-The public handbook does not yet claim a generic durable custom-status registration process.
+There is not yet a general public process for registering arbitrary durable custom statuses.
