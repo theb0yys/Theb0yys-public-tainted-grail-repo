@@ -14,11 +14,50 @@ Harmony commonly provides:
 
 The important question is not only **what method can I patch?** but **what is true immediately before and after this method?**
 
-## Who owns it in FoA
+## Publicly useful lifecycle boundaries
 
-The native class/method owns the lifecycle being patched.
+### Hero initialization
 
-Examples from inspected working-repo paths:
+Public Mono mods use `Hero.OnFullyInitialized` as a practical boundary for hero-dependent setup.
+
+One working damage-number mod explicitly uses its Postfix because the mod loads before `World.EventSystem` and the HUD are ready; it installs its damage listener only after this hero initialization point.
+
+~~~text
+plugin Awake / PatchAll
+→ game/world infrastructure starts
+→ Hero.OnFullyInitialized
+→ hero-dependent listeners/UI/state setup
+~~~
+
+This is stronger evidence than merely checking whether `Hero.Current` is non-null.
+
+### Hero RPG-stat initialization
+
+Public mods use `HeroRPGStats.AfterHeroFullyInitialized` for stat-system changes that require the hero and `TweakSystem` to be ready.
+
+~~~text
+hero exists
+→ hero RPG stats finish initialization
+→ HeroRPGStats.AfterHeroFullyInitialized
+→ resolve Hero.Current / TweakSystem
+→ add stat tweaks
+~~~
+
+### UI initialization
+
+Public mods use several `OnFullyInitialized` / view-created surfaces for modifications that depend on concrete UI state:
+
+- `HeroStorageUI.OnFullyInitialized`
+- `PContainerUI.OnFullyInitialized`
+- `MapUI.AfterViewSpawned`
+
+These should not be generalized into gameplay-ready hooks; they are specific UI-owner boundaries.
+
+### Restore boundaries
+
+A public IL2CPP-native recipe implementation uses `HeroItems.OnRestore` because that point supplies a valid restored `HeroItems` instance. That is a restore/availability boundary, not a generic "hero loaded" synonym.
+
+## Existing inspected lifecycle examples
 
 - `TemplatesLoader.set_FinishedLoading(bool)` — template readiness boundary;
 - `Shop.OpenShop()` — merchant open/decompression lifecycle;
@@ -27,7 +66,32 @@ Examples from inspected working-repo paths:
 - `VCCharacterMagicVFX.CastingBegun` — spell-cast VFX observation;
 - concrete cloud-service `EndSave(string)` — completed save-slot write observation.
 
-## Important identities, types, and methods
+## Why timing matters
+
+The same semantic area can expose several different hook points.
+
+For damage, public source shows both:
+
+~~~text
+HealthElement.OnDamage
+→ mutation of incoming Damage is still possible
+
+HealthElement.TakeDamage / emitted damage events
+→ downstream observation/presentation use
+~~~
+
+For UI:
+
+~~~text
+owner/model state
+→ UI initializes
+→ cached visual tree/list snapshot
+→ later row refreshes / SetData
+~~~
+
+Choosing a hook after a snapshot may require an explicit refresh even if the underlying data changed correctly.
+
+## Hook-selection checklist
 
 Record for every hook:
 
@@ -38,36 +102,9 @@ Record for every hook:
 - lifecycle state before the method;
 - lifecycle state after the method;
 - whether the original should still run;
+- call frequency;
 - version/build evidence;
 - cleanup/unpatch behavior.
-
-## Where it exists in the lifecycle
-
-Examples:
-
-### Template readiness
-
-~~~text
-templates loading
-→ FinishedLoading becomes true
-→ custom registration retry
-~~~
-
-### Proven merchant item insertion timing
-
-~~~text
-Shop.OpenShop
-→ stock decompresses
-→ ShopUI.OnFullyInitialized prefix
-→ custom item inserted
-→ original ShopUI builds/captures item list
-~~~
-
-The timing is the mechanism.
-
-## How we interact with it
-
-Choose the smallest hook that gives the required state without stealing ownership from the native system.
 
 Prefer:
 
@@ -76,12 +113,6 @@ Prefer:
 - exact signatures over broad name matching;
 - fail-closed checks when state/preconditions are missing;
 - normal original execution unless the feature explicitly requires suppression.
-
-## Why this route
-
-Hook placement determines what native state is available and whether downstream systems see the change.
-
-The item/shop research showed that an apparently valid stock mutation can still fail at the UI if it happens after the UI captured a stale list.
 
 ## What goes wrong
 
@@ -93,6 +124,7 @@ Known failures:
 - assuming a UI refresh happens automatically after its snapshot;
 - using a name heuristic instead of exact target identity;
 - patching private internals and not revalidating after game updates;
+- treating `Hero.Current != null` as proof that every hero-owned subsystem is initialized;
 - moving downstream code when the real problem is an upstream lifecycle/ownership boundary.
 
 ## How to verify
