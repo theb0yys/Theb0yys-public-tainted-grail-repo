@@ -10,6 +10,8 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Merchants](merchants/README.md)
 - [Economy](economy/README.md)
 - [Bonfire](bonfire/README.md)
+- [Crime](crime/README.md)
+- [Weather](weather/README.md)
 - [Companions](companions/README.md)
 - [UI](ui/README.md)
 - [Audio](audio/README.md)

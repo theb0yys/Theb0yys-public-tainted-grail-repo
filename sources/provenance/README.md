@@ -8,18 +8,19 @@ Covered PR #407's authoring model, the complete private mechanics catalogue, all
 
 ## Wave 5 — 2026-09-20
 
-Mined Tainted Economy and Better Bonfire Menu project research/history and published:
+Published Tainted Economy and Better Bonfire Menu knowledge: final vendor-price ownership, validated price adjustment, regional/reward/harvest/container/corpse lanes, and native bonfire service/submenu ownership.
 
-- FoA final vendor-price ownership and the validated `TradeUtils.Price` lane;
-- regional price composition;
-- positive Wealth reward scaling;
-- harvest runtime-row quantity scaling;
-- save-backed generated container row scaling;
-- post-roll container rules and corpse-specific material filtering;
-- native bonfire/fireplace service ownership;
-- native service reuse mechanic;
-- runtime-built native-style bonfire submenu ownership with partial runtime UI status;
-- economy/bonfire case studies and troubleshooting.
+## Wave 6 — 2026-09-20
+
+Mined Crime & Consequences, Tainted Weather, and Tainted Interface installed-build research:
+
+- native crime witness/deferred-report/bounty ownership;
+- passive crime-awareness and guard-response boundaries;
+- project incident/witness/report/case/attribution extension model while preserving native bounty;
+- Weather → Skybox → Water owner split and bounded `Rain / Day / GreenShallows` live integration;
+- exact native Character Sheet / InventoryUI / HeroItems / Item ownership chain;
+- read-only custom inventory projection boundary and its still-outstanding runtime host matrix;
+- shared Tainted Interface / FoA Mod Manager UI-scope ownership.
 
 ## Measurement rule
 
