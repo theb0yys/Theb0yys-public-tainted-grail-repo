@@ -1,16 +1,44 @@
-# Recipe: Read-Only Core Discovery
+# Recipe: Read-Only Avalon Core Discovery
 
-Use this when your mod wants to integrate with shared ecosystem metadata without taking execution authority.
+Use this when your mod wants shared ecosystem metadata without taking execution authority.
 
-```text
-hard dependency on Avalon Core
-→ verify expected Core version
-→ query exact registry/engine
-→ inspect capability/contract/readiness metadata
-→ if compatible: enable read-only/discovery feature
-→ otherwise: action=none
+## Dependency
+
+```csharp
+[BepInDependency(
+    AvalonCore.Plugin.PluginGuid,
+    BepInDependency.DependencyFlags.HardDependency)]
 ```
 
-Do not fall back to reflection into provider internals.
+## Trust-report read
 
-If the feature needs execution, identify the **named promoted executor/service owner** instead of assuming Core itself executes it.
+```csharp
+AvalonCore.HostTrustReportSnapshot snapshot =
+    AvalonCore.Plugin.TrustReports;
+
+if (snapshot.WouldMutateRuntime)
+{
+    // This integration expects read-only state. Fail closed.
+    return;
+}
+```
+
+## Exact engine lookup
+
+```csharp
+if (AvalonCore.Plugin.Registry == null ||
+    !AvalonCore.Plugin.Registry.TryGet(
+        "adapter-registry",
+        out AdapterRegistryEngine? registry) ||
+    registry == null)
+{
+    // action=none
+    return;
+}
+```
+
+Then query the **exact documented capability/contract/version/readiness** you need.
+
+If execution is required, identify the named executor/service owner.
+
+Do not reflect into provider internals because discovery said “missing” or “blocked”.

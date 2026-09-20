@@ -1,47 +1,74 @@
 # Tooling and Shared Infrastructure
 
-This section is for **things a mod author can actually use**.
+This section is for **infrastructure a mod author can actually use**.
 
-It is the bridge between ordinary FoA mod code and the shared infrastructure maintained in the wider mod ecosystem.
+It is not an archive of framework internals. It is the bridge from a normal FoA mod to the shared ecosystem:
+
+```text
+your mod
+  ├─ settings / controller / UI scope → FoA Mod Manager
+  ├─ shared visual resources         → Tainted Interface
+  ├─ read-only capability discovery  → Avalon Core
+  ├─ promoted runtime service        → Tainted Framework
+  ├─ AI package                      → Avalon AI Runtime
+  ├─ contract/provider integration   → Avalon Contracts
+  ├─ external/local SDK client       → Tainted Grail Extender + FOA-SDK
+  └─ game-data research              → Tainted Diagnostic Tool
+```
 
 ## Start here: what do you need?
 
-| I need to… | Use |
-| --- | --- |
-| expose settings, controller actions, mod status, or modal UI ownership | [FoA Mod Manager](foa-mod-manager/README.md) |
-| share visual styles, semantic textures/icons, or common UI resources | [Tainted Interface](tainted-interface/README.md) |
-| discover trusted/shared capabilities without taking runtime authority | [Avalon Core](avalon-core/README.md) |
-| consume shared runtime-facing framework services | [Tainted Framework](tainted-framework/README.md) |
-| author an AI behaviour package that runs through the single AI host | [Avalon AI Runtime](avalon-ai-runtime/README.md) |
-| expose or consume contract/provider data across mods | [Avalon Contracts](avalon-contracts/README.md) |
-| build an extension or external local SDK client | [Tainted Grail Extender](tainted-grail-extender/README.md) |
-| find real IDs, templates, recipes, spawners or runtime context | [Tainted Diagnostic Tool](diagnostic-tool/README.md) |
+| I need to… | Use | Current posture |
+| --- | --- | --- |
+| expose BepInEx settings | [FoA Mod Manager](foa-mod-manager/README.md) | **Author-ready** |
+| register controller commands or runtime status | [FoA Mod Manager](foa-mod-manager/README.md) | **Author-ready** |
+| open a custom screen without every mod owning cursor/freeze logic | [FoA Mod Manager](foa-mod-manager/custom-ui-scope.md) | **Author-ready** |
+| use common styles, icons or semantic UI assets | [Tainted Interface](tainted-interface/README.md) | **Author-ready** |
+| find real GUIDs/templates/recipes/spawners/runtime context | [Tainted Diagnostic Tool](diagnostic-tool/README.md) | **Author-ready, read-only** |
+| discover shared capability/provider metadata | [Avalon Core](avalon-core/README.md) | **Read-only/discovery** |
+| consume a concrete shared runtime service | [Tainted Framework](tainted-framework/README.md) | **Only named promoted surfaces** |
+| author AI behaviour that composes with other AI | [Avalon AI Runtime](avalon-ai-runtime/README.md) | **Package contracts + single host** |
+| publish/query cross-mod contract data | [Avalon Contracts](avalon-contracts/README.md) | **Read-only/provider-first; lifecycle lane-specific** |
+| run an external local development client | [Tainted Grail Extender](tainted-grail-extender/README.md) | **Advanced/SDK** |
 
-For the whole stack, see the [ecosystem map](ecosystem/README.md).
+For recommended combinations, use [Author stacks](ecosystem/author-stacks.md).
 
-For copyable multi-tool workflows, use [integration recipes](recipes/README.md).
+For copyable workflows, use [Integration recipes](recipes/README.md).
 
-## The rule
+## Default recommendation
 
-**Do not reimplement shared ownership locally when the ecosystem already has a reviewed owner.**
+For most user-facing mods:
+
+```text
+BepInEx
++ FoA Mod Manager (settings / commands / shared UI scope)
++ Tainted Interface (only if you need shared visual resources)
+```
+
+Add Core, Framework, AI Runtime, Contracts or TGE **only when the feature actually needs that owner**.
+
+## The ownership rule
+
+**Do not reimplement a shared owner locally when the ecosystem already has a reviewed owner.**
 
 Examples:
 
-- do not write another cursor/freeze manager when FoA Mod Manager already owns the shared UI scope;
-- do not hardcode raw UI asset paths when Tainted Interface exposes semantic IDs;
-- do not create a second AI scheduler when Avalon AI Runtime owns the single host;
-- do not make a feature mod scan shared providers when Avalon Core / Avalon Contracts already expose discovery contracts;
+- do not write another cursor/freeze manager when FoA Mod Manager owns the shared scope;
+- do not hardcode raw UI asset-pack paths when Tainted Interface exposes semantic IDs;
+- do not ship a second AI scheduler for actors governed by Avalon AI Runtime;
+- do not scan provider internals when Core/Contracts expose a supported discovery surface;
 - do not guess native GUIDs when the Diagnostic Tool can collect evidence.
 
-## Maturity matters
+The opposite is also true:
 
-Some infrastructure is ready for direct consumer use; some is intentionally narrow or gated.
+**Do not take a dependency just because a framework exists.**
 
-Every page in this section labels the public posture as one of:
+If a Framework/Core capability is not explicitly promoted for consumers, treat it as unavailable.
 
-- **Author-ready** — intended for real mod consumers now.
-- **Read-only/discovery** — safe for diagnostics/query/metadata, not runtime mutation.
-- **Capability-gated** — a shared owner exists, but only named surfaces are promoted.
-- **Advanced/SDK** — useful, but requires tighter compatibility/security/version discipline.
+## Maturity vocabulary
 
-Do not infer support from the existence of a DLL, class, descriptor, or private implementation.
+- **Author-ready** — intended for ordinary real mod consumers.
+- **Read-only/discovery** — query/metadata/diagnostics only.
+- **Capability-gated** — shared owner exists; only specifically promoted surfaces may be consumed.
+- **Advanced/SDK** — external process or high-authority integration requiring stronger version/security discipline.
+- **Blocked/research** — architecture may exist, but mod authors should not build against it yet.

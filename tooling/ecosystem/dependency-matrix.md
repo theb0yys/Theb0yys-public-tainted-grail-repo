@@ -1,30 +1,38 @@
 # Dependency and Maturity Matrix
 
-| Infrastructure | Typical consumer | Public posture | Hard dependency? | Runtime mutation authority |
+| Infrastructure | Typical use | Consumer dependency | Current safe author use | Do not assume |
 | --- | --- | --- | --- | --- |
-| FoA Mod Manager | almost any user-facing mod | **Author-ready** | optional or required by feature | UI/config/controller/status only |
-| Tainted Interface | UI/HUD/menu mods | **Author-ready for public API/resources** | usually optional | visual/UI resources; feature gameplay stays consumer-owned |
-| Avalon Core | ecosystem-aware mods/tools | **Read-only/discovery baseline** | hard when directly referenced | none unless a named promoted lane says otherwise |
-| Tainted Framework | framework consumers | **Capability-gated** | surface-specific | only promoted named services |
-| Avalon AI Runtime | AI package providers | **Capability-gated / host-owned** | packages reference Contracts only | host/executor owns action execution |
-| Avalon Contracts | contract providers/consumers | **Read-only + bounded lifecycle contracts** | provider-specific | provider-owned callbacks/lifecycle only where promoted |
-| Tainted Grail Extender | extensions/external local tools | **Advanced/SDK** | yes for extension/SDK use | service-specific, authenticated, explicit |
-| Tainted Diagnostic Tool | researchers/mod authors | **Author-ready read-only tool** | no | none |
+| FoA Mod Manager | settings, controller actions, status, modal UI scope | optional or hard depending on feature | direct public API / ordinary BepInEx config | gameplay ownership |
+| Tainted Interface | shared styles/icons/textures/HUD resources | usually optional; hard only when feature requires it | direct public resource/style API | feature input/state ownership |
+| Tainted Diagnostic Tool | research IDs/templates/spawners/runtime context | none | install and collect read-only dumps | a dump row is approval |
+| Avalon Core | capability/evidence/catalog discovery | hard when directly referenced | `TrustReports`, documented registry/discovery | runtime execution authority |
+| Tainted Framework | concrete shared runtime services | **surface-specific** | currently documented promoted surfaces only | every internal capability is public |
+| Avalon AI Runtime | shared AI decision/execution host | package references Contracts only | package manifests/goals/actions/blackboard contracts | direct package → FoA calls |
+| Avalon Contracts | shared contract/provider readback | provider/consumer-specific | explicit registration + discovery/readback; exact promoted lifecycle lanes only | host owns provider gameplay truth |
+| Tainted Grail Extender | extensions and external local SDK | required for TGE route | explicit extension/service/SDK contracts | generic remote/admin command server |
 
-## Do not create dependency cycles
+## Hard-dependency rule
+
+Use a hard dependency when your mod **cannot perform its advertised feature correctly without the owner**.
+
+Use a soft/optional dependency when the integration is enhancement-only and your mod has a clear local fallback.
+
+Never hide a hard semantic dependency behind reflection just to make the DLL technically optional.
+
+## Avoid dependency cycles
 
 Bad:
 
 ```text
-feature mod → UI framework → feature mod
-feature mod → AI host → feature mod implementation
+feature → visual framework → feature
+feature → AI host implementation → feature
 Core → downstream gameplay mod
 ```
 
 Preferred:
 
 ```text
-feature mod → shared contract
-shared host → contract-defined package/provider
-host calls bounded provider/native adapter
+feature → public contract
+host → contract-defined provider/package
+host → reviewed native adapter
 ```

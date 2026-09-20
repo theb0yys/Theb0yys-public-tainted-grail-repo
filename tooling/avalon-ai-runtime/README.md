@@ -1,39 +1,42 @@
 # Avalon AI Runtime
 
-**Posture: Capability-gated single AI host**
+**Posture: Package-authoring contracts are public; live execution stays single-host/capability-gated**
 
-Use Avalon AI Runtime when your mod needs reusable AI decision logic that should compose with other AI packages.
+Use Avalon AI Runtime when your mod owns domain truth that should participate in shared AI decisions.
 
-Do **not** ship another independent AI scheduler/host for the same actors.
+Do **not** ship another independent scheduler/host for the same actors.
 
 ## Canonical pipeline
 
 ```text
-AI package
-→ AvalonAI.Contracts
+feature/provider truth
+→ AvalonAI.Contracts package
 → Avalon AI Runtime
 → single FoA host
 → reviewed native/game-system executor
 ```
 
-Canonical architecture rule:
+Architecture rule:
 
-**Rabbit remembers, GOAP reasons, Blaze acts, Avalon owns access/ownership/safety.**
+**Rabbit remembers, GOAP reasons, Blaze acts, Avalon controls access, ownership and safety.**
 
-## Third-party package boundary
+## Package dependency boundary
 
-Packages reference **Avalon AI Contracts only**.
+Third-party packages reference **Avalon AI Contracts only**.
 
-They do not reference:
+They should not reference the FoA host implementation, FoA internals, Rabbit implementation, GOAP implementation, Blaze implementation, or another package's private runtime.
 
-- FoA internals;
-- Rabbit implementation;
-- GOAP implementation;
-- Blaze implementation;
-- the FoA host implementation;
-- another package's private runtime.
+The V2 package surface centers on `IAvalonAiPackage`:
+
+- `Manifest`
+- `GoalPolicies`
+- `GoalDefinitions`
+- `ActionDefinitions`
+
+The host/runtime decides whether those declarations can run in the current actor/world/capability context.
 
 See:
 
 - [Package authoring](package-authoring.md)
 - [Single-host ownership](host-ownership.md)
+- [AI package recipe](../recipes/ai-package.md)

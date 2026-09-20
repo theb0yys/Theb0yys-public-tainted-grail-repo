@@ -1,25 +1,41 @@
 # Tainted Framework
 
-**Posture: Capability-gated**
+**Posture: Capability-gated — not a general FoA gameplay SDK**
 
-Tainted Framework is the shared **runtime-facing service layer**.
+Tainted Framework is the shared runtime-facing implementation layer for services that have been promoted for common use.
 
-Use it only when the exact service you need is explicitly documented as consumer-ready.
+The existence of an internal service, capability ID, host assembly or decision document does **not** make it consumer-ready.
 
-## Current author rule
+## What an ordinary author should do
 
-Do not treat internal framework assemblies as a general gameplay SDK.
+1. Identify the exact service you need.
+2. Find its public tooling page/contract.
+3. Check its current consumer posture.
+4. Depend only on the required public assembly/surface.
+5. Fail closed if the surface is unavailable/incompatible.
+6. Validate the feature independently in your mod.
 
-The public capability catalog includes many candidate/blocked surfaces. The historically promoted diagnostics surface is `runtime-report`; other services must be checked individually.
+## Current practical public lanes
+
+### Runtime report
+
+`framework.runtime-report` is a read-only diagnostics surface.
+
+The Tainted Diagnostic Tool is the reference consumer pattern.
+
+### Native item registrar
+
+There is a shared ownership direction and readiness contract, but it is **not a universal register-anything API**. Use only if/when the exact registrar lane is promoted for your content type.
 
 ## Relationship to Avalon Core
 
-- Avalon Core: discovery/evidence/contracts/planning authority.
-- Tainted Framework: concrete runtime-facing reusable service implementations where promoted.
+- Avalon Core = discovery/evidence/contracts/planning metadata.
+- Tainted Framework = concrete reusable runtime service implementation when promoted.
 
-A feature mod should not depend on both simply because both exist. Choose the owner that actually owns the capability.
+Do not add both dependencies by default.
 
 See:
 
 - [Runtime report](runtime-report.md)
-- [Native item registrar ownership](native-item-registrar.md)
+- [Native item registrar](native-item-registrar.md)
+- [Framework service gate recipe](../recipes/framework-service.md)
