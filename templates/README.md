@@ -1,5 +1,7 @@
 # Project Templates
 
+Use this section when you want a project you can copy and adapt rather than a one-off code example. Templates provide structure and starter logic; they do not prove the final feature works in your game build.
+
 Source-only starters for Tainted Grail: The Fall of Avalon mod authors. These templates reference locally supplied game, loader, framework, and toolkit files; they do not redistribute proprietary assemblies or commercial assets.
 
 ## Named mod-family templates
