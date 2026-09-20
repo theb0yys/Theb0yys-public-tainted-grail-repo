@@ -1,71 +1,53 @@
-# Custom Rigid Weapon Presentation
+# Give a Custom Weapon Its Own 3D Model
 
-This is a minimal **consumer** of the shared Tainted Weapons framework. It does not build its own socket renderer or construct Drake ECS entities directly.
+This example shows how a custom rigid weapon can use its own model while still using Tainted Grail's normal item and equipment systems.
 
-The source demonstrates:
+You do **not** need to write your own hand renderer or combat system.
 
-~~~text
-custom weapon package identity
-→ TaintedWeaponsApi.RegisterWeaponPackage(...)
-→ explicit native ItemTemplate registration request
-→ registered custom ItemTemplate
-→ normal FoA Item/equip route
-→ Tainted Weapons equipped-prototype redirect
-→ framework-owned Drake mesh/material presentation
-~~~
+## Before you build
 
-## Requirement: one small AssetBundle
+This example uses the shared Tainted Weapons framework already documented in this repository.
 
-Place the example DLL and a bundle named:
+You also need one small Unity AssetBundle containing your own rigid weapon prefab.
+
+Place the built mod DLL and this bundle in the same plug-in folder:
 
 ~~~text
 community_rigid_blade.bundle
 ~~~
 
-in the same plug-in directory.
-
-The bundle must contain the rigid weapon prefab at:
+Inside the bundle, the example expects:
 
 ~~~text
 Assets/TGCommunity/RigidBlade.prefab
 ~~~
 
-For the simplest v1 asset, author one rigid mesh/material presentation. Do not put inventory, combat, save, or equip logic in the prefab.
+For your first test, keep the prefab simple: one rigid mesh and material.
 
-The example deliberately does **not** ship a proprietary game asset or a prebuilt weapon bundle.
+Do not put gameplay logic into the prefab.
 
-## Native source profile
-
-The registration request derives the custom weapon ItemTemplate from the known native rigid-weapon source:
-
-~~~text
-a04d79985ec011245a8383530fc72dd7
-~~~
-
-The example reserves its own custom identity:
-
-~~~text
-GUID: c0ffee00000000000000000000000001
-name: ItemTemplate_Mod_CommunityRigidBlade
-~~~
-
-Change those values for a real mod.
-
-## Build
+## Build it
 
 ~~~powershell
 dotnet build .\RigidWeaponPresentation.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-Install beside the current Tainted Weapons framework.
+Install the result beside the current Tainted Weapons framework.
 
-Expected successful startup includes a Tainted Weapons package/registrar receipt. After the registered template is available, press F8 to grant one item through the normal World.Add → HeroItems.Add path.
+## Try it in game
 
-Equip it normally. The consumer does not parent a Unity MeshRenderer to the hand; Tainted Weapons owns the equipped Drake prototype/resource route.
+The example registers a new custom weapon identity, then lets Tainted Grail treat it as a normal item.
+
+After startup:
+
+1. check the BepInEx log for the registration message;
+2. press F8 to grant the test weapon;
+3. equip it normally through the inventory;
+4. confirm the custom model appears in the equipped weapon path.
 
 ## What to change first
 
-Change only these values first:
+Start with these values only:
 
 ~~~text
 WeaponId
@@ -73,9 +55,31 @@ CustomTemplateGuid
 CustomTemplateName
 BundleFileName
 EquippedPrefabAssetPath
-display name / description
+display name
+description
 ~~~
 
-Keep the native source profile and framework route unchanged until your custom item can be registered and equipped consistently.
+Keep the native source weapon and framework plumbing unchanged until your own model appears reliably.
 
-Guide: [Build custom rigid weapon presentation through Drake](../../../../guides/tasks/weapons/custom-rigid-weapon-presentation.md)
+## How it works
+
+There are two separate parts:
+
+~~~text
+gameplay item
+→ registered custom ItemTemplate
+→ normal Tainted Grail inventory/equip flow
+
+visual model
+→ Tainted Weapons framework
+→ Drake-compatible equipped presentation
+→ your mesh/material
+~~~
+
+Drake is part of Tainted Grail's character/equipment rendering system. The framework handles that presentation path for you.
+
+The Unity prefab does not become the owner of inventory, damage, saving, or equip rules.
+
+## Next
+
+[Read the custom rigid weapon guide](../../../../guides/tasks/weapons/custom-rigid-weapon-presentation.md)
