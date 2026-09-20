@@ -1,7 +1,7 @@
 {
   "Format": "foa-symbol-anchors/1",
   "SourceRoot": "<SOURCE_ROOT>",
-  "AnchorCount": 62,
+  "AnchorCount": 63,
   "UnresolvedCount": 5,
   "Anchors": [
     {
@@ -146,6 +146,18 @@
       "Pattern": "HarmonyPatch-type-nameof",
       "TypeExpression": "DemoAudioEvent",
       "MemberName": "Play",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.bonfire-native-services",
+      "Project": "BonfireNativeServices.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/ui/bonfire-native-services/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-string",
+      "TypeExpression": "VFireplaceUI",
+      "MemberName": "OnInitialize",
       "MemberKind": "method",
       "ParameterTypeExpressions": [],
       "SignatureExplicit": false
