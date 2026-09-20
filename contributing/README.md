@@ -2,6 +2,7 @@
 
 The public repo should expose the useful private reasoning model without exposing private implementation/source dumps.
 
+- [Authoring guidance](authoring/README.md)
 - [Document archetypes](authoring/document-archetypes.md)
 - [Private-to-public authoring process](authoring/private-to-public-process.md)
 - [Evidence and provenance](authoring/evidence-and-provenance.md)
