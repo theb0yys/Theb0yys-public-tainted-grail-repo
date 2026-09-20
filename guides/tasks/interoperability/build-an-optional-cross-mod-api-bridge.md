@@ -4,6 +4,10 @@ Use this guide when one mod wants to call another mod without compiling against 
 
 Working lineage: [Fail-Closed Cross-Mod API Bridge](../../../research/case-studies/gameplay/cross-mod-api.md).
 
+## Runnable source
+
+Start from the minimal public example: [Optional cross-mod API example](../../../examples/mono/infrastructure/optional-cross-mod-api/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
