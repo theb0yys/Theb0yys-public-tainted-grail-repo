@@ -1,11 +1,11 @@
 # Research Methods
 
-Reusable methods for establishing trustworthy FoA modding knowledge.
+Use these methods when you need to figure out how an unfamiliar FoA system actually works.
 
-- [Finding the native owner](finding-native-owner.md)
-- [Tracing a lifecycle](tracing-lifecycles.md)
-- [Static/source evidence vs runtime evidence](static-vs-runtime-evidence.md)
-- [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
-- [Proving a new mechanic](proving-a-mechanic.md)
+- [Find the native owner](finding-native-owner.md)
+- [Trace a lifecycle](tracing-lifecycles.md)
+- [Separate static/source evidence from runtime evidence](static-vs-runtime-evidence.md)
+- [Distinguish a name guess from an exact native identity](name-heuristic-vs-native-identity.md)
+- [Prove a new mechanic](proving-a-mechanic.md)
 
-Subject-specific work belongs under [Investigations](../investigations/).
+Research about one specific subject belongs under [Investigations](../investigations/).
