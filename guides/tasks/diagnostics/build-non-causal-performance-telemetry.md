@@ -4,6 +4,10 @@ Collect frame, CPU/GPU, allocation and GC counters into bounded windows. Treat t
 
 Working lineage: [Telemetry Without Blame](../../../research/case-studies/performance/telemetry-without-blame.md).
 
+## Runnable source
+
+Start with the [Performance telemetry example](../../../examples/mono/infrastructure/performance-telemetry/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Sample once per eligible Update
 
 The maintained Tainted Performance sampler builds one PerformanceFrameSample from:
