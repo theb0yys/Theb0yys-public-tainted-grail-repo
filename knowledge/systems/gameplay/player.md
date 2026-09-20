@@ -43,7 +43,16 @@ One public mod explicitly comments that `World.EventSystem` and the HUD are not 
 
 ### `HeroRPGStats.AfterHeroFullyInitialized`
 
-Used for stat-system changes requiring both hero stats and `TweakSystem`.
+Public mods use this for stat-system changes requiring both hero stats and `TweakSystem`. Exact Mono decompilation strengthens the lifecycle interpretation:
+
+~~~text
+HeroRPGStats.OnInitialize()
+→ wrapper.Initialize(this)
+→ ParentModel.AfterFullyInitialized(AfterHeroFullyInitialized)
+→ AfterHeroFullyInitialized()
+~~~
+
+So this callback is specifically registered from the `HeroRPGStats` Element onto the parent Hero's fully-initialized boundary; it is not merely a convenient method name.
 
 Public mods resolve:
 
@@ -74,9 +83,21 @@ Public mods access:
 
 These names are useful navigation/reference facts; their complete ownership and persistence behavior remains system-specific.
 
+## Stat persistence boundary
+
+Exact Mono inspection distinguishes base values from tweak-derived values:
+
+- `Stat.BaseValue` is the mutable base state;
+- `Stat.ModifiedValue` is the tweak-calculated effective value;
+- `Stat.ValueForSave` returns `BaseValue`;
+- `SetTo` / `IncreaseBy` mutate base state;
+- `StatTweak` changes the effective value through `TweakSystem` without being equivalent to direct base-stat mutation.
+
+See [Hero and Character stat surfaces](../../reference/types/hero-character-stats.md).
+
 ## Persistence boundary
 
-Public evidence distinguishes hero/session state from saved native progression:
+Evidence distinguishes hero/session state from saved native progression:
 
 - `ProficiencyStats.TryAddXP` changes native proficiency progression.
 - Mod-owned practice/session ledgers can remain non-saved until deliberately converted into native progression.
@@ -90,4 +111,4 @@ See [Runtime Access](../../reference/runtime-access/README.md), [Types](../../re
 
 ## Current proof boundary
 
-This page currently records only publicly documented FoA behavior. Exact construction/destruction ordering, cross-scene identity, death/reload replacement semantics and complete model/view ownership remain unclaimed until stronger evidence is reviewed.
+This page combines public source with exact-build Mono static evidence where stated. Exact construction/destruction ordering, cross-scene identity, death/reload replacement semantics and complete model/view ownership remain unclaimed until stronger evidence is reviewed.
