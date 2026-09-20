@@ -1,5 +1,5 @@
 # IL2CPP Diagnostics / Performance Templates
 
-- [Frame sampler](frame-sampler/) — bounded Unity frame-time/FPS sampler with no gameplay mutation.
+Use these templates when you need a small IL2CPP diagnostics or performance project rather than a gameplay mod.
 
-For Tainted Framework runtime reports, use the [dual-runtime framework consumer](../../hybrid/tainted-framework-consumer/) and the public [Tainted Framework tooling contract](../../../platform/components/tainted-framework/README.md).
+The current frame sampler measures basic Unity frame timing without changing gameplay. Use the framework consumer template instead when you specifically need Tainted Framework runtime reports.
