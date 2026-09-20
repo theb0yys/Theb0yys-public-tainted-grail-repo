@@ -7,7 +7,7 @@ Current standards:
 - [Evidence and provenance](evidence-and-provenance.md)
 - [Public clean-room boundary](public-clean-room-boundary.md)
 
-Historical Waves 1–5 migration evidence:
+Historical Waves 1–5 migration evidence retained because it contains source-mapping and reasoning not present in redirect stubs:
 
 - [Waves 1–5 migration record](WAVES_1_5_MIGRATION.md)
 - [Domain source-mapping packets](domain-packets/README.md)

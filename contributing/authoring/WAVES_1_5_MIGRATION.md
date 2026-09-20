@@ -1,8 +1,8 @@
 # Waves 1–5 Migration Record
 
-Status: **historical migration record reconciled onto current main on 2026-09-20**.
+Status: **historical migration record reconciled and cleaned on 2026-09-20**.
 
-PR #2 originally carried a standalone documentation migration branch. Current `main` later advanced through private-research publication waves, so the PR has been reconciled rather than replayed over newer canonical content.
+The original Waves 1–5 branch reorganized the earlier public handbook. Later private-research publication waves superseded many of its canonical technical pages.
 
 ## Wave 1 — canonical information surfaces
 
@@ -28,28 +28,30 @@ See [case packets](case-packets/README.md).
 
 ## Wave 5 — reference audit
 
-Audited the remaining legacy `docs/reference/` corpus by document responsibility.
+Audited the former `docs/reference/` corpus by document responsibility.
 
-The original audit reported:
+The original audit recorded:
 
 - 18 mixed-role substantive pages packeted and split;
 - 14 single-role substantive pages migrated directly;
-- 4 aliases redirected;
-- 61 legacy reference files reduced to compatibility-sized redirects;
+- 4 aliases redirected during the migration branch;
 - no new runtime/save/decompilation/compatibility/release proof created by reorganization.
 
 See [Wave 5 audit](reference-audit/WAVE5_REFERENCE_AUDIT.md).
 
-## Reconciliation with current main
+## Cleanup decision
 
-Older canonical pages from the PR branch are superseded by newer private-research-derived documentation on current `main`.
+The compatibility folders were later removed because they contained only seven-line `# Moved` redirect stubs and no unique technical content.
 
-The reconciled PR therefore retains:
+Before removal, the retained migration packets/audit were checked and confirmed to preserve the useful information that was not otherwise represented as canonical knowledge:
 
-1. migration/audit packets;
-2. this historical record;
-3. compatibility redirects for the original public Markdown paths.
+- source-to-destination mapping;
+- reader questions;
+- ownership splits;
+- evidence/claim limits;
+- failures/corrections worth preserving;
+- completion criteria.
 
-It does not reintroduce older duplicate canonical mechanics/systems pages.
+The repository now keeps those migration records without retaining a second visible legacy directory tree.
 
 This record is documentation provenance only and does not strengthen any technical claim.
