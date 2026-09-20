@@ -128,6 +128,10 @@ Harmony.UnpatchSelf()
 
 Short-lived effects should also self-destroy after their configured lifetime.
 
+## Runnable source
+
+Start from the buildable public source: [Damage/death VFX sidecar example](../../../examples/mono/rendering/damage-death-vfx/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Ownership rule
 
 ~~~text
