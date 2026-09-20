@@ -42,6 +42,10 @@ Rigid weapon visuals can enter Drake while the Item/equip/hand chain remains the
 
 First-person, third-person and inventory-preview presentation are distinct consumers and should stay on their native lifecycle.
 
+## Deeper reference
+
+- [Weapon ownership chain](ownership-chain.md)
+
 ## Modding relevance
 
 When changing an existing weapon, decide which layer you are actually changing:
