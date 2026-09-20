@@ -1,66 +1,116 @@
-# Customize the HUD with Separate System and Visual Proof
+# Customize the HUD Through VHeroHUD
 
-**Evidence status: PARTIAL.** Native visibility ownership is well identified, while several custom visual themes had build/deploy/resource proof without complete in-game visual acceptance.
+Use VHeroHUD as the lifecycle/visibility owner, then alter only the child CanvasGroups or mod-owned presentation you actually need.
 
 Working lineage: [Native HUD Ownership vs Custom Visual Proof](../../../research/case-studies/ui/hud-owner-and-visual-proof.md).
 
-## Key rule
+## Force or yield native hero-bar visibility
 
-Do not merge two claims:
+The central native decision is the private property:
 
-1. **the hook/owner is correct**;
-2. **the custom visual looks correct in game**.
+~~~text
+Awaken.TG.Main.Heroes.VHeroHUD.ShowBars
+~~~
 
-Both need evidence.
+Resolve its getter with:
 
-## Native visibility lane
+~~~csharp
+AccessTools.PropertyGetter(typeof(VHeroHUD), "ShowBars")
+~~~
 
-The researched path includes:
+and patch it with a postfix.
 
-- `VHeroHUD.ShowBars`;
-- `VHeroHUD.UpdateCanvasGroups()`.
+The working Always Show HUD implementation does:
 
-Use the native visibility owner when changing when HUD bars appear.
+~~~csharp
+if (Plugin.Enabled &&
+    Plugin.ForceVanillaHeroHud &&
+    !Plugin.ShouldLetGameHideHud())
+{
+    __result = true;
+}
+~~~
 
-## Custom visual lane
+That keeps the game's own HUD objects and only changes the final visibility decision.
 
-For themes/layouts/resources:
+FoA's normal ShowBars result already accounts for combat/recent-HUD timers/ForceShow/weapons-visible behavior.
 
-1. load/validate your custom resources;
-2. attach them to the intended HUD owner;
-3. verify geometry/bounds/anchors;
-4. capture in-game visual evidence;
-5. test multiple resolutions/aspect ratios if claimed;
-6. restore/destroy owned UI on teardown.
+## Per-element visibility
 
-## Do not promote build proof into visual proof
+For independent health/stamina/mana/quickslot controls, patch:
 
-These are separate:
+~~~text
+VHeroHUD.UpdateCanvasGroups()
+~~~
 
-```text
-asset embedded
-≠ resource loaded
-≠ HUD object created
-≠ correctly positioned
-≠ visually accepted
-```
+with a postfix.
 
-## Verification
+After the game updates its own groups:
 
-Track two receipts:
+~~~csharp
+VCHeroHUDBar[] bars =
+    hud.GetComponentsInChildren<VCHeroHUDBar>(true);
+~~~
 
-### System receipt
-- native owner found;
-- hook/visibility path works;
-- native HUD lifecycle preserved.
+Classify known bar components such as:
 
-### Visual receipt
-- screenshot/in-game acceptance;
-- layout/scale correct;
-- no overlap/clipping;
-- hide/show transitions correct;
-- teardown clean.
+- VCHeroHealthBar;
+- VCHeroStaminaBar;
+- VCHeroManaBar.
 
-## Current proof boundary
+Add/reuse a CanvasGroup on the exact child root and change:
 
-System ownership evidence is stronger than the visual-design evidence for some versions. Keep that distinction explicit in every theme/layout guide.
+- alpha;
+- interactable;
+- blocksRaycasts.
+
+Do not deactivate the native objects just to hide them.
+
+## Quickslot
+
+The selected quickslot owner is VCSelectedQuickSlot.
+
+The working implementation patches:
+
+~~~text
+VCSelectedQuickSlot.UpdateIcon()
+~~~
+
+with a postfix so its CanvasGroup policy is reapplied when the native icon refreshes.
+
+VHeroHUD also contains a private selectedQuickSlot reference; if that member is unavailable, child lookup can be used as a fallback.
+
+## Backdrop and layout
+
+VHeroHUD owns a heroBarsCanvasGroup. If you temporarily hide/replace the native backdrop:
+
+1. capture original alpha/interactable/blocksRaycasts;
+2. apply your presentation;
+3. restore those original values when the custom layout is disabled or the HUD owner changes.
+
+For moved native status-effect UI, capture the original RectTransform position before changing it and restore it on teardown.
+
+## Custom replacement visuals
+
+If you draw your own vitals:
+
+- continue reading native hero stats;
+- let VHeroHUD remain the native lifecycle owner;
+- keep generated textures/assets mod-owned;
+- scale placement from Screen width/height;
+- do not write health/stamina/mana values from the UI.
+
+## Owner changes
+
+Cache the current VHeroHUD instance.
+
+When a new HUD instance appears:
+
+~~~text
+restore old moved/hidden native state
+→ clear old cached targets
+→ bind new VHeroHUD
+→ apply current presentation
+~~~
+
+That avoids leaking layout changes across scene/UI rebuilds.
