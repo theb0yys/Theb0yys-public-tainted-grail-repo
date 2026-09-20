@@ -2,15 +2,17 @@
 
 Hooks are only one segment of a complete mechanic. A method target does not prove owner, lifecycle, downstream success, cleanup or compatibility.
 
-## Evidence-scoped private-corpus hook candidates
+## Internally inspected hook surfaces
 
-| Native target | Patch | Evidence state | Compatibility risk | Public use |
+These are useful general FoA hook candidates derived from project source inspection and, where noted, exact-build Mono decompilation. They are published as reference targets without publishing private source.
+
+| Native target | Patch | Evidence state | Compatibility risk | Use |
 | --- | --- | --- | --- | --- |
 | `LockpickingInteraction.ConsumePickHP(float)` | Prefix | Source inspected | High | Narrow lockpick durability guard |
 | `Shop.OpenShop` | Prefix | Source inspected; owner runtime-unverified | High | Restock normal `RestockableStock` before shop UI |
 | `VCCharacterMagicVFX.CastingBegun` | Postfix | Source inspected | High | Player-owned mod VFX overlay |
-| `TemplatesLoader.set_FinishedLoading(bool)` | Postfix | Source inspected across several consumers | **Critical** | Retry/readiness boundary for template registration |
-| concrete `CloudService.EndSave(string)` providers | Postfix | Source inspected + decompiled target research | High | Observe slot IDs; **not** generic durable-success semantics |
+| `TemplatesLoader.set_FinishedLoading(bool)` | Postfix | Multi-consumer source inspection + exact Mono loader decompilation | **Critical** | Retry/readiness boundary after native template loading completes |
+| concrete `CloudService.EndSave(string)` providers | Postfix | Source inspected + exact Mono target decompilation | High | Observe completed native slot-write callbacks; **not** a custom serializer API |
 
 ## Public working hook catalogue
 
@@ -81,7 +83,7 @@ See [Events](../events/README.md).
 
 ## Provenance
 
-See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) for source repositories, snapshot SHAs and intake status.
+See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) for public-source provenance and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md) for build-scoped internal evidence.
 
 ## Rules
 
