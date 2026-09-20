@@ -1,47 +1,86 @@
 # Change Carry Capacity Safely
 
-**Evidence status: PARTIAL.** The stale-owner bug and corrected reattachment strategy are established; a complete load/transition matrix is not recorded here.
+FoA's current carry-capacity owner is `HeroStats.EncumbranceLimit`. Apply a runtime tweak to the **current** stat instance each time hero stats initialize.
 
 Working lineage: [Carry Tweak Must Follow the Current Stat Instance](../../../research/case-studies/stats/carry-stale-tweak.md).
 
-## Problem
+## Patch target
 
-A tweak object can still exist while no longer affecting gameplay because FoA rebuilt the underlying stat instance.
+The working implementation uses:
 
-Research found that `HeroStatsWrapper.Initialize` can rebuild `EncumbranceLimit`.
+~~~text
+Awaken.TG.Main.Character.HeroStats.HeroStatsWrapper.Initialize(HeroStats)
+~~~
 
-## Process
+with a Harmony postfix.
 
-```text
-hero stats initialized/reinitialized
-→ get current EncumbranceLimit instance
-→ discard old mod helper/tweak
-→ create fresh non-saved tweak
-→ attach tweak to current stat
-```
+Inside the postfix:
 
-Do not cache one stat reference forever.
+1. require a valid `HeroStats`;
+2. require `heroStats.EncumbranceLimit`;
+3. obtain `Hero hero = heroStats.ParentModel`;
+4. read `EncumbranceLimit.BaseValue`;
+5. calculate the additive modifier required to reach the configured total;
+6. discard older mod-owned carry tweaks;
+7. attach one new non-saved additive tweak to the current `EncumbranceLimit`.
 
-## Rules
+## Runtime tweak
 
-- keep the tweak non-saved unless persistence is deliberately designed;
-- track which stat instance the tweak belongs to;
-- on reinitialization, clean up the old helper;
-- attach only to the current owned stat;
-- avoid duplicate stacking.
+The implementation uses an additive `StatTweak`:
 
-## Verification
+~~~csharp
+private sealed class CarryWeightLimitTweak : StatTweak
+{
+    public override bool IsNotSaved => true;
 
-Test:
+    internal CarryWeightLimitTweak(Stat stat, float modifier)
+        : base(stat, modifier, null, OperationType.Add)
+    {
+        MarkedNotSaved = true;
+    }
+}
+~~~
 
-- baseline carry capacity;
-- tweak applies;
-- hero/stat reinitialization;
-- old tweak is not left attached to stale state;
-- new stat receives exactly one tweak;
-- save/load/scene transitions do not accumulate duplicates;
-- disabling the mod returns to baseline after recreation/reload as appropriate.
+Then:
 
-## Current proof boundary
+~~~csharp
+hero.AddElement(new CarryWeightLimitTweak(
+    heroStats.EncumbranceLimit,
+    modifier));
+~~~
 
-The owner replacement and reattachment correction are established. Full transition/save validation for the public implementation still needs to be run.
+Do not edit item weights to change carry capacity.
+
+## Remove stale tweaks first
+
+Before attaching a new one, enumerate your own `CarryWeightLimitTweak` elements on the hero and discard them.
+
+The working implementation also checks the current `HeroEncumbered` element for an old nested carry tweak and discards that too.
+
+This matters because the hero stat wrapper can rebuild the underlying stat instance. A tweak attached to yesterday's `EncumbranceLimit` object can still exist while no longer affecting the live stat.
+
+## Reapply without stacking
+
+For config changes, use the same route:
+
+~~~text
+Hero.Current
+→ Hero.HeroStats
+→ current EncumbranceLimit
+→ discard old owned tweak
+→ calculate modifier from current BaseValue
+→ attach one new tweak
+~~~
+
+If the calculated modifier is effectively zero, remove the old tweak and stop.
+
+## Native consumers remain intact
+
+FoA still owns:
+
+- `HeroItems.CurrentWeight`;
+- encumbrance comparison;
+- `HeroTweaks.RefreshEncumbrance()`;
+- encumbered behavior/UI.
+
+Your mod changes only the capacity stat they read.
