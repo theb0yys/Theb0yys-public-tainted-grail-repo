@@ -157,7 +157,7 @@ static target identified
 → downstream behaviour checked separately
 ```
 
-Gate 1 documents this handoff. Runtime tracer implementation belongs to the later runtime-tooling gate.
+Use the [Gate 2 runtime tracer](../tools/runtime-tracer/README.md) for the Mono/BepInEx 5 observation lane. Treat its target-resolution, patch-installation and invocation states as separate evidence.
 
 ## 8. Preserve a public-safe evidence note
 
