@@ -89,7 +89,7 @@ public sealed class Plugin : BaseUnityPlugin
 
     private static string Quote(string value)
     {
-        return """ + (value ?? string.Empty).Replace(""", """") + """;
+        return "\"" + (value ?? string.Empty).Replace("\"", "\"\"") + "\"";
     }
 
     private readonly struct CrimeState
