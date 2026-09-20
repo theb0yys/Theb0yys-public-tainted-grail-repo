@@ -1,9 +1,69 @@
 {
   "Format": "foa-symbol-anchors/1",
   "SourceRoot": "<SOURCE_ROOT>",
-  "AnchorCount": 23,
-  "UnresolvedCount": 15,
+  "AnchorCount": 62,
+  "UnresolvedCount": 5,
   "Anchors": [
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Il2CppRuntimePatches",
+      "MemberName": "AxisPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Il2CppRuntimePatches",
+      "MemberName": "ButtonIntPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Il2CppRuntimePatches",
+      "MemberName": "ButtonPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Il2CppRuntimePatches",
+      "MemberName": "ButtonStringPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Il2CppRuntimePatches",
+      "MemberName": "UnityKeyCodePrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
     {
       "Owner": "community.taintedgrail.template.il2cpp-audio-replacement",
       "Project": "Il2CppAudioReplacementGate.csproj",
@@ -27,6 +87,32 @@
       "MemberKind": "method",
       "ParameterTypeExpressions": [],
       "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.il2cpp-patch-health",
+      "Project": "Il2CppPatchHealth.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/il2cpp/harmony/patch-health/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "DemoFeaturePatch",
+      "MemberName": "Postfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.il2cpp-patch-health",
+      "Project": "Il2CppPatchHealth.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/il2cpp/harmony/patch-health/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof-signature",
+      "TypeExpression": "DemoFeatureTarget",
+      "MemberName": "Compute",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [
+        "int"
+      ],
+      "SignatureExplicit": true
     },
     {
       "Owner": "community.taintedgrail.template.il2cpp-result-postfix",
@@ -65,6 +151,78 @@
       "SignatureExplicit": false
     },
     {
+      "Owner": "community.taintedgrail.example.damage-death-vfx",
+      "Project": "DamageDeathVfx.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/rendering/damage-death-vfx/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "DamagePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.damage-death-vfx",
+      "Project": "DamageDeathVfx.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/rendering/damage-death-vfx/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "DeathPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.character-damage-observer",
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/combat/damage-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "DamageObserverPatch",
+      "MemberName": "Postfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.character-damage-observer",
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/combat/damage-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "HealthElement",
+      "MemberName": "TakeDamage",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.damage-observer",
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/combat/damage-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "HealthElement",
+      "MemberName": "TakeDamage",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.damage-observer",
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/combat/damage-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "DamagePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
       "Owner": "community.taintedgrail.example.character-death-observer",
       "Project": "DeathObserver.csproj",
       "Runtime": "mono",
@@ -77,6 +235,18 @@
       "SignatureExplicit": false
     },
     {
+      "Owner": "community.taintedgrail.example.character-death-observer",
+      "Project": "DeathObserver.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/combat/death-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "DeathPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
       "Owner": "community.taintedgrail.template.death-observer",
       "Project": "DeathObserver.csproj",
       "Runtime": "mono",
@@ -84,6 +254,138 @@
       "Pattern": "AccessTools.Method-type-string",
       "TypeExpression": "HealthElement",
       "MemberName": "OnDeathEvents",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.death-observer",
+      "Project": "DeathObserver.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/combat/death-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "DeathPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "AxisPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "BlockWhenManagerVisiblePrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonIntPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonIntPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonNoArgumentPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonStringPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "ButtonStringPrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "PlayerInputProcessLateUpdatePrefix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "GameInputPatch",
+      "MemberName": "UnityKeyCodePrefix",
       "MemberKind": "method",
       "ParameterTypeExpressions": [],
       "SignatureExplicit": false
@@ -120,6 +422,35 @@
       "Pattern": "AccessTools.Method-type-string",
       "TypeExpression": "SettingsMaster",
       "MemberName": "AddAudioSetting",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.footstep-beep",
+      "Project": "FootstepReplacement.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/audio/footstep-replacement/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof-signature",
+      "TypeExpression": "FMODManager",
+      "MemberName": "PlayOneShot",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [
+        "EventReference",
+        "Vector3",
+        "UnityEngine.Object",
+        "FMODParameter[]"
+      ],
+      "SignatureExplicit": true
+    },
+    {
+      "Owner": "community.taintedgrail.example.footstep-beep",
+      "Project": "FootstepReplacement.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/audio/footstep-replacement/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "FootstepPatch",
+      "MemberName": "Prefix",
       "MemberKind": "method",
       "ParameterTypeExpressions": [],
       "SignatureExplicit": false
@@ -233,6 +564,30 @@
       "SignatureExplicit": false
     },
     {
+      "Owner": "community.taintedgrail.example.magic-projectile-speed",
+      "Project": "MagicProjectileSpeed.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/magic/projectile-speed/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "MagicProjectilePatch",
+      "MemberName": "BaseDamagePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.magic-projectile-speed",
+      "Project": "MagicProjectileSpeed.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/magic/projectile-speed/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "MagicProjectilePatch",
+      "MemberName": "ConfigurePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
       "Owner": "community.taintedgrail.template.magic-projectile-speed",
       "Project": "MagicProjectileSpeed.csproj",
       "Runtime": "mono",
@@ -245,6 +600,104 @@
       "SignatureExplicit": false
     },
     {
+      "Owner": "community.taintedgrail.template.magic-projectile-speed",
+      "Project": "MagicProjectileSpeed.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/magic/projectile-speed/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "MagicProjectilePatch",
+      "MemberName": "Postfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.mount-velocity",
+      "Project": "MountVelocity.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/gameplay/mount-velocity/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "RunningPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.mount-velocity",
+      "Project": "MountVelocity.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/gameplay/mount-velocity/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "TurningPostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.patch-health",
+      "Project": "PatchHealth.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/patch-health/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "DemoFeaturePatch",
+      "MemberName": "Postfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.patch-health",
+      "Project": "PatchHealth.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/patch-health/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof-signature",
+      "TypeExpression": "DemoFeatureTarget",
+      "MemberName": "Compute",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [
+        "int"
+      ],
+      "SignatureExplicit": true
+    },
+    {
+      "Owner": "community.taintedgrail.example.vendor-price-postfix",
+      "Project": "VendorPricePostfix.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/gameplay/vendor-price-postfix/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "PricePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/tainted-music/shared/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "CombatDuckingDamagePatch",
+      "MemberName": "Postfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/tainted-music/shared/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "HealthElement",
+      "MemberName": "TakeDamage",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
       "Owner": "",
       "Project": "",
       "Runtime": "unspecified",
@@ -252,6 +705,30 @@
       "Pattern": "HarmonyPatch-type-nameof",
       "TypeExpression": "ItemSet",
       "MemberName": "ApplyStats",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/tainted-music/shared/NativeMusicMenuPatch.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "NativeMusicMenuPatch",
+      "MemberName": "MenuInitializePostfix",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/the-last-menhir/shared/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-nameof",
+      "TypeExpression": "Plugin",
+      "MemberName": "BeforeGameQuit",
       "MemberKind": "method",
       "ParameterTypeExpressions": [],
       "SignatureExplicit": false
@@ -285,27 +762,9 @@
   ],
   "Unresolved": [
     {
-      "Project": "FoAModManager.IL2CPP.csproj",
+      "Project": "Il2CppPatchHealth.csproj",
       "Runtime": "il2cpp",
-      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "DamageDeathVfx.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/rendering/damage-death-vfx/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "DamageObserver.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/combat/damage-observer/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "DamageObserver.csproj",
-      "Runtime": "mono",
-      "Source": "templates/mono/combat/damage-observer/Plugin.cs",
+      "Source": "examples/il2cpp/harmony/patch-health/PatchHealth.cs",
       "Reason": "Harmony-like source present but no supported literal target was extracted."
     },
     {
@@ -315,33 +774,9 @@
       "Reason": "Harmony-like source present but no supported literal target was extracted."
     },
     {
-      "Project": "FootstepReplacement.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/audio/footstep-replacement/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "MountVelocity.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/gameplay/mount-velocity/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
       "Project": "PatchHealth.csproj",
       "Runtime": "mono",
       "Source": "examples/mono/harmony/patch-health/PatchHealth.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "PatchHealth.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/harmony/patch-health/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": "VendorPricePostfix.csproj",
-      "Runtime": "mono",
-      "Source": "examples/mono/gameplay/vendor-price-postfix/Plugin.cs",
       "Reason": "Harmony-like source present but no supported literal target was extracted."
     },
     {
@@ -353,25 +788,7 @@
     {
       "Project": null,
       "Runtime": "unspecified",
-      "Source": "examples/public-mod-source/tainted-music/shared/NativeMusicMenuPatch.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": null,
-      "Runtime": "unspecified",
-      "Source": "examples/public-mod-source/tainted-music/shared/Plugin.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": null,
-      "Runtime": "unspecified",
       "Source": "examples/public-mod-source/the-last-menhir/shared/HarmonyPatchChainProbe.cs",
-      "Reason": "Harmony-like source present but no supported literal target was extracted."
-    },
-    {
-      "Project": null,
-      "Runtime": "unspecified",
-      "Source": "examples/public-mod-source/the-last-menhir/shared/Plugin.cs",
       "Reason": "Harmony-like source present but no supported literal target was extracted."
     }
   ],
