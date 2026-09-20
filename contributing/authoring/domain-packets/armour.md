@@ -35,7 +35,7 @@ Armour/equipment identity, source geometry, deformation compatibility, Kandra pa
 - [Items packet](items.md)
 - [Native object ownership](../../../systems/core/native-object-ownership.md)
 - current public proprietary-rendering documentation
-- [Saving and persistence](../../../systems/persistence/README.md)
+- [Saving and persistence](../../../systems/world/saving-persistence.md)
 
 ## Public source set
 
