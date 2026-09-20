@@ -1,8 +1,10 @@
 # Better Bonfire Menu Public Template
 
+Use this starter when you want to build a bonfire service menu without rebuilding the services themselves. Shared code can own menu/configuration rules; runtime hosts should route actions to the exact native bonfire, shop, crafting, storage, and UI owners.
+
 Source family: `better-bonfire-menu`
 
-This is a public, source-only starter distilled from the Better Bonfire Menu mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
