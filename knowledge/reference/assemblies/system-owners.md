@@ -177,6 +177,25 @@ For a native target, record:
 - public/private status;
 - evidence state.
 
+## Exact inspected Mono baseline
+
+The strongest current assembly-owner map is bound to this recorded Mono environment:
+
+| Field | Value |
+| --- | --- |
+| Steam build | `24270691` |
+| Runtime | Mono |
+| `TG.Main.dll` SHA-256 | `749AABBFBEC121BB69BDA0AE226223154406D2C990DF3312AD12365D513FA982` |
+| `TG.Main.dll` MVID | `68528841-991C-481E-BD94-7F1776FC3579` |
+| `TG.Main.dll` size | `9,058,304` bytes |
+| BepInEx | `5.4.23.3` |
+| Harmony | `2.9.0.0` |
+| Unity | `6000.0.41.4645959` |
+
+The recorded managed inventory also fingerprints the owner assemblies used by the map above. These identifiers are compatibility evidence for the inspected Mono build; they are not claims about later builds or IL2CPP interop assemblies.
+
+See [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
+
 ## Current proof boundary
 
 This page reflects a specific inspected Mono build and the current research corpus.
