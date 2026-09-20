@@ -6,6 +6,7 @@ These examples show how a normal Mono/BepInEx mod can consume the shared infrast
 - [Shared custom UI: Mod Manager + Tainted Interface](shared-ui/README.md)
 - [Avalon Core read-only consumer](core-readonly/README.md)
 - [Avalon AI V2 package contracts](ai-package-contracts/README.md)
+- [Optional cross-mod API](optional-cross-mod-api/README.md)
 
 The examples do **not** redistribute infrastructure DLLs. Point the MSBuild properties at your installed/released infrastructure package.
 
