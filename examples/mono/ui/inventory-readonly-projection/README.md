@@ -1,27 +1,57 @@
-# Inventory Read-Only Projection
+# Build a Read-Only Custom Inventory View
 
-Press F8 to open a small read-only list built from the current HeroItems.Inventory.
+This example reads the player's real inventory and displays a separate searchable list.
 
-The example:
+It does not equip, move, delete, or create items.
 
-~~~text
-Hero.Current
-→ HeroItems
-→ Inventory
-→ native Item rows
-→ skip HiddenOnUI templates
-→ copy display fields into temporary Row structs
-→ search/sort the projection
-~~~
+That makes it a good first step before building a larger inventory UI.
 
-It stores no native Item objects as durable truth and exposes no mutation action.
-
-Build:
+## Build it
 
 ~~~powershell
 dotnet build .\InventoryReadonlyProjection.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-This uses a minimal IMGUI host so the projection mechanism is obvious. A production native Character Sheet integration can attach at InventoryUI.AfterViewSpawned and restore at InventoryUI.OnDiscard.
+## Try it in game
 
-Guide: ../../../../guides/tasks/ui/build-a-read-only-inventory-projection.md
+Press F8 to open the example window.
+
+The list is rebuilt from the player's current inventory.
+
+Try:
+
+- picking up an item;
+- reopening/refreshing the view;
+- searching by name;
+- sorting the rows.
+
+Confirm the real inventory remains unchanged.
+
+## What to change first
+
+Change one display field or one sort rule.
+
+For example, add quantity to the row text or change the default sort order.
+
+Do not add item-use/equip buttons until you understand the read-only version.
+
+## How it works
+
+The source reads:
+
+~~~text
+Hero.Current
+→ HeroItems
+→ Inventory
+→ Item objects
+~~~
+
+It then copies only the information needed for display into small temporary row objects.
+
+The custom list is therefore a **view of the inventory**, not a second inventory.
+
+The example uses a small IMGUI window simply to keep the source easy to read. A larger mod can later attach its presentation to the Character Sheet.
+
+## Next
+
+[Read the inventory projection guide](../../../../guides/tasks/ui/build-a-read-only-inventory-projection.md)
