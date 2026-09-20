@@ -5,6 +5,10 @@ Use this guide when you need a **session-only native actor** and want to prove c
 Working lineage: [Temporary Native Actor: Prove Cleanup, Not Only Spawn](../../../research/case-studies/encounters/temporary-native-actor.md).  
 Canonical creature lifecycle: [Creatures and NPCs](../../../knowledge/systems/gameplay/creatures-npcs.md).
 
+## Runnable source
+
+Start from the runnable public example: [Temporary native actor](../../../examples/hybrid/encounters/temporary-native-actor/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
