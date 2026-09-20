@@ -1,161 +1,81 @@
-# Localisation and Questline Babel
+# Localisation Consumer Boundaries
 
-> **Reference page.** FoA localisation is not just a string field and it is not safe to invent native Babel numeric IDs.
+> **Consumer/modding page.** The canonical Babel architecture, compiled corpus model, and runtime lookup flow live in [Babel Localisation](babel/README.md).
 
-## What this system is
+Use this page when a mod needs to **display or consume text safely** without pretending to own the native Babel compilation pipeline.
 
-Questline's localisation stack is layered:
+## Safe-facing identities
 
-~~~text
-Unity Localization String Tables + LocString authoring
-→ Questline Babel corpus/ID bake
-→ per-language Babel payloads
-→ languages.arch
-→ BabelManager / selected provider
-→ semantic-key or numeric-index lookup
-→ LocString / LightLocString consumers
-~~~
+Prefer a stable package/mod-owned semantic identifier when the integration surface supports one.
 
-Unity Localization remains part of authoring/tooling.
+Keep these distinct:
 
-Questline Babel owns the normal compiled runtime text database used by much of the game.
+- semantic string identity;
+- literal fallback text;
+- compiled positional `LocalizationEntryId`;
+- voice/audio identity.
 
-## Who owns it in FoA
+Do not fabricate a native numeric Babel ID. The canonical Babel page explains why the numeric form is tied to compiled corpus position.
 
-Important owners/types include:
+## `LocString` fallback behavior
 
-- `LocString`
-- `OptionalLocString`
-- `LightLocString`
-- `LocalizationEntryId`
-- `ILocalizationManager`
-- `BabelManager`
-- Babel providers
-- Unity String Table collections
-- Story/Babel compilation pipeline
-- individual consumer caches such as `Item.SetupTexts()`
+A literal conversion such as:
 
-## Important identities, types, and methods
-
-### LocString
-
-Carries:
-
-- semantic `ID`;
-- optional `IdOverride`;
-- literal `Fallback`.
-
-Runtime uses the final semantic key to query Babel and falls back to the literal string when translation is empty.
-
-### Important rule
-
-~~~csharp
+```csharp
 (LocString)"My Mod Item"
-~~~
+```
 
-does **not** register a Babel term.
+does not register a new native Babel term.
 
-It creates a LocString whose fallback is the literal text while semantic IDs remain empty.
+It provides fallback text while the semantic identity remains absent.
 
-### LightLocString
+That can be useful for a first runtime proof when the requirement is simply “the custom item must be readable”, but the documentation should call it a fallback rather than multilingual integration.
 
-Contains only a compiled numeric `LocalizationEntryId`.
+## Consumer caching matters
 
-It has no literal fallback.
+Some runtime consumers resolve template/localisation data during initialization and retain a cached result.
 
-### Babel numeric IDs
+Therefore:
 
-They are positional corpus indexes, not hashes.
+```text
+language provider changed
+≠
+every live consumer refreshed
+```
 
-Zero is invalid; valid IDs encode global corpus position.
+If a feature claims runtime language switching, test the actual consumer lifecycle rather than only proving the provider changed.
 
-That makes private numeric ID allocation dangerous.
+## Story/dialogue relationship
 
-## Where it exists in the lifecycle
+Story text uses Babel/localisation identities, but text localisation and Story execution remain separate owners.
 
-Authoring and runtime are different:
+- Story architecture: [Story Graphs](story-graphs/README.md)
+- Runtime Story/choice behavior: [Story, Quests, Dialogue, and Choices](story-quest-dialogue.md)
 
-~~~text
-semantic authoring key
-→ Unity table/corpus
-→ Babel bake
-→ numeric corpus position / language blobs
-→ archive
-→ BabelManager loads selected provider
-→ consumer resolves string
-→ some consumers cache the result
-~~~
+Voice/FM0D resources are another separate domain.
 
-For example, an `Item` can resolve template text into cached token text during initialization.
+## Practical mod policy
 
-A provider/language change alone does not prove all already-live UI/items refresh.
+For public mods:
 
-## How we interact with it
+1. use stable semantic names under a mod-owned namespace where a supported route exists;
+2. keep a readable source-language fallback when appropriate;
+3. do not allocate native positional IDs privately;
+4. keep localisation manifests/source translations separate from game-extracted language payloads;
+5. test the concrete UI/item/dialogue consumer that displays the text;
+6. record whether a restart or object reconstruction is required for language changes.
 
-### For a first runtime custom item
+## Failure patterns
 
-A literal fallback can make the item readable without pretending it has full native multilingual registration.
+- calling fallback text “registered localisation”;
+- treating semantic keys and numeric indexes as interchangeable;
+- assuming semantic-key normalization/case rules without evidence;
+- assuming live UI/items retranslate automatically;
+- combining voice replacement with text localisation ownership;
+- promoting Mono consumer behavior to IL2CPP without a separate test.
 
-Say so explicitly.
+## Proof boundary
 
-### For durable package-owned localisation identity
+The canonical architecture and ID model are documented under [Babel Localisation](babel/README.md).
 
-Use stable semantic IDs owned by the mod/package.
-
-Do not fabricate native numeric IDs.
-
-### Keep voice separate
-
-FMOD voice/audio resources are a separate resource domain even when associated with localized dialogue.
-
-### Treat hot language switching as its own lifecycle
-
-Native PC language changes can trigger application exit/restart in the inspected architecture.
-
-Do not assume every custom UI automatically refreshes in place.
-
-## Why this route
-
-Babel research corrected a common false assumption:
-
-> assigning a string to `LocString` is not native localisation registration.
-
-It also discovered a more dangerous one:
-
-> Babel's compact numeric IDs are global positional indexes, so rebuilding or privately allocating them can make existing compiled `LightLocString` values resolve to the **wrong text**, not merely fail.
-
-That makes "just add another numeric entry" an unsafe generic modding strategy.
-
-## What goes wrong
-
-- treating fallback text as registered Babel localisation;
-- inventing global `LocalizationEntryId` values;
-- rebuilding base Babel corpus with changed ordering;
-- assuming semantic keys are case-insensitive/normalized;
-- renaming/moving authoring context and assuming generated keys remain stable;
-- assuming live items/tooltips retranslate after provider swap;
-- bundling voice under the text-localisation model;
-- claiming IL2CPP equivalence without evidence.
-
-## How to verify
-
-For custom text, record:
-
-- semantic ID if one exists;
-- fallback text;
-- ownership namespace;
-- collision check;
-- current language behavior;
-- whether the consumer caches resolved text;
-- restart/hot-switch behavior if claimed;
-- missing translation behavior;
-- exact runtime lane/build.
-
-For true multilingual support, verify at least two language payloads and the consumer refresh lifecycle.
-
-## Current proof boundary
-
-**Partial path proven:** Babel architecture, semantic/numeric lookup model, literal fallback behavior, global positional ID constraint, archive/runtime relationship.
-
-**Safe now:** package-owned semantic identities plus source-language fallback and offline translation manifests.
-
+This page owns only the mod-consumer implications: fallback usage, semantic identity discipline, consumer refresh behavior, and claim boundaries.
