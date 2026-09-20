@@ -38,7 +38,7 @@ public sealed class Plugin : BaseUnityPlugin
     private const string FirstConsumerDecisionRecordPath =
         "mods/tainted-framework/docs/decisions/0002-first-consumer-tainted-diagnostic-runtime-report.md";
     private const string FirstConsumerCompileValidationCommand =
-        "dotnet build \"mods/Tainted-Diagnostic Tool/src/TemplateDiagnostics.csproj\" -c Release -p:FoAGameRoot=\"A:\\SteamLibrary\\steamapps\\common\\Tainted Grail FoA\" -p:UseSharedCompilation=false -p:NuGetAudit=false -nr:false";
+        "dotnet build \"mods/Tainted-Diagnostic Tool/src/TemplateDiagnostics.csproj\" -c Release -p:FoAGameRoot=\"<GameRoot>\" -p:UseSharedCompilation=false -p:NuGetAudit=false -nr:false";
 
     private ConfigEntry<bool> _enabled = null!;
     private ConfigEntry<bool> _reportOnlyMode = null!;
