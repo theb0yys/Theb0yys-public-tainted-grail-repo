@@ -20,6 +20,7 @@ your mod
 
 | I need to… | Use | Current posture |
 | --- | --- | --- |
+| detect my FoA runtime, scaffold, build, install or tail logs | [Developer tools](developer-tools/README.md) | **Author-ready helper scripts** |
 | expose BepInEx settings | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Author-ready** |
 | register controller commands or runtime status | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Author-ready** |
 | open a custom screen without every mod owning cursor/freeze logic | [FoA Mod Manager](components/foa-mod-manager/custom-ui-scope.md) | **Author-ready** |
@@ -30,6 +31,8 @@ your mod
 | author AI behaviour that composes with other AI | [Avalon AI Runtime](components/avalon-ai-runtime/README.md) | **Package contracts + single host** |
 | publish/query cross-mod contract data | [Avalon Contracts](components/avalon-contracts/README.md) | **Read-only/provider-first; lifecycle lane-specific** |
 | run an external local development client | [Tainted Grail Extender](components/tainted-grail-extender/README.md) | **Advanced/SDK** |
+
+For a practical Windows setup/build loop, use the [Developer tools](developer-tools/README.md).
 
 For exact GUIDs/assemblies/API entry points, use the [Component reference](ecosystem/component-reference.md).
 
