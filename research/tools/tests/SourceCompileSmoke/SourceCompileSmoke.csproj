@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Stubs.cs" />
+    <Compile Include="..\..\runtime-tracer\Plugin.cs" Link="RuntimeTracer.Plugin.cs" />
+    <Compile Include="..\..\harmony-runtime-audit\Plugin.cs" Link="HarmonyRuntimeAudit.Plugin.cs" />
+  </ItemGroup>
+</Project>
