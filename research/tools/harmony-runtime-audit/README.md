@@ -26,7 +26,7 @@ OwnerId filters the report to one exact Harmony owner ID. Empty includes all own
 
 ExpectedTargets accepts pipe-separated canonical target identities in the same shape printed by the audit:
 
-    Assembly::Namespace.Type.Method(System.Int32,System.String)->System.Boolean
+    Assembly::Namespace.Type.Method(System.Int32,System.String)
 
 The audit compares exact strings and logs each missing expected target.
 
