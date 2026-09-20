@@ -9,4 +9,4 @@ Small, source-only mechanism demonstrations organized first by runtime/authoring
 
 Runtime belongs in the parent path. Child folders use functional domains and concise mechanism names instead of repeating `mono`/`il2cpp` or numeric ordering prefixes.
 
-For lessons extracted from complete working mods, use [case studies](../case-studies/README.md). For reusable starter projects, use [templates](../templates/README.md).
+For lessons extracted from complete working mods, use [case studies](../research/case-studies/README.md). For reusable starter projects, use [templates](../templates/README.md).

@@ -1,70 +1,29 @@
-# Tainted Grail: The Fall of Avalon — Community Modding
+# Tainted Grail: The Fall of Avalon — Community Modding Platform
 
-Want to make something for **Tainted Grail: The Fall of Avalon**? Start with what you want to accomplish. You do **not** need to understand the whole repository first.
+An unofficial, source-only modding platform for **Tainted Grail: The Fall of Avalon**. It combines author guidance, game-system knowledge, shared modding infrastructure, research, runnable examples, and reusable project starters.
 
 > **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
-## What do you want to do?
+## Start here
 
-### 🌱 Make my first mod
+- **New to modding:** [Guides](guides/README.md) → [Getting started](guides/getting-started/README.md)
+- **Need a known capability or exact game fact:** [Knowledge](knowledge/README.md)
+- **Building against shared infrastructure:** [Platform](platform/README.md)
+- **Investigating unknown behaviour or evidence:** [Research](research/README.md)
+- **Need working source:** [Examples](examples/README.md)
+- **Starting a project:** [Templates](templates/README.md)
 
-Start with **[Make your first Tainted Grail mod](learn/first-mod/README.md)**.
+## Repository structure
 
-### ⚙️ Perform a known modding capability
-
-Open **[Mechanics](mechanics/README.md)** for bounded capabilities such as item resolution, custom weapon integration, mount velocity, one-session companions, modal UI and persistence boundaries.
-
-### 🗡️ Add new content
-
-Begin with **[First content authoring](learn/first-mod/first-content-authoring.md)** and use the relevant mechanic/system pages. Existing [how-to guides](how-to/README.md) remain available while they are progressively reconciled into canonical mechanics.
-
-### 🧠 Understand how FoA actually works
-
-Open **[Game systems](systems/README.md)**.
-
-### 🔬 Investigate something the repository does not know yet
-
-Open **[Investigate](investigate/README.md)**. Owner discovery and lifecycle tracing are first-class modding skills.
-
-### 🔧 Diagnose a failure
-
-Open **[Diagnose](diagnose/README.md)**. Troubleshooting starts from the earliest failed owner/stage.
-
-### 🔎 Look up an exact fact
-
-Open **[Reference](reference/README.md)**.
-
-### 🧪 See what real mods proved
-
-Open **[Case studies](case-studies/README.md)**.
-
-### 💻 Start from working code
-
-Open **[Examples](examples/README.md)**.
-
-### 🧰 Use shared modding infrastructure
-
-Open **[Tooling and Shared Infrastructure](tooling/README.md)** when your mod should integrate with FoA Mod Manager, Tainted Interface, Avalon Core, Tainted Framework, Avalon AI Runtime, Avalon Contracts, Tainted Grail Extender/FOA-SDK, or the Tainted Diagnostic Tool.
-
-Start with the [recommended author stacks](tooling/ecosystem/author-stacks.md) or the [component reference](tooling/ecosystem/component-reference.md).
-
-## Repository map
-
-| Area | Use it for |
+| Surface | Owns |
 | --- | --- |
-| [learn/](learn/README.md) | Guided learning paths |
-| [systems/](systems/README.md) | Native FoA architecture and ownership |
-| [mechanics/](mechanics/README.md) | Bounded reusable modding capabilities |
-| [investigate/](investigate/README.md) | Discovering unknown owners/lifecycles |
-| [diagnose/](diagnose/README.md) | Symptom-driven troubleshooting |
-| [reference/](reference/README.md) | Exact lookup |
-| [case-studies/](case-studies/README.md) | Lessons from real mod work |
-| [examples/](examples/README.md) | Small public-safe runnable examples |
-| [tooling/](tooling/README.md) | Shared mod-author infrastructure, APIs and integration recipes |
-| [sources/](sources/README.md) | Official and upstream source links |
-| [contributing/](contributing/README.md) | Public authoring standards |
-| [how-to/](how-to/README.md) | Existing task guides pending reconciliation |
-| [templates/](templates/README.md) | Minimal project starters |
+| [platform/](platform/README.md) | Shared infrastructure, component contracts, ecosystem rules and integration recipes |
+| [guides/](guides/README.md) | Getting started, learning paths, task guides, troubleshooting and shipping |
+| [knowledge/](knowledge/README.md) | Canonical systems, reusable mechanics and exact reference material |
+| [research/](research/README.md) | Investigation methods, open investigations, case studies and source provenance |
+| [examples/](examples/README.md) | Small public-safe runnable mechanism demonstrations |
+| [templates/](templates/README.md) | Reusable project and mod-family starters |
+| [contributing/](contributing/README.md) | Repository taxonomy, evidence standards and authoring rules |
 
 ## Core reasoning model
 
@@ -78,9 +37,11 @@ exact subject / identity
 → verify the intended behaviour
 ```
 
-## One canonical explanation, multiple routes into it
+## Canonical ownership
 
-Reading order is navigation, not ownership. Link to the canonical system/mechanic/reference page instead of maintaining parallel current copies.
+Put information where it belongs, then link to it. A subject can legitimately appear in several surfaces because each surface answers a different question.
+
+See [Repository taxonomy](contributing/taxonomy.md).
 
 ## Public-repository boundary
 
@@ -92,4 +53,4 @@ Do not commit proprietary game binaries, extracted commercial assets, localizati
 - BepInEx: https://github.com/BepInEx/BepInEx
 - HarmonyX: https://github.com/BepInEx/HarmonyX
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [documentation authoring standards](contributing/README.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [documentation authoring standards](contributing/README.md), and [evidence standards](contributing/evidence-standards.md).

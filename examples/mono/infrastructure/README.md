@@ -1,6 +1,6 @@
 # Mono Infrastructure Examples
 
-These examples show how a normal Mono/BepInEx mod can consume the shared infrastructure documented under [tooling](../../../tooling/README.md).
+These examples show how a normal Mono/BepInEx mod can consume the shared infrastructure documented under [tooling](../../../platform/README.md).
 
 - [FoA Mod Manager baseline](mod-manager-baseline/README.md)
 - [Shared custom UI: Mod Manager + Tainted Interface](shared-ui/README.md)

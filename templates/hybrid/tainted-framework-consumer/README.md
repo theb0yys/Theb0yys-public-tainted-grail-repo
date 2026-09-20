@@ -32,6 +32,6 @@ dotnet build .\il2cpp\TaintedFrameworkConsumer.IL2CPP.csproj -c Release \
 
 Expected framework input: `Tainted.Abstractions.dll`.
 
-This starter demonstrates the host boundary only. A Tainted Framework capability is consumer-ready only when its public tooling contract says so. See [Tainted Framework tooling](../../../tooling/tainted-framework/README.md).
+This starter demonstrates the host boundary only. A Tainted Framework capability is consumer-ready only when its public tooling contract says so. See [Tainted Framework tooling](../../../platform/components/tainted-framework/README.md).
 
 If shared feature logic needs per-frame or IMGUI callbacks on IL2CPP, combine this pattern with the [IL2CPP registered-behaviour UI starter](../../il2cpp/ui/runtime-overlay/).
