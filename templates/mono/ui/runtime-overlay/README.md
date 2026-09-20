@@ -1,8 +1,8 @@
 # Mono Runtime UI Overlay
 
-Small BepInEx-owned IMGUI starter for diagnostics and narrow tools.
+Use this starter when you need a small Mono/BepInEx 5 IMGUI window for diagnostics or a focused mod tool.
 
-It does not claim native menu, cursor, pause, focus, or controller ownership. For those shared responsibilities, consume the appropriate public infrastructure contract.
+The template owns only its own panel. It does not take over FoA's native menus, cursor, pause state, focus, or controller input; use the shared UI tooling when your screen needs those responsibilities.
 
 Build:
 
