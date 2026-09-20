@@ -1,12 +1,23 @@
 # Hook Catalogue
 
-Hooks are only one segment of a complete mechanic. A method target does not prove owner, lifecycle, downstream success, cleanup or compatibility.
+Use this page when you need an **exact FoA method or lifecycle point to patch**.
 
-## Internally inspected hook surfaces
+A method appearing here means there is useful evidence for the target. It does **not** mean that patching it is automatically safe for every mod, game build, or runtime.
 
-These are useful general FoA hook candidates derived from project source inspection and, where noted, exact-build Mono decompilation. They are published as reference targets without publishing private source.
+Before using a target, check:
 
-| Native target | Patch | Evidence state | Compatibility risk | Use |
+- what system owns the behavior;
+- when the method runs;
+- whether the original method must continue;
+- how often it runs;
+- what state must already exist;
+- how the change is cleaned up.
+
+## Targets inspected in project source
+
+These targets come from project source inspection and, where noted, exact-build Mono decompilation.
+
+| Target | Patch type | Evidence | Risk | Useful for |
 | --- | --- | --- | --- | --- |
 | `LockpickingInteraction.ConsumePickHP(float)` | Prefix | Source inspected | High | Narrow lockpick durability guard |
 | `Shop.OpenShop` | Prefix | Source inspected; owner runtime-unverified | High | Restock normal `RestockableStock` before shop UI |
@@ -14,9 +25,9 @@ These are useful general FoA hook candidates derived from project source inspect
 | `TemplatesLoader.set_FinishedLoading(bool)` | Postfix | Multi-consumer source inspection + exact Mono loader decompilation | **Critical** | Retry/readiness boundary after native template loading completes |
 | concrete `CloudService.EndSave(string)` providers | Postfix | Source inspected + exact Mono target decompilation | High | Observe completed native slot-write callbacks; **not** a custom serializer API |
 
-## Public working hook catalogue
+## Targets demonstrated in public FoA mods
 
-| Native surface | Patch | Publicly demonstrated use | Notes |
+| Target | Patch type | Demonstrated use | Important note |
 | --- | --- | --- | --- |
 | `Hero.OnFullyInitialized` | Postfix | initialize mod state after hero/gameplay infrastructure is available | Public mods use this to set up event listeners, refresh hero-dependent state and clear per-save caches |
 | `HeroRPGStats.AfterHeroFullyInitialized` | Postfix | apply stat tweaks after hero RPG stats are ready | Public mods resolve `Hero.Current`, `TweakSystem` and hero stats here |
@@ -61,9 +72,9 @@ These are useful general FoA hook candidates derived from project source inspect
 | `VReadablePopupUI.OnSteal` | Public Harmony hook | guard native readable steal action | Readable-specific action |
 | `FMODManager.PlayOneShot(...)` filtered to `VHeroFootsteps` | Public Harmony hook | replace only hero footstep playback | Broad audio method requires narrow caller/source filtering |
 
-## Public runtime/event access used alongside hooks
+## When you do not need a Harmony patch
 
-Not every useful interception point is a Harmony patch:
+Some changes are better handled through native events instead of method patching:
 
 - `World.EventSystem.ListenTo(EventSelector.AnySource, HealthElement.Events.OnDamageDealt, ...)` is used publicly after `Hero.OnFullyInitialized`.
 - `Hero.ListenTo(Hero.Events.HeroSprintingStateChanged, ...)` appears in Questline's public source.
@@ -71,9 +82,11 @@ Not every useful interception point is a Harmony patch:
 
 See [Events](../events/README.md).
 
-## Publicly documented bad or hazardous targets
+## Known risky or misleading targets
 
-| Surface | Observed problem | Lesson |
+These examples are useful because they show why a method can be technically patchable and still be a poor intervention point.
+
+| Target / approach | What went wrong | What to learn from it |
 | --- | --- | --- |
 | broad `HeroItems.Add` patch installed during `Plugin.Awake()` / `Harmony.PatchAll` | public mod report says it could interfere with `HeroItems` initialization and prevent saves loading | a semantically relevant method can still be the wrong lifecycle intervention |
 | generic `TryGetElement<HeroItems>` plus field-offset pointer recovery | public IL2CPP implementation replaced it after the approach proved broken/dangerous | prefer a lifecycle point that hands you the valid owner |
@@ -81,14 +94,16 @@ See [Events](../events/README.md).
 | `HeroOffHandCutOff.OnRestored`, `OnInitialized`, and `Hero.OnFullyInitialized` for one removal operation | public hand-regrow mod reports all were too early and caused an "Element wasn't fully initialized" failure | even broadly useful lifecycle hooks may be too early for a specific child-element operation |
 | broad audio hooks without caller/source filtering | public working footstep replacement relies on filtering to `VHeroFootsteps` | a technically valid broad hook may still be too wide for compatibility |
 
-## Provenance
+## How to use this catalogue
+
+- Prefer the narrowest native method that actually owns the behavior.
+- Let the original method run unless your feature intentionally replaces it.
+- Recheck private/reflected targets after game updates.
+- Treat "the hook fired" as only one verification step, not proof that the feature worked.
+- Keep Mono, IL2CPP-native, and Merlin findings separate unless you have evidence that the same target exists and behaves the same way.
+
+See [Lifecycle and Hook Timing](lifecycle.md) before choosing between several plausible targets.
+
+## Evidence
 
 See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) for public-source provenance and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md) for build-scoped internal evidence.
-
-## Rules
-
-- Patch the narrow native owner for the behaviour being changed.
-- Preserve the original path unless the mod intentionally owns that calculation/action.
-- Revalidate private/reflection targets after game updates.
-- A hook firing is not terminal success.
-- Keep Mono, IL2CPP-native and Merlin evidence lanes explicit; do not silently treat their access mechanisms as interchangeable.
