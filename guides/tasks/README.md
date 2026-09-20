@@ -1,24 +1,22 @@
-# How-to Guides — Transitional Surface
+# Task Guides
 
-These are existing task-oriented guides from the earlier public handbook.
+These guides walk through concrete modding jobs such as adding items, changing gameplay behavior, building UI, working with audio, or debugging compatibility.
 
-New reusable capability documentation is now canonical under [mechanics](../../knowledge/mechanics/README.md), while unknown-system work belongs under [investigate](../../research/README.md) and symptom-driven failure work under [diagnose](../troubleshooting/README.md).
-
-## Existing content guides
+## Content
 
 - [Items](items/README.md)
 - [Weapons](weapons/README.md)
 - [Armour](armour/README.md)
 - [Creatures](creatures/README.md)
 
-## Existing runtime/domain guides
+## Runtime and game systems
 
-- [Gameplay intervention](gameplay/README.md)
+- [Gameplay](gameplay/README.md)
 - [Diagnostics](diagnostics/README.md)
 - [Compatibility validation](compatibility/README.md)
 - [Reverse engineering](reverse-engineering/README.md)
 - [Interoperability](interoperability/README.md)
-- [Quests/dialogue](quests-dialogue/README.md)
+- [Quests and dialogue](quests-dialogue/README.md)
 - [UI](ui/README.md)
 - [Audio](audio/README.md)
 - [Animation](animation/README.md)
@@ -26,4 +24,6 @@ New reusable capability documentation is now canonical under [mechanics](../../k
 - [World](world/README.md)
 - [Saving](saving/README.md)
 
-These pages will be reconciled gradually; do not duplicate new canonical truth here when a mechanics/system/reference page already owns it.
+Some of these guides predate the current Knowledge structure. They remain useful as step-by-step workflows, but exact technical facts should link to the maintained page in [Knowledge](../../knowledge/README.md) rather than being copied into several guides.
+
+If a game behavior is still unknown or disputed, use [Research](../../research/README.md). If you are starting from a failure symptom, use [Troubleshooting](../troubleshooting/README.md).
