@@ -13,6 +13,10 @@ The game computes its normal final price first. Your mod then adjusts only the r
 Canonical mechanic: [Final Vendor-Price Adjustment](../../../knowledge/mechanics/economy/vendor-price-adjustment.md).  
 Working lineage: [Vendor Price Tuning](../../../research/case-studies/gameplay/vendor-pricing.md).
 
+## Runnable source
+
+Start from the minimal public example: [Vendor price postfix example](../../../examples/mono/gameplay/vendor-price-postfix/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
