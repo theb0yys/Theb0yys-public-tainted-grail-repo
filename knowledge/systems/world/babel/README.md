@@ -1,5 +1,9 @@
 # Babel Localisation
 
+Use this page when you need to understand FoA's Babel/localisation system beyond a simple translated string lookup.
+
+It is most useful for exact localisation ownership, runtime lookup behavior, and content that must integrate with the game's existing text/localisation pipeline.
+
 ## What it is
 
 **Babel** is Questline's compiled runtime localisation system layered on top of Unity Localization authoring data.
