@@ -1,5 +1,5 @@
 # Mono Magic Examples
 
-Use these examples for narrowly scoped changes to existing native magic behaviour. Start here when you want to tune one value without replacing targeting, damage, casting, or spell registration.
+Use these examples when you want to tune one part of native spell behavior without rebuilding the whole magic system.
 
-- [Projectile speed](projectile-speed/README.md)
+The current example changes player-owned projectile speed while leaving targeting, damage, casting, and unrelated projectiles under native control.
