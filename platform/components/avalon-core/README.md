@@ -1,14 +1,8 @@
 # Avalon Core
 
-**Posture: Read-only/discovery baseline unless a named capability says otherwise**
+Use Avalon Core when your mod needs shared discovery information such as trust reports, capability descriptors, adapter/service versions, evidence catalogs, or reviewed planning metadata.
 
-Use Avalon Core when your mod needs shared:
-
-- host/trust report readback;
-- capability/adapter discovery;
-- service-contract version checks;
-- evidence/catalog lookup;
-- reviewed shared planning/authority metadata.
+The normal public baseline is read-only discovery. Do not treat the existence of a capability or adapter as permission to execute it unless that capability is explicitly documented for consumers.
 
 ## Runtime dependency baseline
 
