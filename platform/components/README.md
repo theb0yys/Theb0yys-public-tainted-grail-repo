@@ -1,12 +1,5 @@
 # Platform Components
 
-Shared infrastructure that mod authors can consume when the feature actually needs that owner.
+These are the shared projects a FoA mod can integrate with.
 
-- [FoA Mod Manager](foa-mod-manager/README.md)
-- [Tainted Interface](tainted-interface/README.md)
-- [Avalon Core](avalon-core/README.md)
-- [Tainted Framework](tainted-framework/README.md)
-- [Avalon AI Runtime](avalon-ai-runtime/README.md)
-- [Avalon Contracts](avalon-contracts/README.md)
-- [Tainted Grail Extender](tainted-grail-extender/README.md)
-- [Tainted Diagnostic Tool](diagnostic-tool/README.md)
+Each component page explains what problem the project solves, whether ordinary mods should depend on it, which APIs are intended for consumers, and which parts are still read-only, restricted, or under research.
