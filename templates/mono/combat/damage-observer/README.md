@@ -1,8 +1,8 @@
 # Mono Damage Observer
 
-Read-only starter for observing the native character-damage lifecycle.
+Use this starter when you need to observe character damage from a Mono/BepInEx 5 mod without changing the damage calculation.
 
-The template logs a bounded number of character damage rows and deliberately does not alter damage calculation.
+The template logs a limited number of damage events so you can verify the hook and inspect context safely. The observed events can then drive your own diagnostics, UI, audio, or VFX.
 
 Build:
 
@@ -10,4 +10,4 @@ Build:
 dotnet build .\DamageObserver.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ```
 
-Use observed data for mod-owned VFX/UI/audio/diagnostics sidecars. Keep native damage ownership native unless the mod explicitly owns a separately researched mutation.
+Keep FoA's native damage system in control unless your feature separately proves that it needs to change the calculation itself.
