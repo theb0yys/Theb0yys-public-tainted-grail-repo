@@ -1,8 +1,8 @@
 # Templates
 
-Use this page when you need to resolve, enumerate, or reason about FoA templates. The important practical questions are whether the template system is ready, which lookup path applies, and whether saved references can resolve the same identity later.
+Use this page when you need to resolve, enumerate, or reason about FoA templates.
 
-Canonical architecture: [Templates/registries](../../systems/core/templates-registries.md). Identity rules: [Identities](../identities/README.md).
+For how the template system is loaded and owned, see [Templates/registries](../../systems/core/templates-registries.md). For GUID and identity rules, see [Identities](../identities/README.md).
 
 ## Public lookup patterns
 
