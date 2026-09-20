@@ -3,12 +3,18 @@
     <TargetFramework>net472</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AssemblyName>TGCommunity.RuntimeTracer</AssemblyName>
     <RootNamespace>TGCommunity.RuntimeTracer</RootNamespace>
     <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">$(TAINTED_GRAIL_FOA_ROOT)</FoAGameRoot>
     <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
     <ManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</ManagedDir>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="RuntimeTracerCore.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="BepInEx">
