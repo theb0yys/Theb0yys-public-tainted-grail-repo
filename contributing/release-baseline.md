@@ -1,6 +1,6 @@
 # Public Release Baseline
 
-This file records the public-release baseline used by the gated operational-hardening work.
+This file records the repository baseline used for public release work.
 
 ## Baseline source
 
@@ -21,19 +21,3 @@ A repository-wide game-build compatibility claim is **not established by this ba
 - `research/case-studies/` may record concrete runtime evidence, but only to the extent explicitly stated by the individual case study.
 - `knowledge/` should distinguish established facts from inference and state build/runtime scope where relevant.
 - Static/source evidence, runtime evidence, persistence evidence, and release proof remain separate evidence lanes.
-
-## Gate 0 acceptance criteria
-
-Gate 0 is complete only when all of the following are true:
-
-1. The public-surface guard passes on the Gate 0 branch head.
-2. Known machine-specific public paths identified during the baseline audit are removed or parameterized.
-3. A general repository licence decision is explicit and the repository documentation matches it.
-4. No later operational-tooling work is mixed into the Gate 0 baseline.
-
-## Current Gate 0 status
-
-- Public-path cleanup: **PASSED**
-- Public-surface CI: **PASSED**
-- General repository licence: **PASSED** — Apache-2.0 for original software; CC BY 4.0 for original documentation/research, with separate third-party/upstream terms preserved.
-- Gate 0 overall: **PASSED**
