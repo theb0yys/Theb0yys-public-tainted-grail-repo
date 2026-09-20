@@ -1,0 +1,379 @@
+{
+  "Format": "foa-symbol-anchors/1",
+  "SourceRoot": "<SOURCE_ROOT>",
+  "AnchorCount": 23,
+  "UnresolvedCount": 15,
+  "Anchors": [
+    {
+      "Owner": "community.taintedgrail.template.il2cpp-audio-replacement",
+      "Project": "Il2CppAudioReplacementGate.csproj",
+      "Runtime": "il2cpp",
+      "Source": "templates/il2cpp/audio/replacement-gate/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoAudioEvent",
+      "MemberName": "Play",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.il2cpp-harmony-basic",
+      "Project": "Il2CppHarmonyBasic.csproj",
+      "Runtime": "il2cpp",
+      "Source": "templates/il2cpp/harmony/basic/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "TemplateTarget",
+      "MemberName": "GetStatus",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.il2cpp-result-postfix",
+      "Project": "Il2CppResultPostfix.csproj",
+      "Runtime": "il2cpp",
+      "Source": "templates/il2cpp/harmony/result-postfix/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "TemplateDecision",
+      "MemberName": "ShouldAllow",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.audio-replacement",
+      "Project": "AudioReplacementGate.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/audio/replacement-gate/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoAudioEvent",
+      "MemberName": "Play",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.audio-replacement",
+      "Project": "AudioReplacementGate.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/audio/replacement-gate/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoAudioEvent",
+      "MemberName": "Play",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.character-death-observer",
+      "Project": "DeathObserver.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/combat/death-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "HealthElement",
+      "MemberName": "OnDeathEvents",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.death-observer",
+      "Project": "DeathObserver.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/combat/death-observer/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "HealthElement",
+      "MemberName": "OnDeathEvents",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "GameUI",
+      "MemberName": "UpdateMousePosition",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/GameInputPatch.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "PlayerInput",
+      "MemberName": "ProcessLateUpdate",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "kane.tgfoa.mod-manager",
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/NativeAudioSettingsPatch.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "SettingsMaster",
+      "MemberName": "AddAudioSetting",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.action-guard",
+      "Project": "HarmonyActionGuard.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/action-guard/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoAction",
+      "MemberName": "TryExecute",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.action-guard",
+      "Project": "HarmonyActionGuard.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/harmony/action-guard/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoAction",
+      "MemberName": "TryExecute",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.harmonybasic",
+      "Project": "HarmonyBasic.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/harmony/basic/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "TemplateTarget",
+      "MemberName": "GetStatus",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.result-postfix",
+      "Project": "HarmonyResultPostfix.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/result-postfix/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoDecision",
+      "MemberName": "ShouldAllow",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.result-postfix",
+      "Project": "HarmonyResultPostfix.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/harmony/result-postfix/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "DemoDecision",
+      "MemberName": "ShouldAllow",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.harmonyselftest",
+      "Project": "HarmonySelfTest.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/self-test/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "SelfTestTarget",
+      "MemberName": "GetStatus",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.illegal-pickup-guard",
+      "Project": "IllegalPickupGuard.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/items/illegal-pickup-guard/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "Pickable",
+      "MemberName": "StartInteraction",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.illegal-pickup-guard",
+      "Project": "IllegalPickupGuard.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/items/illegal-pickup-guard/Plugin.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "Pickable",
+      "MemberName": "StartInteraction",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.example.magic-projectile-speed",
+      "Project": "MagicProjectileSpeed.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/magic/projectile-speed/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "DamageDealingProjectile",
+      "MemberName": "SetBaseDamageParams",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "community.taintedgrail.template.magic-projectile-speed",
+      "Project": "MagicProjectileSpeed.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/magic/projectile-speed/Plugin.cs",
+      "Pattern": "AccessTools.Method-type-string",
+      "TypeExpression": "DamageDealingProjectile",
+      "MemberName": "SetBaseDamageParams",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/immersive-backgrounds/shared/Patches/ItemSetApplyStatsPatch.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "ItemSet",
+      "MemberName": "ApplyStats",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/immersive-backgrounds/shared/Patches/TitleScreenUtilsStartNewGamePatch.cs",
+      "Pattern": "HarmonyPatch-type-nameof",
+      "TypeExpression": "TitleScreenUtils",
+      "MemberName": "StartNewGame",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [],
+      "SignatureExplicit": false
+    },
+    {
+      "Owner": "",
+      "Project": "",
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/immersive-backgrounds/shared/Patches/ChoiceCallbackPatch.cs",
+      "Pattern": "HarmonyPatch-type-nameof-signature",
+      "TypeExpression": "VChoice",
+      "MemberName": "Select",
+      "MemberKind": "method",
+      "ParameterTypeExpressions": [
+        "Choice"
+      ],
+      "SignatureExplicit": true
+    }
+  ],
+  "Unresolved": [
+    {
+      "Project": "FoAModManager.IL2CPP.csproj",
+      "Runtime": "il2cpp",
+      "Source": "examples/public-mod-source/foa-mod-manager/il2cpp/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "DamageDeathVfx.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/rendering/damage-death-vfx/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/combat/damage-observer/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "DamageObserver.csproj",
+      "Runtime": "mono",
+      "Source": "templates/mono/combat/damage-observer/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "FoAModManager.csproj",
+      "Runtime": "mono",
+      "Source": "examples/public-mod-source/foa-mod-manager/mono/Patches/MenuButtonPatch.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "FootstepReplacement.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/audio/footstep-replacement/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "MountVelocity.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/gameplay/mount-velocity/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "PatchHealth.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/patch-health/PatchHealth.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "PatchHealth.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/harmony/patch-health/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": "VendorPricePostfix.csproj",
+      "Runtime": "mono",
+      "Source": "examples/mono/gameplay/vendor-price-postfix/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": null,
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/immersive-backgrounds/shared/Patches/ChoiceHoverInfosPatch.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": null,
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/tainted-music/shared/NativeMusicMenuPatch.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": null,
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/tainted-music/shared/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": null,
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/the-last-menhir/shared/HarmonyPatchChainProbe.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    },
+    {
+      "Project": null,
+      "Runtime": "unspecified",
+      "Source": "examples/public-mod-source/the-last-menhir/shared/Plugin.cs",
+      "Reason": "Harmony-like source present but no supported literal target was extracted."
+    }
+  ],
+  "Limitation": "Only supported literal Harmony and AccessTools source shapes are extracted. Dynamic target construction remains explicit under Unresolved."
+}
