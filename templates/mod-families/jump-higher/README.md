@@ -1,10 +1,8 @@
 # Jump Higher Public Template
 
-Use this starter when you are building a simple movement/stat tweak such as increased jump height across both runtimes. Keep the setting and feature rule shared, then connect it to the exact native movement/stat owner in each host.
+Use this starter for a simple movement or stat tweak that should work on both Mono and IL2CPP.
 
-Source family: `jump-higher`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep the setting and feature rule shared, while each runtime host applies it through the exact FoA movement/stat owner available on that build.
 
 ## Reusable mechanisms
 
