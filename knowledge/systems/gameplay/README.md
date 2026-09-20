@@ -1,5 +1,6 @@
 # Gameplay Systems
 
+- [Player / hero](player.md)
 - [Runtime actor lifecycle](native-runtime-actor-lifecycle.md)
 - [Runtime stat tweaks](runtime-stat-tweaks.md)
 - [Combat pressure](combat-pressure.md)
