@@ -1,5 +1,7 @@
 # Player / Hero System
 
+Use this page when your mod needs player-owned state such as inventory, recipes, stats, statuses, storage, or Hero lifecycle hooks.
+
 Canonical location for established knowledge about native player/hero ownership and execution.
 
 ## Publicly established hero access
