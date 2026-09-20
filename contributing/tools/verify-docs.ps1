@@ -138,8 +138,11 @@ foreach ($root in @('mechanics/','investigate/')) {
         }
 
         $dateMatch = [regex]::Match($yaml, '(?m)^last_verified\s*:\s*(?<date>[^\r\n]+)')
-        if ($dateMatch.Success -and $dateMatch.Groups['date'].Value.Trim() -notmatch '^\d{4}-\d{2}-\d{2}
-
+        if ($dateMatch.Success -and $dateMatch.Groups['date'].Value.Trim() -notmatch '^\d{4}-\d{2}-\d{2}$') {
+            $failures.Add("Front matter last_verified is not YYYY-MM-DD: $metadataPath")
+        }
+    }
+}
 $paragraphOwners = @{}
 foreach ($path in $markdownFiles) {
     if ($path.StartsWith('templates/')) { continue }
