@@ -11,6 +11,10 @@ Canonical platform docs:
 
 Working lineage: [Authenticated TGE Live Handshake](../../../research/case-studies/frameworks/tge-live-handshake.md).
 
+## Runnable source
+
+Start from the runnable public example: [TGE authenticated handshake](../../../examples/hybrid/infrastructure/tge-authenticated-handshake/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 A local client that performs:
