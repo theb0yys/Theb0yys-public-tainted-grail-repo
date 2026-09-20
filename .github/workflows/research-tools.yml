@@ -54,3 +54,7 @@ jobs:
       - name: Compile-smoke Mono research plug-ins against stubs
         shell: pwsh
         run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.csproj -c Release
+
+      - name: Compile-smoke IL2CPP research plug-ins against stubs
+        shell: pwsh
+        run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.IL2CPP.csproj -c Release
