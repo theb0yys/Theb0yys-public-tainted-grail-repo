@@ -126,7 +126,17 @@ if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
 
-    $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+    $portableResult = [pscustomobject]@{
+        Format = $result.Format
+        Baseline = [System.IO.Path]::GetFileName($baselinePath)
+        BaselineRuntime = $result.BaselineRuntime
+        BaselineLoader = $result.BaselineLoader
+        ChangeCount = $result.ChangeCount
+        RevalidationRequired = $result.RevalidationRequired
+        Comparisons = $result.Comparisons
+    }
+
+    $portableResult | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
 }
 
 if (-not $Quiet) {
