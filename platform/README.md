@@ -1,22 +1,8 @@
 # Tooling and Shared Infrastructure
 
-Use this section when your mod needs shared settings, UI handling, diagnostics, framework services, contracts, AI integration, or SDK tooling that another project already provides.
+Use this section when your mod needs shared tooling that another project already provides.
 
-This section is for **infrastructure a mod author can actually use**.
-
-It is not an archive of framework internals. It is the bridge from a normal FoA mod to the shared ecosystem:
-
-```text
-your mod
-  ├─ settings / controller / UI scope → FoA Mod Manager
-  ├─ shared visual resources         → Tainted Interface
-  ├─ read-only capability discovery  → Avalon Core
-  ├─ promoted runtime service        → Tainted Framework
-  ├─ AI package                      → Avalon AI Runtime
-  ├─ contract/provider integration   → Avalon Contracts
-  ├─ external/local SDK client       → Tainted Grail Extender + FOA-SDK
-  └─ game-data research              → Tainted Diagnostic Tool
-```
+Start here for common settings/UI handling, shared visual resources, diagnostics, framework services, AI integration, cross-mod contracts, or external SDK tooling. The tables and component pages below tell you what each project currently supports and what is still restricted or research-only.
 
 ## Start here: what do you need?
 
