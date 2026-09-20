@@ -31,6 +31,33 @@ That blocks the tempting approach of "register a new native save domain" as a ge
 
 ## Important identities, types, and methods
 
+### Exact template save-resolution contract
+
+For the inspected Mono build, template relationships follow this static path:
+
+~~~text
+SaveWriter.WriteTemplate<T>
+→ write template GUID
+
+SaveReader.ReadTemplate<T>
+→ TemplatesUtil.Load<T>
+→ World.Services.Get<TemplatesProvider>()
+→ TemplatesProvider.Get<T>(guid)
+~~~
+
+That explains why a runtime-created object depending on a custom template can still fail on reload if the template is not resolvable at restore time.
+
+### Explicit non-saved Model state
+
+Exact Mono inspection also establishes:
+
+- `Model.MarkedNotSaved` is settable;
+- `Model.IsNotSaved` reflects that state;
+- `Model.IsValidAfterLoad()` rejects not-saved models;
+- save preparation skips normal `OnSave()` for an `IsNotSaved` model.
+
+This is useful for deliberately session-only Models, but it is not a generic substitute for designing cleanup and ownership correctly.
+
 Relevant researched surfaces include:
 
 - `SaveWriter.WriteTemplate<T>`
@@ -126,6 +153,6 @@ For a durable claim, test separately:
 
 ## Current proof boundary
 
-Custom item GUID serialization/lookup is supported by static native-contract research. The general public custom-item path in this repository must **not** claim cold-save, missing-mod or uninstall safety until those exact tests are recorded.
+Custom item GUID serialization/lookup and the `MarkedNotSaved` model contract are supported by exact Mono static research. The general public custom-item path in this repository must **not** claim cold-save, missing-mod or uninstall safety until those exact tests are recorded.
 
 
