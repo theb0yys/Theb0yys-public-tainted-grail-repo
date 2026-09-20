@@ -4,6 +4,10 @@ A framework should make multiple mods or features easier to build and maintain.
 
 Do not create a framework because one plug-in has several classes. Create one when you have repeated responsibilities that deserve stable contracts.
 
+## Start with
+
+- [Contracts, adapters, and shared ownership](contracts-and-adapters.md)
+
 ## Good framework responsibilities
 
 Examples:
