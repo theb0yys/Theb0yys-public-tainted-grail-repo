@@ -1,8 +1,9 @@
 # Presentation Systems
 
-FoA does not use one presentation path for every object. Identify the native owner before changing a renderer, UI surface or audio path.
+FoA does not use one presentation path for every object. Identify the native owner before changing a renderer, UI surface, camera or audio path.
 
 - [UI and input](ui-input.md)
+- [Hero camera/body ownership](hero-camera-body-ownership.md)
 - [Audio and FMOD](audio-fmod-integration.md)
 - [Music](audio-music.md)
 - [Native music and ambience ownership](audio-ownership.md)

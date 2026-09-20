@@ -2,24 +2,30 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Waves 1–4 — 2026-09-20
-PR #407 authoring model, complete private mechanics/deep-lifecycle/hook indexes, bounded identity intake, and first core domain knowledge.
+## Waves 1–4
+PR #407 authoring model, complete mechanics/deep-lifecycle/hook indexes, bounded identities and first core domain knowledge.
 
-## Wave 5 — 2026-09-20
-Tainted Economy and Better Bonfire Menu: validated price seam, higher-risk loot/runtime-row lanes, native service ownership and submenu lifecycle.
+## Wave 5
+Tainted Economy + Better Bonfire Menu.
 
-## Wave 6 — 2026-09-20
-Crime & Consequences, Tainted Weather and Tainted Interface: native crime reporting/bounty, semantic extension model, bounded weather owner stack, native inventory/Character Sheet ownership and read-only UI projection boundary.
+## Wave 6
+Crime & Consequences + Tainted Weather + Tainted Interface native inventory map.
 
-## Wave 7 — 2026-09-20
-Tainted Music, Tainted Performance and Tainted Blood:
+## Wave 7
+Tainted Music + Tainted Performance + Tainted Blood.
 
-- native music vs ambience ownership;
-- plugin-owned contextual FMOD music lanes;
-- scoped native-music and ambient-zone suppression with explicit validation gaps;
-- bounded performance telemetry and causality rules;
-- post-damage/death presentation sidecar pattern;
-- real target-resolution-hook regression and lifecycle correction.
+## Wave 8 — 2026-09-20
+
+Mined Tainted Survival, Immersive Progression, True Third Person / First Person Plus, and Multi-Pin Map Notes:
+
+- native progression layers and proficiency-event observation;
+- project branch/overlay effects vs native progression truth;
+- session-only survival/fatigue pressure assembled from native observations;
+- consumed-food and weather/Wyrdness observation boundaries;
+- hero camera/perspective/body ownership and the difference between broad perspective transition and bounded framing;
+- blocked body-aware first-person mutation with a read-only investigation route;
+- mod-owned pinbook persistence under BepInEx config;
+- modal IMGUI cursor/gameplay-input ownership.
 
 ## Measurement rule
 
