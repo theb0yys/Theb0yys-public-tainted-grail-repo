@@ -1,10 +1,8 @@
 # Tainted Performance Public Template
 
-Use this starter when you are building performance monitoring or optimization features across both runtimes. Keep reporting and feature policy shared, and collect runtime-specific counters or hooks in the Mono/IL2CPP hosts.
+Use this starter for performance monitoring or optimization features that need to work on both runtimes.
 
-Source family: `tainted-performance`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep report formats, thresholds, and shared feature logic portable, while each host owns the exact counters, hooks, or interop used to collect runtime data.
 
 ## Reusable mechanisms
 
