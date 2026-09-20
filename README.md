@@ -42,6 +42,12 @@ Open **[Case studies](case-studies/README.md)**.
 
 Open **[Examples](examples/README.md)**.
 
+### 🧰 Use shared modding infrastructure
+
+Open **[Tooling and Shared Infrastructure](tooling/README.md)** when your mod should integrate with FoA Mod Manager, Tainted Interface, Avalon Core, Tainted Framework, Avalon AI Runtime, Avalon Contracts, Tainted Grail Extender/FOA-SDK, or the Tainted Diagnostic Tool.
+
+Start with the [recommended author stacks](tooling/ecosystem/author-stacks.md) or the [component reference](tooling/ecosystem/component-reference.md).
+
 ## Repository map
 
 | Area | Use it for |
@@ -54,7 +60,7 @@ Open **[Examples](examples/README.md)**.
 | [reference/](reference/README.md) | Exact lookup and evidence state |
 | [case-studies/](case-studies/README.md) | Lessons from real mod work |
 | [examples/](examples/README.md) | Small public-safe runnable examples |
-| [tooling/](tooling/README.md) | Loaders/frameworks/tooling knowledge |
+| [tooling/](tooling/README.md) | Shared mod-author infrastructure, APIs and integration recipes |
 | [sources/](sources/README.md) | Provenance and publication ledger |
 | [contributing/](contributing/README.md) | Public authoring standards |
 | [how-to/](how-to/README.md) | Existing task guides pending reconciliation |
