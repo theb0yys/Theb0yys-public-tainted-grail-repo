@@ -2,8 +2,8 @@
 
 | Working implementation | Native owner / seam | Public cookbook page |
 | --- | --- | --- |
-| Magic Tweaks 0.1.0 | native magic projectile configuration/homing | [Magic projectile example](../examples/mono/magic-projectile-speed/README.md) |
-| Hold to Steal 0.2.1 | direct pickup, container transfer/take-all, readable steal | [Theft guard](../examples/mono/illegal-pickup-guard/README.md) |
+| Magic Tweaks 0.1.0 | native magic projectile configuration/homing | [Magic projectile example](../examples/mono/magic/projectile-speed/README.md) |
+| Hold to Steal 0.2.1 | direct pickup, container transfer/take-all, readable steal | [Theft guard](../examples/mono/items/illegal-pickup-guard/README.md) |
 | Avalon Cheat Panel item browser | `TemplatesProvider → Item → World → HeroItems` | [Existing item grants](content/item-grants.md) |
 | Tainted Economy vendor lane | `TradeUtils.Price` return value | [Vendor pricing](gameplay/vendor-pricing.md) |
 | Better Bonfire Menu 0.6.3 | `VFireplaceUI` + native `FireplaceUI` services | [Bonfire services](gameplay/bonfire-services.md) |
