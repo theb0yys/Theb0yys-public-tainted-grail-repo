@@ -17,7 +17,7 @@ jobs:
 
       - name: Install pinned ILSpy CLI
         shell: pwsh
-        run: dotnet tool install --global ilspycmd --version 11.0.0.9283
+        run: dotnet tool install --global ilspycmd --version 11.0.0.9375
 
       - name: Build synthetic anchor fixture
         shell: pwsh
