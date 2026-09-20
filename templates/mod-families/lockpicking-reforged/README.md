@@ -1,8 +1,10 @@
 # Lockpicking Reforged Public Template
 
+Use this starter when you are building lockpicking changes across Mono and IL2CPP. Keep the mod's rules/configuration shared, while each host handles the exact lock-entry, durability, minigame, crime, or unlock integration it needs.
+
 Source family: `lockpicking-reforged`
 
-This is a public, source-only starter distilled from the Lockpicking Reforged mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
