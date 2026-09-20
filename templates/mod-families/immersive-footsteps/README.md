@@ -1,10 +1,8 @@
 # Immersive Footsteps Public Template
 
-Use this starter when you are building scoped footstep-audio replacement across Mono and IL2CPP. Keep replacement selection and configuration shared, while each host handles the exact FMOD/game caller and event identity.
+Use this starter for footstep-audio replacement across Mono and IL2CPP.
 
-Source family: `immersive-footsteps`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep replacement selection and configuration shared, while each runtime host handles the exact FMOD/game hook needed to identify and replace only the intended native footstep event.
 
 ## Reusable mechanisms
 
