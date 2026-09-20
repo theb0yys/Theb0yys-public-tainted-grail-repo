@@ -174,7 +174,21 @@ if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
 
-    $result | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+    $portableResult = [pscustomobject]@{
+        Format = $result.Format
+        Root = "<SOURCE_ROOT>"
+        ProjectCount = $result.ProjectCount
+        DeclaredTargetCount = $result.DeclaredTargetCount
+        ConflictCount = $result.ConflictCount
+        UnparsedProjectCount = $result.UnparsedProjectCount
+        Targets = $result.Targets
+        Conflicts = $result.Conflicts
+        Unparsed = $result.Unparsed
+        RuntimeOwnership = $result.RuntimeOwnership
+        Limitation = $result.Limitation
+    }
+
+    $portableResult | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
 }
 
 if (-not $Quiet) {
