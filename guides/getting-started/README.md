@@ -30,6 +30,21 @@ Follow these in order:
 
 Do not start with a gameplay patch. First prove that your own plug-in can load and write one line to the **BepInEx log**—the log written by the mod loader that starts your plug-in.
 
+### Optional helper scripts
+
+If you have this repository checked out on Windows, the [FoA developer tools](../../platform/developer-tools/README.md) can automate the repetitive parts of the same process:
+
+~~~text
+detect runtime/install
+→ fingerprint local references
+→ scaffold Mono or IL2CPP project
+→ build
+→ install with backup + hash verification
+→ tail/filter BepInEx log
+~~~
+
+The scripts do not replace the learning path. In particular, a successful build or verified DLL copy is still not proof that the plug-in loaded or that a gameplay hook works.
+
 ### B. I want to add genuinely new content
 
 Start with the smallest proven new-content route:
