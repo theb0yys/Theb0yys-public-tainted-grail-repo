@@ -1,10 +1,7 @@
 # Moved
 
-This mixed-role legacy page has been split by information responsibility:
+This legacy documentation path is retained for compatibility.
 
-- **[Native system →](../../systems/magic/status-effects.md)**
-- **[Modding mechanic →](../../mechanics/magic/status-effect-intervention.md)**
+**[Open the current canonical page →](../../systems/gameplay/status-effects.md)**
 
-The legacy path remains for compatibility.
-
-See the [Wave 5 authoring packet](../../contributing/authoring/reference-audit/packets/magic.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

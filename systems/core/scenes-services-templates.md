@@ -1,4 +1,3 @@
-<!-- Canonical documentation path. Migrated from docs/reference/SCENES_SERVICES_TEMPLATES.md. -->
 # Scene, Service, and Template Lifecycle
 
 > **Reference page.** Use this when a mod depends on startup ordering, scene readiness, Addressables-backed templates, or scene transitions.

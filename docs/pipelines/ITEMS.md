@@ -1,5 +1,7 @@
-# Items
+# Moved
 
-Read [Item Integration](../reference/ITEMS.md) for native item registration and acquisition.
+This legacy documentation path is retained for compatibility.
 
-Supporting references: [Templates and Registries](../reference/TEMPLATES_REGISTRIES.md), [Identity](../reference/IDENTITY_GUIDS_NAMES.md), and [Assets](../reference/ASSETS.md).
+**[Open the current canonical page →](../../how-to/items/custom-items.md)**
+
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

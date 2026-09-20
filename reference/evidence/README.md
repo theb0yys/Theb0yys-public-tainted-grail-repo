@@ -1,17 +1,18 @@
-<!-- Canonical documentation path. Migrated from docs/EVIDENCE.md. -->
-# Public Documentation Standard
+# Evidence Reference
 
-This repository is a current modding handbook.
+Use these labels narrowly.
 
-Every instructional path published here must already be strong enough to teach as a working route. Public pages focus on:
+| Label | Means |
+| --- | --- |
+| Official | Directly documented by the responsible first-party/upstream owner |
+| Static/source inspected | Code, metadata, serialized data or decompilation supports the claim |
+| Build validated | The stated source/build step passed |
+| Loader validated | The plug-in was discovered/loaded |
+| Runtime proven | The exact behaviour was observed in the stated environment |
+| Persistence proven | Save/load/reload or equivalent durable-state behaviour was exercised |
+| Compatibility tested | Explicitly tested against the stated matrix |
+| Release validated | The actual packaged artifact was exercised through its release path |
+| Blocked | Required evidence or safe route is missing/contradictory |
+| Not run | The proof lane was not executed |
 
-- the game system and its real owner;
-- the working modding path;
-- the supported runtime/environment;
-- concise limitations that affect actual use.
-
-Internal engineering history and development bookkeeping stay outside the public instructions.
-
-When a working path changes, update the handbook to the current path instead of keeping the obsolete workflow beside it.
-
-**Publish the working route, its real owner, and its real limits.**
+A stronger-sounding adjective must not replace the correct lane.

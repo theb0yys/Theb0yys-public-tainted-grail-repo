@@ -1,9 +1,7 @@
-# Audio Cookbook
+# Moved
 
-## Footsteps
+This legacy documentation path is retained for compatibility.
 
-- [Native hero footstep replacement](FOOTSTEPS.md)
-- [Source-only beep example](../07-footstep-beep-replacement-mono/README.md)
-- [Generic audio replacement gate](../../proven-paths/04-audio-replacement-gate-mono/README.md)
+**[Open the current canonical page →](../../../case-studies/audio/README.md)**
 
-The working route reuses FoA's own `VHeroFootsteps` surface parameters and intercepts only the matching FMOD one-shot call.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

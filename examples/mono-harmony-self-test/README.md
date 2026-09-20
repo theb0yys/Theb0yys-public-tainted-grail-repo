@@ -1,17 +1,7 @@
-# Mono Harmony Self-Test
+# Moved
 
-This example proves the **BepInEx 5 + Harmony** patch path without touching Tainted Grail game methods.
+This legacy documentation path is retained for compatibility.
 
-It patches a method inside its own plug-in assembly. A successful load logs:
+**[Open the current canonical page →](../mono/harmony-self-test/README.md)**
 
-```text
-Harmony self-test result: patched
-```
-
-Use it only on the Mono/BepInEx 5 lane.
-
-Build:
-
-```powershell
-dotnet build HarmonySelfTest.csproj -c Release -p:GameRoot="D:\Games\Tainted Grail FoA"
-```
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

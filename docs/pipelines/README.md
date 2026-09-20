@@ -1,12 +1,7 @@
-# Content Guides
+# Moved
 
-Choose the content type you are working with.
+This legacy documentation path is retained for compatibility.
 
-| Topic | Guide |
-| --- | --- |
-| Items | [Item registration and acquisition](ITEMS.md) |
-| Weapons | [Native weapon ownership](WEAPONS.md) |
-| Armour | [Clothing and Kandra ownership](ARMOUR.md) |
-| Creatures and NPCs | [Actor and presentation ownership](CREATURES_KANDRA.md) |
+**[Open the current canonical page →](../../how-to/README.md)**
 
-Use the [content-domain reference](../reference/CONTENT_DOMAINS.md) to distinguish the native owners. For other systems, open the [technical handbook](../REFERENCE_MAP.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

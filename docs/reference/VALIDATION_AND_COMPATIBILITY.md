@@ -1,9 +1,7 @@
 # Moved
 
-This page has moved to the canonical location:
+This legacy documentation path is retained for compatibility.
 
-**[Open the canonical page →](../../reference/evidence/validation-and-compatibility.md)**
+**[Open the current canonical page →](../../how-to/compatibility/validation.md)**
 
-This legacy path is retained for compatibility with existing links and bookmarks.
-
-The canonical information architecture is defined in [Documentation Architecture](../../contributing/authoring/DOCUMENTATION_ARCHITECTURE.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

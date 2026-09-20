@@ -1,52 +1,7 @@
-# Fixed Native Wyrdspirit Encounter
+# Moved
 
-This is the proven narrow encounter pattern behind the first Wyrd Hunt live path.
+This legacy documentation path is retained for compatibility.
 
-## Working implementation lineage
+**[Open the current canonical page →](../../../case-studies/gameplay/wyrdspirit-encounter.md)**
 
-The fixed `Spec_EnemyMonster_T1_Wyrdspirit` path was validated live. Follow-up reported:
-
-- fight/kill working;
-- leave/return working;
-- save/load working for the tested path.
-
-## Core pattern
-
-~~~text
-plugin-owned threat/condition state
-→ exact approved native profile selected
-→ native spawn request
-→ native hostile/combat path
-→ plugin tracks encounter state
-→ native death evidence resolves encounter
-→ cooldown before another request
-~~~
-
-## Identity
-
-The working first target is exact:
-
-~~~text
-Spec_EnemyMonster_T1_Wyrdspirit
-~~~
-
-Do not replace this with family/name-fragment matching.
-
-## Ownership split
-
-The mod owns:
-
-- threat/scent state;
-- profile selection;
-- cooldown/encounter bookkeeping.
-
-FoA owns:
-
-- the NPC template;
-- spawn mechanics;
-- NPC combat;
-- damage/death.
-
-## Why this pattern scales
-
-An encounter director can be built around exact native profiles without creating a custom AI stack. Add another profile only when that profile's spawn/combat/lifecycle path has its own working evidence.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

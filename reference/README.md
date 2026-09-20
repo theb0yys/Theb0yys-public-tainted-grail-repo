@@ -1,21 +1,28 @@
 # Reference
 
-Fast lookup material. Reference pages are concise, version-scoped, and linked to canonical system/mechanic explanations.
+Reference pages are for exact lookup, not long tutorials.
 
-- [Evidence and validation](evidence/README.md)
+## Core lookup
+
+- [Assemblies and system owners](assemblies/README.md)
+- [Hooks](hooks/README.md)
+- [Identities](identities/README.md)
+- [Assets](assets/README.md)
+- [Compatibility](compatibility/README.md)
 - [Mechanics catalogue](mechanics/README.md)
-- [Identity catalogue](identities/README.md)
-- [Hook catalogue](hooks/README.md)
+- [Evidence labels](evidence/README.md)
+- [Version scope](versions/README.md)
+- [Visibility/fog owners](rendering/visibility-owners.md)
+- [Weather coverage](weather/coverage.md)
+- [Content domains](content-domains.md)
+- [Game knowledge index](game-knowledge-index.md)
 
-For long-form architecture use [Systems](../systems/README.md). For actionable integration use [Mechanics](../mechanics/README.md).
+## Cross-reference routes
 
-## Additional lookup surfaces
+- [Services](services/README.md)
+- [Templates](templates/README.md)
+- [Addressables](addressables/README.md)
+- [Events](events/README.md)
+- [Glossary](glossary/README.md)
 
-- [Assemblies and system owners](assemblies-system-owners.md)
-- [Content-domain owner map](content-domains.md)
-- [Game-knowledge index](game-knowledge/README.md)
-- [Game/system routing map](game-systems-map.md)
-- [Identity kinds: GUIDs, names, addresses and stable IDs](identities/identity-kinds.md)
-- [Compatibility and private APIs](compatibility/README.md)
-
-Legacy `docs/reference/` paths are compatibility shims only after Wave 5; current technical ownership lives under Systems, Mechanics, Reference, Investigate, Diagnose, Examples, and Learn.
+For bounded capabilities use [mechanics](../mechanics/README.md); for native ownership use [systems](../systems/README.md); for unknown behaviour use [investigate](../investigate/README.md).

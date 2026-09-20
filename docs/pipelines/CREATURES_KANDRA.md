@@ -1,5 +1,7 @@
-# Creatures and NPCs
+# Moved
 
-Read [Creatures and NPCs](../reference/CREATURES_NPCS.md) for actor, animation and presentation ownership.
+This legacy documentation path is retained for compatibility.
 
-Supporting references: [Actors and Locations](../reference/ACTORS_LOCATIONS_SPAWNING.md), [Assets](../reference/ASSETS.md), and [Lifecycle Hooks](../reference/LIFECYCLE_HOOKS.md).
+**[Open the current canonical page →](../../how-to/creatures/kandra-integration.md)**
+
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

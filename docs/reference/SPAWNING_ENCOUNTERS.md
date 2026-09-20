@@ -1,9 +1,7 @@
 # Moved
 
-This page has moved to the canonical location:
+This legacy documentation path is retained for compatibility.
 
-**[Open the canonical page →](../../mechanics/actors/spawning-and-population.md)**
+**[Open the current canonical page →](../../systems/gameplay/spawning-encounters.md)**
 
-This legacy path is retained for compatibility with existing links and bookmarks.
-
-See the [domain authoring packet](../../contributing/authoring/domain-packets/creatures.md) for the source-mapped split.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

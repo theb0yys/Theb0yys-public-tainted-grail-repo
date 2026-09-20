@@ -1,4 +1,3 @@
-<!-- Canonical documentation path. Migrated from docs/reference/MVC_MODELS_ELEMENTS_EVENTS.md. -->
 # FoA MVC: Models, Elements, Views, Events, and Services
 
 > **Reference page.** This is the core native lifecycle model behind many FoA runtime systems.

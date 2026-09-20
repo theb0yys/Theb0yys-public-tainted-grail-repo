@@ -1,10 +1,7 @@
 # Moved
 
-This mixed-role legacy page has been split by information responsibility:
+This legacy documentation path is retained for compatibility.
 
-- **[Native system →](../../systems/magic/spells-and-effects.md)**
-- **[Modding mechanic →](../../mechanics/magic/spell-and-vfx-intervention.md)**
+**[Open the current canonical page →](../../systems/gameplay/spells-effects.md)**
 
-The legacy path remains for compatibility.
-
-See the [Wave 5 authoring packet](../../contributing/authoring/reference-audit/packets/magic.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

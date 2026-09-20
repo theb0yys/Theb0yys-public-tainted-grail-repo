@@ -1,11 +1,7 @@
-# Graphics Cookbook
+# Moved
 
-## Fog and atmosphere
+This legacy documentation path is retained for compatibility.
 
-- [HDRP / FoA fog control](FOG_CONTROL.md) — control the existing active Volume/fog owners and restore them cleanly.
+**[Open the current canonical page →](../../../case-studies/rendering/README.md)**
 
-## Generic visual ownership
-
-- [Skybox runtime ownership](../../proven-paths/05-skybox-runtime-ownership-mono/README.md) — capture, replace and restore an owned runtime visual state.
-
-The common rule is to identify the game's actual rendering owner instead of forcing unrelated global settings.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

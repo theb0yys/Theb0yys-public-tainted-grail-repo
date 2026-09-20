@@ -1,7 +1,7 @@
 # Moved
 
-This compatibility alias now points directly to the canonical Wave 5 owner:
+This legacy documentation path is retained for compatibility.
 
-**[Open the canonical page →](../../systems/story/README.md)**
+**[Open the current canonical page →](../../systems/world/story-quest-dialogue.md)**
 
-The alias remains so older links continue to resolve.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

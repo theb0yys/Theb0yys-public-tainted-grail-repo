@@ -1,9 +1,7 @@
 # Moved
 
-This page has moved to the canonical location:
+This legacy documentation path is retained for compatibility.
 
-**[Open the canonical page →](../../systems/armour/kandra-clothes-lifecycle.md)**
+**[Open the current canonical page →](../../mechanics/armour/native-clothes-kandra.md)**
 
-This legacy path is retained for compatibility with existing links and bookmarks.
-
-See the [domain authoring packet](../../contributing/authoring/domain-packets/armour.md) for the source-mapped split.
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

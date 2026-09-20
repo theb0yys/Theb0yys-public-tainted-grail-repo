@@ -1,35 +1,18 @@
-# Modding Mechanics
+---
+document_type: mechanic-index
+scope: reusable FoA modding capabilities
+game_build: mixed
+runtime: mixed
+last_verified: 2026-09-20
+---
 
-Canonical capability pages answering **what can a mod safely do, through which native owner, and with what proof boundary?**
+# Mechanics
 
-Mechanics must include the complete relevant path from entry through downstream consumer, cleanup, and evidence.
+Current public mechanics include combat, stats, magic, storage, lockpicking, items/weapons/armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, UI/map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
 
-Start with [Intervention selection](intervention-selection.md).
+Loot additions now include:
 
-## Domain mechanics
+- [Add an existing item to a search row](loot/add-existing-item-search-row.md)
+- [Grant an existing item from mining-damage context](loot/mining-damage-item-grant.md)
 
-- [Items](items/README.md)
-- [Weapons](weapons/README.md)
-- [Armour](armour/README.md)
-- [Creatures](creatures/README.md)
-- [Actors and spawning](actors/README.md)
-
-Every mechanic must still link back to the native owner and state its evidence boundary.
-
-## Wave 5 mechanic families
-
-- [AI](ai/README.md)
-- [Assets](assets/README.md)
-- [Audio](audio/README.md)
-- [Combat](combat/README.md)
-- [Crime and stealth](crime/README.md)
-- [Interactions](interactions/README.md)
-- [Localisation](localisation/README.md)
-- [World and travel](world/README.md)
-- [Progression](progression/README.md)
-- [Magic and status effects](magic/README.md)
-- [Story and dialogue](story/README.md)
-- [Environment and weather](environment/README.md)
-- [Harmony/lifecycle hooks](harmony-hooks/README.md)
-
-Each mechanic links back to the native system that owns the relevant state/lifecycle.
+Generic quest repair remains under [Investigate](../investigate/bugfixes/rule-pack-recovery.md), not under mechanics.

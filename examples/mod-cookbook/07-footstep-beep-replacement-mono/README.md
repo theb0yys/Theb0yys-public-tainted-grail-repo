@@ -1,25 +1,7 @@
-# Hero Footstep Replacement
+# Moved
 
-This example uses the same FMOD interception shape as a working custom-footstep mod.
+This legacy documentation path is retained for compatibility.
 
-Instead of shipping audio files, the example generates a simple beep so the repository remains source-only.
+**[Open the current canonical page →](../../mono/footstep-beep-replacement/README.md)**
 
-## Owner
-
-The hook observes FMOD one-shot playback and filters to the hero footstep owner before replacing playback.
-
-## Build
-
-~~~powershell
-dotnet build .\FootstepBeepExample.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
-~~~
-
-## Pattern
-
-1. intercept the native one-shot call;
-2. confirm the debug/source object is the hero footstep owner;
-3. select the replacement sound for the reported surface/context;
-4. suppress the matching native footstep only when the replacement will play;
-5. leave every unrelated FMOD event alone.
-
-For a reusable generic gate, see [Audio replacement gate](../../proven-paths/04-audio-replacement-gate-mono/README.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

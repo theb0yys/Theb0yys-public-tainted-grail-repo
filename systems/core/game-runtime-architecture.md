@@ -1,4 +1,3 @@
-<!-- Canonical documentation path. Migrated from docs/reference/GAME_RUNTIME_ARCHITECTURE.md. -->
 # Game and Runtime Architecture
 
 > **Reference page.** Use this when you need to understand where a mod is running, which layer owns an object, or why a Unity object, FoA template, and runtime game object are not the same thing.
@@ -112,4 +111,4 @@ Verify the specific layer you changed:
 
 This page describes a shared model supported by inspected repository implementations and native-contract research. It does not imply every FoA subsystem has a public registration API or a proven custom-content path.
 
-For runtime-lane details, see [Runtime Guide](../../docs/RUNTIME_GUIDE.md).
+For runtime-lane details, see [Runtime Guide](../../learn/runtime-modding/runtime-guide.md).

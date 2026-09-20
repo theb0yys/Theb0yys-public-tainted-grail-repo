@@ -1,5 +1,7 @@
-# Armour
+# Moved
 
-Read [Armour and Kandra](../reference/ARMOUR.md) for clothing, skinning, stitching and equip ownership.
+This legacy documentation path is retained for compatibility.
 
-Supporting references: [Content Domains](../reference/CONTENT_DOMAINS.md), [Assets](../reference/ASSETS.md), and [Native Object Ownership](../reference/NATIVE_OBJECT_OWNERSHIP.md).
+**[Open the current canonical page →](../../how-to/armour/native-integration.md)**
+
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

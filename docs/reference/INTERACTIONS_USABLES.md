@@ -1,10 +1,7 @@
 # Moved
 
-This mixed-role legacy page has been split by information responsibility:
+This legacy documentation path is retained for compatibility.
 
-- **[Native system →](../../systems/interactions/README.md)**
-- **[Modding mechanic →](../../mechanics/interactions/interaction-modification.md)**
+**[Open the current canonical page →](../../systems/gameplay/interactions-usables.md)**
 
-The legacy path remains for compatibility.
-
-See the [Wave 5 authoring packet](../../contributing/authoring/reference-audit/packets/interactions.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

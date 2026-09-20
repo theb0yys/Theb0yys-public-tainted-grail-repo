@@ -1,10 +1,7 @@
 # Moved
 
-This mixed-role legacy page has been split by information responsibility:
+This legacy documentation path is retained for compatibility.
 
-- **[Native system →](../../systems/world/map-portals-travel.md)**
-- **[Modding mechanic →](../../mechanics/world/map-portals-travel.md)**
+**[Open the current canonical page →](../../systems/world/map-travel.md)**
 
-The legacy path remains for compatibility.
-
-See the [Wave 5 authoring packet](../../contributing/authoring/reference-audit/packets/world-travel.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

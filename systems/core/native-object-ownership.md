@@ -1,4 +1,3 @@
-<!-- Canonical documentation path. Migrated from docs/reference/NATIVE_OBJECT_OWNERSHIP.md. -->
 # Native Object Ownership
 
 > **Reference page.** Use this when you have a valid definition or asset but need to make it participate in FoA gameplay.

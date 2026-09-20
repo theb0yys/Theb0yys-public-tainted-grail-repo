@@ -1,4 +1,3 @@
-<!-- Canonical Wave 5 location. Migrated from docs/reference/PRIVATE_APIS_COMPATIBILITY.md. -->
 # Private APIs, Reflection, and Compatibility
 
 > **Reference page.** Use this whenever a working path depends on private fields/methods, decompiled internals, reflection, or build-sensitive member shapes.

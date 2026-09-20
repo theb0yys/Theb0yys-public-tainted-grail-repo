@@ -1,9 +1,7 @@
 # Moved
 
-This page has moved to its canonical Wave 5 location:
+This legacy documentation path is retained for compatibility.
 
-**[Open the canonical page →](../../mechanics/harmony-hooks/lifecycle-hooks.md)**
+**[Open the current canonical page →](../../reference/hooks/lifecycle.md)**
 
-This legacy path is retained for compatibility.
-
-Classification: **single-role direct migration**. See [Wave 5 Reference Audit](../../contributing/authoring/reference-audit/WAVE5_REFERENCE_AUDIT.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

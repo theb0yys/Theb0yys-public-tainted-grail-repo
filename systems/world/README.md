@@ -1,10 +1,15 @@
-# World, Map, Travel, and Placement Systems
+# World Systems
 
-Canonical native-system explanations:
-
+- [Native Story / dialogue ownership](native-dialogue-story.md)
+- [Scene metadata](scene-metadata.md)
+- [Save slots / cloud storage](save-slot-cloud-storage.md)
+- [Bonfire / fireplace services](bonfire-services.md)
+- [Map fog of war](map-fog-of-war.md)
+- [Localisation and Babel](localisation-babel.md)
+- [Babel system](babel/README.md)
+- [Story, quests and dialogue overview](story-quest-dialogue.md)
+- [Story Graphs](story-graphs/README.md)
 - [Map discovery and fast travel](map-discovery-fast-travel.md)
-- [Map portals and travel](map-portals-travel.md)
-- [Scenes and travel](scenes-and-travel.md)
-- [Placement and navigation](placement-and-navigation.md)
-
-For mod actions, use [World mechanics](../../mechanics/world/README.md).
+- [World placement and navigation](world-placement-navigation.md)
+- [Weather and environment](weather-environment.md)
+- [Saving and persistence](saving-persistence.md)

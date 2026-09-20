@@ -1,10 +1,7 @@
 # Moved
 
-This mixed-role legacy page has been split by information responsibility:
+This legacy documentation path is retained for compatibility.
 
-- **[Native system →](../../systems/story/README.md)**
-- **[Modding mechanic →](../../mechanics/story/observation-and-intervention.md)**
+**[Open the current canonical page →](../../systems/world/story-quest-dialogue.md)**
 
-The legacy path remains for compatibility.
-
-See the [Wave 5 authoring packet](../../contributing/authoring/reference-audit/packets/story.md).
+The repository's current information architecture is authoritative; this file contains no independent technical claims.

@@ -1,18 +1,17 @@
-<!-- Canonical Wave 5 location. Migrated from docs/reference/CONTENT_DOMAINS.md. -->
 # Content Domains and Native Owners
 
 FoA content shares identity, templates, assets and lifecycle concepts, but each content type has its own runtime owners.
 
 | Content | Native owners | Reference |
 | --- | --- | --- |
-| Items | `ItemTemplate`, `Item`, inventory and stock | [Items](../docs/reference/ITEMS.md) |
-| Weapons | Item, equip, hand, combat and rigid presentation | [Weapons](../docs/reference/WEAPONS.md) |
-| Armour | Item, native clothes, stitching and Kandra | [Armour](../docs/reference/ARMOUR.md) |
-| Creatures and NPCs | `NpcTemplate`, `LocationTemplate`, actor, AI and presentation | [Creatures and NPCs](../docs/reference/CREATURES_NPCS.md) |
-| Spells | Item, skill/effect graph and cast lifecycle | [Spells and Effects](../docs/reference/SPELLS_EFFECTS.md) |
-| Recipes | Recipe definitions, station collections and learned recipes | [Recipes and Crafting](../docs/reference/RECIPES_CRAFTING.md) |
-| Merchants | Shop, stock, pricing and shop UI | [Merchants and Distribution](../docs/reference/DISTRIBUTION_MERCHANTS_LOOT.md) |
-| World content | Scenes, locations, spawners and travel | [World, Scenes and Travel](../docs/reference/WORLD_SCENES_TRAVEL.md) |
+| Items | `ItemTemplate`, `Item`, inventory and stock | [Items](../systems/gameplay/items.md) |
+| Weapons | Item, equip, hand, combat and rigid presentation | [Weapons](../systems/gameplay/weapons.md) |
+| Armour | Item, native clothes, stitching and Kandra | [Armour](../systems/gameplay/armour.md) |
+| Creatures and NPCs | `NpcTemplate`, `LocationTemplate`, actor, AI and presentation | [Creatures and NPCs](../systems/gameplay/creatures-npcs.md) |
+| Spells | Item, skill/effect graph and cast lifecycle | [Spells and Effects](../systems/gameplay/spells-effects.md) |
+| Recipes | Recipe definitions, station collections and learned recipes | [Recipes and Crafting](../systems/gameplay/recipes-crafting.md) |
+| Merchants | Shop, stock, pricing and shop UI | [Merchants and Distribution](../systems/gameplay/distribution-merchants-loot.md) |
+| World content | Scenes, locations, spawners and travel | [World, Scenes and Travel](../systems/world/world-scenes-travel.md) |
 
 ## Keep responsibilities separate
 
@@ -20,4 +19,4 @@ Item registration does not supply weapon presentation. A loaded model does not s
 
 Use each domain's native owner for its operation. Keep asset loading, gameplay behaviour, cleanup and persistence distinct.
 
-Supporting references: [Identity](../docs/reference/IDENTITY_GUIDS_NAMES.md), [Templates and Registries](../docs/reference/TEMPLATES_REGISTRIES.md), [Native Object Ownership](../docs/reference/NATIVE_OBJECT_OWNERSHIP.md), and [Resource Lifetime](../docs/reference/RESOURCE_LIFETIME.md).
+Supporting references: [Identity](identities/identity-guids-names.md), [Templates and Registries](../systems/core/templates-registries.md), [Native Object Ownership](../systems/core/native-object-ownership.md), and [Resource Lifetime](../systems/core/resource-lifetime.md).

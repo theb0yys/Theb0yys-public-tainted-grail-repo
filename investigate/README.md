@@ -1,12 +1,19 @@
-# Investigate FoA
+# Investigate
 
-How to discover undocumented identities, owners, lifecycle relationships and safe intervention seams.
+Investigation is a first-class FoA modding skill.
 
-- [Research method](research-method.md)
-- [Reverse engineering and discovery](reverse-engineering-discovery.md)
+- [Finding the native owner](finding-the-native-owner.md)
+- [Tracing a lifecycle](tracing-lifecycles.md)
+- [Static/source evidence vs runtime evidence](source-vs-runtime.md)
+- [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
+- [Proving a new mechanic](proving-a-new-mechanic.md)
+- [Persistence investigation](persistence/README.md)
+- [Travel investigation](travel/README.md)
+- Bug fixes
+  - [Rule-pack-first recovery](bugfixes/rule-pack-recovery.md)
+  - [Verify current build first](bugfixes/current-build-first.md)
+- Dialogue
+  - [External engine integration](dialogue/external-engine-integration.md)
+  - [Migration and fallback](dialogue/migration-and-fallback.md)
 
-Investigation pages preserve rejected hypotheses and corrected ownership models rather than publishing only final answers.
-
-## Investigation case study
-
-- [Mount wrong-owner discovery](../examples/investigations/mount-wrong-owner-discovery.md) — how absence on the obvious actor graph forced a corrected ownership model before mutation.
+The goal is to establish **identity → owner → lifecycle → downstream consumer → cleanup → proof** before mutation.

@@ -1,14 +1,17 @@
 # Documentation Authoring
 
-All substantial technical documentation must follow the mandatory architecture and private-to-public publication process.
+Current standards:
 
-- [Mandatory documentation architecture](DOCUMENTATION_ARCHITECTURE.md)
-- [Mandatory private-to-public workflow](PUBLICATION_WORKFLOW.md)
-- [Migration manifest](MIGRATION_MANIFEST.md)
-- [Domain authoring packets](domain-packets/README.md)
-- [Case authoring packets](case-packets/README.md)
+- [Document archetypes](document-archetypes.md)
+- [Private-to-public process](private-to-public-process.md)
+- [Evidence and provenance](evidence-and-provenance.md)
+- [Public clean-room boundary](public-clean-room-boundary.md)
+
+Historical Waves 1–5 migration evidence:
+
+- [Waves 1–5 migration record](WAVES_1_5_MIGRATION.md)
+- [Domain source-mapping packets](domain-packets/README.md)
+- [Case source-mapping packets](case-packets/README.md)
 - [Wave 5 reference audit](reference-audit/WAVE5_REFERENCE_AUDIT.md)
-- [Wave 5 mixed-role packets](reference-audit/packets/README.md)
-- [Proprietary-system authoring standard](PROPRIETARY_SYSTEMS.md) — migrated during Wave 1
 
-Do not invent a new page structure for each contribution. Choose a documented archetype and preserve evidence boundaries.
+The packets are migration provenance, not a second canonical technical knowledge surface.

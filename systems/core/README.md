@@ -1,10 +1,15 @@
 # Core Systems
 
-Cross-cutting FoA architecture used by many modding domains.
-
-Canonical pages migrated in Wave 1:
-- Game/runtime architecture
-- Native object ownership
-- Templates and registries
-- MVC models/elements/events
-- Scene, service and template lifecycle
+- [Game runtime architecture](game-runtime-architecture.md)
+- [MVC/models/elements/events](mvc-models-elements-events.md)
+- [Native object ownership](native-object-ownership.md)
+- [Scenes/services/templates](scenes-services-templates.md)
+- [Templates/registries](templates-registries.md)
+- [Resource lifetime](resource-lifetime.md)
+- [Persistence architecture](persistence-architecture.md)
+- [Serialization/archives](serialization-archives.md)
+- [Archive IO](archive-io/README.md)
+- [Managed runtime](managed-runtime/README.md)
+- [Runtime lifecycle](runtime-lifecycle/README.md)
+- [Runtime orchestration](runtime-orchestration/README.md)
+- [Serialization archive implementation](serialization-archives-implementation/README.md)
