@@ -9,4 +9,6 @@ Patch-sensitive FoA knowledge should state:
 - mod/framework version for runtime receipts;
 - last verified date.
 
+Use the [Compatibility claim record](compatibility-record.md) when documenting that something “works”.
+
 “Current”, “latest” and “works” are not version scopes by themselves.
