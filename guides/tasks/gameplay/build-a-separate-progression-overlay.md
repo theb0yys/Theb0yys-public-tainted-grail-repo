@@ -1,43 +1,122 @@
-# Build a Separate Progression Overlay
+# Build a Separate Practice/Progression Overlay
 
-**Evidence status: PARTIAL.** Research establishes that visible talent-group labels do not map one-to-one to native proficiencies. The separate overlay model still needs full runtime/persistence validation.
+FoA already has character level, proficiencies, RPG stats and talent trees. If you want another progression layer, build it from observed practice instead of pretending every visible talent group is a hidden vanilla proficiency.
 
 Working lineage: [Visible Talent Group ≠ Native Proficiency](../../../research/case-studies/progression/visible-tree-vs-proficiency.md).
 
-## Problem
+## Record actual practice
 
-A UI group named "Daggers", "Critical Hits" or "Attack Speed" does not prove there is a hidden vanilla XP/proficiency store with the same identity.
+The maintained Immersive Progression implementation funnels observed activity into:
 
-## Safe design
+~~~csharp
+PracticeLedger.Record(
+    target,
+    source,
+    sourceParameter,
+    sourceMultiplier,
+    heroInCombat,
+    contextTags,
+    xp);
+~~~
 
-When native practice/event evidence exists but no matching native progression owner exists:
+The ledger groups records by target, source, context and theme.
 
-```text
-observe confirmed native practice
-→ update mod-owned branch/progression state
-→ render mod-owned overlay
-```
+Existing recording routes include:
 
-Do not invent a fake vanilla proficiency and write it into unrelated native stats.
+- native proficiency XP through ProficiencyStats;
+- damage-related proficiency context;
+- trade transactions;
+- recipe learning;
+- fishing catches;
+- medicine/buff item use;
+- player-sourced status application;
+- world/mining actions.
 
-## Process
+Use native events that already occurred. Do not increment a branch every Update frame.
 
-1. define your own progression identity namespace;
-2. document which native events contribute;
-3. keep accumulation mod-owned;
-4. render the overlay distinctly;
-5. add persistence only after the session model is proven.
+## Keep a mod-owned ledger
 
-## Verification
+A minimal overlay needs:
 
-Prove:
+~~~text
+practice bucket key
+event count
+accumulated practice/XP
+theme/category
+current session hero identity
+~~~
 
-- correct native activity increments the intended branch;
-- unrelated activity does not;
-- vanilla talents/stats are not mutated accidentally;
-- UI clearly distinguishes mod progression;
-- reset/disable behaviour is defined.
+The maintained ledger clears/rebinds when the tracked hero session changes.
 
-## Current proof boundary
+## Convert practice at a deliberate boundary
 
-The taxonomy correction and separate-overlay architecture are established. End-to-end runtime and durable persistence remain partial.
+Immersive Progression uses safe rest as one conversion boundary.
+
+Rest is observed through:
+
+~~~text
+RestPopupUI.SkipWeatherTime(...)
+~~~
+
+and the ledger calls:
+
+~~~csharp
+PracticeLedger.SummarizeAndClearAfterRest(
+    minutes,
+    isSafelyResting,
+    heroPresent,
+    shouldLog);
+~~~
+
+That gives you a natural point to summarize recent practice, award mod-owned branch progress, or feed a carefully selected native proficiency route.
+
+## Visible talent labels are presentation categories
+
+The Character Sheet shows groups such as:
+
+~~~text
+Two Handed
+One Handed
+Attack Speed
+Critical Hits
+Daggers
+Crafting & Trading
+Armor
+...
+~~~
+
+Do not assume each label maps to a ProfStatType.
+
+Map observed native sources into your own stable branch IDs.
+
+## Native talent spending remains native
+
+FoA already checks normal talent/RPG-stat spend availability through:
+
+~~~text
+TalentTreeBase.IsUpgradeAvailable
+~~~
+
+which requires active FireplaceUI context for the ordinary Character Sheet flow.
+
+A separate progression overlay does not need to replace that gate.
+
+## Rendering the overlay
+
+Render:
+
+- branch name;
+- accumulated practice;
+- rank/progress;
+- recent contributing activities;
+- any mod-owned unlock currency.
+
+Rebuild from your ledger/state rather than storing native UI objects.
+
+## Optional native effects
+
+If a branch applies a gameplay effect, use an already identified native stat owner and a non-saved runtime tweak.
+
+For example, existing branch work maps weapon-practice ranks to weapon-specific HeroStats attack-speed stats rather than creating a fake vanilla proficiency.
+
+Keep the branch state and the native runtime effect as two separate pieces.
