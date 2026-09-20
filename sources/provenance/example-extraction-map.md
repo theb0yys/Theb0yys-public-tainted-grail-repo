@@ -24,6 +24,8 @@ A new domain folder is created only when at least one public-safe example exists
 
 These rows require a committed IL2CPP project/source surface, not merely a compatibility note or research mention.
 
+A full recursive audit of the connected private `mods/` Git tree on 2026-09-20 returned **30,413 paths with `truncated=false`**. That committed tree contains six owners with explicitly named IL2CPP project paths (`avalon-exceptions`, `foa-mod-manager`, `immersive-backgrounds`, `tainted-framework`, `tainted-music`, and `tainted-performance`). `rich-merchant` is additionally counted below because its inspected single project has an explicit dual-runtime `Il2Cpp` build branch. This is the committed GitHub evidence boundary; it must not be expanded to an uninspected local/uncommitted mod count.
+
 | Primary extraction domain | Private owner | Inspected implementation locator |
 | --- | --- | --- |
 | Audio | `tainted-music` | `mods/tainted-music/src-il2cpp/TaintedMusic.IL2CPP.csproj` |
