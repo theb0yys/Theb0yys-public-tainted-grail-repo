@@ -1,50 +1,96 @@
 # Tune Projectile Speed Without Breaking Aim
 
-**Evidence status: PARTIAL.** The corrected route/velocity model is established; a complete public runtime route matrix is not recorded.
+Use the common projectile configuration path, preserve FoA's offset-correction vector, and prevent the same projectile instance from being scaled twice.
 
 Working lineage: [Projectile Route Coverage and Aim Correction](../../../research/case-studies/magic/projectile-route-and-aim.md).
 
-## Two important corrections
+## Main hook
 
-### One launch wrapper is not universal
+The current implementation uses a postfix on:
 
-The initial hook at `ConfigureShootProjectile.ApplyToProjectile` missed other/simple projectile routes.
+~~~text
+Awaken.TG.Main.AI.Fights.Projectiles.DamageDealingProjectile.SetBaseDamageParams(...)
+~~~
 
-The stronger later anchor moved to:
+This is a later/common route than `ConfigureShootProjectile.ApplyToProjectile` and catches projectile shapes that do not pass through the original wrapper.
 
-```text
-DamageDealingProjectile.SetBaseDamageParams
-```
+Keep the old `ConfigureShootProjectile.ApplyToProjectile` postfix only as a fallback for routes that configure projectile velocity without reaching `SetBaseDamageParams`.
 
-with a guarded fallback and per-projectile double-scale protection.
+## Guard against double scaling
 
-### Total velocity is not pure aim velocity
+Because both hooks may see the same instance, keep per-projectile state.
 
-FoA projectile velocity can include offset-correction data.
+The working implementation uses a `ConditionalWeakTable` keyed by the projectile instance. Record which scalers have already been applied so speed/lifetime/homing changes run once per projectile.
 
-Scaling the whole vector can break hand/fire-point-to-crosshair compensation.
+~~~text
+SetBaseDamageParams postfix
+      ↘
+       per-projectile state → already scaled? → leave unchanged
+      ↗
+ConfigureShootProjectile fallback
+~~~
 
-## Safer process
+## Magic-projectile classification
 
-```text
-projectile reaches common damage/configuration owner
-→ recover aim component + offset correction
-→ scale aim component only
-→ preserve offset vector
-→ prevent duplicate scaling
-```
+Do not rely only on `projectile is MagicProjectile`.
 
-## Verification
+The implementation accepts magic evidence from several sources, including:
 
-For each projectile family you claim:
+- `MagicProjectile`;
+- magic source item;
+- magic projectile item;
+- `DamageType.MagicalHitSource`;
+- supported magic damage subtype.
 
-- hook route fires;
-- speed changes;
-- crosshair alignment remains correct;
-- offset compensation remains intact;
-- no projectile is scaled twice;
-- alternate/simple wrapper routes are covered or explicitly unsupported.
+That catches simple/ballistic magic projectiles that use another concrete projectile subclass.
 
-## Current proof boundary
+## Preserve aim correction
 
-The corrected later anchor, fallback concept and aim-vs-offset distinction are established. Complete runtime coverage across all projectile routes remains to be validated.
+FoA projectile velocity may contain two pieces:
+
+~~~text
+aim velocity
++ spawn/fire-point offset correction
+= final velocity
+~~~
+
+Scaling the entire final vector scales the correction too and can move the projectile away from the crosshair path.
+
+The safe shape is:
+
+~~~text
+read current velocity
+→ recover/retain offset-correction component
+→ isolate aim component
+→ scale aim component
+→ add original correction back
+→ write final velocity
+~~~
+
+Do not treat every velocity vector as a pure forward-speed vector.
+
+## Other projectile fields
+
+The working patch also reaches projectile-owned values such as:
+
+- `DamageDealingProjectile.<LifeTime>k__BackingField`;
+- `Projectile._rb`;
+- `HomingProjectile.homingStrength`;
+- `HomingProjectile` velocity-limit data.
+
+Keep each change separately guarded in the per-projectile state.
+
+## Diagnostics worth keeping
+
+For route debugging, record a bounded row containing:
+
+- hook route;
+- player ownership;
+- magic-classification reason;
+- source item/projectile identity;
+- velocity before/after;
+- lifetime before/after;
+- homing before/after;
+- which scaler actually ran.
+
+That makes missed projectile families obvious without logging every physics tick.
