@@ -1,5 +1,5 @@
 # IL2CPP Diagnostics / Performance Templates
 
-Use these templates when you need a small IL2CPP diagnostics or performance project rather than a gameplay mod.
+Use these templates when you need lightweight IL2CPP diagnostics or performance measurements without changing gameplay.
 
-The current frame sampler measures basic Unity frame timing without changing gameplay. Use the framework consumer template instead when you specifically need Tainted Framework runtime reports.
+The current frame sampler records Unity frame timing. Use the dual-runtime framework consumer when the feature specifically needs Tainted Framework runtime reports instead.
