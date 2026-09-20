@@ -1,6 +1,8 @@
 # Runtime Reference
 
-Exact lookup for FoA runtime lanes and their modding implications.
+Use this page when you need to know whether a technique or API applies to Mono, IL2CPP, or both.
+
+The runtime matters because assembly access, interop, hook targets, object lifetime, and available loader APIs can differ even when the gameplay feature looks the same.
 
 ## Evidence lanes
 
