@@ -1,8 +1,10 @@
 # Avalon Stash Public Template
 
+Use this starter when you are building stash or storage features across both runtimes. Keep shared storage rules and UI-independent logic common, while the runtime hosts connect to the exact Hero/storage owners.
+
 Source family: `Avalon Stash`
 
-This is a public, source-only starter distilled from the Avalon Stash mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
