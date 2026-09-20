@@ -4,10 +4,6 @@ Modify the shop's existing `RestockableStock` elements before the native shop UI
 
 Working lineage: [Merchant Restock Boundary](../../../research/case-studies/merchants/restock-boundary.md).
 
-## Runnable source
-
-Start from the buildable example: [Economy runtime rules](../../../examples/mono/gameplay/economy-runtime-rules/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
-
 
 ## Runnable source
 
