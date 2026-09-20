@@ -1,24 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using BepInEx;
 using BepInEx.Configuration;
-using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using UnityEngine;
 
 namespace TGCommunity.RuntimeTracer;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-public sealed class Plugin : BaseUnityPlugin
+public sealed class Plugin : BasePlugin
 {
-    public const string PluginGuid = "community.taintedgrail.runtime-tracer";
-    public const string PluginName = "TG Community Runtime Tracer";
+    public const string PluginGuid = "community.taintedgrail.runtime-tracer-il2cpp";
+    public const string PluginName = "TG Community Runtime Tracer IL2CPP";
     public const string PluginVersion = "0.1.0";
 
     private Harmony? _harmony;
@@ -38,13 +34,13 @@ public sealed class Plugin : BaseUnityPlugin
 
     internal static TraceController? Controller { get; private set; }
 
-    private void Awake()
+    public override void Load()
     {
         BindConfiguration();
 
         if (_enabled?.Value != true)
         {
-            Logger.LogInfo("Runtime tracer enabled=false. No patches installed.");
+            Log.LogInfo("Runtime tracer enabled=false. No patches installed.");
             return;
         }
 
@@ -52,7 +48,7 @@ public sealed class Plugin : BaseUnityPlugin
         if (_selfTest?.Value == true)
         {
             spec = TargetSpec.ForSelfTest();
-            Logger.LogInfo("Runtime tracer self-test target selected. No game method will be patched.");
+            Log.LogInfo("Runtime tracer self-test target selected. No game method will be patched.");
         }
         else
         {
@@ -64,7 +60,7 @@ public sealed class Plugin : BaseUnityPlugin
 
             if (!spec.IsConfigured)
             {
-                Logger.LogWarning(
+                Log.LogWarning(
                     "Runtime tracer targetConfigured=false. " +
                     "Set Target.AssemblyName, Target.TypeName and Target.MethodName, or enable SelfTest.Enabled.");
                 return;
@@ -74,12 +70,12 @@ public sealed class Plugin : BaseUnityPlugin
         TargetResolution resolution = TargetResolver.Resolve(spec);
         if (!resolution.Success || resolution.Method == null)
         {
-            Logger.LogError("Runtime tracer targetResolution=FAILED reason=" + resolution.Message);
+            Log.LogError("Runtime tracer targetResolution=FAILED reason=" + resolution.Message);
             return;
         }
 
         _target = resolution.Method;
-        Logger.LogInfo("Runtime tracer targetResolution=PASSED target=" + TargetFormatter.Format(_target));
+        Log.LogInfo("Runtime tracer targetResolution=PASSED target=" + TargetFormatter.Format(_target));
 
         bool requestedArguments = _traceArguments?.Value == true;
         bool requestedResult = _traceResult?.Value == true;
@@ -91,18 +87,16 @@ public sealed class Plugin : BaseUnityPlugin
 
         if (requestedArguments && !canCaptureArguments)
         {
-            Logger.LogWarning(
-                "Argument capture disabled for this target because at least one parameter cannot be safely boxed.");
+            Log.LogWarning("Argument capture disabled for this target because at least one parameter cannot be safely boxed.");
         }
 
         if (requestedResult && !canCaptureResult)
         {
-            Logger.LogWarning(
-                "Result capture disabled for this target because the return value cannot be safely boxed.");
+            Log.LogWarning("Result capture disabled for this target because the return value cannot be safely boxed.");
         }
 
         Controller = new TraceController(
-            Logger,
+            Log,
             captureArguments,
             captureResult,
             _maxArguments?.Value ?? 8,
@@ -121,7 +115,7 @@ public sealed class Plugin : BaseUnityPlugin
 
         if (prefix == null || postfix == null || finalizer == null)
         {
-            Logger.LogError("Runtime tracer patchInstallation=FAILED reason=internal-patch-method-resolution.");
+            Log.LogError("Runtime tracer patchInstallation=FAILED reason=internal-patch-method-resolution.");
             Controller = null;
             return;
         }
@@ -139,7 +133,7 @@ public sealed class Plugin : BaseUnityPlugin
         }
         catch (Exception ex)
         {
-            Logger.LogError(
+            Log.LogError(
                 "Runtime tracer patchInstallation=FAILED exception=" +
                 ValueRenderer.RenderException(ex, _maxValueChars?.Value ?? 160));
             _harmony.UnpatchSelf();
@@ -152,25 +146,23 @@ public sealed class Plugin : BaseUnityPlugin
         bool prefixInstalled = patchInfo?.Prefixes.Any(p => p.owner == PluginGuid) == true;
         bool postfixInstalled = patchInfo?.Postfixes.Any(p => p.owner == PluginGuid) == true;
         bool finalizerInstalled = patchInfo?.Finalizers.Any(p => p.owner == PluginGuid) == true;
-        bool installed = prefixInstalled && postfixInstalled && finalizerInstalled;
 
-        if (!installed)
+        if (!(prefixInstalled && postfixInstalled && finalizerInstalled))
         {
-            Logger.LogError(
-                "Runtime tracer patchInstallation=FAILED reason=owner-not-present-on-all-required-patch-stages.");
+            Log.LogError("Runtime tracer patchInstallation=FAILED reason=owner-not-present-on-all-required-patch-stages.");
             _harmony.UnpatchSelf();
             _harmony = null;
             Controller = null;
             return;
         }
 
-        Logger.LogInfo(
+        Log.LogInfo(
             "Runtime tracer patchInstallation=PASSED " +
             "session=" + Controller.SessionId +
             " startedUtc=" + Controller.StartedAtUtc.ToString("O", CultureInfo.InvariantCulture) +
             " gameVersion=" + SafeApplicationValue(() => Application.version) +
             " unityVersion=" + SafeApplicationValue(() => Application.unityVersion) +
-            " loaderVersion=" + (typeof(BaseUnityPlugin).Assembly.GetName().Version?.ToString() ?? "unknown") +
+            " loaderVersion=" + (typeof(BasePlugin).Assembly.GetName().Version?.ToString() ?? "unknown") +
             " target=" + TargetFormatter.Format(_target) +
             " traceArguments=" + captureArguments.ToString(CultureInfo.InvariantCulture) +
             " traceResult=" + captureResult.ToString(CultureInfo.InvariantCulture));
@@ -181,7 +173,7 @@ public sealed class Plugin : BaseUnityPlugin
             bool observed = Controller.InvocationCount > 0;
             bool behaviourPreserved = result == 42;
 
-            Logger.LogInfo(
+            Log.LogInfo(
                 "Runtime tracer selfTestRuntimeObservation=" +
                 (observed && behaviourPreserved ? "PASSED" : "FAILED") +
                 " invocationObserved=" + observed.ToString(CultureInfo.InvariantCulture) +
@@ -190,12 +182,12 @@ public sealed class Plugin : BaseUnityPlugin
         }
     }
 
-    private void OnDestroy()
+    public override bool Unload()
     {
         TraceController? controller = Controller;
         if (controller != null)
         {
-            Logger.LogInfo(
+            Log.LogInfo(
                 "Runtime tracer sessionSummary observed=" +
                 (controller.InvocationCount > 0 ? "true" : "false") +
                 " session=" + controller.SessionId +
@@ -207,81 +199,22 @@ public sealed class Plugin : BaseUnityPlugin
         _harmony = null;
         _target = null;
         Controller = null;
+        return true;
     }
 
     private void BindConfiguration()
     {
-        _enabled = Config.Bind(
-            "General",
-            "Enabled",
-            false,
-            "Enable the tracer. Disabled means no Harmony patches are installed.");
-
-        _selfTest = Config.Bind(
-            "SelfTest",
-            "Enabled",
-            false,
-            "Trace and invoke the plug-in's self-owned test method instead of a game method.");
-
-        _assemblyName = Config.Bind(
-            "Target",
-            "AssemblyName",
-            string.Empty,
-            "Exact simple assembly name, for example TG.Main.");
-
-        _typeName = Config.Bind(
-            "Target",
-            "TypeName",
-            string.Empty,
-            "Exact full declaring type name including namespace.");
-
-        _methodName = Config.Bind(
-            "Target",
-            "MethodName",
-            string.Empty,
-            "Exact declared method name. Constructors are not supported by this tracer.");
-
-        _parameterTypeNames = Config.Bind(
-            "Target",
-            "ParameterTypeNames",
-            string.Empty,
-            "Optional semicolon-separated exact parameter type names. Required when overloaded; use <none> for an explicit zero-parameter signature.");
-
-        _traceArguments = Config.Bind(
-            "Capture",
-            "TraceArguments",
-            false,
-            "Capture bounded argument representations when the target parameters can be safely boxed.");
-
-        _traceResult = Config.Bind(
-            "Capture",
-            "TraceResult",
-            false,
-            "Capture a bounded result representation when the target return type can be safely boxed.");
-
-        _maxArguments = Config.Bind(
-            "Limits",
-            "MaxArguments",
-            8,
-            new ConfigDescription(
-                "Maximum number of arguments rendered for one invocation.",
-                new AcceptableValueRange<int>(1, 32)));
-
-        _maxValueChars = Config.Bind(
-            "Limits",
-            "MaxValueChars",
-            160,
-            new ConfigDescription(
-                "Maximum characters rendered for one scalar string/exception value.",
-                new AcceptableValueRange<int>(32, 2048)));
-
-        _maxEventsPerMinute = Config.Bind(
-            "Limits",
-            "MaxEventsPerMinute",
-            120,
-            new ConfigDescription(
-                "Maximum traced invocations logged per fixed one-minute window.",
-                new AcceptableValueRange<int>(1, 10000)));
+        _enabled = Config.Bind("General", "Enabled", false, "Enable the tracer. Disabled means no Harmony patches are installed.");
+        _selfTest = Config.Bind("SelfTest", "Enabled", false, "Trace and invoke the plug-in's self-owned test method instead of a game method.");
+        _assemblyName = Config.Bind("Target", "AssemblyName", string.Empty, "Exact simple assembly name, for example TG.Main.");
+        _typeName = Config.Bind("Target", "TypeName", string.Empty, "Exact full declaring type name including namespace.");
+        _methodName = Config.Bind("Target", "MethodName", string.Empty, "Exact declared method name. Constructors are not supported by this tracer.");
+        _parameterTypeNames = Config.Bind("Target", "ParameterTypeNames", string.Empty, "Optional semicolon-separated exact parameter type names. Required when overloaded; use <none> for an explicit zero-parameter signature.");
+        _traceArguments = Config.Bind("Capture", "TraceArguments", false, "Capture bounded argument representations when the target parameters can be safely boxed.");
+        _traceResult = Config.Bind("Capture", "TraceResult", false, "Capture a bounded result representation when the target return type can be safely boxed.");
+        _maxArguments = Config.Bind("Limits", "MaxArguments", 8, new ConfigDescription("Maximum number of arguments rendered for one invocation.", new AcceptableValueRange<int>(1, 32)));
+        _maxValueChars = Config.Bind("Limits", "MaxValueChars", 160, new ConfigDescription("Maximum characters rendered for one scalar string/exception value.", new AcceptableValueRange<int>(32, 2048)));
+        _maxEventsPerMinute = Config.Bind("Limits", "MaxEventsPerMinute", 120, new ConfigDescription("Maximum traced invocations logged per fixed one-minute window.", new AcceptableValueRange<int>(1, 10000)));
     }
 
     private static string SafeApplicationValue(Func<string> getter)

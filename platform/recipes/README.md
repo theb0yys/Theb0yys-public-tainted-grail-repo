@@ -7,6 +7,7 @@ These recipes show how the shared pieces fit together in a real mod-author workf
 - [Settings + controller action + status](mod-manager/baseline.md)
 - [Custom modal UI: Mod Manager + Tainted Interface](ui/custom-ui.md)
 - [Optional infrastructure bridge](frameworks/optional-infrastructure.md)
+- [Fail-closed Harmony feature health](frameworks/harmony-patch-health.md)
 - [Diagnostic evidence → implementation](frameworks/diagnostic-to-implementation.md)
 
 ## Ecosystem infrastructure

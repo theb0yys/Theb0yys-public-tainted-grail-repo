@@ -79,6 +79,15 @@ namespace BepInEx.Logging
 
 namespace HarmonyLib
 {
+    public enum HarmonyPatchType
+    {
+        All,
+        Prefix,
+        Postfix,
+        Transpiler,
+        Finalizer
+    }
+
     public sealed class Harmony
     {
         public Harmony(string id)
@@ -96,6 +105,10 @@ namespace HarmonyLib
         }
 
         public void UnpatchSelf()
+        {
+        }
+
+        public void Unpatch(MethodBase original, HarmonyPatchType type, string harmonyID = "*")
         {
         }
 
@@ -136,6 +149,11 @@ namespace HarmonyLib
         {
             return typeof(object).GetMethod(nameof(object.ToString));
         }
+
+        public static MethodInfo? Method(Type type, string name, Type[] parameters)
+        {
+            return typeof(object).GetMethod(nameof(object.ToString));
+        }
     }
 }
 
@@ -151,6 +169,23 @@ namespace UnityEngine
     {
         public WaitForSecondsRealtime(float seconds)
         {
+        }
+    }
+}
+
+
+namespace BepInEx.Unity.IL2CPP
+{
+    public abstract class BasePlugin
+    {
+        public BepInEx.Configuration.ConfigFile Config { get; } = new BepInEx.Configuration.ConfigFile();
+        public BepInEx.Logging.ManualLogSource Log { get; } = new BepInEx.Logging.ManualLogSource();
+
+        public abstract void Load();
+
+        public virtual bool Unload()
+        {
+            return true;
         }
     }
 }

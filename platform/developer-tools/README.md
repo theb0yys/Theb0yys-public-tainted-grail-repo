@@ -18,10 +18,14 @@ Test-FoAEnvironment.ps1
 
 game/loader updated?
 → Compare-FoAFingerprint.ps1
+→ research/tools/symbol-anchors/Test-FoASymbolAnchors.ps1
+→ research/tools/harmony-runtime-audit
+→ research/tools/runtime-tracer (when invocation is the remaining question)
 
 mod-stack problem?
 → Get-FoAModInventory.ps1
 → Get-FoAHarmonyOwnership.ps1
+→ research/tools/harmony-runtime-audit
 
 support problem?
 → New-FoADiagnosticBundle.ps1
@@ -155,7 +159,7 @@ Example:
 .\platform\developer-tools\New-FoARelease.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -Zip
 ~~~
 
-Packaging deliberately records runtime/feature validation as NOT_RUN. A package is not proof that the mod works in game.
+Packaging does not perform runtime or feature validation. A package is not proof that the mod works in game.
 
 ### Build-FoAMod.ps1
 
@@ -247,7 +251,7 @@ A change means **revalidation required**. It does not automatically mean the mod
 
 ### Get-FoAHarmonyOwnership.ps1
 
-Statically inventories supported literal Harmony target declarations across source projects and reports cross-owner target overlaps.
+Uses the canonical symbol-anchor extractor to inventory supported literal Harmony target declarations across source projects and report cross-owner target overlaps.
 
 It recognizes common patterns such as:
 
@@ -262,7 +266,7 @@ Example:
 .\platform\developer-tools\Get-FoAHarmonyOwnership.ps1 -Root ".\mods"
 ~~~
 
-This is deliberately a **source-level ownership report**. Dynamic targets and unsupported source shapes are marked as unparsed. The script does not claim to enumerate Harmony's live in-process patch table.
+This is deliberately a **source-level ownership report**. Dynamic targets and unsupported source shapes remain explicit in the unresolved inventory. Use the research Harmony runtime audit when live in-process ownership is needed.
 
 ### Test-FoAReleaseReady.ps1
 
@@ -286,21 +290,9 @@ Example:
 .\platform\developer-tools\Test-FoAReleaseReady.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -BaselineFingerprint ".\foa-fingerprint.json" -StagePackage
 ~~~
 
-Typical output intentionally includes:
+The command reports each check separately rather than collapsing static, build, install, runtime, feature and persistence evidence into one implied result.
 
-~~~text
-Environment              PASSED
-ProjectStructure         PASSED
-CompatibilityFingerprint PASSED/PARTIAL/NOT_RUN
-Build                    PASSED
-HarmonySourceOwnership   PASSED/PARTIAL
-InstalledModConflicts    PASSED/PARTIAL
-BuiltVsInstalled         PASSED/PARTIAL/NOT_RUN
-ReleasePackage           PASSED/NOT_RUN
-RuntimeLoad              NOT_RUN
-FeatureValidation        NOT_RUN
-PersistenceValidation    NOT_RUN/NOT_APPLICABLE
-~~~
+The command also accepts `-SymbolAnchorManifest`. When supplied, it verifies the selected runtime lane against local Mono managed assemblies or IL2CPP interop assemblies using the canonical symbol verifier. Use `-IlSpyCmd` to select a specific ILSpy CLI executable.
 
 The umbrella command never upgrades runtime or feature validation just because static/build/package checks pass.
 

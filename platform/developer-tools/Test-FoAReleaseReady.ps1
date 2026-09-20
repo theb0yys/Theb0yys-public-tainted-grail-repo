@@ -7,6 +7,10 @@ param(
 
     [string]$BaselineFingerprint,
 
+    [string]$SymbolAnchorManifest,
+
+    [string]$IlSpyCmd = "ilspycmd",
+
     [ValidateSet("Debug", "Release")]
     [string]$Configuration = "Release",
 
@@ -136,15 +140,60 @@ try {
     if ($harmony.ConflictCount -gt 0) {
         Add-State $states "HarmonySourceOwnership" "PARTIAL" "$($harmony.ConflictCount) cross-owner declared target overlap(s) require review."
     }
-    elseif ($harmony.UnparsedProjectCount -gt 0) {
-        Add-State $states "HarmonySourceOwnership" "PARTIAL" "$($harmony.UnparsedProjectCount) Harmony-like project(s) use dynamic/unsupported target declarations; runtime ownership remains NOT_RUN."
+    elseif ($harmony.UnresolvedCount -gt 0) {
+        Add-State $states "HarmonySourceOwnership" "PARTIAL" "$($harmony.UnresolvedCount) Harmony-like source file(s) use dynamic or unsupported target declarations."
     }
     else {
-        Add-State $states "HarmonySourceOwnership" "PASSED" "$($harmony.DeclaredTargetCount) supported declared Harmony target(s); no source-level cross-owner overlap detected. Runtime ownership remains NOT_RUN."
+        Add-State $states "HarmonySourceOwnership" "PASSED" "$($harmony.DeclaredTargetCount) supported declared Harmony target(s); no source-level cross-owner overlap detected."
     }
 }
 catch {
     Add-State $states "HarmonySourceOwnership" "FAILED" $_.Exception.Message
+}
+
+if (-not [string]::IsNullOrWhiteSpace($SymbolAnchorManifest)) {
+    if ($null -eq $environment -or -not $environment.Ready) {
+        Add-State $states "HarmonySymbolAnchors" "BLOCKED" "Environment validation did not pass."
+    }
+    else {
+        try {
+            $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+            $verifier = Join-Path $repoRoot "research\tools\symbol-anchors\Test-FoASymbolAnchors.ps1"
+
+            if ($environment.Runtime -eq "Mono") {
+                $assemblyRoot = $environment.ManagedDir
+                $runtimeFilter = "mono"
+            }
+            elseif ($environment.Runtime -eq "IL2CPP") {
+                $assemblyRoot = $environment.InteropDir
+                $runtimeFilter = "il2cpp"
+            }
+            else {
+                throw "Unsupported runtime lane for symbol-anchor verification: $($environment.Runtime)"
+            }
+
+            $anchorArgs = @{
+                Manifest = $SymbolAnchorManifest
+                AssemblyRoot = $assemblyRoot
+                RuntimeFilter = $runtimeFilter
+                IlSpyCmd = $IlSpyCmd
+            }
+            $anchorReport = & $verifier @anchorArgs
+
+            if ($anchorReport.MissingOrAmbiguousCount -gt 0) {
+                Add-State $states "HarmonySymbolAnchors" "FAILED" "$($anchorReport.MissingOrAmbiguousCount) required type/member/signature identity check(s) failed."
+            }
+            elseif ($anchorReport.SignatureUncertainCount -gt 0) {
+                Add-State $states "HarmonySymbolAnchors" "PARTIAL" "$($anchorReport.SignatureUncertainCount) anchor signature check(s) remain name-only or unresolved."
+            }
+            else {
+                Add-State $states "HarmonySymbolAnchors" "PASSED" "$($anchorReport.AnchorCount) source-declared anchor(s) are present in the selected local reference set."
+            }
+        }
+        catch {
+            Add-State $states "HarmonySymbolAnchors" "FAILED" $_.Exception.Message
+        }
+    }
 }
 
 try {

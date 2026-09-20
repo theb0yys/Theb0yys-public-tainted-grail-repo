@@ -29,6 +29,32 @@ jobs:
           $ilspy = Join-Path $env:USERPROFILE ".dotnet\tools\ilspycmd.exe"
           ./research/tools/symbol-anchors/tests/Test-SourceTools.ps1 -IlSpyCmd $ilspy
 
+      - name: Verify repository Harmony anchor drift
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path ./.local-research -Force | Out-Null
+          $generatedPath = "./.local-research/repository-symbol-anchors.json"
+          $baselinePath = "./research/tools/symbol-anchors/repository-symbol-anchors.json"
+
+          $manifest = ./research/tools/symbol-anchors/Export-FoASymbolAnchors.ps1 `
+            -Root . `
+            -OutputPath $generatedPath `
+            -ExcludePathPattern '^research/tools/'
+
+          $generated = Get-Content -LiteralPath $generatedPath -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 20
+          $baseline = Get-Content -LiteralPath $baselinePath -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 20
+
+          Write-Host ("Repository anchors: {0}" -f $manifest.AnchorCount)
+          Write-Host ("Repository unresolved sources: {0}" -f $manifest.UnresolvedCount)
+
+          if ($generated -cne $baseline) {
+            throw "Repository Harmony anchor inventory changed. Regenerate and review repository-symbol-anchors.json."
+          }
+
       - name: Compile-smoke Mono research plug-ins against stubs
         shell: pwsh
         run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.csproj -c Release
+
+      - name: Compile-smoke IL2CPP research plug-ins against stubs
+        shell: pwsh
+        run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.IL2CPP.csproj -c Release

@@ -8,6 +8,9 @@ param(
 
     [string]$IlSpyCmd = "ilspycmd",
 
+    [ValidateSet("mono", "il2cpp", "hybrid", "unspecified")]
+    [string]$RuntimeFilter,
+
     [string]$OutputPath,
 
     [switch]$FailOnMissing
@@ -258,17 +261,27 @@ if ($assemblies.Count -eq 0) {
 }
 
 $inventory = @(Get-TypeInventory -Assemblies $assemblies)
-Write-Host ("Types inventoried: {0}" -f $inventory.Count)
-if ($inventory.Count -gt 0) {
-    $inventory | Select-Object -First 5 | Format-Table AssemblyFile, Kind, FullName, SimpleName -AutoSize | Out-Host
-}
 $results = New-Object System.Collections.Generic.List[object]
 
-foreach ($anchor in @($manifestJson.Anchors)) {
+$selectedAnchors = @($manifestJson.Anchors)
+if (-not [string]::IsNullOrWhiteSpace($RuntimeFilter)) {
+    $selectedAnchors = @(
+        $selectedAnchors |
+            Where-Object {
+                [string]$_.Runtime -eq $RuntimeFilter -or
+                [string]$_.Runtime -eq "hybrid" -or
+                [string]$_.Runtime -eq "unspecified"
+            }
+    )
+}
+
+foreach ($anchor in $selectedAnchors) {
     $typeResolution = Resolve-TypeRecord -Expression ([string]$anchor.TypeExpression) -Inventory $inventory
 
     if ($typeResolution.State -ne "resolved") {
         $results.Add([pscustomobject]@{
+            Owner = [string]$anchor.Owner
+            Project = [string]$anchor.Project
             Source = [string]$anchor.Source
             Runtime = [string]$anchor.Runtime
             TypeExpression = [string]$anchor.TypeExpression
@@ -287,6 +300,8 @@ foreach ($anchor in @($manifestJson.Anchors)) {
     $assemblyPath = [string]$typeRecord.AssemblyPath
     $state = $null
     $detail = $null
+    $canonicalTarget = $null
+    $assemblySimpleName = [System.IO.Path]::GetFileNameWithoutExtension([string]$typeRecord.AssemblyFile)
 
     if ([bool]$anchor.SignatureExplicit -and [string]$anchor.MemberKind -eq "method" -and $memberLookupSupported) {
         $parameterNames = New-Object System.Collections.Generic.List[string]
@@ -311,6 +326,11 @@ foreach ($anchor in @($manifestJson.Anchors)) {
             if ($member.ExitCode -eq 0 -and -not [string]::IsNullOrWhiteSpace($member.StdOut)) {
                 $state = "exact-signature-present"
                 $detail = $docId
+                $canonicalTarget =
+                    $assemblySimpleName + "::" +
+                    $resolvedType + "." +
+                    ([string]$anchor.MemberName) +
+                    "(" + ($parameterNames -join ",") + ")"
             }
             else {
                 $state = "missing-exact-signature"
@@ -356,14 +376,18 @@ foreach ($anchor in @($manifestJson.Anchors)) {
     }
 
     $results.Add([pscustomobject]@{
+        Owner = [string]$anchor.Owner
+        Project = [string]$anchor.Project
         Source = [string]$anchor.Source
         Runtime = [string]$anchor.Runtime
         TypeExpression = [string]$anchor.TypeExpression
         MemberName = [string]$anchor.MemberName
+        MemberKind = [string]$anchor.MemberKind
         SignatureExplicit = [bool]$anchor.SignatureExplicit
         State = $state
         AssemblyFile = [string]$typeRecord.AssemblyFile
         ResolvedType = $resolvedType
+        CanonicalTarget = $canonicalTarget
         Detail = $detail
     })
 }
@@ -390,11 +414,12 @@ $uncertain = @(
 $report = [pscustomobject]@{
     Format = "foa-symbol-anchor-verification/1"
     Manifest = [System.IO.Path]::GetFileName($manifestPath)
+    RuntimeFilter = $RuntimeFilter
     AssemblyRoot = "<ASSEMBLY_ROOT>"
     IlSpyMemberLookup = $memberLookupSupported
     AssemblyCount = $assemblies.Count
     TypeCount = $inventory.Count
-    AnchorCount = $results.Count
+    AnchorCount = $selectedAnchors.Count
     MissingOrAmbiguousCount = $missing.Count
     SignatureUncertainCount = $uncertain.Count
     Results = $results.ToArray()

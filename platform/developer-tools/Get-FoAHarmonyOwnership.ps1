@@ -3,224 +3,138 @@ param(
     [string]$Root = ".",
     [string]$OutputPath,
     [switch]$Quiet,
-    [switch]$FailOnConflict
+    [switch]$FailOnConflict,
+    [switch]$FailOnUnresolved
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+function Get-AnchorKey {
+    param($Anchor)
+
+    $parameters = @($Anchor.ParameterTypeExpressions)
+    $signature = if ([bool]$Anchor.SignatureExplicit) {
+        "(" + ($parameters -join ",") + ")"
+    }
+    else {
+        "(*)"
+    }
+
+    return (
+        [string]$Anchor.Runtime + "|" +
+        [string]$Anchor.TypeExpression + "::" +
+        [string]$Anchor.MemberName + $signature
+    )
+}
+
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
-$projects = @(
-    Get-ChildItem -LiteralPath $rootPath -Filter "*.csproj" -File -Recurse |
-        Where-Object { $_.FullName -notmatch '[\\/](bin|obj|release|dist)[\\/]' }
-)
+$repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$exporter = Join-Path $repoRoot "research\tools\symbol-anchors\Export-FoASymbolAnchors.ps1"
 
-$records = New-Object System.Collections.Generic.List[object]
+if (-not (Test-Path -LiteralPath $exporter -PathType Leaf)) {
+    throw "Canonical symbol-anchor extractor not found: $exporter"
+}
 
-foreach ($project in $projects) {
-    $projectDir = $project.Directory.FullName
-    $sourceFiles = @(
-        Get-ChildItem -LiteralPath $projectDir -Filter "*.cs" -File -Recurse |
-            Where-Object { $_.FullName -notmatch '[\\/](bin|obj|release|dist)[\\/]' }
+$tempManifest = Join-Path ([System.IO.Path]::GetTempPath()) ("foa-harmony-ownership-" + [Guid]::NewGuid().ToString("N") + ".json")
+
+try {
+    $manifest = & $exporter -Root $rootPath -OutputPath $tempManifest
+    $anchors = @($manifest.Anchors)
+    $unresolved = @($manifest.Unresolved)
+
+    $annotated = @(
+        foreach ($anchor in $anchors) {
+            [pscustomobject]@{
+                Owner = [string]$anchor.Owner
+                Project = [string]$anchor.Project
+                Runtime = [string]$anchor.Runtime
+                Target = Get-AnchorKey -Anchor $anchor
+                TypeExpression = [string]$anchor.TypeExpression
+                MemberName = [string]$anchor.MemberName
+                MemberKind = [string]$anchor.MemberKind
+                SignatureExplicit = [bool]$anchor.SignatureExplicit
+                ParameterTypeExpressions = @($anchor.ParameterTypeExpressions)
+                Pattern = [string]$anchor.Pattern
+                Source = [string]$anchor.Source
+            }
+        }
     )
 
-    if ($sourceFiles.Count -eq 0) {
-        continue
-    }
-
-    $sourceText = ($sourceFiles | ForEach-Object {
-        Get-Content -LiteralPath $_.FullName -Raw
-    }) -join [Environment]::NewLine
-
-    if ($sourceText -notmatch 'HarmonyPatch|AccessTools\.(Method|PropertyGetter|PropertySetter)|\.Patch\(') {
-        continue
-    }
-
-    $ownerGuid = $null
-    $guidMatch = [regex]::Match($sourceText, 'public\s+const\s+string\s+PluginGuid\s*=\s*"([^"]+)"')
-    if ($guidMatch.Success) {
-        $ownerGuid = $guidMatch.Groups[1].Value
-    }
-    else {
-        $attributeMatch = [regex]::Match($sourceText, '\[BepInPlugin\(\s*"([^"]+)"')
-        if ($attributeMatch.Success) {
-            $ownerGuid = $attributeMatch.Groups[1].Value
-        }
-    }
-
-    if ([string]::IsNullOrWhiteSpace($ownerGuid)) {
-        $ownerGuid = [System.IO.Path]::GetFileNameWithoutExtension($project.Name)
-    }
-
-    foreach ($sourceFile in $sourceFiles) {
-        $text = Get-Content -LiteralPath $sourceFile.FullName -Raw
-        $relativeSource = $sourceFile.FullName.Substring($rootPath.Length).TrimStart([char]92, [char]47).Replace('\', '/')
-
-        $patterns = @(
-            @{
-                Name = "HarmonyPatch-type-nameof"
-                Regex = '\[HarmonyPatch\(\s*typeof\(([^\)]+)\)\s*,\s*nameof\(([^\)]+)\)\s*\)\]'
-                Target = { param($m)
-                    $typeName = $m.Groups[1].Value.Trim()
-                    $methodExpr = $m.Groups[2].Value.Trim()
-                    $methodName = if ($methodExpr.Contains(".")) { $methodExpr.Substring($methodExpr.LastIndexOf(".") + 1) } else { $methodExpr }
-                    return "$typeName::$methodName"
+    $conflicts = @(
+        $annotated |
+            Group-Object Target |
+            Where-Object {
+                @($_.Group.Owner | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object -Unique).Count -gt 1
+            } |
+            ForEach-Object {
+                [pscustomobject]@{
+                    Target = $_.Name
+                    Owners = @($_.Group.Owner | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object -Unique)
+                    Projects = @($_.Group.Project | Sort-Object -Unique)
+                    Sources = @($_.Group.Source | Sort-Object -Unique)
                 }
-            },
-            @{
-                Name = "HarmonyPatch-type-string"
-                Regex = '\[HarmonyPatch\(\s*typeof\(([^\)]+)\)\s*,\s*"([^"]+)"\s*\)\]'
-                Target = { param($m) return "$($m.Groups[1].Value.Trim())::$($m.Groups[2].Value)" }
-            },
-            @{
-                Name = "HarmonyPatch-string-string"
-                Regex = '\[HarmonyPatch\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)\]'
-                Target = { param($m) return "$($m.Groups[1].Value)::$($m.Groups[2].Value)" }
-            },
-            @{
-                Name = "AccessTools.Method"
-                Regex = 'AccessTools\.Method\(\s*typeof\(([^\)]+)\)\s*,\s*"([^"]+)"'
-                Target = { param($m) return "$($m.Groups[1].Value.Trim())::$($m.Groups[2].Value)" }
-            },
-            @{
-                Name = "AccessTools.PropertyGetter"
-                Regex = 'AccessTools\.PropertyGetter\(\s*typeof\(([^\)]+)\)\s*,\s*"([^"]+)"'
-                Target = { param($m) return "$($m.Groups[1].Value.Trim())::get_$($m.Groups[2].Value)" }
-            },
-            @{
-                Name = "AccessTools.PropertySetter"
-                Regex = 'AccessTools\.PropertySetter\(\s*typeof\(([^\)]+)\)\s*,\s*"([^"]+)"'
-                Target = { param($m) return "$($m.Groups[1].Value.Trim())::set_$($m.Groups[2].Value)" }
             }
-        )
+    )
 
-        foreach ($pattern in $patterns) {
-            foreach ($match in [regex]::Matches($text, $pattern.Regex)) {
-                $target = & $pattern.Target $match
-                $records.Add([pscustomobject]@{
-                    Owner = $ownerGuid
-                    Project = $project.Name
-                    Target = $target
-                    Pattern = $pattern.Name
-                    Source = $relativeSource
-                })
-            }
+    $result = [pscustomobject]@{
+        Format = "foa-harmony-source-ownership/2"
+        Root = $rootPath
+        DeclaredTargetCount = $annotated.Count
+        ConflictCount = $conflicts.Count
+        UnresolvedCount = $unresolved.Count
+        Targets = $annotated
+        Conflicts = $conflicts
+        Unresolved = $unresolved
+        LiveAuditTool = "research/tools/harmony-runtime-audit"
+        Limitation = "This report describes source-declared targets. Live Harmony ownership is inspected separately in-process."
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
+        $parent = Split-Path -Parent $OutputPath
+        if (-not [string]::IsNullOrWhiteSpace($parent)) {
+            New-Item -ItemType Directory -Path $parent -Force | Out-Null
         }
+
+        [pscustomobject]@{
+            Format = $result.Format
+            Root = "<SOURCE_ROOT>"
+            DeclaredTargetCount = $result.DeclaredTargetCount
+            ConflictCount = $result.ConflictCount
+            UnresolvedCount = $result.UnresolvedCount
+            Targets = $result.Targets
+            Conflicts = $result.Conflicts
+            Unresolved = $result.Unresolved
+            LiveAuditTool = $result.LiveAuditTool
+            Limitation = $result.Limitation
+        } | ConvertTo-Json -Depth 14 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
     }
-}
 
-$deduped = @(
-    $records |
-        Sort-Object Owner, Project, Target, Source, Pattern -Unique
-)
-
-$conflicts = @(
-    $deduped |
-        Group-Object Target |
-        Where-Object {
-            @($_.Group.Owner | Sort-Object -Unique).Count -gt 1
-        } |
-        ForEach-Object {
-            [pscustomobject]@{
-                Target = $_.Name
-                Owners = @($_.Group.Owner | Sort-Object -Unique)
-                Projects = @($_.Group.Project | Sort-Object -Unique)
-                Sources = @($_.Group.Source | Sort-Object -Unique)
-            }
+    if (-not $Quiet) {
+        if ($annotated.Count -gt 0) {
+            $annotated | Format-Table Owner, Runtime, Target, Project, Source -Wrap -AutoSize | Out-Host
         }
-)
-
-$unparsedHints = @(
-    foreach ($project in $projects) {
-        $projectDir = $project.Directory.FullName
-        $hits = @(
-            Get-ChildItem -LiteralPath $projectDir -Filter "*.cs" -File -Recurse |
-                Where-Object { $_.FullName -notmatch '[\\/](bin|obj|release|dist)[\\/]' } |
-                ForEach-Object {
-                    $text = Get-Content -LiteralPath $_.FullName -Raw
-                    if ($text -match 'HarmonyPatch|AccessTools\.|\.Patch\(') {
-                        $_.FullName.Substring($rootPath.Length).TrimStart([char]92, [char]47).Replace('\', '/')
-                    }
-                }
-        )
-
-        if ($hits.Count -gt 0 -and @($deduped | Where-Object { $_.Project -eq $project.Name }).Count -eq 0) {
-            [pscustomobject]@{
-                Project = $project.Name
-                Sources = $hits
-                State = "UNPARSED_DYNAMIC_OR_UNSUPPORTED_PATTERN"
-            }
+        else {
+            Write-Host "No supported literal Harmony targets were extracted."
         }
-    }
-)
 
-$result = [pscustomobject]@{
-    Format = "foa-harmony-source-ownership/1"
-    Root = $rootPath
-    ProjectCount = $projects.Count
-    DeclaredTargetCount = $deduped.Count
-    ConflictCount = $conflicts.Count
-    UnparsedProjectCount = $unparsedHints.Count
-    Targets = $deduped
-    Conflicts = $conflicts
-    Unparsed = $unparsedHints
-    RuntimeOwnership = "NOT_RUN"
-    Limitation = "Static source parsing does not enumerate Harmony's live in-process patch table. Dynamic targets and unsupported source shapes may be absent."
-}
-
-if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
-    $parent = Split-Path -Parent $OutputPath
-    if (-not [string]::IsNullOrWhiteSpace($parent)) {
-        New-Item -ItemType Directory -Path $parent -Force | Out-Null
-    }
-
-    $portableResult = [pscustomobject]@{
-        Format = $result.Format
-        Root = "<SOURCE_ROOT>"
-        ProjectCount = $result.ProjectCount
-        DeclaredTargetCount = $result.DeclaredTargetCount
-        ConflictCount = $result.ConflictCount
-        UnparsedProjectCount = $result.UnparsedProjectCount
-        Targets = $result.Targets
-        Conflicts = $result.Conflicts
-        Unparsed = $result.Unparsed
-        RuntimeOwnership = $result.RuntimeOwnership
-        Limitation = $result.Limitation
-    }
-
-    $portableResult | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
-}
-
-if (-not $Quiet) {
-    if ($deduped.Count -gt 0) {
-        $deduped | Format-Table Owner, Target, Project, Source -AutoSize | Out-Host
-    }
-    else {
-        Write-Host "No supported literal Harmony target declarations were found."
-    }
-
-    Write-Host ""
-
-    if ($conflicts.Count -gt 0) {
-        Write-Host "Declared source-level target overlaps:"
-        $conflicts | Format-Table Target, Owners, Projects -Wrap -AutoSize | Out-Host
-    }
-    else {
-        Write-Host "No cross-owner source-level target overlaps detected."
-    }
-
-    if ($unparsedHints.Count -gt 0) {
         Write-Host ""
-        Write-Host "Projects containing Harmony-like code that this static parser could not resolve:"
-        $unparsedHints | Format-Table Project, State, Sources -Wrap -AutoSize | Out-Host
+        Write-Host ("Declared targets: {0}" -f $annotated.Count)
+        Write-Host ("Cross-owner overlaps: {0}" -f $conflicts.Count)
+        Write-Host ("Unresolved Harmony-like sources: {0}" -f $unresolved.Count)
+        Write-Host "Use research/tools/harmony-runtime-audit for live in-process ownership."
     }
 
-    Write-Host ""
-    Write-Host "Runtime Harmony ownership: NOT_RUN (requires in-process runtime inspection)."
-}
+    if ($FailOnConflict -and $conflicts.Count -gt 0) {
+        throw "Harmony source ownership found $($conflicts.Count) cross-owner target overlap(s)."
+    }
 
-if ($FailOnConflict -and $conflicts.Count -gt 0) {
-    throw "Harmony source ownership scan found $($conflicts.Count) cross-owner target overlap(s)."
-}
+    if ($FailOnUnresolved -and $unresolved.Count -gt 0) {
+        throw "Harmony source ownership found $($unresolved.Count) unresolved Harmony-like source file(s)."
+    }
 
-return $result
+    return $result
+}
+finally {
+    Remove-Item -LiteralPath $tempManifest -Force -ErrorAction SilentlyContinue
+}

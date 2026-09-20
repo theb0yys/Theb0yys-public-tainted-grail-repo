@@ -14,6 +14,16 @@ Dynamic or unsupported target construction remains listed under Unresolved rathe
 
 The manifest records source identity, runtime lane inferred from repository path, plug-in owner where it can be found, target type/member, and whether an exact parameter signature was present in source.
 
+## Repository baseline
+
+`repository-symbol-anchors.json` is the reviewed repository-wide source inventory used by CI. The workflow regenerates it from the repository while excluding `research/tools/` instrumentation and fails when the generated resolved or unresolved inventory differs.
+
+Regenerate it intentionally when source-level Harmony targets change:
+
+    .\Export-FoASymbolAnchors.ps1 -Root "..\..\.." -OutputPath ".\repository-symbol-anchors.json" -ExcludePathPattern '^research/tools/'
+
+Review both `Anchors` and `Unresolved` before committing the new baseline.
+
 ## Verify after an update
 
 Install ilspycmd locally and point the verifier at a directory containing assemblies from your own game/reference environment:
