@@ -248,8 +248,7 @@ if ([string]$manifestJson.Format -ne "foa-symbol-anchors/1") {
 }
 
 $assemblies = @(
-    Get-ChildItem -LiteralPath $assemblyRootPath -Filter "*.dll" -File -Recurse |
-        Where-Object { $_.FullName -notmatch '[\\/](bin|obj|release|dist)[\\/]' }
+    Get-ChildItem -LiteralPath $assemblyRootPath -Filter "*.dll" -File -Recurse
 )
 
 if ($assemblies.Count -eq 0) {
