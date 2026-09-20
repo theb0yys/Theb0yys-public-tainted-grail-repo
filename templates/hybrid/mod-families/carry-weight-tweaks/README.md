@@ -1,5 +1,5 @@
 # CarryWeightTweaks — Dual-Runtime Starter
 
-Feature boundary: carry-weight tuning.
+Use this starter for carry-weight features that should share configuration and feature logic across Mono and IL2CPP.
 
-Start from `../../tainted-framework-consumer/` and preserve the shared feature + Mono host + IL2CPP host split.
+The runtime hosts are where you add the exact stat owner, hook, or interop access required by each build.
