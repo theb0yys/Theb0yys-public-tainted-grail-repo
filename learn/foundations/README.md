@@ -18,6 +18,10 @@ In particular:
 
 Use these to understand why a working process has its current shape rather than memorizing calls.
 
+## Start with
+
+- [Runtime stack, identity, and ownership](runtime-stack-and-identities.md)
+
 ## Runtime layers
 
 Think of a runtime mod as a stack:
