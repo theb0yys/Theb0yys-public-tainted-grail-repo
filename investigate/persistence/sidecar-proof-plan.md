@@ -1,3 +1,13 @@
+---
+document_type: investigation
+scope: sidecar persistence validation plan
+runtime: mono
+evidence:
+  static: CURRENT_BINARY_PARTIAL
+  runtime: NOT_PRODUCTION_READY
+last_verified: 2026-09-20
+---
+
 # Persistence Sidecar Proof Plan
 
 This page turns the current static candidates into an explicit validation plan.
