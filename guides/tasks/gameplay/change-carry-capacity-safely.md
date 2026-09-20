@@ -4,6 +4,11 @@ FoA's current carry-capacity owner is `HeroStats.EncumbranceLimit`. Apply a runt
 
 Working lineage: [Carry Tweak Must Follow the Current Stat Instance](../../../research/case-studies/stats/carry-stale-tweak.md).
 
+## Runnable source
+
+Start from the buildable example: [Carry capacity](../../../examples/mono/gameplay/carry-capacity/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Patch target
 
 The working implementation uses:
