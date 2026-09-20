@@ -6,17 +6,9 @@ Canonical architecture: [FoA MVC: Models, Elements, Views, Events, and Services]
 
 ## Core event lifecycle
 
-For a FoA `Model`, the researched lifecycle exposes boundaries including:
+The canonical event inventory and Model/Element lifecycle ordering live in [FoA MVC: Models, Elements, Views, Events, and Services](../../systems/core/mvc-models-elements-events.md).
 
-- `BeforeFullyInitialized`
-- `AfterFullyInitialized`
-- `AfterChanged`
-- `BeforeDiscarded`
-- `BeingDiscarded`
-- `AfterDiscarded`
-- `AfterElementsCollectionModified`
-
-These names describe lifecycle boundaries. They do not imply that every gameplay action you care about is represented by one of them.
+Use this reference page for **listener-selection and ownership decisions**, not as a second copy of the canonical event list. Event names describe lifecycle boundaries; they do not imply that every gameplay action is represented by one of them.
 
 ## Listener ownership
 
