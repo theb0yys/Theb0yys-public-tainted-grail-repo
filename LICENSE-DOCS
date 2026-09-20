@@ -1,0 +1,15 @@
+# Documentation licence — CC BY 4.0
+
+Except where a file, directory, or accompanying notice states otherwise, original documentation, guides, research text, diagrams, and other non-software explanatory material authored for this repository are licensed under the **Creative Commons Attribution 4.0 International** licence.
+
+SPDX-License-Identifier: CC-BY-4.0
+
+The CC BY 4.0 legal terms are incorporated by reference and are available from Creative Commons:
+
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+When sharing or adapting covered material, provide attribution appropriate to the medium, identify this repository as the source where reasonably practicable, retain a reference to CC BY 4.0, and indicate material changes.
+
+This licence applies only to material for which the repository's contributors have authority to grant these rights. It does not override separate third-party, upstream, proprietary, trademark, or other notices.
+
+Software and software artifacts are licensed separately under Apache License 2.0 as described in [LICENSE](LICENSE).
