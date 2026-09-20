@@ -79,6 +79,15 @@ A local decompiler such as ILSpy can provide a navigable reference/decompilation
 
 Do not copy the resulting decompiled tree into this repository.
 
+For a repeatable ILSpy command-line export, record the tool version and write only to the ignored local workspace:
+
+```powershell
+ilspycmd --version
+ilspycmd --nested-directories -p -o ".local-research/<build-id>/decompiled/TG.Main" "<path-to-installed-TG.Main.dll>"
+```
+
+`-p` requests a project-style decompilation and `-o` supplies the output directory. Keep the actual installed-game path out of committed documentation and evidence records.
+
 ### IL2CPP
 
 Treat IL2CPP as a separate evidence lane.
