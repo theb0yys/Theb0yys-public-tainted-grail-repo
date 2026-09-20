@@ -11,6 +11,10 @@ The working mod used Harmony postfixes and validated a `1.25` multiplier in game
 
 See [Native Mount Velocity Tuning](../../../research/case-studies/gameplay/mount-velocity.md) and [Native Horse Velocity: Proof125](../../../research/case-studies/movement/native-horse-velocity-proof.md).
 
+## Runnable source
+
+Start from the minimal public example: [Mount velocity example](../../../examples/mono/gameplay/mount-velocity/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
