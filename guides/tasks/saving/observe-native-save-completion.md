@@ -1,55 +1,75 @@
 # Observe Native Save Completion
 
-**Evidence status: PARTIAL.** A concrete post-save observation seam exists, but it does not prove durable success semantics for every provider or custom restoration behaviour.
+Use FoA's concrete cloud-service completion methods as a post-save notification surface. Do not invent a new native save domain.
 
 Working lineage: [Native Save Completion Observer](../../../research/case-studies/persistence/native-save-completion-observer.md).
 
-## Goal
+## Concrete targets
 
-React after native save-provider activity without adding a new native save slot/domain or rewriting FoA serialization.
+The working implementation resolves `EndSave(string)` on these concrete types:
 
-## Known observation seam
+~~~text
+Awaken.TG.Main.Saving.Cloud.Services.SteamCloudService
+Awaken.TG.Main.Saving.Cloud.Services.SteamNoCloudService
+Awaken.TG.Main.Saving.Cloud.Services.DebugCloudService
+Awaken.TG.Main.Saving.Cloud.Services.GogCloudService
+~~~
 
-The researched implementation patches concrete:
+Each target is patched with a Harmony postfix:
 
-```text
-CloudService.EndSave(string slotId)
-```
+~~~csharp
+private static void Postfix(string slotId)
+{
+    Plugin.NotifySaveSlotWritten(slotId);
+}
+~~~
 
-and receives the exact slot ID.
+Use `TargetMethods()` so only concrete implementations that actually exist in the current build are patched.
 
-## Process
+## Keep the hook lightweight
 
-```text
-native save flow
-→ CloudService.EndSave(slotId)
-→ mod observes slot identity
-→ enqueue bounded post-save sidecar/backup action
-```
+The postfix should not zip files or do heavy disk work directly.
 
-Keep observation and mutation separate.
+The working pattern is:
 
-## Do not infer
+~~~text
+EndSave(slotId)
+→ enqueue slotId
+→ main plug-in Update()
+→ drain queue
+→ perform bounded post-save work
+~~~
 
-This hook does **not** prove:
+A `ConcurrentQueue<string>` is sufficient for that handoff.
 
-- arbitrary save-domain registration;
-- custom native serialization;
-- that every provider failure path reached durable storage;
-- restoration timing;
-- sidecar correctness.
+## Slot identity
 
-## Verification
+The useful storage identity is the save slot's `SaveFileName`.
 
-For your build/provider:
+The Smart Save Backups implementation keys pending save work by:
 
-- hook target resolves;
-- expected slot ID received;
-- no duplicate observation;
-- failed/cancelled save semantics are understood;
-- post-save work is bounded;
-- observer does not block/corrupt native save flow.
+~~~text
+SaveSlot.SaveFileName
+~~~
 
-## Current proof boundary
+and correlates that with the `slotId` received by `EndSave(string)`.
 
-The observation seam is established. Durable-provider semantics and any sidecar restore contract remain separate work.
+`SaveSlot.ID` can be used for same-process lookup/correlation, but do not substitute it blindly for the storage key.
+
+## Requesting a normal FoA save
+
+If your feature needs a fresh autosave first, use the normal guards:
+
+~~~text
+CloudService.IsInitialized
++ World.HasAny<Hero>()
++ LoadSave.Get.CanAutoSave()
+→ SaveSlot.GetAutoSave(... allowCreate:false)
+→ LoadSave.Get.Save(saveSlot, ...)
+~~~
+
+Then wait for the matching `EndSave(saveSlot.SaveFileName)` notification before doing post-save work.
+
+## Scope
+
+This process gives you a concrete **save-completion notification point** and exact slot ID. It does not require or imply custom native serialization.
