@@ -40,6 +40,10 @@ Rename the clone, place it at the intended sibling index, replace its label/acti
 
 The submenu implementation uses the same principle for each child row: clone the native button template rather than constructing an unrelated visual style.
 
+## Runnable source
+
+Start from the buildable public source: [Bonfire native services/submenu example](../../../examples/mono/ui/bonfire-native-services/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Native service calls
 
 Route each custom button to the real FireplaceUI method.
