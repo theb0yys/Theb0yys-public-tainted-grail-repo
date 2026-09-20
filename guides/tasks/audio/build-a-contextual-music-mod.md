@@ -4,6 +4,10 @@ Use a mod-owned FMOD Core music player and read FoA context to select lanes. Kee
 
 Working lineage: [Tainted Music: Own Your Lane, Not All Audio](../../../research/case-studies/audio/tainted-music-lane-ownership.md).
 
+## Runnable source
+
+Start with the [Contextual music example](../../../examples/mono/audio/contextual-music/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Player structure
 
 The maintained Tainted Music implementation owns:
