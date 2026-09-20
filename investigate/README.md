@@ -7,6 +7,7 @@ Investigation is a first-class FoA modding skill.
 - [Static/source evidence vs runtime evidence](source-vs-runtime.md)
 - [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
 - [Proving a new mechanic](proving-a-new-mechanic.md)
+- [Body-aware first-person investigation](body-aware-first-person.md)
 - [Persistence investigation](persistence/README.md)
 - [Travel investigation](travel/README.md)
 - Bug fixes
