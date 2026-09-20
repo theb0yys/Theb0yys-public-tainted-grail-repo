@@ -1,8 +1,10 @@
 # Multi-Pin Map Notes Public Template
 
+Use this starter when you are building map-note or multi-pin features across Mono and IL2CPP. Keep note/pin rules shared and put exact map UI, marker, discovery, or persistence integration in the runtime-specific hosts.
+
 Source family: `multi-pin-map-notes`
 
-This is a public, source-only starter distilled from the Multi-Pin Map Notes mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
