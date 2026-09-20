@@ -35,6 +35,7 @@ This is an ownership diagram, not a requirement to install everything.
 - [Component reference](component-reference.md) — GUIDs, assemblies and public API entry points.
 - [Public distribution and versioning](distribution-and-versioning.md) — where authors obtain each component and which version number means what.
 - [API stability and capability promotion](api-stability.md) — supported, versioned, promoted and gated consumer surfaces.
+- [Runtime compatibility](runtime-compatibility.md) — Mono/IL2CPP support and claim boundaries.
 - [Dependency/maturity matrix](dependency-matrix.md) — what is safe to consume.
 - [Dependency and packaging rules](dependency-and-packaging.md) — hard/soft dependency and release discipline.
 - [Recommended author stacks](author-stacks.md) — smallest useful combinations.
