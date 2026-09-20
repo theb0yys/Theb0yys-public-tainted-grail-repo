@@ -110,8 +110,10 @@ if ($runtime -eq "IL2CPP" -and -not $bep6Il2Cpp) {
     $issues.Add("IL2CPP game markers were found, but BepInEx.Unity.IL2CPP.dll was not detected.")
 }
 
+$warnings = New-Object System.Collections.Generic.List[string]
+
 if ($runtime -eq "IL2CPP" -and -not $interopReady) {
-    $issues.Add("Generated IL2CPP interop TG.Main.dll was not found. Run the game once through the configured BepInEx IL2CPP setup before building game-referencing mods.")
+    $warnings.Add("Generated IL2CPP interop TG.Main.dll was not found. Loader-only plug-ins can still build; game-referencing IL2CPP projects require generated interop.")
 }
 
 $result = [pscustomobject]@{
@@ -122,9 +124,13 @@ $result = [pscustomobject]@{
     ManagedDir = $managedDir
     InteropDir = $interopDir
     InteropReady = $interopReady
+    BepInEx5Mono = $bep5
+    BepInEx6Mono = $bep6Mono
+    BepInEx6IL2CPP = $bep6Il2Cpp
     LogPath = Join-Path $bepInExDir "LogOutput.log"
     Ready = ($issues.Count -eq 0)
     Issues = @($issues)
+    Warnings = @($warnings)
 }
 
 if (-not $Quiet) {
