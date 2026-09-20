@@ -1,93 +1,89 @@
 # Ship and Maintain Mods
 
-Infrastructure is the machinery around the mod or framework itself.
+This section covers the work around the mod itself: repository structure, CI, public safety, versioning, validation, packaging, and releases.
 
-This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
+## Keep source separate from local/generated files
 
-## Repository structure
+Do not mix authored source with:
 
-Keep authored source separate from:
-
-- generated build output;
+- build output;
 - extracted game content;
-- local references;
+- local game references;
 - logs;
-- release artifacts;
-- test evidence that contains private data.
+- release archives;
+- test evidence containing private data.
 
-A clean repository should make it obvious which files are source and which are generated.
+Someone opening the repository should be able to tell immediately which files are source and which are generated or local-only.
 
 ## CI
 
-Useful hosted CI checks include:
+Useful CI checks include:
 
-- formatting/static checks;
+- formatting and static checks;
 - unit tests;
 - source-only builds where dependencies allow them;
-- public-surface checks;
+- public-repository safety checks;
 - package-layout validation.
 
-Hosted CI cannot prove behaviour that requires a licensed local game installation unless that exact environment is actually available. Keep local runtime validation as a separate evidence lane.
+Hosted CI cannot prove behavior that requires a licensed local game installation unless that environment is actually available to the runner.
 
-This repository already contains a public-surface guard intended to reject common binaries, archives, assets, oversized files, obvious secrets, and private-path patterns.
+This repository includes a public-surface guard that rejects common binaries, archives, commercial-style assets, oversized files, obvious secrets, and private absolute-path patterns.
 
 ## Contribution workflow
 
-A simple contribution loop:
+A simple contribution flow is:
 
 1. create a focused branch;
 2. make one coherent change;
-3. run applicable checks;
+3. run the checks that apply;
 4. open a pull request;
-5. state exactly what was tested;
-6. review;
-7. merge only the reviewed scope.
+5. state exactly what you tested;
+6. review the change;
+7. merge only the reviewed work.
 
-Good pull-request evidence identifies:
+A useful pull request says:
 
-- affected runtime/content lane;
-- exact checks run;
-- exact runtime environment when runtime behaviour was observed;
-- known limitations.
+- which runtime or content workflow it affects;
+- which checks were run;
+- which game/runtime environment was used for any live observation;
+- what remains untested or uncertain.
 
-Do not describe a static check as a runtime pass.
+Do not describe a compile/static check as proof that the feature worked in game.
 
 ## Versioning
 
-Use a consistent versioning scheme.
-
-A common model is major.minor.patch, but consistency matters more than the specific scheme.
+Use a consistent version scheme. `major.minor.patch` is common, but consistency and clear release notes matter more than the exact scheme.
 
 Release notes should answer:
 
 - What changed?
-- What game/runtime versions were tested?
+- Which game/runtime versions were tested?
 - Did dependencies change?
 - Are configuration or saves affected?
-- Is rollback possible?
+- Can the user roll back safely?
 - What is known not to work?
 
 ## Reproducible releases
 
-Where practical, trace a release to:
+Where practical, record:
 
-- source commit;
+- the source commit;
 - build configuration;
 - packaged artifact;
 - checksum.
 
-Do not claim a development DLL and a published archive are identical unless artifact identity was verified.
+Do not claim that a development DLL and a published archive are identical unless you actually verified their identity.
 
-## Infrastructure is not authority
+## What a green check means
 
-A green CI check proves only the checks that actually ran.
+A green CI run proves only the checks that ran.
 
 It does not automatically prove:
 
-- editor behaviour;
-- game runtime compatibility;
+- Unity/editor behavior;
+- in-game compatibility;
 - save safety;
 - deployment safety;
 - release readiness.
 
-Keep each evidence lane honest and explicit.
+State each kind of evidence separately.
