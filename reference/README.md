@@ -10,7 +10,6 @@ Reference pages are for exact lookup, not long tutorials.
 - [Assets](assets/README.md)
 - [Compatibility](compatibility/README.md)
 - [Mechanics catalogue](mechanics/README.md)
-- [Evidence labels](evidence/README.md)
 - [Version scope](versions/README.md)
 - [Visibility/fog owners](rendering/visibility-owners.md)
 - [Weather coverage](weather/coverage.md)

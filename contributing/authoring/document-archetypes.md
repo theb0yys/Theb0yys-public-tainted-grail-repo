@@ -4,7 +4,7 @@ Do not force every technical page into one body template.
 
 ## Native system
 
-Explain owner, identities/data contract, lifecycle, inputs/outputs, cleanup, evidence and unknowns.
+Explain owner, identities/data contract, lifecycle, inputs/outputs, cleanup, limitations and unknowns.
 
 ## Mechanic
 
@@ -12,23 +12,19 @@ Explain bounded goal, prerequisites, owning system, complete path, intervention 
 
 ## Investigation
 
-Record question, known facts, hypotheses, observation strategy, findings, rejected assumptions, corrected model, unknowns and next proof.
+Record question, known facts, hypotheses, observation strategy, findings, rejected assumptions, corrected model, unknowns and next verification step.
 
 ## Case study
 
-Preserve intended capability, plausible initial model, symptoms, evidence, correction, implementation change, proof and residual limits.
+Preserve intended capability, plausible initial model, symptoms, observations, correction, implementation change, verification and residual limits.
 
 ## Troubleshooting
 
-Start from symptom, identify earliest plausible failed stage, collect distinguishing evidence, then route back to canonical system/mechanic.
+Start from symptom, identify earliest plausible failed stage, collect distinguishing observations, then route back to canonical system/mechanic.
 
 ## Reference
 
-Keep exact IDs/types/methods/hooks/version/evidence status compact and searchable.
-
-## Evidence/compatibility note
-
-State the exact claim, environment, lane, action, observation, limitations and last verified date.
+Keep exact IDs/types/methods/hooks/version/compatibility status compact and searchable.
 
 ## Framework/tooling contract
 

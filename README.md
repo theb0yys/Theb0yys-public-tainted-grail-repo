@@ -12,7 +12,7 @@ Start with **[Make your first Tainted Grail mod](learn/first-mod/README.md)**.
 
 ### ⚙️ Perform a known modding capability
 
-Open **[Mechanics](mechanics/README.md)** for bounded, evidence-scoped capabilities such as item resolution, custom weapon integration, mount velocity, one-session companions, modal UI and persistence boundaries.
+Open **[Mechanics](mechanics/README.md)** for bounded capabilities such as item resolution, custom weapon integration, mount velocity, one-session companions, modal UI and persistence boundaries.
 
 ### 🗡️ Add new content
 
@@ -24,7 +24,7 @@ Open **[Game systems](systems/README.md)**.
 
 ### 🔬 Investigate something the repository does not know yet
 
-Open **[Investigate](investigate/README.md)**. Owner discovery, lifecycle tracing and evidence separation are first-class modding skills.
+Open **[Investigate](investigate/README.md)**. Owner discovery and lifecycle tracing are first-class modding skills.
 
 ### 🔧 Diagnose a failure
 
@@ -57,11 +57,11 @@ Start with the [recommended author stacks](tooling/ecosystem/author-stacks.md) o
 | [mechanics/](mechanics/README.md) | Bounded reusable modding capabilities |
 | [investigate/](investigate/README.md) | Discovering unknown owners/lifecycles |
 | [diagnose/](diagnose/README.md) | Symptom-driven troubleshooting |
-| [reference/](reference/README.md) | Exact lookup and evidence state |
+| [reference/](reference/README.md) | Exact lookup |
 | [case-studies/](case-studies/README.md) | Lessons from real mod work |
 | [examples/](examples/README.md) | Small public-safe runnable examples |
 | [tooling/](tooling/README.md) | Shared mod-author infrastructure, APIs and integration recipes |
-| [sources/](sources/README.md) | Provenance and publication ledger |
+| [sources/](sources/README.md) | Official and upstream source links |
 | [contributing/](contributing/README.md) | Public authoring standards |
 | [how-to/](how-to/README.md) | Existing task guides pending reconciliation |
 | [templates/](templates/README.md) | Minimal project starters |
@@ -72,28 +72,15 @@ Start with the [recommended author stacks](tooling/ecosystem/author-stacks.md) o
 exact subject / identity
 → native owner
 → lifecycle and data contract
-→ observation or source inspection
 → smallest justified intervention
 → downstream native behaviour
 → cleanup / restoration
-→ claim-fit proof
-
-    persistence proof: separate
-    compatibility proof: separate
-    release proof: separate
+→ verify the intended behaviour
 ```
 
 ## One canonical explanation, multiple routes into it
 
 Reading order is navigation, not ownership. Link to the canonical system/mechanic/reference page instead of maintaining parallel current copies.
-
-## Evidence
-
-See [Evidence reference](reference/evidence/README.md) and [Evidence standard](sources/evidence-standard.md). Static, runtime, persistence, compatibility and release evidence do not substitute for one another.
-
-## Publication progress
-
-The [private-to-public publication ledger](sources/provenance/README.md) tracks what knowledge has actually been extracted from the private engineering corpus. The structure itself is not completion.
 
 ## Public-repository boundary
 

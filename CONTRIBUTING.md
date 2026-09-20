@@ -12,20 +12,16 @@ This repository is a public, source-only Tainted Grail: The Fall of Avalon moddi
 | What exact identifier/type/hook do I need? | `reference/` |
 | What did a real working mod prove? | `case-studies/` |
 | Where is the minimal runnable code? | `examples/` |
-| Where did the claim come from? | `sources/` |
+| Where do official/upstream references live? | `sources/` |
 | Where is a starter project? | `templates/` |
 
 Do not maintain parallel current explanations. Link to the canonical owner.
-
-## Evidence
-
-Follow [sources/evidence-standard.md](sources/evidence-standard.md). State exactly what was inspected/tested and which runtime/build it applies to. Static inspection is not runtime proof; one launch is not persistence or compatibility proof.
 
 ## Good contributions
 
 - setup/runtime corrections;
 - source-only C# examples;
-- exact identities, hooks or architecture notes with evidence;
+- exact identities, hooks or architecture notes with clear runtime/version scope;
 - reproducible procedures;
 - case studies from working mods;
 - public-safe diagnostics and CI checks.
