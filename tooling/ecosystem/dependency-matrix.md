@@ -6,7 +6,7 @@
 | Tainted Interface | shared styles/icons/textures/HUD resources | usually optional; hard only when feature requires it | direct public resource/style API | feature input/state ownership |
 | Tainted Diagnostic Tool | research IDs/templates/spawners/runtime context | none | install and collect read-only dumps | a dump row is approval |
 | Avalon Core | capability/evidence/catalog discovery | hard when directly referenced | `TrustReports`, documented registry/discovery | runtime execution authority |
-| Tainted Framework | concrete shared runtime services | **surface-specific** | currently documented promoted surfaces only | every internal capability is public |
+| Tainted Framework | cross-runtime contracts + concrete shared runtime services | **surface-specific** | Mono + IL2CPP shared boundary; consume only documented promoted surfaces | every internal capability is public; runtime support does not promote every service |
 | Avalon AI Runtime | shared AI decision/execution host | package references Contracts only | package manifests/goals/actions/blackboard contracts | direct package → FoA calls |
 | Avalon Contracts | shared contract/provider readback | provider/consumer-specific | explicit registration + discovery/readback; exact promoted lifecycle lanes only | host owns provider gameplay truth |
 | Tainted Grail Extender | extensions and external local SDK | required for TGE route | explicit extension/service/SDK contracts | generic remote/admin command server |
