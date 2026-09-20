@@ -4,6 +4,10 @@ Skip the lockpicking interaction only after FoA has already established that the
 
 Working lineage: [Auto-Unlock Without Bypassing Every Lock Rule](../../../research/case-studies/lockpicking/auto-unlock-boundary.md).
 
+## Runnable source
+
+Start with the [Lockpicking auto-unlock example](../../../examples/mono/gameplay/lockpicking-auto-unlock/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Patch target
 
 The working implementation patches:
