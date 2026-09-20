@@ -27,7 +27,7 @@ internal static class DynamicTargets
     {
         AccessTools.Method(
             typeof(FakeOwner),
-            "Beta",
+            nameof(FakeOwner.Beta),
             new[] { typeof(int), typeof(string) });
 
         AccessTools.PropertyGetter(typeof(FakeOwner), "Value");
