@@ -1,5 +1,5 @@
 # IL2CPP Audio Templates
 
-- [Replacement gate](replacement-gate/) — generate/play a replacement first, suppress the original only after success, and fail open on errors.
+Use this template when you want to build an IL2CPP audio replacement that leaves the native sound alone unless the replacement successfully starts.
 
-Use current generated interop assemblies only when adapting the starter to an actual FoA/FMOD owner.
+The starter demonstrates the replacement gate; adapt it to an exact FoA/FMOD event only after verifying the current generated interop target.
