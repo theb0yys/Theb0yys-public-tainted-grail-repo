@@ -1,6 +1,8 @@
 # Native Weapon Integration
 
-Use this page as a compact map of **which native FoA layer owns which part of a weapon**.
+Use this page when you need a compact map of the native systems that make a FoA weapon work.
+
+It separates weapon definition, runtime Item state, equip ownership, hand representation, combat behavior, and presentation so you can change the correct layer without making the visible mesh the source of truth.
 
 ## Ownership chain
 
