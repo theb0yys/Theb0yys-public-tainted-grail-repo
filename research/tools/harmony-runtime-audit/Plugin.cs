@@ -190,10 +190,6 @@ internal static class TargetFormatter
             method.GetParameters().Select(parameter =>
                 parameter.ParameterType.FullName ?? parameter.ParameterType.Name));
 
-        string result = method is MethodInfo methodInfo
-            ? methodInfo.ReturnType.FullName ?? methodInfo.ReturnType.Name
-            : "System.Void";
-
-        return assembly + "::" + type + "." + method.Name + "(" + parameters + ")->" + result;
+        return assembly + "::" + type + "." + method.Name + "(" + parameters + ")";
     }
 }
