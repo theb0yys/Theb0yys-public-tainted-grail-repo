@@ -8,10 +8,6 @@ Working lineage: [Combat VFX Sidecars](../../../research/case-studies/rendering/
 
 Start with the [Combat VFX sidecar example](../../../examples/mono/rendering/combat-vfx-sidecar/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
-## Runnable source
-
-Start from the buildable example: [Damage and death VFX sidecar](../../../examples/mono/rendering/damage-death-vfx/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
-
 
 ## Living-hit hook
 
