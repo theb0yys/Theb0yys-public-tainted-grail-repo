@@ -1,12 +1,5 @@
 # Hybrid Identity Contract
 
-Replace these placeholders before implementation:
+Use this file to record the stable identity shared between the Merlin-authored content and the runtime plug-in.
 
-- **Contract ID:** `yourname.yourmod.content`
-- **Contract version:** `1`
-- **Merlin content root:** `Assets/YourMod/`
-- **Runtime plug-in GUID:** `yourname.yourmod.runtime`
-
-The contract is an identity boundary, not an integration claim. Add game-specific identifiers, discovery rules or schema only after the corresponding owner/lifecycle has been inspected and the runtime mechanism is justified.
-
-Keep the `Contract ID` aligned with `runtime/Plugin.cs`.
+Replace the placeholders before implementation. Add game-specific IDs or discovery rules only after you have established the exact FoA owner and lifecycle they refer to.
