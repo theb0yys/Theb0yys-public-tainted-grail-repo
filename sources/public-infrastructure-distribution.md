@@ -15,6 +15,7 @@ https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167
 Checked claims:
 
 - public acquisition route exists;
+- the public page documents Mono and IL2CPP support and runtime-specific Main files;
 - the public page documents mod-author integration for custom UI scope, controller actions and read-only status providers;
 - the current private engineering release manifest records source-side version `0.6.62` and plugin GUID `kane.tgfoa.mod-manager`.
 
@@ -31,6 +32,7 @@ Checked claims:
 - public acquisition route exists;
 - plugin GUID is `kane.tgfoa.tainted-interface`;
 - public plugin version declaration is `0.3.4`;
+- the public page documents Mono and IL2CPP Main files;
 - the author-facing surface documents shared styles/resources and semantic lookup;
 - the page does not advertise arbitrary Main/Pause Menu registration as a current public consumer API.
 
@@ -46,6 +48,7 @@ Checked claims:
 - public name is Tainted Core while technical package identity remains Avalon Core;
 - plugin GUID is `kane.tgfoa.avalon-core`;
 - current public source/plugin version is `0.8.4`;
+- the public page documents Mono and IL2CPP runtime support and requires the Main file matching the runtime;
 - the package is intended to be installed as a complete runtime package rather than selected individual DLLs.
 
 ## Tainted Framework
@@ -58,10 +61,11 @@ Checked claims:
 
 - public acquisition route exists;
 - plugin GUID is `kane.tgfoa.tainted-framework`;
-- public description presents the framework as the shared cross-runtime dependency layer;
-- common assemblies include `Tainted.Abstractions`, `Tainted.Contracts`, and `Tainted.Core`.
+- public description explicitly states support for BepInEx 5 Mono and BepInEx 6 IL2CPP through one shared framework boundary;
+- common assemblies include `Tainted.Abstractions`, `Tainted.Contracts`, and `Tainted.Core`;
+- current engineering evidence includes the IL2CPP host/package line through `0.1.38`; this is separate from the Nexus display/file version.
 
-The Nexus page exposes a site/file version separately from the framework's source-side semantic versions. This repository therefore does not manufacture an API-semver guarantee from the Nexus display version.
+Tainted Framework is therefore **not IL2CPP-blocked**. Runtime support is public; individual framework capabilities still require their own promotion/consumer evidence. The Nexus page exposes a site/file version separately from source-side semantic versions, so this repository does not manufacture an API-semver guarantee from the Nexus display version.
 
 ## Avalon AI FoA Host
 
@@ -74,10 +78,11 @@ Checked claims:
 - public acquisition route exists;
 - plugin GUID is `kane.tgfoa.avalon-ai-foa-host`;
 - current Host version stated in the public description is `0.8.2`;
+- the public page advertises the Host for Mono and IL2CPP and lists Tainted Framework for the IL2CPP lane;
 - packages are expected to use the shared Host rather than ship separate competing schedulers;
 - matching Host/framework/package DLLs should be kept together.
 
-The public page contains mixed high-level runtime wording and Mono-specific detailed installation text. Do not promote an IL2CPP compatibility claim from that page alone; follow the exact current Main-file requirements.
+The public page's top-level support statement is cross-runtime, while detailed package examples remain more Mono-oriented. Treat Mono + IL2CPP as the public support posture, but take exact loader/package requirements from the selected runtime-specific Main file.
 
 ## Tainted Diagnostic Tool
 
@@ -88,6 +93,7 @@ https://www.nexusmods.com/taintedgrailthefallofavalon/mods/182
 Checked claims:
 
 - public acquisition route exists;
+- the public page documents Mono and IL2CPP Main files;
 - the tool is presented as read-only runtime evidence collection;
 - public documentation separates observed diagnostic evidence from gameplay approval.
 
