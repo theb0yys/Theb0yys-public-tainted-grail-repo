@@ -1,379 +1,157 @@
 # Build a Contextual Music Mod
 
-Use this guide to build a Mono/BepInEx music mod that plays **mod-owned background music** based on read-only FoA game context.
+Use a mod-owned FMOD Core music player and read FoA context to select lanes. Keep native dialogue, UI, SFX and ambience as separate owners.
 
-This guide intentionally does **not** replace all game audio. It keeps these owners separate:
+Working lineage: [Tainted Music: Own Your Lane, Not All Audio](../../../research/case-studies/audio/tainted-music-lane-ownership.md).
 
-```text
-plugin-owned background music
-native exploration music
-native alert music
-native combat music
-native ambience zones
-dialogue / UI / SFX
-```
+## Player structure
 
-The architecture comes from [Tainted Music: Own Your Lane, Not All Audio](../../../research/case-studies/audio/tainted-music-lane-ownership.md).
+The maintained Tainted Music implementation owns:
 
-## Evidence status
+- FMOD.System;
+- a mod-owned FMOD.ChannelGroup;
+- a list of MusicVoice objects;
+- lane → track definitions;
+- lane → next-track index.
 
-This guide is based on a **PARTIAL** case study.
+Example lanes include:
 
-Established:
+~~~text
+Wyrdness
+DayOpenWorld
+Interior
+Settlement
+ScaryPlace
+None
+~~~
 
-- native music and ambience are separate owners;
-- plugin-owned FMOD Core playback is a valid lane;
-- read-only context can select a music lane;
-- dialogue/combat can duck plugin-owned channels;
-- native exploration/alert/combat suppression can be scoped narrowly;
-- native ambience can be handled separately;
-- private suppression failures should fail open to native audio.
+## Create a mod-owned sound
 
-Still not promoted as a complete public guarantee:
+For embedded WAV bytes, the working code uses FMOD Core:
 
-- the full audible overlap matrix;
-- every lane transition;
-- every unique/boss/dramatic exception;
-- every ambience restore case.
-
-Build the proven architecture first, then run the validation matrix at the end.
-
-## What you will build
-
-```text
-read FoA context
-→ choose one plugin music lane
-→ load/play mod-owned FMOD music
-→ crossfade plugin-owned channels
-→ duck plugin music during dialogue/recent combat
-→ optionally suppress only overlapping native music
-→ leave ambience/dialogue/UI/SFX alone
-→ restore native ownership when plugin music stops
-→ release plugin-owned FMOD resources
-```
-
-Canonical system pages:
-
-- [Audio, Music, and FMOD Ownership](../../../knowledge/systems/presentation/audio-music.md)
-- [Native Music and Ambience Ownership](../../../knowledge/systems/presentation/audio-ownership.md)
-- [Plugin-Owned Contextual Music Lanes](../../../knowledge/mechanics/audio/plugin-owned-music-lanes.md)
-- [Scoped Native Music Suppression](../../../knowledge/mechanics/audio/native-music-suppression.md)
-- [Scoped Ambient-Zone Suppression](../../../knowledge/mechanics/audio/scoped-ambient-zone-suppression.md)
-
-## Prerequisites
-
-1. complete the [first Mono plug-in](../../getting-started/first-mono-plugin.md);
-2. prove your plug-in can load and update periodically without log spam;
-3. prepare music you have the right to redistribute/use;
-4. start with one or two tracks, not a full soundtrack replacement.
-
-Do not begin by patching every FMOD event.
-
-## Step 1 — choose your ownership model
-
-For the first version, your mod owns only its own FMOD Core sounds/channels.
-
-It does not own:
-
-- dialogue;
-- UI;
-- SFX;
-- native ambience;
-- native game state;
-- native music managers except for narrowly scoped optional suppression.
-
-That means teardown is simple:
-
-```text
-your mod started the channel
-→ your mod fades/stops it
-→ your mod releases its sound resources
-```
-
-## Step 2 — define a small lane set
-
-A source-inspected Tainted Music policy used context such as:
-
-- playable `Hero.Current`;
-- strict Wyrdness exposure;
-- `SceneService.IsOpenWorld`;
-- native time / `WeatherTime.IsNight`;
-- dialogue involvement;
-- recent hero-involved damage;
-- configurable scene/display-name keywords.
-
-A deliberately bounded first policy is:
-
-```text
-no playable hero → silence
-Wyrdness        → wyrdness lane
-scary place     → scary lane
-settlement      → settlement lane
-interior        → interior lane
-open-world day  → day lane
-otherwise       → silence
-```
-
-"Settlement" and "scary place" are **mod policy**, not invented native FoA taxonomies. Keep the keyword/configuration distinction visible.
-
-## Step 3 — build a read-only context snapshot
-
-Do not let the music selector mutate game state.
-
-At a throttled interval, collect only the values required by your policy:
-
-```text
-hero available?
-open world?
-day/night?
-strict Wyrdness?
-dialogue active?
-recent combat timestamp?
-scene/display classification?
-```
-
-Return a small immutable/context value to the music selector.
-
-Do not poll expensive reflection/discovery every frame.
-
-## Step 4 — select exactly one target lane
-
-Keep lane selection deterministic.
-
-Conceptually:
-
-```csharp
-MusicLane SelectLane(Context c)
+~~~csharp
+FMOD.CREATESOUNDEXINFO info = new()
 {
-    if (!c.HasPlayableHero) return MusicLane.Silence;
-    if (c.InWyrdness)      return MusicLane.Wyrdness;
-    if (c.IsScaryPlace)    return MusicLane.Scary;
-    if (c.IsSettlement)    return MusicLane.Settlement;
-    if (!c.IsOpenWorld)    return MusicLane.Interior;
-    if (c.IsDay)           return MusicLane.Day;
-    return MusicLane.Silence;
-}
-```
+    cbsize = Marshal.SizeOf(typeof(FMOD.CREATESOUNDEXINFO)),
+    length = checked((uint)wavBytes.Length),
+    suggestedsoundtype = FMOD.SOUND_TYPE.WAV
+};
 
-Do not mix playback into this function. Selection and playback are separate responsibilities.
+FMOD.MODE mode =
+    FMOD.MODE.OPENMEMORY |
+    FMOD.MODE.CREATESAMPLE |
+    FMOD.MODE.LOOP_OFF |
+    FMOD.MODE._2D;
 
-## Step 5 — load plugin-owned music
+_coreSystem.createSound(
+    wavBytes,
+    mode,
+    ref info,
+    out FMOD.Sound sound);
+~~~
 
-For each configured track:
+Validate the FMOD result and require a valid sound handle.
 
-1. validate the file;
-2. create/load it through the mod's FMOD Core lane;
-3. retain the sound resource while needed;
-4. keep clear ownership so shutdown can release it.
+## Start a voice paused at zero volume
 
-Do not rewrite native Studio banks merely to play your own background track.
+The working start route is:
 
-## Step 6 — crossfade only your own channels
+~~~csharp
+_coreSystem.playSound(
+    sound,
+    _masterChannelGroup,
+    true,
+    out FMOD.Channel channel);
 
-When the selected lane changes:
+channel.setVolume(0f);
+channel.setPaused(false);
+~~~
 
-```text
-old plugin lane playing
-→ start/prepare new plugin lane
-→ fade old plugin target volume down
-→ fade new plugin target volume up
-→ stop/release old channel when finished
-```
+Then store a MusicVoice with:
 
-Crossfade state should belong to your player, not to FoA's native music objects.
+- lane;
+- channel;
+- sound;
+- display name;
+- current volume;
+- target volume;
+- fade seconds;
+- stop-when-silent flag.
 
-## Step 7 — duck plugin music for dialogue/combat
+## Select a lane from read-only game context
 
-Dialogue and recent combat can reduce the **plugin-owned target volume**.
+Poll context at a bounded interval rather than reflecting every frame.
 
-For example:
+Useful inputs already used by the implementation include:
 
-```text
-base lane volume
-× dialogue duck factor
-× combat duck factor
-= plugin target volume
-```
+- Hero.Current/playable state;
+- scene/open-world state;
+- game time/day-night;
+- Wyrdness state;
+- dialogue context;
+- recent hero-involved combat;
+- configured settlement/scary-place scene policy.
 
-Do not mute dialogue or alter combat to achieve ducking.
+Lane selection returns a MusicLane. It should not start/stop audio itself.
 
-The damage observation used by the working design is context only: it records recent hero-involved combat timing and does not alter damage.
+## Crossfade
 
-## Step 8 — decide coexistence vs replacement
+When a lane changes:
 
-Start in **coexistence mode** if possible:
+1. mark old voices to fade toward zero;
+2. start the new voice at zero;
+3. set its target to the lane volume;
+4. move current volume toward target every update;
+5. call channel.setVolume(current);
+6. when a stop-when-silent voice reaches zero, stop the channel and release its FMOD.Sound.
 
-```text
-plugin lane plays
-+ native music remains untouched
-```
+The maintained implementation clamps fade time and uses separate lane/context fade settings.
 
-This proves your context/player/crossfade system before adding suppression.
+## Dialogue/combat ducking
 
-If your intended mod replaces native background music, add suppression as a separate stage.
+Do not lower native dialogue/combat volume.
 
-## Step 9 — suppress only native music lanes you replace
+Calculate the target volume of the **plugin-owned** voice:
 
-FoA separates native exploration, alert and combat music.
+~~~text
+global volume
+× lane volume
+× dialogue multiplier when dialogue active
+× combat multiplier while combat hold timer active
+~~~
 
-The researched suppression boundary is:
+When target volume changes, use the shorter context-fade duration.
 
-```text
-plugin music active
-→ suppress native exploration/alert/combat start paths
-→ optionally stop only those three native music emitters as a backstop
-```
+## Pause state
 
-Do **not** broadly suppress:
+Read the mod-owned master channel group's pause state and mirror it to owned voices.
 
-- ambience;
-- snapshots;
-- dialogue;
-- UI;
-- SFX.
+Do not let fade time advance while the master group is paused.
 
-The suppression targets are private/internal and therefore patch-sensitive.
+## Native music suppression
 
-If an expected target cannot be found:
+If the mod is intended to replace native music, add suppression as a separate feature.
 
-> fail open to native music.
+Suppress only the known native exploration/alert/combat start paths while plugin music is actually active. If a private target cannot be resolved, leave native music running.
 
-Do not respond to a missing private method by muting broader `AudioCore` behaviour.
+Do not mute AudioCore globally.
 
-## Step 10 — add explicit exception policy
+## Ambience remains separate
 
-Some scenes/events may require authored native music.
+ManualAudioZone ambience is a different owner.
 
-Represent those as explicit configuration/policy, for example:
+Only suppress a specific ambient-zone source when the feature explicitly needs it, and re-register/restore that zone when suppression ends.
 
-```text
-unique/boss/dramatic exception active
-→ plugin lane yields or changes policy
-→ native authored music is allowed
-```
+## Shutdown
 
-Do not claim that a keyword list perfectly identifies every authored special event.
+On disable/unload:
 
-## Step 11 — keep ambience separate
+~~~text
+stop all mod-owned FMOD channels
+→ release all mod-owned FMOD.Sound handles
+→ clear lane/track state
+→ remove Harmony suppression patches
+→ restore any specifically suppressed native ambience
+~~~
 
-A repetitive ambient zone is not the same owner as native music.
-
-If you have a specific proven reason to suppress an active `ManualAudioZone` ambience:
-
-1. enumerate the relevant active zone;
-2. unregister only its ambient sources;
-3. leave music/dialogue/UI/SFX alone;
-4. re-register still-active native ambience when suppression ends.
-
-Do not include ambient-zone suppression in your first music build unless you actually need it.
-
-## Step 12 — shutdown and disable cleanly
-
-On disable/shutdown:
-
-```text
-stop/fade plugin channels
-→ release plugin-owned sounds
-→ clear plugin lane state
-→ remove scoped suppression patches
-→ ensure native music/ambience ownership is no longer suppressed
-```
-
-Never leave the game silent because your mod unloaded.
-
-## Validation matrix
-
-### A. Plugin-owned player
-
-Verify:
-
-- one lane starts;
-- no duplicate channels accumulate;
-- changing lane crossfades;
-- silence state really stops/releases owned playback;
-- shutdown releases resources.
-
-### B. Context transitions
-
-Exercise separately:
-
-- no hero → playable hero;
-- interior → open world;
-- day → night;
-- normal → Wyrdness;
-- normal → settlement/scary policy bucket;
-- scene transition.
-
-Record which transitions were actually tested.
-
-### C. Ducking
-
-Verify independently:
-
-- dialogue begins → plugin music ducks;
-- dialogue ends → plugin volume restores;
-- combat observation → plugin music ducks;
-- combat timeout → plugin volume restores;
-- dialogue/combat audio themselves remain untouched.
-
-### D. Native coexistence/suppression
-
-With suppression disabled:
-
-- native music still behaves normally.
-
-With suppression enabled:
-
-- only exploration/alert/combat overlap is targeted;
-- ambience remains;
-- dialogue remains;
-- UI/SFX remain;
-- missing/private target failure allows native music.
-
-### E. Exceptions
-
-Test each configured unique/boss/dramatic exception separately.
-
-Do not mark the feature fully validated until those audible cases are actually heard in game.
-
-## Common mistakes
-
-### Treating all background sound as "music"
-
-FoA ambience has separate owners. Suppressing the wrong owner can remove environmental sound unintentionally.
-
-### Making context selection mutate gameplay
-
-Music should consume read-only context wherever possible.
-
-### Ducking native audio
-
-Duck your own channels. Dialogue/combat are context, not volume targets.
-
-### Muting broad AudioCore behaviour
-
-Suppress only the exact native music lanes you intend to replace.
-
-### Claiming a full matrix from partial evidence
-
-A clean build and registered patches do not prove audible overlap, transitions or authored exceptions.
-
-## Current proof boundary
-
-**Established architecture:** plugin-owned FMOD Core music lane, read-only context selection, plugin-only ducking, scoped native music suppression design, separate ambience ownership, fail-open behaviour.
-
-**Partial runtime evidence:** some day/night/Wyrdness lane transitions and suppression/load behaviour.
-
-**Still requires explicit audible validation:** complete overlap matrix, all lane transitions, authored exceptions, and scoped ambient restore for the current target build.
-
-## Next steps
-
-After the baseline player passes:
-
-1. add multiple tracks per lane;
-2. add shuffle/repeat policy;
-3. add user configuration;
-4. test every transition;
-5. only then consider ambience exceptions or deeper native integration.
-
-The central rule remains: **own your music lane, not all audio.**
+Never leave the game silent because your plug-in unloaded.
