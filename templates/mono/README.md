@@ -1,7 +1,14 @@
 # Mono Templates
 
-- [Basic](basic/) — minimal BepInEx Mono plug-in.
-- [Harmony](harmony/) — buildable Harmony wiring with a self-contained self-test patch.
-- [Runtime UI](runtime-ui/) — small toggleable IMGUI diagnostic/tool surface.
+Mono/BepInEx 5 starters are grouped by functional domain.
 
-Use [examples/mono](../../examples/mono/README.md) when you need a demonstrated game-specific mechanism rather than a reusable starter.
+- [Basic plug-in](basic/)
+- [Harmony](harmony/README.md)
+- [Audio](audio/README.md)
+- [Combat](combat/README.md)
+- [Items](items/README.md)
+- [Magic](magic/README.md)
+- [Rendering](rendering/README.md)
+- [UI](ui/README.md)
+
+For a mod intended to ship on both Mono and IL2CPP through Tainted Framework, start with the [dual-runtime framework consumer](../hybrid/tainted-framework-consumer/) instead of duplicating feature code.

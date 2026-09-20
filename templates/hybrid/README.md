@@ -1,7 +1,8 @@
-# Hybrid Templates
+# Hybrid / Dual-Runtime Templates
 
-Hybrid templates combine **Merlin-authored content** with a separate **runtime integration plug-in**.
+Hybrid templates keep distinct runtime or authoring lifecycles explicit instead of mixing them in one opaque project.
 
-The key rule is lifecycle separation: the Merlin project owns authored/exported content; the BepInEx project owns runtime code. Do not turn either side into an implicit build dependency on the other's private workspace.
+- [Tainted Framework dual-runtime consumer](tainted-framework-consumer/) — one shared feature source, thin Mono/BepInEx 5 host, thin IL2CPP/BepInEx 6 host.
+- [Mono + Merlin](mono-merlin/) — Merlin-authored content plus a separate runtime plug-in.
 
-- [Mono + Merlin](mono-merlin/)
+A shared codebase does not make every API cross-runtime automatically. Keep loader, Unity, game-interop, and lifecycle differences in the host/adaptor layer.
