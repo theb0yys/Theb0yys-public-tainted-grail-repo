@@ -32,6 +32,10 @@ For example:
 
 The public system maps here describe the researched Mono managed surfaces. IL2CPP builds require resolving the equivalent generated/interoperability surface for the installed build rather than assuming identical reflection/patch signatures.
 
+## Deeper reference
+
+- [Assembly boundaries and ownership](assembly-boundaries.md)
+
 ## Modding relevance
 
 Use this assembly map to find the owning types before selecting a patch or reflection target.
