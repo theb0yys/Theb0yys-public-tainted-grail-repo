@@ -5,6 +5,10 @@ Use this guide when several mods or subsystems need to react to one weather stat
 Working lineage: [Rain / Day Owner-Stack Validation](../../../research/case-studies/weather/rain-day-owner-stack.md).  
 Canonical system: [Weather, Environment, Sky, Water, and World-State Ownership](../../../knowledge/systems/world/weather-environment.md).
 
+## Runnable source
+
+Start from the runnable public example: [Weather owner stack](../../../examples/mono/rendering/weather-owner-stack/README.md). Build/run it unchanged first, confirm its documented result, then make one change at a time.
+
 ## What you will build
 
 ```text
