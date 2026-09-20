@@ -13,16 +13,16 @@ Mechanics answer **what can a mod do, through which owner, and with what proof b
 ## Major families
 
 - Items / weapons / armour
+- Actors / encounters
+  - [Bounded runtime spawn](encounters/native-runtime-spawn.md)
+  - [Route-patrol ownership](encounters/route-patrol-ownership.md)
+  - [Native ally setup](companions/native-ally-setup.md)
+  - [Native defend assist](companions/native-defend-assist.md)
+  - [Managed recovery](companions/recover-managed-actor.md)
 - Progression / survival / economy / crime
 - Bonfire / merchants / recipes
 - UI / map / camera
-  - [Map fog display](map/display-fog-mask.md)
-  - [Mod-owned pinbook](map/mod-owned-pinbook.md)
-  - [Third-person framing](camera/third-person-framing.md)
-- Rendering
-  - [HDRP volume fog](rendering/hdrp-volume-fog.md)
-  - [Native distance-culling bias](rendering/native-distance-culling.md)
-- Weather / audio / VFX / diagnostics
-- Assets / mounts / companions / save state
+- Rendering / weather / audio / VFX / diagnostics
+- Assets / save state / lifecycle
 
-Use [Intervention selection](intervention-selection/README.md) when choosing a seam and [Reference mechanics](../reference/mechanics/README.md) for the evidence-scoped catalogue.
+Use [Intervention selection](intervention-selection/README.md) when choosing a seam.

@@ -1,5 +1,6 @@
 # Gameplay Systems
 
+- [Runtime actor lifecycle](native-runtime-actor-lifecycle.md)
 - [Actors, locations and spawning](actors-locations-spawning.md)
 - [AI perception and behaviour](ai-perception-behavior.md)
 - [Combat and damage](combat-damage.md)

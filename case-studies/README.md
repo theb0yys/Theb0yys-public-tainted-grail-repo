@@ -3,6 +3,8 @@
 Case studies preserve what real mod work taught us without publishing the private workspace wholesale.
 
 - [Frameworks/tooling](frameworks/README.md)
+- [Encounters/spawning](encounters/README.md)
+- [Companions](companions/README.md)
 - [Gameplay](gameplay/README.md)
 - [Content](content/README.md)
 - [Weapons](weapons/README.md)
@@ -17,7 +19,6 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Bonfire](bonfire/README.md)
 - [Crime](crime/README.md)
 - [Weather](weather/README.md)
-- [Companions](companions/README.md)
 - [UI](ui/README.md)
 - [Audio](audio/README.md)
 - [VFX](vfx/README.md)
