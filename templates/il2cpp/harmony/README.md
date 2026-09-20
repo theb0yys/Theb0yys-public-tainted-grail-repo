@@ -1,5 +1,5 @@
 # IL2CPP Harmony Templates
 
-Use these templates when you want to add Harmony patching to a BepInEx 6 IL2CPP mod and first prove that the host and patch lifecycle work correctly.
+Use these templates when you want to add Harmony patching to a BepInEx 6 IL2CPP mod and first prove the patch lifecycle safely.
 
-The included targets are self-owned. Replace them with FoA targets only after verifying the current generated interop type and exact method signature.
+Choose the basic template for general patch setup or the result-Postfix template when the original method should run and only the returned result needs adjustment.
