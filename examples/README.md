@@ -1,12 +1,14 @@
 # Examples
 
-Small, source-only mechanism demonstrations organized first by runtime/authoring lane and then by functional domain.
+Small, focused code examples that show how specific FoA modding techniques work.
+
+Examples are grouped first by the environment they target:
 
 - [Mono](mono/README.md)
 - [IL2CPP](il2cpp/README.md)
 - [Merlin](merlin/README.md)
 - [Hybrid](hybrid/README.md)
 
-Runtime belongs in the parent path. Child folders use functional domains and concise mechanism names instead of repeating `mono`/`il2cpp` or numeric ordering prefixes.
+Inside each environment, examples are grouped by what they do, such as combat, items, audio, UI, or rendering.
 
-For lessons extracted from complete working mods, use [case studies](../research/case-studies/README.md). For reusable starter projects, use [templates](../templates/README.md).
+These examples are meant to demonstrate one technique clearly. For lessons taken from complete working mods, see [case studies](../research/case-studies/README.md). For reusable starting projects, see [templates](../templates/README.md).
