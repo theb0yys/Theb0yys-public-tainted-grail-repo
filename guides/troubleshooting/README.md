@@ -1,6 +1,8 @@
-# Diagnose
+# Troubleshooting
 
-Troubleshooting should identify the **earliest failed owner/stage**.
+Start with the **first thing that failed**, not the final symptom.
+
+For example, if a custom item is missing after loading a save, first check whether its template was registered and available at restore time before changing inventory or UI code.
 
 - [Hook did not fire](hook-did-not-fire.md)
 - [Template lookup is too early](template-lookup-too-early.md)
@@ -12,3 +14,5 @@ Troubleshooting should identify the **earliest failed owner/stage**.
 - [Addressables works offline but not through ModService](addressables-loads-offline-not-in-game.md)
 - [Private reflection broke after update](private-reflection-broke-after-update.md)
 - [Presentation-only failure](presentation-only-failure.md)
+
+The goal is to identify the earliest broken step in the chain and fix that step instead of adding workarounds farther downstream.
