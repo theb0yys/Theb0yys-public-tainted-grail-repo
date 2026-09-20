@@ -34,6 +34,8 @@ Hooks are only one segment of a complete mechanic. A method target does not prov
 | `ItemEquip.EquipmentType` getter | Postfix | alter effective equipment handedness/type | Public mod caches decisions and clears them when hero/stats are reinitialized |
 | `ItemsSorting.Compare(Item, Item)` | Prefix | inject equipped/loadout priority into native item sorting | Prefix may return false after supplying its own comparison result |
 | `MapUI.AfterViewSpawned` | Postfix | run after map UI view creation | Public mod calls `AllowFastTravel()` here |
+| `VHeroHUD.AfterFullyInitialized` | Postfix | attach/reposition mod-owned HUD children after the hero HUD is ready | Public HUD mods use this instead of plugin-load timing |
+| `VHeroKeys.Handle(UIEvent)` | Prefix | intercept hero input dispatch before native action handling | Public quickslot mod handles selected `UIKeyDownAction` names and returns false only for owned actions |
 | `HeroStorageUI.OnFullyInitialized` | Postfix | extend storage prompts after storage UI initialization | Public mod accesses current storage tab and prompt collection |
 | `PContainerUI.OnFullyInitialized` | Postfix | alter pickup/container UI after initialization | Public mod unpatches its one-shot UI change afterward |
 | `PContainerElement.CacheVisualElements` | Postfix | add cached visual elements to container rows | UI Toolkit surface |
