@@ -56,6 +56,10 @@ The exact processors differ, but the order shows how specialised systems are seq
 
 Scene processing is one stage inside a larger content build that also handles localisation, Kandra preparation, story/skill baking, archive generation and Addressables.
 
+## Deeper reference
+
+- [Authoring scene vs shipping representation](authoring-vs-shipping-representation.md)
+
 ## Modding relevance
 
 This page explains why a raw Unity scene or renderer hierarchy may differ dramatically from the shipping runtime representation.
