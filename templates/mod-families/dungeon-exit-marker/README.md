@@ -1,10 +1,8 @@
 # Dungeon Exit Marker Public Template
 
-Use this starter when you are building a dungeon-exit marker or navigation helper across both runtimes. Keep marker rules shared; resolve scene, map, marker, and lifecycle access in the runtime-specific host.
+Use this starter for a dungeon-exit marker or navigation helper that needs cross-runtime support.
 
-Source family: `dungeon-exit-helper`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep marker and feature rules shared; runtime hosts should resolve the exact scene, map, UI, and location access needed by Mono or IL2CPP.
 
 ## Reusable mechanisms
 
