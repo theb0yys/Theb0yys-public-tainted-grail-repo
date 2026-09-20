@@ -1,5 +1,6 @@
 # Mono Infrastructure Examples
 - [Performance telemetry](performance-telemetry/README.md)
+- [Native save completion observer](save-completion-observer/README.md)
 - [Save completion observer + backup](save-observer-backup/README.md)
 - [Smart save backup](smart-save-backup/README.md)
 
