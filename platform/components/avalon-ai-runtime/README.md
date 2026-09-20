@@ -1,10 +1,8 @@
 # Avalon AI Runtime
 
-**Posture: Package-authoring contracts are public; live execution stays single-host/capability-gated**
+Use Avalon AI Runtime when your mod contributes AI goals, actions, or domain information that should participate in the shared AI system.
 
-Use Avalon AI Runtime when your mod owns domain truth that should participate in shared AI decisions.
-
-Do **not** ship another independent scheduler/host for the same actors.
+Package-authoring contracts are public. Live AI execution remains controlled by the single shared host and its capability checks, so feature mods should not ship a competing scheduler for the same actors.
 
 ## Canonical pipeline
 
