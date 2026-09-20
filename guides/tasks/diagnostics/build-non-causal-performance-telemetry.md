@@ -1,69 +1,141 @@
 # Build Performance Telemetry Without Blaming a Plugin
 
-**Evidence status: PARTIAL.** The diagnostic model is established; this is not a validated causal profiler for every source of frame-time cost.
+Collect frame, CPU/GPU, allocation and GC counters into bounded windows. Treat the loaded mod list as context, not attribution.
 
 Working lineage: [Telemetry Without Blame](../../../research/case-studies/performance/telemetry-without-blame.md).
 
-## Goal
+## Sample once per eligible Update
 
-Collect useful performance context without making unsupported causal claims.
+The maintained Tainted Performance sampler builds one PerformanceFrameSample from:
 
-The central rule is:
+~~~csharp
+Time.frameCount
+Time.unscaledDeltaTime
+CPU frame milliseconds
+GPU frame milliseconds
+main-thread allocation delta
+Gen0 collection delta
+Gen1 collection delta
+Gen2 collection delta
+~~~
 
-> Plugin presence is context, not causality.
+Skip paused/loading/menu periods according to your eligibility policy so those frames do not contaminate the gameplay window.
 
-## Collect
+## CPU/GPU timing
 
-Useful observations include:
+When enabled:
 
-- frame timing;
-- GC/allocation pressure;
-- loaded mod stack;
-- scene/context;
-- bounded timestamps/markers.
+~~~csharp
+FrameTimingManager.CaptureFrameTimings();
 
-## Keep proof levels separate
+uint count =
+    FrameTimingManager.GetLatestTimings(
+        1u,
+        frameTimingBuffer);
+~~~
 
-```text
-plugin present
-≠ correlated with spike
-≠ isolated as contributor
-≠ proven cause
-```
+Read:
 
-A good diagnostic workflow keeps two lanes open:
+- FrameTiming.cpuFrameTime;
+- FrameTiming.gpuFrameTime.
 
-- native/engine baseline;
-- mod-stack isolation.
+If FrameTimingManager throws or returns no valid samples, mark those counters unavailable and continue with the remaining telemetry.
 
-## Process
+Do not crash the monitor because a graphics path does not expose timings.
 
-1. capture baseline;
-2. capture loaded stack as metadata;
-3. record timing/allocation symptoms;
-4. reproduce;
-5. disable/isolate one variable at a time;
-6. compare controlled runs;
-7. only use causal language when isolation supports it.
+## Main-thread allocation
 
-## Avoid
+Use:
 
-- "Mod X caused this" because it was loaded;
-- per-frame giant log dumps;
-- invasive instrumentation that creates the hitch;
-- mixing user hardware/environment differences into one conclusion.
+~~~csharp
+long current =
+    GC.GetAllocatedBytesForCurrentThread();
+~~~
 
-## Verification
+Record the positive delta from the previous eligible sample.
 
-A useful telemetry tool should prove:
+This is **main-thread allocation correlation**, not whole-process allocation attribution.
 
-- stable sampling overhead;
-- bounded storage/logging;
-- timestamps align with observed spikes;
-- loaded-stack capture is accurate;
-- disabling telemetry returns to baseline overhead;
-- reports distinguish observation from attribution.
+## Collection activity
 
-## Current proof boundary
+Read:
 
-The epistemic/diagnostic design is established. Exact performance overhead, sampling accuracy and causal isolation still require runtime validation per implementation.
+~~~csharp
+GC.CollectionCount(0)
+GC.CollectionCount(1)
+GC.CollectionCount(2)
+~~~
+
+Store deltas from the previous baseline.
+
+Advance/reset baselines carefully around ineligible frames so menu/loading allocations are not charged to the first gameplay sample.
+
+## Use a bounded ring
+
+Keep recent frame samples in a fixed-capacity ring.
+
+Normal Update should do only:
+
+~~~text
+eligibility check
+counter reads
+ring insert/evict
+threshold/recovery arithmetic
+~~~
+
+No reflection, plugin enumeration, LINQ, string formatting, logging, or file I/O on the ordinary hot path.
+
+## Incident trigger
+
+A useful automatic trigger is:
+
+~~~text
+average/rolling FPS at or below threshold
+for configured sustained duration
+→ latch one incident request
+~~~
+
+Once latched, do not emit repeated reports until a complete above-threshold recovery window rearms the detector.
+
+Cap reports per session.
+
+## Gather expensive context only after a trigger
+
+After the incident has been captured:
+
+- copy the bounded sample window;
+- read scene/application/system info;
+- enumerate loaded BepInEx plugins once;
+- summarize timing/allocation/GC data;
+- write the report.
+
+For Mono, loaded plug-ins come from Chainloader.PluginInfos.Values. For IL2CPP, use the IL2CPP chainloader's plugin collection.
+
+Record GUID/name/version only as environment context.
+
+## Report files
+
+The maintained implementation writes a new incident directory containing data such as:
+
+~~~text
+performance_report.json
+report.md
+frame_samples.csv
+loaded_plugins.csv
+~~~
+
+Use create-new semantics for report files so one incident never silently overwrites another.
+
+## Interpretation
+
+Keep these statements distinct:
+
+~~~text
+plugin loaded
+≠ spike occurred while plugin loaded
+≠ spike correlates with plugin activity
+≠ plugin isolated as contributor
+≠ plugin proven cause
+~~~
+
+To move from telemetry to attribution, reproduce the problem and change one variable at a time or use a profiler capable of identifying the expensive code path.
