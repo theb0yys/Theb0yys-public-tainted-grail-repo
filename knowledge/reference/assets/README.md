@@ -1,104 +1,103 @@
 # Assets, Addressables, and Presentation
 
-> **Reference page.** Use this when working with models, textures, icons, prefabs, AssetBundles, Addressables or `ARAssetReference`.
+Use this page when your mod works with **models, textures, icons, prefabs, AssetBundles, Addressables, or FoA asset references**.
 
-## What this system is
+The key rule is:
 
-Assets are presentation/data payloads. They are not automatically gameplay registrations.
+> Successfully loading an asset does not mean the game has registered or started using it.
 
-Important layers include:
+Asset loading, gameplay definition registration, presentation binding, and cleanup are separate steps.
 
-- ordinary Unity assets;
-- AssetBundles built by a mod;
+## The main asset paths
+
+You may encounter:
+
+- normal Unity assets;
+- mod-built AssetBundles;
 - Unity Addressables;
-- FoA `ARAssetReference` and ModService-compatible routes;
-- UI icon references;
-- runtime-loaded prefab/model/material resources.
+- FoA `ARAssetReference`;
+- sprite/icon references;
+- ModService-compatible catalogues/bundles;
+- runtime-loaded prefabs, materials, meshes, and textures.
 
-## Who owns it in FoA
+## Who loads what?
 
-Ownership depends on the route:
+Different systems own different parts:
 
-- Unity/AssetBundle owns raw asset loading;
-- Addressables owns keyed/addressed loading;
-- FoA ModService/asset wrappers own game-specific asset lookup/release where used;
-- a gameplay template may reference an asset, but the asset does not register the template;
-- native equip/renderer systems own presentation lifecycle for weapons/armour where proven.
+- Unity/AssetBundle APIs load raw bundle assets;
+- Addressables resolve addressed/keyed content;
+- FoA wrappers/ModService-compatible routes can add game-specific lookup and release behavior;
+- a gameplay template can point to an asset, but the asset does not register the template;
+- weapon/armour/native renderer systems own presentation lifetime when those routes are used.
 
-Merlin Workshop is useful here as the official replacement-oriented toolkit and as first-party source evidence for addresses, GUIDs and existing relationships. It is not a general new-content registrar.
+Merlin Workshop is valuable for official replacement-oriented authoring and first-party source evidence. Do not treat that replacement capability as proof of a universal new-content registration API.
 
-## Important identities, types, and methods
+## Think of the full path
 
-Common concepts:
-
-- `AssetBundle.LoadFromFile(...)`
-- Addressables address/key
-- `ARAssetReference`
-- `ShareableSpriteReference` / sprite references
-- prefab asset path
-- material/mesh references
-- ModService-compatible catalogue/bundle layout
-
-## Where it exists in the lifecycle
-
-A typical asset path is:
+A typical custom presentation flow is:
 
 ~~~text
-package/bundle available
-→ bundle/catalogue loads
-→ exact asset address resolves
+package/bundle exists
+→ catalogue/bundle loads
+→ exact asset resolves
 → gameplay definition references it
-→ native presentation owner instantiates/uses it
-→ resource is released/cleaned up
+→ native presentation system uses it
+→ resources are released correctly
 ~~~
 
-Each arrow is a separate proof.
+Each step needs its own proof.
 
-## How we interact with it
+## Start simple
 
-Keep asset transport separate from gameplay registration.
+For a first custom item or gameplay proof, reuse a known native presentation when possible.
 
-For a first custom item, reuse a known native presentation first when possible. Add custom icons/models only after the custom identity itself works.
+First prove:
 
-For custom external assets:
+- custom identity;
+- registration;
+- runtime use.
 
-1. record source/licence/provenance;
-2. cook only mod-owned/redistributable assets;
-3. build for the correct Unity/player target;
-4. validate the exact asset resolves;
-5. bind it through the system that actually owns that presentation;
-6. validate unload/release.
+Then add a custom icon/model/material once you know the gameplay object itself works.
 
-## Why this route
+That makes asset failures much easier to diagnose.
 
-The working repo contains multiple cases where a bundle/prefab loaded correctly but that fact alone did not prove gameplay integration.
+## Adding custom assets
 
-Separating **asset loads** from **definition registration** and **runtime ownership** makes failures diagnosable.
+A safe workflow is:
 
-## What goes wrong
+1. record the source/licence of the asset;
+2. include only content you are allowed to redistribute;
+3. build/cook for the correct Unity/player target;
+4. prove the exact address/path resolves;
+5. bind it through the native system that owns that presentation;
+6. verify cleanup/release.
 
-Known mistakes:
+## Common mistakes
 
-- assuming a loaded AssetBundle means the item/weapon/NPC is registered;
-- binding a custom mesh directly to an unrelated runtime renderer and bypassing native equip ownership;
-- using the wrong Unity version/target;
-- missing dependencies/materials/shaders;
-- stale or invalid Addressables address;
-- treating Merlin replacement capability as a general content-addition API;
-- failing to release resources or cleaning up the wrong owner.
+- assuming "the AssetBundle loaded" means the item/weapon/NPC is registered;
+- attaching a mesh directly to the wrong runtime object and bypassing native equip/render ownership;
+- building with the wrong Unity version or player target;
+- missing shader/material/dependency content;
+- using a stale Addressables key;
+- treating Merlin replacement support as generic content addition;
+- leaking handles, pooled objects, or renderer resources;
+- destroying a visible GameObject while leaving its logical/native owner alive.
 
 ## How to verify
 
-Verify separately:
+Test these separately:
 
-- bundle/catalogue existence and hash;
-- exact asset load;
-- dependency closure/no missing scripts;
-- material/shader/renderer state;
-- binding from gameplay definition to asset;
-- native owner actually presents it;
-- clean unload/release.
+1. bundle/catalogue exists and is the expected build;
+2. exact asset resolves;
+3. dependencies/scripts/materials/shaders are present;
+4. gameplay definition points to the asset;
+5. the correct native owner actually presents it;
+6. unload/disable releases the resources you own.
 
-## Current proof boundary
+If the visual loads but gameplay still does not see the content, the problem is probably not the asset loader.
 
-This repository has strong examples for mod-owned AssetBundle loading and several Addressables/ModService proof routes. Asset success must never be upgraded into a gameplay-registration claim without the corresponding native definition/runtime proof.
+## Evidence limits
+
+This repository has strong examples for mod-owned AssetBundle loading and several Addressables/ModService-compatible routes.
+
+Those examples prove specific loading/binding mechanisms. They do not turn successful asset loading into proof of gameplay registration, persistence, or cross-build compatibility.
