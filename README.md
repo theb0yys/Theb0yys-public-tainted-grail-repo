@@ -21,7 +21,7 @@ An unofficial, source-only modding platform for **Tainted Grail: The Fall of Ava
 | [guides/](guides/README.md) | Getting started, learning paths, task guides, troubleshooting and shipping |
 | [knowledge/](knowledge/README.md) | Canonical systems, reusable mechanics and exact reference material |
 | [research/](research/README.md) | Investigation methods, open investigations, case studies and source provenance |
-| [examples/](examples/README.md) | Small public-safe runnable mechanism demonstrations |
+| [examples/](examples/README.md) | Focused public-safe code examples that demonstrate specific modding techniques |
 | [templates/](templates/README.md) | Reusable project and mod-family starters |
 | [contributing/](contributing/README.md) | Repository taxonomy, evidence standards and authoring rules |
 
