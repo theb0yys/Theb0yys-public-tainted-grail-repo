@@ -4,6 +4,10 @@ Use VHeroHUD as the lifecycle/visibility owner, then alter only the child Canvas
 
 Working lineage: [Native HUD Ownership vs Custom Visual Proof](../../../research/case-studies/ui/hud-owner-and-visual-proof.md).
 
+## Runnable source
+
+Start with the [HUD visibility and theme example](../../../examples/mono/ui/hud-visibility-and-theme/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Force or yield native hero-bar visibility
 
 The central native decision is the private property:
