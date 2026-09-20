@@ -4,6 +4,8 @@ Use this page when you need the **exact shared component identity** to add a dep
 
 Package/install folder names may change. Prefer stable plugin GUIDs, assembly names and public API types over hardcoded filesystem paths.
 
+Before adding a dependency, also check [Public distribution and versioning](distribution-and-versioning.md) for the verified acquisition route and [API stability and capability promotion](api-stability.md) for whether the exact surface is supported, versioned, promoted or gated.
+
 | Component | BepInEx plugin GUID | Primary assembly / contract | Public entry point | Author posture |
 | --- | --- | --- | --- | --- |
 | FoA Mod Manager | `kane.tgfoa.mod-manager` | `FoAModManager.dll` | `FoAModManager.FoAModManagerApi` | **Author-ready** |
