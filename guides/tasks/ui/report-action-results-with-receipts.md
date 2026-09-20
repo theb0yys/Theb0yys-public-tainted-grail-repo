@@ -4,6 +4,10 @@ Use this guide when a UI button triggers gameplay and you want the interface to 
 
 Working lineage: [Action Receipts for Mod UI](../../../research/case-studies/ui/action-receipts.md).
 
+## Runnable source
+
+Start from the minimal public example: [Action receipts example](../../../examples/mono/ui/action-receipts/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
