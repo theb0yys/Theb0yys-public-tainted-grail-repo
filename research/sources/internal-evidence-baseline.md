@@ -54,6 +54,20 @@ The following public-baseline facts gained stronger private evidence:
 | `SceneService` | Main/additive/active scene relationships and additional readiness/lifecycle surfaces were mapped |
 | assembly ownership | Current Mono DLL hashes/MVIDs establish which managed assembly owns major FoA systems |
 
+## Project-inspected general hook surfaces
+
+The private engineering corpus also provides source-inspected implementations for several generally useful patch points:
+
+| Target | Evidence | Public-safe conclusion |
+| --- | --- | --- |
+| `LockpickingInteraction.ConsumePickHP(float)` | exact Harmony target in project source | narrow lockpick-durability consumption seam |
+| `Shop.OpenShop` | exact Harmony Prefix in project source | merchant-open seam used before normal shop flow continues; runtime owner validation remains incomplete |
+| `VCCharacterMagicVFX.CastingBegun` | exact Harmony Postfix in project source | character magic-cast presentation seam, filtered to player-owned casts by the implementation |
+| `TemplatesLoader.set_FinishedLoading(bool)` | multi-consumer source inspection plus exact loader decompilation | template-readiness retry seam after native template loading |
+| concrete `SteamCloudService` / `SteamNoCloudService` / `DebugCloudService` / `GogCloudService.EndSave(string)` | exact Harmony target set plus decompiled save-service surface | completed native slot-write observation seam; not a custom serializer contract |
+
+These entries are reference targets, not blanket compatibility or runtime-safety guarantees.
+
 ## Additional private-only general reference findings
 
 These are useful enough for public intake because they save repeated reverse engineering:
