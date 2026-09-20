@@ -1,5 +1,7 @@
 # FoA MVC: Models, Elements, Views, Events, and Services
 
+Use this page when a mod needs to know what a FoA object actually is, who owns its lifetime, and when it is safe to initialize, listen to, or discard it.
+
 > **Reference page.** This is the core native lifecycle model behind many FoA runtime systems.
 
 ## What this system is
