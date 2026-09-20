@@ -27,4 +27,4 @@ Avoid:
 - providers taking ownership of active consumer gameplay state;
 - treating contract ownership as runtime proof.
 
-See [Native item registrar ownership](../tooling/frameworks/native-item-registrar.md).
+See [Native item registrar ownership](../tooling/tainted-framework/native-item-registrar.md).
