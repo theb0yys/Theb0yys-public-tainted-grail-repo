@@ -51,6 +51,10 @@ Runtime animation systems advance the clip state and publish material properties
 
 Small creatures can appear in large numbers. A VAT/ECS path avoids a full skinned-mesh/Animator cost for every visible critter while still allowing a separate gameplay object to own interaction, damage, audio and loot.
 
+## Deeper reference
+
+- [Critter gameplay vs VAT visual entity](gameplay-vs-visual-entity.md)
+
 ## Modding relevance
 
 Use this system map when working with critter visuals or animation. Do not assume a normal humanoid/NPC Kandra path applies to VAT critters, and do not treat the VAT visual entity as the authoritative gameplay actor.
