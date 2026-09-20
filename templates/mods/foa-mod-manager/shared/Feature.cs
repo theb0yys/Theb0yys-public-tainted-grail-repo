@@ -5,15 +5,18 @@ namespace TGTemplate.FoaModManager;
 internal static class Feature
 {
     internal const string SourceFamily = "foa-mod-manager";
-    internal static readonly string[] Mechanisms =
-    {
-        "settings UI",
-        "profiles",
-        "input/cursor scope",
-        "diagnostics and shared mod tools"
-    };
+
+    internal static bool CanEditSetting(
+        bool managerOpen,
+        bool settingVisible,
+        bool settingReadOnly,
+        bool ownerAvailable)
+        => managerOpen && settingVisible && !settingReadOnly && ownerAvailable;
+
+    internal static bool CanOwnInteractiveScope(bool managerOpen, bool scopeAvailable)
+        => managerOpen && scopeAvailable;
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "FoA Mod Manager starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; setting-owner-and-ui-scope-gates-active";
 }

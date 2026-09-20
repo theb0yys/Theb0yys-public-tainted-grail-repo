@@ -5,14 +5,19 @@ namespace TGTemplate.JumpHigher;
 internal static class Feature
 {
     internal const string SourceFamily = "jump-higher";
-    internal static readonly string[] Mechanisms =
-    {
-        "movement jump scaling",
-        "bounded movement patch",
-        "configurable multiplier"
-    };
+
+    internal static bool CanUseExtraJump(
+        bool enabled,
+        bool grounded,
+        bool swimming,
+        int extraJumpsUsed,
+        int extraJumpsAllowed)
+        => enabled && !grounded && !swimming && extraJumpsUsed < extraJumpsAllowed;
+
+    internal static float ResolveExtraJumpHeight(float nativeJumpHeight, float multiplier)
+        => nativeJumpHeight * (multiplier < 0f ? 0f : multiplier);
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Jump Higher starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; session-only-extra-jump-gate";
 }

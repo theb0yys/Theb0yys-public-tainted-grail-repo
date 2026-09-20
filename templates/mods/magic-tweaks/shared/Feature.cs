@@ -5,15 +5,18 @@ namespace TGTemplate.MagicTweaks;
 internal static class Feature
 {
     internal const string SourceFamily = "magic-tweaks";
-    internal static readonly string[] Mechanisms =
-    {
-        "cast speed",
-        "projectile speed",
-        "area/cooldown/cost tuning",
-        "player-owned filtering"
-    };
+
+    internal static float Scale(float nativeValue, float multiplier)
+        => nativeValue * (multiplier < 0f ? 0f : multiplier);
+
+    internal static bool AppliesToSource(
+        bool sourceIsPlayer,
+        bool sourceIsEnemy,
+        bool affectPlayer,
+        bool affectEnemy)
+        => (sourceIsPlayer && affectPlayer) || (sourceIsEnemy && affectEnemy);
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Magic Tweaks starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; each tuning surface remains independently gated";
 }

@@ -2,6 +2,14 @@
 
 These 31 public templates correspond to the current cross-runtime first-party mod families being used as source/reference material.
 
+Every family now contains:
+- `shared/Feature.cs` with **actual portable starter logic** for that family rather than a mechanism-name placeholder;
+- a Mono/BepInEx 5 host/project;
+- an IL2CPP/BepInEx 6 host/project;
+- a hard Tainted Framework dependency for the shared runtime-kind boundary.
+
+The shared layer intentionally avoids FoA/Unity/Harmony types until the author selects an exact verified owner. Add those references in the runtime host that needs them rather than spreading loader/runtime differences throughout feature logic.
+
 - [Avalon AI FoA Host](avalon-ai-foa-host/) — source family `avalon-ai-runtime`
 - [Avalon Cheat Panel](avalon-cheat-panel/) — source family `avalon-cheat-panel`
 - [Avalon Stash](avalon-stash/) — source family `Avalon Stash`
@@ -31,7 +39,7 @@ These 31 public templates correspond to the current cross-runtime first-party mo
 - [Tainted Diagnostic Tool](tainted-diagnostic-tool/) — source family `Tainted-Diagnostic Tool`
 - [Better Bonfire Menu](better-bonfire-menu/) — source family `better-bonfire-menu`
 - [Merchant Stock Tweaks](merchant-stock-tweaks/) — source family `merchant-stock-tweaks`
-- [Tainted Core's](tainted-core/) — source family `avalon-core`
+- [Tainted Core](tainted-core/) — source family `avalon-core`
 - [Avalon Human Companions](avalon-human-companions/) — source family `avalon-human-companions`
 
-Each folder is self-contained and includes shared feature intent plus separate Mono/BepInEx 5 and IL2CPP/BepInEx 6 hosts. They are starter projects, not copies of release packages or runtime proof.
+These are starter projects, not copies of release packages or runtime proof.
