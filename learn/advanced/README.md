@@ -2,6 +2,10 @@
 
 Advanced modding is not just doing more complicated things. It is controlling more failure modes with better evidence.
 
+## Start with
+
+- [Cross-runtime patch design](cross-runtime-patch-design.md)
+
 ## IL2CPP
 
 For IL2CPP, debug in this order:
