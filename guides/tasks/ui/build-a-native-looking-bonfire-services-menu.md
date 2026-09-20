@@ -6,6 +6,10 @@ Working lineage: [Native Service Reuse and Submenu Ownership](../../../research/
 
 ## Runnable source
 
+Start with the [Bonfire services submenu example](../../../examples/mono/ui/bonfire-services-submenu/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
+## Runnable source
+
 Start from the buildable example: [Bonfire native services submenu](../../../examples/mono/ui/bonfire-native-services/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
 
 Native services: [Bonfire / Fireplace Native Services](../../../knowledge/systems/world/bonfire-services.md).
