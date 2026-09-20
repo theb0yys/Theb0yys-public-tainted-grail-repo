@@ -56,6 +56,10 @@ Examples:
 - Medusa has per-scene renderer/transform payloads;
 - Babel has language/string payloads.
 
+## Deeper reference
+
+- [Investigating a .arch file](investigating-an-arch-file.md)
+
 ## Modding relevance
 
 If you are studying an `.arch` file, first identify its owning system and inner reader.
