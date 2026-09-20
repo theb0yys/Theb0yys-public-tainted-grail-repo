@@ -12,39 +12,33 @@ last_verified: 2026-09-20
 
 A visible panel is not a functioning UI path.
 
-A reliable plugin-owned command surface needs a complete ownership path:
+A reliable command surface needs:
 
 ```text
-game-owned world entry/prompt
-→ plugin UI host opens
-→ cursor/focus ownership acquired
-→ gameplay input suppressed
-→ UI input path remains available
-→ event dispatch reaches button
-→ command handler runs
-→ UI closes
-→ cursor/input state restored
+game/world entry
+→ UI host opens
+→ shared/global cursor-input scope acquired
+→ correct screen-specific dispatch path remains available
+→ button/selection event reaches handler
+→ command executes
+→ screen closes
+→ screen destroys owned objects/subscriptions
+→ shared scope releases/restores cursor/input/time
 ```
 
-## Important split: IMGUI vs Unity UI
+## Shared scope
 
-A debug IMGUI panel can disable Unity input modules because IMGUI receives events directly.
+Where FoA Mod Manager is an accepted dependency, [Shared Custom UI Scope](shared-custom-ui-scope.md) can own global cursor/input/controller/time-freeze state.
 
-A Unity UI `Canvas` command/dialogue host **must keep its EventSystem/input modules available**, or buttons may render but never click.
+That does **not** replace the screen's own EventSystem/IMGUI dispatch contract.
 
-The private companion route kept a strict debug-panel lock but allowed Rewired/UI event reads through while the Unity UI dialogue surface was visible.
+## IMGUI vs UGUI
 
-## Do not call plugin-owned Unity UI “native dialogue”
+- IMGUI can intentionally disable Unity `BaseInputModule` paths.
+- UGUI `Button` surfaces need a functioning EventSystem/input module.
 
-True FoA dialogue/story surfaces depend on authored Story Graph / StoryBookmark data that was not proven safe to author/register at runtime in this route.
+The companion-dialogue correction remains the canonical example of this distinction.
 
-## Required close path
+## Native-dialogue boundary
 
-`Esc`, explicit close/goodbye and command completion should all release:
-
-- custom UI scope;
-- cursor ownership;
-- world/player freeze;
-- temporary input suppression.
-
-See [UI opens but action does not fire](../../diagnose/ui-opens-but-does-not-work.md).
+A plugin-owned Unity UI dialogue-style host is not native Story Graph dialogue merely because it looks similar. Native Story Graph authoring/registration is a separate system.

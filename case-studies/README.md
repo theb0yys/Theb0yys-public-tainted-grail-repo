@@ -2,6 +2,7 @@
 
 Case studies preserve what real mod work taught us without publishing the private workspace wholesale.
 
+- [Frameworks/tooling](frameworks/README.md)
 - [Gameplay](gameplay/README.md)
 - [Content](content/README.md)
 - [Weapons](weapons/README.md)
@@ -21,6 +22,6 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Audio](audio/README.md)
 - [VFX](vfx/README.md)
 - [Performance](performance/README.md)
-- [Rendering/VFX legacy cases](rendering/README.md)
+- [Rendering](rendering/README.md)
 - [Persistence](persistence/README.md)
 - [Failures/fixes](failures-and-fixes/README.md)

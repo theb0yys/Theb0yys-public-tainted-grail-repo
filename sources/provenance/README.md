@@ -2,30 +2,26 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Waves 1–4
-PR #407 authoring model, private mechanics/deep-lifecycle/hook indexes, identities and initial core domains.
+## Waves 1–9
 
-## Wave 5
-Tainted Economy + Better Bonfire Menu.
+Covered PR #407, reusable mechanics/lifecycle/hook indexes, core gameplay/presentation domains, economy, bonfire, crime, weather, inventory/UI, audio, performance, VFX, survival, progression, camera, map notes, world fog, distance culling and map fog.
 
-## Wave 6
-Crime & Consequences + Tainted Weather + Tainted Interface inventory.
+## Wave 10 — 2026-09-20
 
-## Wave 7
-Tainted Music + Tainted Performance + Tainted Blood.
+Mined Avalon Core, Tainted Framework, Tainted Grail Extender and FoA Mod Manager:
 
-## Wave 8
-Tainted Survival + Immersive Progression + True Third Person / First Person Plus + Multi-Pin Map Notes.
+- Avalon Core read-only dependency/discovery baseline;
+- declarative adapter/capability/version/readiness contracts;
+- Tainted Framework/Core responsibility boundary;
+- shared UI responsibility split;
+- FoA Mod Manager settings discovery, custom UI scope, controller-action and status-provider contracts;
+- TGE extension manifest v1;
+- authenticated local SDK transport and bounded installed-game handshake;
+- TGE owned encounter lifecycle;
+- native title-screen direct-process-exit teardown implication;
+- framework diagnostics for “contract exists but capability not ready”.
 
-## Wave 9 — 2026-09-20
-
-Mined Views of Avalon and No Map Fog:
-
-- active HDRP/FoA Volume fog and LocalVolumetricFog ownership;
-- bounded HDRP world-fog mutation/restoration;
-- native DistanceCullingSetting / DistanceCuller owner chain and clipping-safety lessons;
-- map-screen FogOfWar ownership and display-only removal boundary;
-- explicit separation of world fog, map fog, map memory, HLOD and proprietary visibility owners.
+Road-atlas/governance-specific project machinery was intentionally not ported as general community modding knowledge.
 
 ## Measurement rule
 
