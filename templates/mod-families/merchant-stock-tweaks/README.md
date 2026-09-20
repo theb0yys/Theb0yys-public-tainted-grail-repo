@@ -1,10 +1,8 @@
 # Merchant Stock Tweaks Public Template
 
-Use this starter when you are changing merchant stock behavior across both runtimes. Keep merchant/filter/configuration rules shared, while each runtime host connects them to the exact Shop, stock, and lifecycle owners.
+Use this starter for merchant-stock or restock changes that need cross-runtime support.
 
-Source family: `merchant-stock-tweaks`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep filtering/configuration rules shared, while runtime hosts connect them to the exact Shop, stock, and UI lifecycle used on Mono or IL2CPP.
 
 ## Reusable mechanisms
 
