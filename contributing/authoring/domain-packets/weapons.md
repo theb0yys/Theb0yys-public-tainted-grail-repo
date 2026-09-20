@@ -37,8 +37,8 @@ Weapon definition, native item/equip ownership, combat ownership, rigid presenta
 
 - [Items domain packet](items.md)
 - [Native object ownership](../../../systems/core/native-object-ownership.md)
-- [Templates and registries](../../../systems/core/templates-and-registries.md)
-- [Saving and persistence](../../../systems/persistence/README.md)
+- [Templates and registries](../../../systems/core/templates-registries.md)
+- [Saving and persistence](../../../systems/world/saving-persistence.md)
 
 ## Public source set
 
