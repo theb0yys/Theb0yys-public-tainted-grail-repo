@@ -12,6 +12,10 @@ last_verified: 2026-09-20
 
 The inspected native save architecture exposes no supported mutable arbitrary-domain registrar.
 
+## Validation plan
+
+- [Persistence sidecar proof plan](sidecar-proof-plan.md)
+
 ## Current sidecar lifecycle candidates
 
 ### Save capture
