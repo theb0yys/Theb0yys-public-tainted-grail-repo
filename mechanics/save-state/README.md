@@ -11,6 +11,9 @@ last_verified: 2026-09-20
 
 # Mod-Owned Save State
 
+- [Back up an existing slot](backup-existing-slot.md)
+- [Observe native save completion](native-save-completion-observation.md)
+
 There is currently **no supported public mechanic for injecting an arbitrary mod-owned FoA save Domain**.
 
 ## Fixed native-domain result
