@@ -1,3 +1,11 @@
+---
+document_type: mechanic-index
+scope: economy mechanics
+game_build: mixed
+runtime: mixed
+last_verified: 2026-09-20
+---
+
 # Economy Mechanics
 
 - [Final vendor-price adjustment](vendor-price-adjustment.md)
