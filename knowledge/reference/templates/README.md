@@ -1,34 +1,37 @@
 # Templates
 
-Canonical architecture: [Templates/registries](../../systems/core/templates-registries.md). Identity rules: [Identities](../identities/README.md).
+Use this page when you need to **find, enumerate, or resolve FoA template definitions** such as items, NPCs, statuses, or crafting definitions.
 
-## Public lookup patterns
+For how templates are loaded and registered, see [Templates and Registries](../../systems/core/templates-registries.md). For exact IDs, see [Identities](../identities/README.md).
 
-Public Mono mods demonstrate direct typed lookup:
+## Look up a template by GUID
+
+Public Mono mods use:
 
 ~~~csharp
-TemplatesProvider templatesProvider = World.Services?.Get<TemplatesProvider>();
-T template = templatesProvider.Get<T>(guid);
+TemplatesProvider provider = World.Services?.Get<TemplatesProvider>();
+T template = provider.Get<T>(guid);
 ~~~
 
-They fail closed when `TemplatesProvider` is not available yet.
+Do not call `Get<T>` until the provider is ready.
 
-Public code also demonstrates typed template references:
+## Resolve a TemplateReference
+
+Public code also uses typed references:
 
 ~~~csharp
 StatusTemplate status =
     CommonReferences.Get?.OverEncumbranceStatus.TryGet<StatusTemplate>();
 ~~~
 
-The exact null-handling differs by caller, but the useful distinction is:
+Useful distinctions:
 
-- GUID → `TemplatesProvider.Get<T>(guid)`
-- typed enumeration → `TemplatesProvider.GetAllOfType<T>()`
-- `TemplateReference` → `TryGet<T>()` / `Get<T>()` where appropriate
+- exact GUID → `TemplatesProvider.Get<T>(guid)`
+- all loaded templates of a type → `TemplatesProvider.GetAllOfType<T>()`
+- existing `TemplateReference` → `TryGet<T>()` or `Get<T>()`
 
-## Useful related types
+## Common template types
 
-- `TemplatesProvider`
 - `Template`
 - `TemplateReference`
 - `ItemTemplate`
@@ -37,25 +40,27 @@ The exact null-handling differs by caller, but the useful distinction is:
 - `CraftingTemplate`
 - `CommonReferences`
 
-## Current Mono static contract
+## When are templates ready?
 
-Exact-build decompilation establishes:
+In the inspected Mono build:
 
 ~~~text
 TemplatesLoader.CreateAndLoad
 → LoadAssets
 → LoadAssetsInBuild
-→ process Addressables label "template"
-→ process Addressables label "templateSO"
+→ load "template"
+→ load "templateSO"
 → AddToMap(guid, template)
 → FinishedLoading = true
 ~~~
 
-`TemplatesLoader` owns a GUID map and a type map. `AddToMap` inserts the template into both and assigns `template.GUID`.
+`TemplatesProvider.AllLoaded` reflects that loader state.
 
-`TemplatesProvider.AllLoaded` reflects loader completion. Its typed lookup validates readiness, GUID presence and requested type.
+The loader maintains both a GUID map and a type map. `AddToMap` inserts the template into those maps and assigns its GUID.
 
-For saved template references, the inspected Mono chain is:
+## Saved template references
+
+The inspected Mono save-resolution path is:
 
 ~~~text
 saved template GUID
@@ -65,20 +70,22 @@ saved template GUID
 → TemplatesProvider.Get<T>(guid)
 ~~~
 
-This is static contract evidence, not a universal persistence-safety claim for custom templates.
+This is why custom definitions that need to survive save/load must be registered early enough to resolve during restoration.
 
-## Readiness
+It does **not** prove that every custom-template registration method is save-safe.
 
-Knowing a GUID and knowing the provider type is not enough if templates are still loading.
+## IL2CPP-native caution
 
-The repository already tracks `TemplatesLoader.set_FinishedLoading(bool)` as an important readiness boundary. Public mods independently demonstrate that `TemplatesProvider` can be unavailable when accessed too early.
+A public native IL2CPP implementation encountered stale/freed pointers while traversing `CraftingTemplate.recipes` / `TemplateReference[]`.
 
-## Runtime-specific caution
+That is a native-memory-lifetime problem. Do not generalize it to normal managed references, but do not assume pointer/class checks are sufficient either.
 
-A public IL2CPP-native implementation observed stale/freed pointers inside `CraftingTemplate.recipes` (`TemplateReference[]`) during direct native traversal. That memory-lifetime observation is specific to the native IL2CPP access lane; do not generalize it to ordinary managed references.
+## What belongs elsewhere?
 
-## Evidence boundary
+Exact template GUIDs belong in identity/reference pages.
 
-Exact template GUIDs belong in identity/domain reference pages. This page owns lookup mechanics and readiness, not a bulk template dump.
+This page is for **lookup, enumeration, readiness, and resolution behavior**, not a bulk dump of template values.
 
-The exact loader/provider/save-resolution details are bound to the inspected Mono evidence recorded in [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
+## Evidence
+
+The exact loader/provider/save-resolution details are bound to the inspected Mono evidence in [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
