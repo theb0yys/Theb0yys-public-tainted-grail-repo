@@ -1,68 +1,48 @@
-# Weapons: Native Architecture and Current Proven Boundary
+# Weapons
 
-> **Reference/process page.** Weapon integration is not just "an item with a mesh." The current research establishes a substantial native path, but the complete reusable custom-weapon importer remains **PARTIAL PATH PROVEN**.
+Use this page when you want to add or substantially change a **FoA weapon**, especially when custom models or native equip behavior are involved.
 
-## What this system is
+The first thing to understand is:
 
-FoA weapon ownership is distributed across the item, equip, View, combat, and renderer systems.
+> A weapon is not just an item with a mesh.
 
-The researched native path is:
+FoA splits weapon ownership across item definition, runtime item state, equip logic, hand Views, combat logic, and renderer-specific presentation.
+
+## The native weapon chain
 
 ~~~text
-ItemTemplate registry
-→ Item : MVC Model
-→ ItemEquip : Element<Item>
-→ actor/gender/hand representation selection
-→ equipped GameObject load
-→ CharacterHandBase : View<Item>
-    └─ melee implementation: CharacterWeapon
-→ SetUnityRepresentation(linkedLifetime=true, movable=true)
-→ renderer-specific representation such as Drake
-→ native inventory/equipment/save ownership
+ItemTemplate
+→ Item
+→ ItemEquipSpec
+→ ItemEquip
+→ CharacterHandBase
+→ CharacterWeapon / combat systems
+→ presentation owner such as Drake
 ~~~
 
-There is no need to invent a second universal runtime `Weapon` Model.
+The durable gameplay object is still the native `Item`.
 
-The durable gameplay object is the native `Item`.
+There is no need to invent a separate universal weapon Model.
 
-## Who owns it in FoA
+## What each layer does
 
-- `ItemTemplate` — identity, classification, abstract-template lineage, attachments, UI/economy references.
-- `Item` — runtime MVC Model and saved item state.
-- `ItemEquipSpec` — attachment that makes an item equippable and defines representation selection.
-- `ItemEquip` — `Element<Item>` that owns equipped representation lifecycle.
-- `CharacterHandBase` — native equipped View.
-- `CharacterWeapon` — melee-specific hand implementation.
-- Drake/native renderer owner — presentation/resource lifetime where selected.
-- native inventory/equipment/save systems — durable ownership.
+- `ItemTemplate` — weapon definition, classification, attachments, UI/economy references.
+- `Item` — runtime item Model and saved instance state.
+- `ItemEquipSpec` — marks the item as equippable and describes representation selection.
+- `ItemEquip` — runtime Element that owns equip/unequip representation lifecycle.
+- `CharacterHandBase` — native held-weapon View.
+- `CharacterWeapon` — melee-specific combat implementation.
+- Drake/other renderer systems — presentation/resource lifetime for the selected visual path.
 
-## Important identities, types, and methods
+## Native equip flow
 
-Key native concepts:
-
-- `ItemTemplate`
-- `Item`
-- `ItemEquipSpec`
-- `ItemEquip`
-- `CharacterHandBase`
-- `CharacterWeapon`
-- `ARAssetReference`
-- `World.BindView(Item, Hand)`
-- character attach/detach weapon ownership
-- `View.Discard()`
-- asset-reference release
-
-The equip flow selects representation by actor/gender/hand and validates asynchronous load state before binding it.
-
-## Where it exists in the lifecycle
-
-The native equip lifecycle is conceptually:
+The researched path is roughly:
 
 ~~~text
 Item.Events.Equipped
 → ItemEquip selects representation
 → ARAssetReference.LoadAsset<GameObject>()
-→ validate item still equipped / owner still valid
+→ verify owner/item is still valid and equipped
 → instantiate under native socket
 → require CharacterHandBase
 → SetUnityRepresentation(...)
@@ -75,130 +55,123 @@ unequip
 → release asset reference
 ~~~
 
-A custom weapon must survive this lifecycle rather than merely render a mesh once.
+A custom weapon needs to survive this entire lifecycle, not merely appear once in the hand.
 
-## How we interact with it
+## Start from a known weapon family
 
-### 1. Start from a known native archetype
+For the first reusable custom weapon, use one current-build native archetype whose behavior is already understood.
 
-For the first reusable weapon, choose one exact current-build weapon family whose complete behavior is already known.
+The existing research treats a rigid one-handed sword as a good first bounded family.
 
-The current research recommends a rigid one-handed sword as the first bounded consumer.
+Clone/preserve the complete native template/component graph rather than copying only visible fields.
 
-### 2. Preserve the full item/template contract
+## Keep the native contract intact first
 
-Clone the complete native `ItemTemplate` component graph, not only visible fields.
-
-Keep:
+Preserve things such as:
 
 - abstract-template lineage;
 - attachment groups;
 - equip spec;
-- combat-related references;
-- source animation/controller profile;
-- audio/trail/finisher/hit-stop profile;
+- combat references;
+- animation/controller profile;
+- audio/trail/finisher/hit-stop configuration.
 
-unless a later gate explicitly changes one.
+Change one layer at a time.
 
-### 3. Give it a separate custom identity
+A mesh replacement should not also silently redefine combat geometry, audio, equip semantics, and persistence in the same proof.
 
-Use a stable mod-owned GUID/name and register the template through the same item-registration principles documented in [Items](items.md).
+## Give the weapon a separate identity
 
-### 4. Create a native Item and use a bounded acquisition route
+Use a new stable mod-owned GUID/name and register it using the custom-item rules in [Items](items.md).
 
-Do not build a separate "weapon object" system.
+Then create a native `Item` and use one controlled acquisition route.
 
-### 5. Let native ItemEquip own equipping
+Do not build a parallel weapon-object system.
 
-The source item/equip path already handles representation selection, load validity, socket parenting, View binding, attach/detach and release.
+## Let ItemEquip own equipping
 
-### 6. Replace presentation through the actual renderer owner
+If the native equip system already selects representations, loads them, binds the View, attaches the hand object, and releases assets on unequip, keep that ownership.
 
-For Drake-backed rigid weapons, presentation must respect Drake resource/entity/lifetime ownership.
+Do not bypass it simply because manually parenting a mesh under the hand looks easier.
 
-A direct Unity renderer fallback is not the reusable production route.
+## Rendering is a separate layer
 
-### 7. Preserve native combat geometry first
+For Drake-backed rigid weapons, the visual must respect Drake's entity/resource/lifetime rules.
 
-The imported mesh does **not** automatically define the melee hitbox.
+A plain Unity renderer fallback may be useful for experimentation, but it is not automatically the reusable production path.
 
-`CharacterWeapon` owns native sweep/hit behavior. The safest first custom visual therefore reuses the source combat profile.
+## Combat geometry is not render geometry
 
-## Why this route
+The imported mesh bounds do not define the native melee hitbox/sweep.
 
-The weapon research found that the visible model is only one stage of a larger owner chain.
+`CharacterWeapon` owns the melee combat behavior.
 
-The reliable path is **archetype preserving**:
+For a first custom visual, keep the native source weapon's combat profile until you have a separate reason to change it.
 
-~~~text
-known native sword
-→ custom identity
-→ native Item
-→ native ItemEquip
-→ native CharacterWeapon combat/lifecycle
-→ custom rigid presentation
-~~~
+## Common failures
 
-That keeps animation, combat events, audio, sweep/hitbox behavior and cleanup inside systems that already know how to own them.
+### Direct mesh replacement only
 
-## What goes wrong
+Something appears in the hand, but equip ownership, View binding, FPP/TPP behavior, combat, and cleanup may all be wrong.
 
-### Direct Unity mesh/renderer replacement
+### Building hitboxes from mesh bounds
 
-It can make something visible while bypassing:
+The render mesh is not the native melee sweep definition.
 
-- ItemEquip ownership;
-- View binding;
-- perspective/FPP/TPP rules;
-- Drake resource lifetime;
-- combat profile;
-- equip/unequip cleanup.
+### Cloning only obvious fields
 
-### Deriving hitbox from custom mesh bounds
+Hidden serialized references/attachments can matter.
 
-Native melee sweep geometry is not the imported render bounds; preserve the native combat geometry owner.
+### Assuming late template registration is globally visible
 
-### Cloning only a few template fields
+Provider lookup can succeed even if another native system cached data earlier.
 
-The current clone-profile work proves topology better than full semantic equality. Hidden serialized references can still matter.
+### Assuming the template can be unregistered cleanly
 
-### Late template insertion assumed globally visible
+The direct private map route has no generally proven hot-unregister path. Treat process-session registration as effectively immutable unless you prove otherwise.
 
-Provider map visibility is proven; every downstream cache is not.
+### Failure after AddToMap
 
-### Hot reload/unregister assumptions
+Direct insertion is not transactional. A later failure can leave native maps changed.
 
-No proven native unregister exists for the direct template map route. Process-session registration should be treated as immutable until restart.
+## What to verify
 
-### Post-insertion failure
+A complete weapon proof should check:
 
-A direct `AddToMap` mutation is not transactional. Failure after insertion can leave native maps changed.
-
-A reliable registrar therefore needs a fail-stop or proven rollback policy.
-
-## How to verify
-
-A complete weapon proof should separately verify:
-
-1. exact source template/profile;
-2. custom identity registration and provider lookup;
-3. native Item construction/acquisition;
+1. exact source template/archetype;
+2. custom GUID registration and lookup;
+3. native `Item` construction/acquisition;
 4. native equip event;
-5. representation load and `CharacterHandBase` type;
-6. `World.BindView` / character attach;
-7. correct FPP/TPP/inventory-preview ownership;
-8. renderer/Drake resource readiness;
-9. native melee attack/sweep/hit behavior;
-10. audio/trail/animation events;
-11. unequip cleanup and asset release;
-12. save/load only when explicitly claimed.
+5. representation load;
+6. `CharacterHandBase` View;
+7. `World.BindView` / character attach;
+8. FPP/TPP/inventory-preview behavior;
+9. renderer/Drake readiness;
+10. native attack/sweep/hit behavior;
+11. audio/trail/animation events;
+12. unequip cleanup and asset release;
+13. save/load only if you intend to claim it.
 
-## Current proof boundary
+## Evidence limits
 
-**Strongly understood:** native Item → ItemEquip → CharacterHandBase/CharacterWeapon architecture and the archetype-preserving direction.
+Strongly mapped:
 
-**Implemented/partial:** private-Mono native registrar and a substantial Drake presentation framework.
+- `Item` → `ItemEquip` → `CharacterHandBase` / `CharacterWeapon`;
+- archetype-preserving custom-weapon direction.
 
-**Still incomplete for a generic public importer:** transactional registration, system-wide late-registration visibility, full semantic clone profile, generic native Item/acquisition/equip proof, cold-save ordering, missing-package behavior, hot-unload, complete localisation, cross-build/IL2CPP equivalence, and release-grade validation.
+Partially implemented:
 
-Do not present custom weapons as "solved" merely because a custom `ItemTemplate` or mesh exists.
+- private Mono registration;
+- substantial Drake presentation work.
+
+Not yet universal:
+
+- transactional registration;
+- late-registration visibility in every consumer;
+- generic Item/acquisition/equip proof for all weapon families;
+- cold-save ordering;
+- missing-package behavior;
+- hot unload;
+- cross-build/IL2CPP equivalence.
+
+Do not call custom weapons "solved" because a custom template or mesh exists.
