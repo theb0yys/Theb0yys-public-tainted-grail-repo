@@ -1,15 +1,45 @@
-# Container Post-Roll Rules
+# Change Items After a Container Has Rolled Its Loot
 
-This example patches SearchAction.OnInitialize after FoA has generated the runtime container rows.
+This example waits until Tainted Grail has already generated a container's contents, then changes those generated rows.
 
-It reads the private _itemsInsideContainer collection and applies one quantity rule only to generated rows whose ItemTemplate is consumable or crafting material. A ConditionalWeakTable ensures one SearchAction instance is not transformed twice.
+That is useful for rules such as:
 
-Build:
+- increase consumable quantities;
+- reduce crafting-material quantities;
+- remove a particular category after the normal loot roll.
+
+## Build it
 
 ~~~powershell
 dotnet build .\ContainerPostRollRules.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-The example does not replace loot tables, item transfer, or container UI.
+Use a disposable save.
 
-Guide: ../../../../guides/tasks/gameplay/change-post-roll-container-contents.md
+## Try it in game
+
+Find a searchable container you have not already emptied.
+
+Open it once and compare the generated quantities with the rule in Plugin.cs.
+
+Close/reopen the same container and confirm the same SearchAction is not transformed repeatedly.
+
+## What to change first
+
+Change the quantity multiplier for one simple category.
+
+Do not begin by replacing the loot table.
+
+## How it works
+
+After Tainted Grail creates the runtime container rows, the example reads the container's generated item list.
+
+It then changes only rows matching the example rule.
+
+A small per-container guard remembers which SearchAction instance was already processed, so an irreversible rule is not applied again and again to the same generated list.
+
+The normal container UI and item-transfer code still run afterward.
+
+## Next
+
+[Read the container post-roll guide](../../../../guides/tasks/gameplay/change-post-roll-container-contents.md)
