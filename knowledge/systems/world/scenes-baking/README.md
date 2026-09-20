@@ -1,5 +1,9 @@
 # Scenes Baking
 
+Use this page when you are dealing with scene content that is transformed during build/baking into FoA-specific runtime data.
+
+It helps explain why the authored Unity scene object may not be the same representation that exists in the shipped game.
+
 ## What it is
 
 **Scenes Baking** is Questline's editor/build-time scene compilation pipeline.
