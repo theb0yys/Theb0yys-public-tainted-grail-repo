@@ -14,6 +14,7 @@ Access to an object does not by itself prove gameplay, persistence or lifecycle 
 | Optional service lookup | `World.Services?.Get<T>()` | Public mods fail closed when the service collection/provider is not ready |
 | Single world model | `World.Only<T>()` | Questline public source uses `World.Only<GameRealTime>()` |
 | Element owned by a model | `model.TryGetElement<T>()` | Public source uses `Hero.Current.TryGetElement<HeroStats>()` and `hero.TryGetElement<ArmorWeight>()` |
+| Element attached to a Location | `location.TryGetElement<T>()` / `location.TryGetElement(out T)` | Public enemy-HUD mods resolve `NpcElement` and `IWithHealthBar` from a runtime `Location` |
 | Template by GUID | `World.Services.Get<TemplatesProvider>().Get<T>(guid)` | Public Mono mods resolve status/item templates this way |
 | Template reference | `TemplateReference.TryGet<T>()` | Public mod resolves `CommonReferences.Get?.OverEncumbranceStatus` to `StatusTemplate` |
 | Active scene reference | `World.Services.Get<SceneService>().ActiveSceneRef` | Questline public source uses this for scene identity/current-scene access |
