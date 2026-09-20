@@ -8,10 +8,6 @@ Working lineage: [Carry Tweak Must Follow the Current Stat Instance](../../../re
 
 Start with the [Carry capacity example](../../../examples/mono/gameplay/carry-capacity-tweak/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
-## Runnable source
-
-Start from the buildable example: [Carry capacity](../../../examples/mono/gameplay/carry-capacity/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
-
 
 ## Patch target
 
