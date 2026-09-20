@@ -1,5 +1,7 @@
 # Shared UI Integration Example
 
+Use this example when a custom screen needs shared input/cursor handling and shared visual resources without making the feature mod responsible for global UI infrastructure.
+
 Shows the intended ownership split:
 
 - **FoA Mod Manager** — shared cursor/input/controller/world-freeze scope.

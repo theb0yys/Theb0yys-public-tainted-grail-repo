@@ -1,5 +1,7 @@
 # Character Death Observer
 
+Use this example when you need a read-only signal that a character reached the native death stage. It is intended for diagnostics or presentation side effects, not for replacing death, corpse, loot, or reward ownership.
+
 This example uses the terminal character-death lifecycle used by working death-presentation mods.
 
 ## What this event means

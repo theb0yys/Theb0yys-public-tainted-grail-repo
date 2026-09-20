@@ -1,6 +1,8 @@
 # Runtime UI Overlay
 
-A tiny BepInEx-owned IMGUI surface.
+Use this example when you need a small diagnostic or tool overlay that your plugin owns completely, without replacing a native FoA screen.
+
+A tiny BepInEx-owned IMGUI overlay.
 
 It deliberately does **not** replace a native FoA screen, own the cursor, freeze gameplay, or use private art.
 

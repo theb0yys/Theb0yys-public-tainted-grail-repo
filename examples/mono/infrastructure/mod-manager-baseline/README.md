@@ -1,5 +1,7 @@
 # FoA Mod Manager Integration Example
 
+Use this example when your mod needs the ordinary FoA Mod Manager integration: expose BepInEx settings, register a controller action, or publish read-only runtime status.
+
 Shows three author-ready surfaces:
 
 - ordinary `Config.Bind<T>` settings;
