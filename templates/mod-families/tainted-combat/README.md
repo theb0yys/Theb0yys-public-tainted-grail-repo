@@ -1,8 +1,10 @@
 # Tainted Combat Public Template
 
+Use this starter when you are building combat features that share rules across runtimes but require runtime-specific damage, stat, action, or death hooks. Keep shared combat policy separate from the exact native integration.
+
 Source family: `Tainted Combat`
 
-This is a public, source-only starter distilled from the Tainted Combat mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
