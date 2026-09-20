@@ -1,6 +1,5 @@
 # Mono Combat Examples
 
-Use these examples when you need to observe native damage or death without taking ownership of FoA's combat calculations, corpse handling, loot, or rewards.
+Use these examples when you want to observe combat without taking over FoA's damage or death systems.
 
-- [Damage observer](damage-observer/README.md)
-- [Death observer](death-observer/README.md)
+They demonstrate read-only damage and death hooks that can feed UI, VFX, audio, diagnostics, or other mod-owned reactions while leaving the native combat calculation and actor lifecycle in place.
