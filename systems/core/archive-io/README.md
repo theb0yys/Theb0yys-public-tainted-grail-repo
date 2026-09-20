@@ -51,6 +51,10 @@ Primary assembly: `Awaken.Utility.dll`.
 
 These primitives explain how proprietary systems share IO and memory structures without sharing the same higher-level payload schema.
 
+## Deeper reference
+
+- [Archive mounting and virtual paths](mounting-and-virtual-paths.md)
+
 ## Related systems
 
 - [Serialization and archives](../serialization-archives-implementation/README.md)
