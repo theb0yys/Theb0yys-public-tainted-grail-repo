@@ -75,28 +75,14 @@ function Get-SimpleTypeName {
 function Invoke-IlSpy {
     param([string[]]$Arguments)
 
-    $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = $script:IlSpyExecutable
-    $psi.UseShellExecute = $false
-    $psi.RedirectStandardOutput = $true
-    $psi.RedirectStandardError = $true
-    $psi.CreateNoWindow = $true
-
-    foreach ($argument in $Arguments) {
-        $psi.ArgumentList.Add($argument)
-    }
-
-    $process = New-Object System.Diagnostics.Process
-    $process.StartInfo = $psi
-    $null = $process.Start()
-    $outText = $process.StandardOutput.ReadToEnd()
-    $errText = $process.StandardError.ReadToEnd()
-    $process.WaitForExit()
+    $captured = @(& $script:IlSpyExecutable @Arguments 2>&1)
+    $exitCode = $LASTEXITCODE
+    $text = ($captured | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
 
     return [pscustomobject]@{
-        ExitCode = $process.ExitCode
-        StdOut = $outText
-        StdErr = $errText
+        ExitCode = $exitCode
+        StdOut = $text
+        StdErr = if ($exitCode -eq 0) { "" } else { $text }
     }
 }
 
@@ -111,7 +97,7 @@ function Get-TypeInventory {
             continue
         }
 
-        foreach ($line in ($listed.StdOut -split [Environment]::NewLine)) {
+        foreach ($line in ($listed.StdOut -split '\r?\n')) {
             $trimmed = $line.Trim()
             if ([string]::IsNullOrWhiteSpace($trimmed)) {
                 continue
