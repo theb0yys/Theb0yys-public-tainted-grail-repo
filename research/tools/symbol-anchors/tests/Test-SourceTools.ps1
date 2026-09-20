@@ -10,8 +10,9 @@ $ErrorActionPreference = "Stop"
 $toolRoot = Split-Path -Parent $PSScriptRoot
 $exporter = Join-Path $toolRoot "Export-FoASymbolAnchors.ps1"
 $verifier = Join-Path $toolRoot "Test-FoASymbolAnchors.ps1"
+$bridge = Join-Path (Split-Path -Parent $toolRoot) "harmony-runtime-audit\Get-FoAHarmonyExpectedTargets.ps1"
 
-foreach ($scriptPath in @($exporter, $verifier)) {
+foreach ($scriptPath in @($exporter, $verifier, $bridge)) {
     $text = Get-Content -LiteralPath $scriptPath -Raw
     $null = [scriptblock]::Create($text)
 }
@@ -79,6 +80,16 @@ try {
 
     if ($exactBeta.Count -ne 1) {
         throw "Expected the synthetic Beta signature to be verified exactly."
+    }
+
+    $bridgeResult = & $bridge -VerificationReport $reportPath
+    if ($bridgeResult.TargetCount -ne 1) {
+        throw "Expected exactly one canonical live-audit target from the synthetic verification report."
+    }
+
+    $expectedTarget = "FixtureAssembly::Fixture.FakeOwner.Beta(System.Int32,System.String)"
+    if ([string]$bridgeResult.Targets[0] -ne $expectedTarget) {
+        throw "Unexpected canonical live-audit target: $([string]$bridgeResult.Targets[0])"
     }
 
     Write-Host "Symbol anchor source-tool test completed successfully."
