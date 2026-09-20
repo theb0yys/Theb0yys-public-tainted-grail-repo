@@ -1,47 +1,87 @@
 # Tune Restockable Merchant Stock
 
-**Evidence status: PARTIAL.** The code boundary/self-review is strong, but in-game restock behaviour and unique-item non-duplication were explicitly unverified in the cited case.
+Modify the shop's existing `RestockableStock` elements before the native shop UI opens. Leave `UniqueStock`, purchases, transfers and merchant wealth alone.
 
 Working lineage: [Merchant Restock Boundary](../../../research/case-studies/merchants/restock-boundary.md).
 
-## Safe boundary
+## Patch target
 
-The proposed route is:
+The working implementation patches:
 
-- patch `Shop.OpenShop()` before UI open;
-- touch `RestockableStock` only;
-- leave `UniqueStock` separate;
-- do not hook purchase/removal;
-- do not change merchant wealth;
-- keep category filtering opt-in.
+~~~text
+Awaken.TG.Main.Locations.Shops.Shop.OpenShop()
+~~~
 
-## Process
+with a Harmony prefix.
 
-```text
-shop opening
-→ identify supported merchant
-→ inspect RestockableStock
-→ apply bounded restock/category rule
-→ native shop UI/transaction continue
-```
+That gives the mod a point immediately before FoA performs the rest of its normal shop-open sequence.
 
-## Important distinction
+## Iterate only RestockableStock
 
-Restockable stock and unique stock are different ownership lanes.
+Use the model element collection:
 
-Do not duplicate unique items because a generic stock loop happened to find them.
+~~~csharp
+foreach (RestockableStock stock in shop.Elements<RestockableStock>())
+{
+    stock.Restock();
+}
+~~~
 
-## Required runtime proof
+Do not enumerate `UniqueStock` and do not call purchase/removal code.
 
-Before promotion, validate:
+`Shop.OnInitialize()` creates separate stock owners, including:
 
-- expected stock change;
-- close/reopen;
-- actual restock cycle;
-- no unique-item duplication;
-- purchase/removal remains native;
-- save/load behaviour where relevant.
+- `UniqueStock`;
+- `BoughtFromHeroStock`;
+- `RestockableStock`.
 
-## Current proof boundary
+Keep those lanes separate.
 
-This is an implementation guide for the reviewed boundary, not a claim that merchant restocking is fully runtime-proven across shops.
+## Useful controls from the working implementation
+
+The public process can safely add policy around the same native restock call:
+
+- disabled / timed / below-threshold mode;
+- 1–5 restock passes per shop open;
+- per-shop cooldown using runtime shop identity;
+- stock-count threshold;
+- optional category filter.
+
+The implementation stores last-restock time by the runtime `Shop` object identity so opening one merchant does not throttle every merchant.
+
+## Capacity and compressed rows
+
+For threshold/category work, the implementation reads the existing `RestockableStock` data:
+
+- `Capacity` getter or `<Capacity>k__BackingField`;
+- private `_compressedItems`;
+- `ItemSpawningDataRuntime.ItemTemplate`;
+- row quantity and level metadata.
+
+Category filtering is implemented by capturing the quantities of **disallowed** rows before `stock.Restock()`, letting the native restock run, then removing/reducing only newly added disallowed rows back to their previous baseline.
+
+That preserves native restock behavior for allowed categories rather than rebuilding the loot roll.
+
+## Useful native item flags
+
+The implementation classifies with existing `ItemTemplate` properties/attachments such as:
+
+- `IsConsumable`;
+- `IsCrafting`;
+- `IsArrow`;
+- `LockpickAttachment`;
+- `IsPlainFood`, `IsDish`, `IsFish`;
+- gear flags such as `IsArmor`, `IsWeapon`, `IsShield`, `IsJewelry`, `IsEquippable`.
+
+## Keep native shop ownership
+
+After the prefix returns, let `Shop.OpenShop()` continue normally.
+
+Do not replace:
+
+- stock UI;
+- item transfer;
+- price calculation;
+- merchant wealth;
+- purchase/removal;
+- unique-item unlock state.
