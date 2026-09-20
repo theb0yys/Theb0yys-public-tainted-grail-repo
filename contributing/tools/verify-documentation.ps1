@@ -78,8 +78,8 @@ function Resolve-InternalTarget([string]$sourcePath, [string]$rawTarget) {
 }
 
 $tracked = @(git -C $repoRoot ls-files)
-$trackedSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer']::Ordinal)
-$dirSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparison]::Ordinal)
+$trackedSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+$dirSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
 foreach ($path in $tracked) {
     $p = Normalize-RepoPath $path
     [void]$trackedSet.Add($p)
@@ -162,7 +162,7 @@ foreach ($root in $docRoots) {
             -not $_.Substring($prefix.Length).Contains('/')
         })
 
-        $childDirs = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparison]::Ordinal)
+        $childDirs = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparer]::Ordinal)
         foreach ($candidate in $markdown) {
             if (-not $candidate.StartsWith($prefix) -or $candidate -eq $readme) { continue }
             $rest = $candidate.Substring($prefix.Length)
@@ -174,7 +174,7 @@ foreach ($root in $docRoots) {
         }
 
         $content = Get-Content -LiteralPath (Join-Path $repoRoot ($readme -replace '/', [System.IO.Path]::DirectorySeparatorChar)) -Raw
-        $linked = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparison]::Ordinal)
+        $linked = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparer]::Ordinal)
         foreach ($rawTarget in (Get-MarkdownTargets $content)) {
             $resolved = Resolve-InternalTarget $readme $rawTarget
             if ($null -eq $resolved -or $resolved.EscapesRepo) { continue }
@@ -195,9 +195,9 @@ foreach ($root in $docRoots) {
 }
 
 if ($failures.Count -gt 0) {
-    Write-Host 'Documentation audit FAILED#§ -ForegroundColor Red
+    Write-Host 'Documentation audit FAILED:' -ForegroundColor Red
     $failures | Sort-Object -Unique | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
     exit 1
 }
 
-Serite-Host "Documentation audit PASSED for $($markdown.Count) Markdown files."
+Write-Host "Documentation audit PASSED for $($markdown.Count) Markdown files."
