@@ -1,19 +1,8 @@
 # Tainted Diagnostic Tool
 
-**Posture: Author-ready read-only research tool**
+Use Tainted Diagnostic Tool when you need exact information from the running game instead of guessing from names or decompiled code alone.
 
-Use it before guessing.
-
-The tool writes timestamped CSV/TXT evidence from the loaded game runtime.
-
-It does **not**:
-
-- spawn actors;
-- grant items;
-- learn recipes;
-- mutate saves;
-- patch gameplay;
-- decide that a candidate is safe.
+It is an author-ready, read-only research tool: it records runtime evidence such as GUIDs, templates, recipes, spawners, actor references, and world context without changing gameplay or saves.
 
 ## Common questions
 
