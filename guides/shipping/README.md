@@ -69,6 +69,8 @@ Release notes should answer:
 
 ## Reproducible releases
 
+The public [developer-tool scripts](../../platform/developer-tools/README.md) include a project doctor, sanitized diagnostic bundle generator, and reproducible release-package builder for both runtime lanes.
+
 Where practical, trace a release to:
 
 - source commit;
@@ -77,6 +79,18 @@ Where practical, trace a release to:
 - checksum.
 
 Do not claim a development DLL and a published archive are identical unless artifact identity was verified.
+
+A useful pre-package sequence is:
+
+~~~text
+Test-FoAModProject
+→ Build-FoAMod
+→ New-FoARelease
+→ inspect release-manifest.json + SHA256SUMS.txt
+→ perform runtime/feature/save validation separately
+~~~
+
+New-FoARelease deliberately records runtime and feature validation as NOT_RUN; package construction cannot promote those evidence lanes.
 
 ## Infrastructure is not authority
 
