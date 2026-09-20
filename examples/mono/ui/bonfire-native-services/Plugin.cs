@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Awaken.TG.Main.Crafting.Fireplace;
 using Awaken.TG.Main.Utility.UI;
@@ -13,11 +14,17 @@ public sealed class Plugin : BaseUnityPlugin
 {
     public const string PluginGuid = "community.taintedgrail.example.bonfire-native-services";
     public const string PluginName = "TG Example - Bonfire Native Services";
-    public const string PluginVersion = "0.1.0";
+    public const string PluginVersion = "0.2.0";
 
     private const string NativeServicesButtonName = "TGCommunityBonfireServicesButton";
+    private const string SubmenuPrefix = "TGCommunityBonfireServices_";
+
+    private static readonly List<GameObject> OwnedSubmenuButtons = new();
 
     private static FireplaceUI? _activeFireplace;
+    private static VFireplaceUI? _activeView;
+    private static ButtonConfig? _buttonTemplate;
+    private static Transform? _buttonParent;
     private static BepInEx.Logging.ManualLogSource? _log;
     private static GameObject? _ownedButton;
     private Harmony? _harmony;
@@ -27,35 +34,13 @@ public sealed class Plugin : BaseUnityPlugin
         _log = Logger;
         _harmony = new Harmony(PluginGuid);
         _harmony.PatchAll(typeof(Plugin).Assembly);
-        Logger.LogInfo($"{PluginName} loaded. At an initialized bonfire: F6 stash, F7 cooking, F8 alchemy.");
-    }
-
-    private void Update()
-    {
-        FireplaceUI? fireplace = _activeFireplace;
-        if (fireplace == null || fireplace.HasBeenDiscarded)
-        {
-            _activeFireplace = null;
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            Invoke("stash", fireplace.OpenHeroStorage);
-        }
-        else if (Input.GetKeyDown(KeyCode.F7))
-        {
-            Invoke("cooking", fireplace.CookAction);
-        }
-        else if (Input.GetKeyDown(KeyCode.F8))
-        {
-            Invoke("alchemy", fireplace.AlchemyAction);
-        }
+        Logger.LogInfo($"{PluginName} loaded.");
     }
 
     private void OnDestroy()
     {
         _harmony?.UnpatchSelf();
+        CloseSubmenu();
 
         if (_ownedButton != null)
         {
@@ -64,6 +49,9 @@ public sealed class Plugin : BaseUnityPlugin
         }
 
         _activeFireplace = null;
+        _activeView = null;
+        _buttonTemplate = null;
+        _buttonParent = null;
         _log = null;
     }
 
@@ -85,12 +73,23 @@ public sealed class Plugin : BaseUnityPlugin
     {
         private static void Postfix(VFireplaceUI __instance)
         {
-            if (__instance.GenericTarget is FireplaceUI fireplace)
+            if (__instance.GenericTarget is not FireplaceUI fireplace)
             {
-                _activeFireplace = fireplace;
-                TryAttachNativeServicesEntry(__instance, fireplace);
-                _log?.LogInfo($"Bonfire owner observed: {fireplace.GetType().FullName}. Native services are now available to the example.");
+                return;
             }
+
+            CloseSubmenu();
+
+            if (_ownedButton != null)
+            {
+                UnityEngine.Object.Destroy(_ownedButton);
+                _ownedButton = null;
+            }
+
+            _activeView = __instance;
+            _activeFireplace = fireplace;
+            TryAttachNativeServicesEntry(__instance, fireplace);
+            _log?.LogInfo($"Bonfire owner observed: {fireplace.GetType().FullName}.");
         }
     }
 
@@ -102,7 +101,7 @@ public sealed class Plugin : BaseUnityPlugin
             object? levelUpEntry = levelUpField?.GetValue(view);
             if (levelUpEntry == null)
             {
-                _log?.LogWarning("Native Services entry skipped: VFireplaceUI.levelUp was not found.");
+                _log?.LogWarning("Services entry skipped: VFireplaceUI.levelUp was not found.");
                 return;
             }
 
@@ -112,33 +111,35 @@ public sealed class Plugin : BaseUnityPlugin
                 levelUpConfig.button == null ||
                 levelUpConfig.transform.parent == null)
             {
-                _log?.LogWarning("Native Services entry skipped: Level Up ButtonConfig was unavailable.");
+                _log?.LogWarning("Services entry skipped: Level Up ButtonConfig was unavailable.");
                 return;
             }
 
-            Transform parent = levelUpConfig.transform.parent;
-            Transform? existing = parent.Find(NativeServicesButtonName);
+            _buttonTemplate = levelUpConfig;
+            _buttonParent = levelUpConfig.transform.parent;
+
+            Transform? existing = _buttonParent.Find(NativeServicesButtonName);
             if (existing != null)
             {
                 _ownedButton = existing.gameObject;
                 return;
             }
 
-            GameObject clone = UnityEngine.Object.Instantiate(levelUpConfig.gameObject, parent);
+            GameObject clone = UnityEngine.Object.Instantiate(levelUpConfig.gameObject, _buttonParent);
             clone.name = NativeServicesButtonName;
             clone.transform.SetSiblingIndex(
-                Mathf.Min(parent.childCount - 1, levelUpConfig.transform.GetSiblingIndex() + 2));
+                Mathf.Min(_buttonParent.childCount - 1, levelUpConfig.transform.GetSiblingIndex() + 2));
 
             ButtonConfig? servicesConfig = clone.GetComponent<ButtonConfig>();
             if (servicesConfig == null || servicesConfig.button == null)
             {
                 UnityEngine.Object.Destroy(clone);
-                _log?.LogWarning("Native Services entry skipped: cloned ButtonConfig was unavailable.");
+                _log?.LogWarning("Services entry skipped: cloned ButtonConfig was unavailable.");
                 return;
             }
 
             servicesConfig.button.ClearAllOnClickEvents();
-            Action openServices = () => Invoke("stash", fireplace.OpenHeroStorage);
+            Action openServices = () => OpenSubmenu(view, fireplace);
 
             object? servicesEntry = Activator.CreateInstance(entryType, nonPublic: true);
             MethodInfo? registerButton = AccessTools.Method(entryType, "RegisterButton");
@@ -157,7 +158,7 @@ public sealed class Plugin : BaseUnityPlugin
                     {
                         openServices,
                         "Services",
-                        "Example native-style entry. Opens the existing hero storage service.",
+                        "Open additional native bonfire services.",
                         description
                     });
             }
@@ -171,7 +172,97 @@ public sealed class Plugin : BaseUnityPlugin
         }
         catch (Exception ex)
         {
-            _log?.LogWarning($"Native Services entry failed: {ex.GetType().Name}: {ex.Message}");
+            _log?.LogWarning($"Services entry failed: {ex.GetType().Name}: {ex.Message}");
         }
+    }
+
+    private static void OpenSubmenu(VFireplaceUI view, FireplaceUI fireplace)
+    {
+        if (_buttonTemplate == null || _buttonParent == null ||
+            fireplace.HasBeenDiscarded || !ReferenceEquals(view, _activeView))
+        {
+            return;
+        }
+
+        CloseSubmenu();
+
+        AddSubmenuButton(
+            "Stash",
+            () =>
+            {
+                Invoke("stash", fireplace.OpenHeroStorage);
+                CloseSubmenu();
+            });
+
+        AddSubmenuButton(
+            "Cooking",
+            () =>
+            {
+                Invoke("cooking", fireplace.CookAction);
+                CloseSubmenu();
+            });
+
+        AddSubmenuButton(
+            "Alchemy",
+            () =>
+            {
+                Invoke("alchemy", fireplace.AlchemyAction);
+                CloseSubmenu();
+            });
+
+        AddSubmenuButton(
+            "Handcrafting",
+            () =>
+            {
+                Invoke("handcrafting", fireplace.HandcraftingAction);
+                CloseSubmenu();
+            });
+
+        AddSubmenuButton(
+            "Back",
+            CloseSubmenu);
+
+        _log?.LogInfo($"Native-style Services submenu opened. rows={OwnedSubmenuButtons.Count}.");
+    }
+
+    private static void AddSubmenuButton(string label, Action action)
+    {
+        if (_buttonTemplate == null || _buttonParent == null)
+        {
+            return;
+        }
+
+        GameObject clone = UnityEngine.Object.Instantiate(
+            _buttonTemplate.gameObject,
+            _buttonParent,
+            worldPositionStays: false);
+
+        clone.name = SubmenuPrefix + label.Replace(" ", string.Empty);
+        clone.transform.SetAsLastSibling();
+
+        ButtonConfig? config = clone.GetComponent<ButtonConfig>();
+        if (config == null || config.button == null)
+        {
+            UnityEngine.Object.Destroy(clone);
+            return;
+        }
+
+        config.button.ClearAllOnClickEvents();
+        config.InitializeButton(action, label);
+        OwnedSubmenuButtons.Add(clone);
+    }
+
+    private static void CloseSubmenu()
+    {
+        for (int i = OwnedSubmenuButtons.Count - 1; i >= 0; i--)
+        {
+            GameObject button = OwnedSubmenuButtons[i];
+            if (button != null)
+            {
+                UnityEngine.Object.Destroy(button);
+            }
+        }
+
+        OwnedSubmenuButtons.Clear();
     }
 }
