@@ -1,5 +1,7 @@
 # Tooling and Shared Infrastructure
 
+Use this section when your mod needs shared settings, UI handling, diagnostics, framework services, contracts, AI integration, or SDK tooling that another project already provides.
+
 This section is for **infrastructure a mod author can actually use**.
 
 It is not an archive of framework internals. It is the bridge from a normal FoA mod to the shared ecosystem:
