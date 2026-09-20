@@ -1,5 +1,7 @@
 # Mechanics Catalogue
 
+- [How to read the catalogue](how-to-read-the-catalogue.md)
+
 Curated public view of reusable private mechanics. Status is claim-specific.
 
 | Mechanic | Public state | Important boundary |
