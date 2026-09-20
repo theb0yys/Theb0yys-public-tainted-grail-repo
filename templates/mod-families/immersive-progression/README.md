@@ -1,10 +1,8 @@
 # Immersive Progression Public Template
 
-Use this starter when you are building progression features that share rules across runtimes. Keep progression policy/configuration common, while exact XP, talent, stat, and UI integrations live in the runtime-specific hosts.
+Use this starter for progression features that share rules across runtimes but require different native integration.
 
-Source family: `immersive-progression`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep progression rules, ranks, and configuration common; put exact XP, talent, stat, or UI hooks in the runtime-specific host.
 
 ## Reusable mechanisms
 
