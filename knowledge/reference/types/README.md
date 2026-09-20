@@ -56,6 +56,9 @@ Exact lookup for important FoA types and members. This is intentionally selectiv
 | `FallDamageUtil.DealFallDamage` | Fall-damage entry point | Public Mono mod |
 | `Prompt` constructor with `KeyBindings`, name, `IButton.PressType`, action, position, control scheme and hold time | Native prompt creation surface | Public Mono mod |
 | `MapUI.AfterViewSpawned` | Map view creation boundary | Public Mono mod |
+| `VHeroHUD.AfterFullyInitialized` | hero-HUD readiness boundary for attaching/repositioning child UI | Public Mono mods |
+| `VHeroKeys.Handle(UIEvent)` | hero input dispatch surface receiving UI events/actions | Public Mono mod |
+| `Location.TryGetElement<T>()` | resolve an element attached to a runtime Location; public examples resolve `NpcElement` | Public Mono mods |
 | `PContainerUI.OnFullyInitialized` | Container/pickup UI initialization | Public Mono mod |
 | `PContainerElement.CacheVisualElements` | Container-row visual cache construction | Public Mono mod |
 | `PContainerElement.SetData` | Container-row item binding | Public Mono mod |
