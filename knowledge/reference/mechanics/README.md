@@ -1,5 +1,7 @@
 # Mechanics Catalogue
 
+Use this catalogue to see which reusable modding techniques have been investigated and how strong the evidence is for each one. The table's status and boundary columns are the authoritative part of this page.
+
 Curated public view of reusable private mechanics. Status is claim-specific.
 
 | Mechanic | Public state | Important boundary |
