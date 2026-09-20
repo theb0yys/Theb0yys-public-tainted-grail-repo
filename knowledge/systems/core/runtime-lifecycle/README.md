@@ -1,5 +1,9 @@
 # MVC, GameObject, ECS and Runtime Lifetime
 
+Use this page when a runtime object exists but you are unsure when it becomes usable, when it can disappear, or which cleanup path owns it.
+
+This material is for lifecycle reasoning across initialization, restore, scene/domain changes, discard, and teardown.
+
 ## What it is
 
 FoA uses several simultaneous lifetime domains rather than one universal Unity GameObject lifecycle.
