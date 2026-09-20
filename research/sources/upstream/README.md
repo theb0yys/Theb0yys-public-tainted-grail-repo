@@ -1,7 +1,5 @@
 # Upstream Tools
 
-- BepInEx: https://github.com/BepInEx/BepInEx
-- HarmonyX: https://github.com/BepInEx/HarmonyX
-- Unity documentation: https://docs.unity3d.com/
+Use these links for the general tools FoA runtime mods build on: BepInEx, HarmonyX, and Unity.
 
-Generic engine/loader documentation does not establish proprietary FoA ownership.
+These sources explain the loader, patching library, and engine APIs. They do not by themselves establish which FoA type owns a game behavior or which game-specific hook is safe.
