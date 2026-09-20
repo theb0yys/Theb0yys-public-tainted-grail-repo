@@ -11,7 +11,7 @@
     <Version>0.2.0</Version>
     <AssemblyVersion>0.2.0.0</AssemblyVersion>
     <FileVersion>0.2.0.0</FileVersion>
-    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">S:\SteamLibrary\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">$(TAINTED_GRAIL_FOA_ROOT)</FoAGameRoot>
     <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
     <FoAInteropDir>$(FoAGameRoot)\BepInEx\interop</FoAInteropDir>
     <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
