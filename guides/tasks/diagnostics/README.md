@@ -1,5 +1,7 @@
 # Debugging and Diagnostics
 
+- [Build performance telemetry without blaming a plugin](build-non-causal-performance-telemetry.md)
+
 > **Reference page.** Use this when a known process fails and you need to identify which layer stopped working.
 
 ## What this system is
