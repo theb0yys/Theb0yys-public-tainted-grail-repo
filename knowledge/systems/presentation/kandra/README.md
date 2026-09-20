@@ -1,39 +1,49 @@
 # Kandra
 
-## What it is
+Use this page when you are working with **skinned/deforming character meshes, armour/clothing, hair, body parts, or other visuals that follow a character rig**.
 
-**Kandra** is Questline's proprietary skinned/deforming character-rendering stack.
+## What Kandra does
 
-It replaces a substantial part of Unity's normal `SkinnedMeshRenderer` deformation/rendering path while **retaining Unity Animator, Avatar and Transform skeleton ownership**.
+Kandra is Questline's specialized skinned/deformation renderer.
 
-A useful mental model is:
+It replaces a substantial part of Unity's normal `SkinnedMeshRenderer` runtime path while still relying on Unity's Animator, Avatar, and Transform skeleton.
+
+A useful model is:
 
 ~~~text
 Animator / Avatar
 → Transform skeleton
-→ Kandra rig and bone preparation
-→ packed skinned mesh + weights + blendshapes
-→ GPU-oriented deformation buffers
-→ Kandra visibility / triangle culling
-→ specialised rendering
+→ Kandra rig/bone preparation
+→ packed mesh / weights / blendshapes
+→ GPU deformation buffers
+→ triangle visibility / culling
+→ Kandra rendering
 → Unity / HDRP
 ~~~
 
-## What it owns
+## What Kandra owns
 
 Kandra owns:
 
-- packed skinned-mesh runtime data;
+- packed skinned-mesh data;
 - rig/bone registration;
 - skinning buffers;
-- blendshape data and weights;
+- blendshape data;
 - renderer slots;
 - triangle/index visibility;
 - clothing/body triangle culling;
 - Kandra material/render integration;
-- renderer cleanup and resource lifetime.
+- renderer/resource cleanup.
 
-It does not replace the Animator or own the logical equipment item.
+It does **not** replace the Animator and it does not own the logical equipment item.
+
+For armour/clothing, keep these layers separate:
+
+~~~text
+logical Item/equip
+→ native clothing/stitching
+→ Kandra rendering
+~~~
 
 ## Main runtime types
 
@@ -49,47 +59,68 @@ It does not replace the Animator or own the logical equipment item.
 
 Primary managed assembly: `Awaken.Kandra.dll`.
 
-## Packed deformation model
+## Packed mesh/deformation data
 
-Kandra mesh data includes separate logical channels for:
+Kandra's mesh data includes separate channels for:
 
-- compressed vertex position/normal/tangent data;
-- extra UV/tangent information;
-- packed bone indices and weights;
+- compressed position/normal/tangent data;
+- extra UV/tangent data;
+- bone indices and weights;
 - bind poses;
-- blendshape data;
+- blendshapes;
 - triangle/index data.
 
-The renderer then prepares bone/deformation data for GPU-oriented skinning rather than relying on one Unity `SkinnedMeshRenderer` per character part.
+The runtime prepares this data for GPU-oriented skinning rather than relying on one normal Unity `SkinnedMeshRenderer` per character part.
 
 ## Clothing and body culling
 
 FoA clothing can hide body triangles underneath garments.
 
-The Kandra toolchain builds garment/body relationships into triangle-visibility information. Runtime rendering can therefore suppress covered body triangles rather than simply relying on alpha materials or deleting body meshes.
+The Kandra pipeline builds garment/body visibility relationships into triangle-culling information.
 
-This matters for armour mods: a visible skinned mesh is only one piece of the clothing lifecycle.
+That means armour integration is more than "attach a skinned mesh":
 
-## Modding relevance
+- the rig must match;
+- the renderer must register;
+- deformation must work;
+- covered body triangles may need culling;
+- cleanup must release the Kandra resources.
 
-Kandra knowledge is essential for:
+## When this page is useful
+
+Use Kandra knowledge for:
 
 - armour and clothing;
-- character body parts;
-- hair or deforming character attachments;
-- custom creature/character visuals that use Kandra;
-- equipment presentation involving a deforming mesh.
+- Hero/NPC body parts;
+- hair/deforming attachments;
+- Kandra-backed creature visuals;
+- equipment presentation using deforming meshes.
 
-For armour, keep three owners separate:
+## Common mistakes
 
-~~~text
-logical item/equip
-→ native clothing/stitching owner
-→ Kandra rendering owner
-~~~
+- treating a Unity `SkinnedMeshRenderer` as the final native representation;
+- assuming successful Kandra registration proves correct deformation;
+- forgetting that the logical item/equip owner is separate;
+- ignoring clothing/body triangle culling;
+- destroying a visible GameObject without releasing Kandra-owned resources.
 
-## Related systems
+## What to verify
 
-- [Runtime lifetime](../../core/runtime-lifecycle/README.md)
+Check:
+
+1. target rig identity;
+2. bone/bind-pose compatibility;
+3. packed mesh data;
+4. renderer registration;
+5. visual deformation;
+6. blendshapes if used;
+7. material/triangle visibility;
+8. clothing/body culling;
+9. native equip/stitch lifecycle if wearable;
+10. renderer/resource cleanup.
+
+## Related pages
+
+- [Armour and native clothing](../../gameplay/armour.md)
 - [Shared mipmap streaming](../mipmap-streaming/README.md)
-- [Scenes Baking](../../world/scenes-baking/README.md)
+- [Runtime lifetime](../../core/runtime-lifecycle/README.md)
