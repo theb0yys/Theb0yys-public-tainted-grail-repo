@@ -61,4 +61,4 @@ Registration alone does not prove:
 
 Those are downstream contracts.
 
-See [Native item registrar ownership](../../tooling/frameworks/native-item-registrar.md) for the framework boundary.
+See [Native item registrar ownership](../../tooling/tainted-framework/native-item-registrar.md) for the framework boundary.
