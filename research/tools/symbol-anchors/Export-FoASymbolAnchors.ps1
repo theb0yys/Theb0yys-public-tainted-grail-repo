@@ -201,10 +201,22 @@ foreach ($sourceFile in $sourceFiles) {
             Signature = $false
         },
         @{
+            Name = "AccessTools.Method-type-nameof-signature"
+            Regex = 'AccessTools\.Method\(\s*typeof\(([^)]+)\)\s*,\s*nameof\(([^)]+)\)\s*,\s*new\s*\[\]\s*\{([^}]*)\}'
+            Kind = "method"
+            Signature = $true
+        },
+        @{
             Name = "AccessTools.Method-type-string-signature"
             Regex = 'AccessTools\.Method\(\s*typeof\(([^)]+)\)\s*,\s*"([^"]+)"\s*,\s*new\s*\[\]\s*\{([^}]*)\}'
             Kind = "method"
             Signature = $true
+        },
+        @{
+            Name = "AccessTools.Method-type-nameof"
+            Regex = 'AccessTools\.Method\(\s*typeof\(([^)]+)\)\s*,\s*nameof\(([^)]+)\)'
+            Kind = "method"
+            Signature = $false
         },
         @{
             Name = "AccessTools.Method-type-string"
