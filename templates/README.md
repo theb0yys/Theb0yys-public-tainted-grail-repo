@@ -1,50 +1,57 @@
 # Project Templates
 
-Use this section when you want a project you can copy and adapt rather than a one-off code example. Templates provide structure and starter logic; they do not prove the final feature works in your game build.
+Use this section when you want a **starter project you can copy and adapt**.
 
-Source-only starters for Tainted Grail: The Fall of Avalon mod authors. These templates reference locally supplied game, loader, framework, and toolkit files; they do not redistribute proprietary assemblies or commercial assets.
+Templates give you project structure, loader setup, and starter logic. They are not proof that the final feature works in your game build; you still need to connect the template to the exact FoA owner, hook, service, or runtime API your feature requires.
+
+All templates are source-only. They expect you to provide your own local game, loader, framework, or Merlin files and do not redistribute proprietary game assemblies or commercial assets.
 
 ## Named mod-family templates
 
-- [31 cross-runtime mod-family templates](mod-families/README.md) — named starters for Avalon AI FoA Host, Avalon Cheat Panel, Avalon Stash, CarryWeightTweaks, Dungeon Exit Marker, Easy Avalon, FoA Mod Manager, Hold to Steal, Immersive Backgrounds, Immersive Footsteps, Immersive HUD, Immersive Progression, Jump Higher, Lockpicking Reforged, Magic Tweaks, Multi-Pin Map Notes, No Fall Damage, Origins of Avalon, Rich Merchant, StaminaControl, Tainted Combat, Tainted Interface, Tainted Performance, Wyrd Hunt, Avalon Companions, Tainted Music, Tainted Diagnostic Tool, Better Bonfire Menu, Merchant Stock Tweaks, Tainted Core, and Avalon Human Companions.
+[31 cross-runtime mod-family templates](mod-families/README.md) provide starting points based on existing FoA mod families such as Better Bonfire Menu, Tainted Performance, Avalon Stash, Immersive HUD, Magic Tweaks, Wyrd Hunt, and others.
 
-Each named template is self-contained with:
-- **real shared starter logic** for that feature family;
+Each named starter includes:
+
+- shared feature logic for that kind of mod;
 - a Mono/BepInEx 5 host;
 - an IL2CPP/BepInEx 6 host;
-- Tainted Framework runtime-kind integration;
-- source-family/mechanism notes.
+- shared runtime-kind handling where needed;
+- notes about the source pattern it was derived from and what still needs a verified FoA integration.
 
-The shared code deliberately stays free of game-specific types until you add the exact verified FoA owner/hook required by the feature.
+The shared code deliberately avoids hard-wiring game-specific types until the feature selects the exact FoA integration it needs.
 
 ## Mono / BepInEx 5
 
-- [Mono templates](mono/README.md)
-  - basic plug-in
-  - Harmony patterns
-  - audio replacement gate
-  - combat observers
-  - item interaction guard
-  - magic projectile tuning
-  - skybox ownership
-  - runtime UI overlay
+[Mono templates](mono/README.md) include:
+
+- basic plug-in;
+- Harmony patterns;
+- audio replacement;
+- combat observation;
+- item interaction guards;
+- magic projectile tuning;
+- rendering ownership;
+- runtime UI.
 
 ## IL2CPP / BepInEx 6
 
-- [IL2CPP templates](il2cpp/README.md)
-  - basic plug-in
-  - Harmony patterns
-  - runtime UI overlay
-  - frame/performance sampler
-  - audio replacement gate
+[IL2CPP templates](il2cpp/README.md) include:
 
-## Dual-runtime / framework-backed
+- basic plug-in;
+- Harmony patterns;
+- runtime UI;
+- diagnostics/performance sampling;
+- audio replacement.
 
-- [Tainted Framework dual-runtime consumer](hybrid/tainted-framework-consumer/) — shared feature source with thin Mono and IL2CPP hosts.
-- [Mono + Merlin](hybrid/mono-merlin/) — separate Merlin-authored content and BepInEx runtime lifecycles.
+## Dual-runtime and mixed workflows
+
+- [Tainted Framework dual-runtime consumer](hybrid/tainted-framework-consumer/) — shared feature code with thin Mono and IL2CPP hosts.
+- [Mono + Merlin](hybrid/mono-merlin/) — Merlin-authored content and BepInEx runtime code kept as separate parts of one project.
 
 ## Merlin
 
-- [Merlin overlay](merlin/basic/) — owned content root layered into the official Merlin Workshop project.
+- [Merlin overlay](merlin/basic/) — an owned content root designed to be layered into the official Merlin Workshop project.
 
-See [Template Source-Family Map](SOURCE-MAP.md) for provenance. Templates are starting points, not runtime, persistence, compatibility, or release proof. Use [examples](../examples/README.md) for mechanism demonstrations and [tooling](../platform/README.md) for shared infrastructure contracts.
+See the [Template Source-Family Map](SOURCE-MAP.md) when you need provenance for a starter.
+
+Use [Examples](../examples/README.md) when you only need to see one technique, and [Tooling and Shared Infrastructure](../platform/README.md) when the project should consume an existing shared service instead of implementing it locally.
