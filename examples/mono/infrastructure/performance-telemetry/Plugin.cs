@@ -221,7 +221,7 @@ public sealed class Plugin : BaseUnityPlugin
 
     private static string Escape(string value)
     {
-        return """ + value.Replace(""", """") + """;
+        return "\"" + value.Replace("\"", "\"\"") + "\"";
     }
 
     private readonly struct Sample
