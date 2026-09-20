@@ -15,7 +15,6 @@ https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167
 Checked claims:
 
 - public acquisition route exists;
-- public acquisition route exists;
 - the public page documents mod-author integration for custom UI scope, controller actions and read-only status providers;
 - the current private engineering release manifest records source-side version `0.6.62` and plugin GUID `kane.tgfoa.mod-manager`.
 
