@@ -11,3 +11,4 @@ Ordered learning paths live here. Learning pages teach in sequence; canonical te
 - [Shipping](../shipping/README.md)
 - [Debugging](debugging/README.md)
 - [Golden rules](golden-rules.md)
+- [Native-owner-first modding](native-owner-first.md)
