@@ -30,6 +30,30 @@ Hero.ListenTo(
     owner)
 ~~~
 
+## Core Model lifecycle events
+
+Preserved developer documentation records these `Model.Events` surfaces:
+
+- `BeforeFullyInitialized`
+- `AfterFullyInitialized`
+- `AfterChanged`
+- `BeforeDiscarded`
+- `BeingDiscarded`
+- `AfterDiscarded`
+- `AfterElementsCollectionModified`
+
+It also documents:
+
+~~~csharp
+target.ListenTo(eventDefinition, callback, owner);
+target.ListenToLimited(eventDefinition, callback, owner, limit);
+target.Trigger(eventDefinition, value);
+~~~
+
+and an any-source listener form through the global event system.
+
+Listener ownership matters because Model discard removes listeners owned by the Model and later clears remaining listeners associated with the discarded source/its Elements.
+
 ## Useful publicly visible events
 
 | Event | Public use |
@@ -51,4 +75,6 @@ Keep listener handles and remove owned listeners during replacement/unload where
 
 ## Evidence boundary
 
-This is a selective modding reference, not a dump of every `Events` nested type in the game.
+The Model lifecycle/event list above is supported by preserved developer documentation. The gameplay event examples are supported by public source. Neither lane implies that every native event is safe for mods to synthesize.
+
+See [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
