@@ -6,6 +6,10 @@ Working lineage: [Combat Pressure Without Raw Damage Multipliers](../../../resea
 
 ## Runnable source
 
+Start with the [Combat pressure example](../../../examples/mono/combat/combat-pressure/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
+## Runnable source
+
 Start from the buildable example: [Combat pressure and poise](../../../examples/mono/combat/combat-pressure-poise/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
 
 
