@@ -6,6 +6,10 @@ Working lineage: [Native Save Completion Observer](../../../research/case-studie
 
 ## Runnable source
 
+Start with the [Save completion observer example](../../../examples/mono/infrastructure/save-completion-observer/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
+## Runnable source
+
 Start from the buildable example: [Save observer and backup](../../../examples/mono/infrastructure/save-observer-backup/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
 
 
