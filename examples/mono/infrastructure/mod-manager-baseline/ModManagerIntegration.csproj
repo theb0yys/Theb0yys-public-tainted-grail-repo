@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TGCommunity.ModManagerIntegration</AssemblyName>
+    <RootNamespace>TGCommunity.ModManagerIntegration</RootNamespace>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Games\Tainted Grail FoA</FoAGameRoot>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+    <FoAModManagerDir Condition="'$(FoAModManagerDir)' == ''">$(FoAPluginsDir)\FoAModManager</FoAModManagerDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="FoAModManager">
+      <HintPath>$(FoAModManagerDir)\FoAModManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateInfrastructureReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll not found. Set FoAGameRoot." />
+    <Error Condition="!Exists('$(FoAModManagerDir)\FoAModManager.dll')" Text="FoAModManager.dll not found. Set FoAModManagerDir." />
+  </Target>
+</Project>

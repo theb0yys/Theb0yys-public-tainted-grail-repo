@@ -2,42 +2,18 @@
 
 Use this when your mod wants shared ecosystem metadata without taking execution authority.
 
-## Dependency
+A complete BepInEx example is available at [examples/mono/infrastructure/core-readonly](../../examples/mono/infrastructure/core-readonly/README.md).
 
-```csharp
-[BepInDependency(
-    AvalonCore.Plugin.PluginGuid,
-    BepInDependency.DependencyFlags.HardDependency)]
+## Flow
+
+```text
+hard dependency on Avalon Core
+→ read TrustReports
+→ require read-only posture
+→ look up exact documented engine
+→ inspect exact capability/contract/readiness
+→ use discovery result or action=none
 ```
-
-## Trust-report read
-
-```csharp
-AvalonCore.HostTrustReportSnapshot snapshot =
-    AvalonCore.Plugin.TrustReports;
-
-if (snapshot.WouldMutateRuntime)
-{
-    // This integration expects read-only state. Fail closed.
-    return;
-}
-```
-
-## Exact engine lookup
-
-```csharp
-if (AvalonCore.Plugin.Registry == null ||
-    !AvalonCore.Plugin.Registry.TryGet(
-        "adapter-registry",
-        out AdapterRegistryEngine? registry) ||
-    registry == null)
-{
-    // action=none
-    return;
-}
-```
-
-Then query the **exact documented capability/contract/version/readiness** you need.
 
 If execution is required, identify the named executor/service owner.
 

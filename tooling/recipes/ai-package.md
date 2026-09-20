@@ -2,6 +2,8 @@
 
 The package describes **AI intent/policy**. The host owns live scheduling/execution.
 
+An inert provider-neutral source example is available at [examples/mono/infrastructure/ai-package-contracts](../../examples/mono/infrastructure/ai-package-contracts/README.md).
+
 ## Package assembly boundary
 
 Reference `AvalonAI.Contracts.V2` / the current public Contracts assembly.
@@ -20,8 +22,6 @@ public sealed class MyPackage : IAvalonAiPackage
 }
 ```
 
-The manifest declares stable package identity, required Runtime API, goals/actions, required capabilities, blackboard namespace/schema/keys, actor roles, cadence and optional persistent/procedure requirements.
-
 ## Runtime flow
 
 ```text
@@ -33,11 +33,4 @@ feature/provider owns domain truth
 → native owner executes
 ```
 
-## Package rules
-
-- return no proposal / no applicable goal when prerequisites are missing;
-- use stable IDs;
-- declare only the blackboard/capabilities you need;
-- do not start your own scheduler for the same actor;
-- do not call FoA internals directly from package policy;
-- do not reach into another package's private state.
+Do not start your own scheduler for the same actor or call FoA internals directly from package policy.

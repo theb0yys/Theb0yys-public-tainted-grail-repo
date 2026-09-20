@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TGCommunity.CoreReadOnly</AssemblyName>
+    <RootNamespace>TGCommunity.CoreReadOnly</RootNamespace>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Games\Tainted Grail FoA</FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <AvalonCoreDir Condition="'$(AvalonCoreDir)' == ''">$(FoAGameRoot)\BepInEx\plugins\AvalonCore</AvalonCoreDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AvalonCore">
+      <HintPath>$(AvalonCoreDir)\AvalonCore.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AvalonCore.Abstractions">
+      <HintPath>$(AvalonCoreDir)\AvalonCore.Abstractions.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AvalonCore.Trust">
+      <HintPath>$(AvalonCoreDir)\AvalonCore.Trust.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateInfrastructureReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(AvalonCoreDir)\AvalonCore.dll')" Text="AvalonCore.dll not found. Set AvalonCoreDir." />
+    <Error Condition="!Exists('$(AvalonCoreDir)\AvalonCore.Abstractions.dll')" Text="AvalonCore.Abstractions.dll not found. Set AvalonCoreDir." />
+    <Error Condition="!Exists('$(AvalonCoreDir)\AvalonCore.Trust.dll')" Text="AvalonCore.Trust.dll not found. Set AvalonCoreDir." />
+  </Target>
+</Project>

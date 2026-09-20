@@ -2,6 +2,8 @@
 
 Use this for a user-facing mod that does not need a custom screen.
 
+A complete source project is available at [examples/mono/infrastructure/mod-manager-baseline](../../examples/mono/infrastructure/mod-manager-baseline/README.md).
+
 ## 1. Define ordinary BepInEx config
 
 ```csharp
@@ -21,42 +23,15 @@ FoA Mod Manager can discover normal `Config.Bind` entries without a manager API 
 
 ## 2. Add a controller action only if useful
 
-```csharp
-private const string ActionId = "author.foa.example.toggle";
-
-private void Awake()
-{
-    FoAModManagerApi.RegisterControllerAction(
-        ActionId,
-        "Toggle Example",
-        "Example Mod",
-        "Toggle the feature.",
-        ToggleFeature);
-}
-
-private void OnDestroy()
-{
-    FoAModManagerApi.UnregisterControllerAction(ActionId);
-}
-```
+Use `FoAModManagerApi.RegisterControllerAction(...)` and unregister the same stable action ID on teardown.
 
 Do not synthesize keyboard input when the shared action registry can expose the command directly.
 
 ## 3. Add a cheap read-only status provider
 
-```csharp
-private const string StatusId = "author.foa.example.status";
+Use `RegisterStatusProvider(...)` for dependency readiness, operating mode and concise blocked/error state.
 
-private FoAModStatusSnapshot BuildStatus() => new()
-{
-    Level = FoAModStatusLevel.Ok,
-    Summary = _enabled.Value ? "Enabled" : "Disabled",
-    Schema = "example-status/1",
-    UpdatedUtc = DateTime.UtcNow.ToString("O")
-};
-```
-
-Register/unregister it with `FoAModManagerApi.RegisterStatusProvider` / `UnregisterStatusProvider`.
+The provider must remain cheap and read-only.
 
 ## Ownership
 

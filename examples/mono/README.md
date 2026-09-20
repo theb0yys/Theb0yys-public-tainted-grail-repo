@@ -5,6 +5,7 @@ Mono/BepInEx examples are grouped by functional domain.
 - [Audio](audio/README.md)
 - [Combat](combat/README.md)
 - [Harmony](harmony/README.md)
+- [Infrastructure integrations](infrastructure/README.md)
 - [Items](items/README.md)
 - [Magic](magic/README.md)
 - [Rendering](rendering/README.md)
