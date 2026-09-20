@@ -29,6 +29,21 @@ jobs:
           $ilspy = Join-Path $env:USERPROFILE ".dotnet\tools\ilspycmd.exe"
           ./research/tools/symbol-anchors/tests/Test-SourceTools.ps1 -IlSpyCmd $ilspy
 
+      - name: Export repository Harmony anchor baseline
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path ./.local-research -Force | Out-Null
+          $manifest = ./research/tools/symbol-anchors/Export-FoASymbolAnchors.ps1 `
+            -Root . `
+            -OutputPath ./.local-research/repository-symbol-anchors.json `
+            -ExcludePathPattern '^research/tools/'
+          Write-Host ("REPO_ANCHOR_COUNT={0}" -f $manifest.AnchorCount)
+          Write-Host ("REPO_UNRESOLVED_COUNT={0}" -f $manifest.UnresolvedCount)
+          $bytes = [System.IO.File]::ReadAllBytes((Resolve-Path ./.local-research/repository-symbol-anchors.json))
+          Write-Host "MANIFEST_BASE64_BEGIN"
+          Write-Host ([Convert]::ToBase64String($bytes))
+          Write-Host "MANIFEST_BASE64_END"
+
       - name: Compile-smoke Mono research plug-ins against stubs
         shell: pwsh
         run: dotnet build ./research/tools/tests/SourceCompileSmoke/SourceCompileSmoke.csproj -c Release
