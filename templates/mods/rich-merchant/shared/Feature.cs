@@ -1,3 +1,4 @@
+using System;
 using Tainted.Abstractions.Runtime;
 
 namespace TGTemplate.RichMerchant;
@@ -5,14 +6,16 @@ namespace TGTemplate.RichMerchant;
 internal static class Feature
 {
     internal const string SourceFamily = "rich-merchant";
-    internal static readonly string[] Mechanisms =
+
+    internal static int ResolveMerchantGold(int nativeGold, int minimumGold, bool enabled)
     {
-        "merchant gold floor",
-        "dual-runtime build boundary",
-        "narrow merchant patch"
-    };
+        if (!enabled)
+            return nativeGold;
+
+        return Math.Max(nativeGold, Math.Max(0, minimumGold));
+    }
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Rich Merchant starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; native-trade-flow-preserved";
 }

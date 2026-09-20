@@ -5,15 +5,20 @@ namespace TGTemplate.ImmersiveFootsteps;
 internal static class Feature
 {
     internal const string SourceFamily = "immersive-footsteps";
-    internal static readonly string[] Mechanisms =
-    {
-        "FMOD footstep interception",
-        "surface/context replacement",
-        "replacement-first suppression",
-        "runtime audio decode"
-    };
+
+    internal static bool ShouldSuppressNativeFootstep(
+        bool enabled,
+        bool heroFootstep,
+        bool replacementStarted)
+        => enabled && heroFootstep && replacementStarted;
+
+    internal static bool ShouldRunNativeFootstep(
+        bool enabled,
+        bool heroFootstep,
+        bool replacementStarted)
+        => !ShouldSuppressNativeFootstep(enabled, heroFootstep, replacementStarted);
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Immersive Footsteps starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; suppress-native-only-after-replacement-starts";
 }

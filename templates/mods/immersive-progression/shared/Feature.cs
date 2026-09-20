@@ -1,3 +1,4 @@
+using System;
 using Tainted.Abstractions.Runtime;
 
 namespace TGTemplate.ImmersiveProgression;
@@ -5,15 +6,20 @@ namespace TGTemplate.ImmersiveProgression;
 internal static class Feature
 {
     internal const string SourceFamily = "immersive-progression";
-    internal static readonly string[] Mechanisms =
+
+    internal static int PracticeTokens(float practicedXp, float xpPerToken, int maxTokens)
     {
-        "progression planning",
-        "campfire skill UI",
-        "effect-intent apply/query",
-        "provider bridge"
-    };
+        if (practicedXp <= 0f || xpPerToken <= 0f || maxTokens <= 0)
+            return 0;
+
+        int tokens = (int)(practicedXp / xpPerToken);
+        return Math.Min(tokens, maxTokens);
+    }
+
+    internal static bool CanSpend(int availablePoints, int cost)
+        => cost > 0 && availablePoints >= cost;
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Immersive Progression starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; sidecar-progression-kept-separate-from-vanilla-save-owner";
 }

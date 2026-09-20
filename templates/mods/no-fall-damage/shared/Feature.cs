@@ -5,14 +5,20 @@ namespace TGTemplate.NoFallDamage;
 internal static class Feature
 {
     internal const string SourceFamily = "no-fall-damage";
-    internal static readonly string[] Mechanisms =
+
+    internal static float ResolveFallDamage(
+        float nativeFallDamage,
+        bool enabled,
+        float multiplier)
     {
-        "fall-damage guard",
-        "result override",
-        "narrow movement safety patch"
-    };
+        if (!enabled)
+            return nativeFallDamage;
+
+        float safeMultiplier = multiplier < 0f ? 0f : multiplier;
+        return nativeFallDamage * safeMultiplier;
+    }
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "No Fall Damage starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; only-verified-fall-damage-path-is-adjusted";
 }

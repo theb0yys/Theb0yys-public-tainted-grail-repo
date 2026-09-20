@@ -1,3 +1,4 @@
+using System;
 using Tainted.Abstractions.Runtime;
 
 namespace TGTemplate.MerchantStockTweaks;
@@ -5,15 +6,21 @@ namespace TGTemplate.MerchantStockTweaks;
 internal static class Feature
 {
     internal const string SourceFamily = "merchant-stock-tweaks";
-    internal static readonly string[] Mechanisms =
+
+    internal static int ResolveQuantity(
+        int nativeQuantity,
+        int additiveQuantity,
+        int minimumQuantity,
+        bool enabled)
     {
-        "shop-open hook",
-        "restock cooldown",
-        "restockable-stock filtering",
-        "merchant ownership preservation"
-    };
+        if (!enabled)
+            return nativeQuantity;
+
+        int adjusted = Math.Max(0, nativeQuantity + additiveQuantity);
+        return Math.Max(adjusted, Math.Max(0, minimumQuantity));
+    }
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Merchant Stock Tweaks starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; bounded-stock-quantity-policy-ready";
 }

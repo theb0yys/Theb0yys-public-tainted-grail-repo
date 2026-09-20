@@ -10,15 +10,7 @@ Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, 
 
 ## Wave 15 — 2026-09-20
 
-Mined Tainted BugFixes, focused quest-fix research, official Merlin quest evidence, and Missing Pebbles:
-
-- rule-pack-first quest recovery with mutation disabled until exact evidence/backup/validation gates close;
-- current-build reproduction requirement before maintaining historical quest fixes;
-- official Merlin objective-marker authoring contract and NPC-marker/objective-marker separation;
-- Stink and Burn static identity case with unresolved objective/placed-marker boundary;
-- existing-item insertion into save-backed `SearchAction` rows;
-- existing-item grant from hero Pickaxe/mining damage context;
-- additional evidence-scoped candidate identities.
+Mined Tainted BugFixes, focused quest-fix research, official Merlin quest evidence, and Missing Pebbles.
 
 ## Wave 16 — 2026-09-20
 
@@ -34,15 +26,19 @@ Expanded `templates/` from six starter families into a reusable public mechanism
 
 ## Wave 19 — 2026-09-20
 
-Added the missing named mod-family template layer:
+Added `templates/mods/` with 31 named cross-runtime mod-family starters, each with shared feature source plus separate Mono/BepInEx 5 and IL2CPP/BepInEx 6 hosts.
 
-- added `templates/mods/` with **31 named public templates**;
-- each named template contains a shared feature-boundary source file plus separate Mono/BepInEx 5 and IL2CPP/BepInEx 6 host projects;
-- each template records its private source family and reusable mechanism set;
-- covered Avalon AI FoA Host through Avalon Human Companions, including the framework/UI/tooling families as well as gameplay mods;
-- no release packages, binaries, commercial assets, generated interop assemblies or private machine paths were published.
+## Wave 20 — 2026-09-20
 
-These are independently authored starter projects derived from inspected source-family architecture and mechanism boundaries. They do not inherit private runtime, persistence, compatibility or release proof.
+Upgraded all 31 named mod-family starters from descriptive placeholders to actual portable starter logic:
+
+- replaced mechanism-name-only `shared/Feature.cs` files with family-specific pure/shared logic;
+- kept loader differences in the Mono/IL2CPP hosts;
+- added concrete guards, scaling functions, bounded state, readiness/ownership gates, sampling logic, registry helpers and native-fallback decisions appropriate to each family;
+- preserved the clean-room boundary: exact FoA/Unity/Harmony hooks remain opt-in additions after current owner/signature verification;
+- did not publish release packages, binaries, commercial assets, generated interop assemblies or private machine paths.
+
+The named public templates remain starter projects and do not inherit private runtime, persistence, compatibility or release proof.
 
 ## Measurement rule
 

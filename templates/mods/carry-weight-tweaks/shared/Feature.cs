@@ -5,14 +5,14 @@ namespace TGTemplate.CarryWeightTweaks;
 internal static class Feature
 {
     internal const string SourceFamily = "carry-weight-tweaks";
-    internal static readonly string[] Mechanisms =
-    {
-        "carry-weight limit tuning",
-        "configurable stat override",
-        "native stat initialization boundary"
-    };
+
+    internal static float ResolveCarryCapacity(float vanillaCapacity, float configuredCapacity)
+        => configuredCapacity > 0f ? configuredCapacity : vanillaCapacity;
+
+    internal static bool ShouldApplyOverride(float configuredCapacity)
+        => configuredCapacity > 0f;
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "CarryWeightTweaks starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; configured-capacity-zero=vanilla";
 }

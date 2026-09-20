@@ -4,7 +4,7 @@ This map records which inspected mod families informed each reusable public star
 
 | Public template | Source families / reusable mechanism |
 | --- | --- |
-| `mods/*` | 31 named cross-runtime mod-family starters, each with shared + Mono + IL2CPP host structure |
+| `mods/*` | 31 named cross-runtime mod-family starters; each now contains feature-specific portable shared logic plus Mono + IL2CPP hosts |
 | `mono/harmony/basic` | common BepInEx 5 + Harmony lifecycle used across Mono mods |
 | `mono/harmony/result-postfix` | narrow result overrides used by gameplay/config mods |
 | `mono/harmony/action-guard` | Hold to Steal / guarded native action pattern |
@@ -26,4 +26,4 @@ The named `mods/*` starters cover these source families:
 
 `avalon-ai-runtime`, `avalon-cheat-panel`, `Avalon Stash`, `carry-weight-tweaks`, `dungeon-exit-helper`, `easy-avalon`, `foa-mod-manager`, `hold-to-steal`, `immersive-backgrounds`, `immersive-footsteps`, `always-show-hud`, `immersive-progression`, `jump-higher`, `lockpicking-reforged`, `magic-tweaks`, `multi-pin-map-notes`, `no-fall-damage`, `origins-of-avalon`, `rich-merchant`, `stamina-action-control`, `Tainted Combat`, `Tainted Interface`, `tainted-performance`, `wyrd-hunt`, `avalon-companions`, `tainted-music`, `Tainted-Diagnostic Tool`, `better-bonfire-menu`, `merchant-stock-tweaks`, `avalon-core`, and `avalon-human-companions`.
 
-Private production implementation is not copied wholesale. Public starters preserve source-family mechanism boundaries and host architecture while retaining their own evidence status.
+Private production implementation is not copied wholesale. The named starters extract portable feature rules such as guards, scaling, bounded state, readiness gates, ownership decisions and sampling logic, while leaving exact game hooks/runtime adapters for the author to add from verified evidence.

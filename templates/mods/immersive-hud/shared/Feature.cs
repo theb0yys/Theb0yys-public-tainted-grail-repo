@@ -5,15 +5,15 @@ namespace TGTemplate.ImmersiveHud;
 internal static class Feature
 {
     internal const string SourceFamily = "always-show-hud";
-    internal static readonly string[] Mechanisms =
-    {
-        "HUD visibility context",
-        "damage-number presentation",
-        "hero bar visibility",
-        "shared UI integration"
-    };
+
+    internal static bool ResolveVisibility(
+        bool enabled,
+        bool targetHudElement,
+        bool nativeVisible,
+        bool forceVisible)
+        => targetHudElement && enabled && forceVisible ? true : nativeVisible;
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Immersive HUD starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; selected-hud-presentation-only";
 }

@@ -5,15 +5,26 @@ namespace TGTemplate.TaintedMusic;
 internal static class Feature
 {
     internal const string SourceFamily = "tainted-music";
-    internal static readonly string[] Mechanisms =
-    {
-        "music arbitration",
-        "native music suppression",
-        "custom music menu",
-        "owned resource loading"
-    };
+
+    internal static bool ShouldSuppressNativeMusic(
+        bool enabled,
+        bool customTrackPlaying,
+        bool nativeEventInOwnedScope,
+        bool customPlaybackHealthy)
+        => enabled && customTrackPlaying && nativeEventInOwnedScope && customPlaybackHealthy;
+
+    internal static bool ShouldRunNativeMusic(
+        bool enabled,
+        bool customTrackPlaying,
+        bool nativeEventInOwnedScope,
+        bool customPlaybackHealthy)
+        => !ShouldSuppressNativeMusic(
+            enabled,
+            customTrackPlaying,
+            nativeEventInOwnedScope,
+            customPlaybackHealthy);
 
     internal static string Describe(TaintedRuntimeKind runtimeKind)
         => "Tainted Music starter initialized. runtime=" + runtimeKind +
-           "; mechanisms=" + string.Join(", ", Mechanisms);
+           "; native-suppression-requires-healthy-custom-playback";
 }
