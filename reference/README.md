@@ -12,9 +12,10 @@ Reference pages are for exact lookup, not long tutorials.
 - [Mechanics catalogue](mechanics/README.md)
 - [Evidence labels](evidence/README.md)
 - [Version scope](versions/README.md)
+- [Visibility/fog owners](rendering/visibility-owners.md)
+- [Weather coverage](weather/coverage.md)
 - [Content domains](content-domains.md)
 - [Game knowledge index](game-knowledge-index.md)
-- [Legacy mechanics catalogue](mechanics-catalogue.md)
 
 ## Cross-reference routes
 

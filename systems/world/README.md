@@ -1,6 +1,7 @@
 # World Systems
 
 - [Bonfire / fireplace services](bonfire-services.md)
+- [Map fog of war](map-fog-of-war.md)
 - [Localisation and Babel](localisation-babel.md)
 - [Babel system](babel/README.md)
 - [Story, quests and dialogue](story-quest-dialogue.md)

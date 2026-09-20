@@ -3,29 +3,29 @@
 This ledger tracks **knowledge extraction**, not file copying.
 
 ## Waves 1–4
-PR #407 authoring model, complete mechanics/deep-lifecycle/hook indexes, bounded identities and first core domain knowledge.
+PR #407 authoring model, private mechanics/deep-lifecycle/hook indexes, identities and initial core domains.
 
 ## Wave 5
 Tainted Economy + Better Bonfire Menu.
 
 ## Wave 6
-Crime & Consequences + Tainted Weather + Tainted Interface native inventory map.
+Crime & Consequences + Tainted Weather + Tainted Interface inventory.
 
 ## Wave 7
 Tainted Music + Tainted Performance + Tainted Blood.
 
-## Wave 8 — 2026-09-20
+## Wave 8
+Tainted Survival + Immersive Progression + True Third Person / First Person Plus + Multi-Pin Map Notes.
 
-Mined Tainted Survival, Immersive Progression, True Third Person / First Person Plus, and Multi-Pin Map Notes:
+## Wave 9 — 2026-09-20
 
-- native progression layers and proficiency-event observation;
-- project branch/overlay effects vs native progression truth;
-- session-only survival/fatigue pressure assembled from native observations;
-- consumed-food and weather/Wyrdness observation boundaries;
-- hero camera/perspective/body ownership and the difference between broad perspective transition and bounded framing;
-- blocked body-aware first-person mutation with a read-only investigation route;
-- mod-owned pinbook persistence under BepInEx config;
-- modal IMGUI cursor/gameplay-input ownership.
+Mined Views of Avalon and No Map Fog:
+
+- active HDRP/FoA Volume fog and LocalVolumetricFog ownership;
+- bounded HDRP world-fog mutation/restoration;
+- native DistanceCullingSetting / DistanceCuller owner chain and clipping-safety lessons;
+- map-screen FogOfWar ownership and display-only removal boundary;
+- explicit separation of world fog, map fog, map memory, HLOD and proprietary visibility owners.
 
 ## Measurement rule
 

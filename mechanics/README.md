@@ -13,15 +13,16 @@ Mechanics answer **what can a mod do, through which owner, and with what proof b
 ## Major families
 
 - Items / weapons / armour
-- [Progression observation](progression/proficiency-event-observation.md) and [runtime effects](progression/non-saved-runtime-stat-tweaks.md)
-- [Session-only survival](survival/session-fatigue-model.md)
-- [Mod-owned map pinbook](map/mod-owned-pinbook.md)
-- [Third-person camera framing](camera/third-person-framing.md)
-- [Economy](economy/README.md)
-- [Bonfire services](bonfire/native-services.md)
-- Crime: [awareness](crime/passive-awareness-observation.md), [guard response](crime/native-guard-response.md)
-- [Weather](weather/authority-and-consumer-handoff.md)
-- Audio / VFX / diagnostics
-- Mounts / companions / UI / recipes / save state
+- Progression / survival / economy / crime
+- Bonfire / merchants / recipes
+- UI / map / camera
+  - [Map fog display](map/display-fog-mask.md)
+  - [Mod-owned pinbook](map/mod-owned-pinbook.md)
+  - [Third-person framing](camera/third-person-framing.md)
+- Rendering
+  - [HDRP volume fog](rendering/hdrp-volume-fog.md)
+  - [Native distance-culling bias](rendering/native-distance-culling.md)
+- Weather / audio / VFX / diagnostics
+- Assets / mounts / companions / save state
 
-Use the directory tree and [reference mechanics catalogue](../reference/mechanics/README.md) for the full current set.
+Use [Intervention selection](intervention-selection/README.md) when choosing a seam and [Reference mechanics](../reference/mechanics/README.md) for the evidence-scoped catalogue.

@@ -4,6 +4,8 @@ FoA does not use one presentation path for every object. Identify the native own
 
 - [UI and input](ui-input.md)
 - [Hero camera/body ownership](hero-camera-body-ownership.md)
+- [HDRP world fog ownership](hdrp-fog-ownership.md)
+- [Native distance culling](distance-culling.md)
 - [Audio and FMOD](audio-fmod-integration.md)
 - [Music](audio-music.md)
 - [Native music and ambience ownership](audio-ownership.md)
