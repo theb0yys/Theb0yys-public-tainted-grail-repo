@@ -1,62 +1,94 @@
 # Build an Interior Exit Helper
 
-**Evidence status: PARTIAL.** The narrow architecture is established, but a complete runtime validation matrix is not recorded in the case study.
+The working Dungeon Exit Helper is intentionally small: remember where the hero entered the current interior and point back to that position.
 
 Working lineage: [Small Exit Helper Instead of a Dungeon Map](../../../research/case-studies/travel/interior-exit-helper.md).
 
-## Goal
+## Scene owner
 
-Answer only:
+Use SceneService when available:
 
-- where did I enter?
-- which direction leads back out?
+- SceneService.ActiveSceneRef.Name
+- SceneService.ActiveSceneDisplayName
+- SceneService.IsOpenWorld
 
-Do **not** build a minimap or reverse-engineer dungeon geometry unless that is genuinely required.
+Fallback to SceneManager.GetActiveScene().name only when SceneService is unavailable.
 
-## Process
+Build a scene key from the current scene plus whether it is considered an interior. When that key changes:
 
-1. Observe scene transition/metadata.
-2. Capture the hero position associated with the entry point.
-3. Store only session-local helper state.
-4. Read current hero coordinates.
-5. Render a passive direction/distance overlay.
-6. Clear/rebind state on scene transition.
+~~~text
+clear old entrance
+→ record scene-change time
+→ wait briefly for hero placement to settle
+→ capture new entrance
+~~~
 
-```text
-interior entered
-→ capture entry anchor
-→ current hero position
-→ direction + distance
-→ passive overlay
-```
+The working implementation uses a default capture delay of 1.25 seconds.
 
-## Ownership
+## Capture the entrance
 
-The helper owns:
+The position source is:
 
-- captured entry anchor;
-- overlay presentation.
+~~~csharp
+Hero hero = Hero.Current;
+Vector3 entrance = hero.Coords;
+~~~
 
-FoA still owns:
+Reject NaN/infinite positions.
 
-- scene;
-- navigation;
-- map;
-- player movement;
-- save state.
+Keep the entrance in session memory. You do not need to modify FoA map data or saves.
 
-## Verification
+## Determine whether to show it
 
-Test:
+The normal interior check is:
 
-- enter one interior;
-- move away from entrance;
-- direction/distance update correctly;
-- return toward entrance;
-- leave scene;
-- helper state clears/rebinds;
-- no native map/discovery state changes.
+~~~text
+SceneService available
+→ !SceneService.IsOpenWorld
+~~~
 
-## Current proof boundary
+The working mod also has a scene-name fallback for obvious interior names when SceneService cannot be read.
 
-The reduced owner surface and sidecar design are established. Full runtime/UI/scene-transition proof remains to be completed for the public implementation.
+Optionally hide the marker while:
+
+~~~text
+Hero.Current.HeroCombat.IsHeroInFight == true
+~~~
+
+## Screen projection
+
+Use Camera.main.WorldToScreenPoint(entrancePosition).
+
+If the point is behind the camera, do not draw it.
+
+Convert Unity screen Y into GUI Y and clamp the result into a safe screen margin so an off-centre entrance still produces an edge marker.
+
+The working implementation also computes:
+
+~~~csharp
+float distance = Vector3.Distance(Hero.Current.Coords, entrancePosition);
+~~~
+
+That gives a useful "EXIT / 42m" style helper without reconstructing dungeon topology.
+
+## Scene cleanup
+
+On every detected scene change:
+
+- clear _hasEntrance;
+- replace the scene key/display name;
+- start a new capture delay.
+
+There is no durable map state to migrate or clean up.
+
+## What this feature does not need
+
+Do not reverse-engineer:
+
+- dungeon mesh topology;
+- navmesh;
+- native map discovery;
+- quest state;
+- fast-travel data.
+
+For the actual user problem, scene identity + Hero.Current.Coords + Camera projection are enough.
