@@ -1,8 +1,10 @@
 # Avalon Human Companions Public Template
 
+Use this starter when you are building human-companion features across Mono and IL2CPP. Keep companion rules and commands shared, while each host handles the exact FoA actor, faction, interaction, and lifecycle access for that runtime.
+
 Source family: `avalon-human-companions`
 
-This is a public, source-only starter distilled from the Avalon Human Companions mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
