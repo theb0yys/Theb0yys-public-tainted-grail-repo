@@ -1,25 +1,37 @@
 # Medusa
 
-## What it is
+Use this page when you are dealing with **large amounts of static environment geometry that no longer behave like ordinary scene MeshRenderers at runtime**.
 
-**Medusa** is Questline's specialised renderer for fully static, long-distance environment geometry.
+## What Medusa does
 
-Artists can author with ordinary Unity concepts such as `LODGroup`, `MeshRenderer`, `MeshFilter`, meshes, materials and colliders. A build-time conversion moves the **visual representation** into Medusa's compact runtime data.
+Medusa is Questline's specialized renderer for fully static, long-distance environment geometry.
+
+Artists can start with normal Unity objects such as:
+
+- `LODGroup`;
+- `MeshRenderer`;
+- `MeshFilter`;
+- meshes/materials;
+- colliders.
+
+Build-time processing converts the visual representation into compact Medusa runtime data.
 
 Gameplay colliders can remain normal Unity scene objects.
 
-## What it owns
+## What Medusa owns
 
 Medusa owns the static visual side:
 
 - baked per-scene renderer data;
 - compact transform/matrix data;
-- renderer/material/mesh records;
-- LOD and visibility data;
-- static-scene GPU data;
+- mesh/material records;
+- LOD/visibility data;
+- persistent static GPU data;
 - `BatchRendererGroup` rendering;
 - high-volume frustum/LOD culling;
 - mipmap-demand participation.
+
+It is not the gameplay owner for the world object.
 
 ## Main types
 
@@ -31,43 +43,64 @@ Medusa owns the static visual side:
 
 Primary managed assembly: `Awaken.ECS.dll`.
 
-## Build/runtime shape
+## Build/runtime flow
 
 ~~~text
 Unity static authoring
-LODGroup + MeshRenderer + MeshFilter
 → Medusa scene processing
 → per-scene Medusa payloads
 → medusa.arch
 → MedusaPersistence mount
-→ compact CPU renderer / LOD state
-→ persistent static GPU payload
+→ compact CPU-side renderer/LOD state
+→ static GPU data
 → BatchRendererGroup
 → Unity / HDRP
 ~~~
 
-The per-scene data includes transform and matrix information, renderer data, transform indices and reciprocal UV-distribution information used by the rendering/mipmap path.
+The scene data includes transforms/matrices, renderer records, transform indices, and UV-distribution data used by rendering/mipmap behavior.
 
-## Why it exists
+## Why Medusa exists
 
-Static distant environments contain many objects that do not need full GameObject/Renderer runtime cost.
+A distant static environment can contain huge numbers of objects that do not need full active GameObject/Renderer overhead.
 
-Medusa keeps that geometry in a representation suited to:
+Medusa keeps those visuals in a compact representation optimized for:
 
+- large static populations;
 - long-distance rendering;
-- compact immutable scene data;
-- efficient per-view culling;
-- large static populations.
+- per-view culling;
+- LOD selection.
 
-## Modding relevance
+## When this page is useful
 
-Use Medusa knowledge when analysing cliffs, rock fields or other large static environment groups whose visual representation does not behave like a normal runtime `MeshRenderer`.
+Use Medusa knowledge when:
 
-Do not treat a Medusa-owned static visual as an ordinary movable runtime prefab.
+- a cliff/rock/static environment group ignores ordinary MeshRenderer changes;
+- distant visuals differ from nearby Unity objects;
+- you are researching scene baking or Medusa payloads;
+- you need to understand why colliders remain while the visual representation is specialized.
 
-## Related systems
+## Common mistakes
 
-- [Scenes Baking](../../world/scenes-baking/README.md)
-- [Shared mipmap streaming](../mipmap-streaming/README.md)
+- treating a Medusa-owned visual as a movable runtime prefab;
+- editing only the original authoring MeshRenderer and expecting the baked runtime representation to change;
+- assuming the visual owner also owns gameplay/collision;
+- confusing Medusa with HLOD or Drake without checking the object type.
+
+## What to verify
+
+Check:
+
+1. whether the content is actually Medusa-owned;
+2. scene/payload identity;
+3. Medusa data mount/load;
+4. renderer/LOD records;
+5. visibility/culling;
+6. material/mesh resources;
+7. collider/gameplay object remains separate where applicable;
+8. scene cleanup/unload.
+
+## Related pages
+
 - [HLOD](../hlod/README.md)
+- [Shared mipmap streaming](../mipmap-streaming/README.md)
 - [Runtime lifetime](../../core/runtime-lifecycle/README.md)
