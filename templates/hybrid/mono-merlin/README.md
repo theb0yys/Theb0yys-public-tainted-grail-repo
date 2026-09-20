@@ -1,14 +1,8 @@
 # Hybrid Mono + Merlin Starter
 
-This starter keeps two independent lanes explicit:
+Use this starter when one mod combines Merlin-authored content with a separate Mono/BepInEx runtime plug-in.
 
-```text
-merlin/      -> content authoring instructions for the official Merlin Workshop project
-runtime/     -> BepInEx Mono plug-in
-contract/    -> stable identity shared by both lanes
-```
-
-It does **not** bundle a Unity project, game assets, Merlin project files, BepInEx binaries or game assemblies.
+The two parts stay separate on purpose: Merlin owns authored content inside the official Workshop project, while the runtime project owns code that executes in the game. A small shared contract records the identity that connects them.
 
 ## Workflow
 
