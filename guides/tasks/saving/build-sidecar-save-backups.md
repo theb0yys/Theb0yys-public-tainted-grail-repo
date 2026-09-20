@@ -8,11 +8,6 @@ Working lineage: [Smart Backups Without More Save Slots](../../../research/case-
 
 Start with the [Smart save backup example](../../../examples/mono/infrastructure/smart-save-backup/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
-## Runnable source
-
-Start from the buildable example: [Save observer and backup](../../../examples/mono/infrastructure/save-observer-backup/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
-
-Observer: [Observe native save completion](observe-native-save-completion.md).
 
 ## Storage location
 
