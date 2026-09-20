@@ -1,7 +1,5 @@
 # Armour
 
-Use these guides when you are adding or changing armour and clothing. Armour crosses item identity, equip ownership, Kandra deformation, body culling, presentation, cleanup, and persistence, so follow the linked process rather than treating it as a mesh swap.
+Use this section when you are adding, changing, or diagnosing armour and clothing.
 
-- [Native integration](native-integration.md)
-- Native owner: [Armour](../../../knowledge/systems/gameplay/armour.md)
-- Presentation owner: [Kandra](../../../knowledge/systems/presentation/kandra/README.md)
+Armour work crosses item/equipment state and Kandra presentation, so the guides here connect practical tasks to the native equip/clothing lifecycle instead of treating a skinned mesh as a complete armour implementation.
