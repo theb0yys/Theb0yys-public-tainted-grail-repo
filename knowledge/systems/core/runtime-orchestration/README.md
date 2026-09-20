@@ -1,5 +1,9 @@
 # Runtime Orchestration, Scenes and Templates
 
+Use this page when a feature depends on startup ordering or coordination between several FoA runtime systems.
+
+It focuses on how the game brings services, scenes, templates, and other owners online—not on one specific gameplay mechanic.
+
 ## What it is
 
 FoA has a managed startup and service layer that brings core systems online, loads scenes, and populates native template registries.
