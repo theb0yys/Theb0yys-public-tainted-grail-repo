@@ -27,3 +27,9 @@
 - [Recipes and crafting](recipes-crafting.md)
 - [Spells and effects](spells-effects.md)
 - [Creatures and NPCs](creatures-npcs.md)
+
+- [Glider movement](glider-movement/README.md)
+- [Crime / stealth / bounty](crime-stealth-bounty.md)
+- [Progression and skills](progression-skills.md)
+- [Recipes and economy](recipes-economy.md)
+- [Spawning and encounters](spawning-encounters.md)
