@@ -1,5 +1,9 @@
 # Critter VAT / ECS Integration
 
+Use this page when you are investigating small animated creatures or other visuals that combine VAT animation with FoA's ECS/Drake-style rendering.
+
+It helps distinguish the animation data from the runtime rendering owner and the gameplay object that the visual represents.
+
 ## What it is
 
 FoA's critter rendering path combines **TAO Vertex Animation Texture (VAT)** with Questline's ECS/Drake runtime.
