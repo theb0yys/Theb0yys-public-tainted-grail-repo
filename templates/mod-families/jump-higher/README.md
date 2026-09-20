@@ -1,8 +1,10 @@
 # Jump Higher Public Template
 
+Use this starter when you are building a simple movement/stat tweak such as increased jump height across both runtimes. Keep the setting and feature rule shared, then connect it to the exact native movement/stat owner in each host.
+
 Source family: `jump-higher`
 
-This is a public, source-only starter distilled from the Jump Higher mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
