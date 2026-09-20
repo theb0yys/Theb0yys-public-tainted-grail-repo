@@ -1,39 +1,20 @@
 # Saving and Persistence
 
-> **Reference page.** Use this before claiming that custom content survives save/load, uninstall, downgrade, missing dependencies, or game restart.
+Use this page before you claim that custom content **survives save/load, restart, uninstall, downgrade, or a missing dependency**.
 
-## What this system is
-
-Persistence is a separate capability from runtime success.
+A feature working in the current session is not the same as persistence.
 
 A custom item can:
 
 - register successfully;
-- appear in inventory or a shop;
-- work during the current session;
+- appear in inventory;
+- work in combat or a shop;
 
-and still be unsafe or unresolved when a save is loaded later.
+and still fail when the save is loaded later.
 
-## Who owns it in FoA
+## How native template references are saved
 
-Static native-contract research for items establishes:
-
-- `Item.Serialize` writes its template relationship and quantity;
-- template serialization writes the template GUID;
-- `Item.Deserialize` restores an `ItemTemplate`;
-- template restore resolves the saved GUID through the native template lookup path.
-
-FoA save-slot lifecycle is owned by native save services. A completed native save observation is not the same as a custom serialization extension point.
-
-Current-binary research also found an important negative result: the native save-domain set is effectively fixed around game-owned domains. No mutable registrar for arbitrary mod-owned native save domains was recovered. Unknown `<name>.data` payloads may be carried through parts of the archive/cache flow, but native restore does not thereby deserialize an arbitrary mod-owned domain.
-
-That blocks the tempting approach of "register a new native save domain" as a generic mod persistence API.
-
-## Important identities, types, and methods
-
-### Exact template save-resolution contract
-
-For the inspected Mono build, template relationships follow this static path:
+For the inspected Mono build, template-backed state uses GUID-based restoration:
 
 ~~~text
 SaveWriter.WriteTemplate<T>
@@ -45,114 +26,108 @@ SaveReader.ReadTemplate<T>
 → TemplatesProvider.Get<T>(guid)
 ~~~
 
-That explains why a runtime-created object depending on a custom template can still fail on reload if the template is not resolvable at restore time.
+For items, static research also shows that item serialization records the template relationship and quantity, and deserialization resolves the saved `ItemTemplate`.
 
-### Explicit non-saved Model state
+The practical consequence is important:
 
-Exact Mono inspection also establishes:
+> If a save refers to your custom template, that template must be registered and resolvable before restore needs it.
 
-- `Model.MarkedNotSaved` is settable;
-- `Model.IsNotSaved` reflects that state;
-- `Model.IsValidAfterLoad()` rejects not-saved models;
-- save preparation skips normal `OnSave()` for an `IsNotSaved` model.
+Runtime registration that happens too late can still produce a broken load even if the item worked perfectly before saving.
 
-This is useful for deliberately session-only Models, but it is not a generic substitute for designing cleanup and ownership correctly.
+## Session-only Models
 
-Relevant researched surfaces include:
+The inspected Mono Model contract includes:
 
-- `SaveWriter.WriteTemplate<T>`
-- `SaveReader.ReadTemplate<T>`
-- `TemplatesUtil.Load<T>`
-- `Item.Serialize`
-- `Item.Deserialize`
-- `TemplatesLoader.FinishedLoading`
-- concrete cloud-service `EndSave(string)` methods as completed-save observations
+- `Model.MarkedNotSaved`;
+- `Model.IsNotSaved`;
+- `Model.IsValidAfterLoad()`;
+- save preparation that skips normal `OnSave()` for not-saved Models.
 
-For disposable/session-only world objects, some proven paths explicitly use `Location.MarkedNotSaved = true`.
+Some working one-session actor/companion paths deliberately use `Location.MarkedNotSaved = true`.
 
-Additional researched save-lifecycle surfaces include:
+Use this when the object is intentionally disposable/session-only. It does not replace proper cleanup.
+
+## Native save requests and completion
+
+Useful researched surfaces include:
 
 - `LoadSave.CanAutoSave()` — native save guard;
 - `LoadSave.Save(SaveSlot, bool)` — native save request;
 - `LoadSave.QuickSave()` — native quicksave request;
-- concrete cloud-service `EndSave(string)` — strong completed-slot-write observation;
-- `SaveInProgressHandle.MarkSucceeded` — strongest static candidate found for a successful native-save milestone in sidecar research;
-- `LoadSave.LoadSaveSlotToCache(...)` — candidate load-stage point;
-- `SceneLifetimeEvents.Events.AfterSceneStoriesExecuted` — candidate delayed post-load apply point.
+- concrete cloud-service `EndSave(string)` implementations — completed slot-write observation points.
 
-The last three remain under evaluation for a standard sidecar contract rather than a promoted implementation recipe.
+A callback that observes a completed native slot write is **not** a general custom serialization API.
 
-## Where it exists in the lifecycle
+## Custom native save domains
 
-For a saved custom item, the critical dependency is:
+Current Mono research did not recover a supported mutable registrar for arbitrary mod-owned native save domains.
 
-~~~text
-game starts
-→ native templates load
-→ custom template must become resolvable
-→ save restores item GUID
-→ provider resolves custom template
-→ item restoration can continue
-~~~
+The native domain set appears to be game-owned. Unknown `<name>.data` payloads may pass through parts of the archive/cache path, but that does not mean native restore will deserialize arbitrary mod data.
 
-If the custom definition is unavailable when restore needs it, the runtime-visible success from the previous session does not guarantee a safe load.
+So do not design a persistence system around the assumption that you can simply "register another native save domain."
 
-## How we interact with it
+## Sidecar state
 
-Treat persistence as an explicit design choice.
+For mod-owned data that does not naturally belong to an existing native object/template, a separate namespace-isolated sidecar is a reasonable research direction.
 
-For durable custom content, define:
+That requires its own answers for:
+
+- when to write;
+- how to associate sidecar data with a save;
+- when it is safe to apply after load;
+- duplicate/replay behavior;
+- schema migration;
+- missing/corrupt sidecar handling;
+- uninstall behavior.
+
+The general sidecar architecture is still under evaluation and should not be described as universally proven.
+
+## Designing durable custom content
+
+Before calling a feature persistent, decide:
 
 - stable identity;
-- registration timing;
-- save owner;
-- missing-mod behavior;
-- duplicate/replay behavior;
-- migration across versions;
+- when the definition is registered;
+- what native or mod-owned system saves the state;
+- what happens if the mod is missing;
+- whether repeated load/apply is idempotent;
+- how schema/identity changes migrate;
 - uninstall/orphan behavior;
-- rollback/non-reversibility.
+- rollback strategy.
 
-For proofs that do not need persistence, prefer an explicit session-only/disposable boundary rather than accidentally creating save-owned state.
+If persistence is not required, make that explicit and keep the object/session state disposable.
 
-For mod-owned state that does not naturally belong to an existing native game object/template, the research direction is toward a **namespace-isolated sidecar** coordinated with native save/load milestones rather than patching `SaveWriter`/`SaveReader` globally. That sidecar architecture is still under evaluation and must not yet be called proven.
+## Common failure cases
 
-## Why this route
-
-Your working-repo research found enough of the native item serialization contract to explain **why early registration matters**, but not enough live evidence to claim universal save-safe custom item registration.
-
-That distinction prevents a current-session success from becoming an unsupported persistence claim.
-
-## What goes wrong
-
-Known risks:
-
-- a save contains a custom template GUID but the mod is missing;
-- registration occurs after item restoration tried to resolve that GUID;
-- the custom GUID changes between versions;
+- the save contains a custom template GUID but the mod is missing;
+- custom registration happens after restore has already tried the GUID;
+- the GUID changes between versions;
 - two mods claim the same GUID;
-- a runtime-only recipe/item is mistaken for a persistent one;
-- session-only actors are allowed into save-owned state accidentally;
-- uninstall/downgrade behavior is never tested;
-- a mod patches the global native serializer to invent an unsupported custom domain;
-- a save-request hook is mistaken for proof that the disk write succeeded;
-- a sidecar is applied before native world/scene restoration has reached a safe state.
+- a runtime-only recipe/item is mistaken for persistent content;
+- a session-only actor accidentally enters save-owned state;
+- a save-request hook is mistaken for disk-write success;
+- a mod patches global serializers without a proven ownership/compatibility contract;
+- sidecar data is applied before the native world is ready.
 
-## How to verify
+## How to prove persistence
 
-For a durable claim, test separately:
+Use a disposable test save and verify each stage:
 
 1. create/use the custom content;
-2. save on a disposable slot;
-3. exit/restart;
-4. load with the same mod/version;
-5. verify identity and behavior;
-6. test duplicate/replay behavior;
-7. test the documented missing/disabled-mod case;
-8. test migration when identity/schema changes;
-9. record exact game/mod versions and hashes.
+2. save;
+3. exit the game completely;
+4. restart;
+5. load with the same mod/version;
+6. verify identity and behavior;
+7. repeat save/load to catch duplication;
+8. test the documented missing/disabled-mod case;
+9. test migration if IDs/schema changed;
+10. record the exact game, loader, mod versions, and relevant hashes.
 
-## Current proof boundary
+If you did not test a cold restart/load, do not call the feature restart-safe.
 
-Custom item GUID serialization/lookup and the `MarkedNotSaved` model contract are supported by exact Mono static research. The general public custom-item path in this repository must **not** claim cold-save, missing-mod or uninstall safety until those exact tests are recorded.
+## Evidence limits
 
+Custom template GUID serialization/lookup and the `MarkedNotSaved` Model contract are supported by exact Mono static research.
 
+The public custom-item route does **not** currently prove universal missing-mod, uninstall, downgrade, or cold-save safety.
