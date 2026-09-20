@@ -36,14 +36,21 @@ Treat service availability as lifecycle-scoped. A service type being known does 
 
 ## Scene-service examples
 
-Questline public source exposes:
+Questline public source plus internal static review expose:
 
-- `SceneService.ActiveSceneRef`
+- `SceneService.MainSceneRef`
+- `SceneService.AdditiveSceneRef`
+- `SceneService.ActiveSceneRef` (active additive scene when present, otherwise main scene)
 - `SceneService.ActiveSceneLoadTime`
 - `SceneService.IsAdditiveScene`
+- `SceneService.IsOpenWorld`
+- `SceneService.AllowsWyrdnight`
+- `SceneService.IsPrologue`
 
 These are useful exact lookup surfaces, not proof that every scene transition should be implemented through direct service calls.
 
 ## Evidence boundary
 
-This page records publicly visible names and access patterns. Supported mod-facing API status is separate from public visibility.
+Service names come from public source and exact-build internal review. Supported mod-facing API status is separate from visibility or decompilation.
+
+See [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
