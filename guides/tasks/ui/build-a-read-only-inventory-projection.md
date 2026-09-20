@@ -9,6 +9,10 @@ Working lineage: [Inventory Suite: Presentation Without a Second Inventory](../.
 Start with the [Inventory read-only projection example](../../../examples/mono/ui/inventory-readonly-projection/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
 
+## Runnable source
+
+Start from the buildable public source: [Read-only inventory projection example](../../../examples/mono/ui/inventory-projection/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Native inventory authority
 
 The relevant native chain is:
