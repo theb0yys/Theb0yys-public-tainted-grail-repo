@@ -1,10 +1,8 @@
 # Magic Tweaks Public Template
 
-Use this starter when you are building magic tuning that should share configuration across runtimes. Put selection/tuning rules in common code and keep exact projectile, mana-cost, cast, status, or other FoA hooks in the runtime hosts.
+Use this starter for spell and magic tuning across Mono and IL2CPP.
 
-Source family: `magic-tweaks`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep configuration and tuning policy shared, then use the runtime hosts for the exact projectile, cost, status, cast, or other FoA magic hooks required by each build.
 
 ## Reusable mechanisms
 
