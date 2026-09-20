@@ -9,6 +9,10 @@ Reference pages are for exact lookup, not long tutorials.
 - [Identities](identities/README.md)
 - [Assets](assets/README.md)
 - [Compatibility](compatibility/README.md)
+- [Runtime access](runtime-access/README.md)
+- [Runtime lanes](runtimes/README.md)
+- [Types and members](types/README.md)
+- [Performance](performance/README.md)
 - [Mechanics catalogue](mechanics/README.md)
 - [Version scope](versions/README.md)
 - [Visibility/fog owners](rendering/visibility-owners.md)
@@ -24,4 +28,4 @@ Reference pages are for exact lookup, not long tutorials.
 - [Events](events/README.md)
 - [Glossary](glossary/README.md)
 
-For bounded capabilities use [mechanics](../mechanics/README.md); for native ownership use [systems](../systems/README.md); for unknown behaviour use [investigate](../../research/README.md).
+For bounded capabilities use [mechanics](../mechanics/README.md); for native ownership use [systems](../systems/README.md); for unknown behaviour use [Research](../../research/README.md).
