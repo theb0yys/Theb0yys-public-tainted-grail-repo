@@ -4,6 +4,10 @@ Use a non-unique human LocationTemplate, spawn a new Location, mark it session-o
 
 Working lineage: [Human Native-Ally Proof](../../../research/case-studies/companions/native-human-ally-proof.md).
 
+## Runnable source
+
+Start with the [Temporary human ally example](../../../examples/mono/gameplay/temporary-human-ally/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Pick a non-unique template
 
 Resolve the configured GUID through:
