@@ -84,3 +84,7 @@ If a Framework/Core capability is not explicitly promoted for consumers, treat i
 - **Capability-gated** — shared owner exists; only specifically promoted surfaces may be consumed.
 - **Advanced/SDK** — external process or high-authority integration requiring stronger version/security discipline.
 - **Blocked/research** — architecture may exist, but mod authors should not build against it yet.
+
+## Ecosystem reference
+
+- [Shared infrastructure map](ecosystem/README.md)
