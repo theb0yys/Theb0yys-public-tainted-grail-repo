@@ -22,6 +22,12 @@ Access to an object does not by itself prove gameplay, persistence or lifecycle 
 | Main UI canvas | `Services.Get<ViewHosting>().OnMainCanvas()` | Questline public source uses this from multiple views |
 | World event subscription | `World.EventSystem.ListenTo(...)` | Public Mono mod installs event listeners after hero initialization |
 | World event cleanup | `World.EventSystem.RemoveListener(listener)` | Same public mod removes the listener before replacing/disposal |
+| Enumerate world models | `World.All<T>()` | Preserved developer lifecycle documentation exposes broad model enumeration; prefer it for startup/discovery rather than continuous polling |
+| Required child element | `model.Element<T>()` | Access a related element when the caller expects one |
+| Child elements | `model.Elements<T>()` | Enumerate related elements owned by a model |
+| Element parent | `element.ParentModel` | Resolve an element back to its owning model |
+| Model view | `World.View<T>(model)` | Resolve a FoA View associated with a model |
+| Enumerate loaded templates | `TemplatesProvider.GetAllOfType<T>()` | Current Mono static evidence confirms a typed enumeration surface; treat as bounded/read-only unless a stronger use is proven |
 
 ## Hero-owned runtime surfaces
 
@@ -74,4 +80,4 @@ A public damage-number mod waits for `Hero.OnFullyInitialized` before using `Wor
 
 ## Evidence provenance
 
-Current public evidence comes from Questline's public Merlin Workshop source and public FoA mod source, including `jonanoj/FallOfAvalonMods`, `apodworny/FallOfAvalonMods` and other publicly released mods. Exact signatures, assembly ownership and cross-runtime equivalence should be added only when independently established.
+Evidence combines Questline public source, public FoA mod source, preserved developer lifecycle documentation and exact-build Mono static inspection. See [Public FoA Symbol Baseline](../../../research/sources/public-symbol-baseline.md) and [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md). Exact signatures, assembly ownership and cross-runtime equivalence should be added only when independently established.
