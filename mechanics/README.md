@@ -8,20 +8,12 @@ last_verified: 2026-09-20
 
 # Mechanics
 
-Mechanics answer **what can a mod do, through which owner, and with what proof boundary?**
+Newly extracted domains now include:
 
-## Newly documented stat/magic/HUD routes
+- Combat: [enemy pressure](combat/enemy-pressure.md), [parry/block](combat/parry-block-tuning.md), [poise damage](combat/player-poise-damage.md), [consumable cooldown](combat/consumable-cooldown.md)
+- Storage: [stash count clarity](storage/stash-count-clarity.md), [native campfire stash](storage/native-campfire-stash.md)
+- Lockpicking: [tolerance/pick damage](lockpicking/tolerance-and-pick-damage.md), [auto-unlock](lockpicking/auto-unlock.md)
 
-- [Stamina drain](stats/stamina-drain.md)
-- [Carry capacity](stats/carry-capacity.md)
-- [Magic projectile tuning](magic/projectile-tuning.md)
-- [Spell charge speed](magic/spell-charge-speed.md)
-- [Magic mana cost](magic/mana-cost.md)
-- [Magic damage scaling](magic/damage-scaling.md)
-- [Status buildup scaling](status/buildup-scaling.md)
-- [Force native hero HUD visible](ui/force-native-hero-hud.md)
-- [Read-only custom vitals HUD](ui/read-only-custom-vitals.md)
+The repository also covers stats/magic/HUD, items/weapons/armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
 
-The repository also covers items, weapons, armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
-
-Use [Intervention selection](intervention-selection/README.md) when choosing a seam.
+Dialogue replacement remains under [Investigate](../investigate/dialogue/external-engine-integration.md), not a promoted mechanic.

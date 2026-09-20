@@ -3,6 +3,10 @@
 Case studies preserve what real mod work taught us without publishing the private workspace wholesale.
 
 - [Frameworks/tooling](frameworks/README.md)
+- [Combat](combat/README.md)
+- [Storage](storage/README.md)
+- [Lockpicking](lockpicking/README.md)
+- [Dialogue](dialogue/README.md)
 - [Encounters/spawning](encounters/README.md)
 - [Travel/navigation](travel/README.md)
 - [Companions](companions/README.md)

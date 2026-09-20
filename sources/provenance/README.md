@@ -2,22 +2,24 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Waves 1–12
+## Waves 1–13
 
-Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, frameworks/SDK, actor/companion ownership, save backups, travel research and navigation helpers.
+Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, shared frameworks/SDK, actors/companions, persistence/travel, stats/magic/HUD.
 
-## Wave 13 — 2026-09-20
+## Wave 14 — 2026-09-20
 
-Mined Stamina Action Control, Carry Weight Tweaks, Magic Tweaks and Immersive/Always Show HUD:
+Mined Tainted Combat, Avalon Stash, Lockpicking Reforged and Dialogue Overhaul:
 
-- non-saved runtime `StatTweak` lifecycle and stale-stat correction;
-- sprint vs broader negative-stamina multipliers;
-- carry-capacity ownership through `EncumbranceLimit`;
-- magic projectile route coverage, lifetime/homing and aim-offset correction;
-- spell charge speed, mana cost and magic damage seams;
-- status buildup input scaling while preserving native thresholds/decay;
-- native `VHeroHUD.ShowBars` / `UpdateCanvasGroups` ownership;
-- passive custom-vitals boundary and visual-proof limitations.
+- combat attack-slot/cadence ownership;
+- parry/block runtime stats and item-stat boundaries;
+- NPC poise-break versus stamina stagger separation;
+- player poise-damage scaling and in-memory consumable-pressure pattern;
+- native Hero Storage compressed/live lifecycle and persistence;
+- stash-aware crafting/gear-upgrade ownership and UI-only count clarity;
+- native campfire stash access;
+- lock entry, tolerance, pick durability and auto-unlock gate preservation;
+- native Story dialogue identity/lifecycle/canonical-state ownership;
+- external dialogue integration, semantic outcome, migration and fallback architecture kept explicitly research-only.
 
 ## Measurement rule
 
