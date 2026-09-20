@@ -1,5 +1,7 @@
 # Recipes and Crafting
 
+Use this page when you are working with recipe identity, learned recipes, station recipe lists, ingredient consumption, or crafting UI. Those are separate native responsibilities and should not be treated as one registration step.
+
 This page documents the native owners around recipes and crafting.
 
 ## Native ownership
