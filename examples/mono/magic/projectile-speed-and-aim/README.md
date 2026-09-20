@@ -1,27 +1,52 @@
-# Projectile Speed and Aim
+# Make Projectiles Faster Without Moving Them Off Aim
 
-This example patches DamageDealingProjectile.SetBaseDamageParams plus ConfigureShootProjectile.ApplyToProjectile as a fallback.
+This example changes projectile speed while preserving the correction Tainted Grail uses between the firing point and the actual aim direction.
 
-A ConditionalWeakTable prevents the same projectile instance from being scaled twice.
+That matters because multiplying the whole velocity vector can make a projectile travel faster **and** drift away from where the player aimed.
 
-Aim correction is preserved:
-
-~~~text
-final velocity
-- PositionOffset.InitialVelocity
-= aim component
-
-aim component × multiplier
-+ original offset component
-= new final velocity
-~~~
-
-Build:
+## Build it
 
 ~~~powershell
 dotnet build .\ProjectileSpeedAndAim.csproj -c Release -p:FoAGameRoot="C:\Path\To\Tainted Grail FoA"
 ~~~
 
-Edit SpeedMultiplier first. LifetimeMultiplier demonstrates a separate projectile-owned field.
+## Try it in game
 
-Guide: ../../../../guides/tasks/gameplay/tune-projectile-speed-without-breaking-aim.md
+Find SpeedMultiplier in the example and start with a small increase.
+
+Test one known projectile repeatedly at a fixed target.
+
+Confirm:
+
+- the projectile is visibly faster;
+- it still travels toward the same point;
+- one projectile is not scaled twice.
+
+## What to change first
+
+Change only SpeedMultiplier.
+
+Leave LifetimeMultiplier at its normal value until speed and aim are behaving correctly.
+
+## How it works
+
+The example watches two projectile setup routes:
+
+- DamageDealingProjectile.SetBaseDamageParams;
+- ConfigureShootProjectile.ApplyToProjectile as a fallback.
+
+It remembers each projectile it already changed so the same object is not multiplied twice.
+
+For velocity, it separates:
+
+~~~text
+the part that aims at the target
++
+the small correction from the firing position
+~~~
+
+Only the aiming part is scaled. The original correction is then added back.
+
+## Next
+
+[Read the projectile speed and aim guide](../../../../guides/tasks/gameplay/tune-projectile-speed-without-breaking-aim.md)
