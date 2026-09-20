@@ -159,7 +159,7 @@ Example:
 .\platform\developer-tools\New-FoARelease.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -Zip
 ~~~
 
-Packaging deliberately records runtime/feature validation as NOT_RUN. A package is not proof that the mod works in game.
+Packaging does not perform runtime or feature validation. A package is not proof that the mod works in game.
 
 ### Build-FoAMod.ps1
 
@@ -290,21 +290,7 @@ Example:
 .\platform\developer-tools\Test-FoAReleaseReady.ps1 -Project ".\MyFirstMod\MyFirstMod.csproj" -GameRoot "C:\Games\Tainted Grail FoA" -BaselineFingerprint ".\foa-fingerprint.json" -StagePackage
 ~~~
 
-Typical output intentionally includes:
-
-~~~text
-Environment              PASSED
-ProjectStructure         PASSED
-CompatibilityFingerprint PASSED/PARTIAL/NOT_RUN
-Build                    PASSED
-HarmonySourceOwnership   PASSED/PARTIAL
-InstalledModConflicts    PASSED/PARTIAL
-BuiltVsInstalled         PASSED/PARTIAL/NOT_RUN
-ReleasePackage           PASSED/NOT_RUN
-RuntimeLoad              NOT_RUN
-FeatureValidation        NOT_RUN
-PersistenceValidation    NOT_RUN/NOT_APPLICABLE
-~~~
+The command reports each check separately rather than collapsing static, build, install, runtime, feature and persistence evidence into one implied result.
 
 The command also accepts `-SymbolAnchorManifest`. When supplied, it verifies the selected runtime lane against local Mono managed assemblies or IL2CPP interop assemblies using the canonical symbol verifier. Use `-IlSpyCmd` to select a specific ILSpy CLI executable.
 
