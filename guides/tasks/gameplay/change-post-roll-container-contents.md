@@ -4,6 +4,10 @@ Modify the generated runtime rows after FoA has rolled the container. Do not rew
 
 Working lineage: [Container Rules: Post-Roll and Save-Backed](../../../research/case-studies/economy/container-row-boundary.md).
 
+## Runnable source
+
+Start with the [Container post-roll rules example](../../../examples/mono/gameplay/container-post-roll-rules/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Runtime owner
 
 The working economy implementation operates on:
