@@ -44,7 +44,7 @@ public sealed class Plugin : BaseUnityPlugin
 
         if (_enabled?.Value != true)
         {
-            Logger.LogInfo("Runtime tracer status=NOT_RUN reason=disabled. No patches installed.");
+            Logger.LogInfo("Runtime tracer enabled=false. No patches installed.");
             return;
         }
 
@@ -65,7 +65,7 @@ public sealed class Plugin : BaseUnityPlugin
             if (!spec.IsConfigured)
             {
                 Logger.LogWarning(
-                    "Runtime tracer status=NOT_RUN reason=target-not-configured. " +
+                    "Runtime tracer targetConfigured=false. " +
                     "Set Target.AssemblyName, Target.TypeName and Target.MethodName, or enable SelfTest.Enabled.");
                 return;
             }
@@ -166,7 +166,6 @@ public sealed class Plugin : BaseUnityPlugin
 
         Logger.LogInfo(
             "Runtime tracer patchInstallation=PASSED " +
-            "runtimeObservation=NOT_RUN " +
             "session=" + Controller.SessionId +
             " startedUtc=" + Controller.StartedAtUtc.ToString("O", CultureInfo.InvariantCulture) +
             " gameVersion=" + SafeApplicationValue(() => Application.version) +
@@ -197,8 +196,8 @@ public sealed class Plugin : BaseUnityPlugin
         if (controller != null)
         {
             Logger.LogInfo(
-                "Runtime tracer sessionSummary runtimeObservation=" +
-                (controller.InvocationCount > 0 ? "PASSED" : "NOT_RUN") +
+                "Runtime tracer sessionSummary observed=" +
+                (controller.InvocationCount > 0 ? "true" : "false") +
                 " session=" + controller.SessionId +
                 " invocationCount=" + controller.InvocationCount.ToString(CultureInfo.InvariantCulture) +
                 " target=" + (_target == null ? "<none>" : TargetFormatter.Format(_target)));
@@ -240,7 +239,7 @@ public sealed class Plugin : BaseUnityPlugin
             "Target",
             "MethodName",
             string.Empty,
-            "Exact declared method name. Constructors are not supported by this Gate 2 tracer.");
+            "Exact declared method name. Constructors are not supported by this tracer.");
 
         _parameterTypeNames = Config.Bind(
             "Target",
