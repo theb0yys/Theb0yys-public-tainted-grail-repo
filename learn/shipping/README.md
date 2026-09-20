@@ -4,6 +4,10 @@ Infrastructure is the machinery around the mod or framework itself.
 
 This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
 
+## Start with
+
+- [Release evidence and artifact identity](release-evidence-and-artifacts.md)
+
 ## Repository structure
 
 Keep authored source separate from:
