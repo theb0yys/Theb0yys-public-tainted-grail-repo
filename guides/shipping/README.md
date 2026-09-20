@@ -83,9 +83,14 @@ Do not claim a development DLL and a published archive are identical unless arti
 A useful pre-package sequence is:
 
 ~~~text
-Test-FoAModProject
-→ Build-FoAMod
-→ New-FoARelease
+Test-FoAReleaseReady
+  ├─ environment + project doctor
+  ├─ optional compatibility fingerprint comparison
+  ├─ build
+  ├─ source-level Harmony overlap review
+  ├─ installed mod duplicate/conflict review
+  ├─ built-vs-installed comparison
+  └─ optional package staging
 → inspect release-manifest.json + SHA256SUMS.txt
 → perform runtime/feature/save validation separately
 ~~~
