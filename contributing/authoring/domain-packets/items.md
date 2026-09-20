@@ -34,9 +34,9 @@ Custom item definition, native registration, native item construction, acquisiti
 
 ## Required prerequisites
 
-- [Templates and registries](../../../systems/core/templates-and-registries.md)
+- [Templates and registries](../../../systems/core/templates-registries.md)
 - [Native object ownership](../../../systems/core/native-object-ownership.md)
-- [Saving and persistence](../../../systems/persistence/README.md)
+- [Saving and persistence](../../../systems/world/saving-persistence.md)
 - [Evidence status](../../../reference/evidence/README.md)
 
 ## Public source set
