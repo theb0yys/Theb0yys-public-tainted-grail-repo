@@ -1,5 +1,7 @@
 # Spells, Magic, Effects, and VFX
 
+Use this page when you are tracing or changing spell costs, casting, projectiles, summons, statuses, or spell VFX. The item, SkillGraph, gameplay effect, and presentation can be different owners, so trace the exact chain before changing it.
+
 > **Reference page.** Spell identity, gameplay effect ownership, and visual effects are separate layers.
 
 ## What this system is
