@@ -1,70 +1,101 @@
 # Build a Sidecar Map Pinbook
 
-**Evidence status: PARTIAL.** The ownership architecture is established, but a complete public runtime/UI/restore matrix is not recorded.
+Store personal location notes under BepInEx config using Hero.Current.Coords. Do not create native map markers or edit FoA discovery memory.
 
 Working lineage: [Sidecar Pinbook Instead of Native Map Injection](../../../research/case-studies/map/mod-owned-pinbook.md).
 
-## Goal
+## Position source
 
-Create durable personal position notes without claiming native map-marker registration.
+Use the current hero first:
 
-## Ownership model
+~~~csharp
+Hero hero = Hero.Current;
+Vector3 position = hero.Coords;
+~~~
 
-Use:
+The maintained implementation can use a player-transform fallback when needed, but Hero.Current.Coords is the primary source.
 
-- native hero coordinates as position truth;
-- plugin-owned marker records;
-- plugin-owned UI;
-- a small sidecar file under BepInEx config.
+## Storage file
 
-Do not mutate native map/compass markers or FoA save data.
+The working mod uses:
 
-## Process
+~~~text
+StorageFileName = PluginGuid + ".pins.tsv"
+_storagePath = Path.Combine(Paths.ConfigPath, StorageFileName)
+StorageVersion = 1
+~~~
 
-```text
-user creates pin
-→ capture current native coordinates
-→ assign mod-owned ID/name
-→ write sidecar record
-→ project records in plugin UI
-→ edit/delete only mod-owned records
-```
+A stored row contains:
 
-A simple TSV/JSON-like sidecar is enough if its format/versioning is explicit.
+~~~text
+v1
+base64-encoded name
+X
+Y
+Z
+~~~
 
-## Required fields
+separated by tabs.
 
-At minimum:
+Coordinates are formatted with invariant culture and round-trip float formatting.
 
-- mod-owned pin ID;
-- label;
-- world/scene identity;
-- coordinates;
-- optional notes/category;
-- format version.
+## Capture
 
-## Failure handling
+On the save-pin action:
 
-If the sidecar is missing:
+1. require gameplay/hero availability;
+2. require current pin count below the configured limit;
+3. capture current position;
+4. open a mod-owned naming UI;
+5. sanitize the name;
+6. append a PinNote to the mod-owned list;
+7. persist the list.
 
-- start empty.
+No FoA map object needs to be created.
 
-If one row is invalid:
+## Durable write pattern
 
-- reject/report that row rather than corrupting native game state.
+The working implementation writes the whole pin list to:
 
-## Verification
+~~~text
+<storage>.tmp
+~~~
 
-Prove:
+Then:
 
-- create pin;
-- reload plugin/game;
-- sidecar loads;
-- scene identity is interpreted correctly;
-- edit/delete works;
-- malformed row fails safely;
-- native map/discovery state is unchanged.
+- if the final file exists, File.Replace(temp, final, backup);
+- remove the temporary backup after success;
+- otherwise File.Move(temp, final).
 
-## Current proof boundary
+If writing fails, delete the .tmp file and keep the session copy in memory.
 
-The sidecar design is the established lesson. Complete runtime persistence/UI validation remains to be demonstrated for the public implementation.
+## Load pattern
+
+At startup:
+
+~~~text
+File.ReadAllLines(storage)
+→ parse each v1 row
+→ ignore/report malformed non-empty rows
+→ stop adding when MaxStoredPins is reached
+~~~
+
+A malformed line does not affect native game data.
+
+## HUD calculations
+
+For a compact pin HUD:
+
+~~~csharp
+float distance = Vector3.Distance(currentPosition, pin.Position);
+~~~
+
+The maintained mod also builds a local forward/right direction basis and can sort pin display by squared distance.
+
+## UI ownership
+
+The pin manager/naming screen is mod-owned UI.
+
+When opened, acquire the appropriate cursor/input scope; on close, disable, or destroy, restore the previous cursor/input state.
+
+The pinbook never owns native discovery, fast travel, map fog, or quest markers.
