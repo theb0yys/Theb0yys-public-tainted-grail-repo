@@ -1,6 +1,8 @@
 # Events
 
-Event architecture: [MVC/models/elements/events](../../systems/core/mvc-models-elements-events.md).
+Use this page when you need to react to FoA state changes through the game's event system instead of polling or patching a method unnecessarily.
+
+It points to the event architecture and the established listener/cleanup patterns used by Models, Elements, Hero state, and global events.
 
 ## Public event access patterns
 
