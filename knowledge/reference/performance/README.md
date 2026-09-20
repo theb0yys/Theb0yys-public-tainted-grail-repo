@@ -1,5 +1,7 @@
 # Performance Reference
 
+Use this page when a mod touches frequent update paths, broad scans, UI refresh, combat hooks, reflection, logging, or other work that may scale badly. Source review can identify risk; measured performance claims still require profiling.
+
 Exact lookup for performance-sensitive FoA modding concerns.
 
 This page records **known scaling surfaces and evidence-backed engineering patterns**. It does not assign a performance culprit or invent an FPS/frame-time budget without measurement.
