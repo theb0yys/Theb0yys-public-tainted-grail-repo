@@ -1,10 +1,8 @@
 # Wyrd Hunt Public Template
 
-Use this starter when you are building hunt or encounter features that need shared rules with runtime-specific actor, death, reward, scene, or tracking integration.
+Use this starter for Wyrd Hunt-style encounter or hunt logic across Mono and IL2CPP.
 
-Source family: `wyrd-hunt`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep hunt rules, state, and configuration shared; runtime hosts should own the exact actor, death, reward, scene, and other FoA integration required by each build.
 
 ## Reusable mechanisms
 
