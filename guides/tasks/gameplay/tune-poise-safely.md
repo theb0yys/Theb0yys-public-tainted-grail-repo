@@ -1,5 +1,8 @@
 # Tune Poise Without Rewriting Stagger
 
+
+> **Start with source:** [Combat pressure and poise example](../../../examples/mono/combat/combat-pressure-poise/README.md)
+
 FoA poise break and stamina-driven stagger are separate systems. Tune the incoming poise contribution instead of treating `NpcStats.PoiseThreshold` as a simple threshold setting.
 
 Working lineage: [Poise Is Not Stagger](../../../research/case-studies/combat/poise-not-stagger.md).
