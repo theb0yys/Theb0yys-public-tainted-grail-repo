@@ -1,8 +1,10 @@
 # Avalon Cheat Panel Public Template
 
+Use this starter when you are building a cheat or developer panel with shared feature logic and separate Mono/IL2CPP hosts. Keep the panel model and commands shared; keep exact game access and loader-specific UI wiring in the runtime host.
+
 Source family: `avalon-cheat-panel`
 
-This is a public, source-only starter distilled from the Avalon Cheat Panel mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
