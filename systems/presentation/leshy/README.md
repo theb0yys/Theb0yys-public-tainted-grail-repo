@@ -67,6 +67,10 @@ A separate near-player collider path provides physical vegetation interaction wh
 
 Open-world vegetation can involve enormous instance counts. Leshy avoids treating every plant/tree as a permanently active ordinary Unity renderer/GameObject.
 
+## Deeper reference
+
+- [Leshy cells, colliders, and runtime ownership](cells-colliders-and-runtime-ownership.md)
+
 ## Modding relevance
 
 Use Leshy knowledge when a vegetation change appears to ignore ordinary Unity renderer manipulation or when the visual/collider representation changes with distance and cell residency.
