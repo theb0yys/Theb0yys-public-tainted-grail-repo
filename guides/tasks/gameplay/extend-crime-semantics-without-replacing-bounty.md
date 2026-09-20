@@ -1,58 +1,107 @@
 # Extend Crime Semantics Without Replacing Native Bounty
 
-**Evidence status: PARTIAL.** Native crime/witness/bounty ownership is established; the richer incident/report/case layer is still a first-phase passive/session-only design.
+Use CrimeUtils.AddBounty and TemporaryBounty reporting as observation/intervention points while keeping FoA's crime owner authoritative.
 
 Working lineage: [Preserve Native Bounty, Extend Semantic Truth](../../../research/case-studies/crime/preserve-native-bounty.md).
 
-## Goal
+## Bounty route
 
-Add richer semantic tracking around crime without replacing FoA's authoritative legal state.
+The maintained Crime and Consequences implementation patches:
 
-Keep native:
+~~~text
+Awaken.TG.Main.Fights.Factions.Crimes.CrimeUtils.AddBounty
+~~~
 
-- crime entry;
-- witness reactions;
-- pending reporting;
-- bounty storage;
-- `CrimeUtils.AddBounty`.
+with a prefix/postfix.
 
-Add mod-owned interpretation around that path.
+Before native AddBounty runs, you can read:
 
-## Architecture
+~~~csharp
+float currentBounty = CrimeUtils.Bounty(template);
+~~~
 
-```text
-native crime happens
-→ native witness/report/bounty flow remains authoritative
-→ mod observes event/context
-→ mod records incident/witness/report/case metadata
-→ overlay/diagnostics consume mod-owned semantic state
-```
+and, if your mod intentionally changes the amount, adjust only the incoming value argument.
 
-## Process
+The working implementation composes:
 
-1. Observe one exact native crime event.
-2. Record only mod-owned metadata.
-3. Do not rewrite the native bounty amount/state.
-4. Keep incident IDs separate from native identities.
-5. Start session-only.
-6. Add persistence only after the semantic model is stable.
+~~~text
+incoming bounty
+× configured bounty multiplier
+× current wanted-heat multiplier
+× optional disguise multiplier
+→ native CrimeUtils.AddBounty continues
+~~~
 
-## Why
+It does not create a second bounty store.
 
-A native system can be authoritative yet still not model every concept your mod wants.
+## Observe the native result afterward
 
-That does not justify duplicating its authoritative state.
+The AddBounty postfix runs after FoA has committed the bounty.
 
-## Verification
+Use that point to:
 
-Prove:
+- read the new native bounty;
+- update mod-owned wanted/incident metadata;
+- evaluate optional downstream reactions;
+- emit UI/diagnostic state.
 
-- native bounty still changes normally;
-- witnesses/reporting still behave natively;
-- mod incident record matches the observed event;
-- disabling the semantic layer leaves bounty/legal state intact;
-- no duplicate incidents from one native event.
+The native CrimeOwnerTemplate remains the legal owner.
 
-## Current proof boundary
+## Immediate witness reporting
 
-The owner split is established. Durable case files, saved witness attribution, migration and a full runtime matrix remain unproven.
+FoA temporary witness/report state exposes:
+
+~~~text
+TemporaryBounty.RegisterCrime
+→ TemporaryBounty.GuardApplyCrimes()
+~~~
+
+The maintained implementation can call GuardApplyCrimes after RegisterCrime when its immediate-report feature is enabled.
+
+If you only want semantic tracking, observe this route and record the report/witness context without forcing it.
+
+## Sidecar incident records
+
+For richer semantics, create a mod-owned record such as:
+
+~~~text
+incidentId
+native crime owner/template identity
+native bounty before
+native bounty after
+event kind
+witness/report context
+game/session timestamp
+optional mod categories
+~~~
+
+That record supplements the native legal state.
+
+Do not use the incident object as the thing that decides whether the hero is wanted.
+
+## Useful native state remains native
+
+Keep these on FoA's side:
+
+- CrimeUtils.Bounty(...);
+- CrimeOwnerTemplate;
+- TemporaryBounty;
+- witness/report application;
+- prison punishment;
+- native guard/crime search state.
+
+Your semantic layer can consume them and add presentation/history.
+
+## Example: wanted-heat tiers
+
+A clean extension is:
+
+~~~text
+read current native bounty
+→ map to mod-owned heat tier
+→ let CrimeUtils.AddBounty commit native amount
+→ read final native bounty
+→ update heat label/history
+~~~
+
+The tier is your interpretation. The bounty value is FoA's state.
