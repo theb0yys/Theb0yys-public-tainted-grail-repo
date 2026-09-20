@@ -98,9 +98,9 @@ Get-ChildItem -LiteralPath $Destination -Filter "*.cs" -Recurse | ForEach-Object
         $text = $text.Replace($oldNamespace, $Namespace)
     }
 
-    $text = [regex]::Replace($text, 'public const string PluginGuid = "[^"]+";', "public const string PluginGuid = ""$PluginGuid"";")
-    $text = [regex]::Replace($text, 'public const string PluginName = "[^"]+";', "public const string PluginName = ""$Name"";")
-    $text = [regex]::Replace($text, 'public const string PluginVersion = "[^"]+";', "public const string PluginVersion = ""$Version"";")
+    $text = [regex]::Replace($text, 'public const string PluginGuid = "[^"]+";', ('public const string PluginGuid = "{0}";' -f $PluginGuid))
+    $text = [regex]::Replace($text, 'public const string PluginName = "[^"]+";', ('public const string PluginName = "{0}";' -f $Name))
+    $text = [regex]::Replace($text, 'public const string PluginVersion = "[^"]+";', ('public const string PluginVersion = "{0}";' -f $Version))
     Set-Content -LiteralPath $_.FullName -Value $text -Encoding UTF8
 }
 
