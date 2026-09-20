@@ -1,14 +1,18 @@
 # Runtime Tracer
 
-A source-only, configurable **Mono / BepInEx 5 / Harmony** runtime observation tool.
+A source-only, configurable Harmony runtime observation tool with separate **Mono / BepInEx 5** and **IL2CPP / BepInEx 6** hosts over one shared tracing core.
 
 Its purpose is narrow: after static investigation identifies an exact method, this plug-in can establish whether that method resolves, whether the tracer patches it, and whether the target is observed executing in one recorded environment.
 
 It does not establish persistence, broad compatibility, semantic equivalence after a game update, or release readiness.
 
-## Runtime scope
+## Runtime hosts
 
-This tracer targets **Mono / BepInEx 5 / Harmony**. IL2CPP uses a different runtime integration path and is outside this tool's scope.
+- `RuntimeTracer.csproj` — Mono / BepInEx 5 host.
+- `RuntimeTracer.IL2CPP.csproj` — IL2CPP / BepInEx 6 host.
+- `RuntimeTracerCore.cs` — shared target resolution, patch callbacks, rate limiting, value rendering and trace accounting.
+
+Both hosts use the same exact-target and fail-closed tracing semantics. The host layer only adapts BepInEx lifecycle, logging and local reference layout.
 
 ## Safety model
 
@@ -33,10 +37,14 @@ BepInEx may create its normal configuration and log files.
 
 ## Build
 
-Use only references from your own local Mono/BepInEx 5 installation:
+Use only references from your own local installation:
 
 ```powershell
+# Mono / BepInEx 5
 dotnet build RuntimeTracer.csproj -c Release -p:FoAGameRoot="<GameRoot>"
+
+# IL2CPP / BepInEx 6
+dotnet build RuntimeTracer.IL2CPP.csproj -c Release -p:FoAGameRoot="<GameRoot>"
 ```
 
 Or set `TAINTED_GRAIL_FOA_ROOT` and omit the MSBuild property.
