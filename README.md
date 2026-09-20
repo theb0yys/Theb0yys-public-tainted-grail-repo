@@ -12,6 +12,7 @@ An unofficial, source-only modding platform for **Tainted Grail: The Fall of Ava
 - **Investigating unknown behaviour or evidence:** [Research](research/README.md)
 - **Need working source:** [Examples](examples/README.md)
 - **Starting a project:** [Templates](templates/README.md)
+- **Want setup/build/install helpers:** [Developer tools](platform/developer-tools/README.md)
 
 ## Repository structure
 
