@@ -13,3 +13,7 @@
 - [World placement and navigation](world-placement-navigation.md)
 - [Weather and environment](weather-environment.md)
 - [Saving and persistence](saving-persistence.md)
+
+- [Scenes Baking](scenes-baking/README.md)
+- [Map travel](map-travel.md)
+- [World scenes and travel](world-scenes-travel.md)
