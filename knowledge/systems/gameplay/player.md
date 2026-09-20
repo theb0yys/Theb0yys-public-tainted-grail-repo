@@ -1,49 +1,53 @@
-# Player / Hero System
+# Player / Hero
 
-Canonical location for established knowledge about native player/hero ownership and execution.
+Use this page when your mod needs **player-owned state** such as inventory, recipes, stats, statuses, or storage.
 
-## Publicly established hero access
+The main mistake to avoid is treating `Hero` as one giant all-purpose player API. Different pieces of player state are owned by different Hero Elements and become ready at different times.
 
-Public source demonstrates more than one way to reach the hero:
+## Getting the current Hero
 
-- `Hero.Current` — dominant direct current-hero access pattern;
-- `World.Any<Hero>()` — null-checkable world lookup used by a public Mono mod.
+Common access patterns include:
 
-These are access paths, not interchangeable lifecycle guarantees.
+- `Hero.Current` — the usual direct current-Hero reference;
+- `World.Any<Hero>()` — a null-checkable world lookup used by public Mono mods.
 
-## Publicly established hero-owned surfaces
+A non-null Hero does not prove every Hero-owned Element has finished initializing.
 
-Examples include:
+## Common Hero-owned state
 
-- `HeroItems` for hero item ownership/state;
-- `KnownItems` for known/discovered item state;
-- `HeroRecipes.LearnRecipe` for learning existing/native recipes;
-- `HeroStats` for gameplay stats such as encumbrance and summon limit;
-- `HeroRPGStats` for RPG/progression stats;
-- `CharacterStatuses` / `Hero.Statuses` for active hero statuses;
-- `HeroStorage.Items` for hero-storage contents in the documented storage context;
-- `Hero.TryGetElement<T>()` for hero-owned MVC elements such as `ArmorWeight`.
+Useful objects include:
 
-These surfaces belong to different responsibilities. Do not collapse them into a single generic "player object" API.
+- `HeroItems` — Hero inventory/item state;
+- `KnownItems` — known/discovered item state;
+- `HeroRecipes` — learned recipe state;
+- `HeroStats` — Hero-specific gameplay stats;
+- `HeroRPGStats` — RPG/progression attributes;
+- `CharacterStatuses` / `Hero.Statuses` — active statuses;
+- `HeroStorage.Items` — Hero storage contents in the storage context;
+- `Hero.TryGetElement<T>()` — optional Hero-owned Elements such as `ArmorWeight`.
 
-## Lifecycle
+Use the subsystem that actually owns the state you are changing.
 
-Public Mono mods establish two especially useful initialization boundaries.
+## Useful initialization points
 
-### `Hero.OnFullyInitialized`
+### Hero.OnFullyInitialized
 
-Used for:
+Public Mono mods use this after the Hero's normal initialization has completed for tasks such as:
 
-- installing event listeners once world/HUD infrastructure is ready;
+- installing event listeners;
+- refreshing Hero-dependent state;
 - clearing per-save caches;
-- checking/removing hero statuses;
-- hero-dependent initialization generally.
+- checking/removing statuses.
 
-One public mod explicitly comments that `World.EventSystem` and the HUD are not initialized when the plugin itself loads, so it waits for this Postfix.
+One public mod explicitly waits for this point because the EventSystem/HUD are not ready when the plugin first loads.
 
-### `HeroRPGStats.AfterHeroFullyInitialized`
+It is a useful Hero boundary, **not** a promise that every child Element, View, scene system, or restored object is ready.
 
-Public mods use this for stat-system changes requiring both hero stats and `TweakSystem`. Exact Mono decompilation strengthens the lifecycle interpretation:
+### HeroRPGStats.AfterHeroFullyInitialized
+
+Public stat mods use this when they need Hero RPG/stat infrastructure and `TweakSystem`.
+
+Exact Mono inspection shows:
 
 ~~~text
 HeroRPGStats.OnInitialize()
@@ -52,26 +56,17 @@ HeroRPGStats.OnInitialize()
 → AfterHeroFullyInitialized()
 ~~~
 
-So this callback is specifically registered from the `HeroRPGStats` Element onto the parent Hero's fully-initialized boundary; it is not merely a convenient method name.
+That gives the method a concrete lifecycle meaning rather than treating the name as a guess.
 
-Public mods resolve:
+### HeroItems.OnRestore
 
-~~~text
-Hero.Current
-→ HeroStats / HeroRPGStats
-→ World.Services.Get<TweakSystem>()
-→ TweakSystem.AddTweak(...)
-~~~
+A public IL2CPP-native implementation captures `HeroItems` at `HeroItems.OnRestore` because that point provides the restored owner directly.
 
-at this stage.
+That is a restore-time availability point, not a generic synonym for "the player is loaded."
 
-### Restore-specific owners
+## Stat access examples
 
-A public IL2CPP-native implementation captures `HeroItems` at `HeroItems.OnRestore`, where the restored owner instance is valid, instead of relying on an unsafe generic lookup.
-
-## Public stat/member examples
-
-Public mods access:
+Public mods use members such as:
 
 - `hero.HeroStats.EncumbranceLimit`
 - `hero.HeroStats.ArmorWeightMultiplier`
@@ -81,34 +76,50 @@ Public mods access:
 - `hero.AliveStats.MaxHealth`
 - `hero.Statuses`
 
-These names are useful navigation/reference facts; their complete ownership and persistence behavior remains system-specific.
+For the larger stat/member inventory, see [Hero and Character stat surfaces](../../reference/types/hero-character-stats.md).
 
-## Stat persistence boundary
+## Base stats and temporary tweaks are different
 
-Exact Mono inspection distinguishes base values from tweak-derived values:
+In the inspected Mono build:
 
 - `Stat.BaseValue` is the mutable base state;
-- `Stat.ModifiedValue` is the tweak-calculated effective value;
+- `Stat.ModifiedValue` is the effective value after tweaks;
 - `Stat.ValueForSave` returns `BaseValue`;
-- `SetTo` / `IncreaseBy` mutate base state;
-- `StatTweak` changes the effective value through `TweakSystem` without being equivalent to direct base-stat mutation.
+- `SetTo` and `IncreaseBy` change the base value;
+- `StatTweak` changes the effective value through `TweakSystem`.
 
-See [Hero and Character stat surfaces](../../reference/types/hero-character-stats.md).
+So "change the stat" can mean two very different things:
 
-## Persistence boundary
+~~~text
+change BaseValue
+→ changes saved/native base state
 
-Evidence distinguishes hero/session state from saved native progression:
+apply StatTweak
+→ changes effective runtime value through tweak ownership
+~~~
 
-- `ProficiencyStats.TryAddXP` changes native proficiency progression.
-- Mod-owned practice/session ledgers can remain non-saved until deliberately converted into native progression.
-- Known-item reconstruction can run per loaded session without implying that the reconstruction mechanism owns persistence.
+Choose deliberately.
+
+## Persistence
+
+Examples of different persistence behavior:
+
+- `ProficiencyStats.TryAddXP` changes native progression.
+- A mod-owned session/practice counter can remain transient until deliberately converted into native progression.
+- Known-item reconstruction can happen every loaded session without owning persistence itself.
+
+Do not infer save behavior from the fact that a value changed successfully at runtime.
 
 ## Presentation is separate
 
-Questline public source and public mods expose hero-related HUD/camera/presentation types, but access to those presentation objects does not establish ownership of hero gameplay state.
+Hero HUD, camera, body, and VFX objects are presentation layers.
 
-See [Runtime Access](../../reference/runtime-access/README.md), [Types](../../reference/types/README.md) and [Hooks](../../reference/hooks/README.md).
+Access to one of those objects does not make it the owner of inventory, stats, recipes, or other Hero gameplay state.
 
-## Current proof boundary
+See [Runtime Access](../../reference/runtime-access/README.md), [Types](../../reference/types/README.md), and [Hooks](../../reference/hooks/README.md).
 
-This page combines public source with exact-build Mono static evidence where stated. Exact construction/destruction ordering, cross-scene identity, death/reload replacement semantics and complete model/view ownership remain unclaimed until stronger evidence is reviewed.
+## Evidence limits
+
+This page combines public source with exact-build Mono static evidence where stated.
+
+Cross-scene Hero identity, death/reload replacement behavior, and every Model/View relationship are not claimed here unless a linked page proves them.
