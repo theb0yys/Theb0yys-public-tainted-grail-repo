@@ -173,4 +173,7 @@ Before publishing excerpts, follow [Runtime log evidence](../../methods/runtime-
 
 ## Gate 2 validation status
 
+See [VALIDATION.md](VALIDATION.md) for the gated validation record.
+
+
 Repository/public-surface validation can prove the source is public-safe. Actual tracer runtime proof requires an installed Mono/BepInEx 5 game environment and remains a separate runtime evidence lane.
