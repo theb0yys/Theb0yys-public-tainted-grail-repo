@@ -4,6 +4,11 @@ Build search, grouping and workspace UI over FoA's existing inventory objects. D
 
 Working lineage: [Inventory Suite: Presentation Without a Second Inventory](../../../research/case-studies/ui/inventory-truth-boundary.md).
 
+## Runnable source
+
+Start from the buildable example: [Read-only inventory projection](../../../examples/mono/ui/inventory-projection/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Native inventory authority
 
 The relevant native chain is:
