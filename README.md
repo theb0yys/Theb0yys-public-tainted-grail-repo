@@ -1,88 +1,102 @@
 # Tainted Grail: The Fall of Avalon — Community Modding
 
-Want to make something for **Tainted Grail: The Fall of Avalon**? Start with the thing you want to accomplish. You do **not** need to understand the whole repository first.
+Want to make something for **Tainted Grail: The Fall of Avalon**? Start with what you want to accomplish. You do **not** need to understand the whole repository first.
 
 > **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
 ## What do you want to do?
 
 ### 🌱 Make my first mod
+
 Start with **[Make your first Tainted Grail mod](learn/first-mod/README.md)**.
 
-### ⚙️ Change how the game behaves
-Use the **[runtime modding guide](learn/runtime-modding/README.md)** and **[everyday modding](learn/everyday-modding/README.md)**. For a procedure use **[How-to guides](how-to/README.md)**; for the native owner use **[Game systems](systems/README.md)**.
+### ⚙️ Perform a known modding capability
+
+Open **[Mechanics](mechanics/README.md)** for bounded, evidence-scoped capabilities such as item resolution, custom weapon integration, mount velocity, one-session companions, modal UI and persistence boundaries.
 
 ### 🗡️ Add new content
-Begin with **[First content authoring](learn/first-mod/first-content-authoring.md)**, then use [Items](how-to/items/README.md), [Weapons](how-to/weapons/README.md), [Armour](how-to/armour/README.md), or [Creatures](how-to/creatures/README.md).
 
-### 🧠 Understand how Tainted Grail actually works
-Open **[Game systems](systems/README.md)** for native ownership, lifecycle, services, gameplay architecture, world systems, UI/audio, and Questline/Awaken presentation technology.
+Begin with **[First content authoring](learn/first-mod/first-content-authoring.md)** and use the relevant mechanic/system pages. Existing [how-to guides](how-to/README.md) remain available while they are progressively reconciled into canonical mechanics.
+
+### 🧠 Understand how FoA actually works
+
+Open **[Game systems](systems/README.md)**.
+
+### 🔬 Investigate something the repository does not know yet
+
+Open **[Investigate](investigate/README.md)**. Owner discovery, lifecycle tracing and evidence separation are first-class modding skills.
+
+### 🔧 Diagnose a failure
+
+Open **[Diagnose](diagnose/README.md)**. Troubleshooting starts from the earliest failed owner/stage.
 
 ### 🔎 Look up an exact fact
-Open **[Reference](reference/README.md)** for assemblies, identities, hooks, assets, content domains and compatibility.
+
+Open **[Reference](reference/README.md)**.
 
 ### 🧪 See what real mods proved
-Open **[Case studies](case-studies/README.md)** for reusable lessons extracted from working mods.
+
+Open **[Case studies](case-studies/README.md)**.
 
 ### 💻 Start from working code
-Open **[Examples](examples/README.md)** for small source-only Mono and IL2CPP projects.
 
-### 🔧 Something is broken
-Use **[Debugging](learn/debugging/README.md)**.
-
-### 🔬 Investigate an unknown system
-Use **[Reverse engineering and discovery](how-to/reverse-engineering/README.md)**.
-
-## Choose the correct modding lane
-
-- **Mono runtime mods** — BepInEx/Harmony and managed game assemblies.
-- **IL2CPP runtime mods** — BepInEx 6/IL2CPP interop and the installed IL2CPP runtime.
-- **Merlin's Workshop content** — Questline's official Unity/Addressables modding surface.
-- **Hybrid work** — projects deliberately combining content authoring with runtime integration.
-
-See [Runtime guide](learn/runtime-modding/runtime-guide.md) and [Official sources](sources/official/README.md).
+Open **[Examples](examples/README.md)**.
 
 ## Repository map
 
 | Area | Use it for |
 | --- | --- |
-| [learn/](learn/README.md) | Ordered learning paths |
-| [how-to/](how-to/README.md) | Task-oriented procedures |
-| [systems/](systems/README.md) | Native game architecture and ownership |
-| [reference/](reference/README.md) | Exact lookup material |
-| [case-studies/](case-studies/README.md) | Lessons from real working mods |
-| [examples/](examples/README.md) | Small runnable/source examples |
-| [sources/](sources/README.md) | Provenance and evidence standard |
+| [learn/](learn/README.md) | Guided learning paths |
+| [systems/](systems/README.md) | Native FoA architecture and ownership |
+| [mechanics/](mechanics/README.md) | Bounded reusable modding capabilities |
+| [investigate/](investigate/README.md) | Discovering unknown owners/lifecycles |
+| [diagnose/](diagnose/README.md) | Symptom-driven troubleshooting |
+| [reference/](reference/README.md) | Exact lookup and evidence state |
+| [case-studies/](case-studies/README.md) | Lessons from real mod work |
+| [examples/](examples/README.md) | Small public-safe runnable examples |
+| [tooling/](tooling/README.md) | Loaders/frameworks/tooling knowledge |
+| [sources/](sources/README.md) | Provenance and publication ledger |
+| [contributing/](contributing/README.md) | Public authoring standards |
+| [how-to/](how-to/README.md) | Existing task guides pending reconciliation |
 | [templates/](templates/README.md) | Minimal project starters |
-| [tooling/](tooling/README.md) | Repository/validation tooling |
 
-## One canonical home
+## Core reasoning model
 
-Reading order is navigation, not ownership.
+```text
+exact subject / identity
+→ native owner
+→ lifecycle and data contract
+→ observation or source inspection
+→ smallest justified intervention
+→ downstream native behaviour
+→ cleanup / restoration
+→ claim-fit proof
 
-- **How do I learn this?** → `learn/`
-- **How do I do this?** → `how-to/`
-- **How does the game own this?** → `systems/`
-- **What exact value/type/hook do I need?** → `reference/`
-- **What did a working mod teach us?** → `case-studies/`
-- **Where is the runnable code?** → `examples/`
+    persistence proof: separate
+    compatibility proof: separate
+    release proof: separate
+```
 
-Other pages should link to the canonical owner instead of keeping parallel current copies.
+## One canonical explanation, multiple routes into it
 
-## Evidence language
+Reading order is navigation, not ownership. Link to the canonical system/mechanic/reference page instead of maintaining parallel current copies.
 
-See **[Evidence standard](sources/evidence-standard.md)**. Keep Official, static/source, build, loader, runtime, persistence, compatibility and release proof distinct. One lane does not silently substitute for another.
+## Evidence
+
+See [Evidence reference](reference/evidence/README.md) and [Evidence standard](sources/evidence-standard.md). Static, runtime, persistence, compatibility and release evidence do not substitute for one another.
+
+## Publication progress
+
+The [private-to-public publication ledger](sources/provenance/README.md) tracks what knowledge has actually been extracted from the private engineering corpus. The structure itself is not completion.
 
 ## Public-repository boundary
 
 Do not commit proprietary game binaries, extracted commercial assets, localization dumps, generated interop assemblies, saves, private diagnostics, credentials or bulk decompiled game source.
 
-The [public-surface guard](tooling/README.md) rejects common binary/archive/asset formats, oversized files, obvious secrets and private machine paths.
-
-## Foundations and upstream projects
+## Upstream projects
 
 - Questline Merlin's Workshop: https://github.com/AR-Questline/merlin-workshop
 - BepInEx: https://github.com/BepInEx/BepInEx
 - HarmonyX: https://github.com/BepInEx/HarmonyX
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [documentation authoring standards](contributing/README.md).
