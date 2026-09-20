@@ -1,6 +1,6 @@
-# Investigate
+# Research
 
-Investigation is a first-class FoA modding skill.
+Methods, investigations, and case studies for establishing how Tainted Grail systems actually behave.
 
 - [Finding the native owner](methods/finding-the-native-owner.md)
 - [Tracing a lifecycle](methods/tracing-lifecycles.md)
@@ -20,4 +20,4 @@ Investigation is a first-class FoA modding skill.
   - [External engine integration](investigations/dialogue/external-engine-integration.md)
   - [Migration and fallback](investigations/dialogue/migration-and-fallback.md)
 
-The goal is to establish **identity → owner → lifecycle → downstream consumer → cleanup → proof** before mutation.
+A useful investigation establishes **identity → owner → lifecycle → downstream consumer → cleanup → proof** before changing game behaviour.

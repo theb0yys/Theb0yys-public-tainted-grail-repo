@@ -1,9 +1,9 @@
 # Knowledge
 
-Canonical technical knowledge for Tainted Grail: The Fall of Avalon modding.
+Technical reference for Tainted Grail: The Fall of Avalon modding.
 
-- [Systems](systems/README.md) — native ownership, architecture, lifecycles and data flow.
-- [Mechanics](mechanics/README.md) — bounded reusable modding capabilities.
-- [Reference](reference/README.md) — exact identities, hooks, services, assets, compatibility and version scope.
+- [Systems](systems/README.md) — how game systems are structured, owned, and executed.
+- [Mechanics](mechanics/README.md) — reusable modding techniques and intervention patterns.
+- [Reference](reference/README.md) — exact identifiers, hooks, services, assets, compatibility, and version scope.
 
-Use [Guides](../guides/README.md) for workflows and [Research](../research/README.md) when evidence is still being established.
+Use [Guides](../guides/README.md) for step-by-step workflows. Use [Research](../research/README.md) when behaviour still needs to be established.

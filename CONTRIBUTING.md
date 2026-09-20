@@ -1,8 +1,8 @@
 # Contributing
 
-This repository is a public, source-only Tainted Grail: The Fall of Avalon modding platform.
+This repository is a public, source-only Tainted Grail: The Fall of Avalon modding project.
 
-## Canonical owners
+## Where contributions go
 
 | Question | Area |
 | --- | --- |
@@ -17,11 +17,11 @@ This repository is a public, source-only Tainted Grail: The Fall of Avalon moddi
 | Where is minimal runnable source? | `examples/` |
 | Where is a starter project? | `templates/` |
 
-See [Repository taxonomy](contributing/taxonomy.md) and [Evidence standards](contributing/evidence-standards.md). Do not maintain parallel current explanations.
+See [Repository taxonomy](contributing/taxonomy.md) and [Evidence standards](contributing/evidence-standards.md). Update the existing explanation for a topic instead of creating a second competing version.
 
 ## Public boundary
 
-Do not contribute proprietary game content, binaries, generated interop assemblies, executables, archives, bulk decompiled source, secrets, private paths, personal data, or code copied from private projects without an explicit decision to publish it.
+Do not contribute proprietary game content, binaries, generated interop assemblies, executables, archives, bulk decompiled source, secrets, private paths, personal data, or code from private projects unless you have the right to publish it.
 
 ## Examples
 
@@ -33,9 +33,9 @@ examples/<mono|il2cpp|merlin|hybrid>/<domain>/<mechanism>/
 
 ## Pull requests
 
-State what changed, the runtime/authoring lane, what was actually tested, local dependencies used, and why the contribution is safe to redistribute.
+State what changed, which runtime or authoring setup it targets (Mono, IL2CPP, Merlin, or hybrid), what you actually tested, any local dependencies used, and why the contribution is safe to redistribute.
 
-The public-surface guard is a redistribution backstop; it does not prove game/editor/runtime behaviour.
+The public-surface CI check helps catch material that should not be redistributed. Passing it does not prove game, editor, or runtime behaviour.
 
 ## Licensing
 

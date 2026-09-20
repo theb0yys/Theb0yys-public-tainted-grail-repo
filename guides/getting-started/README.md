@@ -1,6 +1,6 @@
 # Make Your First Tainted Grail Mod
 
-This page is the **first-mod learning path**. It assumes you already chose "I've never made a mod before" from the [repository front page](../../README.md).
+Start here if you're making your first Tainted Grail mod.
 
 You do not need to understand the whole repository before making your first test.
 
@@ -11,7 +11,7 @@ You do not need to understand the whole repository before making your first test
 - **Start:** [Set up Windows for modding](windows-setup.md) and [identify your runtime](find-game-and-runtime.md).
 - **Loader working:** BepInEx starts and writes its log before your own mod is involved.
 - **First plug-in:** [IL2CPP](first-il2cpp-plugin.md) or [Mono](first-mono-plugin.md) loads your own DLL and writes your own log line.
-- **First game change:** IL2CPP can use [the first runtime change](../learning-paths/everyday-modding/first-il2cpp-game-change.md); both lanes move toward a [verified real game patch](../learning-paths/everyday-modding/first-real-patch-rules.md).
+- **First game change:** IL2CPP can use [the first runtime change](../learning-paths/everyday-modding/first-il2cpp-game-change.md); both Mono and IL2CPP paths move toward a [verified real game patch](../learning-paths/everyday-modding/first-real-patch-rules.md).
 - **First complete mod:** [finish one small mod end-to-end](../learning-paths/everyday-modding/first-complete-mod.md).
 
 Content authoring follows the same idea—setup, first working content, one observed change, then one small complete mod—even though it does not use the BepInEx loader milestones.
@@ -24,7 +24,7 @@ Follow these in order:
 
 1. [Set up Windows for modding](windows-setup.md)
 2. [Find the game and identify its runtime](find-game-and-runtime.md)
-3. Current/modern IL2CPP: [Build your first IL2CPP plug-in](first-il2cpp-plugin.md)
+3. IL2CPP: [Build your first IL2CPP plug-in](first-il2cpp-plugin.md)
 4. Mono: [Build your first Mono plug-in](first-mono-plugin.md)
 5. [Check that your first mod really worked](success-checklist.md)
 
@@ -32,7 +32,7 @@ Do not start with a gameplay patch. First prove that your own plug-in can load a
 
 ### Optional helper scripts
 
-If you have this repository checked out on Windows, the [FoA developer tools](../../platform/developer-tools/README.md) can automate the repetitive parts of the same process:
+If you have this repository checked out on Windows, the [FoA developer tools](../../platform/developer-tools/README.md) can automate the repetitive parts of the process:
 
 ~~~text
 detect runtime/install
@@ -43,7 +43,7 @@ detect runtime/install
 → tail/filter BepInEx log
 ~~~
 
-The scripts do not replace the learning path. In particular, a successful build or verified DLL copy is still not proof that the plug-in loaded or that a gameplay hook works.
+The scripts automate these steps, but they do not prove that the plug-in loaded or that a gameplay hook works. A successful build or verified DLL copy is only part of the test.
 
 ### B. I want to add genuinely new content
 
@@ -52,9 +52,9 @@ Start with the smallest proven new-content route:
 1. [Set up Windows for modding](windows-setup.md)
 2. [Add your first new item](first-content-authoring.md)
 3. [Check what you actually proved](success-checklist.md)
-4. Use the [technical handbook](../../knowledge/reference/README.md) when the tutorial links to a system such as identity, templates, hooks, assets or persistence.
+4. Use the [technical reference](../../knowledge/reference/README.md) when you need details about identity, templates, hooks, assets, or persistence.
 
-The first public custom-item process is currently a **Mono/BepInEx 5 proven path**. It does not claim that IL2CPP, weapons, armour, creatures, spells or recipes use the same registration process. Those domains get separate processes only when their native ownership and working path have been established.
+The current custom-item guide has been proven on **Mono/BepInEx 5**. Do not assume IL2CPP, weapons, armour, creatures, spells, or recipes use the same registration process.
 
 ## One rule for beginners
 
@@ -82,9 +82,7 @@ Your local game installation supplies local references. Your repository should c
 
 You do not need to learn a vocabulary list before starting. Each tutorial explains terms such as BepInEx, Mono, IL2CPP, Harmony, interop assemblies, prefabs, and addressables at the step where they first become useful.
 
-For deeper technical definitions, use the linked reference pages **when a tutorial sends you there**. Do not stop the learning path to read the whole reference library.
-
-Learning pages tell you what to do next. Reference pages answer a specific question while you are doing it.
+Use the linked reference pages when you need deeper technical details.
 
 ## When you are ready to keep building
 
