@@ -20,7 +20,7 @@ Do not collapse these into one number. A Nexus page/file version, BepInEx plugin
 
 | Component | Distribution state | Verified acquisition route | Verified version signal | Consumer note |
 | --- | --- | --- | --- | --- |
-| FoA Mod Manager | **PUBLIC** | Nexus Mods: https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167 | `0.6.62` is present in the public changelog/source line; verify the exact downloaded Main file before setting a minimum dependency | Use plugin GUID `kane.tgfoa.mod-manager`; ordinary BepInEx config discovery does not require a compile-time API reference |
+| FoA Mod Manager | **PUBLIC** | Nexus Mods: https://www.nexusmods.com/taintedgrailthefallofavalon/mods/167 | current engineering source line is `0.6.62`; verify the exact downloaded Main file before setting a minimum dependency | Use plugin GUID `kane.tgfoa.mod-manager`; ordinary BepInEx config discovery does not require a compile-time API reference |
 | Tainted Interface | **PUBLIC** | Nexus Mods: https://www.nexusmods.com/taintedgrailthefallofavalon/mods/190 | public plugin declaration `0.3.4` | Depend on semantic/public API, not embedded-pack paths |
 | Tainted Core / Avalon Core | **PUBLIC** | Nexus Mods: https://www.nexusmods.com/taintedgrailthefallofavalon/mods/193 | public source/plugin version `0.8.4` | Install the complete runtime package; do not copy individual Core DLLs into feature releases |
 | Tainted Framework | **PUBLIC** | Nexus Mods: https://www.nexusmods.com/taintedgrailthefallofavalon/mods/312 | no independent API-semver guarantee is asserted by this repository | The public package exists; only named promoted consumer surfaces are author contracts |
