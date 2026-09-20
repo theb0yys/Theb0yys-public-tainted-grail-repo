@@ -1,5 +1,7 @@
 # Drake and MergedDrake
 
+Use this page when a rigid mesh, equipped weapon, runtime rigid prefab, or large static rigid scene group is rendered through Drake rather than behaving like a normal Unity Renderer at runtime.
+
 ## What it is
 
 **Drake** is Questline's rigid-mesh rendering system. It takes conventional Unity rigid-mesh authoring and represents the render side through Unity ECS / Entities Graphics while preserving the gameplay or scene object that owns the content.
