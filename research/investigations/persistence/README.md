@@ -10,7 +10,9 @@ last_verified: 2026-09-20
 
 # Persistence Investigation
 
-The inspected native save architecture exposes no supported mutable arbitrary-domain registrar.
+Use this investigation area when a feature needs durable mod-owned state and the correct save/load integration is still being established.
+
+The current work focuses on what FoA's native save architecture actually supports, where arbitrary native save domains are blocked, and which sidecar/lifecycle options still require runtime proof.
 
 ## Current sidecar lifecycle candidates
 
