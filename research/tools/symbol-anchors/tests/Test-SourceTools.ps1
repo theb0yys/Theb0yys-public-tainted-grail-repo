@@ -24,6 +24,10 @@ try {
     $reportPath = Join-Path $tempRoot "report.json"
     $sourceRoot = Join-Path $PSScriptRoot "SourceFixture"
     $assemblyRoot = Join-Path $PSScriptRoot "FixtureAssembly\bin\Release\net8.0"
+    $fixtureAssembly = Join-Path $assemblyRoot "FixtureAssembly.dll"
+
+    Write-Host "Direct ILSpy class listing:"
+    & $IlSpyCmd -l c $fixtureAssembly | ForEach-Object { Write-Host ("  " + $_) }
 
     $manifest = & $exporter -Root $sourceRoot -OutputPath $manifestPath
 
