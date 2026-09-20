@@ -168,6 +168,7 @@ public sealed class Plugin : BaseUnityPlugin
             "Runtime tracer patchInstallation=PASSED " +
             "runtimeObservation=NOT_RUN " +
             "session=" + Controller.SessionId +
+            " startedUtc=" + Controller.StartedAtUtc.ToString("O", CultureInfo.InvariantCulture) +
             " gameVersion=" + SafeApplicationValue(() => Application.version) +
             " unityVersion=" + SafeApplicationValue(() => Application.unityVersion) +
             " loaderVersion=" + (typeof(BaseUnityPlugin).Assembly.GetName().Version?.ToString() ?? "unknown") +
@@ -245,7 +246,7 @@ public sealed class Plugin : BaseUnityPlugin
             "Target",
             "ParameterTypeNames",
             string.Empty,
-            "Optional semicolon-separated exact parameter type names. Required when the method name is overloaded.");
+            "Optional semicolon-separated exact parameter type names. Required when overloaded; use <none> for an explicit zero-parameter signature.");
 
         _traceArguments = Config.Bind(
             "Capture",
@@ -316,6 +317,10 @@ internal sealed class TargetSpec
         !string.IsNullOrWhiteSpace(AssemblyName) &&
         !string.IsNullOrWhiteSpace(TypeName) &&
         !string.IsNullOrWhiteSpace(MethodName);
+
+    internal bool HasExplicitZeroParameterSignature =>
+        ParameterTypeNames.Length == 1 &&
+        string.Equals(ParameterTypeNames[0], "<none>", StringComparison.OrdinalIgnoreCase);
 
     internal static string[] ParseParameterTypes(string raw)
     {
@@ -424,8 +429,12 @@ internal static class TargetResolver
             return TargetResolution.Passed(namedMethods[0]);
         }
 
-        var parameterTypes = new List<Type>(spec.ParameterTypeNames.Length);
-        foreach (string parameterTypeName in spec.ParameterTypeNames)
+        string[] configuredParameterTypeNames = spec.HasExplicitZeroParameterSignature
+            ? Array.Empty<string>()
+            : spec.ParameterTypeNames;
+
+        var parameterTypes = new List<Type>(configuredParameterTypeNames.Length);
+        foreach (string parameterTypeName in configuredParameterTypeNames)
         {
             Type? parameterType = ResolveType(parameterTypeName, targetAssembly);
             if (parameterType == null)
