@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Stubs.cs" />
+    <Compile Include="..\..\runtime-tracer\Il2CppPlugin.cs" Link="RuntimeTracer.Il2CppPlugin.cs" />
+    <Compile Include="..\..\runtime-tracer\RuntimeTracerCore.cs" Link="RuntimeTracer.RuntimeTracerCore.cs" />
+    <Compile Include="..\..\harmony-runtime-audit\Il2CppPlugin.cs" Link="HarmonyRuntimeAudit.Il2CppPlugin.cs" />
+    <Compile Include="..\..\harmony-runtime-audit\HarmonyRuntimeAuditCore.cs" Link="HarmonyRuntimeAudit.HarmonyRuntimeAuditCore.cs" />
+  </ItemGroup>
+</Project>
