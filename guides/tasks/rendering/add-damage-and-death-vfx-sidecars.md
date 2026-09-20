@@ -4,6 +4,10 @@ Use this guide when you want custom blood/impact/death presentation without taki
 
 Working lineage: [Damage and Death VFX Sidecars](../../../research/case-studies/rendering/damage-death-vfx.md).
 
+## Runnable source
+
+Start from the minimal public example: [Damage and death VFX example](../../../examples/mono/rendering/damage-death-vfx/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
