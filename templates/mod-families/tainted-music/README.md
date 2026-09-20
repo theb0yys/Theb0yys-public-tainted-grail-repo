@@ -1,8 +1,10 @@
 # Tainted Music Public Template
 
+Use this starter when you are building music or ambience features across Mono and IL2CPP. Keep policy, track selection, and configuration shared while each host owns the exact FoA/FMOD integration.
+
 Source family: `tainted-music`
 
-This is a public, source-only starter distilled from the Tainted Music mod family. It keeps feature intent in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
 
 ## Reusable mechanisms
 
