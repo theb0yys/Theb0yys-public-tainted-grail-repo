@@ -1,29 +1,31 @@
 # Leshy
 
-## What it is
+Use this page when you are changing **vegetation that is streamed/cell-based and does not behave like a collection of ordinary always-active GameObjects**.
 
-**Leshy** is Questline's baked and streamed vegetation runtime.
+## What Leshy does
 
-Vegetation Studio Pro is used for authoring/procedural placement and initial vegetation setup. Questline then converts eligible vegetation into Leshy's own cells and runtime representation.
+Leshy is Questline's baked and streamed vegetation runtime.
 
-## What it owns
+Vegetation Studio Pro can be used for authoring/procedural placement, then eligible vegetation is converted into Leshy's own cells and runtime data.
+
+## What Leshy owns
 
 Leshy owns:
 
 - vegetation cells;
 - scene-specific streamed vegetation data;
-- cell loading/residency;
+- cell residency/loading;
 - density filtering;
-- compact instance representation;
+- compact instance data;
 - GPU upload/expansion;
-- `BatchRendererGroup` vegetation rendering;
+- `BatchRendererGroup` rendering;
 - camera/light culling;
 - nearby collider provisioning;
 - mipmap-demand participation.
 
 ## Main runtime types
 
-Current runtime types live under `Awaken.TG.LeshyRenderer`, including:
+Types under `Awaken.TG.LeshyRenderer` include:
 
 - `LeshyManager`
 - `LeshyCells`
@@ -38,19 +40,19 @@ The main game host is `TG.Main.dll`.
 
 ## Data layout
 
-Current Windows content uses scene-specific loose files:
+Current Windows content uses scene-specific files such as:
 
 ~~~text
 StreamingAssets/Leshy/<scene>/CellsCatalog.leshy
 StreamingAssets/Leshy/<scene>/Matrices.bin
 ~~~
 
-The runtime reads those files into cell/instance state.
+The runtime turns those files into resident cell/instance state.
 
-## Runtime shape
+## Runtime flow
 
 ~~~text
-VSP/manual vegetation authoring
+vegetation authoring
 → Leshy build conversion
 → CellsCatalog.leshy + Matrices.bin
 → LeshyManager
@@ -61,20 +63,44 @@ VSP/manual vegetation authoring
 → camera/light rendering
 ~~~
 
-A separate near-player collider path provides physical vegetation interaction where required.
+A separate near-player collider path provides physical interaction where required.
 
-## Why it exists
+## Why Leshy exists
 
-Open-world vegetation can involve enormous instance counts. Leshy avoids treating every plant/tree as a permanently active ordinary Unity renderer/GameObject.
+Open-world vegetation can involve extremely large instance counts.
 
-## Modding relevance
+Leshy avoids keeping every plant/tree as a permanently active ordinary GameObject/Renderer.
 
-Use Leshy knowledge when a vegetation change appears to ignore ordinary Unity renderer manipulation or when the visual/collider representation changes with distance and cell residency.
+## When this page is useful
 
-Vegetation art/placement and Leshy runtime ownership are different stages.
+Use Leshy knowledge when:
 
-## Related systems
+- ordinary renderer changes do not affect vegetation;
+- vegetation appears/disappears with cell residency/distance;
+- visual and collider behavior differ;
+- you are investigating Leshy data or scene conversion.
 
-- [Scenes Baking](../../world/scenes-baking/README.md)
+## Common mistakes
+
+- treating authored vegetation objects as the permanent runtime representation;
+- assuming visible vegetation and nearby colliders have the same lifetime;
+- changing one cell/file without understanding scene-specific catalog relationships;
+- treating Leshy as the owner of unrelated gameplay/world state.
+
+## What to verify
+
+Check:
+
+1. scene/Leshy data identity;
+2. cell catalogue/matrix data;
+3. cell load/residency;
+4. instance expansion;
+5. camera/light culling;
+6. collider provisioning near the player;
+7. material/mipmap behavior;
+8. scene unload/cleanup.
+
+## Related pages
+
 - [Shared mipmap streaming](../mipmap-streaming/README.md)
 - [Runtime lifetime](../../core/runtime-lifecycle/README.md)
