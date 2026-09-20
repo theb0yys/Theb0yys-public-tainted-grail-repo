@@ -1,184 +1,155 @@
-# Skills, Progression, XP, Talents, and Reversible Stat Growth
+# Skills, XP, Talents, and Reversible Growth
 
-> **Reference page.** Use this when modifying XP rates, proficiency progression, talent spending, progression-linked effects, or skill-derived character stats.
+Use this page when you want to change **XP rates, proficiency progression, talent spending, or progression-driven stat effects**.
 
-## What this system is
+The first question is:
 
-FoA separates:
+> Are you changing the event that grants progression, the saved progression value, a multiplier, the spend transaction, or only the gameplay effect?
 
-- action/event context that decides *why* progression occurs;
-- the save-affecting XP/progression sink;
-- multiplier stats;
-- talent/spend gates;
-- gameplay stats that can often be adjusted with reversible runtime tweaks.
+Those are different layers.
 
-A safe mod should know which layer it is changing.
+## Main progression owners
 
-## Who owns it in FoA
+Useful researched owners include:
 
-Important owners include:
-
-- `ProficiencyEventListener` — maps gameplay context into proficiency XP events;
-- `ProficiencyStats` — proficiency XP/state owner;
+- `ProficiencyEventListener` — maps gameplay actions/context into proficiency XP events;
+- `ProficiencyStats` — saved proficiency XP/state;
 - `HeroMultStats` — progression multipliers;
-- `Talent` / talent-tree owners — skill/perk spending;
-- `HeroStats` / `CharacterStats` — gameplay stat effects;
-- `StatTweak` — reversible runtime modifiers;
-- native fireplace/UI ownership for ordinary spending availability.
+- `Talent` and talent-tree systems — perk spending;
+- `HeroStats` / `CharacterStats` — gameplay stats affected by progression;
+- `StatTweak` — reversible runtime modifiers.
 
-## Important identities, types, and methods
+## Proficiency XP flow
 
-Researched surfaces include:
-
-- `ProficiencyStats.TryAddXP(ProfStatType, float)` — save-affecting proficiency XP sink;
-- `ProficiencyEventListener.XPGainEvent(...)` — context mapping before the sink;
-- `HeroMultStats.HeroMultStatsWrapper.Initialize(...)`;
-- `HeroMultStats.ProfMultiplier`;
-- `HeroMultStats.KillExpMultiplier`;
-- `HeroMultStats.ExpMultiplier`;
-- `Talent.AcquireNextTemporaryLevel`;
-- `Talent.ApplyTemporaryLevels`;
-- `RestPopupUI.SkipWeatherTime(...)` and hero before/after-rest events;
-- `CharacterStatuses.AddStatus(...)`;
-- `Hero.Current.HeroID` as a stable hero identity used by project-owned sidecar research.
-
-## Where it exists in the lifecycle
-
-### Proficiency XP
+A useful model is:
 
 ~~~text
-gameplay action/context
-→ ProficiencyEventListener maps source/category
+gameplay action
+→ ProficiencyEventListener classifies it
 → multipliers
 → ProficiencyStats.TryAddXP
-→ saved progression state
+→ saved proficiency state
 ~~~
 
-### Reversible progression effect
+Useful methods include:
+
+- `ProficiencyEventListener.XPGainEvent(...)`
+- `ProficiencyStats.TryAddXP(ProfStatType, float)`
+- `HeroMultStats.ProfMultiplier`
+- `HeroMultStats.KillExpMultiplier`
+- `HeroMultStats.ExpMultiplier`
+
+## Change the right layer
+
+If you need to know **why** XP was granted, observe the event/context layer.
+
+If you want a broad XP-rate change, prefer the multiplier/stat layer where it already exists.
+
+Treat `TryAddXP` as the save-affecting sink. Patch it only when you intentionally want to affect every matching call at that point.
+
+## Reversible progression effects
+
+Many perk-like effects can be expressed as temporary native stat tweaks instead of rewriting saved progression.
+
+A common route is:
 
 ~~~text
-native HeroStats/CharacterStats initializes
-→ mod adds non-saved StatTweak
-→ native gameplay consumer reads ModifiedValue
-→ mod updates/removes tweak when rank/config changes
+HeroStats / CharacterStats initializes
+→ add non-saved StatTweak
+→ native gameplay code reads ModifiedValue
+→ rank/config changes
+→ update or remove tweak
 ~~~
 
-### Talent spending
+Examples mapped in the research include:
 
-~~~text
-native spend gate available
-→ temporary acquisition
-→ confirm/apply
-→ saved progression owner commits state
-→ refund/respec path may later reverse it
-~~~
-
-The confirm/cancel/refund/respec lifecycle must be mapped before replacing the spend gate.
-
-## How we interact with it
-
-### Separate XP source from XP sink
-
-Patch/observe `XPGainEvent` when you need to know *what action produced XP*.
-
-Use or modify the multiplier/stat layer when the goal is broad rate tuning.
-
-Treat `TryAddXP` as the save-affecting sink and patch it only when that exact responsibility is intended.
-
-### Prefer non-saved StatTweaks for runtime perk effects
-
-The working research mapped many progression/perk effects to existing native stats rather than writing saved fields:
-
-- attack-speed stats;
+- attack speeds;
 - bow draw speed;
-- fist attack speeds;
-- one-/two-handed speeds;
-- movement/sprint/dash/swim;
-- block prepare/movement;
-- stamina cost/recovery;
-- parry stamina damage;
+- movement/sprint/swim;
+- block/parry timing or stamina effects;
 - critical/weak-spot stats;
 - stealth multipliers;
 - armour weight/penalty.
 
-This keeps the gameplay effect reversible and lets the native gameplay consumer stay in charge.
+This keeps the gameplay effect reversible while native systems continue consuming the same stats they already understand.
 
-### Preserve native spending gates until the full transaction is understood
+## Talent spending is a transaction
 
-The normal talent path has native availability/temporary/commit/refund/respec behavior.
+The talent path is more than "subtract a point and enable a perk."
 
-A custom gate should remain default-off until:
+Research surfaces include:
 
-- confirmation;
-- cancellation;
-- refund;
-- respec;
-- persistence;
-- UI blockability;
+- `Talent.AcquireNextTemporaryLevel`
+- `Talent.ApplyTemporaryLevels`
+- native spend availability;
+- confirmation/cancel behavior;
+- refund/respec paths;
+- persistence.
 
-are all proven.
+Do not replace the normal spending gate until the full transaction is understood.
 
-## Why this route
+## Fireplace/rest context
 
-The progression research deliberately avoids editing:
+The ordinary talent-upgrade route is tied to native fireplace/rest availability.
 
-- saved XP dictionaries;
-- hero XP;
-- levels;
-- talent points;
-- base-stat points;
-- talent levels;
-- RPG stat levels;
+Related researched surfaces include:
 
-when a reversible runtime multiplier/tweak can express the desired gameplay effect.
+- `RestPopupUI.SkipWeatherTime(...)`
+- Hero before/after-rest events
 
-That reduces save risk and keeps native ownership intact.
+If your feature changes when spending is allowed, treat that as a spend-gate change, not merely a UI tweak.
 
-## What goes wrong
+## Common mistakes
 
-### Patching the XP sink when only the multiplier should change
+### Patching the saved XP sink for a simple multiplier feature
 
-Can affect every source and saved progression behavior.
+This broadens the effect unnecessarily and can change every source feeding the sink.
 
-### Writing saved progression fields directly
+### Writing saved XP/levels/talent points directly
 
-Bypasses native validation, UI, refund/respec, and migration expectations.
+That bypasses native validation, UI, refund/respec, and migration behavior.
 
-### Runtime perk effect implemented by rewriting combat/movement code
+### Rewriting combat/movement code for a perk that already maps to a native stat
 
-Often unnecessary when a native stat already exists.
+Use the stat owner where possible.
 
-### Custom spend gate ignores temporary/confirm/refund lifecycle
+### Implementing a custom spend screen without confirm/refund semantics
 
-Can charge twice, fail to refund, or desynchronize UI and saved progression.
+This can create double charges, failed refunds, or mismatched UI/save state.
 
-### Sidecar balance treated as native progression state
+### Treating mod currency as native progression
 
-A mod-owned sidecar may hold mod currency/insight, but it is not the same owner as native XP/talent state.
+A sidecar/mod-owned balance can be useful, but it is not the same state as FoA XP/talent progression.
 
-## How to verify
+## How to verify XP changes
 
-For XP changes:
+Check:
 
-1. exact action context observed;
-2. native XP sink receives expected category/value;
-3. multiplier applies exactly once;
-4. unrelated XP categories remain unchanged;
-5. save/reload preserves native state correctly.
+1. exact action/context;
+2. expected proficiency/category;
+3. value reaching the native sink;
+4. multiplier applies once;
+5. unrelated categories remain unchanged;
+6. save/reload preserves native state correctly.
 
-For runtime perk/stat effects:
+## How to verify runtime perk effects
 
-1. exact stat owner identified;
-2. non-saved tweak added once;
-3. gameplay consumer reads changed value;
-4. rank/config change updates it;
-5. disable/unload removes it;
-6. no saved base/diff field changes.
+Check:
 
-For spending:
+1. exact native stat;
+2. tweak added once;
+3. effective value changes;
+4. the real gameplay consumer reads it;
+5. rank/config changes update it;
+6. disable/unload removes it;
+7. no saved base state changes unintentionally.
+
+## How to verify spending changes
+
+Check:
 
 1. availability;
-2. temporary reservation;
+2. reservation/temporary state;
 3. confirm;
 4. cancel;
 5. refund/respec;
@@ -186,8 +157,8 @@ For spending:
 7. save/reload;
 8. insufficient-currency rejection.
 
-## Current proof boundary
+## Evidence limits
 
-The XP sink/context/multiplier and many stat-owner mappings are source/decompile-backed.
+The XP flow, multiplier owners, talent transaction surfaces, and many stat mappings are source/decompilation-backed.
 
-Keep progression changes on the native XP, proficiency and talent-spending paths documented above.
+Exact balance and gameplay feel still need runtime validation per feature.
