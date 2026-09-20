@@ -6,6 +6,10 @@ Working lineage: [Poise Is Not Stagger](../../../research/case-studies/combat/po
 
 ## Runnable source
 
+Start with the [Poise damage tuning example](../../../examples/mono/combat/poise-damage-tuning/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
+## Runnable source
+
 Start from the buildable example: [Combat pressure and poise](../../../examples/mono/combat/combat-pressure-poise/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
 
 
