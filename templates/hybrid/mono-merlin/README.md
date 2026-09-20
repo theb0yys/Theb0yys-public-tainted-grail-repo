@@ -21,3 +21,8 @@ It does **not** bundle a Unity project, game assets, Merlin project files, BepIn
 7. Validate authoring output, runtime behaviour, persistence and compatibility as separate proof lanes.
 
 The provided runtime plug-in only logs the shared contract ID. It deliberately does not pretend that Merlin content discovery or game integration has been proven.
+
+## Starter sub-sections
+
+- [Identity contract](contract/README.md)
+- [Merlin authoring side](merlin/README.md)
