@@ -33,6 +33,8 @@ your mod
 
 For exact GUIDs/assemblies/API entry points, use the [Component reference](ecosystem/component-reference.md).
 
+For hard/soft dependency and packaging rules, use [Dependency and packaging](ecosystem/dependency-and-packaging.md).
+
 For recommended combinations, use [Author stacks](ecosystem/author-stacks.md).
 
 For copyable workflows, use [Integration recipes](recipes/README.md).

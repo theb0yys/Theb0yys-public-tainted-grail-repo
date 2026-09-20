@@ -34,6 +34,7 @@ This is an ownership diagram, not a requirement to install everything.
 
 - [Component reference](component-reference.md) — GUIDs, assemblies and public API entry points.
 - [Dependency/maturity matrix](dependency-matrix.md) — what is safe to consume.
+- [Dependency and packaging rules](dependency-and-packaging.md) — hard/soft dependency and release discipline.
 - [Recommended author stacks](author-stacks.md) — smallest useful combinations.
 
 ## Dependency direction

@@ -6,6 +6,7 @@ These recipes show how the shared pieces fit together in a real mod-author workf
 
 - [Settings + controller action + status](mod-manager-baseline.md)
 - [Custom modal UI: Mod Manager + Tainted Interface](custom-ui.md)
+- [Optional infrastructure bridge](optional-infrastructure.md)
 - [Diagnostic evidence → implementation](diagnostic-to-implementation.md)
 
 ## Ecosystem infrastructure
