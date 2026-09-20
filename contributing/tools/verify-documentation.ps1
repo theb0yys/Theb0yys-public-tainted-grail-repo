@@ -5,9 +5,12 @@ $docRoots = @('case-studies', 'examples', 'how-to', 'investigate', 'learn', 'mec
 $failures = New-Object System.Collections.Generic.List[string]
 
 function Normalize-RepoPath([string]$path) {
-    return ($path -replace '\\\\', '/').TrimStart('./')
+    $normalized = $path -replace '\\', '/'
+    while ($normalized.StartsWith('./')) {
+        $normalized = $normalized.Substring(2)
+    }
+    return $normalized.TrimStart('/')
 }
-
 function Get-RelativeRepoPath([string]$fullPath) {
     $relative = [System.IO.Path]::GetRelativePath($repoRoot, $fullPath)
     return Normalize-RepoPath $relative
