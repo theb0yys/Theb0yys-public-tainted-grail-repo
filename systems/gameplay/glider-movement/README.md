@@ -46,6 +46,10 @@ Native gliding and powered/free flight are different products.
 
 The native glider provides useful movement/controller integration, but it should not be described as a complete native free-flight API.
 
+## Deeper reference
+
+- [Glider movement intervention boundary](intervention-boundary.md)
+
 ## Modding relevance
 
 When building aerial traversal, reuse native movement/controller ownership for physical movement and preserve the hero movement lifecycle instead of translating the transform directly.
