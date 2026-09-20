@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TGTemplate.LockpickingReforged</AssemblyName>
+    <RootNamespace>TGTemplate.LockpickingReforged</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">C:\Path\To\Tainted Grail FoA</GameRoot>
+    <BepInExCore>$(GameRoot)\BepInEx\core</BepInExCore>
+    <TaintedFrameworkDir Condition="'$(TaintedFrameworkDir)' == ''">$(GameRoot)\BepInEx\plugins\TaintedFramework</TaintedFrameworkDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="..\shared\Feature.cs" Link="Shared\Feature.cs" />
+    <Reference Include="BepInEx"><HintPath>$(BepInExCore)\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Tainted.Abstractions"><HintPath>$(TaintedFrameworkDir)\Tainted.Abstractions.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
