@@ -9,6 +9,10 @@ Working lineage: [Container Rules: Post-Roll and Save-Backed](../../../research/
 
 Start with the [Container post-roll rules example](../../../examples/mono/gameplay/container-post-roll-rules/README.md). Build it unchanged first, then change one setting or mechanism at a time.
 
+## Runnable source
+
+Start from the buildable public source: [Economy runtime rules example](../../../examples/mono/gameplay/economy-runtime-rules/README.md). Build it unchanged first, confirm the documented behavior, then change one mechanism at a time.
+
 ## Runtime owner
 
 The working economy implementation operates on:
