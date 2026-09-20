@@ -4,6 +4,10 @@ Modify the shop's existing `RestockableStock` elements before the native shop UI
 
 Working lineage: [Merchant Restock Boundary](../../../research/case-studies/merchants/restock-boundary.md).
 
+## Runnable source
+
+Start with the [Merchant restock example](../../../examples/mono/gameplay/merchant-restock/README.md). Build it unchanged first, then change one setting or mechanism at a time.
+
 ## Patch target
 
 The working implementation patches:
