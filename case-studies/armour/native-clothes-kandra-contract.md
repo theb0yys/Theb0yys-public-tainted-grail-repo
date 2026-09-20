@@ -1,12 +1,3 @@
----
-document_type: case
-scope: native armour presentation ownership
-evidence:
-  static: DECOMPILED
-  runtime: NOT_RUN_FOR_CUSTOM_ARMOUR
-last_verified: 2026-09-20
----
-
 # Native Clothes/Kandra Static Contract
 
 Armour research corrected a common assumption: “skinned mesh” is not the complete native integration contract.

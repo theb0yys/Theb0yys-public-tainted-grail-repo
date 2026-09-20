@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Avalon Mounts native horse velocity
-runtime: mono
-evidence:
-  runtime: PROVEN_ON_TESTED_STACK
-last_verified: 2026-09-20
----
-
 # Native Horse Velocity: Proof125
 
 Avalon Mounts isolated one bounded movement capability instead of claiming the whole mount system.

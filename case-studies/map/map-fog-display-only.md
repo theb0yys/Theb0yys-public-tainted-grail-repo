@@ -1,11 +1,3 @@
----
-document_type: case
-scope: No Map Fog clean display-only boundary
-evidence:
-  static: DECOMPILED
-last_verified: 2026-09-20
----
-
 # Map Fog: Display Without Rewriting Discovery Memory
 
 No Map Fog deliberately selected the map display path while leaving native `MapMemory.visitedPixels` untouched.

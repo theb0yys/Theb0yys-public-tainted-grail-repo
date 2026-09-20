@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Avalon Core read-only public baseline
-evidence:
-  runtime: LIVE_LOAD_VALIDATED_READ_ONLY
-last_verified: 2026-09-20
----
-
 # Discovery Before Mutation
 
 Avalon Core deliberately established a public consumer baseline before exposing gameplay execution.

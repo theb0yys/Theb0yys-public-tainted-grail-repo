@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Smart Save Backups native save lifecycle observation
-evidence:
-  static: SOURCE_AND_DECOMPILE_INSPECTED
-last_verified: 2026-09-20
----
-
 # Native Save Completion Observer
 
 Smart Save Backups needed to react after native save-provider activity without inventing a custom save slot or rewriting FoA serialization.

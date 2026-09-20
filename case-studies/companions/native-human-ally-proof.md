@@ -1,12 +1,3 @@
----
-document_type: case
-scope: one-session human native ally proof
-runtime: mono
-evidence:
-  design: BOUNDED_PROOF_ROUTE
-last_verified: 2026-09-20
----
-
 # Human Native-Ally Proof
 
 The human companion research did not start by “recruiting any NPC”.

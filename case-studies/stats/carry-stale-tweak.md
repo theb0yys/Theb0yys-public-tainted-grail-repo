@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Carry Weight Tweaks stale StatTweak correction
-evidence:
-  source: PROJECT_CORRECTION
-last_verified: 2026-09-20
----
-
 # Carry Tweak Must Follow the Current Stat Instance
 
 A configured final carry capacity could still appear near vanilla even though the mod retained a tweak object.

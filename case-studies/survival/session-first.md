@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Tainted Survival evidence-first progression
-evidence:
-  runtime: MULTI_STAGE_PRIVATE_VALIDATION
-last_verified: 2026-09-20
----
-
 # Session First, Persistence Later
 
 Tainted Survival built its feature in stages:

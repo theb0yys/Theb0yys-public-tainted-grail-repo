@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Tainted Economy core vendor-price lane
-evidence:
-  runtime: THROWAWAY_SAVE_VALIDATED
-last_verified: 2026-09-20
----
-
 # Vendor Price: A Narrow Validated Seam
 
 Tainted Economy deliberately chose `TradeUtils.Price` as its first live mutation because it can change the final price while preserving the rest of the native transaction.

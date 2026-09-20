@@ -1,12 +1,3 @@
----
-document_type: case
-scope: custom weapon equip and Drake presentation
-runtime: mono
-evidence:
-  runtime: LOG_LEVEL_PARTIAL
-last_verified: 2026-09-20
----
-
 # Evil Greatsword: Equip and Presentation Boundary
 
 This case is useful because it separates “weapon registered/equipped” from “all visual/lifecycle behaviour is proven”.

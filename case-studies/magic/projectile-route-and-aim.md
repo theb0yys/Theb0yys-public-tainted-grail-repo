@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Magic Tweaks projectile hook evolution
-evidence:
-  static: DECOMPILED_AND_SOURCE_CORRECTION
-last_verified: 2026-09-20
----
-
 # Projectile Route Coverage and Aim Correction
 
 Magic Tweaks exposed two common reverse-engineering mistakes.

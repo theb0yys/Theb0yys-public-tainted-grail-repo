@@ -1,13 +1,3 @@
----
-document_type: case
-scope: companion command UI input ownership
-runtime: mono
-evidence:
-  static: SOURCE_INSPECTED
-  runtime: REPRESENTATIVE_FIX_LINEAGE
-last_verified: 2026-09-20
----
-
 # Companion Dialogue Input Ownership
 
 The companion UI work exposed a common failure: a surface can render correctly while its input path is broken.

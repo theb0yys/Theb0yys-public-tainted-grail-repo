@@ -1,9 +1,3 @@
----
-document_type: case
-scope: Wyrd Hunt / Core / Living Avalon route-patrol ownership
-last_verified: 2026-09-20
----
-
 # Wyrd Route Patrol: Three Owners, One Feature
 
 The route-patrol design deliberately avoided putting everything in Wyrd Hunt.

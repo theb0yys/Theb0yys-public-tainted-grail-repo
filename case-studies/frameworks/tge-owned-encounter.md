@@ -1,15 +1,3 @@
----
-document_type: case
-scope: TGE owned NPC encounter lifecycle
-runtime: mono
-game_build: pinned TG.Main 749AABB...
-evidence:
-  runtime: NATIVE_LIFECYCLE_PASS
-  human_visual: NOT_RUN
-  save_compatibility: NOT_PROVEN
-last_verified: 2026-09-20
----
-
 # TGE Owned Encounter Lifecycle
 
 The TGE encounter work demonstrates how a framework can execute a dangerous capability without giving up ownership discipline.

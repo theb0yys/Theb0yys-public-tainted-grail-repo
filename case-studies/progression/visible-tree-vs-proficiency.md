@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Immersive Progression native-vs-project progression model
-evidence:
-  static: DECOMPILED
-  runtime: MULTIPLE_PROFICIENCY_CAPTURE_ROWS
-last_verified: 2026-09-20
----
-
 # Visible Talent Group ≠ Native Proficiency
 
 The character screen exposes thematic groups such as Critical Hits, Daggers, Health and Attack Speed.

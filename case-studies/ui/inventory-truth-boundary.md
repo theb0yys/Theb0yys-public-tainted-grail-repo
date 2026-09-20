@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Tainted Interface Inventory Suite ownership map
-evidence:
-  static: DECOMPILATION_AND_SOURCE_REVIEW
-  runtime: OUTSTANDING_FOR_INVENTORY_SUITE
-last_verified: 2026-09-20
----
-
 # Inventory Suite: Presentation Without a Second Inventory
 
 Installed-build decompilation established `HeroItems`, `Item`, `HeroLoadout`, native actions and Character Sheet lifecycle as authoritative.

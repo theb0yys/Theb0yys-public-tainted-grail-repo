@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Immersive HUD native visibility vs custom visual validation
-evidence:
-  static: SOURCE_AND_DECOMPILE_INSPECTED
-  runtime: MIXED
-last_verified: 2026-09-20
----
-
 # Native HUD Ownership vs Custom Visual Proof
 
 The HUD project contains two very different evidence stories.

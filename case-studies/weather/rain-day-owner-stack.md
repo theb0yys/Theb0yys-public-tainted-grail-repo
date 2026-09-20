@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Weather → Skybox → Water bounded live integration
-evidence:
-  runtime: PASS_FOR_RAIN_DAY_GREENSHALLOWS
-  visual: PARTIAL
-last_verified: 2026-09-20
----
-
 # Rain / Day Owner-Stack Validation
 
 This case demonstrates why an inter-mod stack should validate **owner boundaries**, not only visible output.

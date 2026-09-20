@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Merchant Stock Tweaks restock design
-evidence:
-  static: SOURCE_AND_DECOMPILE_INSPECTED
-  runtime: NOT_VERIFIED_AT_OWNER_REVIEW
-last_verified: 2026-09-20
----
-
 # Merchant Restock Boundary
 
 Merchant Stock Tweaks is useful as an example of a **well-bounded but not yet runtime-promoted** route.

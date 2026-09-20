@@ -1,11 +1,3 @@
----
-document_type: case
-scope: reviewed temporary runtime NPC creation/removal
-evidence:
-  runtime: TGE_NATIVE_LIFECYCLE_PASS
-last_verified: 2026-09-20
----
-
 # Temporary Native Actor: Prove Cleanup, Not Only Spawn
 
 The TGE encounter proof demonstrated why “spawn returned an object” is too weak.

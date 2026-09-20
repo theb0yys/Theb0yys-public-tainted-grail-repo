@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Smart Save Backups low-interference design
-evidence:
-  static: DECOMPILED_AND_SOURCE_INSPECTED
-  runtime: LOADER_ONLY_IN_CITED_PLAN
-last_verified: 2026-09-20
----
-
 # Smart Backups Without More Save Slots
 
 The backup project explicitly rejected the obvious but riskier design: “add more native save slots.”

@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Multi-Pin Map Notes storage and presentation boundary
-evidence:
-  source: SOURCE_INSPECTED
-last_verified: 2026-09-20
----
-
 # Sidecar Pinbook Instead of Native Map Injection
 
 Multi-Pin Map Notes needed durable personal markers but native map-marker creation/persistence had not been researched.

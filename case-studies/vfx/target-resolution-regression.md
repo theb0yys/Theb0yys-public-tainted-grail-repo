@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Tainted Blood target-resolution correction
-evidence:
-  project_history: USER_REPORTED_REGRESSION_PLUS_SOURCE_CORRECTION
-last_verified: 2026-09-20
----
-
 # Wrong Lifecycle Seam: Target Resolution Regression
 
 Tainted Blood previously patched `Damage.DetermineTargetHit` to support extra corpse-hit blood.

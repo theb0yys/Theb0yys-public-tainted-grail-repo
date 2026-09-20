@@ -1,13 +1,3 @@
----
-document_type: case
-scope: arbitrary mod-owned native save domain
-runtime: mono
-evidence:
-  static: CURRENT_BINARY_NEGATIVE_VERDICT
-  runtime: NOT_RUN
-last_verified: 2026-09-20
----
-
 # Native Save-Domain Boundary
 
 Negative evidence can change architecture.

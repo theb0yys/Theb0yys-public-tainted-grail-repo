@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Better Bonfire Menu native service integration
-evidence:
-  static: SOURCE_AND_DECOMPILE_INSPECTED
-  runtime: MIXED
-last_verified: 2026-09-20
----
-
 # Native Service Reuse and Submenu Ownership
 
 Better Bonfire Menu demonstrates two separate lessons.

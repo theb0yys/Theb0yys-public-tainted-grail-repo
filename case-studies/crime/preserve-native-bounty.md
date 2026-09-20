@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Crime & Consequences reporting/attribution redesign
-evidence:
-  static: CURRENT_BINARY_PLUS_PROJECT_DESIGN
-last_verified: 2026-09-20
----
-
 # Preserve Native Bounty, Extend Semantic Truth
 
 The crime research found a mismatch:

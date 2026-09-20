@@ -1,13 +1,3 @@
----
-document_type: case
-scope: TGE SDK transport installed-game handshake
-runtime: mono
-game_build: Steam 24270691
-evidence:
-  runtime: BOUNDED_LIVE_PASS
-last_verified: 2026-09-20
----
-
 # Authenticated TGE Live Handshake
 
 A bounded installed-game probe validated the production local transport inside the FoA process.

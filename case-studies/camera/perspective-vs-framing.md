@@ -1,11 +1,3 @@
----
-document_type: case
-scope: True Third Person / First Person Plus ownership findings
-evidence:
-  static: DECOMPILED_PLUS_PROJECT_HISTORY
-last_verified: 2026-09-20
----
-
 # Perspective Transition vs Camera Framing
 
 Camera research found two very different classes of operation.

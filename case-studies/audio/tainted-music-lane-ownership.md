@@ -1,12 +1,3 @@
----
-document_type: case
-scope: Tainted Music contextual lane and native-audio coexistence
-evidence:
-  static: SOURCE_AND_DECOMPILE_INSPECTED
-  runtime: PARTIAL
-last_verified: 2026-09-20
----
-
 # Tainted Music: Own Your Lane, Not All Audio
 
 Tainted Music deliberately separates:

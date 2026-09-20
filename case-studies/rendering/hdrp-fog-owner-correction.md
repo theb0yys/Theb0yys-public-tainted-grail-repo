@@ -1,11 +1,3 @@
----
-document_type: case
-scope: Views of Avalon world-fog target correction
-evidence:
-  runtime: TARGETED_PROBE_PLUS_VISUAL_EVIDENCE
-last_verified: 2026-09-20
----
-
 # World Fog: Correcting the Owner
 
 Views of Avalon went through several wrong or incomplete assumptions:
