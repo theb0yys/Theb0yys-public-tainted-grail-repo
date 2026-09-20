@@ -1,10 +1,8 @@
 # Avalon Companions Public Template
 
-Use this starter when you are building companion features that need a shared command/state model but runtime-specific FoA actor integration. Native spawning, movement, combat, death, and cleanup still need exact runtime owners.
+Use this starter for a companion feature that needs shared behavior across Mono and IL2CPP.
 
-Source family: `avalon-companions`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Keep companion rules and commands in common code, and put exact actor, movement, combat, UI, and lifecycle integration in the runtime-specific hosts.
 
 ## Reusable mechanisms
 
