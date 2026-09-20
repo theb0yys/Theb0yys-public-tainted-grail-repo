@@ -1,5 +1,5 @@
 # Mono UI Templates
 
-- [Runtime overlay](runtime-overlay/) — small BepInEx-owned diagnostic/tool surface.
+Use these templates when you need a small Mono/BepInEx UI for diagnostics or a focused mod tool.
 
-For shared cursor/input/freeze scope or common visual resources, use the public infrastructure contracts under [tooling](../../../platform/README.md) instead of inventing another global UI owner.
+The runtime overlay owns only its own panel. For cursor/input/freeze handling or shared visual resources, integrate the public tooling that already owns those shared responsibilities.
