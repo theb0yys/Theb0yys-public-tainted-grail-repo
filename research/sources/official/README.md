@@ -1,6 +1,5 @@
 # Official Sources
 
-- Questline Merlin's Workshop: https://github.com/AR-Questline/merlin-workshop
-- Merlin's Workshop wiki: https://github.com/AR-Questline/merlin-workshop/wiki
+Use these links when you want Questline's own public documentation or tooling rather than reverse-engineered behavior.
 
-Use official material to establish what Questline exposes/documents. Reverse-engineered runtime behaviour is not official merely because it interacts with Merlin.
+Official material can establish what Questline exposes or documents; it does not automatically prove undocumented runtime behavior in the current game build.
