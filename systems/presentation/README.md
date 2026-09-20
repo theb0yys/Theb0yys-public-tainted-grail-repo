@@ -3,6 +3,7 @@
 FoA does not use one presentation path for every object. Identify the native owner before changing a renderer, UI surface, camera or audio path.
 
 - [UI and input](ui-input.md)
+- [Native hero HUD](native-hero-hud.md)
 - [Hero camera/body ownership](hero-camera-body-ownership.md)
 - [HDRP world fog ownership](hdrp-fog-ownership.md)
 - [Native distance culling](distance-culling.md)

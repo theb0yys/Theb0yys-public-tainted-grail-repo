@@ -6,6 +6,8 @@ Case studies preserve what real mod work taught us without publishing the privat
 - [Encounters/spawning](encounters/README.md)
 - [Travel/navigation](travel/README.md)
 - [Companions](companions/README.md)
+- [Runtime stats](stats/README.md)
+- [Magic](magic/README.md)
 - [Gameplay](gameplay/README.md)
 - [Content](content/README.md)
 - [Weapons](weapons/README.md)

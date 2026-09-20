@@ -2,20 +2,22 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Waves 1–11
+## Waves 1–12
 
-Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, framework contracts, SDK transport, actors/encounters and companion ownership.
+Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, frameworks/SDK, actor/companion ownership, save backups, travel research and navigation helpers.
 
-## Wave 12 — 2026-09-20
+## Wave 13 — 2026-09-20
 
-Mined Smart Save Backups, Tainted Travel and Dungeon Exit Helper:
+Mined Stamina Action Control, Carry Weight Tweaks, Magic Tweaks and Immersive/Always Show HUD:
 
-- native save-slot/provider read/storage model;
-- sidecar backup of existing save-slot data without adding visible slots (runtime archive creation still unproven in cited validation);
-- travel research/ownership boundaries kept explicitly research-only;
-- scene metadata as read-only context;
-- passive interior entrance marker as a small non-map, non-teleport QoL mechanic;
-- case studies showing when a sidecar/read-only solution avoids deeper native mutation.
+- non-saved runtime `StatTweak` lifecycle and stale-stat correction;
+- sprint vs broader negative-stamina multipliers;
+- carry-capacity ownership through `EncumbranceLimit`;
+- magic projectile route coverage, lifetime/homing and aim-offset correction;
+- spell charge speed, mana cost and magic damage seams;
+- status buildup input scaling while preserving native thresholds/decay;
+- native `VHeroHUD.ShowBars` / `UpdateCanvasGroups` ownership;
+- passive custom-vitals boundary and visual-proof limitations.
 
 ## Measurement rule
 

@@ -10,11 +10,18 @@ last_verified: 2026-09-20
 
 Mechanics answer **what can a mod do, through which owner, and with what proof boundary?**
 
-Current families include items/weapons/armour, runtime actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, UI/map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
+## Newly documented stat/magic/HUD routes
 
-New additions:
+- [Stamina drain](stats/stamina-drain.md)
+- [Carry capacity](stats/carry-capacity.md)
+- [Magic projectile tuning](magic/projectile-tuning.md)
+- [Spell charge speed](magic/spell-charge-speed.md)
+- [Magic mana cost](magic/mana-cost.md)
+- [Magic damage scaling](magic/damage-scaling.md)
+- [Status buildup scaling](status/buildup-scaling.md)
+- [Force native hero HUD visible](ui/force-native-hero-hud.md)
+- [Read-only custom vitals HUD](ui/read-only-custom-vitals.md)
 
-- [Back up an existing native save slot](save-state/backup-existing-slot.md) — static/loader-backed, archive runtime proof still pending.
-- [Passive interior entrance marker](navigation/interior-entrance-marker.md).
+The repository also covers items, weapons, armour, actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
 
-Research-only travel execution remains under [Investigate](../investigate/travel/README.md), not promoted as a mechanic.
+Use [Intervention selection](intervention-selection/README.md) when choosing a seam.
