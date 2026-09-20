@@ -1,26 +1,28 @@
 # HLOD
 
-## What it is
+Use this page when you are changing **distant world proxies, large environmental groups, or objects that switch between detailed and simplified representations with distance**.
 
-**HLOD** is Questline's hierarchical level-of-detail and distant-world streaming system.
+## What HLOD does
 
-It groups many source renderers into spatial hierarchies and uses cheaper simplified proxy content at distance.
+HLOD is Questline's hierarchical level-of-detail and distant-world streaming system.
 
-## What it owns
+It groups many source renderers into spatial trees/clusters and uses cheaper proxy content at distance.
 
-HLOD owns the distant proxy lifecycle:
+## What HLOD owns
+
+HLOD owns:
 
 - spatial HLOD trees/clusters;
 - high/low representation state;
-- proxy asset loading;
-- distance/camera-driven transitions;
-- resource loading/release;
+- proxy resource loading;
+- camera/distance-driven transitions;
+- load/release;
 - distant-object culling;
 - HLOD runtime state machines.
 
 Primary runtime assembly: `HLOD.dll`.
 
-## Runtime family
+## Main types
 
 Current managed research maps types including:
 
@@ -32,45 +34,74 @@ Current managed research maps types including:
 
 ## Content layout
 
-FoA ships both:
+FoA uses both:
 
 - `StreamingAssets/HLODs/hlods.arch`
-- HLOD-related Addressables bundles/resources
+- HLOD-related Addressables resources/bundles.
 
-So the system is not just one archive. Control/hierarchy state and actual proxy visual resources can be packaged through different layers.
+The control/hierarchy data and the actual proxy visual resources can therefore live in different packaging layers.
 
-## Runtime shape
+## Runtime flow
 
 ~~~text
-scene source renderers
-→ HLOD build clustering/hierarchy
+source scene renderers
+→ HLOD build clustering
 → simplified proxy resources
-→ HLOD control data + Addressables assets
+→ control data + Addressables assets
 → HLODCameraRecognizer
-→ HLODManager / controller
+→ HLODManager/controller
 → tree high ↔ low state
 → HLODLoadManager
 → distant representation
 ~~~
 
-## Why it exists
+## Why HLOD exists
 
-At long distances, full source geometry, objects and per-object visibility work are expensive. HLOD substitutes cheaper representations and reduces the amount of active detailed content.
+At distance, keeping full-detail source objects/renderers active is expensive.
 
-## Modding relevance
+HLOD substitutes cheaper proxy representations and reduces the amount of detailed active content.
 
-Use HLOD knowledge when changing:
+## When this page is useful
 
-- long-distance world visibility;
-- large environmental groups;
-- distant proxy meshes;
-- world streaming/culling behaviour.
+Use HLOD knowledge for:
 
-Do not treat an HLOD proxy as the authoritative gameplay object.
+- distant world visibility;
+- large static environment groups;
+- proxy meshes;
+- distance transitions;
+- world streaming/culling issues.
 
-## Related systems
+## Do not make the proxy the gameplay object
 
-- [Scenes Baking](../../world/scenes-baking/README.md)
+An HLOD proxy is presentation.
+
+Do not attach gameplay truth, interaction state, inventory, quest state, or other durable logic to the distant proxy representation.
+
+The detailed/source gameplay owner remains separate.
+
+## Common mistakes
+
+- editing a proxy and expecting source gameplay state to change;
+- treating the archive as the entire HLOD system;
+- assuming the high/low object transition is a simple Renderer toggle;
+- changing distant visuals without checking Addressables/resource ownership;
+- confusing HLOD with Medusa/Drake without identifying the runtime owner.
+
+## What to verify
+
+Check:
+
+1. HLOD tree/controller identity;
+2. camera recognition;
+3. high/low state transition;
+4. proxy resource load;
+5. source/detail resource state;
+6. culling/visibility;
+7. release when state changes;
+8. scene cleanup/unload.
+
+## Related pages
+
 - [Medusa](../medusa/README.md)
 - [Drake](../drake/README.md)
 - [Shared mipmap streaming](../mipmap-streaming/README.md)
