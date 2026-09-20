@@ -23,6 +23,10 @@ Do not begin with “what method can I patch?” Begin with:
 
 Then choose the smallest seam that preserves those owners.
 
+## Practical matrix
+
+- [Intervention seam selection matrix](seam-selection-matrix.md)
+
 ## Three common shapes
 
 ### Adjust a result
