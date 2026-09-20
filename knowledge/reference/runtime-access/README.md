@@ -74,4 +74,4 @@ A public damage-number mod waits for `Hero.OnFullyInitialized` before using `Wor
 
 ## Evidence provenance
 
-Current public evidence comes from Questline's public Merlin Workshop source and public FoA mod source, including `kjharvey101/BepinexModUtilsFoA` and other publicly released mods. Exact signatures, assembly ownership and cross-runtime equivalence should be added only when independently established.
+Current public evidence comes from Questline's public Merlin Workshop source and public FoA mod source, including `jonanoj/FallOfAvalonMods`, `apodworny/FallOfAvalonMods` and other publicly released mods. Exact signatures, assembly ownership and cross-runtime equivalence should be added only when independently established.
