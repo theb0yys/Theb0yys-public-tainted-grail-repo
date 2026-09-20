@@ -3,6 +3,7 @@ param(
     [string]$Root = ".",
     [Parameter(Mandatory = $true)]
     [string]$OutputPath,
+    [string[]]$ExcludePathPattern = @(),
     [switch]$FailOnUnresolved
 )
 
@@ -151,6 +152,18 @@ foreach ($sourceFile in $sourceFiles) {
     }
 
     $relative = Get-RelativePath -BasePath $rootPath -FullPath $sourceFile.FullName
+
+    $excluded = $false
+    foreach ($pattern in $ExcludePathPattern) {
+        if (-not [string]::IsNullOrWhiteSpace($pattern) -and $relative -match $pattern) {
+            $excluded = $true
+            break
+        }
+    }
+    if ($excluded) {
+        continue
+    }
+
     $runtime = Get-RuntimeLane -RelativePath $relative
     $project = Get-ProjectName -SourceFile $sourceFile
     $owner = Get-Owner -SourceFile $sourceFile -Cache $ownerCache
