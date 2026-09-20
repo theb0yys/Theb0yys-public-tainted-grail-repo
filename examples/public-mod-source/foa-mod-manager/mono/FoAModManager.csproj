@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>FoAModManager</AssemblyName>
+    <RootNamespace>FoAModManager</RootNamespace>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+    <EmbedDarkFantasyAssets Condition="'$(EmbedDarkFantasyAssets)' == ''">true</EmbedDarkFantasyAssets>
+    <DarkFantasyAssetRoot Condition="'$(DarkFantasyAssetRoot)' == ''">..\assets\dark-fantasy-ui</DarkFantasyAssetRoot>
+    <FoAModManagerLargeFont Condition="'$(FoAModManagerLargeFont)' == ''">true</FoAModManagerLargeFont>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(FoAModManagerLargeFont)' == 'true'">
+    <DefineConstants>$(DefineConstants);FOA_MOD_MANAGER_LARGE_FONT</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(EmbedDarkFantasyAssets)' == 'true'">
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\panels &amp; dialogs\panel - medium.png" LogicalName="FoAModManager.Assets.DarkFantasy.Window.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\panels &amp; dialogs\item header.png" LogicalName="FoAModManager.Assets.DarkFantasy.Header.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\panels &amp; dialogs\panel - small.png" LogicalName="FoAModManager.Assets.DarkFantasy.Panel.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\panels &amp; dialogs\card.png" LogicalName="FoAModManager.Assets.DarkFantasy.Card.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\input box.png" LogicalName="FoAModManager.Assets.DarkFantasy.Field.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\Btn.png" LogicalName="FoAModManager.Assets.DarkFantasy.Button.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\Btn - Hovered.png" LogicalName="FoAModManager.Assets.DarkFantasy.ButtonHover.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\list - button.png" LogicalName="FoAModManager.Assets.DarkFantasy.Secondary.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\list - button (hovered).png" LogicalName="FoAModManager.Assets.DarkFantasy.Selected.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\Btn - keyboard tip.png" LogicalName="FoAModManager.Assets.DarkFantasy.Pill.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\slider - BG.png" LogicalName="FoAModManager.Assets.DarkFantasy.RangeTrack.png" />
+    <EmbeddedResource Include="$(DarkFantasyAssetRoot)\PNG\1080p\Inputs\slider - Grabber.png" LogicalName="FoAModManager.Assets.DarkFantasy.RangeThumb.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(FoAManagedDir)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAManagedDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+  </Target>
+</Project>

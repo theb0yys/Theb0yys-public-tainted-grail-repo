@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ImmersiveBackgrounds</AssemblyName>
+    <RootNamespace>ImmersiveBackgrounds</RootNamespace>
+    <Version>0.4.9</Version>
+    <AssemblyVersion>0.4.9.0</AssemblyVersion>
+    <FileVersion>0.4.9.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAManagedDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Utility">
+      <HintPath>$(FoAManagedDir)\Awaken.Utility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+  </Target>
+</Project>

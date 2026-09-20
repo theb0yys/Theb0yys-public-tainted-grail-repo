@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ImmersiveBackgrounds</AssemblyName>
+    <RootNamespace>ImmersiveBackgrounds</RootNamespace>
+    <Version>0.5.3</Version>
+    <AssemblyVersion>0.5.3.0</AssemblyVersion>
+    <FileVersion>0.5.3.0</FileVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>$(DefineConstants);IL2CPP</DefineConstants>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"></FoAGameRoot>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAInteropDir>$(FoAGameRoot)\BepInEx\interop</FoAInteropDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+    <PackageDir>..\release\package\ImmersiveBackgrounds-0.5.3-il2cpp\plugins\ImmersiveBackgrounds</PackageDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="CompilerServicesShims.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="..\src\Plugin.cs" Link="Shared\Plugin.cs" />
+    <Compile Include="..\src\Patches\ChoiceCallbackPatch.cs" Link="Shared\Patches\ChoiceCallbackPatch.cs" />
+    <Compile Include="..\src\Patches\ChoiceHoverInfosPatch.cs" Link="Shared\Patches\ChoiceHoverInfosPatch.cs" />
+    <Compile Include="..\src\Patches\ItemSetApplyStatsPatch.cs" Link="Shared\Patches\ItemSetApplyStatsPatch.cs" />
+    <Compile Include="..\src\Patches\TitleScreenUtilsStartNewGamePatch.cs" Link="Shared\Patches\TitleScreenUtilsStartNewGamePatch.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\tainted-framework\src\Tainted.Abstractions\Tainted.Abstractions.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core"><HintPath>$(BepInExCoreDir)\BepInEx.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BepInEx.Unity.Common"><HintPath>$(BepInExCoreDir)\BepInEx.Unity.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP"><HintPath>$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(BepInExCoreDir)\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>$(FoAInteropDir)\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="TG.Main"><HintPath>$(FoAInteropDir)\TG.Main.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Awaken.Utility"><HintPath>$(FoAInteropDir)\Awaken.Utility.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(FoAInteropDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(FoAInteropDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAIl2CppReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(FoAGameRoot)' == ''" Text="FoAGameRoot is required for Immersive Backgrounds IL2CPP." />
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll')" Text="BepInEx.Unity.IL2CPP.dll was not found at '$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll'." />
+    <Error Condition="!Exists('$(FoAInteropDir)\TG.Main.dll')" Text="Generated interop TG.Main.dll was not found at '$(FoAInteropDir)\TG.Main.dll'." />
+    <Error Condition="!Exists('$(FoAInteropDir)\UnityEngine.CoreModule.dll')" Text="Generated UnityEngine.CoreModule.dll was not found." />
+  </Target>
+
+  <Target Name="PackageImmersiveBackgrounds" AfterTargets="Build" Condition="'$(PackageOnBuild)' == 'true'">
+    <MakeDir Directories="$(PackageDir)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageDir)" />
+    <Copy SourceFiles="..\README.md" DestinationFiles="$(PackageDir)\README.md" />
+    <Copy SourceFiles="..\release\changelog.md" DestinationFiles="$(PackageDir)\CHANGELOG.md" />
+    <Copy SourceFiles="..\release\manifest.md" DestinationFiles="$(PackageDir)\MANIFEST.md" />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="..\README.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\README.md" />
+    <Copy SourceFiles="..\release\changelog.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\CHANGELOG.md" />
+    <Copy SourceFiles="..\release\manifest.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\MANIFEST.md" />
+  </Target>
+</Project>

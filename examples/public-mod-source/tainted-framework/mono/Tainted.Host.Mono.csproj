@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Tainted.Host.Mono</AssemblyName>
+    <RootNamespace>Tainted.Host.Mono</RootNamespace>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"></FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tainted.Abstractions\Tainted.Abstractions.csproj" />
+    <ProjectReference Include="..\Tainted.Contracts\Tainted.Contracts.csproj" />
+    <ProjectReference Include="..\Tainted.Core\Tainted.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(FoAGameRoot)' == ''" Text="FoAGameRoot is required for the Mono host. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot; after local game-root read access is permitted." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Use a FoA Mono root with BepInEx v5 installed." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'." />
+  </Target>
+</Project>

@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>AvalonExceptions</AssemblyName>
+    <RootNamespace>AvalonExceptions</RootNamespace>
+    <Version>0.3.0</Version>
+    <AssemblyVersion>0.3.0.0</AssemblyVersion>
+    <FileVersion>0.3.0.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\tainted-framework\src\Tainted.Abstractions\Tainted.Abstractions.csproj">
+      <Private>false</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Install BepInEx v5 Mono in the game root or build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.IMGUIModule.dll')" Text="UnityEngine.IMGUIModule.dll was not found at '$(FoAManagedDir)\UnityEngine.IMGUIModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll')" Text="UnityEngine.TextRenderingModule.dll was not found at '$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+  </Target>
+</Project>

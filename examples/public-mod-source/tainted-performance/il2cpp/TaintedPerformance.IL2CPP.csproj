@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>IL2CPP</DefineConstants>
+    <AssemblyName>TaintedPerformance</AssemblyName>
+    <RootNamespace>TaintedPerformance</RootNamespace>
+    <Version>0.2.0</Version>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">S:\SteamLibrary\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAInteropDir>$(FoAGameRoot)\BepInEx\interop</FoAInteropDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\src\**\*.cs" Exclude="..\src\bin\**;..\src\obj\**" LinkBase="Shared" />
+    <Compile Include="Il2CppPlugin.cs" />
+    <Compile Include="TaintedPerformanceBehaviour.cs" />
+    <Compile Include="CompilerServicesShims.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core"><HintPath>$(BepInExCoreDir)\BepInEx.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP"><HintPath>$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SemanticVersioning"><HintPath>$(BepInExCoreDir)\SemanticVersioning.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(BepInExCoreDir)\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>$(FoAInteropDir)\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(FoAInteropDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(FoAInteropDir)\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(FoAInteropDir)\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(FoAInteropDir)\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Tainted.Abstractions"><HintPath>$(FoAPluginsDir)\TaintedFramework\Tainted.Abstractions.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

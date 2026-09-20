@@ -1,0 +1,7 @@
+<!-- Add this to a BepInEx plugin .csproj when your mod intentionally depends on FoA Mod Manager APIs. -->
+<ItemGroup>
+  <Reference Include="FoAModManager">
+    <HintPath>..\..\foa-mod-manager\src\bin\Release\netstandard2.1\FoAModManager.dll</HintPath>
+    <Private>false</Private>
+  </Reference>
+</ItemGroup>

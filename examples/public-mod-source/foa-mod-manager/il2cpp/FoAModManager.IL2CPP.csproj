@@ -1,0 +1,80 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>FoAModManager</AssemblyName>
+    <RootNamespace>FoAModManager</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"></FoAGameRoot>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAUnityLibsDir>$(FoAGameRoot)\BepInEx\unity-libs</FoAUnityLibsDir>
+    <FoAInteropDir>$(FoAGameRoot)\BepInEx\interop</FoAInteropDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\src\FoAModManagerApi.cs" Link="FoAModManagerApi.cs" />
+    <Compile Include="Plugin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.Common">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Unity.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(BepInExCoreDir)\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SemanticVersioning">
+      <HintPath>$(BepInExCoreDir)\SemanticVersioning.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(FoAInteropDir)\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAInteropDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAInteropDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(FoAInteropDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAInteropDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAIl2CppReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(FoAGameRoot)' == ''" Text="FoAGameRoot is required for the IL2CPP manager. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot; against a FoA IL2CPP root with BepInEx 6 installed." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\BepInEx.Core.dll')" Text="BepInEx.Core.dll was not found at '$(BepInExCoreDir)\BepInEx.Core.dll'. Use a FoA IL2CPP root with BepInEx 6 installed." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll')" Text="BepInEx.Unity.IL2CPP.dll was not found at '$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\Il2CppInterop.Runtime.dll')" Text="Il2CppInterop.Runtime.dll was not found at '$(BepInExCoreDir)\Il2CppInterop.Runtime.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\SemanticVersioning.dll')" Text="SemanticVersioning.dll was not found at '$(BepInExCoreDir)\SemanticVersioning.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAUnityLibsDir)\UnityEngine.dll')" Text="UnityEngine base library was not found at '$(FoAUnityLibsDir)\UnityEngine.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\Il2Cppmscorlib.dll')" Text="Generated interop Il2Cppmscorlib.dll was not found at '$(FoAInteropDir)\Il2Cppmscorlib.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\UnityEngine.dll')" Text="Generated interop UnityEngine.dll was not found at '$(FoAInteropDir)\UnityEngine.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\UnityEngine.CoreModule.dll')" Text="Generated interop UnityEngine.CoreModule.dll was not found at '$(FoAInteropDir)\UnityEngine.CoreModule.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\UnityEngine.IMGUIModule.dll')" Text="Generated interop UnityEngine.IMGUIModule.dll was not found at '$(FoAInteropDir)\UnityEngine.IMGUIModule.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\UnityEngine.InputLegacyModule.dll')" Text="Generated interop UnityEngine.InputLegacyModule.dll was not found at '$(FoAInteropDir)\UnityEngine.InputLegacyModule.dll'." />
+  </Target>
+</Project>

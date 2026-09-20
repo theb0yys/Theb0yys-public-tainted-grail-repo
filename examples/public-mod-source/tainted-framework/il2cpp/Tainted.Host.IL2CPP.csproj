@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Tainted.Host.IL2CPP</AssemblyName>
+    <RootNamespace>Tainted.Host.IL2CPP</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"></FoAGameRoot>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAUnityLibsDir>$(FoAGameRoot)\BepInEx\unity-libs</FoAUnityLibsDir>
+    <FoAInteropDir>$(FoAGameRoot)\BepInEx\interop</FoAInteropDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tainted.Abstractions\Tainted.Abstractions.csproj" />
+    <ProjectReference Include="..\Tainted.Contracts\Tainted.Contracts.csproj" />
+    <ProjectReference Include="..\Tainted.Core\Tainted.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(FoAInteropDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.Common">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Unity.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(BepInExCoreDir)\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAInteropDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAUnityLibsDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAUnityLibsDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAIl2CppReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(FoAGameRoot)' == ''" Text="FoAGameRoot is required for the IL2CPP host. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot; after local read-only IL2CPP install evidence is recorded." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\BepInEx.Core.dll')" Text="BepInEx.Core.dll was not found at '$(BepInExCoreDir)\BepInEx.Core.dll'. Use a FoA IL2CPP root with BepInEx 6 IL2CPP installed." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll')" Text="BepInEx.Unity.IL2CPP.dll was not found at '$(BepInExCoreDir)\BepInEx.Unity.IL2CPP.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(BepInExCoreDir)\Il2CppInterop.Runtime.dll')" Text="Il2CppInterop.Runtime.dll was not found at '$(BepInExCoreDir)\Il2CppInterop.Runtime.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAUnityLibsDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAUnityLibsDir)\UnityEngine.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAUnityLibsDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAUnityLibsDir)\UnityEngine.CoreModule.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\Assembly-CSharp.dll')" Text="Generated interop Assembly-CSharp.dll was not found at '$(FoAInteropDir)\Assembly-CSharp.dll'." />
+    <Error Condition="'$(FoAGameRoot)' != '' and !Exists('$(FoAInteropDir)\TG.Main.dll')" Text="Generated interop TG.Main.dll was not found at '$(FoAInteropDir)\TG.Main.dll'." />
+  </Target>
+</Project>
