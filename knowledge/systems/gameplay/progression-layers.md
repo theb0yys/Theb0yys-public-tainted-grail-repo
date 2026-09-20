@@ -7,21 +7,59 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Native Progression Layers
+# Progression Layers
 
-FoA progression is not one unified “skill system”.
+Use this page when you need to answer **which FoA progression system you are actually changing**.
 
-The private progression research separates at least four native layers:
+FoA progression is not one unified skill system.
 
-1. **Character level** — hero XP fills the level path and grants ordinary character-development resources.
-2. **Proficiencies** — use-based skills with their own XP/progress, such as weapon, movement, stealth, cooking and magic-related sources.
-3. **RPG stats** — Strength, Endurance, Dexterity, Spirituality, Perception and Practicality.
-4. **Talent trees** — point spending through the character-sheet progression UI, with the ordinary upgrade route gated by active fireplace context.
+## The main layers
 
-## Important rule
+### Character level
 
-Do not invent a new native proficiency merely because a visible talent group exists.
+Hero XP feeds the ordinary character-level path and related development resources.
 
-For example, visible groups such as Critical Hits, Daggers, Health or Attack Speed do not automatically correspond to independent native proficiency XP stores.
+### Proficiencies
 
-A mod can build an overlay/branch model around confirmed sources, but must keep that project-owned model distinct from native proficiency truth.
+Separate use-based skills have their own XP/progress state. Examples include weapon, movement, stealth, cooking, and magic-related proficiency sources.
+
+### RPG stats
+
+The main RPG attributes are:
+
+- Strength
+- Endurance
+- Dexterity
+- Spirituality
+- Perception
+- Practicality
+
+These are not the same thing as proficiency XP.
+
+### Talent trees
+
+Talent/perk progression is spent through the character-sheet progression flow and has its own native availability, temporary selection, confirmation, and persistence behavior.
+
+The ordinary upgrade route is also tied to native fireplace/rest context.
+
+## Do not invent a proficiency from the UI
+
+A visible talent group is not automatically a native proficiency.
+
+For example, groups labelled around Critical Hits, Daggers, Health, or Attack Speed may represent talent organization without having their own independent proficiency XP store.
+
+Before writing XP or progression logic, identify the exact native state that owns it.
+
+## Mod-owned progression can still exist
+
+A mod can add its own rank, insight, practice, or branch system around confirmed native signals.
+
+Just keep the distinction explicit:
+
+~~~text
+native progression
+≠
+mod-owned progression overlay
+~~~
+
+If a mod later converts its own state into native XP/talent/stat changes, that conversion is a separate operation that should use the native owner deliberately.
