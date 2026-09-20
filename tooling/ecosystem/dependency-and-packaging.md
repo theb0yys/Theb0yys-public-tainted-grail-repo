@@ -93,6 +93,8 @@ If a component has no verified standalone public distribution, do not create a n
 
 Use [API stability and capability promotion](api-stability.md) to confirm that the exact member/capability is an author-facing contract.
 
+Use [Runtime compatibility](runtime-compatibility.md) before claiming Mono/IL2CPP parity. Tainted Framework is the common cross-runtime boundary, but your feature still needs claim-fit testing on every runtime you advertise.
+
 Do not infer compatibility from the DLL loading successfully.
 
 ## Lifecycle discipline
