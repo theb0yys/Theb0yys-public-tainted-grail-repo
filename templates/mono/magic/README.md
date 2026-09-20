@@ -1,5 +1,5 @@
 # Mono Magic Templates
 
-- [Projectile speed](projectile-speed/) — bounded player-owned magic projectile velocity tuning.
+Use these templates when you want to make a narrow magic change while leaving the rest of the spell system native.
 
-The starter keeps targeting and damage native and owns only the selected projectile value.
+The current starter changes player-owned projectile speed only; targeting, damage, casting, and unrelated projectiles remain under the game's existing logic.
