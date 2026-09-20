@@ -11,6 +11,8 @@ source_artifact_sha256: 749aabbfbec121bb69bda0ae226223154406d2c990df3312ad12365d
 
 # Native Inventory Lifecycle
 
+Use this page when you need to understand which native objects own inventory, equipment, quick slots, and Character Sheet actions before building a custom UI or inventory feature.
+
 The inspected FoA build exposes a concrete inventory path. Do not invent generic `InventoryManager` abstractions over it.
 
 ## Entry and screen lifecycle
