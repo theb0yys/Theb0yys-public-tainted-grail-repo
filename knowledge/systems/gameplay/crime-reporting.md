@@ -9,44 +9,59 @@ last_verified: 2026-09-20
 source_artifact_sha256: 749aabbfbec121bb69bda0ae226223154406d2c990df3312ad12365d513fa982
 ---
 
-# Native Crime Reporting and Bounty Application
+# Crime Reporting and Bounty
 
-The inspected FoA build does **not** expose a rich incident/report/case model before bounty.
+Use this page when your mod needs to understand **how a witnessed crime becomes a bounty**.
 
-Its deferred witnessed-crime path uses one hero-owned `TemporaryBounty` object as a shared batch.
+The inspected Mono build does not expose a rich native incident/report/case object before bounty.
 
-## Native shape
+Instead, deferred witnessed crimes use one Hero-owned `TemporaryBounty` as a shared pending batch.
 
-```text
+## Native flow
+
+~~~text
 CrimeUtils.TryCommitCrime
-→ owner/jurisdiction evaluation
+→ evaluate owner/jurisdiction
 → CrimeUtils.InformWatchingNPCs
-   ├─ no relevant witness
-   │    → no noticed legal application for that owner
-   │
-   ├─ guard witness / InstantReport
-   │    → witness ReactToCrime
-   │    → CrimeUtils.CommitCrime(ref crime, exactOwner)
-   │    → CrimeUtils.AddBounty(exactOwner)
-   │
-   └─ non-guard witnesses
-        → TemporaryBounty.GetOrCreate
-        → TemporaryBounty.RegisterCrime
-        → witness reactions
-        → shared pending batch
-        → later ApplyCrimes
-        → crime replay with InstantReport / visibility-watcher bypass
-        → CrimeUtils.CommitCrime
-        → CrimeUtils.AddBounty
-```
 
-## Shared-batch semantics
+no relevant witness
+→ no noticed legal application for that owner
 
-The inspected `TemporaryBounty` contains one shared timer and pending collections. It does not expose native IDs for incident, report, authority case or delivery receipt.
+guard witness / InstantReport
+→ witness ReactToCrime
+→ CrimeUtils.CommitCrime(ref crime, exactOwner)
+→ CrimeUtils.AddBounty(exactOwner)
 
-A later crime can therefore share the same pending expiry window as an earlier registration.
+ordinary witnesses
+→ TemporaryBounty.GetOrCreate
+→ TemporaryBounty.RegisterCrime
+→ witness reactions
+→ shared pending batch
+→ later ApplyCrimes
+→ replay with InstantReport / watcher bypass
+→ CrimeUtils.CommitCrime
+→ CrimeUtils.AddBounty
+~~~
 
-## Known flush paths
+## TemporaryBounty is a shared batch
+
+The inspected `TemporaryBounty` has:
+
+- one shared timer;
+- pending crime collections.
+
+It does not expose separate native IDs for:
+
+- incident;
+- report;
+- authority case;
+- delivery receipt.
+
+A later crime can therefore share the same pending expiry window as an earlier one.
+
+Do not invent per-incident native semantics that the inspected implementation does not expose.
+
+## Known ways pending crime is flushed
 
 Static evidence identified:
 
@@ -54,17 +69,40 @@ Static evidence identified:
 - qualifying guard watcher arrival;
 - penalty/payment preparation.
 
-`GuardApplyCrimes` has no incident/report/owner argument; it applies the shared pending batch.
+`GuardApplyCrimes` applies the shared pending batch and does not take an incident/report/owner argument.
 
-## Ownership rule
+## What FoA already owns
 
-Native FoA owns:
+Keep native ownership for:
 
-- crime entry and owner/jurisdiction evaluation;
+- crime entry;
+- jurisdiction/owner evaluation;
 - witness reactions;
-- deferred pending crime substrate;
+- deferred pending crimes;
 - owner-specific `CrimeUtils.AddBounty`;
-- native bounty storage/clearing;
-- guard intervention and search states.
+- bounty storage/clearing;
+- guard search/intervention states.
 
-A mod may add richer semantic records around this path, but should not create a second bounty truth.
+A mod may maintain richer semantic records for its own features, but those should wrap the native legal state rather than become a second bounty truth.
+
+## How to verify a crime feature
+
+Check:
+
+1. exact crime type;
+2. exact owner/jurisdiction;
+3. witnesses present;
+4. guard vs non-guard path;
+5. immediate vs deferred reporting;
+6. pending `TemporaryBounty` state where relevant;
+7. flush condition;
+8. exact owner receiving bounty;
+9. bounty amount/state;
+10. guard/search consequences;
+11. no double application.
+
+## Evidence limits
+
+This page is based on current Mono decompilation for the inspected build.
+
+Runtime validation was not performed for this static packet.
