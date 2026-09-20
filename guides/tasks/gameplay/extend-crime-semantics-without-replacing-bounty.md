@@ -4,6 +4,11 @@ Use CrimeUtils.AddBounty and TemporaryBounty reporting as observation/interventi
 
 Working lineage: [Preserve Native Bounty, Extend Semantic Truth](../../../research/case-studies/crime/preserve-native-bounty.md).
 
+## Runnable source
+
+Start from the buildable example: [Crime semantic sidecar](../../../examples/mono/gameplay/crime-semantic-sidecar/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Bounty route
 
 The maintained Crime and Consequences implementation patches:
