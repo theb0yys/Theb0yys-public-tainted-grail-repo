@@ -8,6 +8,8 @@ last_verified: 2026-09-20
 
 # Travel Investigation
 
+- [Travel ownership boundaries](ownership-boundaries.md)
+
 Travel touches too many authoritative systems to begin with a teleport patch.
 
 The private Tainted Travel programme intentionally starts with **read-only discovery and dry-run plans**.
