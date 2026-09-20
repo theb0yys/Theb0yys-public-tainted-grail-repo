@@ -1,60 +1,123 @@
 # Tune Combat Pressure Without Raw Damage Multipliers
 
-**Evidence status: PARTIAL.** The owner model and intervention direction are established, but this case study does not record a complete end-to-end runtime validation matrix.
+Use the native coordination and stamina systems instead of replacing combat AI or multiplying all damage/health.
 
 Working lineage: [Combat Pressure Without Raw Damage Multipliers](../../../research/case-studies/combat/pressure-not-damage.md).
 
-## Goal
+## Native surfaces
 
-Make combat feel harder by changing **coordination and resource pressure**, not by multiplying every enemy's damage or health.
+The working combat-feel implementation uses three existing FoA inputs:
 
-The working design focused on:
+- `Awaken.TG.Main.Settings.Gameplay.Difficulty.MaxEnemiesAttacking`
+- `Awaken.TG.Main.Settings.Gameplay.Difficulty.AttackActionUnBookProlong`
+- `Awaken.TG.Main.Character.CharacterStats.CharacterStatsWrapper.Initialize`
 
-- concurrent attack slots;
-- attack-booking turnover;
-- runtime stamina pressure.
+The first two are patched as getter postfixes. The third is patched after character stats initialize so a runtime-only stamina tweak can be attached to the **current** hero stat instance.
 
-## Process
+FoA consumes these values through its own combat systems:
 
-1. Identify the native owner for the coordination/resource value you want to change.
-2. Change one pressure lever at a time.
-3. Leave damage/health at vanilla during the first proof.
-4. Observe whether native AI, movement and attack execution remain intact.
-5. Add a second lever only after the first can be isolated.
+- `AttackBehaviour.UseConditionsEnsured()` compares booked attacks with `MaxEnemiesAttacking`;
+- `CombatDirector.UnBookAttackAction(...)` uses `AttackActionUnBookProlong` when releasing attack bookings;
+- negative stamina use is multiplied through `CharacterStats.StaminaUsageMultiplier`.
 
-A useful sequence is:
+## Enemy group pressure
 
-```text
-baseline combat
-→ change concurrent attack pressure
-→ validate
-→ reset
-→ change stamina pressure
-→ validate
-→ combine only after both are understood
-```
+Patch the `MaxEnemiesAttacking` getter and adjust only the returned value.
 
-## What not to do
+Keep the result bounded. You are changing how many attack actions can be booked at once, not replacing `CombatDirector`.
 
-Do not treat "harder combat" as permission to:
+~~~text
+native Difficulty.MaxEnemiesAttacking
+→ postfix
+→ bounded adjusted slot count
+→ AttackBehaviour continues natively
+~~~
 
-- multiply all incoming damage;
-- rewrite AI controllers;
-- change every enemy family at once;
-- combine timing, stamina, damage and health changes in the first test.
+## Attack-turnover pressure
 
-## Verification
+Patch `AttackActionUnBookProlong` with the same result-adjustment pattern.
 
-Record:
+Lower values release an attack booking sooner; higher values keep it occupied longer.
 
-- exact native owner/value changed;
-- baseline encounter;
-- changed encounter;
-- whether attack coordination changed;
-- whether stamina pressure changed;
-- whether native abilities/movement remained functional;
-- whether the mod returns cleanly to baseline.
+~~~text
+native attack completes
+→ CombatDirector.UnBookAttackAction
+→ active Difficulty.AttackActionUnBookProlong
+→ booking released by native director
+~~~
 
-## Current proof boundary
+Do not manually book/unbook attack actions from the mod just to increase pressure.
 
-The case establishes the owner-first design direction and chosen pressure levers. A release-ready guide still needs explicit runtime validation for the exact values/targets used by the implementation.
+## Action-stamina pressure
+
+The working implementation patches:
+
+~~~text
+CharacterStats.CharacterStatsWrapper.Initialize(CharacterStats)
+~~~
+
+After initialization:
+
+1. require `stats.ParentModel is Hero`;
+2. target the current `stats.StaminaUsageMultiplier`;
+3. remove any older mod-owned tweak;
+4. attach one new runtime `StatTweak`;
+5. use multiply semantics;
+6. make the tweak non-saved.
+
+The implementation shape is:
+
+~~~csharp
+private sealed class ActionStaminaTweak : StatTweak
+{
+    public override bool IsNotSaved => true;
+
+    internal ActionStaminaTweak(Stat stat, float multiplier)
+        : base(stat, multiplier, TweakPriority.Multiply, OperationType.Multi)
+    {
+        MarkedNotSaved = true;
+    }
+}
+~~~
+
+Attach the tweak to the current hero as an element so your mod can find and discard it cleanly.
+
+## Reapply and cleanup
+
+Character stats can be recreated. Never hold one `StaminaUsageMultiplier` reference forever.
+
+When settings change or the wrapper reinitializes:
+
+~~~text
+current Hero
+→ current CharacterStats
+→ discard old ActionStaminaTweak
+→ attach one tweak to current StaminaUsageMultiplier
+~~~
+
+When the multiplier is effectively 1.0, remove the tweak and leave the native stat alone.
+
+## Keep the feature narrow
+
+Do not mix this process with:
+
+- global damage multipliers;
+- NPC health changes;
+- custom target selection;
+- replacement AI;
+- animation-state changes;
+- item-template mutation.
+
+Those are separate systems.
+
+## Practical test
+
+Change one lever at a time:
+
+1. vanilla baseline;
+2. `MaxEnemiesAttacking` only;
+3. `AttackActionUnBookProlong` only;
+4. action stamina only;
+5. combine only after each individual change behaves as expected.
+
+That makes it obvious which native input produced the change.
