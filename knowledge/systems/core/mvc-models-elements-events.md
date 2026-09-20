@@ -56,7 +56,7 @@ The documented lifecycle is:
 model.AddElement(element);
 ~~~
 
-The element is registered to the parent, then added through `World.Add` at the correct parent lifecycle point.
+The element is registered to the parent. If the parent Model is not yet fully initialized, Element initialization is deferred until the parent's element-initialization stage; otherwise the Element is added through `World.Add` immediately.
 
 ### Model removal
 
