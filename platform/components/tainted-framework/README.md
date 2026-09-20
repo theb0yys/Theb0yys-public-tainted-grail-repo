@@ -1,10 +1,8 @@
 # Tainted Framework
 
-**Posture: Capability-gated — not a general FoA gameplay SDK**
+Use Tainted Framework only when your feature needs one of its specifically documented shared runtime services.
 
-Tainted Framework is the shared runtime-facing implementation layer for services that have been promoted for common use.
-
-The existence of an internal service, capability ID, host assembly or decision document does **not** make it consumer-ready.
+It is not a general FoA gameplay SDK. Some internal services exist only for framework implementation or future work, so a service becomes consumer-ready only when its public contract is explicitly documented below.
 
 ## What an ordinary author should do
 
