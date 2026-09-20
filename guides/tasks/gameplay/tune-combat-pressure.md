@@ -1,5 +1,8 @@
 # Tune Combat Pressure Without Raw Damage Multipliers
 
+
+> **Start with source:** [Combat pressure example](../../../examples/mono/combat/combat-pressure-poise/README.md)
+
 Use the native coordination and stamina systems instead of replacing combat AI or multiplying all damage/health.
 
 Working lineage: [Combat Pressure Without Raw Damage Multipliers](../../../research/case-studies/combat/pressure-not-damage.md).
