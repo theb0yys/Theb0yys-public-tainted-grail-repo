@@ -4,6 +4,11 @@ FoA poise break and stamina-driven stagger are separate systems. Tune the incomi
 
 Working lineage: [Poise Is Not Stagger](../../../research/case-studies/combat/poise-not-stagger.md).
 
+## Runnable source
+
+Start from the buildable example: [Combat pressure and poise](../../../examples/mono/combat/combat-pressure-poise/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
+
 ## Native poise path
 
 The useful runtime chain is:
