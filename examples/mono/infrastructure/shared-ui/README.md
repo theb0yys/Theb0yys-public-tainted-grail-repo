@@ -1,12 +1,8 @@
 # Shared UI Integration Example
 
-Use this example when a custom screen needs shared input/cursor handling and shared visual resources without making the feature mod responsible for global UI infrastructure.
+Use this example when your custom screen needs shared input/cursor handling and common UI resources.
 
-Shows the intended ownership split:
-
-- **FoA Mod Manager** — shared cursor/input/controller/world-freeze scope.
-- **Tainted Interface** — common visual styles/resources.
-- **this mod** — the actual window, commands and feature state.
+It demonstrates the intended split: FoA Mod Manager handles shared input/cursor/freeze responsibilities, Tainted Interface provides reusable visual resources, and your mod continues to own the actual window, commands, and feature state.
 
 ## Build
 
