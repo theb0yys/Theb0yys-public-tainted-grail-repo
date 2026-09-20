@@ -35,5 +35,6 @@ Gate 0 is complete only when all of the following are true:
 
 - Public-path cleanup: **PASSED**
 - Public-surface CI: **PASSED**
-- General repository licence: **BLOCKED** — owner licence choice is required; no licence is inferred from public visibility.
+- General repository licence: **PASSED** — Apache-2.0 for original software; CC BY 4.0 for original documentation/research, with separate third-party/upstream terms preserved.
+- Gate 0 overall: **PASSED**
 - Operational tooling phases: **NOT_RUN**
