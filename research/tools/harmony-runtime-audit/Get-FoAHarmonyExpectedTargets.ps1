@@ -73,10 +73,10 @@ if (-not [string]::IsNullOrWhiteSpace($OutputPath)) {
 }
 
 if ($AsConfigBlock) {
-    Write-Output $text
+    Write-Host $text
 }
 else {
-    Write-Output $pipeValue
+    Write-Host $pipeValue
 }
 
 return [pscustomobject]@{
