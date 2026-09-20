@@ -1,6 +1,18 @@
 # Hook Catalogue
 
-This catalogue lists hook families used by working Tainted Grail mod paths in this handbook.
+Hooks are only one segment of a complete mechanic. A method target does not prove owner, lifecycle, downstream success, cleanup or compatibility.
+
+## Evidence-scoped private-corpus hook candidates
+
+| Native target | Patch | Evidence state | Compatibility risk | Public use |
+| --- | --- | --- | --- | --- |
+| `LockpickingInteraction.ConsumePickHP(float)` | Prefix | Source inspected | High | Narrow lockpick durability guard |
+| `Shop.OpenShop` | Prefix | Source inspected; owner runtime-unverified | High | Restock normal `RestockableStock` before shop UI |
+| `VCCharacterMagicVFX.CastingBegun` | Postfix | Source inspected | High | Player-owned mod VFX overlay |
+| `TemplatesLoader.set_FinishedLoading(bool)` | Postfix | Source inspected across several consumers | **Critical** | Retry/readiness boundary for template registration |
+| concrete `CloudService.EndSave(string)` providers | Postfix | Source inspected + decompiled target research | High | Observe slot IDs; **not** generic durable-success semantics |
+
+## Existing public working hook families
 
 | System | Native surface | Working use |
 | --- | --- | --- |
@@ -12,6 +24,9 @@ This catalogue lists hook families used by working Tainted Grail mod paths in th
 | Character damage | `HealthElement.TakeDamage(Damage)` | observe completed character damage for UI/VFX/audio sidecars |
 | Character death | `HealthElement.OnDeathEvents` | attach terminal character presentation/cleanup sidecars |
 
-## Rule
+## Rules
 
-Patch the narrow native owner for the behaviour you are changing. Preserve the original game path unless the mod intentionally owns that calculation or action.
+- Patch the narrow native owner for the behaviour being changed.
+- Preserve the original path unless the mod intentionally owns that calculation/action.
+- Revalidate private/reflection targets after game updates.
+- A hook firing is not terminal success.
