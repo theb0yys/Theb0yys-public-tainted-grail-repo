@@ -1,5 +1,7 @@
 # World Systems
 
+- [Scene metadata](scene-metadata.md)
+- [Save slots / cloud storage](save-slot-cloud-storage.md)
 - [Bonfire / fireplace services](bonfire-services.md)
 - [Map fog of war](map-fog-of-war.md)
 - [Localisation and Babel](localisation-babel.md)

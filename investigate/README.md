@@ -8,5 +8,6 @@ Investigation is a first-class FoA modding skill.
 - [Name heuristic vs native identity](name-heuristic-vs-native-identity.md)
 - [Proving a new mechanic](proving-a-new-mechanic.md)
 - [Persistence investigation](persistence/README.md)
+- [Travel investigation](travel/README.md)
 
-The goal is not to collect more type names. The goal is to establish a bounded model of **identity → owner → lifecycle → downstream consumer → cleanup → proof**.
+The goal is to establish **identity → owner → lifecycle → downstream consumer → cleanup → proof** before mutation.

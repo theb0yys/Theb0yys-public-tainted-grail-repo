@@ -4,6 +4,7 @@ Case studies preserve what real mod work taught us without publishing the privat
 
 - [Frameworks/tooling](frameworks/README.md)
 - [Encounters/spawning](encounters/README.md)
+- [Travel/navigation](travel/README.md)
 - [Companions](companions/README.md)
 - [Gameplay](gameplay/README.md)
 - [Content](content/README.md)

@@ -2,23 +2,20 @@
 
 This ledger tracks **knowledge extraction**, not file copying.
 
-## Waves 1–10
+## Waves 1–11
 
-Covered PR #407, reusable mechanics/lifecycle/hook indexes, major gameplay/presentation domains, shared framework contracts, SDK transport and tooling ownership.
+Covered PR #407, reusable indexes, major gameplay/presentation/tooling domains, framework contracts, SDK transport, actors/encounters and companion ownership.
 
-## Wave 11 — 2026-09-20
+## Wave 12 — 2026-09-20
 
-Mined Wyrd Hunt, Avalon Companions and Avalon Human Companions:
+Mined Smart Save Backups, Tainted Travel and Dungeon Exit Helper:
 
-- native runtime Location/Npc lifecycle and cleanup proof requirements;
-- bounded temporary spawn mechanic;
-- Wyrd exposure / Core route / Living Avalon patrol ownership split;
-- native summon-faction + `NpcHeroPetAlly` temporary ally route;
-- native defend-assist through hero `PossibleAttackers` rather than custom target selection;
-- managed companion recovery without resurrection/respawn;
-- project-owned runtime bond policy;
-- profile persistence separated from actor restoration;
-- human companion proof explicitly bounded to a fresh one-session non-unique actor.
+- native save-slot/provider read/storage model;
+- sidecar backup of existing save-slot data without adding visible slots (runtime archive creation still unproven in cited validation);
+- travel research/ownership boundaries kept explicitly research-only;
+- scene metadata as read-only context;
+- passive interior entrance marker as a small non-map, non-teleport QoL mechanic;
+- case studies showing when a sidecar/read-only solution avoids deeper native mutation.
 
 ## Measurement rule
 

@@ -10,19 +10,11 @@ last_verified: 2026-09-20
 
 Mechanics answer **what can a mod do, through which owner, and with what proof boundary?**
 
-## Major families
+Current families include items/weapons/armour, runtime actors/companions, progression/survival/economy/crime, bonfire/merchants/recipes, UI/map/camera/navigation, rendering/weather/audio/VFX/diagnostics, Addressables and save-state tooling.
 
-- Items / weapons / armour
-- Actors / encounters
-  - [Bounded runtime spawn](encounters/native-runtime-spawn.md)
-  - [Route-patrol ownership](encounters/route-patrol-ownership.md)
-  - [Native ally setup](companions/native-ally-setup.md)
-  - [Native defend assist](companions/native-defend-assist.md)
-  - [Managed recovery](companions/recover-managed-actor.md)
-- Progression / survival / economy / crime
-- Bonfire / merchants / recipes
-- UI / map / camera
-- Rendering / weather / audio / VFX / diagnostics
-- Assets / save state / lifecycle
+New additions:
 
-Use [Intervention selection](intervention-selection/README.md) when choosing a seam.
+- [Back up an existing native save slot](save-state/backup-existing-slot.md) — static/loader-backed, archive runtime proof still pending.
+- [Passive interior entrance marker](navigation/interior-entrance-marker.md).
+
+Research-only travel execution remains under [Investigate](../investigate/travel/README.md), not promoted as a mechanic.
