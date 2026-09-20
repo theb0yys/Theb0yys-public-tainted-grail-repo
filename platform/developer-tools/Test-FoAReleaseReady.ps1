@@ -130,6 +130,24 @@ else {
 }
 
 try {
+    $harmonyScript = Join-Path $PSScriptRoot "Get-FoAHarmonyOwnership.ps1"
+    $harmony = & $harmonyScript -Root $projectDir -Quiet
+
+    if ($harmony.ConflictCount -gt 0) {
+        Add-State $states "HarmonySourceOwnership" "PARTIAL" "$($harmony.ConflictCount) cross-owner declared target overlap(s) require review."
+    }
+    elseif ($harmony.UnparsedProjectCount -gt 0) {
+        Add-State $states "HarmonySourceOwnership" "PARTIAL" "$($harmony.UnparsedProjectCount) Harmony-like project(s) use dynamic/unsupported target declarations; runtime ownership remains NOT_RUN."
+    }
+    else {
+        Add-State $states "HarmonySourceOwnership" "PASSED" "$($harmony.DeclaredTargetCount) supported declared Harmony target(s); no source-level cross-owner overlap detected. Runtime ownership remains NOT_RUN."
+    }
+}
+catch {
+    Add-State $states "HarmonySourceOwnership" "FAILED" $_.Exception.Message
+}
+
+try {
     $inventoryScript = Join-Path $PSScriptRoot "Get-FoAModInventory.ps1"
     $inventory = & $inventoryScript -GameRoot $(if ($null -ne $environment) { $environment.GameRoot } else { $GameRoot }) -Quiet
 
