@@ -5,6 +5,10 @@ Use this guide when you want one exact native enemy to behave differently withou
 Working lineage: [Exact-Target NPC Tuning](../../../research/case-studies/gameplay/npc-tuning.md).  
 Native actor ownership: [Creatures and NPCs](../../../knowledge/systems/gameplay/creatures-npcs.md).
 
+## Runnable source
+
+Start from the minimal public example: [Exact Drowner tuning example](../../../examples/mono/gameplay/exact-npc-tuning/README.md). Build it unchanged first, confirm the documented log/result, then make one change at a time.
+
 ## What you will build
 
 ```text
