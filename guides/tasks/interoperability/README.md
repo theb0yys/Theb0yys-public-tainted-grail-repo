@@ -1,5 +1,5 @@
 # Interoperability
 
-Use these guides when your mod must cooperate with another mod, framework, or shared service. They focus on supported public contracts, optional dependencies, discovery, version checks, and avoiding private cross-mod coupling.
+Use this section when your mod must coexist with another mod or shared framework instead of assuming it owns the whole feature area.
 
-Cross-mod procedures belong here. Working lineage: [Cross-mod API](../../../research/case-studies/gameplay/cross-mod-api.md).
+The guides focus on dependency boundaries, shared ownership, optional integrations, conflict avoidance, and what to do when two mods touch the same native system.
