@@ -1,10 +1,8 @@
 # Easy Avalon Public Template
 
-Use this starter when you are building a collection of difficulty or quality-of-life tweaks that should share configuration across runtimes. Each actual game change should still be connected to its exact FoA stat, method, or service in the runtime host.
+Use this starter for difficulty or quality-of-life tuning that should behave consistently across Mono and IL2CPP.
 
-Source family: `easy-avalon`
-
-It keeps reusable feature logic in shared code and loader-specific entry points in separate Mono and IL2CPP hosts.
+Put the player-facing options and tuning rules in shared code, then connect them to the exact FoA stats, hooks, or services in each runtime host.
 
 ## Reusable mechanisms
 
