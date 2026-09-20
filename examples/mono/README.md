@@ -1,6 +1,6 @@
 # Mono Examples
 
-Mono/BepInEx examples are grouped by functional domain.
+Examples for Mono builds using BepInEx and related runtime modding tools.
 
 - [Audio](audio/README.md)
 - [Combat](combat/README.md)
@@ -11,4 +11,4 @@ Mono/BepInEx examples are grouped by functional domain.
 - [Rendering](rendering/README.md)
 - [UI](ui/README.md)
 
-The runtime is already expressed by `examples/mono/`, so child names do not repeat `mono`.
+Each folder groups examples by what they do. Because everything here already targets Mono, individual example names do not repeat `mono`.
