@@ -11,7 +11,9 @@ last_verified: 2026-09-20
 
 # Mod-Owned Save State
 
-There is currently **no supported public mechanic for injecting an arbitrary mod-owned FoA save Domain**.
+Use this section when your mod needs to keep its own state across game restarts or deliberately avoid persistence.
+
+FoA does not currently expose a supported public API for registering an arbitrary new native save domain, so persistence work must start from the kind of state you own and the save/load lifecycle it can safely attach to.
 
 ## Fixed native-domain result
 
