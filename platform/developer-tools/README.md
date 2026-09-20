@@ -18,10 +18,14 @@ Test-FoAEnvironment.ps1
 
 game/loader updated?
 → Compare-FoAFingerprint.ps1
+→ research/tools/symbol-anchors/Test-FoASymbolAnchors.ps1
+→ research/tools/harmony-runtime-audit
+→ research/tools/runtime-tracer (when invocation is the remaining question)
 
 mod-stack problem?
 → Get-FoAModInventory.ps1
 → Get-FoAHarmonyOwnership.ps1
+→ research/tools/harmony-runtime-audit
 
 support problem?
 → New-FoADiagnosticBundle.ps1
