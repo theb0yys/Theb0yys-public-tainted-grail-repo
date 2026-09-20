@@ -7,31 +7,50 @@ evidence:
 last_verified: 2026-09-20
 ---
 
-# Inventory Truth vs UI Ownership
+# Inventory State vs Custom UI
 
-FoA's native inventory is already a complete gameplay owner.
+Use this page when you are building a custom inventory screen and need to decide **what the UI may own and what must stay native**.
 
-A UI framework should not recreate:
+FoA already owns the gameplay truth for inventory.
 
-- item existence/quantity;
-- equipment truth;
-- quick-slot truth;
-- native classifications;
+## Keep these native
+
+Do not recreate:
+
+- whether an item exists;
+- item quantity;
+- equipped state;
+- quick-slot state;
+- native item classification;
 - item movement;
 - crime/economy rules;
 - persistence.
 
-## Safe custom UI boundary
+## Your UI can own
 
-A custom interface may own:
+A custom interface can safely own things such as:
 
-- workspaces/layout;
-- search/filter/sort over a read-only projection;
-- selection and detail panels;
-- comparison presentation;
+- layout/workspaces;
+- search;
+- filters;
+- sorting;
+- selection state;
+- detail/comparison panels;
 - UI-only preferences;
-- its own view objects and subscriptions.
+- its own Views/GameObjects/subscriptions.
 
-It should delegate gameplay actions back to exact native operations and then refresh from native state.
+## Action flow
+
+A good custom interface follows this pattern:
+
+~~~text
+read native inventory state
+→ present it differently
+→ request native action
+→ wait for native result
+→ refresh from native state
+~~~
+
+Do not let the UI become a second inventory database.
 
 See [Native Inventory Lifecycle](native-inventory-lifecycle.md).
