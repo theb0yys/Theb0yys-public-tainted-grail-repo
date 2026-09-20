@@ -1,49 +1,111 @@
 # Build a Temporary Human Ally
 
-**Evidence status: PARTIAL.** One reviewed temporary human-ally class is scoped; this is not a generic NPC recruitment system.
+Use a non-unique human LocationTemplate, spawn a new Location, mark it session-only, then attach FoA's existing summon/ally ownership.
 
 Working lineage: [Human Native-Ally Proof](../../../research/case-studies/companions/native-human-ally-proof.md).
 
-## Goal
+## Pick a non-unique template
 
-Spawn one reviewed non-unique human template and apply the same temporary native ally ownership pattern used by the proven session companion route.
+Resolve the configured GUID through:
 
-## Process
+~~~csharp
+LocationTemplate template =
+    new TemplateReference(guid).Get<LocationTemplate>();
+~~~
 
-1. Select one reviewed repetitive/non-unique human `LocationTemplate`.
-2. Spawn through the native Location path.
-3. Immediately set `MarkedNotSaved=true`.
-4. Require the expected `NpcElement`.
-5. Apply native summon/ally faction ownership.
-6. attach/use `NpcHeroPetAlly`;
-7. track the exact owned actor;
-8. dismiss/discard through native cleanup.
+Before spawning, require:
 
-## Explicitly out of scope
+~~~text
+template has NpcAttachment
+NpcAttachment.IsUnique == false
+~~~
 
-Do not extend this guide into:
+After spawning, also require:
 
-- converting existing world NPCs;
-- named/story/quest NPCs;
-- persistence;
-- saved recruitment roster;
-- equipment/levelling;
-- dialogue mutation;
-- custom pathing;
-- custom target selection.
+~~~text
+NpcElement exists
+NpcElement.IsUnique == false
+~~~
 
-## Verification
+Do not use this process on named story/quest NPCs.
 
-For the one reviewed human type, prove:
+One reviewed repetitive human candidate in the maintained roster is:
 
-- exact template identity;
-- spawn;
-- ally state;
-- follow/defend;
-- not-saved posture;
-- cleanup;
-- no duplicate/untracked actor.
+~~~text
+Spec_NPC_Special_GalahadSquire_Repetetive
+a13a2abd2f5e61d438f322360035ea9a
+~~~
 
-## Current proof boundary
+## Spawn beside the hero
 
-The case proves the safe scope/model for one temporary human class. Broader "human companion" claims remain blocked until each additional owner/lifecycle is proven.
+The working route uses a local-space offset from the hero:
+
+~~~csharp
+Vector3 offset = (Vector3.back * distance) + (Vector3.right * 1.6f);
+Vector3 spawnPosition = hero.Coords + hero.Rotation * offset;
+
+Location location =
+    template.SpawnLocation(spawnPosition, hero.Rotation);
+
+location.MarkedNotSaved = true;
+~~~
+
+If NpcElement validation fails, mark the Location not saved and discard it immediately.
+
+## Convert the new actor to native ally ownership
+
+For the spawned NpcElement:
+
+~~~csharp
+npc.OverrideFaction(
+    hero.GetFactionTemplateForSummon(),
+    FactionOverrideContext.Summon);
+
+npc.AddElement(new NpcHeroPetAlly(hero));
+~~~
+
+Then read the marker back with TryGetElement<NpcHeroPetAlly>() and fail closed if it is missing/discarded.
+
+Keep Location.MarkedNotSaved = true.
+
+## Native defend handoff
+
+When the hero has live attackers and the companion has a valid NpcHeroPetAlly:
+
+~~~csharp
+marker.EnterCombat();
+~~~
+
+The working implementation counts Hero.PossibleAttackers and requires live attackers before requesting the defend handoff.
+
+Do not choose combat targets yourself.
+
+## Optional runtime commands
+
+The maintained implementation attaches session-only Location elements for actions such as:
+
+- follow;
+- hold;
+- defend;
+- come close;
+- recall;
+- dismiss.
+
+Each action element is MarkedNotSaved.
+
+Those actions should manipulate only the owned companion.
+
+## Dismissal
+
+Keep the exact owned Location reference.
+
+On dismiss, failure, swap, or plug-in shutdown:
+
+~~~text
+mark Location not saved
+→ remove owned command elements as needed
+→ Location.Discard()
+→ clear local reference
+~~~
+
+Do not recruit or mutate an existing world NPC in place.
