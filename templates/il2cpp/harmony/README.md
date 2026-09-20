@@ -1,6 +1,5 @@
 # IL2CPP Harmony Templates
 
-- [Basic](basic/) — BepInEx 6 IL2CPP host with Harmony lifecycle and a self-owned verification target.
-- [Result postfix](result-postfix/) — preserve original execution and adjust only the returned result.
+Use these templates when you want to add Harmony patching to a BepInEx 6 IL2CPP mod and first prove that the host and patch lifecycle work correctly.
 
-These starters verify the host/patch mechanism without assuming a Tainted Grail game target.
+The included targets are self-owned. Replace them with FoA targets only after verifying the current generated interop type and exact method signature.
