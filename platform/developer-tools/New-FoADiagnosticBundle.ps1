@@ -117,7 +117,7 @@ $protectedEnvironment | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join
 $fingerprintScript = Join-Path $PSScriptRoot "Get-FoAFingerprint.ps1"
 $fingerprints = & $fingerprintScript -GameRoot $resolvedGameRoot -Quiet
 $protectedFingerprints = Protect-Object -Value $fingerprints -ResolvedGameRoot $resolvedGameRoot
-$protectedFingerprints | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $outputPath "fingerprints.json") -Encoding UTF8
+ConvertTo-Json -InputObject @($protectedFingerprints) -Depth 8 | Set-Content -LiteralPath (Join-Path $outputPath "fingerprints.json") -Encoding UTF8
 
 $pluginRoot = Join-Path $resolvedGameRoot "BepInEx\plugins"
 $plugins = @()
@@ -141,7 +141,7 @@ if (Test-Path -LiteralPath $pluginRoot -PathType Container) {
     )
 }
 
-$plugins | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $outputPath "installed-plugins.json") -Encoding UTF8
+ConvertTo-Json -InputObject @($plugins) -Depth 6 | Set-Content -LiteralPath (Join-Path $outputPath "installed-plugins.json") -Encoding UTF8
 
 $projectResult = $null
 if (-not [string]::IsNullOrWhiteSpace($Project)) {
