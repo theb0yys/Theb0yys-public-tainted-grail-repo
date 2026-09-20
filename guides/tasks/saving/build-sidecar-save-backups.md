@@ -3,6 +3,11 @@
 A working backup implementation can copy FoA's existing save-slot contents into a mod-owned ZIP without changing FoA's slot count or serialization format.
 
 Working lineage: [Smart Backups Without More Save Slots](../../../research/case-studies/persistence/smart-backup-boundary.md).  
+
+## Runnable source
+
+Start from the buildable example: [Save observer and backup](../../../examples/mono/infrastructure/save-observer-backup/README.md). Build it unchanged first, confirm the documented behavior, then make one change at a time.
+
 Observer: [Observe native save completion](observe-native-save-completion.md).
 
 ## Storage location
