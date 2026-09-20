@@ -1,148 +1,153 @@
 # Configuration
 
-Reusable configuration mechanics for FoA mods.
+Use this page when you are designing **player settings, feature toggles, presets, hotkeys, or migration of old cfg files** for a FoA mod.
 
-This page is about **FoA ecosystem practice**, not generic BepInEx API documentation. Exact framework APIs still belong to their upstream documentation.
+This is about patterns seen in FoA mods, not a replacement for generic BepInEx configuration documentation.
 
-## Public FoA configuration patterns
+## A clean startup binding pattern
 
-Public FoA mods repeatedly use BepInEx `ConfigFile` / `ConfigEntry<T>` as the normal user-config surface.
-
-A common binding pattern is:
+Many public FoA mods avoid saving the config file after every individual `Bind` during startup:
 
 ~~~text
-temporarily disable SaveOnConfigSet
-→ bind the complete config surface
-→ save once
+SaveOnConfigSet = false
+→ bind all settings
+→ Save()
 → restore SaveOnConfigSet
 ~~~
 
-This avoids rewriting the cfg repeatedly while the plugin is creating many entries during startup.
+That reduces repeated file writes while the plugin constructs its settings.
 
-Public FoA mods also demonstrate:
+## Organize settings for the player
 
-- logical sections such as `Weight`, `FallDamage`, `ItemSorting`, `Language` and feature-specific sections;
-- enum-backed choices for mode/profile selections;
-- `AcceptableValueRange<T>` for bounded numeric settings;
-- descriptive text that explains game-facing consequences rather than only the raw value;
-- separate language/display-name settings where a mod introduces its own UI text.
+Useful public patterns include:
 
-## Bound values at the configuration boundary
+- clear sections such as `Weight`, `FallDamage`, `ItemSorting`, or `Language`;
+- enum choices for modes/profiles;
+- `AcceptableValueRange<T>` for stable numeric limits;
+- descriptions that explain gameplay effects, not just the raw number;
+- separate display-name/language settings for text introduced by the mod.
 
-Prefer expressing safe ranges in the config metadata when a stable range is known:
+Prefer a small understandable player-facing surface over exposing every internal tuning value.
+
+## Validate values twice
+
+If a safe range is known, express it in the config metadata:
 
 ~~~csharp
 new AcceptableValueRange<float>(minimum, maximum)
 ~~~
 
-Still validate or clamp again at the point where a value can affect a native runtime owner. Config files can be edited manually and old configs can survive upgrades.
+Still validate or clamp before applying the value to game state.
 
-A config entry accepting a value is not evidence that the native game system accepts that value safely.
+Users can edit cfg files manually, and old values can survive upgrades.
 
-## User-facing versus advanced settings
+A BepInEx setting accepting a value does not prove the native FoA system will handle that value safely.
 
-FoA mods with large configuration surfaces benefit from separating ordinary player controls from diagnostics/internal tuning.
+## Player settings vs advanced settings
 
-Project-proven ConfigurationManager-compatible metadata is used to:
+Large mods often need more internal controls than normal players should see.
 
-- expose normal controls such as `Enabled`, profiles and high-level modes;
-- mark diagnostic, compatibility and internal tuning entries as non-browsable;
-- keep hidden entries in the raw BepInEx cfg so existing configs and manual recovery/debugging remain possible.
+A useful pattern is:
 
-Hiding a setting from a config UI should not silently delete or rename its persisted key.
+- show `Enabled`, high-level modes, presets, and common user choices;
+- hide diagnostics/internal tuning from ConfigurationManager-style UIs;
+- keep hidden keys in the raw cfg for compatibility, debugging, and recovery.
 
-## Presets and raw configuration
+Hiding a key from a UI should not silently rename or delete its persisted value.
 
-For systems with many coupled values, a useful pattern is:
+## Presets
+
+When many values work together, use a high-level preset plus an advanced/raw mode:
 
 ~~~text
-high-level preset
-├─ stable named choices
-└─ RawConfig / Custom
-    └─ individual advanced values
+Preset
+├─ Subtle
+├─ Standard
+├─ Strong
+└─ Custom / RawConfig
+   └─ individual values
 ~~~
 
-This gives ordinary users one coherent control while retaining detailed tuning when required.
+When preset names change, keep a legacy alias or explicit migration if the meaning is still compatible.
 
-When an old preset/value name changes, preserve an explicit legacy alias or migration path rather than treating the old value as invalid without explanation.
+## Does a setting change live?
 
-## Runtime changes are not automatic
+Do not assume that changing `ConfigEntry<T>.Value` automatically changes the running game.
 
-Changing a `ConfigEntry<T>.Value` does not by itself prove that a native FoA system has consumed the new value.
+Classify each setting by what the mod must do:
 
-Classify settings by application behavior:
-
-| Class | Expected behavior |
+| Setting behavior | What your code must do |
 | --- | --- |
-| read-on-use | runtime code reads the current config value whenever the native operation occurs |
-| reapply-on-change | a `SettingChanged` handler reapplies mod-owned runtime state |
-| patch-registration | changing the setting may require patch install/uninstall or another explicit transition |
-| structural / startup | restart or controlled reinitialization required |
+| read on use | read the latest value whenever the native action happens |
+| live reapply | handle `SettingChanged` and reapply owned runtime state |
+| patch control | install/uninstall or otherwise transition the patch safely |
+| structural/startup | require restart or controlled reinitialization |
 
-Examples of state that often needs explicit reapplication include stat tweaks, cached presentation state, active audio/UI state, and dynamically registered hooks.
+State clearly in the README/config description whether a setting is live or restart-required.
 
-Document restart-required settings as restart-required. Do not present them as live just because the cfg can be edited while the game is running.
+## SettingChanged handlers
 
-## Config-change subscriptions
+Use `SettingChanged` only when the feature can be safely reapplied.
 
-When a setting owns live runtime state:
+A good handler:
 
-1. subscribe only for settings that can actually be reapplied safely;
-2. normalize/clamp the new value;
-3. update the mod-owned runtime state;
-4. avoid duplicating hooks/elements/listeners;
-5. unsubscribe during plugin teardown.
+1. validates/clamps the value;
+2. updates only mod-owned state;
+3. does not duplicate Elements, listeners, or patches;
+4. uses a known invalidation/reapply path;
+5. is unsubscribed during teardown.
 
-A `SettingChanged` callback should not become an uncontrolled second initialization path.
+Do not let config changes become a second uncontrolled initialization path.
 
-## Schema changes and migration
+## Migration
 
-Public and internal FoA mod source demonstrates several useful migration strategies:
+FoA mod source demonstrates several migration techniques:
 
-- maintain an internal config schema/version marker;
-- back up an old cfg before destructive schema reset;
-- preserve selected compatible values across a schema reset;
-- accept legacy enum/profile aliases when semantics are still equivalent;
-- move a legacy plugin-GUID cfg to the current name and call `Config.Reload()`;
-- explicitly migrate individual defaults when a previous value is known to be obsolete.
+- schema/version markers;
+- backup before destructive reset;
+- preserving compatible values across a schema change;
+- legacy enum/profile aliases;
+- moving an old plugin-GUID cfg to the new filename and calling `Config.Reload()`;
+- one-time default migration when an old default is known to be undesirable.
 
-A migration should be deterministic and idempotent. Re-running startup must not keep rewriting a value that was already migrated successfully.
+Migration should be deterministic and idempotent: starting the game again should not keep rewriting already-migrated settings.
 
-## Saving and reload
+## Save and reload operations
 
-Useful operations seen in FoA mods include:
+Useful operations include:
 
-- `Config.Save()` after a player-triggered setting change that should be durable;
-- `Config.Save()` during controlled teardown after normalization;
-- `Config.Reload()` after an intentional file migration or validation-command update.
+- `Config.Save()` after a player-triggered change that must persist;
+- `Config.Save()` during controlled teardown/normalization;
+- `Config.Reload()` after an intentional file migration.
 
-Do not use repeated file reloads as a substitute for a runtime state model.
+Do not repeatedly reload the file just to avoid maintaining correct runtime state.
 
-## Configuration is not game persistence
+## Config is not game-save data
 
-BepInEx configuration and FoA save state are separate owners.
+Use BepInEx config for:
 
-Use config for:
-
-- player preferences;
+- preferences;
 - feature toggles;
-- tuning values;
-- mod-owned modes/profiles;
-- diagnostic settings.
+- tuning;
+- mod-owned modes and presets;
+- hotkeys;
+- diagnostics.
 
-Do not use config as an implicit replacement for native game-owned progression, inventory, quest or world state simply because it persists across launches.
+Do not store game-owned progression, inventory, quest, or world state in config merely because cfg files survive restarts.
 
 ## Compatibility rules
 
-- Keep section/key names stable unless there is a migration.
-- Do not silently reuse one old key for a new semantic meaning.
-- Treat configuration-manager metadata as presentation metadata, not the underlying source of truth.
-- Preserve raw cfg recoverability for advanced/hidden settings when practical.
-- If two mods affect the same native system, config names do not establish ownership; the runtime intervention still needs an interoperability decision.
-- Record whether a setting is live, reapplied, or restart-required.
+- keep section/key names stable unless you migrate them;
+- never reuse an old key for a different meaning without migration;
+- treat config-UI metadata as presentation only;
+- keep raw cfg recovery possible for advanced/hidden settings when practical;
+- document live vs restart-required behavior;
+- remember that two mods having different config keys does not prevent them from conflicting on the same native system.
 
-## Evidence scope
+## Evidence
 
-Public patterns are drawn from public FoA mod source including `jonanoj/FallOfAvalonMods`, `apodworny/FallOfAvalonMods` and `keenanselbee/grailwright`. Stronger migration/config-UI conventions are derived from internal project evidence and published under the repository's public-safe evidence rule.
+Public patterns come from public FoA mod source including `jonanoj/FallOfAvalonMods`, `apodworny/FallOfAvalonMods`, and `keenanselbee/grailwright`.
+
+Additional migration/config-UI patterns come from internal project evidence published under the repository's public-safe evidence rules.
 
 See [Internal Evidence Intake Baseline](../../../research/sources/internal-evidence-baseline.md).
