@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Tainted.Armour.FoA</AssemblyName>
+    <RootNamespace>Tainted.Armour.FoA</RootNamespace>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"><local-path>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tainted.Armour\Tainted.Armour.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(FoAManagedDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Newtonsoft.Json.dll')" Text="Newtonsoft.Json.dll was not found at '$(FoAManagedDir)\Newtonsoft.Json.dll'." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll')" Text="UnityEngine.InputLegacyModule.dll was not found at '$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.AnimationModule.dll')" Text="UnityEngine.AnimationModule.dll was not found at '$(FoAManagedDir)\UnityEngine.AnimationModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.JSONSerializeModule.dll')" Text="UnityEngine.JSONSerializeModule.dll was not found at '$(FoAManagedDir)\UnityEngine.JSONSerializeModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.ScreenCaptureModule.dll')" Text="UnityEngine.ScreenCaptureModule.dll was not found at '$(FoAManagedDir)\UnityEngine.ScreenCaptureModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <ItemGroup>
+      <TaintedArmourDeployFiles Include="$(TargetPath)" />
+      <TaintedArmourDeployFiles Include="$(TargetDir)Tainted.Armour.dll" />
+    </ItemGroup>
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="@(TaintedArmourDeployFiles)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+  </Target>
+</Project>
