@@ -34,9 +34,9 @@ Keep `examples/` predictable:
 
 State what changed, which runtime or authoring setup it targets (Mono, IL2CPP, Merlin, or hybrid), what you actually tested, any local dependencies used, and why the contribution is safe to redistribute.
 
-For pipeline changes, state which stage changed and whether its status is PASSED, FAILED, PARTIAL, BLOCKED, NOT_RUN, or NOT_APPLICABLE. Do not use one stage as evidence for a later stage.
+For pipeline changes, state which stage changed and what was actually exercised. Do not use one stage as evidence for a later stage.
 
-The public-surface CI check helps catch material that should not be redistributed. Passing it does not prove game, editor, or runtime behaviour.
+The public-surface CI check helps catch material that should not be redistributed. Passing it does not cover game, editor, or runtime behaviour.
 
 ## Licensing
 
