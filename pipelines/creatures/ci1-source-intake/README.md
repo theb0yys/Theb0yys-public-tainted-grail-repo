@@ -27,15 +27,15 @@ Establish the exact, authorised source package and the raw content available for
 4. Record deterministic facts and hashes where practical.
 5. Separate source assets from any native baseline selected later.
 
-## Validation gate
+## Check
 
-PASSED when another author can identify the same authorised source and reproduce the recorded source facts.
+Confirm that another author can identify the same authorised source and reproduce the recorded source facts.
 
 ## Proves
 
 Source identity and suitability for continued investigation.
 
-## Does not prove
+## Before continuing
 
 Native compatibility, visual transport, animation mapping, templates, actor construction, AI, combat, population, or persistence.
 
