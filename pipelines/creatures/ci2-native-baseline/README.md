@@ -29,11 +29,11 @@ Choose by evidence, not visual resemblance.
 3. Select one baseline and record the exact identities/build scope.
 4. State which native systems will remain owners during the first live proof.
 
-## Validation gate
+## Check
 
-PASSED when the baseline contract is explicit enough to drive visual, animation, template, controller, combat, and death validation.
+Confirm that the baseline contract is explicit enough to drive visual, animation, template, controller, combat, and death validation.
 
-## Does not prove
+## Before continuing
 
 The imported creature can yet use that baseline.
 
