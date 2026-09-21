@@ -20,9 +20,6 @@ Establish the durable package behaviour actually being claimed.
 7. Verify release contents are redistribution-safe and exclude proprietary/native extracted content.
 8. Record exact runtime/build/package versions.
 
-## Current public boundary
-
-Generic persistence, missing-mod recovery, migration, uninstall, and cross-build Kandra equivalence are not established for the full custom-armour pipeline. Mark them PARTIAL or NOT_RUN unless the target package has direct evidence.
 
 ## Release gate
 
