@@ -1,6 +1,6 @@
 # Item Importation Pipeline
 
-This pipeline reconstructs the proven custom-item path as a sequence of independently validated stages.
+This pipeline reconstructs the custom-item path as a sequence of independently checked stages.
 
 
 ## Stage map
