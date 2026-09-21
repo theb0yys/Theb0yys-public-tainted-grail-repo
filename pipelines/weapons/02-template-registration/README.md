@@ -27,7 +27,7 @@ Confirm that the custom weapon ItemTemplate resolves through the normal provider
 - clone drops required attachment/component state;
 - registration occurs before template readiness;
 - provider re-resolution fails;
-- post-insertion failure leaves a non-transactional partial registration.
+- post-insertion failure can leave native registration state changed without a transactional rollback.
 
 ## Before continuing
 
