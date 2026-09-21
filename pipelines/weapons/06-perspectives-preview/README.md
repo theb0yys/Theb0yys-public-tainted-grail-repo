@@ -20,13 +20,13 @@ A weapon can work in combat and still fail in first-person, third-person, or equ
 4. Confirm camera/preview systems own their normal lifetime and the custom weapon only supplies the registered presentation.
 5. Repeat after equip/unequip and scene/UI reopen to detect stale cached presentation.
 
-## Validation gate
+## Check
 
 Record separate results for FPP, TPP, and preview. Do not collapse them into one pass/fail claim.
 
-## Does not prove
+## Before continuing
 
-Perspective/preview success does not establish persistence, missing-package behaviour, hot-unload, or another archetype.
+Perspective/preview success does not cover persistence, missing-package behaviour, hot-unload, or another archetype.
 
 ## Next
 
