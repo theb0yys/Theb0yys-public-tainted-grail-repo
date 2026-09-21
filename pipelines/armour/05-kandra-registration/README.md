@@ -18,11 +18,11 @@ Public research identifies KandraRenderer, KandraRendererManager, KandraMesh, Ka
 6. Perform the same-mesh decode/A-B validation where the current evidence lane requires it.
 7. Release/cleanup the proof candidate through the expected runtime lifetime.
 
-## Validation gate
+## Check
 
-PASSED when the intended candidate is registered and recognised by the Kandra runtime owner and the registration receipt corresponds to the exact package/geometry under test.
+Confirm that the intended candidate is registered and recognised by the Kandra runtime owner and the registration receipt corresponds to the exact package/geometry under test.
 
-## Critical boundary
+## Before continuing
 
 A registered Kandra proof renderer is not yet a custom armour item.
 
