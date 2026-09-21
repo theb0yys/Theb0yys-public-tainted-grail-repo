@@ -19,10 +19,7 @@ Prove the weapon survives the durability and packaging conditions being claimed.
 7. Test migration separately when GUIDs, package identity, source archetype, or presentation schema changes.
 8. Verify the release package contains only redistribution-safe source/configuration/assets the author is authorised to publish.
 
-## Current boundary
 
-Generic hot-unregister, universal missing-package recovery, migration, and cross-runtime equivalence are not established by the public rigid-weapon proof. Record those as PARTIAL or NOT_RUN unless the target package has direct evidence.
-
-## Validation gate
+## Check
 
 Use the [weapon validation matrix](../validation/README.md) before claiming the weapon pipeline complete.
