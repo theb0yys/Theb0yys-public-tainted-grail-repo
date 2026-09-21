@@ -1,6 +1,6 @@
 # Creature Importation Pipeline
 
-This pipeline reconstructs the evidence-backed custom-creature process as explicit gates. A creature is not a prefab with AI attached; source content, native baseline, visuals, animation, templates, runtime actor lifecycle, combat/death, population, cleanup, and persistence are separate claims.
+This pipeline reconstructs the custom-creature process as explicit stages. A creature is not a prefab with AI attached; source content, native baseline, visuals, animation, templates, runtime actor lifecycle, combat/death, population, cleanup, and persistence are separate claims.
 
 ## Canonical gate sequence
 
@@ -29,4 +29,4 @@ CI1 → CI2 → CI3 → CI4A → CI4 → CI5 → focused live validation
 
 ## Core rule
 
-Every gate proves only its own boundary. A visual root does not authorise actor construction. A valid NpcTemplate does not cover combat. A spawned actor does not cover population or persistence.
+Each stage covers its own operation. Visual transport, actor construction, combat, population, and persistence are checked separately.
