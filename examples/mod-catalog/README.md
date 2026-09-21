@@ -1,18 +1,16 @@
 # Mod Project Example Catalogue
 
-This catalogue maps the full top-level `mods/` inventory from the development workspace into public examples.
+This catalogue maps the non-importer, non-protected mod projects from the development workspace into public examples.
 
-**Inventory snapshot:** 106 projects from development `main@6ac51ff259846fe15bc28ba51f447318c4904c8e` (2026-09-20).
+**Inventory snapshot:** 101 projects included in this pass.
 
 These entries are examples of real project structure, design decisions, integration patterns, diagnostics, and failure boundaries. They are **not** a claim that every project is release-ready, supported on every runtime, or safe to copy wholesale.
 
 The public repository keeps small runnable examples under [Mono](../mono/README.md), [IL2CPP](../il2cpp/README.md), and [Hybrid](../hybrid/README.md). This catalogue answers a different question: **what larger real projects exist, and what can a mod author learn from each one?**
 
-The three importer frameworks have dedicated public guides because their end-to-end processes are too important to reduce to catalogue rows:
+Importer projects are intentionally deferred from this catalogue. Their end-to-end processes are handled separately and are not modified in this pass.
 
-- [Armour importer](../../guides/tasks/importers/armour.md)
-- [Creature importer](../../guides/tasks/importers/creatures.md)
-- [Weapon importer](../../guides/tasks/importers/weapons.md)
+Two protected overhaul projects are also excluded from this pass.
 
 ## Starter-template coverage
 
@@ -33,10 +31,8 @@ The **Public starter** column links the 31 selected cross-runtime starters that 
 | `avalon-exceptions` | The Last Menhir: local-first crash, freeze, exception, and support-reporting infrastructure. |  |
 | `avalon-progression-core` | Provider registry and read-only progression definition/state contracts for shared progression systems. |  |
 | `foa-mod-manager` | Shared in-game BepInEx settings, controller actions, status rows, cursor/input scope, and mod UI management. | [Starter](../../templates/mod-families/foa-mod-manager/) |
-| `tainted-armour` | Standalone armour-importer framework and Kandra packaging/registration research path. See the [Armour importer guide](../../guides/tasks/importers/armour.md). |  |
 | `tainted-framework` | Cross-runtime abstractions and shared runtime-service host with deliberately limited public services. |  |
 | `tainted-grail-extender` | Managed extension host and authenticated local SDK bridge for advanced integrations. |  |
-| `tainted-weapons` | Custom-weapon package, native-template, Drake presentation, and lifecycle framework. See the [Weapon importer guide](../../guides/tasks/importers/weapons.md). |  |
 | `template-diagnostics` | Development/runtime evidence dumper for templates, actors, routes, audio ownership, and other game-system research. |  |
 | `tg-haf` | Source-only animation/action framework foundation with fail-closed contracts before later runtime work. |  |
 
@@ -106,7 +102,6 @@ The **Public starter** column links the 31 selected cross-runtime starters that 
 
 | Project | What it demonstrates | Public starter |
 | --- | --- | --- |
-| `avalon-awakened` | Custom-creature provider/importer and character-creator asset work. See the [Creature importer guide](../../guides/tasks/importers/creatures.md). |  |
 | `avalon-bear-companion` | Standalone Avalon Awakened bear companion example using the one-session companion family. |  |
 | `avalon-broodmother-companion` | Spider/Broodmother one-session companion with native ally lifecycle, command UI, call items, and bounded combat integration. |  |
 | `avalon-bull-companion` | Standalone Avalon Awakened bull companion using the shared one-session creature-companion source. |  |
@@ -151,13 +146,6 @@ The **Public starter** column links the 31 selected cross-runtime starters that 
 | `stink-and-burn-fix` | Research-documented Stink and Burn augmentation scaffold with implementation still blocked. |  |
 | `tainted-coop` | Planned narrow online co-op project distinct from the larger local co-op prototype. |  |
 | `tainted-travel` | Travel-system research/design project with boundaries, native-target mapping, and validation planning. |  |
-
-## Protected overhaul projects
-
-| Project | What it demonstrates | Public starter |
-| --- | --- | --- |
-| `dialogue-overhaul` | Dialogue-system overhaul research/design baseline. Listed from its protected top-level README only; implementation details are not reproduced here. |  |
-| `zombie-overhaul` | Zombie animation intake/retargeting research project. Listed from its protected top-level README only; protected implementation material is not reproduced here. |  |
 
 ## How to use this catalogue
 

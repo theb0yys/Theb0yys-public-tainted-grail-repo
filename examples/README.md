@@ -14,7 +14,7 @@ Each runnable example explains what it changes, how to build and test it, what t
 
 ## Real project examples
 
-- [Mod project catalogue](mod-catalog/README.md) — all 106 top-level projects from the development workspace, distilled into the patterns each project demonstrates.
+- [Mod project catalogue](mod-catalog/README.md) — 101 non-importer, non-protected projects distilled into the patterns each project demonstrates.
 - [Importer pipelines](../guides/tasks/importers/README.md) — the Armour, Creature, and Weapon import processes.
 
 The catalogue is broader than the runnable-example folders. It includes released mods, frameworks, diagnostics, research projects, prototypes, and blocked/superseded work where the lessons are still useful.
