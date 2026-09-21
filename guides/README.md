@@ -8,4 +8,4 @@ Guides for learning, building, troubleshooting, and publishing Tainted Grail mod
 - [Troubleshooting](troubleshooting/README.md)
 - [Shipping](shipping/README.md)
 
-Need exact technical details? See [Knowledge](../knowledge/README.md). Investigating behaviour that is not yet established? See [Research](../research/README.md).
+For complete custom-content reconstruction across multiple systems, use the staged [Pipelines](../pipelines/README.md). Need exact technical details? See [Knowledge](../knowledge/README.md). Investigating behaviour that is not yet established? See [Research](../research/README.md).
