@@ -2,11 +2,11 @@
 
 ## Mesh loads in Unity but fails later
 
-Unity/skinned-mesh load is only a source/import check. Re-open geometry mapping, deformation, Kandra conversion, or native ownership according to the earliest failed gate.
+Unity/skinned-mesh load is only a source/import check. Re-open geometry mapping, deformation, Kandra conversion, or native ownership according to the earliest stage showing the problem.
 
 ## Package validates but renderer will not register
 
-The writer/validator lane passed; runtime metadata/registration did not. Check the exact registration candidate, runtime owner expectations, and package metadata.
+The writer/validator lane completed, but runtime metadata/registration still needs diagnosis. Check the exact registration candidate, runtime owner expectations, and package metadata.
 
 ## Renderer registers but armour cannot equip
 
@@ -22,11 +22,11 @@ Treat body-cover, material, culling, LOD, and renderer state as distinct runtime
 
 ## Unequip leaves geometry behind
 
-Native cleanup/resource ownership failed. Verify BaseClothes unequip, stitched renderer lifetime, and package/resource release.
+Check native cleanup/resource ownership. Verify BaseClothes unequip, stitched renderer lifetime, and package/resource release.
 
 ## Works until restart
 
-Persistence/registration ordering and package availability were not proven. Run the cold-load stage.
+Run the cold-load stage and verify persistence/registration ordering and package availability.
 
 ## Proof fixture works but production armour fails
 
