@@ -1,0 +1,454 @@
+{
+  "schema": "mysterious-merchant-source-intake/1",
+  "status": "INTAKE_SOURCE_CHECK_ONLY",
+  "date": "2026-09-11",
+  "repository": "AR-Questline/merlin-workshop",
+  "commit": "073bdab3e09d6adad5003339fc49b021738d71e6",
+  "source_inspection": "GitHub connector fetched exact-ref UTF-8 source; Git blob identities supplied by connector. No installed-binary analysis occurred in this intake.",
+  "limits": [
+    "All 30 files belong to one first-party source group.",
+    "Original conversation citation payloads were not attached. Replacements were matched to claims and symbols, not recovered original citation identities.",
+    "No RH1/RH2 completion, independent review, implementation permission, runtime proof or authority promotion is recorded."
+  ],
+  "sources": [
+    {
+      "id": "ShopAttachment",
+      "path": "Assets/Code/Main/Locations/Shops/ShopAttachment.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/ShopAttachment.cs",
+      "git_blob_sha": "a55ff72ee5b544a77a7d2501814fd0adc67998d7",
+      "locator": "AttachesTo; ShopTemplate; SpawnElement",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Shop",
+      "path": "Assets/Code/Main/Locations/Shops/Shop.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Shop.cs",
+      "git_blob_sha": "0dcd0f09b353f154493eff8d5730a47d9a6db4bd",
+      "locator": "class; InitFromAttachment; OnInitialize; OpenShop; OnShopClosed; RestockCurrency; DomainMoved",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "RuntimeLocationInitializer",
+      "path": "Assets/Code/Main/Locations/RuntimeLocationInitializer.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/RuntimeLocationInitializer.cs",
+      "git_blob_sha": "87fe721ac2ad28a633d991e18cde24bed1b384da",
+      "locator": "saved fields; ShouldBeSaved; PrepareSpec; PrepareViewParent",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "LocationCreator",
+      "path": "Assets/Code/Main/Locations/LocationCreator.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/LocationCreator.cs",
+      "git_blob_sha": "5b45fdd8e8c44c08c07bb7005d925e72cd5c1719",
+      "locator": "CreateRuntimeLocation",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Mapping",
+      "path": "Assets/Code/Main/Templates/TemplatesToAddressablesMapping.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Templates/TemplatesToAddressablesMapping.cs",
+      "git_blob_sha": "e6e620b885d42f10bfe77a51f0121c1fffaee4af",
+      "locator": "AddressableGroup: LocationTemplate -> Templates.Locations; ShopTemplate -> Templates.Npc",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Authoring",
+      "path": "Assets/Code/Editor/Assets/Templates/AddressableTemplatesCreator.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Editor/Assets/Templates/AddressableTemplatesCreator.cs",
+      "git_blob_sha": "64834a12a04d54d79dbbcf24555833a13d680452",
+      "locator": "ConvertAsset; GetLabel; AddressProvider",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "TradeUtils",
+      "path": "Assets/Code/Main/Locations/Shops/TradeUtils.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/TradeUtils.cs",
+      "git_blob_sha": "73010276bb7bc3581b4c559d1296ca74d1234f08",
+      "locator": "TryTrade; Price",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "AttachmentContract",
+      "path": "Assets/Code/Main/Locations/Attachments/IRefreshedByAttachment.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Attachments/IRefreshedByAttachment.cs",
+      "git_blob_sha": "200524cffaa7746c06c34615ac35faa03a580590",
+      "locator": "interface caution; InitFromAttachment",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "LocationTemplate",
+      "path": "Assets/Code/Main/Locations/Setup/LocationTemplate.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Setup/LocationTemplate.cs",
+      "git_blob_sha": "72581e5abea93447ccb6ff25e8b2e9a1bd850ee0",
+      "locator": "SpawnLocation overloads; AddLocationToWorld",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "SaveWriter",
+      "path": "Assets/Code/MVC/Serialization/SaveWriter.Special.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/MVC/Serialization/SaveWriter.Special.cs",
+      "git_blob_sha": "a29ae1324eeeaf42d56efc69fecbfb88c234520b",
+      "locator": "WriteTemplate",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "SaveReader",
+      "path": "Assets/Code/MVC/Serialization/SaveReader.Special.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/MVC/Serialization/SaveReader.Special.cs",
+      "git_blob_sha": "c6d6decf165a8e3d81ab61b7bfe9dbb566d66096",
+      "locator": "ReadTemplate",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ShopUITabs",
+      "path": "Assets/Code/Main/Locations/Shops/Tabs/ShopUITabs.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Tabs/ShopUITabs.cs",
+      "git_blob_sha": "6b14673c2c93450693320c860f7f14745608580e",
+      "locator": "ShopUITabType Buy/Sell/SellFromStash/Buyback Always predicates",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Price",
+      "path": "Assets/Code/Main/Locations/Shops/Prices/DefaultPriceProvider.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Prices/DefaultPriceProvider.cs",
+      "git_blob_sha": "f38ed11ac71c6162f5b6e9dacd220096975b0e52",
+      "locator": "SellPrice",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "UniqueStock",
+      "path": "Assets/Code/Main/Locations/Shops/Stocks/UniqueStock.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Stocks/UniqueStock.cs",
+      "git_blob_sha": "9606647dd777b544492efbf1f1b4770ed23ae7c1",
+      "locator": "summary; saved compressed state; OnInitialize; OnRestore",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "GameplayUniqueLocation",
+      "path": "Assets/Code/Main/Locations/Attachments/Elements/GameplayUniqueLocation.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Attachments/Elements/GameplayUniqueLocation.cs",
+      "git_blob_sha": "fb18747f53a49273dd1d8489346824b23deaafc5",
+      "locator": "InitializeForLocation; InitializeListeners; HideInAbyss; RestoreFromAbyss",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Loader",
+      "path": "Assets/Code/Main/Templates/TemplatesLoader.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Templates/TemplatesLoader.cs",
+      "git_blob_sha": "130f0cbbbccfef7d439f41e5d69698b77d0984e0",
+      "locator": "label load lines 62-69; OnGameObjectLoaded; OnScriptableObjectLoaded; AddToMap lines 126-130",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Provider",
+      "path": "Assets/Code/Main/Templates/TemplatesProvider.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Templates/TemplatesProvider.cs",
+      "git_blob_sha": "8cab52f6cb7365546a45fdb4bd6d15051a0030d8",
+      "locator": "public lookup/loading surface; no public runtime Add",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ModManager",
+      "path": "Assets/Code/Utility/Assets/Modding/ModManager.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Utility/Assets/Modding/ModManager.cs",
+      "git_blob_sha": "e2143e787ef8042dd6f979a120cc18634fd1c142",
+      "locator": "constructor lines 23-32; Refresh",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ModService",
+      "path": "Assets/Code/Assets/Modding/ModService.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Assets/Modding/ModService.cs",
+      "git_blob_sha": "b6269f843613fd94ec70532043b1a6e41cda28c2",
+      "locator": "constructor lines 18-21",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Stock",
+      "path": "Assets/Code/Main/Locations/Shops/Stocks/Stock.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Stocks/Stock.cs",
+      "git_blob_sha": "7ca627939294b1ee183f175953c27bdc2b8e4527",
+      "locator": "AddItem lines 29-32; Items; ShopOpened/ShopClosed lines 131-137",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "VFireplaceUI",
+      "path": "Assets/Code/Main/Crafting/Fireplace/VFireplaceUI.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Crafting/Fireplace/VFireplaceUI.cs",
+      "git_blob_sha": "efe6ad13b167cc8a028f24b04ade364b11cedee6",
+      "locator": "focus interfaces; native overlay callbacks lines 49-55; SetVisibility; RegisterButton",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "FireplaceUI",
+      "path": "Assets/Code/Main/Crafting/Fireplace/FireplaceUI.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Crafting/Fireplace/FireplaceUI.cs",
+      "git_blob_sha": "db5631622c9a7495e3187f4d3d893b5557f18e45",
+      "locator": "combat/fast-travel listeners lines 50-51; UpdateUiVisibility; Close; SaveGame",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ApplicationScene",
+      "path": "Assets/Code/Main/Scenes/SceneConstructors/ApplicationScene.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Scenes/SceneConstructors/ApplicationScene.cs",
+      "git_blob_sha": "34315d95ff4734408e804d97277c3f0a7c0e8b90",
+      "locator": "service registration lines 317-320",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Mod",
+      "path": "Assets/Code/Utility/Assets/Modding/Mod.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Utility/Assets/Modding/Mod.cs",
+      "git_blob_sha": "6bfd117c8e4100441d60420ceeca387f40aeb7cc",
+      "locator": "constructor and LoadCatalog lines 10-16",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "TemplatesUtil",
+      "path": "Assets/Code/Main/Templates/TemplatesUtil.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Templates/TemplatesUtil.cs",
+      "git_blob_sha": "9ebcb7803902bf5c64efc45f5bc233954379e55b",
+      "locator": "label constants lines 9-11; Load<T> lines 46-54",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ShopUI",
+      "path": "Assets/Code/Main/Locations/Shops/UI/ShopUI.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/UI/ShopUI.cs",
+      "git_blob_sha": "890fefeb4493dba2939e69aeba2048262a3aa6fd",
+      "locator": "IsNotSaved; UIState; MerchantName; OnFullyInitialized; Close",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "ShopTemplate",
+      "path": "Assets/Code/Main/Locations/Shops/ShopTemplate.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/ShopTemplate.cs",
+      "git_blob_sha": "9a3b47008f3ad2611ee96ddfbd2c3eedaf9c0ffb",
+      "locator": "fields lines 10-24; StockData",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "RestockableStock",
+      "path": "Assets/Code/Main/Locations/Shops/Stocks/RestockableStock.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Stocks/RestockableStock.cs",
+      "git_blob_sha": "b7caf8e156c5e31805d122c6421544dc0bc02f1a",
+      "locator": "saved fields lines 22-26; Restock; TryRemoveOnRestock",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "BoughtFromHeroStock",
+      "path": "Assets/Code/Main/Locations/Shops/Stocks/BoughtFromHeroStock.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Shops/Stocks/BoughtFromHeroStock.cs",
+      "git_blob_sha": "a646ed23b7ca195532fbe72a2a890abc0ad2c969",
+      "locator": "CachedPriceProvider; CompressAllItems; CreateAllItems",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    },
+    {
+      "id": "Location",
+      "path": "Assets/Code/Main/Locations/Location.cs",
+      "url": "https://github.com/AR-Questline/merlin-workshop/blob/073bdab3e09d6adad5003339fc49b021738d71e6/Assets/Code/Main/Locations/Location.cs",
+      "git_blob_sha": "2b97a23c00ace8574335aa9932a00f51bb8f2a66",
+      "locator": "DefaultDomain line 63; OverrideName line 133; attachment initialization lines 252-261",
+      "lane": "external-research",
+      "source_kind": "first-party-published-source",
+      "independence_group": "AR-Questline-merlin-workshop",
+      "maximum_use": "intake comparison / planning leads; not installed-build action"
+    }
+  ],
+  "citation_replacements": {
+    "turn4file0": [
+      "Shop"
+    ],
+    "turn5file0": [
+      "ShopTemplate"
+    ],
+    "turn10file0": [
+      "ShopUI"
+    ],
+    "turn20file0": [
+      "TradeUtils"
+    ],
+    "turn21file0": [
+      "Price"
+    ],
+    "turn23file0": [
+      "Stock"
+    ],
+    "turn24file0": [
+      "UniqueStock"
+    ],
+    "turn28file0": [
+      "ShopAttachment"
+    ],
+    "turn31file1": [
+      "Shop"
+    ],
+    "turn32file0": [
+      "ShopAttachment"
+    ],
+    "turn35file0": [
+      "AttachmentContract"
+    ],
+    "turn37file0": [
+      "Location"
+    ],
+    "turn39file0": [
+      "RuntimeLocationInitializer"
+    ],
+    "turn40file0": [
+      "LocationCreator"
+    ],
+    "turn42file0": [
+      "LocationTemplate"
+    ],
+    "turn44file0": [
+      "RestockableStock"
+    ],
+    "turn45file0": [
+      "BoughtFromHeroStock"
+    ],
+    "turn50file0": [
+      "TemplatesUtil"
+    ],
+    "turn53file0": [
+      "Provider"
+    ],
+    "turn56file0": [
+      "Loader"
+    ],
+    "turn59file0": [
+      "ShopUITabs"
+    ],
+    "turn60file0": [
+      "GameplayUniqueLocation"
+    ],
+    "turn62file0": [
+      "VFireplaceUI"
+    ],
+    "turn64file0": [
+      "FireplaceUI"
+    ],
+    "turn69file0": [
+      "SaveWriter"
+    ],
+    "turn70file0": [
+      "SaveReader"
+    ],
+    "turn73file0": [
+      "Authoring"
+    ],
+    "turn75file0": [
+      "Mapping"
+    ],
+    "turn84file0": [
+      "Mod"
+    ],
+    "turn87file1": [
+      "ApplicationScene"
+    ],
+    "turn88file0": [
+      "ModManager"
+    ]
+  },
+  "release": {
+    "url": "https://api.github.com/repos/AR-Questline/merlin-workshop/releases/tags/v1.1.0",
+    "published_at": "2026-02-06T14:43:44Z",
+    "asset": "merlin-workshop-v1.1.0.7z",
+    "reported_digest": "sha256:dca167843cc22d720e7ec62a1eaef1d6c9d07656f0584b48d03c5ee18ba6aacb",
+    "verification": "GitHub API metadata inspected; archive not downloaded or independently hashed",
+    "tag_resolution": "GitHub git/ref/tags/v1.1.0 points to the above commit"
+  },
+  "local_repository": {
+    "commit": "1a30867675ceef1ddfdb5e86cbb41ffb43ccb3d2",
+    "local_access": "Present; current HEAD inspected",
+    "remote_access": "GitHub API 422: No commit found for SHA: 1a30867675ceef1ddfdb5e86cbb41ffb43ccb3d2",
+    "interpretation": "Public reopening limitation; not evidence that the local commit is missing."
+  }
+}
