@@ -1,0 +1,683 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tainted-armour:schema:canonical-armour-ir:1",
+  "title": "Tainted Armour Canonical Armour IR v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "semanticContractVersion",
+    "objectIdContractVersion",
+    "assetId",
+    "coordinateSystem",
+    "buffers",
+    "bufferViews",
+    "accessors",
+    "meshes",
+    "meshBindings",
+    "skeletons",
+    "skins",
+    "materials",
+    "resources",
+    "blendShapeSets",
+    "extensions",
+    "requiredExtensionContracts"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "tainted-armour.canonical-asset/1"
+    },
+    "semanticContractVersion": {
+      "const": "tainted-armour.armour-semantics/1"
+    },
+    "objectIdContractVersion": {
+      "const": "tainted-armour.canonical-object-id/1"
+    },
+    "assetId": {
+      "$ref": "#/$defs/assetId"
+    },
+    "coordinateSystem": {
+      "$ref": "#/$defs/coordinateSystem"
+    },
+    "buffers": {
+      "$ref": "#/$defs/bufferMap"
+    },
+    "bufferViews": {
+      "$ref": "#/$defs/bufferViewMap"
+    },
+    "accessors": {
+      "$ref": "#/$defs/accessorMap"
+    },
+    "meshes": {
+      "$ref": "#/$defs/meshMap"
+    },
+    "meshBindings": {
+      "$ref": "#/$defs/meshBindingMap"
+    },
+    "skeletons": {
+      "$ref": "#/$defs/skeletonMap"
+    },
+    "skins": {
+      "$ref": "#/$defs/skinMap"
+    },
+    "materials": {
+      "$ref": "#/$defs/materialMap"
+    },
+    "resources": {
+      "$ref": "#/$defs/resourceMap"
+    },
+    "blendShapeSets": {
+      "$ref": "#/$defs/blendShapeSetMap"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
+    },
+    "requiredExtensionContracts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/extensionContractId"
+      }
+    }
+  },
+  "$defs": {
+    "safeUnsignedInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "safeSignedInteger": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "artifactId": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "assetId": {
+      "type": "string",
+      "pattern": "^coid:v1:asset:[a-f0-9]{64}$"
+    },
+    "bufferId": {
+      "type": "string",
+      "pattern": "^coid:v1:buffer:[a-f0-9]{64}$"
+    },
+    "bufferViewId": {
+      "type": "string",
+      "pattern": "^coid:v1:buffer-view:[a-f0-9]{64}$"
+    },
+    "accessorId": {
+      "type": "string",
+      "pattern": "^coid:v1:accessor:[a-f0-9]{64}$"
+    },
+    "meshId": {
+      "type": "string",
+      "pattern": "^coid:v1:mesh:[a-f0-9]{64}$"
+    },
+    "primitiveId": {
+      "type": "string",
+      "pattern": "^coid:v1:primitive:[a-f0-9]{64}$"
+    },
+    "meshBindingId": {
+      "type": "string",
+      "pattern": "^coid:v1:mesh-binding:[a-f0-9]{64}$"
+    },
+    "skeletonId": {
+      "type": "string",
+      "pattern": "^coid:v1:skeleton:[a-f0-9]{64}$"
+    },
+    "jointId": {
+      "type": "string",
+      "pattern": "^coid:v1:joint:[a-f0-9]{64}$"
+    },
+    "skinId": {
+      "type": "string",
+      "pattern": "^coid:v1:skin:[a-f0-9]{64}$"
+    },
+    "materialId": {
+      "type": "string",
+      "pattern": "^coid:v1:material:[a-f0-9]{64}$"
+    },
+    "resourceId": {
+      "type": "string",
+      "pattern": "^coid:v1:resource:[a-f0-9]{64}$"
+    },
+    "blendShapeSetId": {
+      "type": "string",
+      "pattern": "^coid:v1:blendshape-set:[a-f0-9]{64}$"
+    },
+    "blendShapeId": {
+      "type": "string",
+      "pattern": "^coid:v1:blendshape:[a-f0-9]{64}$"
+    },
+    "blendShapeFrameId": {
+      "type": "string",
+      "pattern": "^coid:v1:blendshape-frame:[a-f0-9]{64}$"
+    },
+    "extensionContractId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:\\.[a-z0-9-]+)+/[1-9][0-9]*$"
+    },
+    "coordinateSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handedness",
+        "rightAxis",
+        "upAxis",
+        "forwardAxis",
+        "distanceUnit",
+        "angleUnit",
+        "matrixMathConvention",
+        "matrixStorageConvention",
+        "quaternionComponentOrder",
+        "uvOrigin",
+        "uDirection",
+        "vDirection",
+        "frontFaceWinding"
+      ],
+      "properties": {
+        "handedness": { "const": "LEFT" },
+        "rightAxis": { "const": "+X" },
+        "upAxis": { "const": "+Y" },
+        "forwardAxis": { "const": "+Z" },
+        "distanceUnit": { "const": "METRE" },
+        "angleUnit": { "const": "RADIAN" },
+        "matrixMathConvention": { "const": "COLUMN_VECTOR" },
+        "matrixStorageConvention": { "const": "COLUMN_MAJOR" },
+        "quaternionComponentOrder": { "const": "XYZW" },
+        "uvOrigin": { "const": "BOTTOM_LEFT" },
+        "uDirection": { "const": "RIGHT" },
+        "vDirection": { "const": "UP" },
+        "frontFaceWinding": { "const": "CLOCKWISE" }
+      }
+    },
+    "extensionArtifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId"],
+      "properties": {
+        "contractId": { "$ref": "#/$defs/extensionContractId" },
+        "canonicalJsonArtifact": {
+          "oneOf": [
+            { "$ref": "#/$defs/artifactId" },
+            { "type": "null" }
+          ]
+        },
+        "binaryArtifact": {
+          "oneOf": [
+            { "$ref": "#/$defs/artifactId" },
+            { "type": "null" }
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["canonicalJsonArtifact"],
+          "properties": {
+            "canonicalJsonArtifact": { "$ref": "#/$defs/artifactId" }
+          }
+        },
+        {
+          "required": ["binaryArtifact"],
+          "properties": {
+            "binaryArtifact": { "$ref": "#/$defs/artifactId" }
+          }
+        }
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/extensionContractId"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/extensionArtifactRef"
+      }
+    },
+    "buffer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "byteLength"],
+      "properties": {
+        "artifact": { "$ref": "#/$defs/artifactId" },
+        "byteLength": { "$ref": "#/$defs/safeUnsignedInteger" }
+      }
+    },
+    "bufferMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/bufferId" },
+      "additionalProperties": { "$ref": "#/$defs/buffer" }
+    },
+    "bufferView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bufferId", "byteOffset", "byteLength", "byteStride"],
+      "properties": {
+        "bufferId": { "$ref": "#/$defs/bufferId" },
+        "byteOffset": { "const": 0 },
+        "byteLength": { "$ref": "#/$defs/safeUnsignedInteger" },
+        "byteStride": { "type": "null" }
+      }
+    },
+    "bufferViewMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/bufferViewId" },
+      "additionalProperties": { "$ref": "#/$defs/bufferView" }
+    },
+    "sparseIndices": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bufferViewId", "byteOffset", "componentType"],
+      "properties": {
+        "bufferViewId": { "$ref": "#/$defs/bufferViewId" },
+        "byteOffset": { "const": 0 },
+        "componentType": {
+          "enum": ["U8", "U16", "U32"]
+        }
+      }
+    },
+    "sparseValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bufferViewId", "byteOffset"],
+      "properties": {
+        "bufferViewId": { "$ref": "#/$defs/bufferViewId" },
+        "byteOffset": { "const": 0 }
+      }
+    },
+    "sparseAccessor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "indices", "values"],
+      "properties": {
+        "count": { "$ref": "#/$defs/safeUnsignedInteger" },
+        "indices": { "$ref": "#/$defs/sparseIndices" },
+        "values": { "$ref": "#/$defs/sparseValues" }
+      }
+    },
+    "accessor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bufferViewId",
+        "byteOffset",
+        "componentType",
+        "elementShape",
+        "count",
+        "sparse"
+      ],
+      "properties": {
+        "bufferViewId": {
+          "oneOf": [
+            { "$ref": "#/$defs/bufferViewId" },
+            { "type": "null" }
+          ]
+        },
+        "byteOffset": { "const": 0 },
+        "componentType": {
+          "enum": ["I8", "U8", "I16", "U16", "I32", "U32", "F32", "F64"]
+        },
+        "elementShape": {
+          "enum": ["SCALAR", "VEC2", "VEC3", "VEC4", "MAT2", "MAT3", "MAT4"]
+        },
+        "count": { "$ref": "#/$defs/safeUnsignedInteger" },
+        "sparse": {
+          "oneOf": [
+            { "$ref": "#/$defs/sparseAccessor" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "accessorMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/accessorId" },
+      "additionalProperties": { "$ref": "#/$defs/accessor" }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum"],
+      "properties": {
+        "minimum": {
+          "type": "array",
+          "prefixItems": [
+            { "type": "number" },
+            { "type": "number" },
+            { "type": "number" }
+          ],
+          "items": false
+        },
+        "maximum": {
+          "type": "array",
+          "prefixItems": [
+            { "type": "number" },
+            { "type": "number" },
+            { "type": "number" }
+          ],
+          "items": false
+        }
+      }
+    },
+    "primitive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primitiveId", "topology", "indicesAccessorId", "materialId", "extensions"],
+      "properties": {
+        "primitiveId": { "$ref": "#/$defs/primitiveId" },
+        "topology": { "const": "TRIANGLES" },
+        "indicesAccessorId": { "$ref": "#/$defs/accessorId" },
+        "materialId": {
+          "oneOf": [
+            { "$ref": "#/$defs/materialId" },
+            { "type": "null" }
+          ]
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "mesh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "vertexCount", "attributes", "primitives", "bounds", "extensions"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "vertexCount": { "$ref": "#/$defs/safeUnsignedInteger" },
+        "attributes": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(POSITION|NORMAL|TANGENT|COLOR_[0-9]+|TEXCOORD_[0-9]+)$"
+          },
+          "additionalProperties": { "$ref": "#/$defs/accessorId" },
+          "required": ["POSITION"]
+        },
+        "primitives": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/primitive" }
+        },
+        "bounds": { "$ref": "#/$defs/bounds" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "meshMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/meshId" },
+      "additionalProperties": { "$ref": "#/$defs/mesh" }
+    },
+    "meshBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["meshId", "skinId", "meshToAssetBindMatrixAccessorId", "extensions"],
+      "properties": {
+        "meshId": { "$ref": "#/$defs/meshId" },
+        "skinId": {
+          "oneOf": [
+            { "$ref": "#/$defs/skinId" },
+            { "type": "null" }
+          ]
+        },
+        "meshToAssetBindMatrixAccessorId": { "$ref": "#/$defs/accessorId" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "meshBindingMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/meshBindingId" },
+      "additionalProperties": { "$ref": "#/$defs/meshBinding" }
+    },
+    "joint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "parentId", "semanticTags", "extensions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "parentId": {
+          "oneOf": [
+            { "$ref": "#/$defs/jointId" },
+            { "type": "null" }
+          ]
+        },
+        "semanticTags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "skeleton": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "jointIds", "localRestMatricesAccessorId", "joints", "extensions"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "jointIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/jointId" }
+        },
+        "localRestMatricesAccessorId": { "$ref": "#/$defs/accessorId" },
+        "joints": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/jointId" },
+          "additionalProperties": { "$ref": "#/$defs/joint" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "skeletonMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/skeletonId" },
+      "additionalProperties": { "$ref": "#/$defs/skeleton" }
+    },
+    "skin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "meshId",
+        "skeletonId",
+        "jointIds",
+        "inverseBindMatricesAccessorId",
+        "influenceOffsetsAccessorId",
+        "influenceJointOrdinalsAccessorId",
+        "influenceWeightsAccessorId",
+        "extensions"
+      ],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "meshId": { "$ref": "#/$defs/meshId" },
+        "skeletonId": { "$ref": "#/$defs/skeletonId" },
+        "jointIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/jointId" }
+        },
+        "inverseBindMatricesAccessorId": { "$ref": "#/$defs/accessorId" },
+        "influenceOffsetsAccessorId": { "$ref": "#/$defs/accessorId" },
+        "influenceJointOrdinalsAccessorId": { "$ref": "#/$defs/accessorId" },
+        "influenceWeightsAccessorId": { "$ref": "#/$defs/accessorId" },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "skinMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/skinId" },
+      "additionalProperties": { "$ref": "#/$defs/skin" }
+    },
+    "sampler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minFilter", "magFilter", "wrapU", "wrapV"],
+      "properties": {
+        "minFilter": { "enum": ["NEAREST", "LINEAR", "NEAREST_MIPMAP_NEAREST", "LINEAR_MIPMAP_NEAREST", "NEAREST_MIPMAP_LINEAR", "LINEAR_MIPMAP_LINEAR"] },
+        "magFilter": { "enum": ["NEAREST", "LINEAR"] },
+        "wrapU": { "enum": ["CLAMP", "REPEAT", "MIRROR"] },
+        "wrapV": { "enum": ["CLAMP", "REPEAT", "MIRROR"] }
+      }
+    },
+    "canonicalValue": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "BOOLEAN" },
+            "value": { "type": "boolean" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "INTEGER" },
+            "value": { "$ref": "#/$defs/safeSignedInteger" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "SCALAR" },
+            "value": { "type": "number" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "VECTOR" },
+            "value": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": { "type": "number" }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": { "const": "STRING" },
+            "value": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "resourceId", "texCoordSet", "sampler"],
+          "properties": {
+            "kind": { "const": "RESOURCE_BINDING" },
+            "resourceId": { "$ref": "#/$defs/resourceId" },
+            "texCoordSet": { "$ref": "#/$defs/safeUnsignedInteger" },
+            "sampler": { "$ref": "#/$defs/sampler" }
+          }
+        }
+      ]
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "modelContract", "properties", "extensions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "modelContract": { "$ref": "#/$defs/extensionContractId" },
+        "properties": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[A-Z][A-Z0-9_]*$" },
+          "additionalProperties": { "$ref": "#/$defs/canonicalValue" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "materialMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/materialId" },
+      "additionalProperties": { "$ref": "#/$defs/material" }
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "artifact", "byteLength", "mediaType", "dataInterpretation", "extensions"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "artifact": { "$ref": "#/$defs/artifactId" },
+        "byteLength": { "$ref": "#/$defs/safeUnsignedInteger" },
+        "mediaType": { "type": "string", "minLength": 1 },
+        "dataInterpretation": { "enum": ["SRGB", "LINEAR", "DATA", "UNSPECIFIED"] },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "resourceMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/resourceId" },
+      "additionalProperties": { "$ref": "#/$defs/resource" }
+    },
+    "blendShapeFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frameId", "weight", "positionDeltaAccessorId", "normalDeltaAccessorId", "tangentDeltaAccessorId"],
+      "properties": {
+        "frameId": { "$ref": "#/$defs/blendShapeFrameId" },
+        "weight": { "type": "number" },
+        "positionDeltaAccessorId": { "$ref": "#/$defs/accessorId" },
+        "normalDeltaAccessorId": {
+          "oneOf": [
+            { "$ref": "#/$defs/accessorId" },
+            { "type": "null" }
+          ]
+        },
+        "tangentDeltaAccessorId": {
+          "oneOf": [
+            { "$ref": "#/$defs/accessorId" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "blendShape": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "frames", "extensions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "frames": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/blendShapeFrame" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "blendShapeSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["meshId", "shapes", "extensions"],
+      "properties": {
+        "meshId": { "$ref": "#/$defs/meshId" },
+        "shapes": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/blendShapeId" },
+          "additionalProperties": { "$ref": "#/$defs/blendShape" }
+        },
+        "extensions": { "$ref": "#/$defs/extensions" }
+      }
+    },
+    "blendShapeSetMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/blendShapeSetId" },
+      "additionalProperties": { "$ref": "#/$defs/blendShapeSet" }
+    }
+  }
+}

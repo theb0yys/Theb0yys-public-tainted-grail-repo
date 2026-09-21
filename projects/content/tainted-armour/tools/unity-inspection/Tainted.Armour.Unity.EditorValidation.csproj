@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Tainted.Armour.Unity.EditorValidation</AssemblyName>
+    <RootNamespace>TaintedArmour.Editor</RootNamespace>
+    <NuGetAudit>false</NuGetAudit>
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
+    <UnityManagedDir Condition="'$(UnityManagedDir)' == ''"><local-path>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Tainted.Armour.Unity\Tainted.Armour.Unity.csproj" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(UnityManagedDir)\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AnimationModule" HintPath="$(UnityManagedDir)\UnityEngine.AnimationModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AssetBundleModule" HintPath="$(UnityManagedDir)\UnityEngine.AssetBundleModule.dll" Private="false" />
+    <Reference Include="UnityEngine.JSONSerializeModule" HintPath="$(UnityManagedDir)\UnityEngine.JSONSerializeModule.dll" Private="false" />
+    <Reference Include="UnityEditor.CoreModule" HintPath="$(UnityManagedDir)\UnityEditor.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="RequireUnityEditorAssemblies" BeforeTargets="ResolveReferences"
+          Condition="!Exists('$(UnityManagedDir)\UnityEditor.CoreModule.dll')">
+    <Error Text="Unity editor assemblies were not found. Set UnityManagedDir to the Unity Editor Managed/UnityEngine directory." />
+  </Target>
+</Project>

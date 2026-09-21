@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Tainted.Armour.R2PackageBuilder</AssemblyName>
+    <RootNamespace>Tainted.Armour.R2PackageBuilder</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Tainted.Armour.Serialization\Tainted.Armour.Serialization.csproj" />
+  </ItemGroup>
+</Project>
