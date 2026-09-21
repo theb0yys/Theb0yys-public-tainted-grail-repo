@@ -1,0 +1,36 @@
+# Avalon Broodmother Companion Manifest
+
+- Mod name: Avalon Broodmother Companion
+- BepInEx GUID: `kane.tgfoa.avalon-broodmother-companion`
+- Version: `0.1.34`
+- Assembly: `AvalonBroodmotherCompanion.dll`
+- Game branch: Tainted Grail: The Fall of Avalon Mono / BepInEx v5
+- Runtime dependency: Avalon Awakened public Broodmother and Spider resolvers
+- Game-shipped audio reference: `FMODUnity.dll`
+- Game-shipped physics reference: `UnityEngine.PhysicsModule.dll`
+- Custom spell items:
+  - `Broodmother's Call - Asha, Crimson Vanguard` / `ItemTemplate_Magic_Tier1_AvalonBroodmotherCall` / `b7d0d4e6c0de4bb0a000000000000001`
+  - `Broodmother's Call - Velra, Pale Pouncer` / `ItemTemplate_Magic_Tier1_AvalonBroodmotherCallSkin2` / `b7d0d4e6c0de4bb0a000000000000002`
+  - `Broodmother's Call - Aurex, Gilded Spitter` / `ItemTemplate_Magic_Tier1_AvalonBroodmotherCallSkin3` / `b7d0d4e6c0de4bb0a000000000000003`
+  - `Spider's Call - Rook, Crimson Harrier` / `ItemTemplate_Magic_Tier1_AvalonSpiderCallSkin1` / `b7d0d4e6c0de4bb0a000000000000004`
+  - `Spider's Call - Vesper, Pale Ambusher` / `ItemTemplate_Magic_Tier1_AvalonSpiderCallSkin2` / `b7d0d4e6c0de4bb0a000000000000005`
+  - `Spider's Call - Nox, Gilded Finisher` / `ItemTemplate_Magic_Tier1_AvalonSpiderCallSkin3` / `b7d0d4e6c0de4bb0a000000000000006`
+- Custom spell source: native `Wolf's Call` / `3bd577472a0191c44bf298a82553cf3b`
+- Custom spell cast route: exact custom item `Skill.Perform()` intercept to guarded one-session companion summon; native `SkillSpawnLocation` skipped for this item.
+- Known merchant stock: all six custom call items in `Shop_Vendor_Tier1` / `75a071140bc819d4ab6e9e37abfdfa59` / quantity `1` each, inserted without stock stacking and followed by a six-definition stock count log
+- Default runtime summon: disabled
+- Default spell grant: disabled
+- Default hotkeys: none
+- Save behavior: one-session not-saved actor only
+- Native lifecycle: active spider-family companion corpse retention, healthbar marker removal, native AlivePrefab collider re-enable, runtime `HealthElement` hitbox registration, initialized native animated-death visibility, hero-damage friendly-fire bypass scoped to this actor, pending native-death handoff retention, exact `NpcDummy`/`Corpse` death handoff acceptance, and retained same-session death visual material references
+- Combat bridge: active spider-family ShortBite/LeapJump damage bridge through native `HealthElement.TakeDamage(Damage)` after native target handoff succeeds
+- Ranged attack VFX: transient plugin-owned LeapJump arc on successful leap/ranged damage bridge commits
+- Embedded spider-family icons: current red/black, pale, and gold Broodmother icons active for the three Broodmother variants; red/black, pale, and gold smaller Spider icons active for the three smaller Spider variants; item UI sprites are cached independently by summon definition so all six merchant/inventory rows retain their matching icon concurrently
+- Native dialogue recovery: scoped `E` interact path opens the same companion menu only for the active nearby camera-focused Broodmother when FoA does not start the attached runtime action
+- Native menu command safety: menu-open state pauses follow catch-up/combat AI ticks, range choices no longer perform hidden recalls, non-terminal commands keep the menu open and resync selected mode/range state, and both Unity `Button.onClick` and manual hit-test routes dispatch through the same proven command handler without Broodmother-specific submit-release or pointer-release state
+- Menu cursor/input scope: proven Avalon Companions route by soft reflection, using Tainted Interface `BeginCustomUiScope` first and FoA Mod Manager `SetCustomUiScope` fallback while the companion menu is open
+- Companion menu input: no Broodmother-owned visible virtual cursor; hover and manual click fallback use the real Unity pointer position; manual fallback dispatch uses `Input.GetMouseButtonDown(0)` against visible enabled command rows, and Unity `Button.onClick` dispatches the actual selected row without a separate Broodmother input gate
+- Native cursor support: current-hero `ForceCursorVisibility` element plus local real-cursor capture/reassert/restore while the companion menu is open
+- Input lock: Broodmother-owned copy of the proven Avalon Companions input route; blocks game mouse/player movement while Broodmother UI is visible, while Rewired/EventSystem reads pass through for the Unity command-dialogue menu.
+- Embedded spider audio: nine validated PCM WAV resources compiled into `AvalonBroodmotherCompanion.dll`
+- Embedded audio cues: summon/recall call, native combat attack, follow movement walk
