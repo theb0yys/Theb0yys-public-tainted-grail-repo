@@ -23,13 +23,13 @@ Render bounds are not the melee hitbox. Preserve the source combat owner and geo
 4. Confirm the custom presentation remains aligned with the native combat owner.
 5. Test repeated equip/attack/unequip cycles to catch stale state.
 
-## Validation gate
+## Check
 
-PASSED only when the native combat path produces the expected attack/hit behaviour and no custom presentation shortcut has become a second combat owner.
+Confirm that the native combat path produces the expected attack/hit behaviour and no custom presentation shortcut has become a second combat owner.
 
-## Does not prove
+## Before continuing
 
-One attack does not prove every move set, every perspective, inventory preview, scene transition, save/load, or another weapon archetype.
+One attack does not cover every move set, every perspective, inventory preview, scene transition, save/load, or another weapon archetype.
 
 ## Next
 
