@@ -1,8 +1,6 @@
 # IL2CPP Examples
 
-IL2CPP/BepInEx examples are grouped by functional domain.
+Working IL2CPP/BepInEx examples:
 
-- [Basics](basics/README.md)
-- [Harmony](harmony/README.md)
-
-Additional domains should be added only when a public-safe example exists for them.
+- [First game change](basics/first-game-change/README.md) — make and verify a small runtime change.
+- [Patch health](harmony/patch-health/README.md) — verify that a Harmony patch applied and remains healthy.

@@ -8,15 +8,10 @@ If you are new to modding, start with the guide for the thing you want to make. 
 
 - [Mono examples](mono/README.md) — C# mods for a Mono/BepInEx setup.
 - [IL2CPP examples](il2cpp/README.md) — C# mods for an IL2CPP/BepInEx setup.
-- [Hybrid examples](hybrid/README.md) — projects that use both an in-game mod and an outside tool/client.
-- [Merlin examples](merlin/README.md) — content made with Merlin Workshop.
+- [Hybrid examples](hybrid/README.md) — projects that combine in-game and external/runtime components.
 
-Each example should answer five questions:
+Each example explains what it changes, how to build and test it, what to change first, and which guide covers the mechanism in more detail.
 
-1. What does this mod change?
-2. How do I build it?
-3. How do I test it?
-4. What should I change first?
-5. Which guide explains the code in more detail?
+For Merlin content authoring, start with [First content authoring](../guides/getting-started/first-content-authoring.md).
 
 For a blank project to start your own mod, use [Templates](../templates/README.md).

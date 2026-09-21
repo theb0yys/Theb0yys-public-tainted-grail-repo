@@ -1,13 +1,13 @@
 # Reference
 
-Reference pages are for exact lookup, not long tutorials.
+Exact technical lookup for Tainted Grail modding.
 
 ## Core lookup
 
 - [Assemblies and system owners](assemblies/README.md)
 - [Hooks](hooks/README.md)
 - [Identities](identities/README.md)
-- [Assets](assets/README.md)
+- [Assets and Addressables](assets/README.md)
 - [Compatibility](compatibility/README.md)
 - [Mechanics catalogue](mechanics/README.md)
 - [Version scope](versions/README.md)
@@ -16,12 +16,11 @@ Reference pages are for exact lookup, not long tutorials.
 - [Content domains](content-domains.md)
 - [Game knowledge index](game-knowledge-index.md)
 
-## Cross-reference routes
+## Related architecture
 
-- [Services](services/README.md)
-- [Templates](templates/README.md)
-- [Addressables](addressables/README.md)
-- [Events](events/README.md)
+- [Services and scene ownership](../systems/core/scenes-services-templates.md)
+- [Templates and registries](../systems/core/templates-registries.md)
+- [Events](../systems/core/mvc-models-elements-events.md)
 - [Glossary](glossary/README.md)
 
-For bounded capabilities use [mechanics](../mechanics/README.md); for native ownership use [systems](../systems/README.md); for unknown behaviour use [investigate](../../research/README.md).
+For reusable capabilities, use [Mechanics](../mechanics/README.md). For system architecture, use [Systems](../systems/README.md). For behaviour that still needs proof, use [Research](../../research/README.md).
