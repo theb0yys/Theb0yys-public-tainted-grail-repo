@@ -27,13 +27,13 @@ Author pack-owned creature definitions that preserve the selected native actor c
 6. Load/resolve definitions in isolation.
 7. Reject raw fallback templates that fork provider identity or bypass the pack owner.
 
-## Validation gate
+## Check
 
-PASSED when the exact pack-owned definitions resolve and satisfy the recorded native structural contract.
+Confirm that the exact pack-owned definitions resolve and satisfy the recorded native structural contract.
 
-## Does not prove
+## Before continuing
 
-A valid template is not a live actor and does not prove movement, AI, combat, death, cleanup, population, or persistence.
+A valid template is not a live actor and does not cover movement, AI, combat, death, cleanup, population, or persistence.
 
 ## Next
 
