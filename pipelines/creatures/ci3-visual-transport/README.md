@@ -21,15 +21,15 @@ Build pack-owned visual roots that can be loaded, inspected, released, and reloa
 6. Release the root.
 7. Load it again to prove repeatable asset lifetime.
 
-## Validation gate
+## Check
 
-PASSED when the exact visual root loads and releases repeatedly with the expected structural fingerprint.
+Confirm that the exact visual root loads and releases repeatedly with the expected structural fingerprint.
 
 ## Important boundary
 
 Headless or non-rendering asset load cannot stand in for graphics-dependent Kandra/HDRP visual acceptance.
 
-## Does not prove
+## Before continuing
 
 Animation mapping, templates, actor construction, movement, combat, death, or persistence.
 
