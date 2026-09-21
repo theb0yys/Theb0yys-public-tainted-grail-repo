@@ -26,13 +26,13 @@ Choose one exact native rigid-weapon family whose full item/equip/combat/present
 
 A weapon source profile that can be compared against the custom clone.
 
-## Validation gate
+## Check
 
-PASSED only when the exact source identity resolves and the expected ItemEquip/combat/presentation contract is recorded for the claimed build.
+Confirm that the exact source identity resolves and the expected ItemEquip/combat/presentation contract is recorded for the claimed build.
 
-## Does not prove
+## Before continuing
 
-No custom weapon exists yet. This stage does not prove registration, equip, presentation, combat, preview, or persistence.
+No custom weapon exists yet. This stage does not cover registration, equip, presentation, combat, preview, or persistence.
 
 ## Next
 
