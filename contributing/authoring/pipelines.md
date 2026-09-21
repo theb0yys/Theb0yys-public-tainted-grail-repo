@@ -26,12 +26,11 @@ Each stage page must state:
 4. output artifact or runtime state;
 5. validation gate;
 6. failure conditions where relevant;
-7. what the stage does not cover;
-8. next stage.
+7. next stage.
 
 ## Evidence rule
 
-Never promote one stage into a later claim.
+Keep each stage scoped to the operation it performs.
 
 Examples:
 
@@ -39,7 +38,7 @@ Examples:
 - asset load is not template registration;
 - template registration is not acquisition;
 - a visible mesh is not native equip ownership;
-- runtime success is not persistence proof;
+- runtime execution and persistence are separate checks;
 - persistence is not release compatibility.
 
 
