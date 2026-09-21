@@ -1,0 +1,112 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TaintedWeapons</AssemblyName>
+    <RootNamespace>TaintedWeapons</RootNamespace>
+    <Version>0.3.34</Version>
+    <AssemblyVersion>0.3.34.0</AssemblyVersion>
+    <FileVersion>0.3.34.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"><local-path>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.ECS">
+      <HintPath>$(FoAManagedDir)\Awaken.ECS.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Utility">
+      <HintPath>$(FoAManagedDir)\Awaken.Utility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAManagedDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>$(FoAManagedDir)\Unity.Addressables.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>$(FoAManagedDir)\Unity.ResourceManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>$(FoAManagedDir)\Unity.Collections.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Entities">
+      <HintPath>$(FoAManagedDir)\Unity.Entities.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Entities.Graphics">
+      <HintPath>$(FoAManagedDir)\Unity.Entities.Graphics.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>$(FoAManagedDir)\Unity.Mathematics.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Extensions">
+      <HintPath>$(FoAManagedDir)\Unity.Mathematics.Extensions.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Transforms">
+      <HintPath>$(FoAManagedDir)\Unity.Transforms.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Install BepInEx v5 Mono in the game root or build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll')" Text="UnityEngine.InputLegacyModule.dll was not found at '$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll')" Text="UnityEngine.AssetBundleModule.dll was not found at '$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.ECS.dll')" Text="Awaken.ECS.dll was not found at '$(FoAManagedDir)\Awaken.ECS.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.Utility.dll')" Text="Awaken.Utility.dll was not found at '$(FoAManagedDir)\Awaken.Utility.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\TG.Main.dll')" Text="TG.Main.dll was not found at '$(FoAManagedDir)\TG.Main.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Addressables.dll')" Text="Unity.Addressables.dll was not found at '$(FoAManagedDir)\Unity.Addressables.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.ResourceManager.dll')" Text="Unity.ResourceManager.dll was not found at '$(FoAManagedDir)\Unity.ResourceManager.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Collections.dll')" Text="Unity.Collections.dll was not found at '$(FoAManagedDir)\Unity.Collections.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Entities.dll')" Text="Unity.Entities.dll was not found at '$(FoAManagedDir)\Unity.Entities.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Entities.Graphics.dll')" Text="Unity.Entities.Graphics.dll was not found at '$(FoAManagedDir)\Unity.Entities.Graphics.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Mathematics.dll')" Text="Unity.Mathematics.dll was not found at '$(FoAManagedDir)\Unity.Mathematics.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Mathematics.Extensions.dll')" Text="Unity.Mathematics.Extensions.dll was not found at '$(FoAManagedDir)\Unity.Mathematics.Extensions.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Unity.Transforms.dll')" Text="Unity.Transforms.dll was not found at '$(FoAManagedDir)\Unity.Transforms.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="..\README.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\README.md" Condition="Exists('..\README.md')" />
+  </Target>
+</Project>
