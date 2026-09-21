@@ -24,13 +24,13 @@ Define the source-to-target compatibility problem before generating Kandra data.
 
 A source contract, target contract, and deterministic mapping/compatibility report.
 
-## Validation gate
+## Check
 
-PASSED only when the mapping can account for required source influences and target ownership without silently dropping or inventing critical rig data.
+Confirm that the mapping can account for required source influences and target ownership without silently dropping or inventing critical rig data.
 
-## Does not prove
+## Before continuing
 
-A valid mapping contract does not prove the mesh deforms correctly.
+A valid mapping contract does not cover the mesh deforms correctly.
 
 ## Next
 
