@@ -2,9 +2,6 @@
 
 This pipeline reconstructs a custom rigid-weapon path while preserving FoA's native item, equip, combat, and presentation ownership.
 
-## Current proof boundary
-
-The native Item → ItemEquip → CharacterHandBase / CharacterWeapon chain is strongly documented. Public source also contains a runnable rigid-weapon Drake consumer and substantial framework-backed presentation evidence. A completely generic importer, universal persistence contract, hot-unload path, and cross-runtime equivalence are not established as one finished guarantee.
 
 ## Stage map
 
