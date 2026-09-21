@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>DragonKnight</AssemblyName>
+    <RootNamespace>DragonKnight</RootNamespace>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"><local-path>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+    <FoAModServiceModsDir Condition="'$(FoAModServiceModsDir)' == ''">$(USERPROFILE)\AppData\LocalLow\Questline\Fall of Avalon\Mods</FoAModServiceModsDir>
+    <DragonKnightDk4TemplatePackRoot Condition="'$(DragonKnightDk4TemplatePackRoot)' == ''"><local-path>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAManagedDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Utility">
+      <HintPath>$(FoAManagedDir)\Awaken.Utility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Kandra">
+      <HintPath>$(FoAManagedDir)\Awaken.Kandra.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ai-package\src\DragonKnight.AI.Package.V2\DragonKnight.AI.Package.V2.csproj" />
+  </ItemGroup>
+
+  <Target Name="VerifyFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Install BepInEx v5 Mono in the game root or build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(BepInExCoreDir)\0Harmony.dll')" Text="0Harmony.dll was not found at '$(BepInExCoreDir)\0Harmony.dll'. Install BepInEx v5 Mono in the game root or build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll')" Text="UnityEngine.AssetBundleModule.dll was not found at '$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll')" Text="UnityEngine.InputLegacyModule.dll was not found at '$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.PhysicsModule.dll')" Text="UnityEngine.PhysicsModule.dll was not found at '$(FoAManagedDir)\UnityEngine.PhysicsModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\TG.Main.dll')" Text="TG.Main.dll was not found at '$(FoAManagedDir)\TG.Main.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.Utility.dll')" Text="Awaken.Utility.dll was not found at '$(FoAManagedDir)\Awaken.Utility.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.Kandra.dll')" Text="Awaken.Kandra.dll was not found at '$(FoAManagedDir)\Awaken.Kandra.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" Condition="'@(ReferenceCopyLocalPaths)' != ''" />
+    <Copy SourceFiles="..\README.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\README.md" Condition="Exists('..\README.md')" />
+    <Copy SourceFiles="..\release\changelog.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\CHANGELOG.md" Condition="Exists('..\release\changelog.md')" />
+    <Copy SourceFiles="..\release\manifest.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\MANIFEST.md" Condition="Exists('..\release\manifest.md')" />
+    <ItemGroup>
+      <DragonKnightDk4TemplatePackFiles Include="$(DragonKnightDk4TemplatePackRoot)\**\*.*" Condition="Exists('$(DragonKnightDk4TemplatePackRoot)')" />
+      <DragonKnightDk4RootCatalogFiles Include="$(DragonKnightDk4TemplatePackRoot)\StandaloneWindows64\catalog_dragon-knight-dk4a-template-v1.json;$(DragonKnightDk4TemplatePackRoot)\StandaloneWindows64\catalog_dragon-knight-dk4a-template-v1.hash" Condition="Exists('$(DragonKnightDk4TemplatePackRoot)\StandaloneWindows64\catalog_dragon-knight-dk4a-template-v1.json')" />
+    </ItemGroup>
+    <MakeDir Directories="$(FoAModServiceModsDir)\DragonKnightDK4ATemplate" Condition="'@(DragonKnightDk4TemplatePackFiles)' != ''" />
+    <Copy SourceFiles="@(DragonKnightDk4TemplatePackFiles)" DestinationFiles="@(DragonKnightDk4TemplatePackFiles->'$(FoAModServiceModsDir)\DragonKnightDK4ATemplate\%(RecursiveDir)%(Filename)%(Extension)')" Condition="'@(DragonKnightDk4TemplatePackFiles)' != ''" />
+    <Copy SourceFiles="@(DragonKnightDk4RootCatalogFiles)" DestinationFiles="@(DragonKnightDk4RootCatalogFiles->'$(FoAModServiceModsDir)\DragonKnightDK4ATemplate\%(Filename)%(Extension)')" Condition="'@(DragonKnightDk4RootCatalogFiles)' != ''" />
+  </Target>
+</Project>
