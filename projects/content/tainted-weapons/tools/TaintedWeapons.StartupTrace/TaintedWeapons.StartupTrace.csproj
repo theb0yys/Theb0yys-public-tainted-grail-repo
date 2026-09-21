@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TaintedWeapons.StartupTrace</AssemblyName>
+    <RootNamespace>TaintedWeapons.StartupTrace</RootNamespace>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''"><local-path>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'." />
+    <Error Condition="!Exists('$(BepInExCoreDir)\0Harmony.dll')" Text="0Harmony.dll was not found at '$(BepInExCoreDir)\0Harmony.dll'." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\TaintedWeaponsStartupTrace" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\TaintedWeaponsStartupTrace" />
+  </Target>
+</Project>
