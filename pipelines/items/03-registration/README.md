@@ -26,9 +26,9 @@ Registration is timing-sensitive. The template system must be ready before mutat
 6. Treat post-insertion failure as significant: direct map mutation is not assumed transactional.
 7. Do not assume a native unregister/hot-reload path exists unless separately proven.
 
-## Validation gate
+## Check
 
-PASSED only when the custom GUID resolves back through the normal provider to the expected custom ItemTemplate.
+Confirm that the custom GUID resolves back through the normal provider to the expected custom ItemTemplate.
 
 ## Failure conditions
 
@@ -39,9 +39,9 @@ PASSED only when the custom GUID resolves back through the normal provider to th
 - failure occurs after a non-transactional insertion;
 - an unverified reflection/private-API assumption changed with the game build.
 
-## Does not prove
+## Before continuing
 
-Registration does not prove Item construction, merchant/inventory acquisition, UI visibility, presentation, effects, or persistence.
+Registration does not cover Item construction, merchant/inventory acquisition, UI visibility, presentation, effects, or persistence.
 
 ## Next
 
