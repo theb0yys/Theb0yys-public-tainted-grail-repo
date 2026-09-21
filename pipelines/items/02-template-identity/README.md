@@ -6,7 +6,7 @@ Create a separate mod-owned ItemTemplate identity while preserving the reviewed 
 
 ## Inputs
 
-- PASSED source profile from Stage 1;
+- complete source profile from Stage 1;
 - a stable mod-owned GUID;
 - a stable template name;
 - bounded presentation/economy changes for the first proof.
@@ -27,9 +27,9 @@ A separate identity is mandatory. Reusing a native GUID turns an import into a c
 
 An unregistered custom ItemTemplate candidate with a unique identity and a recorded source lineage.
 
-## Validation gate
+## Check
 
-PASSED when:
+Confirm that:
 
 - custom GUID differs from the native source;
 - source remains unchanged;
@@ -37,7 +37,7 @@ PASSED when:
 - required component/attachment shape is present;
 - no duplicate custom identity is already owned by another package.
 
-## Does not prove
+## Before continuing
 
 A valid clone is not registered and cannot be assumed to resolve through the game's template provider.
 
