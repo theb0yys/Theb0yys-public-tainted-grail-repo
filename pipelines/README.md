@@ -2,7 +2,7 @@
 
 This area owns end-to-end reconstruction paths for the four largest custom-content projects in this repository.
 
-A pipeline is not a replacement for Knowledge, Research, Examples, or Platform documentation. It is the ordered execution surface that tells a mod author what to do, which underlying game/system contract applies, what evidence is required before continuing, and what the completed stage does and does not cover.
+A pipeline is not a replacement for Knowledge, Research, Examples, or Platform documentation. It is the ordered execution surface that tells a mod author what to do, which underlying game/system contract applies, what information is required before continuing, and what the completed stage covers.
 
 ## Pipelines
 
@@ -24,7 +24,7 @@ Every stage must record:
 7. evidence scope;
 8. the next stage.
 
-A later stage must not be inferred from an earlier one. Asset load is not registration. Registration is not acquisition. Rendering is not gameplay ownership. Runtime success is not persistence proof.
+Treat each stage as a separate operation. Asset loading, registration, acquisition, rendering, gameplay ownership, and persistence are checked independently.
 
 
 ## Public boundary
