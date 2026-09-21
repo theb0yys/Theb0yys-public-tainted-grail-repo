@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>AvalonCompanions.AI.Package.Fixtures</AssemblyName>
+    <RootNamespace>AvalonCompanions.AI.Package.Fixtures</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AvalonCompanions.AI.Package\AvalonCompanions.AI.Package.csproj" />
+    <ProjectReference Include="..\..\..\..\avalon-ai-runtime\src\AvalonAI.Contracts\AvalonAI.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\avalon-ai-runtime\src\AvalonAI.Runtime\AvalonAI.Runtime.csproj" />
+  </ItemGroup>
+</Project>
