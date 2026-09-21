@@ -17,9 +17,9 @@ Create and register a separate weapon ItemTemplate identity without replacing th
 
 The public rigid-weapon example uses a shared registrar rather than treating the weapon mesh as the gameplay definition.
 
-## Validation gate
+## Check
 
-PASSED when the custom weapon ItemTemplate resolves through the normal provider and its expected equip/combat attachments remain intact.
+Confirm that the custom weapon ItemTemplate resolves through the normal provider and its expected equip/combat attachments remain intact.
 
 ## Failure conditions
 
@@ -29,9 +29,9 @@ PASSED when the custom weapon ItemTemplate resolves through the normal provider 
 - provider re-resolution fails;
 - post-insertion failure leaves a non-transactional partial registration.
 
-## Does not prove
+## Before continuing
 
-Registered ItemTemplate does not prove acquisition, equip, visible presentation, combat, preview, or persistence.
+Registered ItemTemplate does not cover acquisition, equip, visible presentation, combat, preview, or persistence.
 
 ## Next
 
