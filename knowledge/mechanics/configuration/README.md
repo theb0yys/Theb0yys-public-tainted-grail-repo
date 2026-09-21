@@ -1,7 +1,10 @@
 # Configuration
 
 Use this page when you are designing player settings, feature toggles, presets, live config changes, or migration of older cfg files for a FoA mod.
-This page focuses on configuration patterns that have been useful in FoA mods. For the BepInEx API itself, use the upstream BepInEx documentation.
+
+Reusable configuration mechanics for FoA mods.
+
+This page is about **FoA ecosystem practice**, not generic BepInEx API documentation. Exact framework APIs still belong to their upstream documentation.
 
 ## Public FoA configuration patterns
 

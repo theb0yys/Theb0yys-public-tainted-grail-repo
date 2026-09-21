@@ -1,6 +1,6 @@
 # Assets, Addressables, and Presentation
 
-Use this page when you need to work out how a FoA visual or asset is loaded, referenced, registered, or handed to the native system that actually uses it.
+> **Reference page.** Use this when working with models, textures, icons, prefabs, AssetBundles, Addressables or `ARAssetReference`.
 
 ## What this system is
 

@@ -6,18 +6,18 @@ Start here for common settings/UI handling, shared visual resources, diagnostics
 
 ## Start here: what do you need?
 
-| I need to… | Use | Can I use it now? |
+| I need to… | Use | Current posture |
 | --- | --- | --- |
-| expose BepInEx settings | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Yes** |
-| register controller commands or runtime status | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Yes** |
-| open a custom screen without every mod owning cursor/freeze logic | [FoA Mod Manager](components/foa-mod-manager/custom-ui-scope.md) | **Yes** |
-| use common styles, icons or semantic UI assets | [Tainted Interface](components/tainted-interface/README.md) | **Yes** |
-| find real GUIDs/templates/recipes/spawners/runtime context | [Tainted Diagnostic Tool](components/diagnostic-tool/README.md) | **Yes — read-only** |
-| discover shared capability/provider metadata | [Avalon Core](components/avalon-core/README.md) | **Yes — read-only discovery** |
-| consume a concrete shared runtime service | [Tainted Framework](components/tainted-framework/README.md) | **Only documented services** |
-| author AI behaviour that composes with other AI | [Avalon AI Runtime](components/avalon-ai-runtime/README.md) | **Package authoring supported; shared host owns execution** |
-| publish/query cross-mod contract data | [Avalon Contracts](components/avalon-contracts/README.md) | **Read-only discovery; only documented lifecycle actions** |
-| run an external local development client | [Tainted Grail Extender](components/tainted-grail-extender/README.md) | **Advanced use** |
+| expose BepInEx settings | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Author-ready** |
+| register controller commands or runtime status | [FoA Mod Manager](components/foa-mod-manager/README.md) | **Author-ready** |
+| open a custom screen without every mod owning cursor/freeze logic | [FoA Mod Manager](components/foa-mod-manager/custom-ui-scope.md) | **Author-ready** |
+| use common styles, icons or semantic UI assets | [Tainted Interface](components/tainted-interface/README.md) | **Author-ready** |
+| find real GUIDs/templates/recipes/spawners/runtime context | [Tainted Diagnostic Tool](components/diagnostic-tool/README.md) | **Author-ready, read-only** |
+| discover shared capability/provider metadata | [Avalon Core](components/avalon-core/README.md) | **Read-only/discovery** |
+| consume a concrete shared runtime service | [Tainted Framework](components/tainted-framework/README.md) | **Only named promoted surfaces** |
+| author AI behaviour that composes with other AI | [Avalon AI Runtime](components/avalon-ai-runtime/README.md) | **Package contracts + single host** |
+| publish/query cross-mod contract data | [Avalon Contracts](components/avalon-contracts/README.md) | **Read-only/provider-first; lifecycle lane-specific** |
+| run an external local development client | [Tainted Grail Extender](components/tainted-grail-extender/README.md) | **Advanced/SDK** |
 
 For exact GUIDs/assemblies/API entry points, use the [Component reference](ecosystem/component-reference.md).
 
@@ -29,7 +29,7 @@ For copyable workflows, use [Integration recipes](recipes/README.md).
 
 For full source projects, use [Mono infrastructure examples](../examples/mono/infrastructure/README.md).
 
-## A sensible default
+## Default recommendation
 
 For most user-facing mods:
 
@@ -41,7 +41,7 @@ BepInEx
 
 Add Core, Framework, AI Runtime, Contracts or TGE **only when the feature actually needs that owner**.
 
-## Avoid duplicating shared infrastructure
+## The ownership rule
 
 **Do not reimplement a shared owner locally when the ecosystem already has a reviewed owner.**
 
@@ -57,12 +57,12 @@ The opposite is also true:
 
 **Do not take a dependency just because a framework exists.**
 
-If a Framework/Core capability is not explicitly documented for consumers, treat it as unavailable.
+If a Framework/Core capability is not explicitly promoted for consumers, treat it as unavailable.
 
-## What the support labels mean
+## Maturity vocabulary
 
-- **Yes** — intended for ordinary real mod consumers.
-- **Yes — read-only discovery** — query/metadata/diagnostics only.
+- **Author-ready** — intended for ordinary real mod consumers.
+- **Read-only/discovery** — query/metadata/diagnostics only.
 - **Capability-gated** — shared owner exists; only specifically promoted surfaces may be consumed.
-- **Advanced use** — external process or high-authority integration requiring stronger version/security discipline.
+- **Advanced/SDK** — external process or high-authority integration requiring stronger version/security discipline.
 - **Blocked/research** — architecture may exist, but mod authors should not build against it yet.
