@@ -26,11 +26,11 @@ An actor previously attacked successfully while locomotion dragged and death was
 
 Discarding the entire Location as soon as the living NpcElement disappeared deleted the native same-Location NpcDummy/Corpse handoff. Cleanup must respect death ownership.
 
-## Validation gate
+## Check
 
-PASSED only when the claimed combat/death rows pass without bypassing the native actor lifecycle.
+Confirm that the claimed combat/death rows pass without bypassing the native actor lifecycle.
 
-## Does not prove
+## Before continuing
 
 World population, respawn, persistent placement, save/load, or companion UI/commands.
 
