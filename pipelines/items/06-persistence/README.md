@@ -17,7 +17,7 @@ Prove durable behaviour separately from current-session runtime success.
 ## Procedure
 
 1. Use a disposable save.
-2. Register and acquire the custom item through the already-PASSED stages.
+2. Register and acquire the custom item through the already-complete stages.
 3. Save with the custom item present.
 4. Fully exit.
 5. Cold-start and verify template registration occurs before the saved identity is resolved.
@@ -26,13 +26,10 @@ Prove durable behaviour separately from current-session runtime success.
 8. Test upgrade/migration separately when identity or schema changes.
 9. Record the exact game build, runtime lane, mod version, and result.
 
-## Validation gate
+## Check
 
-Do not mark persistence PASSED from a same-session reload or from the existence of a serialization field. Use an actual cold save/load observation.
+Do not mark persistence complete from a same-session reload or from the existence of a serialization field. Use an actual cold save/load observation.
 
-## Current public boundary
-
-The generic custom-item pipeline does not currently claim universal missing-mod, uninstall/orphan, migration, or cross-mod collision safety. Treat those as PARTIAL or NOT_RUN unless concrete evidence exists for the target package.
 
 ## Next
 
