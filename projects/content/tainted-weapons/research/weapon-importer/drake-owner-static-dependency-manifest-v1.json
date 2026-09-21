@@ -1,0 +1,141 @@
+{
+  "schema_version": "foa-managed-static-dependency-manifest-v1",
+  "manifest_id": "weapon-importer-drake-owner-static-dependency-v1",
+  "status": "static-candidate-set-exact-installed-build-association-partial",
+  "purpose": "Durable, reproducible identity manifest for the candidate managed assemblies used by DR-1 through DR-4 static Drake analysis.",
+  "association_state": "PARTIAL",
+  "association_limit": "The identities are internally coherent and were supplied together for analysis, but no installed-folder capture proves that every file came from one current FoA installation.",
+  "canonicalization": {
+    "algorithm": "sha256",
+    "encoding": "utf-8",
+    "line_ending": "LF",
+    "record_format": "file_name|assembly_name|sha256|mvid|size_bytes",
+    "record_order": "ordinal file_name ascending",
+    "terminal_newline": true,
+    "aggregate_scope": "assemblies array only"
+  },
+  "aggregate_sha256": "bac9e000268ee5f59a7f6a51a87bb04ad323bd6589e1bdcac210ef64b4a2216e",
+  "canonical_records": [
+    "Awaken.ECS.dll|Awaken.ECS.dll|b74a5bf79e93a75b11c5b70ace44d85e5a88650168077c6503dd10f4d2abd6f6|60d8ad80-f4c1-4edd-922f-3fe730daa98f|328704",
+    "Awaken.PackageUtilities.dll|Awaken.PackageUtilities.dll|e064ff18bbd8abaac0d12bd1c3f09c2d02f14dbf530d4b30eb5228acb8cc647c|23832f66-7882-41e7-85ee-4a6a46232ef9|37376",
+    "Awaken.Utility.dll|Awaken.Utility.dll|bb887211905ac644701083d6b8d24d3b802b6cd60a3d008098d32e94ca5f0519|1dff7821-9118-44e0-9e05-e1a5170adabd|643072",
+    "TG.Main(3).dll|TG.Main.dll|749aabbfbec121bb69bda0ae226223154406d2c990df3312ad12365d513fa982|68528841-991c-481e-bd94-7f1776fc3579|9058304",
+    "Unity.Addressables.dll|Unity.Addressables.dll|cc3583d0bd08e68e40ad6caab14e43aca5bfa15b6aaf552a974c20a1c188cb90|e4d01f23-9020-4db6-9c7a-b51907901876|108544",
+    "Unity.Collections.dll|Unity.Collections.dll|950882c1bf44b3dcc1652bb2d91ed084b21de4813cde80b6156626cb0ffe99dc|fddc1573-8e1a-4a79-8d86-ce4742a56612|450560",
+    "Unity.Entities.Graphics.dll|Unity.Entities.Graphics.dll|136a70fcbf38274eb1662420f41faed52e88b3895b6ec5253d7245cfa24360a6|8937f2fa-afbf-4a08-8215-82e69ef89223|248832",
+    "Unity.Entities.dll|Unity.Entities.dll|1345852b48e97668b45903357201141bf294101166f1ff3ba035427b7e1ae9c8|7a2522e9-9ac2-425f-8aee-497ee2b303c7|1267712",
+    "Unity.Mathematics.Extensions.dll|Unity.Mathematics.Extensions.dll|0b0b1e0bb6c4d06218be1708e103368fbb1ecceb2d12191698b5b237d4ff712d|f0168d76-15b1-4aec-bcd0-bf30ce5c78f6|8192",
+    "Unity.Mathematics.dll|Unity.Mathematics.dll|b1793134ae4fe84ca9104537e173c3e5c32bb52e7aa85e36382eba435d0fac06|844417d7-8866-4ac5-9cf4-c40fa6fcf1ed|752640",
+    "Unity.ResourceManager.dll|Unity.ResourceManager.dll|91e6f181de0a308a77ac9f4915798c7620d446b5c3a23d2f512a8b967a008762|f7f67d61-0099-4b6a-b7e7-00407dcee9ec|142848",
+    "Unity.Transforms.dll|Unity.Transforms.dll|b8964d3634191d51b572bcd2fb9ff37769c688ee097f7b4d50e4d7b74abe1cfd|a4d0a43e-fe7f-4344-86ee-200ddca22867|32768",
+    "UnityEngine.CoreModule.dll|UnityEngine.CoreModule.dll|60d5bef909a25c505fd8262a05d9260d332e0ee522e71587a98b5c9684dc7ffe|bc2f3a69-16a7-416f-823a-2977009661c4|1798064"
+  ],
+  "assemblies": [
+    {
+      "file_name": "Awaken.ECS.dll",
+      "assembly_name": "Awaken.ECS.dll",
+      "sha256": "b74a5bf79e93a75b11c5b70ace44d85e5a88650168077c6503dd10f4d2abd6f6",
+      "mvid": "60d8ad80-f4c1-4edd-922f-3fe730daa98f",
+      "size_bytes": 328704,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Awaken.PackageUtilities.dll",
+      "assembly_name": "Awaken.PackageUtilities.dll",
+      "sha256": "e064ff18bbd8abaac0d12bd1c3f09c2d02f14dbf530d4b30eb5228acb8cc647c",
+      "mvid": "23832f66-7882-41e7-85ee-4a6a46232ef9",
+      "size_bytes": 37376,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Awaken.Utility.dll",
+      "assembly_name": "Awaken.Utility.dll",
+      "sha256": "bb887211905ac644701083d6b8d24d3b802b6cd60a3d008098d32e94ca5f0519",
+      "mvid": "1dff7821-9118-44e0-9e05-e1a5170adabd",
+      "size_bytes": 643072,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "TG.Main(3).dll",
+      "assembly_name": "TG.Main.dll",
+      "sha256": "749aabbfbec121bb69bda0ae226223154406d2c990df3312ad12365d513fa982",
+      "mvid": "68528841-991c-481e-bd94-7f1776fc3579",
+      "size_bytes": 9058304,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Addressables.dll",
+      "assembly_name": "Unity.Addressables.dll",
+      "sha256": "cc3583d0bd08e68e40ad6caab14e43aca5bfa15b6aaf552a974c20a1c188cb90",
+      "mvid": "e4d01f23-9020-4db6-9c7a-b51907901876",
+      "size_bytes": 108544,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Collections.dll",
+      "assembly_name": "Unity.Collections.dll",
+      "sha256": "950882c1bf44b3dcc1652bb2d91ed084b21de4813cde80b6156626cb0ffe99dc",
+      "mvid": "fddc1573-8e1a-4a79-8d86-ce4742a56612",
+      "size_bytes": 450560,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Entities.Graphics.dll",
+      "assembly_name": "Unity.Entities.Graphics.dll",
+      "sha256": "136a70fcbf38274eb1662420f41faed52e88b3895b6ec5253d7245cfa24360a6",
+      "mvid": "8937f2fa-afbf-4a08-8215-82e69ef89223",
+      "size_bytes": 248832,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Entities.dll",
+      "assembly_name": "Unity.Entities.dll",
+      "sha256": "1345852b48e97668b45903357201141bf294101166f1ff3ba035427b7e1ae9c8",
+      "mvid": "7a2522e9-9ac2-425f-8aee-497ee2b303c7",
+      "size_bytes": 1267712,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Mathematics.Extensions.dll",
+      "assembly_name": "Unity.Mathematics.Extensions.dll",
+      "sha256": "0b0b1e0bb6c4d06218be1708e103368fbb1ecceb2d12191698b5b237d4ff712d",
+      "mvid": "f0168d76-15b1-4aec-bcd0-bf30ce5c78f6",
+      "size_bytes": 8192,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Mathematics.dll",
+      "assembly_name": "Unity.Mathematics.dll",
+      "sha256": "b1793134ae4fe84ca9104537e173c3e5c32bb52e7aa85e36382eba435d0fac06",
+      "mvid": "844417d7-8866-4ac5-9cf4-c40fa6fcf1ed",
+      "size_bytes": 752640,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.ResourceManager.dll",
+      "assembly_name": "Unity.ResourceManager.dll",
+      "sha256": "91e6f181de0a308a77ac9f4915798c7620d446b5c3a23d2f512a8b967a008762",
+      "mvid": "f7f67d61-0099-4b6a-b7e7-00407dcee9ec",
+      "size_bytes": 142848,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "Unity.Transforms.dll",
+      "assembly_name": "Unity.Transforms.dll",
+      "sha256": "b8964d3634191d51b572bcd2fb9ff37769c688ee097f7b4d50e4d7b74abe1cfd",
+      "mvid": "a4d0a43e-fe7f-4344-86ee-200ddca22867",
+      "size_bytes": 32768,
+      "metadata_runtime": "v4.0.30319"
+    },
+    {
+      "file_name": "UnityEngine.CoreModule.dll",
+      "assembly_name": "UnityEngine.CoreModule.dll",
+      "sha256": "60d5bef909a25c505fd8262a05d9260d332e0ee522e71587a98b5c9684dc7ffe",
+      "mvid": "bc2f3a69-16a7-416f-823a-2977009661c4",
+      "size_bytes": 1798064,
+      "metadata_runtime": "v4.0.30319"
+    }
+  ],
+  "runtime_claims": "NOT_RUN",
+  "implementation_authority": "NOT_GRANTED"
+}
