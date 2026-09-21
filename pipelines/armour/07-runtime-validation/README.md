@@ -30,13 +30,13 @@ Test and record independently:
 4. Confirm repeated equip/unequip does not accumulate duplicate stitched renderers or leaked handles.
 5. Confirm native owner state and visual state agree.
 
-## Validation gate
+## Check
 
 Record each runtime dimension separately. A renderer being “visible” is only one row.
 
-## Does not prove
+## Before continuing
 
-Runtime visual/equip success does not prove save/load, missing-mod behaviour, migration, uninstall, or universal writer semantics.
+Runtime visual/equip success does not cover save/load, missing-mod behaviour, migration, uninstall, or universal writer semantics.
 
 ## Next
 
