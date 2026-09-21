@@ -1,11 +1,12 @@
 # Tainted Grail: The Fall of Avalon — Community Modding Platform
 
-An unofficial, source-only collection of guides, technical reference, shared tooling, runnable examples, and project starters for modding **Tainted Grail: The Fall of Avalon**.
+An unofficial, source-only collection of guides, technical reference, shared tooling, runnable examples, project starters, and reproducible content pipelines for modding **Tainted Grail: The Fall of Avalon**.
 
 > **Unofficial community project.** Tainted Grail: The Fall of Avalon and related names, assets, and marks belong to their respective rights holders. This repository is not affiliated with or endorsed by the game's developers or publishers.
 
 ## Start here
 
+- **Recreating custom items, weapons, armour, or creatures end to end:** [Pipelines](pipelines/README.md)
 - **New to modding:** [Guides](guides/README.md) → [Getting started](guides/getting-started/README.md)
 - **Need technical details about the game or a modding capability:** [Knowledge](knowledge/README.md)
 - **Using shared tools or infrastructure:** [Platform](platform/README.md)
@@ -18,13 +19,14 @@ An unofficial, source-only collection of guides, technical reference, shared too
 
 | Area | What you'll find |
 | --- | --- |
+| [pipelines/](pipelines/README.md) | End-to-end staged reconstruction paths for items, weapons, armour, and creatures |
 | [platform/](platform/README.md) | Shared tooling, component contracts, dependency rules, and integration recipes |
 | [guides/](guides/README.md) | Setup, learning paths, task guides, troubleshooting, and shipping |
 | [knowledge/](knowledge/README.md) | Game systems, reusable mechanics, and exact technical reference |
 | [research/](research/README.md) | Investigation methods, open investigations, case studies, and source provenance |
 | [examples/](examples/README.md) | Small runnable source examples |
 | [templates/](templates/README.md) | Reusable project and mod-family starters |
-| [contributing/](contributing/README.md) | Contribution, evidence, and documentation rules |
+| [contributing/](contributing/README.md) | Contribution, evidence, pipeline, and documentation rules |
 
 ## Public-repository boundary
 
@@ -43,8 +45,8 @@ Third-party, upstream, mirrored, proprietary, and trademarked material is not re
 
 - Questline Merlin's Workshop: https://github.com/AR-Questline/merlin-workshop
 - BepInEx: https://github.com/BepInEx/BepInEx
-- HarmonyX: https://github.com/BepInEx/HarmonyX
+- HarmonyX: https://github.com/HarmonyX
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [documentation authoring standards](contributing/README.md), and [evidence standards](contributing/evidence-standards.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [documentation authoring standards](contributing/README.md), [pipeline authoring rules](contributing/authoring/pipelines.md), and [evidence standards](contributing/evidence-standards.md).
