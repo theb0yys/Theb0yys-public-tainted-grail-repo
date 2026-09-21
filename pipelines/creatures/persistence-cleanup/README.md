@@ -26,7 +26,7 @@ If persistence is intended:
 6. test missing/disabled package separately if claimed;
 7. test migration when identities or schemas change.
 
-## Validation gate
+## Check
 
 Runtime spawn is not persistence proof. Cold save/load is required for a durable claim.
 
