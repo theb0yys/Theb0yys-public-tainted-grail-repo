@@ -2,9 +2,6 @@
 
 This pipeline reconstructs the custom-armour process as separate geometry, deformation, Kandra, item/equip, runtime, and persistence stages.
 
-## Current proof boundary
-
-Public evidence covers substantial importer/conversion infrastructure, deformation and Kandra package work, guarded runtime Kandra registration for proof geometry, and native BaseClothes / ClothStitcher / Kandra ownership research. A generic production-ready custom armour item with universal deformation, equip, persistence, migration, and uninstall guarantees is not established.
 
 ## Stage map
 
