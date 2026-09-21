@@ -16,7 +16,8 @@ Public evidence covers substantial importer/conversion infrastructure, deformati
 6. [Item identity and native clothes/equip](06-item-native-clothes/README.md)
 7. [Runtime visual/equip validation](07-runtime-validation/README.md)
 8. [Persistence, migration, and release](08-persistence-release/README.md)
-9. [Known failure modes](failures/README.md)
+9. [Validation matrix](validation/README.md)
+10. [Known failure modes](failures/README.md)
 
 ## Canonical technical background
 
