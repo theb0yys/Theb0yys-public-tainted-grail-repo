@@ -26,7 +26,7 @@ Check native detach/discard plus framework/Drake resource release. Repeated equi
 
 ## Works until restart
 
-Registration/persistence ordering was not proven. Verify cold-start registration precedes saved identity resolution and presentation resources are available on load.
+Verify cold-start registration precedes saved identity resolution and presentation resources are available on load.
 
 ## One rigid sword works but another weapon family fails
 
