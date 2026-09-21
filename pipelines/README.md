@@ -2,7 +2,7 @@
 
 This area owns end-to-end reconstruction paths for the four largest custom-content projects in this repository.
 
-A pipeline is not a replacement for Knowledge, Research, Examples, or Platform documentation. It is the ordered execution surface that tells a mod author what to do, which underlying game/system contract applies, what evidence is required before continuing, and what the completed stage does and does not prove.
+A pipeline is not a replacement for Knowledge, Research, Examples, or Platform documentation. It is the ordered execution surface that tells a mod author what to do, which underlying game/system contract applies, what evidence is required before continuing, and what the completed stage does and does not cover.
 
 ## Pipelines
 
@@ -26,18 +26,6 @@ Every stage must record:
 
 A later stage must not be inferred from an earlier one. Asset load is not registration. Registration is not acquisition. Rendering is not gameplay ownership. Runtime success is not persistence proof.
 
-## Evidence status
-
-Use these states on pipeline stages and reconstruction attempts:
-
-- PASSED — the stage was executed and its stated gate passed.
-- FAILED — the stage executed and its gate failed.
-- PARTIAL — part of the stage is evidenced, but the complete stage is not.
-- BLOCKED — a required prerequisite or evidence lane is unavailable.
-- NOT_RUN — the stage has not been executed.
-- NOT_APPLICABLE — the stage does not apply to the target.
-
-Static/source evidence, runtime evidence, persistence evidence, and release validation remain separate lanes.
 
 ## Public boundary
 
