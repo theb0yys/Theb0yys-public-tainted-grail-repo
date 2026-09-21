@@ -2,7 +2,7 @@
 
 ## Visual root loads but actor construction fails
 
-CI3 passed; CI4/CI5 did not. Check template contract, component order, controller data, and resolver/provider identity.
+The visual-transport stage completed, but actor construction still needs diagnosis. Check template contract, component order, controller data, and resolver/provider identity.
 
 ## Actor appears but drags or will not move correctly
 
@@ -34,4 +34,4 @@ Single-actor runtime proof is not population ownership. Re-open the placement/po
 
 ## Actor remains after restart unexpectedly
 
-The save policy/cleanup lane failed. Verify MarkedNotSaved or the intended durable persistence contract and duplicate prevention.
+Verify the save policy/cleanup lane, including MarkedNotSaved or the intended durable persistence contract and duplicate prevention.
