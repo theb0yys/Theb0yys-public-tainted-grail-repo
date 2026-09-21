@@ -1,6 +1,6 @@
 # Tainted Interface
 
-**Posture: Author-ready for shared UI styles/resources**
+**Status:** Ready for shared UI styles and resources.
 
 Use Tainted Interface when your mod needs:
 
@@ -27,7 +27,7 @@ Use:
 - `GetItemIcon(itemReference)`
 - catalog/descriptor APIs when you need discovery.
 
-This lets the shared UI owner change packaging while consumers keep stable semantic references.
+Semantic IDs let the UI package change internally without forcing dependent mods to hardcode asset paths.
 
 See:
 

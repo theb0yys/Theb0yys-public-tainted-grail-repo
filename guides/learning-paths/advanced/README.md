@@ -72,25 +72,18 @@ Before calling a release working, test the actual packaged artifact through the 
 
 ## Content pipelines
 
-Advanced content work should still be staged.
+Treat items, weapons, armour, and creatures/NPCs as separate integration paths. A working process for one does not automatically apply to another.
 
-The repository currently separates:
+Start from the relevant [task guide](../../tasks/README.md).
 
-- items;
-- weapons;
-- armour;
-- creatures/NPCs.
-
-Read how-to/README.md and the relevant pipeline document.
-
-Keep evidence levels separate:
+Keep validation types separate:
 
 - static/source confirmation;
 - editor validation;
 - game runtime validation;
 - packaging/release validation.
 
-Do not turn one level into another by wording.
+Do not describe one type of validation as another.
 
 ## When to build shared systems
 

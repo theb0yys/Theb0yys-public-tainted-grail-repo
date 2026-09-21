@@ -1,6 +1,6 @@
-# Learn
+# Learning Paths
 
-Ordered learning paths live here. Learning pages teach in sequence; canonical technical facts live in systems/how-to/reference.
+Follow these paths when you want a guided sequence rather than a technical lookup. Use [Knowledge](../../knowledge/README.md) for reference material.
 
 - [First mod](../getting-started/README.md)
 - [Everyday modding](everyday-modding/README.md)

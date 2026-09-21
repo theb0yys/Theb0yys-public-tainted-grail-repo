@@ -1,6 +1,6 @@
 # Tainted Diagnostic Tool
 
-**Posture: Author-ready read-only research tool**
+**Status:** Ready for read-only game research.
 
 Use it before guessing.
 

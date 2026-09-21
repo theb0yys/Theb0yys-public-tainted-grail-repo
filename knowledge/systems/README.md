@@ -1,6 +1,6 @@
 # Tainted Grail Game Systems
 
-Canonical architecture for how the game owns and executes behaviour.
+Technical reference for how the game structures and executes behaviour.
 
 - [Core runtime](core/README.md)
 - [Gameplay](gameplay/README.md)
@@ -9,4 +9,4 @@ Canonical architecture for how the game owns and executes behaviour.
 - [Provider/consumer ownership](provider-consumer-ownership.md)
 - [Game systems map](game-systems-map.md)
 
-A system page should identify the native owner, participating types/services, lifecycle, data flow, dependencies, evidence and modding implications. A visible object or accessible type is not automatically the gameplay, persistence or lifecycle owner.
+Use these pages to identify the game system responsible for a behaviour, its lifecycle, participating types/services, dependencies, and the implications for modding. A visible object or accessible type is not automatically responsible for gameplay, persistence, or lifecycle.

@@ -4,7 +4,7 @@
 
 > **Reference page.** Use this when a known process fails and you need to identify which layer stopped working.
 
-## What this system is
+## What diagnostics should answer
 
 Diagnostics should answer **which stage failed**, not generate the largest possible log.
 
@@ -17,15 +17,13 @@ loader
 → identity resolution
 → registration
 → runtime object creation
-→ owner insertion
+→ game-system insertion
 → presentation
 → behavior
 → persistence
 ~~~
 
-## Who owns it in FoA
-
-Each diagnostic should be attached to the owner being tested:
+Attach each diagnostic to the system being tested:
 
 - BepInEx for plug-in load;
 - Harmony for patch installation/target resolution;
@@ -33,12 +31,12 @@ Each diagnostic should be attached to the owner being tested:
 - template registrar/loader for custom registration;
 - `World` for live object creation;
 - `HeroItems` / `Stock` for acquisition;
-- UI owner for presentation;
+- UI system for presentation;
 - save system for persistence.
 
-## Important identities, types, and methods
+## Useful evidence
 
-Useful evidence fields:
+Record:
 
 - game version/build;
 - Mono or IL2CPP;
@@ -49,30 +47,14 @@ Useful evidence fields:
 - exact native/custom GUID;
 - phase marker;
 - before/after counts;
-- expected owner;
+- expected system;
 - observed result.
 
-## Where it exists in the lifecycle
+Log once at meaningful boundaries, such as plug-in load, template readiness, registration, object creation, UI presentation, and cleanup.
 
-Log once at meaningful boundaries.
+Avoid per-frame logging unless you are running a short targeted probe.
 
-Examples:
-
-- plug-in loaded;
-- templates ready;
-- source GUID resolved;
-- custom GUID registered;
-- provider re-resolved custom GUID;
-- `World.Add` returned a valid item;
-- stock count before/after;
-- UI item-list sees the item;
-- cleanup executed.
-
-Avoid per-frame logging unless the task is specifically a bounded diagnostic probe.
-
-## How we interact with it
-
-Debug from the earliest failed invariant.
+## Debug from the earliest failed invariant
 
 Example:
 
@@ -87,36 +69,19 @@ custom item missing from shop
 
 Do not jump directly to icon/UI code if registration never succeeded.
 
-## Why this route
+A missing shop item may come from failed registration, an unresolved GUID, the wrong stock lifecycle, a stale UI snapshot, a duplicate guard, or invalid category/presentation data. Stage markers help distinguish them.
 
-Your successful and failed item/shop experiments show that several different failures can produce the same visible symptom.
-
-A missing shop item may be:
-
-- failed registration;
-- unresolved GUID;
-- wrong stock lifecycle;
-- stale UI snapshot;
-- duplicate guard;
-- invalid category/presentation.
-
-Stage markers prevent speculative fixes.
-
-## What goes wrong
-
-Diagnostic anti-patterns:
+## Avoid these diagnostic mistakes
 
 - logging every frame;
 - dumping proprietary data or user paths;
 - changing several subsystems before reproducing again;
 - rerunning the same failed check without changing the prerequisite;
 - treating a build as runtime proof;
-- treating a visible object as ownership/registration proof;
+- treating a visible object as proof that it was registered in the correct system;
 - diagnosing from the last exception when an earlier warning established the real failure.
 
-## How to verify
-
-A good diagnostic pass should leave:
+## What a useful diagnostic pass leaves behind
 
 - one reproducible trigger;
 - exact environment/version;
@@ -125,6 +90,6 @@ A good diagnostic pass should leave:
 - smallest relevant log excerpt;
 - whether the failure is source/static, load, runtime, UI, save or compatibility.
 
-## Current proof boundary
+## Scope
 
-This page describes the repository's debugging discipline. Exact diagnostic markers differ by mod/process. Use [Testing and Evidence Status](../../../sources/evidence-standard.md) when recording formal proof states.
+Exact diagnostic markers vary by mod and process. Use [Testing and Evidence Status](../../../sources/evidence-standard.md) when recording formal evidence.

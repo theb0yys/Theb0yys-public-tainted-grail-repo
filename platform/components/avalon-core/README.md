@@ -1,6 +1,6 @@
 # Avalon Core
 
-**Posture: Read-only/discovery baseline unless a named capability says otherwise**
+**Status:** Read-only discovery by default unless a documented capability says otherwise.
 
 Use Avalon Core when your mod needs shared:
 
@@ -10,32 +10,28 @@ Use Avalon Core when your mod needs shared:
 - evidence/catalog lookup;
 - reviewed shared planning/authority metadata.
 
-## Runtime dependency baseline
-
-A directly referencing consumer should:
+## If your mod references Avalon Core directly
 
 - reference the Avalon Core host assembly;
 - declare a hard BepInEx dependency on `kane.tgfoa.avalon-core`;
-- config-gate each optional integration;
-- fail closed to `action=none` or `action=read-only` when unavailable/incompatible.
+- make each optional integration configurable;
+- fall back to `action=none` or `action=read-only` when the required capability is unavailable or incompatible.
 
-Useful public surfaces include:
+Useful public APIs include:
 
 - `AvalonCore.Plugin.TrustReports`
 - `AvalonCore.Plugin.Registry.TryGet(...)`
 - the documented adapter registry's descriptor/capability/version/readiness queries.
 
-## Critical boundary
+## Discovery does not grant execution access
 
-Discovery is not execution.
-
-The existence of a capability descriptor does not authorize your feature mod to:
+The existence of a capability descriptor does not authorize your mod to:
 
 - call private adapters;
 - spawn actors;
 - mutate scenes;
 - load arbitrary assets;
 - write saves;
-- bypass a blocked downstream owner.
+- bypass a service or capability that is intentionally unavailable.
 
 See [Capability discovery](capability-discovery.md).

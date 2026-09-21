@@ -1,6 +1,6 @@
 # Tainted Grail Extender
 
-**Posture: Advanced/SDK**
+**Status:** Advanced SDK.
 
 Tainted Grail Extender is for cases where a normal BepInEx plugin dependency is not enough:
 

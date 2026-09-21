@@ -8,4 +8,4 @@
 - [Build a read-only inventory projection](build-a-read-only-inventory-projection.md)
 - [Customize the HUD with separate system and visual proof](customize-the-hud-with-separate-system-and-visual-proof.md)
 
-Native ownership: [UI/input](../../../knowledge/systems/presentation/ui-input.md). Working patterns: [UI case studies](../../../research/case-studies/ui/README.md).
+Technical background: [UI/input](../../../knowledge/systems/presentation/ui-input.md). Examples: [UI case studies](../../../research/case-studies/ui/README.md).

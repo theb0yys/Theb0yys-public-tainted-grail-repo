@@ -1,7 +1,5 @@
 # Ship and Maintain Mods
 
-Infrastructure is the machinery around the mod or framework itself.
-
 This section covers repository structure, CI, public safety, contribution flow, versioning, validation, and releases.
 
 - [Validate mods after a game update](game-update-validation.md)
@@ -27,12 +25,12 @@ Useful hosted CI checks include:
 - formatting/static checks;
 - unit tests;
 - source-only builds where dependencies allow them;
-- public-surface checks;
+- redistribution/public-safety checks;
 - package-layout validation.
 
-Hosted CI cannot prove behaviour that requires a licensed local game installation unless that exact environment is actually available. Keep local runtime validation as a separate evidence lane.
+Hosted CI cannot prove behaviour that requires a licensed local game installation unless that exact environment is actually available. Validate runtime behaviour separately on the target game installation.
 
-This repository already contains a public-surface guard intended to reject common binaries, archives, assets, oversized files, obvious secrets, and private-path patterns.
+The included public-surface guard rejects common binaries, archives, assets, oversized files, obvious secrets, and private-path patterns.
 
 ## Contribution workflow
 
@@ -48,7 +46,7 @@ A simple contribution loop:
 
 Good pull-request evidence identifies:
 
-- affected runtime/content lane;
+- affected runtime or content setup;
 - exact checks run;
 - exact runtime environment when runtime behaviour was observed;
 - known limitations.
@@ -72,7 +70,7 @@ Release notes should answer:
 
 ## Reproducible releases
 
-The public [developer-tool scripts](../../platform/developer-tools/README.md) include a project doctor, sanitized diagnostic bundle generator, and reproducible release-package builder for both runtime lanes.
+The [developer tools](../../platform/developer-tools/README.md) include a project doctor, sanitized diagnostic bundle generator, and reproducible release-package builder for Mono and IL2CPP.
 
 Where practical, trace a release to:
 
@@ -100,7 +98,7 @@ Test-FoAReleaseReady
 
 New-FoARelease does not perform runtime or feature validation; package construction cannot substitute for those checks.
 
-## Infrastructure is not authority
+## What CI does not prove
 
 A green CI check proves only the checks that actually ran.
 
@@ -112,4 +110,4 @@ It does not automatically prove:
 - deployment safety;
 - release readiness.
 
-Keep each evidence lane honest and explicit.
+State each type of validation explicitly.

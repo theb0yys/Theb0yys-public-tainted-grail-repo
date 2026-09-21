@@ -1,19 +1,19 @@
 # FoA Mod Manager
 
-**Posture: Author-ready**
+**Status:** Ready for mod authors.
 
 Use FoA Mod Manager when your mod needs one or more of:
 
 - normal BepInEx config shown in a common manager;
 - display metadata for config entries;
 - controller-triggered mod actions;
-- shared cursor/input/world-freeze ownership for a custom screen;
+- shared cursor/input/world-freeze handling for a custom screen;
 - controller cursor support;
 - a read-only runtime status row.
 
 ## Public API
 
-The public surface is `FoAModManager.FoAModManagerApi`.
+Use `FoAModManager.FoAModManagerApi`.
 
 Useful members include:
 
@@ -40,9 +40,9 @@ See:
 - [Controller actions](controller-actions.md)
 - [Status providers](status-providers.md)
 
-## Ownership boundary
+## What the manager handles
 
-FoA Mod Manager owns **shared management/UI input concerns**.
+FoA Mod Manager handles shared management/UI input concerns.
 
 It does not own:
 
@@ -50,5 +50,5 @@ It does not own:
 - your save data;
 - your custom screen's internal widgets/commands;
 - Tainted Interface visual resources;
-- Avalon Core capability truth;
+- Avalon Core capability data;
 - AI decisions.

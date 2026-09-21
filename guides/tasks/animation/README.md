@@ -1,3 +1,3 @@
 # Animation
 
-Reproducible animation authoring/integration procedures belong here. Native ownership belongs under [systems](../../../knowledge/systems/README.md).
+For animation authoring or integration, start by identifying the relevant game system in [Systems](../../../knowledge/systems/README.md).

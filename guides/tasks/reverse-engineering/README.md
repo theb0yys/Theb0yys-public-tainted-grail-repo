@@ -3,4 +3,4 @@
 - [Discovery process](discovery.md)
 - [Evidence standard](../../../sources/evidence-standard.md)
 
-Find the native owner first and keep static/source evidence separate from runtime proof.
+Identify the responsible game system first, and keep static/source evidence separate from runtime observation.

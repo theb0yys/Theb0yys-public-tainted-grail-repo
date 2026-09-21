@@ -1,5 +1,5 @@
 # Armour
 
 - [Native integration](native-integration.md)
-- Native owner: [Armour](../../../knowledge/systems/gameplay/armour.md)
-- Presentation owner: [Kandra](../../../knowledge/systems/presentation/kandra/README.md)
+- Technical background: [Armour](../../../knowledge/systems/gameplay/armour.md)
+- Rendering/presentation: [Kandra](../../../knowledge/systems/presentation/kandra/README.md)

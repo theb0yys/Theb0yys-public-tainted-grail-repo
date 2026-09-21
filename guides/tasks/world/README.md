@@ -6,4 +6,4 @@
 - [Build a route patrol with split ownership](build-a-route-patrol-with-split-ownership.md)
 - [Build an interior exit helper](build-an-interior-exit-helper.md)
 
-World ownership: [World systems](../../../knowledge/systems/world/README.md). Task-oriented placement/travel/environment procedures belong here.
+Technical background: [World systems](../../../knowledge/systems/world/README.md).

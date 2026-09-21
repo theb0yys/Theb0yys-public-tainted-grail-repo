@@ -10,7 +10,7 @@ Work through:
 2. [Add your first config option](first-config-option.md)
 3. **IL2CPP:** [Make your first runtime game change](first-il2cpp-game-change.md)
 4. **Mono:** [Run the Harmony self-test](harmony-self-test.md)
-5. **Both lanes:** [Move to a real game patch](first-real-patch-rules.md)
+5. **Mono and IL2CPP:** [Move to a real game patch](first-real-patch-rules.md)
 6. [Debug the basic loop](basic-debugging-flow.md)
 7. [Finish your first complete mod](first-complete-mod.md)
 
@@ -18,10 +18,10 @@ Work through:
 
 Work through:
 
-1. [Add your first new item](../../getting-started/first-content-authoring.md) on the currently proven Mono/BepInEx 5 item lane.
+1. [Add your first new item](../../getting-started/first-content-authoring.md). The current custom-item guide targets Mono/BepInEx 5.
 2. [Move beyond the first custom item](content-progression.md) without assuming the item APIs automatically apply to weapons, armour, creatures, spells or recipes.
-3. Use the [technical handbook](../../../knowledge/reference/README.md) for identity, templates, hooks, ownership, assets, persistence and failure reasoning.
-4. Use [the basic debugging flow](basic-debugging-flow.md) to separate registration, runtime ownership, presentation and persistence failures.
+3. Use the [technical reference](../../../knowledge/reference/README.md) for identity, templates, hooks, assets, persistence and related game systems.
+4. Use [the basic debugging flow](basic-debugging-flow.md) to separate registration, runtime, presentation and persistence failures.
 
 ## Your progress
 
@@ -35,4 +35,4 @@ By the end, you should be able to make a small change, rebuild or re-author it, 
 
 ## Real FoA examples
 
-After your first smoke test and the everyday modding loop make sense, browse [case-studies](../../../research/case-studies/README.md) as an example library rather than another required sequence. It contains small real-game examples for runtime behavior changes. Use the current handbook and cookbook paths linked from the repository.
+Once the everyday loop makes sense, browse the [case studies](../../../research/case-studies/README.md) for real examples of runtime changes, failed assumptions, and corrected approaches.

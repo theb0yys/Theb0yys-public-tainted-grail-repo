@@ -1,15 +1,15 @@
 # Avalon AI Runtime
 
-**Posture: Package-authoring contracts are public; live execution stays single-host/capability-gated**
+**Status:** Package authoring is supported. Live execution uses one shared host.
 
-Use Avalon AI Runtime when your mod owns domain truth that should participate in shared AI decisions.
+Use Avalon AI Runtime when your mod owns domain data that should participate in shared AI decisions.
 
 Do **not** ship another independent scheduler/host for the same actors.
 
-## Canonical pipeline
+## How it fits together
 
 ```text
-feature/provider truth
+feature/provider data
 → AvalonAI.Contracts package
 → Avalon AI Runtime
 → single FoA host
@@ -26,14 +26,14 @@ Third-party packages reference **Avalon AI Contracts only**.
 
 They should not reference the FoA host implementation, FoA internals, Rabbit implementation, GOAP implementation, Blaze implementation, or another package's private runtime.
 
-The V2 package surface centers on `IAvalonAiPackage`:
+The V2 package API centers on `IAvalonAiPackage`:
 
 - `Manifest`
 - `GoalPolicies`
 - `GoalDefinitions`
 - `ActionDefinitions`
 
-The host/runtime decides whether those declarations can run in the current actor/world/capability context.
+The host/runtime decides whether those declarations can run for the current actor, world state, and available capabilities.
 
 See:
 

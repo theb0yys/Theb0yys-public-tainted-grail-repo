@@ -2,9 +2,9 @@
 
 This section explains why a working mod works, so you can reason about problems instead of relying on trial and error.
 
-## Use the technical handbook
+## Use the technical reference
 
-The [Technical Handbook](../../../knowledge/reference/README.md) is the detailed reference layer behind this section.
+The [technical reference](../../../knowledge/reference/README.md) provides deeper detail for the concepts used here.
 
 In particular:
 
@@ -34,11 +34,11 @@ your plug-in
 
 A failure lower in the stack prevents higher layers from working. Debug from the bottom upward.
 
-Mono and IL2CPP are separate lanes. They affect the loader package, target framework, available assemblies, generated interop state, and debugging symptoms.
+Mono and IL2CPP are different runtimes. They affect the loader package, target framework, available assemblies, generated interop state, and debugging symptoms.
 
 Always identify the installed runtime before choosing a template or dependency set.
 
-See learn/runtime-modding/runtime-guide.md.
+See [Runtime modding](../runtime-modding/README.md).
 
 ## References and dependencies
 
@@ -56,10 +56,10 @@ For every important dependency, know:
 
 - name;
 - version or commit;
-- runtime lane;
+- Mono or IL2CPP runtime;
 - why it is required.
 
-Minimize dependencies. Every dependency creates another compatibility, maintenance, and licensing surface.
+Minimize dependencies. Every dependency adds compatibility, maintenance, and licensing risk.
 
 ## Identity
 
@@ -91,7 +91,7 @@ A working mod is always working against a particular environment.
 Record:
 
 - game version/build;
-- runtime lane;
+- Mono or IL2CPP runtime;
 - loader version;
 - important dependency versions;
 - mod version.
@@ -105,8 +105,8 @@ After a game update, re-establish the stack from the bottom:
 5. content/templates still resolve;
 6. one small behaviour still works.
 
-Prefer the claim "tested on game build X with loader Y" over "works on all versions."
+Say **"tested on game build X with loader Y"** rather than **"works on all versions."**
 
 ## When to move into advanced modding
 
-Move to [Build Robust Game Changes](../advanced/README.md) when you can explain your mod's runtime lane, dependencies, identities, compatibility assumptions, and failure boundaries without guessing.
+Move to [Build Robust Game Changes](../advanced/README.md) when you can explain your mod's runtime, dependencies, identities, compatibility assumptions, and failure boundaries without guessing.

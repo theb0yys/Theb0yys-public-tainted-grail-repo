@@ -1,17 +1,15 @@
-# How-to Guides — Transitional Surface
+# How-to Guides
 
-These are existing task-oriented guides from the earlier public handbook.
+Choose the task you want to complete. Use [Knowledge](../../knowledge/README.md) when you need technical background, [Research](../../research/README.md) when behaviour is still unknown, and [Troubleshooting](../troubleshooting/README.md) when something has failed.
 
-New reusable capability documentation is now canonical under [mechanics](../../knowledge/mechanics/README.md), while unknown-system work belongs under [investigate](../../research/README.md) and symptom-driven failure work under [diagnose](../troubleshooting/README.md).
-
-## Existing content guides
+## Content
 
 - [Items](items/README.md)
 - [Weapons](weapons/README.md)
 - [Armour](armour/README.md)
 - [Creatures](creatures/README.md)
 
-## Existing runtime/domain guides
+## Runtime and tooling
 
 - [Gameplay intervention](gameplay/README.md)
 - [Diagnostics](diagnostics/README.md)
@@ -25,5 +23,3 @@ New reusable capability documentation is now canonical under [mechanics](../../k
 - [Rendering](rendering/README.md)
 - [World](world/README.md)
 - [Saving](saving/README.md)
-
-These pages will be reconciled gradually; do not duplicate new canonical truth here when a mechanics/system/reference page already owns it.

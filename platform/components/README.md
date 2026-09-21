@@ -1,6 +1,6 @@
 # Platform Components
 
-Shared infrastructure that mod authors can consume when the feature actually needs that owner.
+Shared tools and services that mods can use when they need the corresponding feature.
 
 - [FoA Mod Manager](foa-mod-manager/README.md)
 - [Tainted Interface](tainted-interface/README.md)

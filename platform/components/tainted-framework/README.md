@@ -1,36 +1,36 @@
 # Tainted Framework
 
-**Posture: Capability-gated — not a general FoA gameplay SDK**
+**Status:** Use only documented services. It is not a general FoA gameplay SDK.
 
-Tainted Framework is the shared runtime-facing implementation layer for services that have been promoted for common use.
+Tainted Framework provides shared runtime services that have been documented for common use.
 
-The existence of an internal service, capability ID, host assembly or decision document does **not** make it consumer-ready.
+An internal service, capability ID, host assembly, or design document is not automatically supported for use by other mods.
 
-## What an ordinary author should do
+## What a mod author should do
 
 1. Identify the exact service you need.
-2. Find its public tooling page/contract.
-3. Check its current consumer posture.
-4. Depend only on the required public assembly/surface.
-5. Fail closed if the surface is unavailable/incompatible.
+2. Find its public contract or tooling page.
+3. Check whether that service is currently documented as available.
+4. Depend only on the required public assembly/API.
+5. Fail closed if the service is unavailable or incompatible.
 6. Validate the feature independently in your mod.
 
-## Current practical public lanes
+## Currently documented services
 
 ### Runtime report
 
-`framework.runtime-report` is a read-only diagnostics surface.
+`framework.runtime-report` is a read-only diagnostics API.
 
-The Tainted Diagnostic Tool is the reference consumer pattern.
+The Tainted Diagnostic Tool shows the intended usage pattern.
 
 ### Native item registrar
 
-There is a shared ownership direction and readiness contract, but it is **not a universal register-anything API**. Use only if/when the exact registrar lane is promoted for your content type.
+There is a shared registration design for native items, but it is **not a universal register-anything API**. Use it only for content types that are explicitly documented as supported.
 
 ## Relationship to Avalon Core
 
-- Avalon Core = discovery/evidence/contracts/planning metadata.
-- Tainted Framework = concrete reusable runtime service implementation when promoted.
+- Avalon Core = discovery, evidence, contracts, and planning metadata.
+- Tainted Framework = concrete reusable runtime services.
 
 Do not add both dependencies by default.
 

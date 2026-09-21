@@ -1,18 +1,18 @@
 # Debugging
 
-> **Reference page.** Use this when you have a specific failure to diagnose. If your current tutorial has not failed, keep following the learning path instead of reading this front-to-back.
+> **Reference page.** Use this when you have a specific failure to diagnose. If your current tutorial has not failed, keep following it.
 
 ## Plug-in does not appear in logs
 
 Check, in order:
 
-1. correct runtime lane;
+1. the installed runtime is correct for the plug-in (Mono or IL2CPP);
 2. BepInEx itself starts;
-3. DLL is under `BepInEx/plugins`;
-4. target framework/API matches the installed BepInEx lane;
+3. the DLL is under `BepInEx/plugins`;
+4. the target framework/API matches the installed BepInEx version;
 5. all referenced assemblies can resolve;
-6. plug-in GUID is unique;
-7. no Windows file blocking/quarantine issue.
+6. the plug-in GUID is unique;
+7. Windows has not blocked or quarantined the file.
 
 ## BepInEx starts but the plug-in fails
 
@@ -43,12 +43,12 @@ The `examples/mono-harmony-self-test` project is useful for proving the BepInEx 
 Re-establish:
 
 - game build/version;
-- runtime lane;
+- Mono or IL2CPP runtime;
 - BepInEx version;
 - target method/type identity;
 - generated interop state for IL2CPP.
 
-Do not assume an older compatibility receipt still applies.
+Do not assume an older compatibility result still applies.
 
 ## What not to upload when asking for help
 

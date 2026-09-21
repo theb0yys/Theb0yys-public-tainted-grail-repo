@@ -1,8 +1,8 @@
 # Avalon Contracts
 
-**Posture: Provider/consumer discovery is usable; lifecycle execution is lane-specific**
+**Status:** Discovery and readback are supported. Lifecycle operations are available only through explicitly documented APIs.
 
-Use Avalon Contracts when separate mods need one shared model for contract/provider discovery, catalog/state/evidence readback and carefully promoted lifecycle semantics.
+Use Avalon Contracts when separate mods need a shared model for provider discovery, catalog/state/evidence readback, previews, validation, and supported lifecycle operations.
 
 Do not use it merely because your mod has a config option named “contract”.
 
@@ -10,21 +10,21 @@ Do not use it merely because your mod has a config option named “contract”.
 
 Providers register explicitly.
 
-Consumers can discover/read host availability, provider descriptors, capability IDs, catalog/state/evidence snapshots, and preview/validation results.
+Other mods can discover/read host availability, provider descriptors, capability IDs, catalog/state/evidence snapshots, and preview/validation results.
 
-Useful public surfaces include:
+Useful public APIs include:
 
 - `AvalonContractsApi.DiscoverHost()`
 - explicit provider registration/unregistration;
 - catalog/state/evidence/preview/validation snapshots.
 
-## Ownership boundary
+## What Avalon Contracts does not own
 
-Avalon Contracts does not auto-load provider mods and does not become the owner of provider gameplay truth.
+Avalon Contracts does not auto-load provider mods and does not become the owner of provider gameplay state.
 
 Provider mods still own their domain state, target/reward semantics and any native gameplay/save integration.
 
-Lifecycle command routes and provider callbacks must be treated by their **exact promoted lane**, not as generic mutation authority.
+Use lifecycle commands and provider callbacks only where the API explicitly documents them as supported.
 
 See:
 
