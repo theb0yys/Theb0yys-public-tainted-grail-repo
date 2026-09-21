@@ -6,7 +6,8 @@ This repository is a public, source-only Tainted Grail: The Fall of Avalon moddi
 
 | Question | Area |
 | --- | --- |
-| How do I learn or perform this task? | `guides/` |
+| How do I reproduce a complete item, weapon, armour, or creature import process? | `pipelines/` |
+| How do I learn or perform a bounded task? | `guides/` |
 | How does the game own or execute it? | `knowledge/systems/` |
 | What reusable modding capability applies? | `knowledge/mechanics/` |
 | What exact identifier, hook, service or version fact do I need? | `knowledge/reference/` |
@@ -17,7 +18,7 @@ This repository is a public, source-only Tainted Grail: The Fall of Avalon moddi
 | Where is minimal runnable source? | `examples/` |
 | Where is a starter project? | `templates/` |
 
-See [Repository taxonomy](contributing/taxonomy.md) and [Evidence standards](contributing/evidence-standards.md). Update the existing explanation for a topic instead of creating a second competing version.
+See [Repository taxonomy](contributing/taxonomy.md), [Pipeline documentation](contributing/authoring/pipelines.md), and [Evidence standards](contributing/evidence-standards.md). Update the existing explanation for a topic instead of creating a second competing version.
 
 ## Public boundary
 
@@ -27,13 +28,13 @@ Do not contribute proprietary game content, binaries, generated interop assembli
 
 Keep `examples/` predictable:
 
-```text
-examples/<mono|il2cpp|merlin|hybrid>/<domain>/<mechanism>/
-```
+    examples/<mono|il2cpp|merlin|hybrid>/<domain>/<mechanism>/
 
 ## Pull requests
 
 State what changed, which runtime or authoring setup it targets (Mono, IL2CPP, Merlin, or hybrid), what you actually tested, any local dependencies used, and why the contribution is safe to redistribute.
+
+For pipeline changes, state which stage changed and whether its status is PASSED, FAILED, PARTIAL, BLOCKED, NOT_RUN, or NOT_APPLICABLE. Do not use one stage as evidence for a later stage.
 
 The public-surface CI check helps catch material that should not be redistributed. Passing it does not prove game, editor, or runtime behaviour.
 
