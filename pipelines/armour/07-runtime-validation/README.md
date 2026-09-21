@@ -24,7 +24,7 @@ Test and record independently:
 
 ## Procedure
 
-1. Use the exact candidate that passed Stages 1–6.
+1. Use the exact candidate produced by Stages 1–6.
 2. Capture same-mesh comparisons where possible so conversion differences are visible.
 3. Do not accept a neutral-pose screenshot as deformation proof.
 4. Confirm repeated equip/unequip does not accumulate duplicate stitched renderers or leaked handles.
