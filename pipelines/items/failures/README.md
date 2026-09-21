@@ -10,7 +10,7 @@ Earliest likely failure: acquisition timing or UI snapshot timing. Verify stock 
 
 ## Native item changed instead of creating a new item
 
-Identity/source isolation failed. Confirm the custom template has a separate GUID/name and the native source object was not mutated.
+Verify identity/source isolation: the custom template should have a separate GUID/name and the native source object should remain unchanged.
 
 ## One item works but a batch fails
 
