@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <DefineConstants>$(DefineConstants);AVALON_AI_CONTRACTS</DefineConstants>
+    <AssemblyName>AvalonBroodmotherCompanion.AI.Package.V1</AssemblyName>
+    <RootNamespace>AvalonBroodmotherCompanion.AI.Package.V1</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\avalon-ai-runtime\src\AvalonAI.Contracts.V2\AvalonAI.Contracts.V2.csproj" />
+  </ItemGroup>
+</Project>
