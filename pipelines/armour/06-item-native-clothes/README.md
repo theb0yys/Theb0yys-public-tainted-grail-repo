@@ -28,13 +28,13 @@ Unequip must return through BaseClothes cleanup and resource release.
 7. Confirm ClothStitcher / renderer redirection performs the presentation handoff.
 8. Unequip and verify native cleanup/release.
 
-## Validation gate
+## Check
 
-PASSED only when the custom logical armour item and the Kandra presentation meet inside the native clothes/equip owner and unequip reverses the ownership correctly.
+Confirm that the custom logical armour item and the Kandra presentation meet inside the native clothes/equip owner and unequip reverses the ownership correctly.
 
-## Does not prove
+## Before continuing
 
-One equip does not prove deformation under motion, body-cover/culling/material correctness, repeated equip, scenes, persistence, or another body/armour family.
+One equip does not cover deformation under motion, body-cover/culling/material correctness, repeated equip, scenes, persistence, or another body/armour family.
 
 ## Next
 
