@@ -6,7 +6,7 @@ Create a normal FoA runtime Item from the registered template and hand it to one
 
 ## Required state
 
-- Stage 3 PASSED;
+- Stage 3 is complete;
 - custom GUID resolves through TemplatesProvider;
 - one acquisition route is selected and its lifecycle is understood.
 
@@ -44,13 +44,13 @@ Timing is part of the mechanism. Injecting after the UI has captured a snapshot 
 6. Confirm ownership using counts/identity, not only a screenshot.
 7. Confirm the downstream UI/gameplay surface sees the same Item.
 
-## Validation gate
+## Check
 
-PASSED when native runtime ownership, acquisition-owner membership, and downstream visibility all agree on the same custom identity.
+Confirm that native runtime ownership, acquisition-owner membership, and downstream visibility all agree on the same custom identity.
 
-## Does not prove
+## Before continuing
 
-Merchant acquisition does not prove inventory grant, loot, crafting, quest reward, world pickup, persistence, or arbitrary item-family generalisation.
+Merchant acquisition does not cover inventory grant, loot, crafting, quest reward, world pickup, persistence, or arbitrary item-family generalisation.
 
 ## Next
 
