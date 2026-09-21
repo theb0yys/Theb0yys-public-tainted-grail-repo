@@ -34,11 +34,11 @@ Melee implementations continue through CharacterWeapon or the native class selec
 6. Confirm native view binding and character attachment occur.
 7. Unequip and verify native detach/discard/release.
 
-## Validation gate
+## Check
 
-PASSED when equip and unequip complete through native ownership with no manually parented substitute renderer standing in for the weapon view.
+Confirm that equip and unequip complete through native ownership with no manually parented substitute renderer standing in for the weapon view.
 
-## Does not prove
+## Before continuing
 
 A successful native equip can still present the wrong mesh/material, use incomplete Drake resources, have incorrect combat behaviour, or fail preview/persistence.
 
