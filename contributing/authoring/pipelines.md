@@ -26,7 +26,7 @@ Each stage page must state:
 4. output artifact or runtime state;
 5. validation gate;
 6. failure conditions where relevant;
-7. what the stage does not prove;
+7. what the stage does not cover;
 8. next stage.
 
 ## Evidence rule
@@ -42,7 +42,6 @@ Examples:
 - runtime success is not persistence proof;
 - persistence is not release compatibility.
 
-Use PASSED, FAILED, PARTIAL, BLOCKED, NOT_RUN, or NOT_APPLICABLE for stage status.
 
 ## Canonical-claim rule
 
