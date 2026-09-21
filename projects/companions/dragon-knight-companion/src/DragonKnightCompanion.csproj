@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>DragonKnightCompanion</AssemblyName>
+    <RootNamespace>DragonKnightCompanion</RootNamespace>
+    <Version>0.1.1</Version>
+    <AssemblyVersion>0.1.1.0</AssemblyVersion>
+    <FileVersion>0.1.1.0</FileVersion>
+    <FoAGameRoot Condition="'$(FoAGameRoot)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA</FoAGameRoot>
+    <FoAManagedDir>$(FoAGameRoot)\Fall of Avalon_Data\Managed</FoAManagedDir>
+    <BepInExCoreDir>$(FoAGameRoot)\BepInEx\core</BepInExCoreDir>
+    <FoAPluginsDir>$(FoAGameRoot)\BepInEx\plugins</FoAPluginsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(FoAManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(FoAManagedDir)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TG.Main">
+      <HintPath>$(FoAManagedDir)\TG.Main.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Utility">
+      <HintPath>$(FoAManagedDir)\Awaken.Utility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.PackageUtilities">
+      <HintPath>$(FoAManagedDir)\Awaken.PackageUtilities.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Awaken.Kandra">
+      <HintPath>$(FoAManagedDir)\Awaken.Kandra.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateFoAReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(BepInExCoreDir)\BepInEx.dll')" Text="BepInEx.dll was not found at '$(BepInExCoreDir)\BepInEx.dll'. Install BepInEx v5 Mono in the game root or build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.dll')" Text="UnityEngine.dll was not found at '$(FoAManagedDir)\UnityEngine.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.CoreModule.dll')" Text="UnityEngine.CoreModule.dll was not found at '$(FoAManagedDir)\UnityEngine.CoreModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll')" Text="UnityEngine.AssetBundleModule.dll was not found at '$(FoAManagedDir)\UnityEngine.AssetBundleModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll')" Text="UnityEngine.InputLegacyModule.dll was not found at '$(FoAManagedDir)\UnityEngine.InputLegacyModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.IMGUIModule.dll')" Text="UnityEngine.IMGUIModule.dll was not found at '$(FoAManagedDir)\UnityEngine.IMGUIModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll')" Text="UnityEngine.TextRenderingModule.dll was not found at '$(FoAManagedDir)\UnityEngine.TextRenderingModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\UnityEngine.PhysicsModule.dll')" Text="UnityEngine.PhysicsModule.dll was not found at '$(FoAManagedDir)\UnityEngine.PhysicsModule.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\TG.Main.dll')" Text="TG.Main.dll was not found at '$(FoAManagedDir)\TG.Main.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.Utility.dll')" Text="Awaken.Utility.dll was not found at '$(FoAManagedDir)\Awaken.Utility.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.PackageUtilities.dll')" Text="Awaken.PackageUtilities.dll was not found at '$(FoAManagedDir)\Awaken.PackageUtilities.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+    <Error Condition="!Exists('$(FoAManagedDir)\Awaken.Kandra.dll')" Text="Awaken.Kandra.dll was not found at '$(FoAManagedDir)\Awaken.Kandra.dll'. Build with -p:FoAGameRoot=&quot;path\to\Tainted Grail FoA&quot;." />
+  </Target>
+
+  <Target Name="DeployToFoA" AfterTargets="Build" Condition="'$(DeployOnBuild)' == 'true'">
+    <MakeDir Directories="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FoAPluginsDir)\$(AssemblyName)" />
+    <Copy SourceFiles="..\README.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\README.md" Condition="Exists('..\README.md')" />
+    <Copy SourceFiles="..\release\changelog.md" DestinationFiles="$(FoAPluginsDir)\$(AssemblyName)\CHANGELOG.md" Condition="Exists('..\release\changelog.md')" />
+  </Target>
+</Project>

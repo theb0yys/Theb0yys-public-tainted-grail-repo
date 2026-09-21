@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>AvalonCreatureCompanion.AI.Package.V2.Fixtures</AssemblyName>
+    <RootNamespace>AvalonCreatureCompanion.AI.Package.V2.Fixtures</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\avalon-ai-runtime\src\AvalonAI.Contracts.V2\AvalonAI.Contracts.V2.csproj" />
+    <ProjectReference Include="..\..\..\avalon-bull-companion\ai-package\src\AvalonBullCompanion.AI.Package.V2\AvalonBullCompanion.AI.Package.V2.csproj" />
+    <ProjectReference Include="..\..\..\avalon-dragon-companion\ai-package\src\AvalonDragonCompanion.AI.Package.V2\AvalonDragonCompanion.AI.Package.V2.csproj" />
+    <ProjectReference Include="..\..\..\avalon-elephant-companion\ai-package\src\AvalonElephantCompanion.AI.Package.V2\AvalonElephantCompanion.AI.Package.V2.csproj" />
+    <ProjectReference Include="..\..\..\avalon-goblin-companion\ai-package\src\AvalonGoblinCompanion.AI.Package.V2\AvalonGoblinCompanion.AI.Package.V2.csproj" />
+    <ProjectReference Include="..\..\..\avalon-vampire-companion\ai-package\src\AvalonVampireCompanion.AI.Package.V2\AvalonVampireCompanion.AI.Package.V2.csproj" />
+  </ItemGroup>
+</Project>
