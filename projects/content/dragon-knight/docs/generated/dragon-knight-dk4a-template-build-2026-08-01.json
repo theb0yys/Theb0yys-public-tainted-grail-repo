@@ -1,0 +1,140 @@
+{
+    "gate": "CI4 successor Dragon Knight NpcTemplate/LocationTemplate authoring/build/finalized load-release proof",
+    "result": "PASS",
+    "unityVersion": "6000.0.64f1",
+    "approvedDisplayName": "Dragon Knight",
+    "locationDisplayNameId": "dragon_knight_dk4a",
+    "nativeBootstrapShellAddress": "83d478bb2e0ea6e4d9e1cc58f3ec6910",
+    "dragonKnightNativeVisualAddress": "b4d3a4e9a58fb1c4ea4c239f267faa56",
+    "buildRoot": "<local-path>",
+    "runtimeLoadRoot": "{Awaken.TG.Assets.Modding.ModService.ModDirectoryPath}/DragonKnightDK4ATemplate/[BuildTarget]",
+    "cataloguePath": "",
+    "catalogueSha256": "",
+    "explicitAssets": [
+        {
+            "kind": "npc-template",
+            "path": "Assets/DragonKnightDK4ATemplate/Templates/NPCTemplate_DragonKnight_DK4A.prefab",
+            "guid": "00f608ee051b57748a6a9ed8dae28678",
+            "address": "dragon-knight/boss/dk4a/npc-template--00f608ee051b57748a6a9ed8dae28678"
+        },
+        {
+            "kind": "location-template",
+            "path": "Assets/DragonKnightDK4ATemplate/Templates/Spec_DragonKnight_DK4A.prefab",
+            "guid": "d7b09116519f7564593be62781bee3db",
+            "address": "dragon-knight/boss/dk4a/location-template--d7b09116519f7564593be62781bee3db"
+        }
+    ],
+    "sourceHashes": [
+        {
+            "path": "Assets/Data/LocationSpecs/AI/Enemies/ForeDwellers/Spec_EnemyForedweller_T6_Knight.prefab",
+            "beforeSha256": "03C7E647295DF1D09541139D9280C3A4DDD356EB543BF060B9CCE455630A91BD",
+            "afterSha256": "03C7E647295DF1D09541139D9280C3A4DDD356EB543BF060B9CCE455630A91BD",
+            "unchanged": true
+        },
+        {
+            "path": "Assets/Data/LocationSpecs/AI/Enemies/ForeDwellers/Spec_EnemyForedweller_T6_Knight.prefab.meta",
+            "beforeSha256": "C7D2F380F46ABAE2ECDE792F1D2F72216A50B1227E8D00F1B4516B7C4D184F69",
+            "afterSha256": "C7D2F380F46ABAE2ECDE792F1D2F72216A50B1227E8D00F1B4516B7C4D184F69",
+            "unchanged": true
+        },
+        {
+            "path": "Assets/Data/Templates/NpcTemplates/Abstracts/Abstract_NPCTemplate_Foredweller.prefab",
+            "beforeSha256": "AC3FF9FE750BF5820F14FF52A8B2BFBF63C0D951D022E0B17F0746119BEF4608",
+            "afterSha256": "AC3FF9FE750BF5820F14FF52A8B2BFBF63C0D951D022E0B17F0746119BEF4608",
+            "unchanged": true
+        },
+        {
+            "path": "Assets/Data/Templates/NpcTemplates/Abstracts/Abstract_NPCTemplate_Foredweller.prefab.meta",
+            "beforeSha256": "B8250054760DA0B35A2DE21FFBB938D8EB848DC3F6E08D62D32494455922BC26",
+            "afterSha256": "B8250054760DA0B35A2DE21FFBB938D8EB848DC3F6E08D62D32494455922BC26",
+            "unchanged": true
+        },
+        {
+            "path": "Assets/Data/Templates/NpcTemplates/Enemies/Foredwellers/NPCTemplate_EnemyForedweller_T6_Knight.prefab",
+            "beforeSha256": "95E860FC25705F3D8FAD997B20CD260D1A38271723B587CEA47BDE741106E933",
+            "afterSha256": "95E860FC25705F3D8FAD997B20CD260D1A38271723B587CEA47BDE741106E933",
+            "unchanged": true
+        },
+        {
+            "path": "Assets/Data/Templates/NpcTemplates/Enemies/Foredwellers/NPCTemplate_EnemyForedweller_T6_Knight.prefab.meta",
+            "beforeSha256": "F749F362BA48D8E712614200EBCF0CC156326C5ED42C671336ECD79DCDD1B1F1",
+            "afterSha256": "F749F362BA48D8E712614200EBCF0CC156326C5ED42C671336ECD79DCDD1B1F1",
+            "unchanged": true
+        }
+    ],
+    "artifacts": [
+        {
+            "relativePath": "StandaloneWindows64/catalog_dragon-knight-dk4a-template-v1.hash",
+            "bytes": 32,
+            "sha256": "E862C7E8A8319E076082CBFC95C61887C7D1C0CFB9BBE2A436F4B789F7477B69"
+        },
+        {
+            "relativePath": "StandaloneWindows64/catalog_dragon-knight-dk4a-template-v1.json",
+            "bytes": 4456,
+            "sha256": "6D91697F8EFF45E0DF8599958519BEF7162E371433D9321723F6C73AA0B25558"
+        },
+        {
+            "relativePath": "StandaloneWindows64/dragonknightdk4atemplateproof_assets_all_9664841dc2352b4460b15fd0c54863f1.bundle",
+            "bytes": 15491,
+            "sha256": "59A9E14CFDBDC9CDA05CE39650F4CD7303242E6C82338F43B467A8B494446278"
+        }
+    ],
+    "loadCycles": [],
+    "approvedFactionGuid": "4c90d92d219d54a4f8918310ba9998a7",
+    "approvedFightingStyleGuid": "471a14b9dbb41b146a82cb5750afe26a",
+    "approvedAbstractTypeGuids": [
+        "2d89c9bd6158a1049b7460cee96ed7dd",
+        "30fee903493e89e4089f2aeeb5e42d2a",
+        "d11cfa3551773034eacc4e3d4cec7183"
+    ],
+    "level": 40,
+    "maxHealth": 10000,
+    "maxStamina": 250,
+    "staminaRegenPerTick": 5.0,
+    "meleeDamage": 113.0,
+    "rangedDamage": 50.0,
+    "magicDamage": 60.0,
+    "npcWeight": 300,
+    "poiseThreshold": 1000.0,
+    "expLevel": 8,
+    "expTier": 0,
+    "expReward": 640,
+    "npcType": 2,
+    "deadBodyLootable": true,
+    "exactApprovedProfileValid": true,
+    "locationComponentCount": 8,
+    "locationComponentTypes": [
+        "UnityEngine.Transform",
+        "Awaken.TG.Main.Locations.Setup.LocationSpec",
+        "Awaken.TG.Main.Locations.Setup.LocationTemplate",
+        "Awaken.TG.Main.Fights.NPCs.RepetitiveNpcAttachment",
+        "Awaken.TG.Main.AI.Idle.Data.Attachment.IdleDataAttachment",
+        "Awaken.TG.Main.AI.Combat.Attachments.Customs.CustomCombatAttachment",
+        "Awaken.TG.Main.Heroes.Items.Attachments.Audio.AliveAudioAttachment",
+        "Awaken.TG.Main.Maps.Markers.MarkerAttachment"
+    ],
+    "locationComponentShortNames": [
+        "Transform",
+        "LocationSpec",
+        "LocationTemplate",
+        "RepetitiveNpcAttachment",
+        "IdleDataAttachment",
+        "CustomCombatAttachment",
+        "AliveAudioAttachment",
+        "MarkerAttachment"
+    ],
+    "exactNativeForedwellerLocationOrderPreserved": true,
+    "nonUniqueNpcAttachment": true,
+    "templateLabelsValid": false,
+    "templateSoAbsentValid": false,
+    "npcTemplateCreated": true,
+    "locationTemplateCreated": true,
+    "actorConstructed": false,
+    "templateRegistered": false,
+    "runtimeSourceWritten": false,
+    "userAiBridgeWired": false,
+    "gameDeployment": false,
+    "spawnRequested": false,
+    "saveAccess": false,
+    "failure": ""
+}

@@ -1,0 +1,121 @@
+{
+  "gate": "Dragon Knight DK4A isolated NpcTemplate/LocationTemplate proof preparation",
+  "date": "2026-08-01",
+  "result": "PASS_PREPARATION_ONLY_UNITY_AUTHORING_BUILD_LOAD_RELEASE_NOT_RUN",
+  "userAuthorization": "Final Dragon Knight template GUIDs are still pending the isolated template proof step.",
+  "offlineOnly": true,
+  "unityProjectMutated": false,
+  "templateAuthored": false,
+  "npcTemplateAuthored": false,
+  "locationTemplateAuthored": false,
+  "catalogueBuiltOrDeployed": false,
+  "runtimeSourceWritten": false,
+  "gameDeployment": false,
+  "foaLaunched": false,
+  "saveAccess": false,
+  "actorConstructed": false,
+  "spawnRequested": false,
+  "populationAuthorized": false,
+  "evidenceSources": [
+    "mods/dragon-knight/docs/gates/DK4A-native-actor-template-proof-profile.md",
+    "mods/dragon-knight/docs/research/dk4a-foredweller-boss-profile-approval-2026-08-01.md",
+    "mods/dragon-knight/docs/research/dk4a-foredweller-serialized-native-template-probe-2026-08-01.md",
+    "mods/dragon-knight/docs/generated/dragon-knight-dk4a-foredweller-template-probe-2026-08-01.json",
+    "mods/avalon-awakened/docs/research/ci4-successor-goblin-template-proof-preparation-2026-07-31.md",
+    "mods/avalon-awakened/docs/research/ci4-successor-goblin-template-proof-2026-07-31.md"
+  ],
+  "approvedProfile": {
+    "displayName": "Dragon Knight",
+    "locationDisplayNameIdOverride": "dragon_knight_dk4a",
+    "locationDisplayNameKey": "Template/displayName_dragon_knight_dk4a",
+    "sourceKind": "Foredweller T6 Knight concrete native knight proof profile",
+    "level": 40,
+    "maxHealth": 10000,
+    "maxStamina": 250,
+    "staminaRegenPerTick": 5,
+    "meleeDamage": 113,
+    "rangedDamage": 50,
+    "magicDamage": 60,
+    "npcWeight": 300,
+    "poiseThreshold": 1000,
+    "expLevel": 8,
+    "expTier": 0,
+    "expReward": 640,
+    "factionGuid": "4c90d92d219d54a4f8918310ba9998a7",
+    "abstractTypeGuids": [
+      "2d89c9bd6158a1049b7460cee96ed7dd",
+      "30fee903493e89e4089f2aeeb5e42d2a",
+      "d11cfa3551773034eacc4e3d4cec7183"
+    ],
+    "fightingStyleGuid": "471a14b9dbb41b146a82cb5750afe26a",
+    "npcTypeSerializedValue": 2,
+    "isDeadBodyLootable": true,
+    "customLootTablesAuthorized": false,
+    "simplifiedDeadBodyPrefabAddress": "cee084d53322ec04ca39752e9754314a"
+  },
+  "nativeTemplateSources": {
+    "proofProjectRoot": "<local-path>",
+    "requiredUnityVersionForExecution": "6000.0.64f1",
+    "abstractParent": {
+      "path": "Assets\\Data\\Templates\\NpcTemplates\\Abstracts\\Abstract_NPCTemplate_Foredweller.prefab",
+      "guid": "d11cfa3551773034eacc4e3d4cec7183",
+      "sha256": "AC3FF9FE750BF5820F14FF52A8B2BFBF63C0D951D022E0B17F0746119BEF4608"
+    },
+    "npcTemplate": {
+      "path": "Assets\\Data\\Templates\\NpcTemplates\\Enemies\\Foredwellers\\NPCTemplate_EnemyForedweller_T6_Knight.prefab",
+      "guid": "439a2dc3cf64e4e4aa792be5b4034cf1",
+      "sha256": "95E860FC25705F3D8FAD997B20CD260D1A38271723B587CEA47BDE741106E933",
+      "directSerialized": true,
+      "metadataNotesFieldPresent": true
+    },
+    "locationTemplate": {
+      "path": "Assets\\Data\\LocationSpecs\\AI\\Enemies\\ForeDwellers\\Spec_EnemyForedweller_T6_Knight.prefab",
+      "guid": "24ee850d0ffdbf64ea2b07b6a718d63b",
+      "sha256": "03C7E647295DF1D09541139D9280C3A4DDD356EB543BF060B9CCE455630A91BD",
+      "directSerialized": true,
+      "metadataNotesFieldPresent": true,
+      "effectiveComponentOrder": [
+        "Transform",
+        "LocationSpec",
+        "LocationTemplate",
+        "RepetitiveNpcAttachment",
+        "IdleDataAttachment",
+        "CustomCombatAttachment",
+        "AliveAudioAttachment",
+        "MarkerAttachment"
+      ],
+      "sourcePrefabReferenceAddress": "83d478bb2e0ea6e4d9e1cc58f3ec6910",
+      "nativeVisualPrefabAddress": "b4d3a4e9a58fb1c4ea4c239f267faa56",
+      "simplifiedDeadBodyPrefabAddress": "cee084d53322ec04ca39752e9754314a",
+      "hitVfxAddress": "6435b816784ea434589f4b48e31ccf70",
+      "snapToGround": true,
+      "weaponsAlwaysEquipped": true,
+      "potentialActorsEmpty": true
+    }
+  },
+  "preparedAuthoringPlan": {
+    "repositorySource": "mods/dragon-knight/tools/template-proof/DragonKnightDK4ATemplateAuthoring.cs",
+    "isolatedUnityCopy": "Assets/Editor/DragonKnightDK4ATemplateAuthoring.cs",
+    "targetRoot": "Assets/DragonKnightDK4ATemplate",
+    "templateRoot": "Assets/DragonKnightDK4ATemplate/Templates",
+    "npcTemplatePrefabName": "NPCTemplate_DragonKnight_DK4A.prefab",
+    "locationTemplatePrefabName": "Spec_DragonKnight_DK4A.prefab",
+    "guidPolicy": "Generate new pack-owned Unity GUIDs during isolated authoring; do not preselect or reuse native Foredweller GUIDs.",
+    "addressPolicy": {
+      "templateLabel": "template",
+      "templateSoLabel": "not planned because this proof uses the approved native Foredweller fightingStyle GUID instead of a pack-owned CustomFightingStyle",
+      "npcTemplateAddressPattern": "dragon-knight/boss/dk4a/npc-template--{npcTemplateGuid}",
+      "locationTemplateAddressPattern": "dragon-knight/boss/dk4a/location-template--{locationTemplateGuid}",
+      "templatesLoaderGuidExtractionRequirement": "Each custom template address must end in --{same-guid}."
+    },
+    "outputRoot": "<local-path>",
+    "buildFolderName": "DragonKnightDK4ATemplate",
+    "proofLabel": "dragon-knight-dk4a-template-proof",
+    "cataloguePlayerVersion": "dragon-knight-dk4a-template-v1"
+  },
+  "requiredMarkers": {
+    "buildPass": "DRAGON_KNIGHT_DK4A_TEMPLATE_BUILD_PASS explicitAssets=2; npcTemplateCreated=true; locationTemplateCreated=true; actorConstructed=false; spawnRequested=false; gameDeployment=false; saveAccess=false",
+    "finalizedPass": "DRAGON_KNIGHT_DK4A_TEMPLATE_FINALIZED_PASS explicitAssets=2; loadCycles=2; templateRegistered=false; actorConstructed=false; spawnRequested=false; gameDeployment=false; saveAccess=false"
+  },
+  "nextGate": "Run isolated Unity Dragon Knight template authoring/build/two-cycle load-release proof using this preparation contract."
+}

@@ -1,0 +1,924 @@
+{
+  "actorConstructed": false,
+  "baselineSelectedForDragonKnight": false,
+  "blockers": [
+    "Foredweller T6 Knight serialized values are evidence for a proof-profile decision, not approval to author Dragon Knight templates.",
+    "Final Dragon Knight NpcTemplate and LocationTemplate GUIDs are not selected.",
+    "Dragon Knight native bootstrap visual and overlay policy still require explicit profile approval.",
+    "No eligible target Location.ID or live Dragon Knight Location.ID is proven by this offline probe.",
+    "Attack, damage, death, loot, corpse, companion, armor, item, roaming, and phase-combat behavior remain unproven."
+  ],
+  "candidates": [
+    {
+      "abstractTypes": {
+        "declaredSize": null,
+        "source": "not-serialized",
+        "values": []
+      },
+      "bytes": 4635,
+      "componentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "8122902217194243909"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "3955092427561616622",
+          "scriptGuid": "c27df3c5a96dc924997ffdff14d55e66",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\NpcTemplate.cs"
+        }
+      ],
+      "componentOrderResolved": true,
+      "componentOrderSource": "direct-serialized",
+      "effectiveComponentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "8122902217194243909"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "3955092427561616622",
+          "scriptGuid": "c27df3c5a96dc924997ffdff14d55e66",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\NpcTemplate.cs"
+        }
+      ],
+      "expectedGuid": "d11cfa3551773034eacc4e3d4cec7183",
+      "guid": "d11cfa3551773034eacc4e3d4cec7183",
+      "guidMatchesExpected": true,
+      "isPrefabVariant": false,
+      "kind": "npc",
+      "lineCount": 194,
+      "name": "Abstract_NPCTemplate_Foredweller",
+      "path": "Assets\\Data\\Templates\\NpcTemplates\\Abstracts\\Abstract_NPCTemplate_Foredweller.prefab",
+      "role": "abstract-native-foredweller-npc",
+      "scopeLimit": "abstract parent inspection only",
+      "serializedFields": {
+        "_isAbstract": {
+          "line": 48,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "armor": {
+          "line": 78,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "armorMultiplier": {
+          "line": 79,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "blockPenaltyMultiplier": {
+          "line": 89,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "blockValue": {
+          "line": 88,
+          "source": "direct-serialized",
+          "value": 50
+        },
+        "canBeWyrdEmpowered": {
+          "line": 73,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "canDealDamageToFriendlies": {
+          "line": 66,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "canEnterCombat": {
+          "line": 74,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "canTriggerAggroMusic": {
+          "line": 177,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "combatSlotsLimit": {
+          "line": 90,
+          "source": "direct-serialized",
+          "value": 2
+        },
+        "corpseLootTables.Array.size": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "crimeNpcValue": {
+          "line": 147,
+          "source": "direct-serialized",
+          "value": 4
+        },
+        "crimeReactionArchetype": {
+          "line": 148,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "defaultCrimeOwner._guid": {
+          "line": 57,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "dummyDeathClipTransition.address": {
+          "line": 184,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "expLevel": {
+          "line": 150,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "expReward": {
+          "line": 152,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "expTier": {
+          "line": 151,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "faction._guid": {
+          "line": 55,
+          "source": "direct-serialized",
+          "value": "4c90d92d219d54a4f8918310ba9998a7"
+        },
+        "fightingStyle._guid": {
+          "line": 61,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "fistsTemplate._guid": {
+          "line": 156,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "forceStumbleThreshold": {
+          "line": 82,
+          "source": "direct-serialized",
+          "value": 4
+        },
+        "healthRegen": {
+          "line": 69,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "heroKnockBack": {
+          "line": 91,
+          "source": "direct-serialized",
+          "value": 100
+        },
+        "inventoryItems.lootReference._guid": {
+          "line": 160,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "isDeadBodyLootable": {
+          "line": 154,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "isNotGrounded": {
+          "line": 62,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "isPickpocketable": {
+          "line": 153,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "isSpellCaster": {
+          "line": 65,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "level": {
+          "line": 58,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "lootItems.lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "lootTables.Array.data[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "lootTables[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "magicArmor": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "magicDamage": {
+          "line": 77,
+          "source": "direct-serialized",
+          "value": 10
+        },
+        "maxHealth": {
+          "line": 68,
+          "source": "direct-serialized",
+          "value": 100
+        },
+        "maxStamina": {
+          "line": 70,
+          "source": "direct-serialized",
+          "value": 100
+        },
+        "meleeDamage": {
+          "line": 75,
+          "source": "direct-serialized",
+          "value": 10
+        },
+        "npcData.guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "npcType": {
+          "line": 149,
+          "source": "direct-serialized",
+          "value": 2
+        },
+        "npcWeight": {
+          "line": 83,
+          "source": "direct-serialized",
+          "value": 80
+        },
+        "poiseThreshold": {
+          "line": 87,
+          "source": "direct-serialized",
+          "value": 33
+        },
+        "rangedDamage": {
+          "line": 76,
+          "source": "direct-serialized",
+          "value": 10
+        },
+        "requiresPathToTarget": {
+          "line": 64,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "returnToSpawnPointArchetype": {
+          "line": 67,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "staminaRegenPerTick": {
+          "line": 71,
+          "source": "direct-serialized",
+          "value": 0.25
+        },
+        "staminaUsageMultiplier": {
+          "line": 72,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "statusResistance": {
+          "line": 81,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "surfaceType._enumRef": {
+          "line": 175,
+          "source": "direct-serialized",
+          "value": "Awaken.TG.Main.Utility.Animations.SurfaceType, TG.Main, Version=0.0.0.0,"
+        },
+        "tags": {
+          "line": 171,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "tattooType": {
+          "line": 182,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "templateType": {
+          "line": 47,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "useRichAISlowdownTime": {
+          "line": 63,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "wyrdConvertedLootTables.Array.data[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "wyrdConvertedLootTables.Array.data[1].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "wyrdConvertedLootTables.Array.size": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        }
+      },
+      "sha256": "AC3FF9FE750BF5820F14FF52A8B2BFBF63C0D951D022E0B17F0746119BEF4608",
+      "sourcePrefabGuid": "",
+      "sourcePrefabPath": "",
+      "sourcePrefabSummary": null,
+      "variantModificationCount": 0
+    },
+    {
+      "abstractTypes": {
+        "source": "direct-serialized",
+        "values": [
+          "2d89c9bd6158a1049b7460cee96ed7dd",
+          "30fee903493e89e4089f2aeeb5e42d2a",
+          "d11cfa3551773034eacc4e3d4cec7183"
+        ]
+      },
+      "bytes": 6366,
+      "componentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "7208812181472241804"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "7401116253157856785",
+          "scriptGuid": "c27df3c5a96dc924997ffdff14d55e66",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\NpcTemplate.cs"
+        }
+      ],
+      "componentOrderResolved": true,
+      "componentOrderSource": "direct-serialized",
+      "effectiveComponentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "7208812181472241804"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "7401116253157856785",
+          "scriptGuid": "c27df3c5a96dc924997ffdff14d55e66",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\NpcTemplate.cs"
+        }
+      ],
+      "expectedGuid": "439a2dc3cf64e4e4aa792be5b4034cf1",
+      "guid": "439a2dc3cf64e4e4aa792be5b4034cf1",
+      "guidMatchesExpected": true,
+      "isPrefabVariant": false,
+      "kind": "npc",
+      "lineCount": 252,
+      "name": "NPCTemplate_EnemyForedweller_T6_Knight",
+      "path": "Assets\\Data\\Templates\\NpcTemplates\\Enemies\\Foredwellers\\NPCTemplate_EnemyForedweller_T6_Knight.prefab",
+      "role": "dragon-knight-candidate-foredweller-t6-knight-npc",
+      "scopeLimit": "Dragon Knight candidate baseline only; not selected by this probe",
+      "serializedFields": {
+        "_isAbstract": {
+          "line": 48,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "armor": {
+          "line": 81,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "armorMultiplier": {
+          "line": 82,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "blockPenaltyMultiplier": {
+          "line": 92,
+          "source": "direct-serialized",
+          "value": 0.5
+        },
+        "blockValue": {
+          "line": 91,
+          "source": "direct-serialized",
+          "value": 80
+        },
+        "canBeWyrdEmpowered": {
+          "line": 76,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "canDealDamageToFriendlies": {
+          "line": 69,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "canEnterCombat": {
+          "line": 77,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "canTriggerAggroMusic": {
+          "line": 191,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "combatSlotsLimit": {
+          "line": 93,
+          "source": "direct-serialized",
+          "value": 2
+        },
+        "corpseLootTables.Array.size": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "crimeNpcValue": {
+          "line": 150,
+          "source": "direct-serialized",
+          "value": 4
+        },
+        "crimeReactionArchetype": {
+          "line": 151,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "defaultCrimeOwner._guid": {
+          "line": 60,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "dummyDeathClipTransition.address": {
+          "line": 198,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "expLevel": {
+          "line": 153,
+          "source": "direct-serialized",
+          "value": 8
+        },
+        "expReward": {
+          "line": 155,
+          "source": "direct-serialized",
+          "value": 640
+        },
+        "expTier": {
+          "line": 154,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "faction._guid": {
+          "line": 58,
+          "source": "direct-serialized",
+          "value": "4c90d92d219d54a4f8918310ba9998a7"
+        },
+        "fightingStyle._guid": {
+          "line": 64,
+          "source": "direct-serialized",
+          "value": "471a14b9dbb41b146a82cb5750afe26a"
+        },
+        "fistsTemplate._guid": {
+          "line": 159,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "forceStumbleThreshold": {
+          "line": 85,
+          "source": "direct-serialized",
+          "value": 1000
+        },
+        "healthRegen": {
+          "line": 72,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "heroKnockBack": {
+          "line": 94,
+          "source": "direct-serialized",
+          "value": 100
+        },
+        "inventoryItems.lootReference._guid": {
+          "line": 163,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "isDeadBodyLootable": {
+          "line": 157,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "isNotGrounded": {
+          "line": 65,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "isPickpocketable": {
+          "line": 156,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "isSpellCaster": {
+          "line": 68,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "level": {
+          "line": 61,
+          "source": "direct-serialized",
+          "value": 40
+        },
+        "lootItems.lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "lootTables.Array.data[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "lootTables[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "magicArmor": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "magicDamage": {
+          "line": 80,
+          "source": "direct-serialized",
+          "value": 60
+        },
+        "maxHealth": {
+          "line": 71,
+          "source": "direct-serialized",
+          "value": 10000
+        },
+        "maxStamina": {
+          "line": 73,
+          "source": "direct-serialized",
+          "value": 250
+        },
+        "meleeDamage": {
+          "line": 78,
+          "source": "direct-serialized",
+          "value": 113
+        },
+        "npcData.guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "npcType": {
+          "line": 152,
+          "source": "direct-serialized",
+          "value": 2
+        },
+        "npcWeight": {
+          "line": 86,
+          "source": "direct-serialized",
+          "value": 300
+        },
+        "poiseThreshold": {
+          "line": 90,
+          "source": "direct-serialized",
+          "value": 1000
+        },
+        "rangedDamage": {
+          "line": 79,
+          "source": "direct-serialized",
+          "value": 50
+        },
+        "requiresPathToTarget": {
+          "line": 67,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "returnToSpawnPointArchetype": {
+          "line": 70,
+          "source": "direct-serialized",
+          "value": 2
+        },
+        "staminaRegenPerTick": {
+          "line": 74,
+          "source": "direct-serialized",
+          "value": 5
+        },
+        "staminaUsageMultiplier": {
+          "line": 75,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "statusResistance": {
+          "line": 84,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "surfaceType._enumRef": {
+          "line": 189,
+          "source": "direct-serialized",
+          "value": "Awaken.TG.Main.Utility.Animations.SurfaceType, TG.Main, Version=0.0.0.0,"
+        },
+        "tags": {
+          "line": 184,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "tattooType": {
+          "line": 196,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "templateType": {
+          "line": 47,
+          "source": "direct-serialized",
+          "value": 0
+        },
+        "useRichAISlowdownTime": {
+          "line": 66,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "wyrdConvertedLootTables.Array.data[0].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "wyrdConvertedLootTables.Array.data[1].lootReference._guid": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "wyrdConvertedLootTables.Array.size": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        }
+      },
+      "sha256": "95E860FC25705F3D8FAD997B20CD260D1A38271723B587CEA47BDE741106E933",
+      "sourcePrefabGuid": "",
+      "sourcePrefabPath": "",
+      "sourcePrefabSummary": null,
+      "variantModificationCount": 0
+    },
+    {
+      "abstractTypes": {
+        "declaredSize": null,
+        "source": "not-serialized",
+        "values": []
+      },
+      "bytes": 9302,
+      "componentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "5931201620430829565"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "9102533663763092846",
+          "scriptGuid": "74383b275a1c400baf84b424df3e5821",
+          "scriptPath": "Assets\\Code\\Main\\Locations\\Setup\\LocationSpec.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "-5687540469967094909",
+          "scriptGuid": "b643b77c560fe6f48a9814d05ac87c31",
+          "scriptPath": "Assets\\Code\\Main\\Locations\\Setup\\LocationTemplate.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "6423593210849289748",
+          "scriptGuid": "95deb3f17351470e8242701ba2999287",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\RepetitiveNpcAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "6786953796087481845",
+          "scriptGuid": "f193ec1f914e474b9b0f1078a5dba7f9",
+          "scriptPath": "Assets\\Code\\Main\\AI\\Idle\\Data\\Attachment\\IdleDataAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "7624128709204466626",
+          "scriptGuid": "db0b19dec2bb2694cbe97e9d85d5ddf1",
+          "scriptPath": "Assets\\Code\\Main\\AI\\Combat\\Attachments\\Customs\\CustomCombatAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "-434642868170237122",
+          "scriptGuid": "2b450945e26341c28134eb48feb58878",
+          "scriptPath": "Assets\\Code\\Main\\Heroes\\Items\\Attachments\\Audio\\AliveAudioAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "8596093429825473989",
+          "scriptGuid": "74f1d837a85f458c99977714723b45d8",
+          "scriptPath": "Assets\\Code\\Main\\Maps\\Markers\\MarkerAttachment.cs"
+        }
+      ],
+      "componentOrderResolved": true,
+      "componentOrderSource": "direct-serialized",
+      "effectiveComponentOrder": [
+        {
+          "component": "Transform",
+          "fileID": "5931201620430829565"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "9102533663763092846",
+          "scriptGuid": "74383b275a1c400baf84b424df3e5821",
+          "scriptPath": "Assets\\Code\\Main\\Locations\\Setup\\LocationSpec.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "-5687540469967094909",
+          "scriptGuid": "b643b77c560fe6f48a9814d05ac87c31",
+          "scriptPath": "Assets\\Code\\Main\\Locations\\Setup\\LocationTemplate.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "6423593210849289748",
+          "scriptGuid": "95deb3f17351470e8242701ba2999287",
+          "scriptPath": "Assets\\Code\\Main\\Fights\\NPCs\\RepetitiveNpcAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "6786953796087481845",
+          "scriptGuid": "f193ec1f914e474b9b0f1078a5dba7f9",
+          "scriptPath": "Assets\\Code\\Main\\AI\\Idle\\Data\\Attachment\\IdleDataAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "7624128709204466626",
+          "scriptGuid": "db0b19dec2bb2694cbe97e9d85d5ddf1",
+          "scriptPath": "Assets\\Code\\Main\\AI\\Combat\\Attachments\\Customs\\CustomCombatAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "-434642868170237122",
+          "scriptGuid": "2b450945e26341c28134eb48feb58878",
+          "scriptPath": "Assets\\Code\\Main\\Heroes\\Items\\Attachments\\Audio\\AliveAudioAttachment.cs"
+        },
+        {
+          "component": "MonoBehaviour",
+          "fileID": "8596093429825473989",
+          "scriptGuid": "74f1d837a85f458c99977714723b45d8",
+          "scriptPath": "Assets\\Code\\Main\\Maps\\Markers\\MarkerAttachment.cs"
+        }
+      ],
+      "expectedGuid": "24ee850d0ffdbf64ea2b07b6a718d63b",
+      "guid": "24ee850d0ffdbf64ea2b07b6a718d63b",
+      "guidMatchesExpected": true,
+      "isPrefabVariant": false,
+      "kind": "location",
+      "lineCount": 366,
+      "name": "Spec_EnemyForedweller_T6_Knight",
+      "path": "Assets\\Data\\LocationSpecs\\AI\\Enemies\\ForeDwellers\\Spec_EnemyForedweller_T6_Knight.prefab",
+      "role": "dragon-knight-candidate-foredweller-t6-knight-location",
+      "scopeLimit": "Dragon Knight candidate baseline only; not selected by this probe",
+      "serializedFields": {
+        "actor.guid": {
+          "line": 107,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "autoConvertToStatic": {
+          "line": 72,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "canBePushed": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "canBeSlidInto": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "canLookAround": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "canMoveInSpawn": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "criticalHitVFXReference.arReference.address": {
+          "line": 124,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "data.behaviours.Array.data[0].range": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "data.positionRange": {
+          "line": 158,
+          "source": "direct-serialized",
+          "value": 0.8
+        },
+        "deathVFXReference.arReference.address": {
+          "line": 132,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "displayName.ID": {
+          "line": 61,
+          "source": "direct-serialized",
+          "value": "Template/displayName_9102533663763092846_24ee850d0ffdbf64ea2b07b6a718d63b"
+        },
+        "displayName.IdOverride": {
+          "line": 60,
+          "source": "direct-serialized",
+          "value": "enemy_foredweller_knight"
+        },
+        "hitVFXReference.arReference.address": {
+          "line": 120,
+          "source": "direct-serialized",
+          "value": "6435b816784ea434589f4b48e31ccf70"
+        },
+        "maxActiveDistanceBand": {
+          "line": 71,
+          "source": "direct-serialized",
+          "value": 3
+        },
+        "npcTemplate._guid": {
+          "line": 105,
+          "source": "direct-serialized",
+          "value": "439a2dc3cf64e4e4aa792be5b4034cf1"
+        },
+        "potentialActors.Array.size": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "prefabReference.address": {
+          "line": 66,
+          "source": "direct-serialized",
+          "value": "83d478bb2e0ea6e4d9e1cc58f3ec6910"
+        },
+        "releaseCombatSlotAtDistance": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "shouldSpawnDeathVfx": {
+          "line": 117,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "simplifiedDeadBodyPrefab.arReference.address": {
+          "line": 115,
+          "source": "direct-serialized",
+          "value": "cee084d53322ec04ca39752e9754314a"
+        },
+        "snapToGround": {
+          "line": 68,
+          "source": "direct-serialized",
+          "value": 1
+        },
+        "storyOnDeath._guid": {
+          "line": 109,
+          "source": "direct-serialized",
+          "value": ""
+        },
+        "usesAlertMovementAnimations": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "usesCombatMovementAnimations": {
+          "source": "not-serialized-in-probed-chain",
+          "value": null
+        },
+        "visualPrefab.address": {
+          "line": 111,
+          "source": "direct-serialized",
+          "value": "b4d3a4e9a58fb1c4ea4c239f267faa56"
+        },
+        "weaponsAlwaysEquipped": {
+          "line": 203,
+          "source": "direct-serialized",
+          "value": 1
+        }
+      },
+      "sha256": "03C7E647295DF1D09541139D9280C3A4DDD356EB543BF060B9CCE455630A91BD",
+      "sourcePrefabGuid": "",
+      "sourcePrefabPath": "",
+      "sourcePrefabSummary": null,
+      "variantModificationCount": 0
+    }
+  ],
+  "catalogueBuiltOrDeployed": false,
+  "date": "2026-08-01",
+  "foaLaunched": false,
+  "gameDeployment": false,
+  "gate": "Dragon Knight DK4A Foredweller T6 Knight serialized native-template probe",
+  "guidIndexCount": 17107,
+  "guidIndexScope": [
+    "Assets\\Data",
+    "Assets\\Code"
+  ],
+  "method": "offline Unity YAML/meta parse using proven Goblin serialized probe parser with Data/Code GUID index; Unity not launched",
+  "projectRoot": "<local-path>",
+  "readOnly": true,
+  "result": "PASS_READ_ONLY_PROBE_PARTIAL_PROFILE_EVIDENCE_BASELINE_NOT_SELECTED",
+  "runtimeSourceWritten": false,
+  "saveAccess": false,
+  "spawnLocationCalled": false,
+  "spawnRequested": false,
+  "templateAuthored": false,
+  "unityLaunched": false
+}

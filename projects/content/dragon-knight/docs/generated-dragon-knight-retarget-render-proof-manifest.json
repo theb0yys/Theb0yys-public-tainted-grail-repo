@@ -1,0 +1,2457 @@
+{
+  "marker": "DRAGON_KNIGHT_RETARGET_RENDER_PROOF_PASS",
+  "unityVersion": "6000.0.64f1",
+  "projectRoot": "<local-path>",
+  "externalAssetsRoot": "<local-path>",
+  "bossMoveSetRoot": "<local-path>",
+  "runtimeAiTouched": false,
+  "gameDeploymentTouched": false,
+  "savePathTouched": false,
+  "dragonKnightAvatarHuman": true,
+  "ironSkinnedRendererCount": 16,
+  "fireSkinnedRendererCount": 16,
+  "ironAnimatorCount": 1,
+  "fireAnimatorCount": 1,
+  "bossMoveSetFbxCount": 92,
+  "requiredBossAnimationCount": 42,
+  "requiredBossAnimationsPresent": 42,
+  "bundlePath": "<local-path>",
+  "bundleBytes": 9787981,
+  "bundleSha256": "18A140AAD734EC835A48CFED98F8A5A2C5F2D50D0B9ACAE5FA8E04616E019A22",
+  "selectedDragonKnightAssets": [
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/CHARACTER/SK_Dragon_Knight_Iron_Weapon.prefab",
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/CHARACTER/SK_Dragon_Knight_Fire_Weapon.prefab",
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/WEAPON/SM_DragonKnight_Sword_Iron.prefab"
+  ],
+  "generatedAssets": [
+    "Assets/DragonKnightProof/Generated/DragonKnight_1H_PhaseProof.controller",
+    "Assets/DragonKnightProof/Generated/DragonKnight_Retarget_Render_Proof_Preview.prefab"
+  ],
+  "bundleAssets": [
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Double.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Down.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Grounded.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V3.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V4.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Block.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Charge_Double.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Charge_Strike.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Combo.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Combo_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Dash.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Death.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Hit_React.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Hit_React_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Intro.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_B.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_Super.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Run.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Hit.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Off.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Super_Strike.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown_Fail.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown_React.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Throw.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Thrust.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_B.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_L.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_R.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_R_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Charge_Double_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Charge_Strike_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_V2_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_Attack_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_B_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_Super_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack_Charge.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Block.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Circular_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo_V2.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo_V3.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Cut_Slice.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Dash.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Dash_Slice.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Death.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Double_Strike.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Duel_Slice.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Hit_React.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Jump.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Jump_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Power_Smash.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Rotate_Attack.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Run.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Smash_Down.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Hit.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Idle.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Off.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown_Fail.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown_React.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Thrust.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Transform.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Back.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Left.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Right.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Circular_Attack_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V2_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V3_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Cut_Slice_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Dash_Slice_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Duel_Slice_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Jump_Attack_RM.fbx",
+    "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Rotate_Attack_RM.fbx",
+    "Assets/DragonKnightProof/Generated/DragonKnight_1H_PhaseProof.controller",
+    "Assets/DragonKnightProof/Generated/DragonKnight_Retarget_Render_Proof_Preview.prefab",
+    "Assets/DragonKnightProof/VFX/INabWeaponTrails/Trail Prefabs/Fire 1.prefab",
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/CHARACTER/SK_Dragon_Knight_Fire_Weapon.prefab",
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/CHARACTER/SK_Dragon_Knight_Iron_Weapon.prefab",
+    "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/WEAPON/SM_DragonKnight_Sword_Iron.prefab"
+  ],
+  "ignoredBossSourceAssets": [
+    "SM_Greatsword.fbx (ignored: Dragon Knight proof uses the Dragon Knight one-handed sword prefab)",
+    "MCB/Transform/*.ma (Maya source retained outside proof; FBX clips are the Unity retarget candidates)"
+  ],
+  "phaseTwoDualSword": {
+    "enabled": true,
+    "mainhandSource": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/CHARACTER/SK_Dragon_Knight_Fire_Weapon.prefab",
+    "offhandSwordPrefab": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/PREFABS/WEAPON/SM_DragonKnight_Sword_Iron.prefab",
+    "offhandObjectName": "Phase2_Offhand_IronSword",
+    "leftHandPath": "Fire_Phase_2_DualSword/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l",
+    "rightHandPath": "Fire_Phase_2_DualSword/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r",
+    "rendererCount": 1,
+    "meshRendererCount": 1,
+    "skinnedRendererCount": 0,
+    "localPosition": "0|0|0",
+    "localRotation": "0|0|0|1",
+    "localScale": "1|1|1",
+    "pass": true
+  },
+  "materials": [
+    {
+      "name": "IronArm",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Iron/MI_DragonKnight_Arm_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Arm_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Arm_Iron_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Arm_Iron_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "IronBody",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Iron/MI_DragonKnight_Body_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Body_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Body_Iron_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Body_Iron_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "IronCape",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Iron/MI_DragonKnight_Cape_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "IronCloth",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Iron/MI_DragonKnight_Cloth_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Default/T_White_Map_D.PNG",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "emissiveMask",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Default/T_Black_Map_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": false
+        },
+        {
+          "slot": "alpha",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Cloth_Iron_O.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "IronLeg",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Iron/MI_DragonKnight_Leg_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Leg_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Iron_Leg_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Iron/T_DragonKnight_Iron_Leg_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "IronSword",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Weapon/MI_DragonKnight_Sword_Iron.mat",
+      "requiresEmissive": false,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Iron/T_DragonKnight_Sword_Iron_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Iron/T_DragonKnight_Sword_Iron_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Iron/T_DragonKnight_Sword_Iron_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireArm",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Fire/MI_DragonKnihgt_Arm_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Arm_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Arm_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Arm_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Arm_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireBody",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Fire/MI_DragonKnight_Body_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Body_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Body_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Body_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Body_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireCape",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Fire/MI_DragonKnight_Cape_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireCloth",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Fire/MI_DragonKnight_Cloth_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "alpha",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Cloth_Fire_O.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireLeg",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Character_Fire/MI_DragonKnight_Leg_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Leg_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Leg_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Leg_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Character_Fire/T_DragonKnight_Leg_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        }
+      ],
+      "errors": [
+      ]
+    },
+    {
+      "name": "FireSword",
+      "materialPath": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/MATERIALS/Weapon/MI_DragonKnight_Sword_Fire.mat",
+      "requiresEmissive": true,
+      "pass": true,
+      "textures": [
+        {
+          "slot": "diffuse",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Fire/T_DragonKnight_Sword_Fire_D.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "normal",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Fire/T_DragonKnight_Sword_Fire_N.png",
+          "textureType": "NormalMap",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "orm",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Fire/T_DragonKnight_Sword_Fire_ORM.png",
+          "textureType": "Default",
+          "srgb": false,
+          "pass": true
+        },
+        {
+          "slot": "emissive",
+          "path": "Assets/NAKED_SINGULARITY/DRAGON_KNIGHT/TEXTURES/Sword_Fire/T_DragonKnight_Sword_Fire_E.png",
+          "textureType": "Default",
+          "srgb": true,
+          "pass": true
+        },
+        {
+          "slot": "emissiveMask",
+          "path": "UNRESOLVED_GUID:9bab9650f9483f8468c91eb4d6e83a8f",
+          "textureType": "",
+          "srgb": false,
+          "pass": false
+        }
+      ],
+      "errors": [
+      ]
+    }
+  ],
+  "animations": [
+    {
+      "id": "mcb_normal_in_place_as_cb_attack",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack.fbx",
+      "expectedClipName": "AS_CB_Attack",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_double",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_Double.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Double.fbx",
+      "expectedClipName": "AS_CB_Attack_Double",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_down",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_Down.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Down.fbx",
+      "expectedClipName": "AS_CB_Attack_Down",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_grounded",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_Grounded.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_Grounded.fbx",
+      "expectedClipName": "AS_CB_Attack_Grounded",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_v2",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V2.fbx",
+      "expectedClipName": "AS_CB_Attack_V2",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_v3",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_V3.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V3.fbx",
+      "expectedClipName": "AS_CB_Attack_V3",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_attack_v4",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Attack_V4.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Attack_V4.fbx",
+      "expectedClipName": "AS_CB_Attack_V4",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_block",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Block.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Block.fbx",
+      "expectedClipName": "AS_CB_Block",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_charge_double",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Charge_Double.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Charge_Double.fbx",
+      "expectedClipName": "AS_CB_Charge_Double",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_charge_strike",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Charge_Strike.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Charge_Strike.fbx",
+      "expectedClipName": "AS_CB_Charge_Strike",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_combo",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Combo.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Combo.fbx",
+      "expectedClipName": "AS_CB_Combo",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_combo_v2",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Combo_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Combo_V2.fbx",
+      "expectedClipName": "AS_CB_Combo_V2",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_dash",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Dash.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Dash.fbx",
+      "expectedClipName": "AS_CB_Dash",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_death",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Death.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Death.fbx",
+      "expectedClipName": "AS_CB_Death",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_hit_react",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Hit_React.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Hit_React.fbx",
+      "expectedClipName": "AS_CB_Hit_React",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_hit_react_v2",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Hit_React_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Hit_React_V2.fbx",
+      "expectedClipName": "AS_CB_Hit_React_V2",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_idle",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Idle.fbx",
+      "expectedClipName": "AS_CB_Idle",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_intro",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Intro.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Intro.fbx",
+      "expectedClipName": "AS_CB_Intro",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_jump",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Jump.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump.fbx",
+      "expectedClipName": "AS_CB_Jump",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_jump_attack",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Jump_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_Attack.fbx",
+      "expectedClipName": "AS_CB_Jump_Attack",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_jump_b",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Jump_B.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_B.fbx",
+      "expectedClipName": "AS_CB_Jump_B",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_jump_super",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Jump_Super.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Jump_Super.fbx",
+      "expectedClipName": "AS_CB_Jump_Super",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_run",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Run.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Run.fbx",
+      "expectedClipName": "AS_CB_Run",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_stunned",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Stunned.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned.fbx",
+      "expectedClipName": "AS_CB_Stunned",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_stunned_hit",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Stunned_Hit.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Hit.fbx",
+      "expectedClipName": "AS_CB_Stunned_Hit",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_stunned_idle",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Stunned_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Idle.fbx",
+      "expectedClipName": "AS_CB_Stunned_Idle",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_stunned_off",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Stunned_Off.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Stunned_Off.fbx",
+      "expectedClipName": "AS_CB_Stunned_Off",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_super_strike",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Super_Strike.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Super_Strike.fbx",
+      "expectedClipName": "AS_CB_Super_Strike",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_takedown",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Takedown.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown.fbx",
+      "expectedClipName": "AS_CB_Takedown",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_takedown_fail",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Takedown_Fail.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown_Fail.fbx",
+      "expectedClipName": "AS_CB_Takedown_Fail",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_takedown_react",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Takedown_React.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Takedown_React.fbx",
+      "expectedClipName": "AS_CB_Takedown_React",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_throw",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Throw.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Throw.fbx",
+      "expectedClipName": "AS_CB_Throw",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_thrust",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Thrust.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Thrust.fbx",
+      "expectedClipName": "AS_CB_Thrust",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_walk",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Walk.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk.fbx",
+      "expectedClipName": "AS_CB_Walk",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_walk_b",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Walk_B.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_B.fbx",
+      "expectedClipName": "AS_CB_Walk_B",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_walk_l",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Walk_L.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_L.fbx",
+      "expectedClipName": "AS_CB_Walk_L",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_cb_walk_r",
+      "relativePath": "MCB/Normal/In Place/AS_CB_Walk_R.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_CB_Walk_R.fbx",
+      "expectedClipName": "AS_CB_Walk_R",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_idle",
+      "relativePath": "MCB/Normal/In Place/AS_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_Idle.fbx",
+      "expectedClipName": "AS_Idle",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_in_place_as_r_idle",
+      "relativePath": "MCB/Normal/In Place/AS_R_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/In Place/AS_R_Idle.fbx",
+      "expectedClipName": "AS_R_Idle",
+      "selectedClipName": "Take 001",
+      "category": "normal_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_charge_double_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Charge_Double_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Charge_Double_RM.fbx",
+      "expectedClipName": "AS_CB_Charge_Double_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_charge_strike_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Charge_Strike_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Charge_Strike_RM.fbx",
+      "expectedClipName": "AS_CB_Charge_Strike_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_combo_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Combo_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_RM.fbx",
+      "expectedClipName": "AS_CB_Combo_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_combo_v2",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Combo_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_V2.fbx",
+      "expectedClipName": "AS_CB_Combo_V2",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_combo_v2_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Combo_V2_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Combo_V2_RM.fbx",
+      "expectedClipName": "AS_CB_Combo_V2_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_jump_attack_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Jump_Attack_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_Attack_RM.fbx",
+      "expectedClipName": "AS_CB_Jump_Attack_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_jump_b_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Jump_B_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_B_RM.fbx",
+      "expectedClipName": "AS_CB_Jump_B_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_jump_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Jump_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_RM.fbx",
+      "expectedClipName": "AS_CB_Jump_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_normal_root_motion_as_cb_jump_super_rm",
+      "relativePath": "MCB/Normal/Root_Motion/AS_CB_Jump_Super_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Normal/Root_Motion/AS_CB_Jump_Super_RM.fbx",
+      "expectedClipName": "AS_CB_Jump_Super_RM",
+      "selectedClipName": "Take 001",
+      "category": "normal_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_attack",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack.fbx",
+      "expectedClipName": "AS_CB_T_Attack",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_attack_charge",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Attack_Charge.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack_Charge.fbx",
+      "expectedClipName": "AS_CB_T_Attack_Charge",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_attack_v2",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Attack_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Attack_V2.fbx",
+      "expectedClipName": "AS_CB_T_Attack_V2",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_block",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Block.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Block.fbx",
+      "expectedClipName": "AS_CB_T_Block",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_circular_attack",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Circular_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Circular_Attack.fbx",
+      "expectedClipName": "AS_CB_T_Circular_Attack",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_combo",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Combo.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo.fbx",
+      "expectedClipName": "AS_CB_T_Combo",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_combo_v2",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Combo_V2.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo_V2.fbx",
+      "expectedClipName": "AS_CB_T_Combo_V2",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_combo_v3",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Combo_V3.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Combo_V3.fbx",
+      "expectedClipName": "AS_CB_T_Combo_V3",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_cut_slice",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Cut_Slice.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Cut_Slice.fbx",
+      "expectedClipName": "AS_CB_T_Cut_Slice",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_dash",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Dash.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Dash.fbx",
+      "expectedClipName": "AS_CB_T_Dash",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_dash_slice",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Dash_Slice.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Dash_Slice.fbx",
+      "expectedClipName": "AS_CB_T_Dash_Slice",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_death",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Death.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Death.fbx",
+      "expectedClipName": "AS_CB_T_Death",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_double_strike",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Double_Strike.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Double_Strike.fbx",
+      "expectedClipName": "AS_CB_T_Double_Strike",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_duel_slice",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Duel_Slice.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Duel_Slice.fbx",
+      "expectedClipName": "AS_CB_T_Duel_Slice",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_hit_react",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Hit_React.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Hit_React.fbx",
+      "expectedClipName": "AS_CB_T_Hit_React",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_idle",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Idle.fbx",
+      "expectedClipName": "AS_CB_T_Idle",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_jump",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Jump.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Jump.fbx",
+      "expectedClipName": "AS_CB_T_Jump",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_jump_attack",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Jump_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Jump_Attack.fbx",
+      "expectedClipName": "AS_CB_T_Jump_Attack",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_power_smash",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Power_Smash.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Power_Smash.fbx",
+      "expectedClipName": "AS_CB_T_Power_Smash",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_rotate_attack",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Rotate_Attack.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Rotate_Attack.fbx",
+      "expectedClipName": "AS_CB_T_Rotate_Attack",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_run",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Run.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Run.fbx",
+      "expectedClipName": "AS_CB_T_Run",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_smash_down",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Smash_Down.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Smash_Down.fbx",
+      "expectedClipName": "AS_CB_T_Smash_Down",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_stunned",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Stunned.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned.fbx",
+      "expectedClipName": "AS_CB_T_Stunned",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_stunned_hit",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Stunned_Hit.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Hit.fbx",
+      "expectedClipName": "AS_CB_T_Stunned_Hit",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_stunned_idle",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Stunned_Idle.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Idle.fbx",
+      "expectedClipName": "AS_CB_T_Stunned_Idle",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_stunned_off",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Stunned_Off.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Stunned_Off.fbx",
+      "expectedClipName": "AS_CB_T_Stunned_Off",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_takedown",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Takedown.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown.fbx",
+      "expectedClipName": "AS_CB_T_Takedown",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_takedown_fail",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Takedown_Fail.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown_Fail.fbx",
+      "expectedClipName": "AS_CB_T_Takedown_Fail",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_takedown_react",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Takedown_React.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Takedown_React.fbx",
+      "expectedClipName": "AS_CB_T_Takedown_React",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_thrust",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Thrust.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Thrust.fbx",
+      "expectedClipName": "AS_CB_T_Thrust",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_transform",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Transform.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Transform.fbx",
+      "expectedClipName": "AS_CB_T_Transform",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_walk",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Walk.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk.fbx",
+      "expectedClipName": "AS_CB_T_Walk",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_walk_back",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Walk_Back.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Back.fbx",
+      "expectedClipName": "AS_CB_T_Walk_Back",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_walk_left",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Walk_Left.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Left.fbx",
+      "expectedClipName": "AS_CB_T_Walk_Left",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_tin_place_as_cb_t_walk_right",
+      "relativePath": "MCB/Transform/TIn Place/AS_CB_T_Walk_Right.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TIn Place/AS_CB_T_Walk_Right.fbx",
+      "expectedClipName": "AS_CB_T_Walk_Right",
+      "selectedClipName": "Take 001",
+      "category": "transform_in_place",
+      "rootMotion": false,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_circular_attack_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Circular_Attack_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Circular_Attack_RM.fbx",
+      "expectedClipName": "AS_CB_T_Circular_Attack_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_combo_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Combo_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_RM.fbx",
+      "expectedClipName": "AS_CB_T_Combo_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_combo_v2_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V2_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V2_RM.fbx",
+      "expectedClipName": "AS_CB_T_Combo_V2_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_combo_v3_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V3_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Combo_V3_RM.fbx",
+      "expectedClipName": "AS_CB_T_Combo_V3_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_cut_slice_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Cut_Slice_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Cut_Slice_RM.fbx",
+      "expectedClipName": "AS_CB_T_Cut_Slice_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_dash_slice_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Dash_Slice_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Dash_Slice_RM.fbx",
+      "expectedClipName": "AS_CB_T_Dash_Slice_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_duel_slice_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Duel_Slice_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Duel_Slice_RM.fbx",
+      "expectedClipName": "AS_CB_T_Duel_Slice_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": false,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_jump_attack_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Jump_Attack_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Jump_Attack_RM.fbx",
+      "expectedClipName": "AS_CB_T_Jump_Attack_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    },
+    {
+      "id": "mcb_transform_troot_motion_as_cb_t_rotate_attack_rm",
+      "relativePath": "MCB/Transform/TRoot_Motion/AS_CB_T_Rotate_Attack_RM.fbx",
+      "sourcePath": "<local-path>",
+      "importedPath": "Assets/DragonKnightProof/Animations/BossMoveSets/MCB/Transform/TRoot_Motion/AS_CB_T_Rotate_Attack_RM.fbx",
+      "expectedClipName": "AS_CB_T_Rotate_Attack_RM",
+      "selectedClipName": "Take 001",
+      "category": "transform_root_motion",
+      "rootMotion": true,
+      "required": true,
+      "forcedHumanImporter": true,
+      "retargetMode": "humanoid-source-avatar-to-dragon-knight-controller",
+      "avatarCopySource": "",
+      "importedAvatarHuman": true,
+      "humanoidImporter": true,
+      "pass": true,
+      "importedClipNames": [
+        "Take 001"
+      ]
+    }
+  ],
+  "vfx": [
+    {
+      "id": "weapon_fire_trail",
+      "sourcePath": "<local-path>",
+      "importedRoot": "Assets/DragonKnightProof/VFX/INabWeaponTrails",
+      "prefabPath": "Assets/DragonKnightProof/VFX/INabWeaponTrails/Trail Prefabs/Fire 1.prefab",
+      "particleSystemCount": 0,
+      "rendererCount": 1,
+      "dependencyCount": 2,
+      "strippedScriptCount": 12,
+      "pass": true
+    }
+  ],
+  "errors": [
+  ]
+}
