@@ -26,15 +26,15 @@ Additional states require their own evidence.
 6. Release and reload it.
 7. Fail the gate if required states are absent or semantically incompatible.
 
-## Validation gate
+## Check
 
-PASSED when the required baseline states have explicit, tested mappings and the mapping loads/releases cleanly.
+Confirm that the required baseline states have explicit, tested mappings and the mapping loads/releases cleanly.
 
 ## Failure lesson
 
 Combat success does not compensate for missing locomotion, hit, or death states. Missing Movement/GetHit/Death mappings previously produced dragging and broken death behaviour even when attacks worked.
 
-## Does not prove
+## Before continuing
 
 Template construction, actor lifecycle, AI, combat correctness, corpse handoff, population, or persistence.
 
