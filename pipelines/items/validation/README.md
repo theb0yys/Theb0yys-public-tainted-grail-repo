@@ -18,4 +18,4 @@ Record each row independently.
 | Migration | Upgrade path if schema/identity changes |
 | Compatibility | Claimed runtime/build combinations tested |
 
-A stage is PASSED only for the lane actually tested.
+A stage is Confirm the specific the lane actually tested.
