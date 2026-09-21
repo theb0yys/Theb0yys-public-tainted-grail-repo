@@ -6,7 +6,7 @@ Convert the accepted source/target representation into the package structures re
 
 ## Procedure
 
-1. Start only from a PASSED deformation candidate.
+1. Start only from a complete deformation candidate.
 2. Convert geometry, skinning, bone, submesh/material, and related semantic data into the importer’s canonical Kandra representation.
 3. Produce the packed payload and loose/mod-owned package form used by the public-safe pipeline.
 4. Generate metadata required for runtime preflight/registration.
@@ -18,9 +18,9 @@ Convert the accepted source/target representation into the package structures re
 
 A validated Kandra package candidate plus conversion/validation receipt.
 
-## Validation gate
+## Check
 
-PASSED when the package writer and independent validator agree on the intended geometry/metadata contract.
+Confirm that the package writer and independent validator agree on the intended geometry/metadata contract.
 
 ## Failure conditions
 
@@ -29,9 +29,9 @@ PASSED when the package writer and independent validator agree on the intended g
 - proof-fixture identity is reused as a production item;
 - package validity is inferred only from “file was created.”
 
-## Does not prove
+## Before continuing
 
-A valid package does not prove runtime Kandra registration or armour equip.
+A valid package does not cover runtime Kandra registration or armour equip.
 
 ## Next
 
