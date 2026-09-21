@@ -21,9 +21,9 @@ A successful prototype shape is expected to contain the native/Drake presentatio
 7. Release resources when the native/framework presentation lifetime ends.
 8. Do not manually fabricate Drake ECS lifetime state or edit global resource counters.
 
-## Validation gate
+## Check
 
-PASSED when:
+Confirm that:
 
 - native equip requests the custom presentation;
 - the custom mesh/material is served through Drake ownership;
@@ -38,9 +38,9 @@ PASSED when:
 - leaking or prematurely releasing mesh/material resources;
 - modifying global Drake unload behaviour.
 
-## Does not prove
+## Before continuing
 
-Visible presentation does not prove melee sweep geometry, damage, animation events, audio, trail/finisher timing, preview, or persistence.
+Visible presentation does not cover melee sweep geometry, damage, animation events, audio, trail/finisher timing, preview, or persistence.
 
 ## Next
 
