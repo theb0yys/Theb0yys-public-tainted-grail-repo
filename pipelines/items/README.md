@@ -2,11 +2,6 @@
 
 This pipeline reconstructs the proven custom-item path as a sequence of independently validated stages.
 
-## Current proof boundary
-
-The strongest public runtime proof covers a native-derived custom ItemTemplate identity, registration into the loaded template maps, normal Item construction, controlled merchant-stock acquisition, and visible downstream UI ownership.
-
-Cold save/load restoration, missing-mod behaviour, uninstall/orphan handling, universal acquisition routes, and arbitrary from-scratch ItemTemplate construction remain separate gates.
 
 ## Stage map
 
