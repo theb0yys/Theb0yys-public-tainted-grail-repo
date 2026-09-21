@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>AvalonDragonCompanion.AI.Package.V2</AssemblyName>
+    <RootNamespace>AvalonDragonCompanion.AI.Package.V2</RootNamespace>
+    <DefineConstants>$(DefineConstants);AVALON_DRAGON_COMPANION_AI_PACKAGE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\avalon-ai-runtime\src\AvalonAI.Contracts.V2\AvalonAI.Contracts.V2.csproj" />
+    <Compile Include="..\..\..\..\avalon-creature-companion-shared-source\StandaloneCreatureCompanionAiPackageV2.cs" Link="StandaloneCreatureCompanionAiPackageV2.cs" />
+  </ItemGroup>
+</Project>
