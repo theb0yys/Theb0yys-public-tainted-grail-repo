@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Tainted.Armour.Serialization</AssemblyName>
+    <RootNamespace>Tainted.Armour.Serialization</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tainted.Armour.Canonical\Tainted.Armour.Canonical.csproj" />
+  </ItemGroup>
+</Project>

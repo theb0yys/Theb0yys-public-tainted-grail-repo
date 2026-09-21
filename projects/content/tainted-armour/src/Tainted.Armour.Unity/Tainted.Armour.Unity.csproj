@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>Tainted.Armour.Unity</AssemblyName>
+    <RootNamespace>Tainted.Armour.Unity</RootNamespace>
+    <NuGetAudit>false</NuGetAudit>
+    <UnityManagedDir Condition="'$(UnityManagedDir)' == ''"><local-path>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tainted.Armour\Tainted.Armour.csproj" />
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(UnityManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="RequireUnityCoreModule" BeforeTargets="ResolveReferences"
+          Condition="!Exists('$(UnityManagedDir)\UnityEngine.CoreModule.dll')">
+    <Error Text="UnityEngine.CoreModule.dll was not found. Set UnityManagedDir to the Unity Editor Managed/UnityEngine directory." />
+  </Target>
+</Project>
