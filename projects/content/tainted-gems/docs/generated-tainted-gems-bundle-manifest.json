@@ -1,0 +1,18 @@
+{
+  "marker": "TAINTED_GEMS_BUNDLE_PASS",
+  "unityVersion": "6000.0.64f1",
+  "gemSourceRoot": "<local-path>",
+  "bundleName": "tainted_gems.bundle",
+  "bundlePath": "D:/documents/GitHub/Tainted-Grail-The-Fall-of-Avalon-mods/mods/tainted-gems/src/bin/Release/netstandard2.1/assets/tainted_gems.bundle",
+  "bundleSha256": "356AE8426D3A3ED60CA324EAF1F73FDE310D8C971DC658C70B9C750FD8619103",
+  "bundleBytes": 17138090,
+  "shapeSet1AssetPath": "Assets/TaintedGems/Generated/TaintedGems_DiamondShapeSet1.prefab",
+  "shapeSet1TransformCount": 25,
+  "shapeSet2AssetPath": "Assets/TaintedGems/Generated/TaintedGems_DiamondShapeSet2.prefab",
+  "shapeSet2TransformCount": 13,
+  "uiIconCount": 42,
+  "uiIconAssetPrefix": "TaintedGemsIcon_",
+  "uiIconSource": "rendered-imported-gem-prefabs",
+  "sourceFileCount": 10,
+  "sourceSha256": "F4DA16D4A36FFE0D3AC0944085122ED65CD643E7EAEAAE2F62179B7A4001AA1F"
+}
