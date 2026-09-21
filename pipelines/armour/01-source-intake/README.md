@@ -31,13 +31,13 @@ Create a reproducible, redistribution-safe record of the source armour asset bef
 
 A source-intake record and immutable input set for later comparison.
 
-## Validation gate
+## Check
 
-PASSED when another author can identify the same authorised source revision and reproduce the recorded geometry/skeleton facts.
+Confirm that another author can identify the same authorised source revision and reproduce the recorded geometry/skeleton facts.
 
-## Does not prove
+## Before continuing
 
-Source suitability does not prove target-rig compatibility, deformation, Kandra conversion, registration, equip, or persistence.
+Source suitability does not cover target-rig compatibility, deformation, Kandra conversion, registration, equip, or persistence.
 
 ## Next
 
