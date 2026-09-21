@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>DragonKnight.AI.Package.V2.Fixtures</AssemblyName>
+    <RootNamespace>DragonKnight.AI.Package.V2.Fixtures</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DragonKnight.AI.Package.V2\DragonKnight.AI.Package.V2.csproj" />
+    <ProjectReference Include="..\..\..\..\avalon-ai-runtime\src\AvalonAI.Runtime.V2\AvalonAI.Runtime.V2.csproj" />
+  </ItemGroup>
+</Project>

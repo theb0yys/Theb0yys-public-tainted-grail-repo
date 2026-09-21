@@ -1,0 +1,136 @@
+{
+  "schemaId": "dragon-knight.dk5c.authored-hos-placement-pack.v1",
+  "packId": "dragon-knight.dk5c.authored-hos-placement-pack.v1",
+  "sourceGate": "DK5C",
+  "routeStatus": "source-proof-only",
+  "ownerModId": "dragon-knight",
+  "ownerRuntimeHostId": "dragon-knight.boss.host",
+  "targetRegionId": "region:hos",
+  "targetSceneName": "CampaignMap_HOS",
+  "targetSceneDisplayName": "Horns of the South",
+  "coreAnchorRef": "hos.ancient-cromlech.center",
+  "coreLocalRef": "A-HOS-ANCIENT-CROMLECH-17",
+  "overlayId": "dragon-knight.cromlech.overlay.v1",
+  "overlayManifestPath": "placement/dragon-knight-cromlech-overlay.v1.json",
+  "supportsMultiplePlacements": true,
+  "altarReference": {
+    "referenceId": "dragon-knight.vaelor.cromlech.altar-reference",
+    "source": "AltarInteract",
+    "liveLocationId": "CM_Stonehenge_0_2258891627046429048_1",
+    "targetId": "foa.location:CM_Stonehenge_0_2258891627046429048_1",
+    "componentPath": "/SpawnedLocations_30/AltarInteract",
+    "sceneName": "CampaignMap_HOS_merged",
+    "position": {
+      "x": -1792.661,
+      "y": 79.942,
+      "z": -2912.844
+    },
+    "availableAction": {
+      "actionType": "Awaken.TG.Main.Locations.Actions.DialogueAction",
+      "defaultActionName": "Interact",
+      "availability": "Available"
+    },
+    "isBossPlacementRoot": false,
+    "isEncounterTrigger": false,
+    "evidenceId": "template-diagnostics.20260803-032730.cromlech-target-proof.line-21"
+  },
+  "unityAuthoring": {
+    "projectRoot": "<local-path>",
+    "editorSourceFile": "Assets\\Editor\\DragonKnight\\DK5CAuthoredHosPlacementPackBuilder.cs",
+    "placementManifestAssetPath": "Assets\\DragonKnight\\Placement\\DK5C\\dragon-knight-dk5c-authored-hos-placement-pack.v1.json",
+    "placementPrefabRootPath": "Assets\\DragonKnight\\Placement\\DK5C\\Prefabs\\DK5C_DragonKnight_Cromlech_PlacementRoot.prefab",
+    "placementRootName": "DK5C_DragonKnight_Cromlech_PlacementRoot",
+    "markerComponentType": "DragonKnight.Editor.DK5CAuthoredPlacementMarker",
+    "markerId": "DK5C_DRAGON_KNIGHT_AUTHORED_HOS_PLACEMENT_PACK_SOURCE",
+    "serializedPlacementKind": "authored-scene-overlay-location-template-placement",
+    "expectedOutputRoot": "<local-path>",
+    "expectedBundleName": "dragon-knight-dk5c-authored-hos-placement-pack",
+    "expectedHashManifest": "dragon-knight-dk5c-authored-hos-placement-pack.hashes.json",
+    "deploymentTargetRoot": "<local-path>",
+    "buildCommand": "Unity.exe -batchmode -quit -projectPath \"<local-path>" -executeMethod DragonKnight.Editor.DK5CAuthoredHosPlacementPackBuilder.Build",
+    "deployCommand": "Copy-Item -LiteralPath \"<local-path>" -Destination \"<local-path>" -Recurse -Force"
+  },
+  "runtimePolicy": {
+    "requiresSaveOwnedLocation": true,
+    "rejectsMarkedNotSaved": true,
+    "rejectsIsNotSaved": true,
+    "requiresLocationIdProof": true,
+    "requiresHostOwnershipProof": true,
+    "allowsNativeSpawn": false,
+    "allowsVanillaSpawnerSlots": false,
+    "allowsRuntimeSceneMutation": false,
+    "allowsSaveWrites": false,
+    "observerCompatible": true,
+    "expectedObservedMarker": "DRAGON_KNIGHT_OWNED_PLACEMENT_OBSERVED"
+  },
+  "placements": [
+    {
+      "placementId": "dragon-knight.vaelor.cromlech.center",
+      "encounterId": "dragon-knight.vaelor.cromlech",
+      "actorRoleId": "dragon-knight.boss",
+      "actorSource": "dragon-knight-owned-hos-placement-pack",
+      "displayName": "Sir Vaelor, the Ashen Dragon Knight",
+      "sceneName": "CampaignMap_HOS",
+      "locationTemplateName": "Spec_DragonKnight_DK4A",
+      "locationTemplateGuid": "d7b09116519f7564593be62781bee3db",
+      "npcTemplateName": "NPCTemplate_DragonKnight_DK4A",
+      "npcTemplateGuid": "00f608ee051b57748a6a9ed8dae28678",
+      "position": {
+        "x": -1795.209,
+        "y": 80.243,
+        "z": -2915.928
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": -140.441,
+        "roll": 0.0
+      },
+      "rootKind": "boss-placement-root",
+      "bossRootDerivation": {
+        "derivedFrom": "AltarInteract reference plus 4m toward dumped hero position",
+        "sourceHeroPosition": {
+          "x": -1801.847,
+          "y": 81.026,
+          "z": -2923.964
+        },
+        "altarOffsetMeters": 4.0,
+        "distanceFromAltarMeters": 4.0,
+        "evidenceId": "template-diagnostics.20260803-032730.hero-to-altar-offset-4m"
+      },
+      "altarReferenceId": "dragon-knight.vaelor.cromlech.altar-reference",
+      "activationRadiusMeters": 5.0,
+      "witnessRadiusMeters": 25.0,
+      "softLeashRadiusMeters": 22.0,
+      "hardLeashRadiusMeters": 25.0,
+      "maxPlacementDriftMeters": 3.0,
+      "duplicateKey": "dragon-knight:CampaignMap_HOS:dragon-knight.vaelor.cromlech.center:d7b09116519f7564593be62781bee3db",
+      "activationTrigger": "dragon-knight.encounter.inner-ring-entered",
+      "placementRootName": "DK5C_DragonKnight_Cromlech_PlacementRoot",
+      "placementPrefabRootPath": "Assets\\DragonKnight\\Placement\\DK5C\\Prefabs\\DK5C_DragonKnight_Cromlech_PlacementRoot.prefab",
+      "markerId": "DK5C_DRAGON_KNIGHT_AUTHORED_HOS_PLACEMENT_PACK_SOURCE",
+      "requiresSaveOwnedLocation": true,
+      "requiresLocationIdProof": true,
+      "requiresHostOwnershipProof": true,
+      "expectedActorIdFormat": "foa.location:<Location.ID>",
+      "expectedObservedMarker": "DRAGON_KNIGHT_OWNED_PLACEMENT_OBSERVED",
+      "observerCompatibility": {
+        "locationTemplateGuidMatchesObserver": true,
+        "npcTemplateGuidMatchesObserver": true,
+        "positionWithinObserverDriftMeters": 3.0,
+        "rejectsMarkedNotSaved": true,
+        "rejectsIsNotSaved": true
+      },
+      "evidenceIds": [
+        "dragon-knight.dk4a.location-template-guid",
+        "dragon-knight.dk4a.npc-template-guid",
+        "avalon-core.hos.ancient-cromlech.named-location-anchor",
+        "dragon-knight.dk5.owned-placement-observer",
+        "dragon-knight.dk5c.authored-hos-placement-pack-source",
+        "template-diagnostics.20260803-032730.cromlech-target-proof.line-21",
+        "template-diagnostics.20260803-032730.hero-to-altar-offset-4m"
+      ],
+      "notes": "Authored placement source declaration only. The boss root is deliberately separated from the AltarInteract reference; AltarInteract is not the placement root and is not the encounter trigger. This is not a Unity scene mutation, pack build, native spawn, live actor proof, AI dispatch, attack, phase, item, save-write, cleanup, or rollback executor."
+    }
+  ],
+  "notes": "DK5C source-proof manifest for a Dragon Knight-owned authored HOS placement pack. It defines the exact scene target, prefab root, marker ID, multi-placement shape, altar reference, separate boss placement root, template GUIDs, no-save rejection policy, and live observer compatibility before Unity mutation or pack build."
+}

@@ -1,0 +1,90 @@
+{
+  "schemaId": "avalon.core.custom-scene-placement-overlay.v1",
+  "overlayId": "dragon-knight.cromlech.overlay.v1",
+  "ownerModId": "dragon-knight",
+  "ownerRuntimeHostId": "dragon-knight.boss.host",
+  "targetRegionId": "region:hos",
+  "targetSceneName": "CampaignMap_HOS",
+  "targetSceneDisplayName": "Horns of the South",
+  "anchorRef": "hos.ancient-cromlech.center",
+  "anchorUsage": "altar-reference-only",
+  "coordinateSpace": "runtime-world",
+  "runtimePosture": "authored-scene-overlay",
+  "allowsNativeSpawn": false,
+  "allowsVanillaSpawnerSlots": false,
+  "allowsRuntimeSceneMutation": false,
+  "allowsSaveWrites": false,
+  "evidenceIds": [
+    "dragon-knight.air49.authority-packet",
+    "dragon-knight.dk4a.template-proof",
+    "dragon-knight.owned-placement.source-gate",
+    "user.hos.ancient-cromlech.location-selection.2026-08-03"
+  ],
+  "altarReference": {
+    "referenceId": "dragon-knight.vaelor.cromlech.altar-reference",
+    "source": "AltarInteract",
+    "liveLocationId": "CM_Stonehenge_0_2258891627046429048_1",
+    "targetId": "foa.location:CM_Stonehenge_0_2258891627046429048_1",
+    "componentPath": "/SpawnedLocations_30/AltarInteract",
+    "position": {
+      "x": -1792.661,
+      "y": 79.942,
+      "z": -2912.844
+    },
+    "isBossPlacementRoot": false,
+    "isEncounterTrigger": false,
+    "evidenceId": "template-diagnostics.20260803-032730.cromlech-target-proof.line-21"
+  },
+  "placements": [
+    {
+      "placementId": "dragon-knight.vaelor.cromlech.center",
+      "encounterId": "dragon-knight.vaelor.cromlech",
+      "actorRoleId": "dragon-knight.boss",
+      "actorSource": "dragon-knight-owned-hos-placement-pack",
+      "displayName": "Sir Vaelor, the Ashen Dragon Knight",
+      "locationTemplateName": "Spec_DragonKnight_DK4A",
+      "locationTemplateGuid": "d7b09116519f7564593be62781bee3db",
+      "npcTemplateGuid": "00f608ee051b57748a6a9ed8dae28678",
+      "position": {
+        "x": -1795.209,
+        "y": 80.243,
+        "z": -2915.928
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": -140.441,
+        "roll": 0.0
+      },
+      "rootKind": "boss-placement-root",
+      "bossRootDerivation": {
+        "derivedFrom": "AltarInteract reference plus 4m toward dumped hero position",
+        "sourceHeroPosition": {
+          "x": -1801.847,
+          "y": 81.026,
+          "z": -2923.964
+        },
+        "altarOffsetMeters": 4.0,
+        "distanceFromAltarMeters": 4.0,
+        "evidenceId": "template-diagnostics.20260803-032730.hero-to-altar-offset-4m"
+      },
+      "altarReferenceId": "dragon-knight.vaelor.cromlech.altar-reference",
+      "activationRadiusMeters": 5.0,
+      "witnessRadiusMeters": 25.0,
+      "maxPlacementDriftMeters": 3.0,
+      "duplicateKey": "dragon-knight:CampaignMap_HOS:dragon-knight.vaelor.cromlech.center:d7b09116519f7564593be62781bee3db",
+      "activationTrigger": "dragon-knight.encounter.inner-ring-entered",
+      "requiresSaveOwnedLocation": true,
+      "requiresLocationIdProof": true,
+      "requiresHostOwnershipProof": true,
+      "evidenceIds": [
+        "dragon-knight.dk4a.location-template-guid",
+        "dragon-knight.dk4a.npc-template-guid",
+        "dragon-knight.owned-placement.hos-cromlech-coordinates",
+        "template-diagnostics.20260803-032730.cromlech-target-proof.line-21",
+        "template-diagnostics.20260803-032730.hero-to-altar-offset-4m"
+      ],
+      "notes": "Authored scene overlay declaration only. The altar reference remains AltarInteract; the boss placement root is separated from it and AltarInteract is not the encounter trigger. Runtime movement, attacks, AI dispatch, companion protection, items, save writes, and native spawn execution remain blocked."
+    }
+  ],
+  "notes": "Dragon Knight Ancient Cromlech authored placement overlay manifest. This file is not an executor and must be validated before any downstream Unity/ModService authored placement pack or live observer run. The Core anchor is retained as an altar reference; the boss root is a separate free point."
+}
