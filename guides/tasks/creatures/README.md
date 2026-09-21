@@ -1,6 +1,7 @@
 # Creatures
 
-- [Creature importer pipeline](../importers/creatures.md)
+- [Full reproducible creature importation pipeline](../../../pipelines/creatures/README.md)
+- [Creature importer landing page](../importers/creatures.md)
 - [Build a one-session native companion](build-a-one-session-native-companion.md)
 - [Build a temporary human ally](build-a-temporary-human-ally.md)
 - [Tune one native enemy profile](tune-one-native-enemy-profile.md)
