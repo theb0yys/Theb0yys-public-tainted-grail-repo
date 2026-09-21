@@ -26,11 +26,11 @@ Construct one controlled actor and hand ownership to the native runtime systems 
 8. Do not use a story/unique template as a disposable proof actor.
 9. Do not promote this single controlled actor into ambient population.
 
-## Validation gate
+## Check
 
-PASSED when one actor is constructed through the intended native Location/Npc ownership with correct save policy and deterministic cleanup identity.
+Confirm that one actor is constructed through the intended native Location/Npc ownership with correct save policy and deterministic cleanup identity.
 
-## Does not prove
+## Before continuing
 
 Movement quality, combat, death/corpse, population, persistence, or companion behaviour.
 
