@@ -1,0 +1,61 @@
+# Release Manifest
+
+- Mod name: Avalon Human Companions
+- Version: 0.6.2
+- Plugin GUID: `kane.tgfoa.avalon-human-companions`
+- Branch: Mono expected
+- BepInEx: v5 Mono expected
+- Game version: not verified
+- Optional dependencies: FoA Mod Manager, Tainted Interface
+- Package contents:
+  - `BepInEx/plugins/AvalonHumanCompanions/AvalonHumanCompanions.dll`
+- Excluded:
+  - Game DLLs
+  - BepInEx binaries
+  - Saves
+  - Logs
+  - Local configs
+- Known limitations:
+  - Research scaffold plus default-off safe proof spawn command, default-off actor scanner, default-off one-session native ally proof, registered proof-candidate roster for the 42 generated non-unique spawner-backed review rows, 13 promoted hostile-risk selector candidates, default-on native `Companion` prompt gate for newly generated configs, fallback native quick commands, default-on command panel gate for newly generated configs, active-proof lifecycle diagnostics/guardrails, proof-only Hold runtime movement lock, basic Follow through bounded catch-up recall, config-gated runtime-only companion brain, role-aware bounded recall placement, 0.4.0 follow/Hold/Defend/Recall behavior polish, 0.5.0 responsive native assist, 0.5.1 wider Follow-leash tuning, 0.5.2 config-driven responsive tuning, 0.5.3 live debug-panel tuning controls, 0.6.0 scanner-only capture/recruitment research classifier, embedded Tainted Interface framed character portraits with candidate-family mapping, passive gameplay HUD companion badge, command-surface input lock, proven Avalon Companions cursor/scope lifecycle with FoA Mod Manager fallback, dialogue Rewired input pass-through, companion-style Unity UI native dialogue surface, compact IMGUI control panel, and review-only human NPC diagnostic map only.
+  - Safe proof spawn command is default-off and has only user screenshot smoke-test evidence.
+  - Actor scanner CSV writing is confirmed through the 0.1.6 panel scanner button. Proof actor live capture later passed with a logging caveat: scanner output included the reviewed target GUID with `hasHeroPetAlly=true`, and dry-run command rows stayed blocked.
+  - One-session native ally proof has user screenshot smoke-test evidence and later BepInEx log confirmation for the native ally setup line.
+  - Native quick command runtime validation failed in live testing, so the panel is the current proof command path.
+  - Proof command panel commands passed user smoke testing on 2026-06-15 with screenshot evidence.
+  - Proof command panel visual/layout polish was built and deployed in 0.1.5, but in-game 0.1.6 screenshot validation is still required before release-ready UI claims.
+  - Version 0.1.7 adds lifecycle diagnostics/guardrails, but Dismiss, transition/long-move, and save/quit/reload lifecycle validation are still required.
+  - Version 0.1.8 adds proof-only Hold, but in-game Hold cleanup validation is still required.
+  - Version 0.1.9 adds panel flow/input lock polish. User smoke-tested the focus/input lock in game and reported it passed; `LogOutput.log` confirmed 0.1.9 load and input-lock patch application. Independent screenshot/video capture is still not available.
+  - Version 0.1.9 generated `human-npc-diagnostic-map-20260616-090615.csv` with 544 review-only rows; no row is approved for spawn, roster, behavior, or persistence.
+  - Version 0.1.10 expands the proof panel and pins button states after screenshot validation showed the 0.1.9 panel was still too small and action colors looked wrong. In-game 0.1.10 visual validation is still required.
+  - Version 0.1.11 adds optional Tainted Interface shared styling/scope for the proof panel. In-game 0.1.11 visual/scope validation and no-layer fallback validation are still required.
+  - Version 0.1.12 adds a native `Companion` prompt bridge for the active proof actor, but in-game native prompt validation is still required.
+  - Version 0.1.13 makes `HumanCommands.EnableNativeCommandActions` and `HumanCommandPanel.EnableProofCommandPanel` default `true` for newly generated configs only. Existing BepInEx configs are not overwritten by BepInEx default changes.
+  - Version 0.1.14 replaces the visible centered IMGUI proof panel with a companion-style Unity UI command surface, but in-game visual/native-prompt validation is still required.
+  - Version 0.1.15 corrects the 0.1.14 split: native NPC prompt opens companion-style dialogue, and the hotkey opens a compact debug/control panel.
+  - Version 0.1.16 registers the generated review queue as a proof-candidate selector with Prev, Spawn / Swap, and Next controls. These rows are proof candidates only; they are not persistent/recruitable human companions.
+  - Version 0.1.17 makes the proof roster panel grow on large viewports after screenshot evidence showed the fixed 900x620 panel was too cramped at 3840-wide resolution.
+  - Version 0.1.18 fixes the native `Companion` dialogue input/cursor freeze by preferring FoA Mod Manager custom UI scope and letting dialogue Rewired reads pass like Avalon Companions. In-game 0.1.18 validation is still required.
+  - Version 0.1.19 supersedes the 0.1.18 scope order and mirrors the proven Avalon Companions controller lifecycle: Tainted Interface scope first, FoA Mod Manager fallback, shared cursor update, and delayed input-module restore. In-game 0.1.19 validation is still required.
+  - Version 0.1.20 adds the missing Avalon Companions GUI-pass dialogue maintenance path so the human dialogue refreshes cursor ownership and services the dialogue host from `OnGUI()` while visible. In-game 0.1.20 validation is still required.
+  - Version 0.1.21 makes Follow reselectable and clamps Follow-mode bounded catch-up recall to a closer proof range. Log/CSV validation confirmed 0.1.21 load, native prompt attachment, dialogue open/click handling, and Follow-mode catch-up recalls on 2026-06-24. Independent visual Follow validation is still required.
+  - Version 0.2.0 removes debug proof actions from the NPC dialogue and presents the working command set as a companion-facing menu. The debug panel still owns spawn, scanner, and lifecycle controls.
+  - Version 0.2.4 cleans companion command feedback, keeps NPC dialogue wording product-facing, and leaves scanner/lifecycle/proof diagnostics in the debug panel.
+  - Version 0.3.0 adds a runtime-only companion brain that reuses bounded recall and native `NpcHeroPetAlly.EnterCombat()` only; Hold remains passive and no save data is added.
+  - Version 0.3.2 adds auto-recall duplicate suppression and idempotent native command-action cleanup for the one-session proof actor to reduce active world-cycle churn. It changes no recruitment, persistence, targeting, custom pathing, save data, or existing-NPC conversion behavior.
+  - Version 0.3.3 promotes 13 hostile-risk candidates into the selector, removes raw template/review/GUID/proof wording from the player-facing dialogue and summon panel, removes scanner/lifecycle buttons from the normal summoning panel, and extends role-aware placement to the promoted role labels.
+  - Version 0.3.4 adds embedded Tainted Interface character portraits to the dialogue and summoning panel through the optional reflection bridge. It changes no recruitment, persistence, existing-NPC conversion, custom target selection, command behavior, or save data.
+  - Version 0.3.5 adds the embedded Tainted Interface companion icon background as a layered premium frame around the summoning-panel and native-dialogue portraits. It changes no recruitment, persistence, existing-NPC conversion, custom target selection, command behavior, or save data.
+  - Version 0.3.6 adds a passive gameplay HUD badge for the active one-session human companion, matching the Avalon Companions overlay route and hiding while panel/dialogue UI is open. It changes no recruitment, persistence, existing-NPC conversion, custom target selection, command behavior, or save data.
+  - Version 0.3.7 improves promoted-candidate portrait identity with more specific UI-only mappings for outlaw, highwayman, deranged, archer, spear, heavy, and armored rows. It changes no roster approval, recruitment, persistence, existing-NPC conversion, custom target selection, command behavior, or save data.
+  - Version 0.4.0 polishes one-session companion behavior by adding automatic recall trigger buffering, separate follow/combat/emergency recall cooldowns, runtime Hold anchor feedback, clearer Recall/Come Close statuses, and Defend feedback around the native `NpcHeroPetAlly.EnterCombat()` handoff. It changes no recruitment, persistence, existing-NPC conversion, custom target selection, custom pathing, attack buttons, story dialogue, or save data.
+  - Version 0.5.0 adds responsive native assist: faster bounded brain evaluation, closer Follow recovery, closer combat recall placement, and proactive native `NpcHeroPetAlly.EnterCombat()` when the hero already has live attackers. It changes no custom target selection, target override, attack UI, custom pathing, recruitment, persistence, existing-NPC conversion, story dialogue, or save data.
+  - Version 0.5.1 widens responsive Follow and combat recall thresholds and adds a short responsive Follow grace window before automatic catch-up recall so native movement has room to catch up first. It changes no custom pathing, custom target selection, target override, attack UI, recruitment, persistence, existing-NPC conversion, story dialogue, or save data.
+  - Version 0.5.2 exposes responsive tuning through `HumanBrainTuning` config entries: brain tick, Follow leash, Follow recall grace, combat recall distance, automatic recall cooldowns, and native defend prompt cooldown. It changes no custom pathing, custom target selection, target override, attack UI, recruitment, persistence, existing-NPC conversion, story dialogue, or save data.
+  - Version 0.5.3 adds live hotkey-panel controls for the `HumanBrainTuning` values plus `Save Config` and `Reset Defaults`. It changes no NPC dialogue options, custom pathing, custom target selection, target override, attack UI, recruitment, persistence, existing-NPC conversion, story dialogue, or save data.
+  - Version 0.6.0 adds `human-recruitment-capture-research.csv` plus blocked dry-run `recruit-friendly` and `capture-enemy` command rows. It is scanner evidence only; it changes no prompts, panel buttons, live capture/recruitment, existing-NPC conversion, faction/hostility/crime/story/dialogue edits, persistence, or save data.
+  - Version 0.6.1 adds the direct engine-neutral Avalon AI Runtime ownership/observation/dispatch boundary for the exact active one-session proof human. Runtime ownership stands down only the automatic brain and legacy automatic assist branch; manual commands and lifecycle safety continue. Dispatch remains restricted to the existing Hold lock, role-aware bounded recall, and native `NpcHeroPetAlly.EnterCombat()` paths.
+  - Version 0.6.2 exposes the exact managed one-session `Location.ID` to the host-owned Human executor lane. The executor remains default-off and does not expand the native command boundary, recruitment, persistence, targeting, pathfinding, combat replacement, or save data.
+  - No human NPC recruitment, capture, persistence, story graph dialogue, release-ready full companion panel, true Stay/Wait, saved hold position, custom targeting, or conversion of existing NPCs.
+  - Release build DLL hash: `F2ECB04C28B1B923B866354BAD64D4059F440D9628CBC28BFAA098D34CB8EF77`.
+  - Live deployment for 0.6.2 was not performed; load and gameplay validation remain pending.
