@@ -1,8 +1,5 @@
 # Item Stage 1 — Source and Baseline Selection
 
-## Status
-
-This stage is evidence-backed and required.
 
 ## Objective
 
@@ -37,11 +34,11 @@ A source-profile record containing:
 - fields approved for change;
 - known downstream owners.
 
-## Validation gate
+## Check
 
-PASSED only when the source GUID resolves to the expected ItemTemplate and the recorded component/profile matches the intended native family.
+Confirm that the source GUID resolves to the expected ItemTemplate and the recorded component/profile matches the intended native family.
 
-## Does not prove
+## Before continuing
 
 This stage does not create a custom item, register anything, create a runtime Item, place it in an inventory/shop, display an icon, or prove persistence.
 
