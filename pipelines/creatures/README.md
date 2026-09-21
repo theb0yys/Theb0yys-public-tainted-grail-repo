@@ -29,4 +29,4 @@ CI1 → CI2 → CI3 → CI4A → CI4 → CI5 → focused live validation
 
 ## Core rule
 
-Every gate proves only its own boundary. A visual root does not authorise actor construction. A valid NpcTemplate does not prove combat. A spawned actor does not prove population or persistence.
+Every gate proves only its own boundary. A visual root does not authorise actor construction. A valid NpcTemplate does not cover combat. A spawned actor does not cover population or persistence.
