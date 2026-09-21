@@ -18,11 +18,11 @@ Separate a safe one-session actor proof from world distribution, encounter, resp
 5. Validate one placement mode before broadening.
 6. Do not convert a session-only SpawnLocation proof into ambient population by adding random spawn calls.
 
-## Validation gate
+## Check
 
-PASSED only for the specific distribution owner and lifecycle actually exercised.
+Confirm the specific the specific distribution owner and lifecycle actually exercised.
 
-## Does not prove
+## Before continuing
 
 Population success does not automatically prove save persistence, migration, companion behaviour, or another placement owner.
 
