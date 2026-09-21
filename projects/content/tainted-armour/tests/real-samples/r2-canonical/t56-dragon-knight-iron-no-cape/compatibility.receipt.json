@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "tainted-armour.source-target-compatibility-output/1",
+  "stageContractVersion": "tainted-armour.source-target-compatibility.v1",
+  "receiptContractVersion": "tainted-armour.source-target-compatibility-receipt/1",
+  "source": {
+    "artifactContractVersion": "tainted-armour.r2-canonical-armor-artifact/1",
+    "profileId": "source.t56-dragon-knight-iron-no-cape",
+    "canonicalPackage": ".",
+    "sourceReceipt": "..\\..\\t56-dragon-knight-iron-no-cape-full-geometry-import.json",
+    "canonicalArtifact": "sha256:b7b8c898cbce4ed250e920c37a241000c55dc94f094bdd53ea5c147fd809e49f"
+  },
+  "target": {
+    "targetProfileContractVersion": "tainted-armour.fingerprinted-target-profile/1",
+    "targetProfileId": "foa-dragon-knight-t56-self",
+    "targetProfileFingerprint": "sha256:b8cc6f6aa56d8606726d07292b78dd35d104da050e0c8c0a18b172c8dcb94ab5",
+    "canonicalPackage": ".",
+    "canonicalArtifact": "sha256:b7b8c898cbce4ed250e920c37a241000c55dc94f094bdd53ea5c147fd809e49f"
+  },
+  "policyFingerprint": "sha256:6478e849f3e0fdd1b86e7bbd91b94ad777180a2fac6b01165730633d748a9424",
+  "cacheKey": "sha256:d92cf1ac99710a7de334d474ea9c81fe62fa2914a8f1c2e7800eac40c8239e60",
+  "receiptId": "sha256:892b8a1553f099dd69e23079597d414cbb5cae75a9dc1d8221cc8a06d1ca5ee3",
+  "gate": "PASS",
+  "classification": "EXACT",
+  "compatibilityAccepted": true,
+  "assertions": [
+    "r2_source_manifest_artifact_matches_current_canonical_bytes",
+    "r2_target_manifest_artifact_matches_current_canonical_bytes",
+    "candidate_map_conversion_item_equip_save_and_downstream_write_boundaries_false"
+  ],
+  "diagnostics": [
+    "classification_exact:same_canonical_manifest_artifact",
+    "gate_pass:exact"
+  ],
+  "blockers": [],
+  "boundaries": {
+    "candidateMapApplicationAllowed": false,
+    "candidateMapApplicationExecuted": false,
+    "conversionAllowed": false,
+    "conversionExecuted": false,
+    "itemEquipMutationAllowed": false,
+    "itemEquipMutationExecuted": false,
+    "saveMutationAllowed": false,
+    "saveMutationExecuted": false,
+    "downstreamWritesAllowed": false,
+    "downstreamWritesExecuted": false
+  }
+}

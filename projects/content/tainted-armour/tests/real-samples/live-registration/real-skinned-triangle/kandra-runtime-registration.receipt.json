@@ -1,0 +1,51 @@
+{
+  "StageVersion": "tainted-armour.foa.kandra-runtime-registration-invoker.v1",
+  "WrittenAtUtc": "2026-08-13T01:31:32.3113893Z",
+  "Trigger": "config-kandra-runtime-registration-request:2",
+  "Context": {
+    "RequestId": "live.kandra-runtime-registration.real-skinned-triangle",
+    "DryRunRequestId": "live.kandra-runtime-registration.dry-run.real-skinned-triangle",
+    "ApprovalId": "live-kandra-runtime-registration-approval-real-skinned-triangle",
+    "ModDirectory": "AvalonAwakenedProof",
+    "Name": "RealSkinnedTriangle",
+    "VertexCount": 3,
+    "IndicesCount": 3,
+    "BindposesCount": 4,
+    "BlendshapeCount": 0,
+    "LayoutVersion": "awaken-kandra.read-serialized-data.mono-24270691.v1",
+    "KandraDirectory": "<local-path>",
+    "MeshDataPath": "<local-path>",
+    "IndicesDataPath": "<local-path>",
+    "MeshDataByteCount": 312,
+    "IndicesDataByteCount": 6,
+    "MeshDataSha256": "EC1496B7F54EE67A157D4B4718CEE3ED463BE81F5740643EB3C6CB52C43D69F2",
+    "IndicesDataSha256": "90C2698921CA9FD02950BE353F721888760E33AB5095A21E50F1E4360B6DE1A0",
+    "RegistrationOwner": "Awaken.Kandra.KandraRendererManager",
+    "RegistrationMethodSignature": "System.Void Awaken.Kandra.KandraRendererManager.Register(Awaken.Kandra.KandraRenderer kandraRenderer)",
+    "RegistrationMethodFingerprint": "sha256:a398bf5755dad75ebaf958dc068b65590b0b359267e026b44b7d959f885ec2ea",
+    "RegistrationAssemblySha256": "sha256:cddcfc124bcfe9ba88a102a14b058e9d0c9cd997e455b2f7f5caa839abd3bfbf"
+  },
+  "Attempt": {
+    "RegistrationMethodInvoked": true,
+    "CanRegisterMethodsInvoked": false,
+    "CreatedOrActivatedKandraObject": true,
+    "RuntimeRegistrationExecuted": true,
+    "RuntimeRegistrationSucceeded": true,
+    "KandraIsRegisteredStatus": "observed:True:renderingId=13",
+    "KandraTryGetMeshMemoryStatus": "observed:True:meshMemory=Awaken.Kandra.Managers.MeshManager+MeshMemory#192092034",
+    "RegisteredRendererIdentity": "/TaintedArmourKandraRuntimeRegistration_RealSkinnedTriangle:renderingId=13",
+    "RegisteredMeshMemoryIdentity": "Awaken.Kandra.Managers.MeshManager+MeshMemory#192092034",
+    "Blockers": [],
+    "Warnings": [
+      "foa_kandra_runtime_registration_template_renderer:/HeroSpawned/Hero:0[VHeroController]/FppParent/FppArms(Clone)/Mesh_BaseHuman/Fpp_Body",
+      "foa_kandra_runtime_registration_single_submesh:indexStart=0:indexCount=3",
+      "foa_kandra_runtime_registration_invoked_by_activation:KandraRenderer.OnEnable"
+    ]
+  },
+  "CandidateMapApplicationExecuted": false,
+  "ConversionExecuted": false,
+  "ItemEquipMutationExecuted": false,
+  "SaveMutationExecuted": false,
+  "NativeGameWriteExecuted": false,
+  "NonRegistrationDownstreamWritesExecuted": false
+}

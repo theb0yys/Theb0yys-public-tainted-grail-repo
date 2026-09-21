@@ -1,0 +1,8 @@
+{
+  "canonicalPackage": ".",
+  "schemaVersion": "tainted-armour.target-profile-fixture/1",
+  "sourceGeometryCapture": "..\\..\\full-geometry-captures\\t56-dragon-knight-iron-no-cape\\capture.geometry.json",
+  "sourceReceipt": "..\\..\\t56-dragon-knight-iron-no-cape-full-geometry-import.json",
+  "targetProfileFingerprint": "sha256:b8cc6f6aa56d8606726d07292b78dd35d104da050e0c8c0a18b172c8dcb94ab5",
+  "targetProfileId": "foa-dragon-knight-t56-self"
+}
