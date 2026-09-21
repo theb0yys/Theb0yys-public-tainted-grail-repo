@@ -20,17 +20,17 @@ Prove that the source geometry can deform acceptably on the intended target rig 
 5. Record numerical/structural checks where the importer provides them.
 6. Preserve before/after evidence for the same geometry.
 
-## Validation gate
+## Check
 
-PASSED when deformation meets the target acceptance criteria for the intended armour piece and no critical rig/weight defect is hidden by a neutral pose.
+Confirm that deformation meets the target acceptance criteria for the intended armour piece and no critical rig/weight defect is hidden by a neutral pose.
 
 ## Failure rule
 
 Do not proceed to Kandra runtime registration to “see if it looks better.” Fix the geometry/rig problem in this lane first.
 
-## Does not prove
+## Before continuing
 
-Correct deformation does not prove Kandra packing, runtime registration, native clothes stitching, equip, or persistence.
+Correct deformation does not cover Kandra packing, runtime registration, native clothes stitching, equip, or persistence.
 
 ## Next
 
