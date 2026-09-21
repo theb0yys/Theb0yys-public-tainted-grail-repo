@@ -4,7 +4,9 @@ Source-only starters for Tainted Grail: The Fall of Avalon mod authors. These te
 
 ## Named mod-family templates
 
-- [31 cross-runtime mod-family templates](mod-families/README.md) — named starters for Avalon AI FoA Host, Avalon Cheat Panel, Avalon Stash, CarryWeightTweaks, Dungeon Exit Marker, Easy Avalon, FoA Mod Manager, Hold to Steal, Immersive Backgrounds, Immersive Footsteps, Immersive HUD, Immersive Progression, Jump Higher, Lockpicking Reforged, Magic Tweaks, Multi-Pin Map Notes, No Fall Damage, Origins of Avalon, Rich Merchant, StaminaControl, Tainted Combat, Tainted Interface, Tainted Performance, Wyrd Hunt, Avalon Companions, Tainted Music, Tainted Diagnostic Tool, Better Bonfire Menu, Merchant Stock Tweaks, Tainted Core, and Avalon Human Companions.
+- [31 selected cross-runtime starter families](mod-families/README.md) — reusable starters distilled from a subset of the larger development workspace.
+
+These 31 are **not** the complete mod inventory. See the [106-project example catalogue](../examples/mod-catalog/README.md) for the full current project set and the pattern each project demonstrates.
 
 Each named template includes shared starter logic, a Mono/BepInEx 5 host, an IL2CPP/BepInEx 6 host, Tainted Framework runtime-kind integration, and source-family/mechanism notes.
 

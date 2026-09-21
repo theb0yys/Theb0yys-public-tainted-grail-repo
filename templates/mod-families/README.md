@@ -1,14 +1,16 @@
 # Named Mod-Family Templates
 
-These 31 public templates correspond to the current cross-runtime first-party mod families being used as source/reference material.
+These are 31 **selected** cross-runtime starter families distilled from projects in the development workspace. They are reusable starting points, not a complete list of the project's mods.
 
-Every family now contains:
-- `shared/Feature.cs` with **actual portable starter logic** for that family rather than a mechanism-name placeholder;
+For the complete current project inventory, see the [106-project example catalogue](../../examples/mod-catalog/README.md).
+
+Every family contains:
+- `shared/Feature.cs` with portable starter logic for that family;
 - a Mono/BepInEx 5 host/project;
 - an IL2CPP/BepInEx 6 host/project;
-- a hard Tainted Framework dependency for the shared runtime-kind boundary.
+- a Tainted Framework dependency for the shared runtime-kind boundary.
 
-The shared layer intentionally avoids FoA/Unity/Harmony types until the author selects an exact verified owner. Add those references in the runtime host that needs them rather than spreading loader/runtime differences throughout feature logic.
+The shared layer avoids FoA/Unity/Harmony types until the author selects an exact verified game system or hook. Add those references in the runtime host that needs them rather than spreading loader/runtime differences throughout feature logic.
 
 - [Avalon AI FoA Host](avalon-ai-foa-host/) — source family `avalon-ai-runtime`
 - [Avalon Cheat Panel](avalon-cheat-panel/) — source family `avalon-cheat-panel`

@@ -4,6 +4,7 @@ Choose the task you want to complete. Use [Knowledge](../../knowledge/README.md)
 
 ## Content
 
+- [Importer pipelines](importers/README.md) — Armour, Creature, and Weapon import processes.
 - [Items](items/README.md)
 - [Weapons](weapons/README.md)
 - [Armour integration](armour/native-integration.md)
